@@ -1,0 +1,355 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Oversett visse ord til norsk.
+% \usepackage[nynorsk]{babel}
+
+% For å kunna skriva æøå i tekstar MERK: Blir automatisk ubrukeleg med lualatex og fontspec
+%\usepackage[utf8]{inputenc}
+
+\usepackage[T1]{fontenc}
+
+% Fiksa margin
+\usepackage[margin=2cm]{geometry}
+
+% Fiksar datoformatet på tiitelen
+\usepackage[ddmmyyyy]{datetime} 
+
+
+\usepackage{amssymb}
+
+% For visse mattesymbol, typ \mathbb
+\usepackage{amsmath}
+
+% Bilete
+\usepackage{graphicx}
+
+% For kodesnuttar og resultat
+%\usepackage{minted}
+
+% Kan endra på korleis listar ser ut
+\usepackage{enumitem}
+
+% For autoref
+\usepackage[hidelinks,colorlinks=true]{hyperref} 
+
+% For fargar på ting ein referer til i autoref
+\hypersetup{allcolors=[rgb]{0,0.31,0.62}}
+
+% For teorem, definisjon, bevis enviornments.
+\usepackage{amsthm} 
+
+\usepackage{thmtools} 
+
+% For svgar
+%\usepackage{svg}
+
+% Set svg mappo
+%\svgpath{svg/}
+
+% For å laga / halda styr på flytopbjekt
+% \usepackage{float}
+
+% \usepackage[subsection]{placeins}
+
+% Fjernar indents ved nye avsnitt, men gjer linjeavstanden kortare (Kanskje)
+\usepackage{parskip} 
+
+% Lualatex font greie
+\usepackage{fontspec}
+
+\usepackage{unicode-math}
+
+% Set fontar som blir brukt
+\setmathfont{Latin Modern Math} % Dette er standardfonten
+\setmathfont[range=\setminus]{Asana Math}
+% \setmainfont{Atkinson Hyperlegible}
+% \setmainfont{GFS Neohellenic Math}
+% \setmainfont{Fira Sans}
+% \setmathfont{Fira Math}
+% \setmathfont[range=\setminus]{Asana Math}
+
+\usepackage{quiver}
+
+%For kommutative diagram med tikz
+% \usepackage{tikz-cd}
+
+% Thaule tikzcd erstatning
+%\usepackage{tikz}
+%\usetikzlibrary{matrix}
+%\newcommand{\diagram}[3]{\matrix (#1) [matrix of math nodes,row
+%  sep={#2},column sep={#3},text height=1.5ex,text
+%  depth=0.25ex]}
+
+% Ny type lista med ganske perfekt spacing
+\newlist{plist}{enumerate}{5}
+\setlist[plist]{align=left, itemindent = 0cm, labelsep = 0cm, labelindent = 0cm}
+\setlist[plist,1]{label=\arabic*, font=\bf\Large}
+\setlist[plist,2]{label*=.\arabic*, labelwidth=1.25cm, leftmargin=1.25cm}
+\setlist[plist,3]{label*=.\arabic*, labelwidth=1.5cm, leftmargin=1.5cm}
+
+% Teoremstil
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Definisjonstil
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Praktiske forkortningar
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Qb}{\mathbb{Q}}
+\newcommand{\Zb}{\mathbb{Z}}
+\newcommand{\Nb}{\mathbb{N}}
+\newcommand{\Nc}{\mathcal{N}}
+\newcommand{\Tc}{\mathcal{T}}
+
+% Praktiske omformuleringar
+\newcommand{\intersect}{ \mathop{\cap}\limits }
+\newcommand{\union}{ \mathop{\cup}\limits }
+
+% Praktiske kommandoar
+% \newcommand{\gr}[1]{ \lvert #1 \rvert } % Geometrisk realisering
+\newcommand{\set}[1]{ \left\{ #1 \right\} } % mengd
+\newcommand{\tuple}[1]{ \left( #1 \right) } % tuppel
+
+% Nødvendige nye operatorar for bacheloroppgåva
+% \DeclareMathOperator{\Cech}{Cech} % Cech-kompleks
+% \DeclareMathOperator{\Sd}{Sd} % Barysentrisk Oppdeling
+% \DeclareMathOperator{\bst}{bst} % Lukka barysentrisk stjerna
+% \DeclareMathOperator{\Sk}{Sk} % Skjelett
+\DeclareMathOperator{\Id}{Id} % Identitetsavbildinga
+\DeclareMathOperator{\StMod}{StMod}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\coker}{coker}
+
+\title{Master thesis TODO}
+\author{Håvard Skjetne Lilleheie}
+
+\begin{document}
+
+\maketitle
+
+\section*{Random notes}
+
+\begin{definition} \label{def:stable_module_category}
+    Let \( G \) be a group. Let \( R \) be a \( G \) algebra over the field \( K \), i.e. \( R = KG \) with the free module structure, and normal multiplication of group and field elements.
+
+    Then the ``stable module category over \( R \)'', denoted \( \Tc := \StMod(R) \) is defined in the following way:
+    \begin{enumerate}
+        \item \( \Obj(\Tc) := \Obj(\Mod(R)) \).
+        \item \( \Hom_{\Tc}(A, B) := \Hom_R(A, B)/\set{\text{maps that factor through a projective}} \)
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    The definition in \autoref{def:stable_module_category} is well defined, and it is an additive category.
+\end{theorem}
+\begin{proof}
+    First, need to check that the set of maps that factor through a projective is an \( R \) submodule of \( \Hom_R(A, B) \).
+
+    Let, \( f \) and \( g \) be two maps that factor through the projectives \( P \) and \( Q \) respectively. Then we have the following diagrams:
+
+    \[\begin{tikzcd}
+        A & P & B
+        \arrow["{f_1}", from=1-1, to=1-2]
+        \arrow["{f_2}", from=1-2, to=1-3]
+    \end{tikzcd}\]
+
+    Where \( f_2 \circ f_1 = f \), and
+
+    \[\begin{tikzcd}
+        A & Q & B
+        \arrow["{g_1}", from=1-1, to=1-2]
+        \arrow["{g_2}", from=1-2, to=1-3]
+    \end{tikzcd}\]
+
+    Where \( g_2 \circ g_1 = g \).
+
+    Can then construct the map
+
+    \[\begin{tikzcd}
+        A & {P \oplus Q} & B
+        \arrow["{(f_1, g_1)^T}", from=1-1, to=1-2]
+        \arrow["{(f_2, g_2)}", from=1-2, to=1-3]
+    \end{tikzcd}\]
+
+    Composing these two maps, one gets the map \( f_2 \circ f_1 + g_2 \circ g_1 = f + g \). This maps factors thorugh \( P \oplus Q \), which is projective since it's a direct sum of projective modules.
+
+    Therefore, the set of homomorphisms that factor through a projective is closed under addition. And multiplying with a ring element still factors through the same projective, since every map is an \( R \) homomorphism. Therefore the set of maps that factor through a projective is an \( R \) submodule.
+
+    % TODO: This is very imprecise. How to show the other additivity properties?
+    Therefore \( \Hom_{\Tc}(A, B) \) is an abelian group, and the outstanding properties of an additive category is inherited from \( \Mod(R) \) as well.
+\end{proof}
+
+\begin{definition}
+    Let \( A \in \Obj(\Tc) \).
+
+    Let \( \Sigma \) be an endofunctor on \( \Tc \). Where \( \Sigma(A) \) is given by choosing a monomorphism from \( A \) into an injective module, \( I \), denoted by \( \iota_A \) and taking the cokernel of that map, for every \( A \). I.e \( \Sigma(A) = \coker(\iota_A) \).
+
+    Let \( \Omega \) an endofunctor on \( \Tc \). Where \( \Omega(A) \) is given by choosing a projecive module \( P \) for every \( A \) with an endomorphism \( \pi_A \) from \( P \) to \( A \), and taking the kernel of that map. I.e \( \Omega(A) = \ker(\pi_A) \).
+\end{definition}
+
+\begin{remark}
+    From the definition of \( \Omega \), \( \Omega(f) \) is constructed as follows:
+
+    Looking at the following commutative diagram:
+
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQiJdLFsyLDAsIkEiXSxbMiwxLCJCIl0sWzAsMSwiXFxPbWVnYShmKSIsMl0sWzAsMiwiXFxpb3RhX0EiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDQsIlxccGlfQSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDMsIlxcaW90YV9CIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCJcXHBpX0IiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1LCJmIl0sWzIsMywiaF9mIl1d
+    \[\begin{tikzcd}
+        {\Omega(A)} & {P_A} & A \\
+        {\Omega(B)} & {P_B} & B
+        \arrow["{\Omega(f)}"', from=1-1, to=2-1]
+        \arrow["{\iota_A}", hook, from=1-1, to=1-2]
+        \arrow["{\pi_A}", two heads, from=1-2, to=1-3]
+        \arrow["{\iota_B}", hook, from=2-1, to=2-2]
+        \arrow["{\pi_B}", two heads, from=2-2, to=2-3]
+        \arrow["f", from=1-3, to=2-3]
+        \arrow["{h_f}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+
+    One has that for a map \( f: A \to B \), one gets the map \( h_f \) from the lifitng property of projective modules. Please note that this map is \emph{not neccesarily} unique.
+
+    Furthermore, since \( \pi_B \circ h_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0 \), one has from the universal kernel property that there is a \emph{unique} map \( \Omega(f) \) from \( \Omega(A) \) to \( \Omega(B) \), which is the map defined by the functor.
+\end{remark}
+
+\begin{lemma}
+    One has that \( \Omega \) is a functor.
+\end{lemma}
+\begin{proof}
+    % Need to check the following:
+    % 1) F(f o g) = F(f) o F(g)
+    % 2) F(1) = 1
+
+    First want to show that \( \Omega \) is functorial. Let \( A, B, C \in \Obj(\Tc) \). Then one can create the following diagram using the notation from before:
+
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFswLDIsIlxcT21lZ2EoQykiXSxbMSwwLCJQX0EiXSxbMSwxLCJQX0IiXSxbMSwyLCJQX0MiXSxbMiwwLCJBIl0sWzIsMSwiQiJdLFsyLDIsIkMiXSxbNiw3LCJnIl0sWzcsOCwiZiJdLFs1LDgsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDcsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDYsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw1LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDQsImhfZyJdLFs0LDUsImhfZiIsMl0sWzMsNSwiaF97ZiBcXGNpcmMgZ30iLDEseyJsYWJlbF9wb3NpdGlvbiI6NzAsImN1cnZlIjotMywiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXSxbMCwxLCJcXE9tZWdhKGcpIiwyXSxbMSwyLCJcXE9tZWdhKGYpIiwyXSxbMCwyLCJcXE9tZWdhKGYgXFxjaXJjIGcpIiwxLHsibGFiZWxfcG9zaXRpb24iOjIwLCJjdXJ2ZSI6LTMsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzYsOCwiZiBcXGNpcmMgZyIsMSx7ImN1cnZlIjotMywiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXV0=
+    \[\begin{tikzcd}
+        {\Omega(A)} & {P_A} & A \\
+        {\Omega(B)} & {P_B} & B \\
+        {\Omega(C)} & {P_C} & C
+        \arrow["g", from=1-3, to=2-3]
+        \arrow["f", from=2-3, to=3-3]
+        \arrow[two heads, from=3-2, to=3-3]
+        \arrow[two heads, from=2-2, to=2-3]
+        \arrow[two heads, from=1-2, to=1-3]
+        \arrow[hook, from=1-1, to=1-2]
+        \arrow[hook, from=2-1, to=2-2]
+        \arrow[hook, from=3-1, to=3-2]
+        \arrow["{h_g}", from=1-2, to=2-2]
+        \arrow["{h_f}"', from=2-2, to=3-2]
+        \arrow["{h_{f \circ g}}"{description, pos=0.7}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-2, to=3-2]
+        \arrow["{\Omega(g)}"', from=1-1, to=2-1]
+        \arrow["{\Omega(f)}"', from=2-1, to=3-1]
+        \arrow["{\Omega(f \circ g)}"{description, pos=0.2}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-1, to=3-1]
+        \arrow["{f \circ g}"{description}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-3, to=3-3]
+    \end{tikzcd}\]
+
+    Then, one gets the following commuting diagram:
+
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShDKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQyJdLFszLDAsIkEiXSxbMywxLCJDIl0sWzMsNSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsNCwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsImhfe2YgXFxjaXJjIGd9IC0gaF9mIFxcY2lyYyBoX2ciXSxbMCwxLCJcXE9tZWdhKGYgXFxjaXJjIGcpIC0gXFxPbWVnYShmKSBcXGNpcmMgXFxPbWVnYShnKSIsMl0sWzQsNSwiZiBcXGNpcmMgZyAtIGYgXFxjaXJjIGcgPSAwIl0sWzIsMSwiXFxwaGkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \[\begin{tikzcd}
+        {\Omega(A)} & {P_A} && A \\
+        {\Omega(C)} & {P_C} && C
+        \arrow[two heads, from=2-2, to=2-4]
+        \arrow[two heads, from=1-2, to=1-4]
+        \arrow[hook, from=1-1, to=1-2]
+        \arrow[hook, from=2-1, to=2-2]
+        \arrow["{h_{f \circ g} - h_f \circ h_g}", from=1-2, to=2-2]
+        \arrow["{\Omega(f \circ g) - \Omega(f) \circ \Omega(g)}"', from=1-1, to=2-1]
+        \arrow["{f \circ g - f \circ g = 0}", from=1-4, to=2-4]
+        \arrow["\phi"', dashed, from=1-2, to=2-1]
+    \end{tikzcd}\]
+
+    But this implies that \( \pi_C \circ (h_{f \circ g} - h_f \circ h_g) = 0 \), which inducec a map by the kernel property \( \phi: P_A \to \Omega(C) \). Such that the lower triangle commutes. And since, \( \iota_C \) is a monomorphism, one gets that the upper triangle also commutes. And therefore \( \Omega(f \circ g) - \Omega(f) \circ \Omega(g) \) factors through a projective, and therefore \( \Omega(f \circ g) \sim \Omega(f) \circ \Omega(g) \).
+
+    Second, need to show that \( \Omega(\Id_A) = \Id_{\Omega(A)} \) in \( \Tc \).
+
+    By the same argument like above, one can see that every square and triangle in the following diagram also commutes:
+
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShBKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQSJdLFszLDAsIkEiXSxbMywxLCJBIl0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw1LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDEsIlxcT21lZ2EoSWRfQSkgLSBJZF97XFxPbWVnYShBKX0iLDJdLFsyLDMsImhfe0lkX0F9IC0gSWRfe1BfQX0iXSxbNCw1LCJJZF9BIC0gSWRfQSA9IDAiXSxbMiwxLCJcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \[\begin{tikzcd}
+        {\Omega(A)} & {P_A} && A \\
+        {\Omega(A)} & {P_A} && A
+        \arrow[hook, from=1-1, to=1-2]
+        \arrow[two heads, from=1-2, to=1-4]
+        \arrow[two heads, from=2-2, to=2-4]
+        \arrow[hook, from=2-1, to=2-2]
+        \arrow["{\Omega(Id_A) - Id_{\Omega(A)}}"', from=1-1, to=2-1]
+        \arrow["{h_{Id_A} - Id_{P_A}}", from=1-2, to=2-2]
+        \arrow["{Id_A - Id_A = 0}", from=1-4, to=2-4]
+        \arrow["\phi"', dashed, from=1-2, to=2-1]
+    \end{tikzcd}\]
+
+    And therefore \( \Omega(\Id_A) \sim Id_{\Omega(A)} \).
+
+\end{proof}
+
+\begin{lemma}
+    Let \( A, B \in \Tc \), then for \( f, g \in \Hom_{\Tc}(A, B) \), one has that \( \Omega(f + g) = \Omega(f) + \Omega(g) \) in \( \Tc \). I.e. \( \Omega \) is additive.
+\end{lemma}
+\begin{proof}
+    Want to show that \( \Omega(f + g) \sim \Omega(f) + \Omega(g) \).
+    
+    One has that for any morphisms \( f, g \in \Hom_{\Tc}(A, B) \), from the definition of \( \Tc \), that \( f = g \) in \( \Tc \) if \( f - g \) factors through a projective.
+
+    With that in mind, look at the following diagram:
+
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQiJdLFszLDEsIkIiXSxbMywwLCJBIl0sWzAsMSwiXFxPbWVnYShmK2cpLVxcT21lZ2EoZiktXFxPbWVnYShnKSIsMl0sWzAsMiwiXFxpb3RhX0EiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDMsIlxcaW90YV9CIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw0LCJcXHBpX0IiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzLCJoX3tmICsgZ30gLSBoX2YgLSBoX2ciXSxbMiwxLCJcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDQsImYgKyBnIC0gZiAtIGcgPSAwIl0sWzIsNSwiXFxwaV9BIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
+    \[\begin{tikzcd}
+        {\Omega(A)} & {P_A} && A \\
+        {\Omega(B)} & {P_B} && B
+        \arrow["{\Omega(f+g)-\Omega(f)-\Omega(g)}"', from=1-1, to=2-1]
+        \arrow["{\iota_A}", hook, from=1-1, to=1-2]
+        \arrow["{\iota_B}", hook, from=2-1, to=2-2]
+        \arrow["{\pi_B}", two heads, from=2-2, to=2-4]
+        \arrow["{h_{f + g} - h_f - h_g}", from=1-2, to=2-2]
+        \arrow["\phi"', dashed, from=1-2, to=2-1]
+        \arrow["{f + g - f - g = 0}", from=1-4, to=2-4]
+        \arrow["{\pi_A}", two heads, from=1-2, to=1-4]
+    \end{tikzcd}\]
+
+    Starting from the leftmost side, want to show that \( \Omega(f + g) - \Omega(f) - \Omega(g) \) factors through a projective.
+
+    Firstly, one can observe that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \Omega(f + g) - \iota_B \circ \Omega(f) - \iota_B \circ \Omega(g) = h_{f + g} \circ \iota_A - h_{f} \circ \iota_A - h_{g} \circ \iota_A = (h_{f + g} - h_f - h_g) \circ \iota_A \). So the map \( h_{f + g} - h_f - h_g: P_A \to P_B \) makes the left square commute.
+    
+    Secondly, one can see that \( \pi_B \circ (h_{f + g} - h_f - h_g) = \pi_B \circ h_{f + g} - \pi_B \circ h_f - \pi_B \circ  h_g = (f + g) \circ \pi_A - f \circ \pi_A - g \circ \pi_A = (f + g - f - g) \circ \pi_A = 0 \circ \pi_A = 0 \). 
+    
+    But then from the kernel property there is an induced and unique map \( \phi: P_A \to \Omega(B) \) such that \( \iota_B \circ \phi = h_{f + g} - h_f - h_g \). But from the commutativity of the left square, one has that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \phi \circ \iota_A \). Furthermore, since \( \iota_A \) is a monomorphism, one gets that \( \Omega(f+g)-\Omega(f)-\Omega(g) = \phi \circ \iota_A \).
+
+    But that implies that \( \Omega(f+g)-\Omega(f)-\Omega(g) \) factors thorugh a projective, and therefore \( \Omega(f + g) \sim \Omega(f) + \Omega(g) \).
+\end{proof}
+
+\begin{lemma}
+    The definition of \( \Omega \) is well defined.
+\end{lemma}
+\begin{proof}
+    % Need to show the following for Omega:
+    % 1) If f \sim g then \Omega(f) \sim \Omega(g)?
+    % 2) If h_f is chosen in another way, then is \Omega(f)_1 \sim \Omega(f)_2?
+\end{proof}
+
+% Need to show the following:
+    % Sigma and Omega well defined:
+    % 1) Independant of choice of P/I
+    % 2) Independant of choice of projective/injective map
+    % 3) Given two equivalent maps, is the image the same?
+    % Sigma additive.
+    % Then both \( \Sigma \) and \( \Omega \), are additive automorphisms with \( \Sigma^{-1} = \Omega \).
+
+\begin{theorem}
+    Let \( \Sigma \) be as above. Let \( \Delta \) TODO
+
+    Then \( \StMod(R) \) is a triangulated category with \( \Sigma \) as the suspension and \( \Delta \) as the distinguished triangles.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\end{document}
