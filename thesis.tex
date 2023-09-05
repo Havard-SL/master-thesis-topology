@@ -138,6 +138,7 @@
 
 \section*{Random notes}
 
+% TODO: Significantly rewrite the entire section. Additivity can directly show most of the results given in this section.
 \begin{definition} \label{def:stable_module_category}
     Let \( G \) be a group. Let \( R \) be a \( G \) algebra over the field \( K \), i.e. \( R = KG \) with the free module structure, and normal multiplication of group and field elements.
 
@@ -184,14 +185,11 @@
 
     Therefore, the set of homomorphisms that factor through a projective is closed under addition. And multiplying with a ring element still factors through the same projective, since every map is an \( R \) homomorphism. Therefore the set of maps that factor through a projective is an \( R \) submodule.
 
-    % TODO: This is very imprecise. How to show the other additivity properties?
-    Therefore \( \Hom_{\Tc}(A, B) \) is an abelian group, and the outstanding properties of an additive category is inherited from \( \Mod(R) \) as well.
+    Therefore \( \Hom_{\Tc}(A, B) \) is an abelian group, and the outstanding properties of an additive category is inherited from \( \Mod(R) \) as well. (TODO: Prove the unproved properties!)
 \end{proof}
 
 \begin{definition}
     Let \( A \in \Obj(\Tc) \).
-
-    Let \( \Sigma \) be an endofunctor on \( \Tc \). Where \( \Sigma(A) \) is given by choosing a monomorphism from \( A \) into an injective module, \( I \), denoted by \( \iota_A \) and taking the cokernel of that map, for every \( A \). I.e \( \Sigma(A) = \coker(\iota_A) \).
 
     Let \( \Omega \) an endofunctor on \( \Tc \). Where \( \Omega(A) \) is given by choosing a projecive module \( P \) for every \( A \) with an endomorphism \( \pi_A \) from \( P \) to \( A \), and taking the kernel of that map. I.e \( \Omega(A) = \ker(\pi_A) \).
 \end{definition}
@@ -211,12 +209,12 @@
         \arrow["{\iota_B}", hook, from=2-1, to=2-2]
         \arrow["{\pi_B}", two heads, from=2-2, to=2-3]
         \arrow["f", from=1-3, to=2-3]
-        \arrow["{h_f}", from=1-2, to=2-2]
+        \arrow["{p_f}", from=1-2, to=2-2]
     \end{tikzcd}\]
 
-    One has that for a map \( f: A \to B \), one gets the map \( h_f \) from the lifitng property of projective modules. Please note that this map is \emph{not neccesarily} unique.
+    One has that for a map \( f: A \to B \), one gets the map \( p_f \) from the lifitng property of projective modules. Please note that this map is \emph{not neccesarily} unique.
 
-    Furthermore, since \( \pi_B \circ h_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0 \), one has from the universal kernel property that there is a \emph{unique} map \( \Omega(f) \) from \( \Omega(A) \) to \( \Omega(B) \), which is the map defined by the functor.
+    Furthermore, since \( \pi_B \circ p_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0 \), one has from the universal kernel property that there is a \emph{unique} map (given \( p_f \)) \( \Omega(f) \) from \( \Omega(A) \) to \( \Omega(B) \), which is the map defined by the functor.
 \end{remark}
 
 \begin{lemma}
@@ -242,9 +240,9 @@
         \arrow[hook, from=1-1, to=1-2]
         \arrow[hook, from=2-1, to=2-2]
         \arrow[hook, from=3-1, to=3-2]
-        \arrow["{h_g}", from=1-2, to=2-2]
-        \arrow["{h_f}"', from=2-2, to=3-2]
-        \arrow["{h_{f \circ g}}"{description, pos=0.7}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-2, to=3-2]
+        \arrow["{p_g}", from=1-2, to=2-2]
+        \arrow["{p_f}"', from=2-2, to=3-2]
+        \arrow["{p_{f \circ g}}"{description, pos=0.7}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-2, to=3-2]
         \arrow["{\Omega(g)}"', from=1-1, to=2-1]
         \arrow["{\Omega(f)}"', from=2-1, to=3-1]
         \arrow["{\Omega(f \circ g)}"{description, pos=0.2}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-1, to=3-1]
@@ -261,13 +259,13 @@
         \arrow[two heads, from=1-2, to=1-4]
         \arrow[hook, from=1-1, to=1-2]
         \arrow[hook, from=2-1, to=2-2]
-        \arrow["{h_{f \circ g} - h_f \circ h_g}", from=1-2, to=2-2]
+        \arrow["{p_{f \circ g} - p_f \circ p_g}", from=1-2, to=2-2]
         \arrow["{\Omega(f \circ g) - \Omega(f) \circ \Omega(g)}"', from=1-1, to=2-1]
         \arrow["{f \circ g - f \circ g = 0}", from=1-4, to=2-4]
         \arrow["\phi"', dashed, from=1-2, to=2-1]
     \end{tikzcd}\]
 
-    But this implies that \( \pi_C \circ (h_{f \circ g} - h_f \circ h_g) = 0 \), which inducec a map by the kernel property \( \phi: P_A \to \Omega(C) \). Such that the lower triangle commutes. And since, \( \iota_C \) is a monomorphism, one gets that the upper triangle also commutes. And therefore \( \Omega(f \circ g) - \Omega(f) \circ \Omega(g) \) factors through a projective, and therefore \( \Omega(f \circ g) \sim \Omega(f) \circ \Omega(g) \).
+    But this implies that \( \pi_C \circ (p_{f \circ g} - p_f \circ p_g) = 0 \), which inducec a map by the kernel property \( \phi: P_A \to \Omega(C) \). Such that the lower triangle commutes. And since, \( \iota_C \) is a monomorphism, one gets that the upper triangle also commutes. And therefore \( \Omega(f \circ g) - \Omega(f) \circ \Omega(g) \) factors through a projective, and therefore \( \Omega(f \circ g) \sim \Omega(f) \circ \Omega(g) \).
 
     Second, need to show that \( \Omega(\Id_A) = \Id_{\Omega(A)} \) in \( \Tc \).
 
@@ -282,7 +280,7 @@
         \arrow[two heads, from=2-2, to=2-4]
         \arrow[hook, from=2-1, to=2-2]
         \arrow["{\Omega(Id_A) - Id_{\Omega(A)}}"', from=1-1, to=2-1]
-        \arrow["{h_{Id_A} - Id_{P_A}}", from=1-2, to=2-2]
+        \arrow["{p_{Id_A} - Id_{P_A}}", from=1-2, to=2-2]
         \arrow["{Id_A - Id_A = 0}", from=1-4, to=2-4]
         \arrow["\phi"', dashed, from=1-2, to=2-1]
     \end{tikzcd}\]
@@ -309,7 +307,7 @@
         \arrow["{\iota_A}", hook, from=1-1, to=1-2]
         \arrow["{\iota_B}", hook, from=2-1, to=2-2]
         \arrow["{\pi_B}", two heads, from=2-2, to=2-4]
-        \arrow["{h_{f + g} - h_f - h_g}", from=1-2, to=2-2]
+        \arrow["{p_{f + g} - p_f - p_g}", from=1-2, to=2-2]
         \arrow["\phi"', dashed, from=1-2, to=2-1]
         \arrow["{f + g - f - g = 0}", from=1-4, to=2-4]
         \arrow["{\pi_A}", two heads, from=1-2, to=1-4]
@@ -317,11 +315,11 @@
 
     Starting from the leftmost side, want to show that \( \Omega(f + g) - \Omega(f) - \Omega(g) \) factors through a projective.
 
-    Firstly, one can observe that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \Omega(f + g) - \iota_B \circ \Omega(f) - \iota_B \circ \Omega(g) = h_{f + g} \circ \iota_A - h_{f} \circ \iota_A - h_{g} \circ \iota_A = (h_{f + g} - h_f - h_g) \circ \iota_A \). So the map \( h_{f + g} - h_f - h_g: P_A \to P_B \) makes the left square commute.
+    Firstly, one can observe that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \Omega(f + g) - \iota_B \circ \Omega(f) - \iota_B \circ \Omega(g) = p_{f + g} \circ \iota_A - p_{f} \circ \iota_A - p_{g} \circ \iota_A = (p_{f + g} - p_f - p_g) \circ \iota_A \). So the map \( p_{f + g} - p_f - p_g: P_A \to P_B \) makes the left square commute.
     
-    Secondly, one can see that \( \pi_B \circ (h_{f + g} - h_f - h_g) = \pi_B \circ h_{f + g} - \pi_B \circ h_f - \pi_B \circ  h_g = (f + g) \circ \pi_A - f \circ \pi_A - g \circ \pi_A = (f + g - f - g) \circ \pi_A = 0 \circ \pi_A = 0 \). 
+    Secondly, one can see that \( \pi_B \circ (p_{f + g} - p_f - p_g) = \pi_B \circ p_{f + g} - \pi_B \circ p_f - \pi_B \circ  p_g = (f + g) \circ \pi_A - f \circ \pi_A - g \circ \pi_A = (f + g - f - g) \circ \pi_A = 0 \circ \pi_A = 0 \). 
     
-    But then from the kernel property there is an induced and unique map \( \phi: P_A \to \Omega(B) \) such that \( \iota_B \circ \phi = h_{f + g} - h_f - h_g \). But from the commutativity of the left square, one has that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \phi \circ \iota_A \). Furthermore, since \( \iota_A \) is a monomorphism, one gets that \( \Omega(f+g)-\Omega(f)-\Omega(g) = \phi \circ \iota_A \).
+    But then from the kernel property there is an induced and unique map \( \phi: P_A \to \Omega(B) \) such that \( \iota_B \circ \phi = p_{f + g} - p_f - p_g \). But from the commutativity of the left square, one has that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \phi \circ \iota_A \). Furthermore, since \( \iota_A \) is a monomorphism, one gets that \( \Omega(f+g)-\Omega(f)-\Omega(g) = \phi \circ \iota_A \).
 
     But that implies that \( \Omega(f+g)-\Omega(f)-\Omega(g) \) factors thorugh a projective, and therefore \( \Omega(f + g) \sim \Omega(f) + \Omega(g) \).
 \end{proof}
@@ -330,21 +328,190 @@
     The definition of \( \Omega \) is well defined.
 \end{lemma}
 \begin{proof}
-    % Need to show the following for Omega:
-    % 1) If f \sim g then \Omega(f) \sim \Omega(g)?
-    % 2) If h_f is chosen in another way, then is \Omega(f)_1 \sim \Omega(f)_2?
+    There are two things that need to be proven. Firstly, in the construction of \( \Omega(f) \), one have to chose a map \( p_f \) from the projective property. Need to show that if one choses another projective map, that the \( \Omega \) still yields the same map in \( \Tc \). Secondly, one need to show that if \( f \sim g \), then \( \Omega(f) \sim \Omega(g) \).
+
+    To prove the first part, let \( p_f \) and \( p_f' \) be two different projective maps that give the maps \( \Omega(f) \) and \( \Omega(f)' \) respectively. Then one has the following commutative diagram:
+
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQiJdLFsyLDAsIkEiXSxbMiwxLCJCIl0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDUsImYgLSBmID0gMCJdLFsyLDMsImhfZiAtIGgnX2YiXSxbMCwxLCJcXE9tZWdhKGYpIC0gXFxPbWVnYShmKSciLDJdLFsyLDEsIlxccGhpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \[\begin{tikzcd}
+        {\Omega(A)} & {P_A} & A \\
+        {\Omega(B)} & {P_B} & B
+        \arrow[hook, from=1-1, to=1-2]
+        \arrow[two heads, from=1-2, to=1-3]
+        \arrow[hook, from=2-1, to=2-2]
+        \arrow[two heads, from=2-2, to=2-3]
+        \arrow["{f - f = 0}", from=1-3, to=2-3]
+        \arrow["{p_f - p'_f}", from=1-2, to=2-2]
+        \arrow["{\Omega(f) - \Omega(f)'}"', from=1-1, to=2-1]
+        \arrow["\phi", dashed, from=1-2, to=2-1]
+    \end{tikzcd}\]
+
+    Using the same argument as always, one gets that \( \Omega(f) \sim \Omega(f)' \). (I also think this follows directly from additivity.)
+
+    Secondly, need to show that if \( f \sim g \), then \( \Omega(f) \sim \Omega(g) \). Look at the following diagram:
+
+    % https://q.uiver.app/#q=WzAsNyxbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMiwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDIsIlBfQiJdLFszLDAsIkEiXSxbMywyLCJCIl0sWzMsMSwiUCJdLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsNCwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzLCJoX3AgXFxjaXJjIChmLWcpXzEgXFxjaXJjIFxccGlfQSJdLFswLDEsIjAiLDJdLFs0LDYsIihmLWcpXzEiLDJdLFs2LDUsIihmLWcpXzIiLDJdLFs0LDUsImYgLSBnIiwwLHsiY3VydmUiOi0zfV0sWzYsMywiaF9wIiwyLHsiY29sb3VyIjpbMCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX0sWzAsNjAsNjAsMV1dXQ==
+    \[\begin{tikzcd}
+        {\Omega(A)} & {P_A} && A \\
+        &&& P \\
+        {\Omega(B)} & {P_B} && B
+        \arrow[hook, from=1-1, to=1-2]
+        \arrow[two heads, from=1-2, to=1-4]
+        \arrow[hook, from=3-1, to=3-2]
+        \arrow[two heads, from=3-2, to=3-4]
+        \arrow["{\theta \circ (f-g)_1 \circ \pi_A}", from=1-2, to=3-2]
+        \arrow["0"', from=1-1, to=3-1]
+        \arrow["{(f-g)_1}"', from=1-4, to=2-4]
+        \arrow["{(f-g)_2}"', from=2-4, to=3-4]
+        \arrow["{f - g}", curve={height=-18pt}, from=1-4, to=3-4]
+        \arrow["{\theta}"', color={rgb,255:red,214;green,92;blue,92}, dashed, from=2-4, to=3-2]
+    \end{tikzcd}\]
+
+    Let \( P \) be the projective that \( f - g \) factors through. Then from the projective propertive, one gets a map \( \theta: P \to P_B \). Then the diagram commutes. But then \( \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0 \), and so the diagram commutes with \( 0: \Omega(A) \to \Omega(B) \). But since, \( \theta \circ (f-g)_1 \circ \pi_A \) is another choice of \( p_{f - g} \), from the previous part of the proof since \( \Omega \) is independent of the choice of \( h \)-maps, one gets that \( \Omega(f - g) \sim 0 \). And from additivity, one has that \( \Omega(f - g) \sim \Omega(f) - \Omega(g) \), one then gets that \( \Omega(f) \sim \Omega(g) \).
 \end{proof}
 
 % Need to show the following:
-    % Sigma and Omega well defined:
+    % Sigma well defined:
     % 1) Independant of choice of P/I
     % 2) Independant of choice of projective/injective map
     % 3) Given two equivalent maps, is the image the same?
     % Sigma additive.
     % Then both \( \Sigma \) and \( \Omega \), are additive automorphisms with \( \Sigma^{-1} = \Omega \).
+\begin{remark}
+    Since \( R \) is a \( G \)-algebra over a field \( K \), it is known that every projective module is injective and vice versa.
+\end{remark}
+
+\begin{definition}
+    Let \( A \in \Obj(\Tc) \).
+
+    Let \( \Sigma \) be an endofunctor on \( \Tc \), where \( \Sigma(A) \) is given by choosing for every \( A \) a injective module \( I \), and a monomorphism from \( \kappa_A: A \to I \). Then taking the cokernel of that map. I.e \( \Sigma(A) = \coker(\kappa_A) \).
+\end{definition}
+
+\begin{lemma}
+    One has that \( \Sigma \) is a well defined and additive functor.
+\end{lemma}
+\begin{proof}
+    Very similar proofs as for \( \Omega \), but using the injective module property as well as the cokernel property. (TODO)
+\end{proof}
 
 \begin{theorem}
-    Let \( \Sigma \) be as above. Let \( \Delta \) TODO
+    One has that \( \Omega \) is an auto equivalence with \( \Omega^{-1} = \Sigma \).
+\end{theorem}
+\begin{proof}
+    I will only show that \( \Id_{\Tc} \) is naturally isomorphic to \( \Sigma\Omega \). I claim (TODO) that the proof of the other part is very similar, but uses many dual properties.
+
+    Let \( A \in \Obj(\Tc) \).
+
+    First show that there exist a (not neccesarily unique, but for any object, just choose one) isomorphism from \( A \to \Sigma\Omega(A) \). Consider the following diagram:
+
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzIsMCwiUF9BIl0sWzQsMCwiQSJdLFswLDEsIlxcT21lZ2EoQSkiXSxbMiwxLCJJX3tcXE9tZWdhKEEpfSJdLFs0LDEsIlxcU2lnbWFcXE9tZWdhKEEpIl0sWzAsMiwiXFxPbWVnYShBKSJdLFsyLDIsIlBfQSJdLFs0LDIsIkEiXSxbMSwyLCJcXHBpX0EiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMCwxLCJcXGlvdGFfQSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNCwiXFxrYXBwYV97XFxPbWVnYShBKX0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDUsIlxccmhvX3tcXE9tZWdhKEEpfSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs2LDcsIlxcaW90YV9BIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNyw4LCJcXHBpX0EiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMCwzLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDYsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNCwiaV97XFxwaGlfMX0iLDJdLFs0LDcsImlfe1xccGhpXzJ9IiwyXSxbMiw1LCJcXHBoaV8xIiwyXSxbNSw4LCJcXHBoaV8yIiwyXV0=
+    \[\begin{tikzcd}
+        {\Omega(A)} && {P_A} && A \\
+        {\Omega(A)} && {I_{\Omega(A)}} && {\Sigma\Omega(A)} \\
+        {\Omega(A)} && {P_A} && A
+        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
+        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
+        \arrow["{\kappa_{\Omega(A)}}", hook, from=2-1, to=2-3]
+        \arrow["{\rho_{\Omega(A)}}", two heads, from=2-3, to=2-5]
+        \arrow["{\iota_A}", hook, from=3-1, to=3-3]
+        \arrow["{\pi_A}", two heads, from=3-3, to=3-5]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow[Rightarrow, no head, from=2-1, to=3-1]
+        \arrow["{i_{\phi_1}}"', from=1-3, to=2-3]
+        \arrow["{i_{\phi_2}}"', from=2-3, to=3-3]
+        \arrow["{\phi_1}"', from=1-5, to=2-5]
+        \arrow["{\phi_2}"', from=2-5, to=3-5]
+    \end{tikzcd}\]
+
+    Where \( i_{\phi_1} \) is the injective property map induced from \( \iota_A \). Then, since \( \rho_{\Omega(A)} \circ i_{\phi_1} \circ \iota_A = \rho_{\Omega(A)} \circ \kappa_{\Omega(A)} = 0 \), and since \( \Mod(R) \) is an abelian category, one has that the cokernel of a kernel is isomorphic to the first module, one has that \( A \) is the cokernel of \( \iota_A \). Therefore, from the cokernel property, there is a uniquely induced map \( \phi_1: A \to \Sigma\Omega(A) \). Then doing the same for the lower rectangle of the diagram, using the fact that every projective is also injective, then one gets the map \( \phi_2 \).
+
+    Then to show that \( \phi_1 \) and \( \phi_2 \) are isomorphisms, look at the following diagram:
+
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShBKSJdLFsyLDAsIlBfQSJdLFsyLDEsIlBfQSJdLFs0LDAsIkEiXSxbNCwxLCJBIl0sWzQsNSwiXFxwaGlfMiBcXGNpcmMgXFxwaGlfMSAtIFxcSWRfQSJdLFsyLDQsIlxccGlfQSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDIsIlxcaW90YV9BIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwzLCJcXGlvdGFfQSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNSwiXFxwaV9BIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsMywicF97XFxwaGlfMn0gXFxjaXJjIHBfe1xccGhpXzF9IC0gXFxJZF9QIiwyXSxbMCwxLCJcXElkX3tcXE9tZWdhKEEpfSBcXGNpcmMgXFxJZF97XFxPbWVnYShBKX0gLSBcXElkX3tcXE9tZWdhKEEpfSA9IDAiLDJdLFs0LDMsIlxcdGhldGEiLDIseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dXQ==
+    \[\begin{tikzcd}
+        {\Omega(A)} && {P_A} && A \\
+        {\Omega(A)} && {P_A} && A
+        \arrow["{\phi_2 \circ \phi_1 - \Id_A}", from=1-5, to=2-5]
+        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
+        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
+        \arrow["{\iota_A}", hook, from=2-1, to=2-3]
+        \arrow["{\pi_A}", two heads, from=2-3, to=2-5]
+        \arrow["{p_{\phi_2} \circ p_{\phi_1} - \Id_P}"', from=1-3, to=2-3]
+        \arrow["{\Id_{\Omega(A)} \circ \Id_{\Omega(A)} - \Id_{\Omega(A)} = 0}"', from=1-1, to=2-1]
+        \arrow["\theta"', color={rgb,255:red,214;green,92;blue,92}, from=1-5, to=2-3]
+    \end{tikzcd}\]
+
+    Using the previous commutative diagram, one gets that every square commutes. But then \( (p_{\phi_2} \circ p_{\phi_1} - \Id_{P_A}) \circ \iota_A = \iota_A \circ 0 = 0 \). Then from the cokernel property there exist a map \( \theta: A \to P_A \) such that \( \theta \circ \pi_A = p_{\theta_2} \circ p_{\theta_1} - \Id_P \). But then one has that \( (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (p_{\theta_2} \circ p_{\theta_1} - \Id_P) = \pi_A \circ \theta \circ \pi_A \). But since \( \pi_A \) is an epimorphism, one gets that \( \phi_2 \circ \phi_1 - \Id_A = \pi_A \circ \theta \), which means that \( \phi_2 \circ \phi_1 \sim \Id_A \).
+    
+    Similarly (TODO) one can show that \( \phi_1 \circ \phi_2 \sim Id_A \), which means that \( \phi_1 \) and \( \phi_2 \) are isomorphisms from \( A \) to \( \Sigma\Omega(A) \).
+
+    For \( A, B \in \Tc \), let \( f \in \Hom_R(A, B) \).
+
+    To show that these isomorphisms are natural, look at the following two diagrams:
+
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzIsMCwiUCJdLFs0LDAsIkEiXSxbMCwxLCJcXE9tZWdhKEEpIl0sWzIsMSwiSSJdLFs0LDEsIlxcU2lnbWFcXE9tZWdhKEEpIl0sWzAsMiwiXFxPbWVnYShCKSJdLFsyLDIsIkkiXSxbNCwyLCJcXFNpZ21hXFxPbWVnYShCKSJdLFswLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMSwiXFxpb3RhX0EiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIlxccGlfQSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDQsIlxca2FwcGFfe1xcT21lZ2EoQSl9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw1LCJcXHJob197XFxPbWVnYShBKX0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSw0LCJwX3tcXHBoaV5BXzF9IiwyXSxbMiw1LCJcXHBoaV5BXzEiLDJdLFszLDYsIlxcT21lZ2EoZikiLDJdLFs2LDcsIlxca2FwcGFfe1xcT21lZ2EoQil9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNyw4LCJcXHJob197XFxPbWVnYShCKX0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw3LCJpX3tcXE9tZWdhKGYpfSIsMl0sWzUsOCwiXFxTaWdtYShcXE9tZWdhKGYpKSIsMl1d
+    \[\begin{tikzcd}
+        {\Omega(A)} && P && A \\
+        {\Omega(A)} && I && {\Sigma\Omega(A)} \\
+        {\Omega(B)} && I && {\Sigma\Omega(B)}
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
+        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
+        \arrow["{\kappa_{\Omega(A)}}", hook, from=2-1, to=2-3]
+        \arrow["{\rho_{\Omega(A)}}", two heads, from=2-3, to=2-5]
+        \arrow["{p_{\phi^A_1}}"', from=1-3, to=2-3]
+        \arrow["{\phi^A_1}"', from=1-5, to=2-5]
+        \arrow["{\Omega(f)}"', from=2-1, to=3-1]
+        \arrow["{\kappa_{\Omega(B)}}", hook, from=3-1, to=3-3]
+        \arrow["{\rho_{\Omega(B)}}", two heads, from=3-3, to=3-5]
+        \arrow["{i_{\Omega(f)}}"', from=2-3, to=3-3]
+        \arrow["{\Sigma(\Omega(f))}"', from=2-5, to=3-5]
+    \end{tikzcd}\]
+
+    And:
+
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzIsMCwiUCJdLFs0LDAsIkEiXSxbMCwxLCJcXE9tZWdhKEIpIl0sWzIsMSwiUCJdLFs0LDEsIkIiXSxbMCwyLCJcXE9tZWdhKEIpIl0sWzIsMiwiSSJdLFs0LDIsIlxcU2lnbWFcXE9tZWdhKEIpIl0sWzIsNSwiZiJdLFswLDMsIlxcT21lZ2EoZikiXSxbMyw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDEsIlxcaW90YV9BIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJcXHBpX0EiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0LCJcXGlvdGFfQiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsNSwiXFxwaV9CIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzYsNywiXFxrYXBwYV97XFxPbWVnYShCKX0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs3LDgsIlxccmhvX3tcXE9tZWdhKEIpfSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs1LDgsIlxccGhpXzFeQiJdLFs0LDcsImlfe1xccGhpXzFeQn0iXSxbMSw0LCJwX2YiXV0=
+    \[\begin{tikzcd}
+        {\Omega(A)} && P && A \\
+        {\Omega(B)} && P && B \\
+        {\Omega(B)} && I && {\Sigma\Omega(B)}
+        \arrow["f", from=1-5, to=2-5]
+        \arrow["{\Omega(f)}", from=1-1, to=2-1]
+        \arrow[Rightarrow, no head, from=2-1, to=3-1]
+        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
+        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
+        \arrow["{\iota_B}", hook, from=2-1, to=2-3]
+        \arrow["{\pi_B}", two heads, from=2-3, to=2-5]
+        \arrow["{\kappa_{\Omega(B)}}", hook, from=3-1, to=3-3]
+        \arrow["{\rho_{\Omega(B)}}", two heads, from=3-3, to=3-5]
+        \arrow["{\phi_1^B}", from=2-5, to=3-5]
+        \arrow["{i_{\phi_1^B}}", from=2-3, to=3-3]
+        \arrow["{p_f}", from=1-3, to=2-3]
+    \end{tikzcd}\]
+
+    Where every small square, and therefore rectangle, commutes.
+
+    This gives rise to the following commutative diagram:
+
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzQsMCwiUCJdLFs4LDAsIkEiXSxbMCwxLCJcXE9tZWdhKEIpIl0sWzQsMSwiSSJdLFs4LDEsIlxcU2lnbWFcXE9tZWdhKEIpIl0sWzIsNSwiXFxwaGlfMV5CIFxcY2lyYyBmIC0gXFxTaWdtYVxcT21lZ2EoZikgXFxjaXJjIFxccGhpXzFeQSJdLFsxLDQsImlfe1xccGhpXzFeQn0gXFxjaXJjIHBfZiAtIGlfe1xcT21lZ2EoZil9IFxcY2lyYyBwX3tcXHBoaV8xXkF9Il0sWzAsMywiXFxJZF97XFxPbWVnYShCKX0gXFxjaXJjIFxcT21lZ2EoZikgLSBcXE9tZWdhKGYpIFxcY2lyYyBcXElkX3tcXE9tZWdhKEEpfSA9IDAgIl0sWzAsMSwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDUsIiIsMSx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDQsIlxcdGhldGEiLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsImN1cnZlIjotMSwiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXV0=
+    \[\begin{tikzcd}
+        {\Omega(A)} &&&& P &&&& A \\
+        {\Omega(B)} &&&& I &&&& {\Sigma\Omega(B)}
+        \arrow["{\phi_1^B \circ f - \Sigma\Omega(f) \circ \phi_1^A}", from=1-9, to=2-9]
+        \arrow["{i_{\phi_1^B} \circ p_f - i_{\Omega(f)} \circ p_{\phi_1^A}}", from=1-5, to=2-5]
+        \arrow["{\Id_{\Omega(B)} \circ \Omega(f) - \Omega(f) \circ \Id_{\Omega(A)} = 0 }", from=1-1, to=2-1]
+        \arrow[hook, from=1-1, to=1-5]
+        \arrow[two heads, from=1-5, to=1-9]
+        \arrow[hook, from=2-1, to=2-5]
+        \arrow[two heads, from=2-5, to=2-9]
+        \arrow["\theta"'{pos=0.4}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-6pt}, from=1-9, to=2-5]
+    \end{tikzcd}\]
+
+    But from the cokernel property of \( A \), one gets an induced map \( \theta \), and from the epimorphism property, it makes the lower triangle commute, which implies \( \phi_1^B \circ f \sim \Sigma\Omega(f) \circ \phi_1^A \), which means that the it is natural.
+\end{proof}
+
+\begin{theorem}
+    Let \( \Delta \) TODO
 
     Then \( \StMod(R) \) is a triangulated category with \( \Sigma \) as the suspension and \( \Delta \) as the distinguished triangles.
 \end{theorem}
