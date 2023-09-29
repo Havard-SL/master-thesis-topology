@@ -39,9 +39,11 @@
 \usepackage{bookmark}
 
 % For teorem, definisjon, bevis enviornments.
-\usepackage{amsthm} 
+\usepackage{amsthm}
 
-\usepackage{thmtools} 
+\usepackage{mathtools}
+
+\usepackage{thmtools}
 
 % For svgar
 % \usepackage{svg}
@@ -60,11 +62,11 @@
 % Lualatex font greie
 \usepackage{fontspec}
 
-\usepackage{unicode-math}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 
 % Set fontar som blir brukt
 \setmathfont{Latin Modern Math} % Dette er standardfonten
-\setmathfont[range=\setminus]{Asana Math}
+\setmathfont[range=\setminus]{Asana Math} % Somehow setting this changes tikz-cd arrow style
 % \setmainfont{Atkinson Hyperlegible}
 % \setmainfont{GFS Neohellenic Math}
 % \setmainfont{Fira Sans}
@@ -77,11 +79,27 @@
 % \usepackage{tikz-cd}
 
 % Thaule tikzcd erstatning
-% \usepackage{tikz}
-% \usetikzlibrary{matrix}
-% \newcommand{\diagram}[3]{\matrix (#1) [matrix of math nodes,row
-%   sep={#2},column sep={#3},text height=1.5ex,text
-%   depth=0.25ex]}
+\usepackage{tikz}
+
+\usetikzlibrary{matrix}
+\newcommand{\diagram}[3]{\matrix (#1) [matrix of math nodes,row
+  sep={#2},column sep={#3},text height=1.5ex,text
+  depth=0.25ex]}
+
+\usetikzlibrary{cd}
+
+\tikzset{every picture/.append style={commutative diagrams/every diagram}}
+\tikzset{math/.style = {commutative diagrams/every arrow,
+  commutative diagrams/every label,
+  execute at begin node=\(, execute at end node=\)}
+}
+
+\tikzset{hook/.style = {commutative diagrams/hook}}
+\tikzset{dashed/.style = {commutative diagrams/dashed}}
+\tikzset{two heads/.style = {commutative diagrams/two heads}}
+\tikzset{equal/.style = {commutative diagrams/equal}}
+\tikzset{squiggly/.style = {commutative diagrams/squiggly}}
+
 
 % This doesn't work with tikzcd!
 % \usetikzlibrary{external}
