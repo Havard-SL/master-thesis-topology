@@ -7,7 +7,7 @@
     Then the ``stable module category over \( R \)'', denoted \( \Tc := \StMod(R) \) is defined in the following way:
     \begin{enumerate}
         \item \( \Obj(\Tc) := \Obj(\Mod(R)) \).
-        \item \( \Hom_{\Tc}(A, B) := \Hom_R(A, B)/\set{\text{maps that factor through a projective}} \)
+        \item \( \Tc(A, B) := \Mod(R)(A, B)/\set{\text{maps that factor through a projective}} \)
     \end{enumerate}
 \end{definition}
 
@@ -15,7 +15,7 @@
     The definition in \autoref{def:stable_module_category} is well defined, and it is an additive category.
 \end{theorem}
 \begin{proof}
-    First, need to check that the set of maps that factor through a projective is an \( R \) submodule of \( \Hom_R(A, B) \).
+    First, need to check that the set of maps that factor through a projective is an \( R \) submodule of \( \Mod(R)(A, B) \).
 
     Let, \( f \) and \( g \) be two maps that factor through the projectives \( P \) and \( Q \) respectively. Then we have the following diagrams:
 
@@ -65,7 +65,7 @@
 
     Therefore, the set of homomorphisms that factor through a projective is closed under addition. And multiplying with a ring element still factors through the same projective, since every map is an \( R \) homomorphism. Therefore the set of maps that factor through a projective is an \( R \) submodule.
 
-    Therefore \( \Hom_{\Tc}(A, B) \) is an abelian group, and the outstanding properties of an additive category is inherited from \( \Mod(R) \) as well. (TODO: Prove the unproved properties!)
+    Therefore \( \Tc(A, B) \) is an abelian group, and the outstanding properties of an additive category is inherited from \( \Mod(R) \) as well. (TODO: Prove the unproved properties!)
 \end{proof}
 
 \begin{definition}
@@ -195,12 +195,12 @@
 \end{proof}
 
 \begin{lemma}
-    Let \( A, B \in \Tc \), then for \( f, g \in \Hom_{\Tc}(A, B) \), one has that \( \Omega(f + g) = \Omega(f) + \Omega(g) \) in \( \Tc \). I.e. \( \Omega \) is additive.
+    Let \( A, B \in \Tc \), then for \( f, g \in \Tc(A, B) \), one has that \( \Omega(f + g) = \Omega(f) + \Omega(g) \) in \( \Tc \). I.e. \( \Omega \) is additive.
 \end{lemma}
 \begin{proof}
     Want to show that \( \Omega(f + g) \sim \Omega(f) + \Omega(g) \).
     
-    One has that for any morphisms \( f, g \in \Hom_{\Tc}(A, B) \), from the definition of \( \Tc \), that \( f = g \) in \( \Tc \) if \( f - g \) factors through a projective.
+    One has that for any morphisms \( f, g \in \Tc(A, B) \), from the definition of \( \Tc \), that \( f = g \) in \( \Tc \) if \( f - g \) factors through a projective.
 
     With that in mind, look at the following diagram:
 
@@ -382,7 +382,7 @@
     
     Similarly (TODO) one can show that \( \phi_1 \circ \phi_2 \sim Id_A \), which means that \( \phi_1 \) and \( \phi_2 \) are isomorphisms from \( A \) to \( \Sigma\Omega(A) \).
 
-    For \( A, B \in \Tc \), let \( f \in \Hom_R(A, B) \).
+    For \( A, B \in \Tc \), let \( f \in \Mod(R)(A, B) \).
 
     To show that these isomorphisms are natural, look at the following two diagrams:
 

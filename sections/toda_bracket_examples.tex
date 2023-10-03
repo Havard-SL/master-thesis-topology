@@ -101,7 +101,7 @@ This gives the following diagram in \( \StMod(R) \):
 	\end{tikzpicture}
 \end{center}
 
-But this shows that any endomorphism on \( J \) makes the rightmost square commute, and is therefore in the Toda bracket (up to pre-composition by an isomorphism \( \frac{R}{J} \to J \)) of \( \toda{\Id_J, 0, \Id_J} \). But since we only care about Toda brackets up to pre/post-composition of isomorphism, one can write that \( \toda{\Id_J, 0, \Id_J} = \Hom_R(J, J) \).
+But this shows that any endomorphism on \( J \) makes the rightmost square commute, and is therefore in the Toda bracket (up to pre-composition by an isomorphism \( \frac{R}{J} \to J \)) of \( \toda{\Id_J, 0, \Id_J} \). But since we only care about Toda brackets up to pre/post-composition of isomorphism, one can write that \( \toda{\Id_J, 0, \Id_J} = \Stmod(R)(J, J) \).
 
 \subsection{Example 2}
 
@@ -239,7 +239,7 @@ Let \( \toda{f_3, 0, \Id} \) be a well defined Toda bracket. Then one has the fo
 	\end{tikzpicture}
 \end{center}
 
-Here one has that any possible \( \psi: \Sigma(X_1) \to X_3 \) will make the right square commute. Therefore \( \toda{f_3, 0, \Id} = \Hom(\Sigma(X_1), X_3) \).
+Here one has that any possible \( \psi: \Sigma(X_1) \to X_3 \) will make the right square commute. Therefore \( \toda{f_3, 0, \Id} = \Tc(\Sigma(X_1), X_3) \).
 
 \subsection{Example 4} % TODO: Explain the maps better!
 
@@ -430,4 +430,4 @@ And secondly one has that \( \begin{psmallmatrix}
 		1 \\ 1 \\
 	\end{psmallmatrix} = 0 \), so the Toda-bracket is non-empty.
 
-Finally one can see that for any \( \psi: J \to J \), the right square will commute, and so the toda bracket becomes \( \Tc(J, J) \).
+Finally one can see that for any \( \psi: J \to J \), the right square will commute, and so the toda bracket becomes \( \StMod(R)(J, J) \).
