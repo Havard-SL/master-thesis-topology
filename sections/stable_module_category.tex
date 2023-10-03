@@ -19,29 +19,47 @@
 
     Let, \( f \) and \( g \) be two maps that factor through the projectives \( P \) and \( Q \) respectively. Then we have the following diagrams:
 
-    \[\begin{tikzcd}
-        A & P & B
-        \arrow["{f_1}", from=1-1, to=1-2]
-        \arrow["{f_2}", from=1-2, to=1-3]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A & P & B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
 
     Where \( f_2 \circ f_1 = f \), and
 
-    \[\begin{tikzcd}
-        A & Q & B
-        \arrow["{g_1}", from=1-1, to=1-2]
-        \arrow["{g_2}", from=1-2, to=1-3]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A & Q & B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {g_1} (m-1-2)
+                (m-1-2) edge node {g_2} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
 
     Where \( g_2 \circ g_1 = g \).
 
     Can then construct the map
 
-    \[\begin{tikzcd}
-        A & {P \oplus Q} & B
-        \arrow["{(f_1, g_1)^T}", from=1-1, to=1-2]
-        \arrow["{(f_2, g_2)}", from=1-2, to=1-3]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A & {P \oplus Q} & B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {(f_1, g_1)^T} (m-1-2)
+                (m-1-2) edge node {(f_2, g_2)} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
 
     Composing these two maps, one gets the map \( f_2 \circ f_1 + g_2 \circ g_1 = f + g \). This maps factors thorugh \( P \oplus Q \), which is projective since it's a direct sum of projective modules.
 
@@ -61,18 +79,24 @@
 
     Looking at the following commutative diagram:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQiJdLFsyLDAsIkEiXSxbMiwxLCJCIl0sWzAsMSwiXFxPbWVnYShmKSIsMl0sWzAsMiwiXFxpb3RhX0EiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDQsIlxccGlfQSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDMsIlxcaW90YV9CIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCJcXHBpX0IiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1LCJmIl0sWzIsMywiaF9mIl1d
-    \[\begin{tikzcd}
-        {\Omega(A)} & {P_A} & A \\
-        {\Omega(B)} & {P_B} & B
-        \arrow["{\Omega(f)}"', from=1-1, to=2-1]
-        \arrow["{\iota_A}", hook, from=1-1, to=1-2]
-        \arrow["{\pi_A}", two heads, from=1-2, to=1-3]
-        \arrow["{\iota_B}", hook, from=2-1, to=2-2]
-        \arrow["{\pi_B}", two heads, from=2-2, to=2-3]
-        \arrow["f", from=1-3, to=2-3]
-        \arrow["{p_f}", from=1-2, to=2-2]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                {\Omega(A)} & {P_A} & A \\
+                {\Omega(B)} & {P_B} & B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge node {\Omega(f)} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge node {p_f} (m-2-2)
+                (m-1-3) edge node {f} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
 
     One has that for a map \( f: A \to B \), one gets the map \( p_f \) from the lifitng property of projective modules. Please note that this map is \emph{not neccesarily} unique.
 
@@ -89,43 +113,56 @@
 
     First want to show that \( \Omega \) is functorial. Let \( A, B, C \in \Obj(\Tc) \). Then one can create the following diagram using the notation from before:
 
-    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFswLDIsIlxcT21lZ2EoQykiXSxbMSwwLCJQX0EiXSxbMSwxLCJQX0IiXSxbMSwyLCJQX0MiXSxbMiwwLCJBIl0sWzIsMSwiQiJdLFsyLDIsIkMiXSxbNiw3LCJnIl0sWzcsOCwiZiJdLFs1LDgsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDcsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDYsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw1LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDQsImhfZyJdLFs0LDUsImhfZiIsMl0sWzMsNSwiaF97ZiBcXGNpcmMgZ30iLDEseyJsYWJlbF9wb3NpdGlvbiI6NzAsImN1cnZlIjotMywiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXSxbMCwxLCJcXE9tZWdhKGcpIiwyXSxbMSwyLCJcXE9tZWdhKGYpIiwyXSxbMCwyLCJcXE9tZWdhKGYgXFxjaXJjIGcpIiwxLHsibGFiZWxfcG9zaXRpb24iOjIwLCJjdXJ2ZSI6LTMsImNvbG91ciI6WzAsNjAsNjBdfSxbMCw2MCw2MCwxXV0sWzYsOCwiZiBcXGNpcmMgZyIsMSx7ImN1cnZlIjotMywiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXV0=
-    \[\begin{tikzcd}
-        {\Omega(A)} & {P_A} & A \\
-        {\Omega(B)} & {P_B} & B \\
-        {\Omega(C)} & {P_C} & C
-        \arrow["g", from=1-3, to=2-3]
-        \arrow["f", from=2-3, to=3-3]
-        \arrow[two heads, from=3-2, to=3-3]
-        \arrow[two heads, from=2-2, to=2-3]
-        \arrow[two heads, from=1-2, to=1-3]
-        \arrow[hook, from=1-1, to=1-2]
-        \arrow[hook, from=2-1, to=2-2]
-        \arrow[hook, from=3-1, to=3-2]
-        \arrow["{p_g}", from=1-2, to=2-2]
-        \arrow["{p_f}"', from=2-2, to=3-2]
-        \arrow["{p_{f \circ g}}"{description, pos=0.7}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-2, to=3-2]
-        \arrow["{\Omega(g)}"', from=1-1, to=2-1]
-        \arrow["{\Omega(f)}"', from=2-1, to=3-1]
-        \arrow["{\Omega(f \circ g)}"{description, pos=0.2}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-1, to=3-1]
-        \arrow["{f \circ g}"{description}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-18pt}, from=1-3, to=3-3]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} & {P_A} & A \\
+                {\Omega(B)} & {P_B} & B \\
+                {\Omega(C)} & {P_C} & C \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge[curve={height=30pt}, swap, color={rgb,255:red,214;green,92;blue,92}] node {\Omega(f \circ g)} (m-3-1)
+                    edge node {\Omega(g)} (m-2-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge[curve={height=30pt}, swap, color={rgb,255:red,214;green,92;blue,92}] node[pos=0.3] {p_{f \circ g}} (m-3-2)
+                    edge node {p_g} (m-2-2)
+                (m-1-3) edge node {g} (m-2-3)
+                    edge[curve={height=-30pt}, color={rgb,255:red,214;green,92;blue,92}] node {f \circ g} (m-3-3)
+
+                (m-2-1) edge[hook] (m-2-2)
+                    edge node {\Omega(f)} (m-3-1)
+                (m-2-2) edge[two heads] (m-2-3)
+                    edge node {p_f} (m-3-2)
+                (m-2-3) edge node {f} (m-3-3)
+
+                (m-3-1) edge[hook] (m-3-2)
+                (m-3-2) edge[two heads] (m-3-3);
+        \end{tikzpicture}
+    \end{center}
 
     Then, one gets the following commuting diagram:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShDKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQyJdLFszLDAsIkEiXSxbMywxLCJDIl0sWzMsNSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsNCwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsImhfe2YgXFxjaXJjIGd9IC0gaF9mIFxcY2lyYyBoX2ciXSxbMCwxLCJcXE9tZWdhKGYgXFxjaXJjIGcpIC0gXFxPbWVnYShmKSBcXGNpcmMgXFxPbWVnYShnKSIsMl0sWzQsNSwiZiBcXGNpcmMgZyAtIGYgXFxjaXJjIGcgPSAwIl0sWzIsMSwiXFxwaGkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
-    \[\begin{tikzcd}
-        {\Omega(A)} & {P_A} && A \\
-        {\Omega(C)} & {P_C} && C
-        \arrow[two heads, from=2-2, to=2-4]
-        \arrow[two heads, from=1-2, to=1-4]
-        \arrow[hook, from=1-1, to=1-2]
-        \arrow[hook, from=2-1, to=2-2]
-        \arrow["{p_{f \circ g} - p_f \circ p_g}", from=1-2, to=2-2]
-        \arrow["{\Omega(f \circ g) - \Omega(f) \circ \Omega(g)}"', from=1-1, to=2-1]
-        \arrow["{f \circ g - f \circ g = 0}", from=1-4, to=2-4]
-        \arrow["\phi"', dashed, from=1-2, to=2-1]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} & {P_A} & A \\
+                {\Omega(C)} & {P_C} & C \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge[swap] node {\Omega(f \circ g) - \Omega(f) \circ \Omega(g)} (m-2-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge[dashed, swap] node {\phi} (m-2-1)
+                    edge node {p_{f \circ g} - p_f \circ p_g} (m-2-2)
+                (m-1-3) edge node {f \circ g - f \circ g = 0} (m-2-3)
+
+                (m-2-1) edge[hook] (m-2-2)
+                (m-2-2) edge[two heads] (m-2-3);
+        \end{tikzpicture}
+    \end{center}
 
     But this implies that \( \pi_C \circ (p_{f \circ g} - p_f \circ p_g) = 0 \), which inducec a map by the kernel property \( \phi: P_A \to \Omega(C) \). Such that the lower triangle commutes. And since, \( \iota_C \) is a monomorphism, one gets that the upper triangle also commutes. And therefore \( \Omega(f \circ g) - \Omega(f) \circ \Omega(g) \) factors through a projective, and therefore \( \Omega(f \circ g) \sim \Omega(f) \circ \Omega(g) \).
 
@@ -133,19 +170,25 @@
 
     By the same argument like above, one can see that every square and triangle in the following diagram also commutes:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShBKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQSJdLFszLDAsIkEiXSxbMywxLCJBIl0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw1LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDEsIlxcT21lZ2EoSWRfQSkgLSBJZF97XFxPbWVnYShBKX0iLDJdLFsyLDMsImhfe0lkX0F9IC0gSWRfe1BfQX0iXSxbNCw1LCJJZF9BIC0gSWRfQSA9IDAiXSxbMiwxLCJcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
-    \[\begin{tikzcd}
-        {\Omega(A)} & {P_A} && A \\
-        {\Omega(A)} & {P_A} && A
-        \arrow[hook, from=1-1, to=1-2]
-        \arrow[two heads, from=1-2, to=1-4]
-        \arrow[two heads, from=2-2, to=2-4]
-        \arrow[hook, from=2-1, to=2-2]
-        \arrow["{\Omega(Id_A) - Id_{\Omega(A)}}"', from=1-1, to=2-1]
-        \arrow["{p_{Id_A} - Id_{P_A}}", from=1-2, to=2-2]
-        \arrow["{Id_A - Id_A = 0}", from=1-4, to=2-4]
-        \arrow["\phi"', dashed, from=1-2, to=2-1]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} & {P_A} & A \\
+                {\Omega(A)} & {P_A} & A \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge[swap] node {\Omega(Id_A) - Id_{\Omega(A)}} (m-2-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge[dashed, swap] node {\phi} (m-2-1)
+                    edge node {p_{Id_A} - Id_{P_A}} (m-2-2)
+                (m-1-3) edge node {Id_A - Id_A = 0} (m-2-3)
+
+                (m-2-1) edge[hook] (m-2-2)
+                (m-2-2) edge[two heads] (m-2-3);
+        \end{tikzpicture}
+    \end{center}
 
     And therefore \( \Omega(\Id_A) \sim Id_{\Omega(A)} \).
 
@@ -161,19 +204,25 @@
 
     With that in mind, look at the following diagram:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQiJdLFszLDEsIkIiXSxbMywwLCJBIl0sWzAsMSwiXFxPbWVnYShmK2cpLVxcT21lZ2EoZiktXFxPbWVnYShnKSIsMl0sWzAsMiwiXFxpb3RhX0EiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDMsIlxcaW90YV9CIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw0LCJcXHBpX0IiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzLCJoX3tmICsgZ30gLSBoX2YgLSBoX2ciXSxbMiwxLCJcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDQsImYgKyBnIC0gZiAtIGcgPSAwIl0sWzIsNSwiXFxwaV9BIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
-    \[\begin{tikzcd}
-        {\Omega(A)} & {P_A} && A \\
-        {\Omega(B)} & {P_B} && B
-        \arrow["{\Omega(f+g)-\Omega(f)-\Omega(g)}"', from=1-1, to=2-1]
-        \arrow["{\iota_A}", hook, from=1-1, to=1-2]
-        \arrow["{\iota_B}", hook, from=2-1, to=2-2]
-        \arrow["{\pi_B}", two heads, from=2-2, to=2-4]
-        \arrow["{p_{f + g} - p_f - p_g}", from=1-2, to=2-2]
-        \arrow["\phi"', dashed, from=1-2, to=2-1]
-        \arrow["{f + g - f - g = 0}", from=1-4, to=2-4]
-        \arrow["{\pi_A}", two heads, from=1-2, to=1-4]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} & {P_A} & A \\
+                {\Omega(B)} & {P_B} & B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[swap] node {\Omega(f+g)-\Omega(f)-\Omega(g)} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge[dashed, swap] node {\phi} (m-2-1)
+                    edge node {p_{f + g} - p_f - p_g} (m-2-2)
+                (m-1-3) edge node {f + g - f - g = 0} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
 
     Starting from the leftmost side, want to show that \( \Omega(f + g) - \Omega(f) - \Omega(g) \) factors through a projective.
 
@@ -194,40 +243,53 @@
 
     To prove the first part, let \( p_f \) and \( p_f' \) be two different projective maps that give the maps \( \Omega(f) \) and \( \Omega(f)' \) respectively. Then one has the following commutative diagram:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDEsIlBfQiJdLFsyLDAsIkEiXSxbMiwxLCJCIl0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDUsImYgLSBmID0gMCJdLFsyLDMsImhfZiAtIGgnX2YiXSxbMCwxLCJcXE9tZWdhKGYpIC0gXFxPbWVnYShmKSciLDJdLFsyLDEsIlxccGhpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
-    \[\begin{tikzcd}
-        {\Omega(A)} & {P_A} & A \\
-        {\Omega(B)} & {P_B} & B
-        \arrow[hook, from=1-1, to=1-2]
-        \arrow[two heads, from=1-2, to=1-3]
-        \arrow[hook, from=2-1, to=2-2]
-        \arrow[two heads, from=2-2, to=2-3]
-        \arrow["{f - f = 0}", from=1-3, to=2-3]
-        \arrow["{p_f - p'_f}", from=1-2, to=2-2]
-        \arrow["{\Omega(f) - \Omega(f)'}"', from=1-1, to=2-1]
-        \arrow["\phi", dashed, from=1-2, to=2-1]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} & {P_A} & A \\
+                {\Omega(B)} & {P_B} & B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[swap] node {\Omega(f) - \Omega(f)'} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge[dashed, swap] node {\phi} (m-2-1)
+                    edge node {p_f - p'_f} (m-2-2)
+                (m-1-3) edge node {f -f = 0} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
 
     Using the same argument as always, one gets that \( \Omega(f) \sim \Omega(f)' \). (I also think this follows directly from additivity.)
 
     Secondly, need to show that if \( f \sim g \), then \( \Omega(f) \sim \Omega(g) \). Look at the following diagram:
 
-    % https://q.uiver.app/#q=WzAsNyxbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMiwiXFxPbWVnYShCKSJdLFsxLDAsIlBfQSJdLFsxLDIsIlBfQiJdLFszLDAsIkEiXSxbMywyLCJCIl0sWzMsMSwiUCJdLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsNCwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzLCJoX3AgXFxjaXJjIChmLWcpXzEgXFxjaXJjIFxccGlfQSJdLFswLDEsIjAiLDJdLFs0LDYsIihmLWcpXzEiLDJdLFs2LDUsIihmLWcpXzIiLDJdLFs0LDUsImYgLSBnIiwwLHsiY3VydmUiOi0zfV0sWzYsMywiaF9wIiwyLHsiY29sb3VyIjpbMCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX0sWzAsNjAsNjAsMV1dXQ==
-    \[\begin{tikzcd}
-        {\Omega(A)} & {P_A} && A \\
-        &&& P \\
-        {\Omega(B)} & {P_B} && B
-        \arrow[hook, from=1-1, to=1-2]
-        \arrow[two heads, from=1-2, to=1-4]
-        \arrow[hook, from=3-1, to=3-2]
-        \arrow[two heads, from=3-2, to=3-4]
-        \arrow["{\theta \circ (f-g)_1 \circ \pi_A}", from=1-2, to=3-2]
-        \arrow["0"', from=1-1, to=3-1]
-        \arrow["{(f-g)_1}"', from=1-4, to=2-4]
-        \arrow["{(f-g)_2}"', from=2-4, to=3-4]
-        \arrow["{f - g}", curve={height=-18pt}, from=1-4, to=3-4]
-        \arrow["{\theta}"', color={rgb,255:red,214;green,92;blue,92}, dashed, from=2-4, to=3-2]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{3cm} {
+                \Omega(A) & P_A & A \\
+                && P \\
+                \Omega(B) & P_B & B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge node {0} (m-3-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge node {\theta \circ (f - g)_1 \circ \pi_A} (m-3-2)
+                (m-1-3) edge[swap] node {(f - g)_1} (m-2-3)
+                    edge[curve={height=-25pt}] node {f - g} (m-3-3)
+
+                (m-2-3) edge[swap, dashed, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-3-2)
+                    edge[swap] node {(f - g)_2} (m-3-3)
+
+                (m-3-1) edge[hook] (m-3-2)
+                (m-3-2) edge[two heads] (m-3-3);
+        \end{tikzpicture}
+    \end{center}
 
     Let \( P \) be the projective that \( f - g \) factors through. Then from the projective propertive, one gets a map \( \theta: P \to P_B \). Then the diagram commutes. But then \( \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0 \), and so the diagram commutes with \( 0: \Omega(A) \to \Omega(B) \). But since, \( \theta \circ (f-g)_1 \circ \pi_A \) is another choice of \( p_{f - g} \), from the previous part of the proof since \( \Omega \) is independent of the choice of \( h \)-maps, one gets that \( \Omega(f - g) \sim 0 \). And from additivity, one has that \( \Omega(f - g) \sim \Omega(f) - \Omega(g) \), one then gets that \( \Omega(f) \sim \Omega(g) \).
 \end{proof}
@@ -266,42 +328,55 @@
 
     First show that there exist a (not neccesarily unique, but for any object, just choose one) isomorphism from \( A \to \Sigma\Omega(A) \). Consider the following diagram:
 
-    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzIsMCwiUF9BIl0sWzQsMCwiQSJdLFswLDEsIlxcT21lZ2EoQSkiXSxbMiwxLCJJX3tcXE9tZWdhKEEpfSJdLFs0LDEsIlxcU2lnbWFcXE9tZWdhKEEpIl0sWzAsMiwiXFxPbWVnYShBKSJdLFsyLDIsIlBfQSJdLFs0LDIsIkEiXSxbMSwyLCJcXHBpX0EiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMCwxLCJcXGlvdGFfQSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNCwiXFxrYXBwYV97XFxPbWVnYShBKX0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDUsIlxccmhvX3tcXE9tZWdhKEEpfSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs2LDcsIlxcaW90YV9BIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNyw4LCJcXHBpX0EiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMCwzLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDYsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNCwiaV97XFxwaGlfMX0iLDJdLFs0LDcsImlfe1xccGhpXzJ9IiwyXSxbMiw1LCJcXHBoaV8xIiwyXSxbNSw4LCJcXHBoaV8yIiwyXV0=
-    \[\begin{tikzcd}
-        {\Omega(A)} && {P_A} && A \\
-        {\Omega(A)} && {I_{\Omega(A)}} && {\Sigma\Omega(A)} \\
-        {\Omega(A)} && {P_A} && A
-        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
-        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
-        \arrow["{\kappa_{\Omega(A)}}", hook, from=2-1, to=2-3]
-        \arrow["{\rho_{\Omega(A)}}", two heads, from=2-3, to=2-5]
-        \arrow["{\iota_A}", hook, from=3-1, to=3-3]
-        \arrow["{\pi_A}", two heads, from=3-3, to=3-5]
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow[Rightarrow, no head, from=2-1, to=3-1]
-        \arrow["{i_{\phi_1}}"', from=1-3, to=2-3]
-        \arrow["{i_{\phi_2}}"', from=2-3, to=3-3]
-        \arrow["{\phi_1}"', from=1-5, to=2-5]
-        \arrow["{\phi_2}"', from=2-5, to=3-5]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                \Omega(A) & P_A & A \\
+                \Omega(A) & I_{\Omega(A)} & \Sigma \circ \Omega(A) \\
+                \Omega(A) & P_A & A \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[equal] (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge node {i_{\phi_1}} (m-2-2)
+                (m-1-3) edge node {\phi_1} (m-2-3)
+
+                (m-2-1) edge[hook] node {\kappa_{\Omega(A)}} (m-2-2)
+                    edge[equal] (m-3-1)
+                (m-2-2) edge[two heads] node {\rho_{\Omega(A)}} (m-2-3)
+                    edge node {i_{\phi_2}} (m-3-2)
+                (m-2-3) edge node {\phi_2} (m-3-3)
+
+                (m-3-1) edge[hook] node {\iota_A} (m-3-2)
+                (m-3-2) edge[two heads] node {\pi_A} (m-3-3);
+        \end{tikzpicture}
+    \end{center}
 
     Where \( i_{\phi_1} \) is the injective property map induced from \( \iota_A \). Then, since \( \rho_{\Omega(A)} \circ i_{\phi_1} \circ \iota_A = \rho_{\Omega(A)} \circ \kappa_{\Omega(A)} = 0 \), and since \( \Mod(R) \) is an abelian category, one has that the cokernel of a kernel of a epimorphism is isomorphic to the codomain of the epimorphism. Therefore one has that \( A \) is the cokernel of \( \iota_A \). Therefore, from the cokernel property, there is a uniquely induced map \( \phi_1: A \to \Sigma\Omega(A) \). Then doing the same for the lower rectangle of the diagram, using the fact that every projective is also injective, then one gets the map \( \phi_2 \).
 
     Then to show that \( \phi_1 \) and \( \phi_2 \) are isomorphisms, look at the following diagram:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzAsMSwiXFxPbWVnYShBKSJdLFsyLDAsIlBfQSJdLFsyLDEsIlBfQSJdLFs0LDAsIkEiXSxbNCwxLCJBIl0sWzQsNSwiXFxwaGlfMiBcXGNpcmMgXFxwaGlfMSAtIFxcSWRfQSJdLFsyLDQsIlxccGlfQSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDIsIlxcaW90YV9BIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwzLCJcXGlvdGFfQSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNSwiXFxwaV9BIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsMywicF97XFxwaGlfMn0gXFxjaXJjIHBfe1xccGhpXzF9IC0gXFxJZF9QIiwyXSxbMCwxLCJcXElkX3tcXE9tZWdhKEEpfSBcXGNpcmMgXFxJZF97XFxPbWVnYShBKX0gLSBcXElkX3tcXE9tZWdhKEEpfSA9IDAiLDJdLFs0LDMsIlxcdGhldGEiLDIseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dXQ==
-    \[\begin{tikzcd}
-        {\Omega(A)} && {P_A} && A \\
-        {\Omega(A)} && {P_A} && A
-        \arrow["{\phi_2 \circ \phi_1 - \Id_A}", from=1-5, to=2-5]
-        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
-        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
-        \arrow["{\iota_A}", hook, from=2-1, to=2-3]
-        \arrow["{\pi_A}", two heads, from=2-3, to=2-5]
-        \arrow["{p_{\phi_2} \circ p_{\phi_1} - \Id_P}"', from=1-3, to=2-3]
-        \arrow["{\Id_{\Omega(A)} \circ \Id_{\Omega(A)} - \Id_{\Omega(A)} = 0}"', from=1-1, to=2-1]
-        \arrow["\theta"', color={rgb,255:red,214;green,92;blue,92}, from=1-5, to=2-3]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                \Omega(A) & P_A & A \\
+                \Omega(A) & P_A & A \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[swap] node {\Id_{\Omega(A)} \circ \Id_{\Omega(A)} - \Id_{\Omega(A)} = 0} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge[swap] node {p_{\phi_2} \circ p_{\phi_1} - \Id_P} (m-2-2)
+                (m-1-3) edge[swap, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-2-2)
+                    edge node {\phi_2 \circ \phi_1 - \Id_A} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_A} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_A} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
 
     Using the previous commutative diagram, one gets that every square commutes. But then \( (p_{\phi_2} \circ p_{\phi_1} - \Id_{P_A}) \circ \iota_A = \iota_A \circ 0 = 0 \). Then from the cokernel property there exist a map \( \theta: A \to P_A \) such that \( \theta \circ \pi_A = p_{\theta_2} \circ p_{\theta_1} - \Id_P \). But then one has that \( (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (p_{\theta_2} \circ p_{\theta_1} - \Id_P) = \pi_A \circ \theta \circ \pi_A \). But since \( \pi_A \) is an epimorphism, one gets that \( \phi_2 \circ \phi_1 - \Id_A = \pi_A \circ \theta \), which means that \( \phi_2 \circ \phi_1 \sim \Id_A \).
     
@@ -311,63 +386,83 @@
 
     To show that these isomorphisms are natural, look at the following two diagrams:
 
-    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzIsMCwiUCJdLFs0LDAsIkEiXSxbMCwxLCJcXE9tZWdhKEEpIl0sWzIsMSwiSSJdLFs0LDEsIlxcU2lnbWFcXE9tZWdhKEEpIl0sWzAsMiwiXFxPbWVnYShCKSJdLFsyLDIsIkkiXSxbNCwyLCJcXFNpZ21hXFxPbWVnYShCKSJdLFswLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMSwiXFxpb3RhX0EiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIlxccGlfQSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDQsIlxca2FwcGFfe1xcT21lZ2EoQSl9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw1LCJcXHJob197XFxPbWVnYShBKX0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSw0LCJwX3tcXHBoaV5BXzF9IiwyXSxbMiw1LCJcXHBoaV5BXzEiLDJdLFszLDYsIlxcT21lZ2EoZikiLDJdLFs2LDcsIlxca2FwcGFfe1xcT21lZ2EoQil9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNyw4LCJcXHJob197XFxPbWVnYShCKX0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw3LCJpX3tcXE9tZWdhKGYpfSIsMl0sWzUsOCwiXFxTaWdtYShcXE9tZWdhKGYpKSIsMl1d
-    \[\begin{tikzcd}
-        {\Omega(A)} && P && A \\
-        {\Omega(A)} && I && {\Sigma\Omega(A)} \\
-        {\Omega(B)} && I && {\Sigma\Omega(B)}
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
-        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
-        \arrow["{\kappa_{\Omega(A)}}", hook, from=2-1, to=2-3]
-        \arrow["{\rho_{\Omega(A)}}", two heads, from=2-3, to=2-5]
-        \arrow["{p_{\phi^A_1}}"', from=1-3, to=2-3]
-        \arrow["{\phi^A_1}"', from=1-5, to=2-5]
-        \arrow["{\Omega(f)}"', from=2-1, to=3-1]
-        \arrow["{\kappa_{\Omega(B)}}", hook, from=3-1, to=3-3]
-        \arrow["{\rho_{\Omega(B)}}", two heads, from=3-3, to=3-5]
-        \arrow["{i_{\Omega(f)}}"', from=2-3, to=3-3]
-        \arrow["{\Sigma(\Omega(f))}"', from=2-5, to=3-5]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                \Omega(A) & P & A \\
+                \Omega(A) & I & \Sigma \circ \Omega(A) \\
+                \Omega(B) & I & \Sigma \circ \Omega(B) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[equal] (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge node {p_{\phi^A_1}} (m-2-2)
+                (m-1-3) edge node {\phi^A_1} (m-2-3)
+
+                (m-2-1) edge[hook] node {\kappa_{\Omega(A)}} (m-2-2)
+                    edge node {\Omega(f)} (m-3-1)
+                (m-2-2) edge[two heads] node {\rho_{\Omega(A)}} (m-2-3)
+                    edge node {i_{\Omega(f)}} (m-3-2)
+                (m-2-3) edge node {\Sigma \circ \Omega(f)} (m-3-3)
+
+                (m-3-1) edge[hook] node {\kappa_{\Omega(B)}} (m-3-2)
+                (m-3-2) edge[two heads] node {\rho_{\Omega(B)}} (m-3-3);
+        \end{tikzpicture}
+    \end{center}
 
     And:
 
-    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhKEEpIl0sWzIsMCwiUCJdLFs0LDAsIkEiXSxbMCwxLCJcXE9tZWdhKEIpIl0sWzIsMSwiUCJdLFs0LDEsIkIiXSxbMCwyLCJcXE9tZWdhKEIpIl0sWzIsMiwiSSJdLFs0LDIsIlxcU2lnbWFcXE9tZWdhKEIpIl0sWzIsNSwiZiJdLFswLDMsIlxcT21lZ2EoZikiXSxbMyw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDEsIlxcaW90YV9BIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJcXHBpX0EiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0LCJcXGlvdGFfQiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsNSwiXFxwaV9CIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzYsNywiXFxrYXBwYV97XFxPbWVnYShCKX0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs3LDgsIlxccmhvX3tcXE9tZWdhKEIpfSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs1LDgsIlxccGhpXzFeQiJdLFs0LDcsImlfe1xccGhpXzFeQn0iXSxbMSw0LCJwX2YiXV0=
-    \[\begin{tikzcd}
-        {\Omega(A)} && P && A \\
-        {\Omega(B)} && P && B \\
-        {\Omega(B)} && I && {\Sigma\Omega(B)}
-        \arrow["f", from=1-5, to=2-5]
-        \arrow["{\Omega(f)}", from=1-1, to=2-1]
-        \arrow[Rightarrow, no head, from=2-1, to=3-1]
-        \arrow["{\iota_A}", hook, from=1-1, to=1-3]
-        \arrow["{\pi_A}", two heads, from=1-3, to=1-5]
-        \arrow["{\iota_B}", hook, from=2-1, to=2-3]
-        \arrow["{\pi_B}", two heads, from=2-3, to=2-5]
-        \arrow["{\kappa_{\Omega(B)}}", hook, from=3-1, to=3-3]
-        \arrow["{\rho_{\Omega(B)}}", two heads, from=3-3, to=3-5]
-        \arrow["{\phi_1^B}", from=2-5, to=3-5]
-        \arrow["{i_{\phi_1^B}}", from=2-3, to=3-3]
-        \arrow["{p_f}", from=1-3, to=2-3]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                \Omega(A) & P & A \\
+                \Omega(B) & P & B \\
+                \Omega(B) & I & \Sigma \circ \Omega(B) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge node {\Omega(f)} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge node {p_f} (m-2-2)
+                (m-1-3) edge node {f} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
+                    edge[equal] (m-3-1)
+                (m-2-2) edge[two heads] node {\pi_B} (m-2-3)
+                    edge node {i_{\phi_1^B}} (m-3-2)
+                (m-2-3) edge node {\phi_1^B} (m-3-3)
+
+                (m-3-1) edge[hook] node {\kappa_{\Omega(B)}} (m-3-2)
+                (m-3-2) edge[two heads] node {\rho_{\Omega(B)}} (m-3-3);
+        \end{tikzpicture}
+    \end{center}
 
     Where every small square, and therefore rectangle, commutes.
 
     This gives rise to the following commutative diagram:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhKEEpIl0sWzQsMCwiUCJdLFs4LDAsIkEiXSxbMCwxLCJcXE9tZWdhKEIpIl0sWzQsMSwiSSJdLFs4LDEsIlxcU2lnbWFcXE9tZWdhKEIpIl0sWzIsNSwiXFxwaGlfMV5CIFxcY2lyYyBmIC0gXFxTaWdtYVxcT21lZ2EoZikgXFxjaXJjIFxccGhpXzFeQSJdLFsxLDQsImlfe1xccGhpXzFeQn0gXFxjaXJjIHBfZiAtIGlfe1xcT21lZ2EoZil9IFxcY2lyYyBwX3tcXHBoaV8xXkF9Il0sWzAsMywiXFxJZF97XFxPbWVnYShCKX0gXFxjaXJjIFxcT21lZ2EoZikgLSBcXE9tZWdhKGYpIFxcY2lyYyBcXElkX3tcXE9tZWdhKEEpfSA9IDAgIl0sWzAsMSwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDUsIiIsMSx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDQsIlxcdGhldGEiLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsImN1cnZlIjotMSwiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXV0=
-    \[\begin{tikzcd}
-        {\Omega(A)} &&&& P &&&& A \\
-        {\Omega(B)} &&&& I &&&& {\Sigma\Omega(B)}
-        \arrow["{\phi_1^B \circ f - \Sigma\Omega(f) \circ \phi_1^A}", from=1-9, to=2-9]
-        \arrow["{i_{\phi_1^B} \circ p_f - i_{\Omega(f)} \circ p_{\phi_1^A}}", from=1-5, to=2-5]
-        \arrow["{\Id_{\Omega(B)} \circ \Omega(f) - \Omega(f) \circ \Id_{\Omega(A)} = 0 }", from=1-1, to=2-1]
-        \arrow[hook, from=1-1, to=1-5]
-        \arrow[two heads, from=1-5, to=1-9]
-        \arrow[hook, from=2-1, to=2-5]
-        \arrow[two heads, from=2-5, to=2-9]
-        \arrow["\theta"'{pos=0.4}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-6pt}, from=1-9, to=2-5]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{3cm} {
+                \Omega(A) & P & A \\
+                \Omega(B) & I & \Sigma \circ \Omega(B) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge[swap] node {\Id_{\Omega(B)} \circ \Omega(f) - \Omega(f) \circ \Id_{\Omega(A)} = 0} (m-2-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge[swap] node {i_{\phi_1^B} \circ p_f - i_{\Omega(f)} \circ p_{\phi_1^A}} (m-2-2)
+                (m-1-3) edge[swap, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-2-2)
+                    edge node {\phi_1^B \circ f - \Sigma\Omega(f) \circ \phi_1^A} (m-2-3)
+
+                (m-2-1) edge[hook] (m-2-2)
+                (m-2-2) edge[two heads] (m-2-3);
+        \end{tikzpicture}
+    \end{center}
 
     But from the cokernel property of \( A \), one gets an induced map \( \theta \), and from the epimorphism property, it makes the lower triangle commute, which implies \( \phi_1^B \circ f \sim \Sigma\Omega(f) \circ \phi_1^A \), which means that it is natural. And since the choice of \( \phi_1 \) is arbitrary, it is independent of the choice of \( \phi_1 \).
 \end{proof}
@@ -379,18 +474,24 @@ I found two different definitions of distinguished triangles in \( \StMod(R) \) 
 
     Let \( \Delta \) be every triangle isomorphic to a triangle of the form of the top row of this triangle:
 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJBIl0sWzEsMCwiQiJdLFsyLDAsIkMiXSxbMCwxLCJBIl0sWzEsMSwiSV9BIl0sWzMsMCwiXFxTaWdtYShBKSJdLFswLDEsIlxcYWxwaGEiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIlxcYmV0YSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDMsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsNCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw1LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSw0LCJcXGlvdGFfZiIsMl0sWzIsNSwiXFxnYW1tYSJdXQ==
-    \[\begin{tikzcd}
-        A & B & C & {\Sigma(A)} \\
-        A & {I_A}
-        \arrow["\alpha", hook, from=1-1, to=1-2]
-        \arrow["\beta", two heads, from=1-2, to=1-3]
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow[hook, from=2-1, to=2-2]
-        \arrow[two heads, from=2-2, to=1-4]
-        \arrow["{\iota}"', from=1-2, to=2-2]
-        \arrow["\gamma", from=1-3, to=1-4]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A & B & C & \Sigma(A) \\
+                A & I_A \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\alpha} (m-1-2)
+                    edge[equal] (m-2-1)
+                (m-1-2) edge[two heads] node {\beta} (m-1-3)
+                    edge[swap] node {\iota} (m-2-2)
+                (m-1-3) edge node {\gamma} (m-1-4)
+
+                (m-2-1) edge[hook] (m-2-2)
+                (m-2-2) edge[two heads] (m-1-4);
+        \end{tikzpicture}
+    \end{center}
 
     Where \( A, B, C \) with \( \alpha, \beta \) makes a short exact sequence, and \( \iota \) is given by the injective property of \( I_A \), and \( \gamma \) is the cokernel induced map.
 
@@ -398,18 +499,24 @@ I found two different definitions of distinguished triangles in \( \StMod(R) \) 
 
     Let \( \Delta \) be any triangle isomorphic to a triangle of the form of the top row of the following diagram:
 
-    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJBIl0sWzEsMCwiQiJdLFsyLDAsIkNfXFxhbHBoYSJdLFszLDAsIlxcU2lnbWEoQSkiXSxbMSwxLCJJX0EiXSxbMCwxLCJcXGFscGhhIl0sWzEsMiwiXFxiZXRhIl0sWzIsMywiXFxnYW1tYSJdLFswLDQsIlxcaW90YV9BIiwyXSxbNCwyLCJcXHJobyIsMl0sWzEsMywiMCIsMCx7ImN1cnZlIjotNH1dLFs0LDMsIlxccGlfQSIsMCx7ImN1cnZlIjoyfV1d
-    \[\begin{tikzcd}
-        A & B & {C_\alpha} & {\Sigma(A)} \\
-        & {I_A}
-        \arrow["\alpha", from=1-1, to=1-2]
-        \arrow["\beta", from=1-2, to=1-3]
-        \arrow["\gamma", from=1-3, to=1-4]
-        \arrow["{\iota_A}"', from=1-1, to=2-2]
-        \arrow["\rho"', from=2-2, to=1-3]
-        \arrow["0", curve={height=-24pt}, from=1-2, to=1-4]
-        \arrow["{\pi_A}", curve={height=12pt}, from=2-2, to=1-4]
-    \end{tikzcd}\]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A & B & C_\alpha & \Sigma(A) \\
+                & I_A \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\alpha} (m-1-2)
+                    edge[swap] node {\iota_A} (m-2-2)
+                (m-1-2) edge node {\beta} (m-1-3)
+                    edge[curve={height=-25pt}] node {0} (m-1-4)
+                (m-1-3) edge node {\gamma} (m-1-4)
+
+                (m-2-2) edge[curve={height=15pt}] node {\pi_A} (m-1-4)
+                    edge node {\rho} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
 
     Where \( C_\alpha \) is the pushout of \( A, B, I_A \), and \( \gamma \) is given by the pushout universal property.
 \end{definition}

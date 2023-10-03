@@ -41,6 +41,7 @@
 % For teorem, definisjon, bevis enviornments.
 \usepackage{amsthm}
 
+% For psmallmatrix.
 \usepackage{mathtools}
 
 \usepackage{thmtools}
@@ -51,11 +52,6 @@
 % Set svg mappo
 % \svgpath{svg/}
 
-% For å laga / halda styr på flytopbjekt
-% \usepackage{float}
-
-% \usepackage[subsection]{placeins}
-
 % Fjernar indents ved nye avsnitt, men gjer linjeavstanden kortare (Kanskje)
 \usepackage{parskip} 
 
@@ -63,6 +59,9 @@
 \usepackage{fontspec}
 
 \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+
+% TikZ!
+\usepackage{tikz}
 
 % Set fontar som blir brukt
 \setmathfont{Latin Modern Math} % Dette er standardfonten
@@ -73,37 +72,7 @@
 % \setmathfont{Fira Math}
 % \setmathfont[range=\setminus]{Asana Math}
 
-\usepackage{quiver}
-
-%For kommutative diagram med tikz
-% \usepackage{tikz-cd}
-
-% Thaule tikzcd erstatning
-\usepackage{tikz}
-
-\usetikzlibrary{matrix}
-\newcommand{\diagram}[3]{\matrix (#1) [matrix of math nodes,row
-  sep={#2},column sep={#3},text height=1.5ex,text
-  depth=0.25ex]}
-
-\usetikzlibrary{cd}
-
-\tikzset{every picture/.append style={commutative diagrams/every diagram}}
-\tikzset{math/.style = {commutative diagrams/every arrow,
-  commutative diagrams/every label,
-  execute at begin node=\(, execute at end node=\)}
-}
-
-\tikzset{hook/.style = {commutative diagrams/hook}}
-\tikzset{dashed/.style = {commutative diagrams/dashed}}
-\tikzset{two heads/.style = {commutative diagrams/two heads}}
-\tikzset{equal/.style = {commutative diagrams/equal}}
-\tikzset{squiggly/.style = {commutative diagrams/squiggly}}
-
-
-% This doesn't work with tikzcd!
-% \usetikzlibrary{external}
-% \tikzexternalize[prefix=tikz/]
+\input{shortcuts/tikz_setup.tex}
 
 \input{shortcuts/list_tweak.tex}
 

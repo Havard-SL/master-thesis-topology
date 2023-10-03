@@ -1,0 +1,46 @@
+\usetikzlibrary{matrix}
+
+\usetikzlibrary{cd}
+
+% From quiver:
+% `pathmorphing` is necessary to draw squiggly arrows.
+\usetikzlibrary{decorations.pathmorphing}
+
+% From quiver:
+% `calc` is necessary to draw curved arrows.
+\usetikzlibrary{calc}
+
+% Externalize TikZ diagrams to save compilation time.
+% NOTE: Doesn't work with tikz-cd.
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz/]
+
+% Marius Thaule TikZ matrix.
+\newcommand{\diagram}[3]{\matrix (#1) [matrix of math nodes,row
+  sep={#2},column sep={#3},text height=1.5ex,text
+  depth=0.25ex]}
+
+
+% Set style of TikZ pictures to tikz-cd style.
+\tikzset{every picture/.append style={commutative diagrams/every diagram}}
+\tikzset{math/.style = {commutative diagrams/every arrow,
+  commutative diagrams/every label,
+  execute at begin node=\(, execute at end node=\)}
+}
+
+% Shortcuts to tikz-cd styles.
+\tikzset{hook/.style = {commutative diagrams/hook}}
+\tikzset{dashed/.style = {commutative diagrams/dashed}}
+\tikzset{two heads/.style = {commutative diagrams/two heads}}
+\tikzset{equal/.style = {commutative diagrams/equal}}
+\tikzset{squiggly/.style = {commutative diagrams/squiggly}}
+
+% From quiver:
+% A TikZ style for curved arrows of a fixed height, due to AndréC.
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    .. (\tikztotarget)\tikztonodes}},
+    settings/.code={\tikzset{quiver/.cd,#1}
+        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+    quiver/.cd,pos/.initial=0.35,height/.initial=0}
