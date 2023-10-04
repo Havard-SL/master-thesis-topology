@@ -2,6 +2,9 @@
 
 \usetikzlibrary{cd}
 
+% In order to remove 1 pixel line at end of "equals"
+\usetikzlibrary{nfold}
+
 % From quiver:
 % `pathmorphing` is necessary to draw squiggly arrows.
 \usetikzlibrary{decorations.pathmorphing}
@@ -32,7 +35,7 @@
 \tikzset{hook/.style = {commutative diagrams/hook}}
 \tikzset{dashed/.style = {commutative diagrams/dashed}}
 \tikzset{two heads/.style = {commutative diagrams/two heads}}
-\tikzset{equal/.style = {commutative diagrams/equal}}
+\tikzset{equal/.style = {commutative diagrams/equal, nfold}}
 \tikzset{squiggly/.style = {commutative diagrams/squiggly}}
 
 % From quiver:
