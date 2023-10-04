@@ -1,0 +1,89 @@
+\section{Projective and Injective classes}
+
+\begin{definition}[Projective class, projective object]
+    Let \( \Tc \) be a triangulated category.
+
+    Let \( (\Pc, \Nc) \) be a tuple where \( \Pc \) is a class of objects, and \( \Nc \) is a class of morphisms, satisfying the following properties:
+
+    \begin{enumerate}
+        \item {Let \( f \in \Tc(X, Y) \).
+        
+        Then \( f \in \Nc \) if and only if for all \( P \in \Pc \) one has that \( f_*: \Tc(P, X) \to \Tc(P, Y) \) is the zero map.}
+
+        \item {Let \( P \in \Tc \).
+        
+        Then \( P \in \Pc \) if and only if for all \( X, Y \in \Tc \), for all \( f \in \Tc(X, Y) \intersect \Nc \), one has that \( f_*: \Tc(P, X) \to \Tc(P, Y) \) is the zero map.}
+
+        \item {For every \( X \in \Tc \) there exists objects \( Y \in \Tc \) and \( P \in \Pc \) along with a morphism \( f \in \Tc(X, Y) \) such that there exists a distinguished triangle on the form \( P \to X \stackrel{f}{\to} Y \to \Sigma(P) \).}
+    \end{enumerate}
+
+    Then \( (\Pc, \Nc) \) is called a \emph{projective class in \( \Tc \)}, and an object \( P \in \Pc \) is called \emph{projective}. % Projective over a projective class? TODO
+\end{definition}
+
+\begin{definition}[Stable projective class]
+    Let \( (\Pc, \Nc) \) be a projective class in \( \Tc \).
+
+    If for any \( P \in \Pc \) and \( n \in \Zb \) one has that \( \Sigma^n(P) \in \Pc \).
+    
+    Then \( (\Pc, \Nc) \) is called a \emph{stable projective class}.
+\end{definition}
+
+% Projective class stable under coproduct and retracts? TODO
+
+\begin{definition}[\( \Pc \)-epic, \( \Pc \)-monic]
+    Let \( f \in \Tc(X, Y) \) and let \( (\Pc, \Nc) \) be a projective class in \( \Tc \).
+
+    Then one has the following definitions:
+
+    \begin{enumerate} % surjective or epimorphism? Injective or monomorphism?
+        \item {If for all \( P \in \Pc \), one has that \( f_*: \Tc(P, X) \to \Tc(P, Y) \) is surjective.
+        
+        Then \( f \) is called \emph{\( \Pc \)-epic}.}
+        
+        \item {If for all \( P \in \Pc \), one has that \( f_*: \Tc(P, X) \to \Tc(P, Y) \) is injective.
+        
+        Then \( f \) is called \emph{\( \Pc \)-monic}.}
+    \end{enumerate}
+\end{definition}
+
+% Equivalent to cofiber map being P-null, or fiber map being P-null. TODO
+
+\begin{definition}[Injective class, injective object]
+    Let \( \Tc \) be a triangulated category.
+
+    If the tuple \( (\Ic, \Nc) \) is a projective class in \( \Tc^{op} \).
+    
+    Then \( (\Ic, \Nc) \) is called an \emph{injective class in \( \Tc \)}, and an object \( I \in \Ic \) is called \emph{injective}.
+\end{definition}
+
+% Explicit definition. TODO
+
+% Stable under products and retracts? TODO.
+
+\begin{definition}[Stable injective class]
+    Let \( (\Ic, \Nc) \) be an injective class in \( \Tc \).
+
+    If for any \( I \in \Ic \) and \( n \in \Zb \) one has that \( \Sigma^n(I) \in \Ic \).
+    
+    Then \( (\Ic, \Nc) \) is called a \emph{stable injective class}.
+\end{definition}
+
+\begin{definition}[\( \Ic \)-monic, \( \Ic \)-epic]
+    Let \( f \in \Tc(X, Y) \) and let \( (\Ic, \Nc) \) be an injective class in \( \Tc \).
+
+    Then one has the following definitions:
+
+    \begin{enumerate} % surjective or epimorphism? Injective or monomorphism?
+        \item {If for all \( I \in \Ic \), one has that \( f_*: \Tc(I, X) \to \Tc(I, Y) \) is surjective.
+        
+        Then \( f \) is called \emph{\( \Ic \)-monic}.}
+        
+        \item {If for all \( I \in \Ic \), one has that \( f_*: \Tc(I, X) \to \Tc(I, Y) \) is injective.
+        
+        Then \( f \) is called \emph{\( \Ic \)-epic}.}
+    \end{enumerate}
+\end{definition}
+
+% Equivalent to fiber map being I-null, or cofiber map being I-null. TODO
+
+% Remark -> Connection to lifitng and extension property.
