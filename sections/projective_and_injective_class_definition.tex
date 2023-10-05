@@ -1,6 +1,6 @@
 \section{Projective and Injective classes}
 
-\begin{definition}[Projective class, projective object]
+\begin{definition}[Projective class, projective object] \label{def:projective_class}
     Let \( \Tc \) be a triangulated category.
 
     Let \( (\Pc, \Nc) \) be a tuple where \( \Pc \) is a class of objects, and \( \Nc \) is a class of morphisms, satisfying the following properties:
@@ -87,3 +87,43 @@
 % Equivalent to fiber map being I-null, or cofiber map being I-null. TODO
 
 % Remark -> Connection to lifitng and extension property.
+
+\begin{definition}[Adams resolution w.r.t. a projective class] % Need stable? TODO
+    Let \( (\Pc, \Nc) \) be a stable projective class in \( \Tc \). Let \( X_0 \in \Tc \).
+
+    Then given objects and morphisms in \( \Tc \) fitting in the following diagram:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_0 && X_1 && X_2 && X_3 & \dots \\
+                & P_0 && P_1 && P_2 \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {i_0} (m-1-3)
+                (m-1-3) edge node {i_1} (m-1-5)
+                    edge node[marking] {\bigcirc} node {\delta_0} (m-2-2)
+                (m-1-5) edge node {i_2} (m-1-7)
+                    edge node[marking] {\bigcirc} node {\delta_1} (m-2-4)
+                (m-1-7) edge (m-1-8)
+                    edge node[marking] {\bigcirc} node {\delta_2} (m-2-6)
+
+                (m-2-2) edge node {p_0} (m-1-1)
+                (m-2-4) edge node {p_1} (m-1-3)
+                (m-2-6) edge node {p_2} (m-1-5);
+        \end{tikzpicture}
+    \end{center}
+
+    Where every \( i_n \in \Nc \), and \( P_n \in \Pc \), and circled arrows denote degree shifting maps, with \( \delta_n \in \Tc(X_{n + 1}, \Sigma(P_n)) \). % More descriptive of what degree shifting maps are.
+
+    This is called an \emph{Adams resolution of \( X_0 \) with respect to a projective class \( (\Pc, \Nc) \)}.
+    
+\end{definition}
+
+
+% Existence of adams resolution.
+% Then by \autoref{def:projective_class} property 3, one has that there exists an object \( X_1 \in \Tc \) and object \( P_0 \in \Pc \), and three morphisms \( i_0, p_0, \delta_0 \), such that the following is a distinguished triangle:
+%     \[
+%         P_0 \stackrel{p_0}{\longrightarrow} X_0 \stackrel{i_0}{\longrightarrow} X_1 \stackrel{\delta_0}{\longrightarrow} \Sigma(P_0)
+%     \]
