@@ -88,8 +88,10 @@
 
 % Remark -> Connection to lifitng and extension property.
 
+% Convention neccesary?
+
 \begin{definition}[Adams resolution w.r.t. a projective class] % Need stable? TODO
-    Let \( (\Pc, \Nc) \) be a stable projective class in \( \Tc \). Let \( X_0 \in \Tc \).
+    Let \( (\Pc, \Nc) \) be a projective class in \( \Tc \). Let \( X_0 \in \Tc \).
 
     Then given objects and morphisms in \( \Tc \) fitting in the following diagram:
 
@@ -118,12 +120,69 @@
     Where every \( i_n \in \Nc \), and \( P_n \in \Pc \), and circled arrows denote degree shifting maps, with \( \delta_n \in \Tc(X_{n + 1}, \Sigma(P_n)) \). % More descriptive of what degree shifting maps are.
 
     This is called an \emph{Adams resolution of \( X_0 \) with respect to a projective class \( (\Pc, \Nc) \)}.
-    
 \end{definition}
 
+\begin{definition}[Adams resolution w.r.t. an injective class] % Need stable? TODO
+    Let \( (\Ic, \Nc) \) be an injective class in \( \Tc \). Let \( Y_0 \in \Tc \).
 
-% Existence of adams resolution.
-% Then by \autoref{def:projective_class} property 3, one has that there exists an object \( X_1 \in \Tc \) and object \( P_0 \in \Pc \), and three morphisms \( i_0, p_0, \delta_0 \), such that the following is a distinguished triangle:
-%     \[
-%         P_0 \stackrel{p_0}{\longrightarrow} X_0 \stackrel{i_0}{\longrightarrow} X_1 \stackrel{\delta_0}{\longrightarrow} \Sigma(P_0)
-%     \]
+    Then given objects and morphisms in \( \Tc \) fitting in the following diagram:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                Y_0 && Y_1 && Y_2 && Y_3 & \dots \\
+                & I_0 && I_1 && I_2 \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[swap] node {p_0} (m-2-2)
+                (m-1-3) edge[swap] node {i_0} (m-1-1)
+                    edge[swap] node {p_1} (m-2-4)
+                (m-1-5) edge[swap] node {i_1} (m-1-3)
+                    edge[swap] node {p_2} (m-2-6)
+                (m-1-7) edge[swap] node {i_2} (m-1-5)
+                (m-1-8) edge (m-1-7)
+
+                (m-2-2) edge node[marking] {\bigcirc} node[swap] {\delta_0} (m-1-3)
+                (m-2-4) edge node[marking] {\bigcirc} node[swap] {\delta_1} (m-1-5)
+                (m-2-6) edge node[marking] {\bigcirc} node[swap] {\delta_2} (m-1-7);
+        \end{tikzpicture}
+    \end{center}
+
+    Where every \( i_n \in \Nc \), and \( I_n \in \Ic \), and circled arrows denote degree shifting maps, with \( \delta_n \in \Tc(I_n, \Sigma(Y_{n + 1})) \). % More descriptive of what degree shifting maps are.
+
+    This is called an \emph{Adams resolution of \( Y_0 \) with respect to an injective class \( (\Ic, \Nc) \)}.
+\end{definition}
+
+\begin{theorem} % Stable? TODO
+    Let \( (\Pc, \Nc) \) be a projective class in \( \Tc \).
+
+    Then for any object \( X \in \Tc \), there exists an Adams Resolution of \( X \) with respect to the projective class \( (\Pc, \Nc) \).
+\end{theorem}
+\begin{proof}
+    Let \( X_0 = X \).
+
+    Then by \autoref{def:projective_class} property 3, one has that there exists an object \( X_1 \in \Tc \) and object \( P_0 \in \Pc \), and three morphisms \( i_0, p_0, \delta_0 \), such that the following is a distinguished triangle:
+    \[
+        P_0 \stackrel{p_0}{\longrightarrow} X_0 \stackrel{i_0}{\longrightarrow} X_1 \stackrel{\delta_0}{\longrightarrow} \Sigma(P_0)
+    \]
+
+    TODO: Finish
+\end{proof}
+
+\begin{theorem} % Stable? TODO
+    Let \( (\Ic, \Nc) \) be an injective class in \( \Tc \).
+
+    Then for any object \( Y \in \Tc \), there exists an Adams Resolution of \( Y \) with respect to the injective class \( (\Ic, \Nc) \).
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{definition}[Adams spectral sequence]
+    Let \( (\Ic, \Nc) \) be a stable injective class in \( \Tc \).
+
+    Then
+
+    TODO: Finish
+\end{definition}
