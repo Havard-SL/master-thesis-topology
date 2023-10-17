@@ -117,7 +117,22 @@
         \end{tikzpicture}
     \end{center}
 
-    Where every \( i_n \in \Nc \), and \( P_n \in \Pc \), and circled arrows denote degree shifting maps, with \( \delta_n \in \Tc(X_{n + 1}, \Sigma(P_n)) \). % More descriptive of what degree shifting maps are.
+    Where every \( i_n \in \Nc \), and \( P_n \in \Pc \), and circled arrows denote degree shifting maps, with \( \delta_n \in \Tc(X_{n + 1}, \Sigma(P_n)) \). And where every triangle on the form:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                P_n & X_n & X_{n + 1} & \Sigma(P_n) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {p_n} (m-1-2)
+                (m-1-2) edge node {i_n} (m-1-3)
+                (m-1-3) edge node {\delta_n} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+
+    is distinguished.
 
     This is called an \emph{Adams resolution of \( X_0 \) with respect to a projective class \( (\Pc, \Nc) \)}.
 \end{definition}
@@ -149,7 +164,22 @@
         \end{tikzpicture}
     \end{center}
 
-    Where every \( i_n \in \Nc \), and \( I_n \in \Ic \), and circled arrows denote degree shifting maps, with \( \delta_n \in \Tc(I_n, \Sigma(Y_{n + 1})) \). % More descriptive of what degree shifting maps are.
+    Where every \( i_n \in \Nc \), and \( I_n \in \Ic \), and circled arrows denote degree shifting maps, with \( \delta_n \in \Tc(I_n, \Sigma(Y_{n + 1})) \). And where every triangle on the form:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                \Sigma^{-1}(I_n) & Y_{n + 1} & Y_n & I_n \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\Sigma^{-1}(\delta_s)} (m-1-2)
+                (m-1-2) edge node {i_n} (m-1-3)
+                (m-1-3) edge node {p_n} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+
+    is distinguished.
 
     This is called an \emph{Adams resolution of \( Y_0 \) with respect to an injective class \( (\Ic, \Nc) \)}.
 \end{definition}
@@ -179,7 +209,8 @@
     TODO
 \end{proof}
 
-\begin{remark} % Is Y_s for s < 0 defined? Other notation for sum of maps, since i_0 doesn't go from Y_0. TODO
+% Be specific of the use of the isomorphism in (\delta_s)_* TODO
+\begin{construction} \label{construction:adams_spectral_sequence} 
     Let \( (\Ic, \Nc) \) be an injective class in \( \Tc \).
 
     For any \( Y \in \Tc \), one can construct an Adams resolution of \( Y \) with respect to the injective class \( (\Ic, \Nc) \) by \autoref{thm:exists_adams_resolution_injective_class}, using the notation from \autoref{def:adams_resolution_injective_class}.
@@ -192,23 +223,36 @@
     \end{align*}
     Be maps given by post-composition by \( i_s, p_s, \delta_s \) respectively.
 
-    These fit in a diagram:
+    Let \( i, p, \delta \) be morphisms that fit in the following diagram:
 
     \begin{center}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
+            \diagram{m}{2cm}{1cm} {
                 \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) && \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) \\
                 &  \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), I_s) \\
             };
 
-            \draw[math]
-                (m-1-1) edge node {\directsum_{s \in \Nb_0, t \in \Zb} (i_s)_*} (m-1-3)
-                (m-1-3) edge node {\directsum_{s \in \Nb_0, t \in \Zb} (p_s)_*} (m-2-2)
+            % Very sus 0-length arrow created when using anchors.
+            % tips=proper or use "to" instead of "edge" (only on final arrow, or else there is no head).
+            \draw[math, tips=proper]
+                (m-1-1) edge node {i} (m-1-3)
+                (m-1-3) edge node {p} (m-2-2.north east)
 
-                (m-2-2) edge node {\directsum_{s \in \Nb_0, t \in \Zb} (\delta_s)_*} (m-1-1);
+                (m-2-2.north west) edge node {\delta} (m-1-1);
         \end{tikzpicture}
     \end{center}
-\end{remark}
+
+    Where \( i \) is a direct sum of either \( 0 \) on the coordinates with \( s = 0 \), or \( (i_s)_* \) for some \( s \neq 0 \), depending on what fits. Likewise, \( p \) is a direct sum of \( (p_s)_* \), and \( \delta \) is a direct sum of \( (\delta_s)_* \), for \( s \) such that it fits.
+\end{construction}
+
+\begin{theorem}
+    The diagram in \autoref{construction:adams_spectral_sequence} is an exact couple.
+\end{theorem}
+\begin{proof}
+    Want to prove that the diagram is exact in the three corners.
+
+    Firstly, note that since \( i, p, \delta \) are all direct summands of maps, it is sufficient to check that TODO
+\end{proof}
 
 \begin{definition}[Adams spectral sequence]
     Let \( (\Ic, \Nc) \) be a stable injective class in \( \Tc \).
