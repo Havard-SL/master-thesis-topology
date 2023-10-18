@@ -215,13 +215,19 @@
 
     For any \( Y \in \Tc \), one can construct an Adams resolution of \( Y \) with respect to the injective class \( (\Ic, \Nc) \) by \autoref{thm:exists_adams_resolution_injective_class}, using the notation from \autoref{def:adams_resolution_injective_class}.
 
-    For any \( X \in \Tc, t, s \in \Zb \), let:
+    For any \( X \in \Tc, t \in \Zb, s \in \Nb_0 \), let:
+    \[ 
+        \phi: \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s + 1})) \stackrel{\cong}{\longrightarrow} \Tc(\Sigma^{t - s - 1}(X), Y_{s + 1}) 
+    \]
+    Denote the natural isomorphism from \( \Sigma \)'s automorphism property.
+
+    Furthermore, let
     \begin{align*}
         (i_s)_*: \Tc(\Sigma^{t - s}(X), Y_s) &\to \Tc(\Sigma^{t - s}(X), Y_{s - 1}) \\
         (p_s)_*: \Tc(\Sigma^{t - s}(X), Y_s) &\to \Tc(\Sigma^{t - s}(X), I_s) \\
-        (\delta_s)_*: \Tc(\Sigma^{t - s}(X), I_s) &\to \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s + 1})) \cong \Tc(\Sigma^{t - s - 1}(X), Y_{s + 1})
+        (\phi \circ \delta_s)_*: \Tc(\Sigma^{t - s}(X), I_s) &\to \Tc(\Sigma^{t - s - 1}(X), Y_{s + 1})
     \end{align*}
-    Be maps given by post-composition by \( i_s, p_s, \delta_s \) respectively.
+    be maps given by post-composition by \( i_s, p_s, \phi \circ \delta_s \) respectively.
 
     Let \( i, p, \delta \) be morphisms that fit in the following diagram:
 
@@ -242,7 +248,7 @@
         \end{tikzpicture}
     \end{center}
 
-    Where \( i \) is a direct sum of either \( 0 \) on the coordinates with \( s = 0 \), or \( (i_s)_* \) for some \( s \neq 0 \), depending on what fits. Likewise, \( p \) is a direct sum of \( (p_s)_* \), and \( \delta \) is a direct sum of \( (\delta_s)_* \), for \( s \) such that it fits.
+    Where \( i \) is a direct sum of either \( 0 \) on the coordinates with \( s = 0 \), or \( (i_s)_* \) for some \( s \neq 0 \), depending on what fits. Likewise, \( p \) is a direct sum of \( (p_s)_* \), and \( \delta \) is a direct sum of \( (\phi \circ \delta_s)_* \), for \( s \) such that it fits.
 \end{construction}
 
 \begin{theorem}
@@ -251,7 +257,144 @@
 \begin{proof}
     Want to prove that the diagram is exact in the three corners.
 
-    Firstly, note that since \( i, p, \delta \) are all direct summands of maps, it is sufficient to check that TODO
+    Firstly, note that since \( i, p, \delta \) are all direct summands of maps, it is sufficient to check that it is exact for every summand in the direct sum.
+
+    Therefore, fix any \( t \in \Zb \) and \( s \in \Nb_0 \).
+
+    Focusing on the top right corner one needs to show that the maps \( i \) and \( p \) are exact given these \( t \) and \( s \).
+
+    Firstly note that
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \Sigma^{-1}(I_s) & Y_{s+1} & Y_s & I_s \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\Sigma^{-1}(\delta_s)} (m-1-2)
+                (m-1-2) edge node {i_s} (m-1-3)
+                (m-1-3) edge node {p_s} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    is a distinguished triangle by \autoref{def:adams_resolution_injective_class}. Then one can construct the following long exact sequence:
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \dots & \Tc(\Sigma^{t-s}(X), Y_{s+1}) & \Tc(\Sigma^{t-s}(X), Y_s) & \Tc(\Sigma^{t-s}(X), I_s) & \dots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {(i_s)_*} (m-1-3)
+                (m-1-3) edge node {(p_s)_*} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
+
+    Which is exactly how the maps \( i \) and \( p \) would interact on the coordinate with \( s \) and \( t \) fixed, and is therefore exact.
+
+    Focusing on the bottom corner, it is very similar:
+
+    The following triangle is distinguished:
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                Y_{s+1} & Y_s & I_s & \Sigma(Y_{s+1}) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {i_s} (m-1-2)
+                (m-1-2) edge node {p_s} (m-1-3)
+                (m-1-3) edge node {\delta_s} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    since it is a left-rotated version of the distinguished triangle above.
+
+    Again, this gives rise to the following long exact sequence:
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \dots & \Tc(\Sigma^{t-s}(X), Y_s) & \Tc(\Sigma^{t-s}(X), I_s) & \Tc(\Sigma^{t-s}(X), \Sigma(Y_{s + 1})) & \dots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {(p_s)_*} (m-1-3)
+                (m-1-3) edge node {(\delta_s)_*} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
+    Changing the final map to \( (\phi \circ \delta_s)_* \), one gets the following sequence:
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \dots & \Tc(\Sigma^{t-s}(X), Y_s) & \Tc(\Sigma^{t-s}(X), I_s) & \Tc(\Sigma^{t-s-1}(X), Y_{s + 1}) & \dots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {(p_s)_*} (m-1-3)
+                (m-1-3) edge node {\phi \circ (\delta_s)_*} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
+    Which is still exact in the middle, because \( \ker((\delta_s)_*) = \ker((\phi \circ \delta_s)_*) \), since \( \phi \) is an isomorphism.
+
+    And since the middle part is exactly how the maps \( p \) and \( \delta \) would meet for given \( s \) and \( t \), the diagram is also exact at the bottom.
+
+    Lastly at the top left corner one has to divide the problem into two cases:
+
+    If \( s \neq 0 \):
+
+    Then the following triangle is distinguished and exists since \( s \geq 1 \):
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                I_{s - 1} & \Sigma(Y_s) & \Sigma(Y_{s - 1}) & \Sigma(I_{s - 1}) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node[above=5pt] {\delta_{s - 1}} (m-1-2)
+                (m-1-2) edge node[above=5pt] {\Sigma(i_{s - 1})} (m-1-3)
+                (m-1-3) edge node[above=5pt] {\Sigma(p_{s - 1})} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    Because it is the same as the triangles above, but with the indexes reduced by one.
+
+    Using this, one can construct the following long exact sequence:
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \dots & \Tc(\Sigma^{t-s}(X), I_{s - 1}) & \Tc(\Sigma^{t-s}(X), \Sigma(Y_s)) & \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s - 1})) & \dots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node[above=5pt] {(\delta_{s - 1})_*} (m-1-3)
+                (m-1-3) edge node[above=5pt] {(\Sigma(i_{s - 1}))_*} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
+
+    Let \( \psi \) be the natural isomorphism:
+    \[
+        \psi: \Tc(\Sigma^{t-s}(X), \Sigma(Y_{s - 1})) \stackrel{\cong}{\longrightarrow} \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1})
+    \]
+
+    Then by changing the leftmost map, one gets the following:
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \dots & \Tc(\Sigma^{t-s}(X), I_{s - 1}) & \Tc(\Sigma^{t - s - 1}(X), Y_s) & \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s - 1})) & \dots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node[above=5pt] {\phi \circ (\delta_{s - 1})_*} (m-1-3)
+                (m-1-3) edge node[above=5pt] {\psi \circ (\Sigma(i_{s - 1}))_* \circ \phi^{-1}} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
 \end{proof}
 
 \begin{definition}[Adams spectral sequence]
