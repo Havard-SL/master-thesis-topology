@@ -48,16 +48,56 @@
     TODO
 \end{proof}
 
-\begin{theorem}
-    One has that \( \Hom_{\Fb_3C_3}(((1 + g), (1 + g)^2)) = \set{0, \mu} \), where \( \mu \) is defined as
-    TODO
+\begin{theorem} \label{thm:f_3c_3_mu}
+    Let \( \mu: \frac{\Fb_3C_3}{(1 + g)^2} \to \frac{\Fb_3C_3}{(1 + g)} \) be defined as TODO
+
+    Then \( \Hom_{\Fb_3C_3}\tuple{\frac{\Fb_3C_3}{(1 + g)^2}, \frac{\Fb_3C_3}{(1 + g)}} = \set{0, \mu} \)
 \end{theorem}
 \begin{proof}
     TODO
 \end{proof}
+
+\begin{theorem}
+    Any object in \( \Stmod(\Fb_3C_3) \) is isomorphic to an object of the form \( \tuple{ \frac{\Fb_3C_3}{(1 + g)^2} }^n \oplus \tuple{ \frac{\Fb_3C_3}{(1 + g)} }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{theorem} % Naturality?
+    Let \( \mathcal{A} \) be an additive category. The functor \( \Hom(-, -): \mathcal{A}^{op} \times \mathcal{A} \to \Ab \) is additive in both arguments.
+\end{theorem}
+\begin{proof}
+    TODO: https://ncatlab.org/nlab/show/additive+functor
+\end{proof}
+
+
 % Show that there only is one non-trivial map between the indecomposable non-projective modules (Might not be true)
 
 % Show that Sigma(S) = M, Sigma(M) = S.
 
 % Show that S -> M -> S is exact.
 % Show that S -> M -> S -> M is dist.
+
+\begin{theorem}
+    Let \( \Pc = \set{ \tuple{ \frac{\Fb_3C_3}{(1 + g)} }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \mu: \frac{\Fb_3C_3}{(1 + g)^2} \to \frac{\Fb_3C_3}{(1 + g)} \) be as in \autoref{thm:f_3c_3_mu} and let \( \Nc = \set{ \tuple{ \mu }^n \mid n \in \Nb } \union \set{ 0 } \).
+
+    Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Stmod(\Fb_3C_3) \).
+\end{theorem}
+\begin{proof}
+    Need to show that \( \tuple{ \Pc, \Nc } \) satisfies the three properties in \autoref{def:projective_class}.
+
+    \begin{enumerate}
+        \item {
+            \( \tuple{ \Rightarrow } \) Fix any \( n \in \Nb \). Let \( f = \tuple{ \mu }^n \in \Nc \).
+            Then fix any \( m \in \Nb \), and let \( P = \tuple{ \frac{\Fb_3C_3}{(1 + g)} }^m \).
+
+            Then 
+            \[
+                \tuple{ \tuple{ \mu }^n }_* : \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(1 + g)^2}}^n } \to \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(1 + g)}}^n }.
+            \]
+            % Need naturality? TODO
+            
+        }
+    \end{enumerate}
+\end{proof}

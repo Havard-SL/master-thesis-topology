@@ -1,10 +1,10 @@
 \contentsline {section}{\numberline {1}Stable module category is triangulated}{1}{section.1}%
 \contentsline {section}{\numberline {2}Properties of \( \Stmod ({\symbb {F}}_3 C_3) \)}{7}{section.2}%
 \contentsline {section}{\numberline {3}What is Toda Brackets?}{8}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Counterexample from article (TODO)}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}Counterexample from article (TODO)}{9}{subsection.3.1}%
 \contentsline {section}{\numberline {4}Examples of Toda brackets}{9}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Example 1}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Example 1}{10}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Example 2}{10}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Example 3}{11}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Example 4}{11}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Projective and Injective classes}{13}{section.5}%
+\contentsline {subsection}{\numberline {4.3}Example 3}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Example 4}{12}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Projective and Injective classes}{14}{section.5}%
