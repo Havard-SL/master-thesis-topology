@@ -1,0 +1,63 @@
+\section{Properties of \texorpdfstring{\( \Stmod(\Fb_3 C_3) \)}{Stmod(F\_3C\_3)}} % TODO: Not boldface, the math-operator and \Fb doesnt become bold.
+
+% Isomorphic to path-algebra with relations
+
+\begin{definition}
+    Let \( \Fb_3 \) be the finite field with \( 3 \) elements.
+\end{definition}
+
+\begin{definition}
+    Let \( C_3 \) be the cyclic group with \( 3 \) elements.
+\end{definition}
+
+\begin{definition}
+    Let \( \Fb_3 C_3 \) be the group algebra of \( \Fb_3 \) over \( C_3 \).
+\end{definition}
+
+\begin{theorem}
+    Let \( \Gamma = \)
+    \begin{tikzpicture}
+        \diagram{m}{1cm}{1cm} {
+            1 \\
+        };
+
+        \draw[math]
+            (m-1-1) edge[in=150, out=30, looseness=4.8] node[swap] {\alpha} (m-1-1);
+    \end{tikzpicture}
+    be a quiver.
+    Let \( g \in \Fb_3 C_3 \) be the generator of \( C_3 \).
+    
+    Then the algebra homomorphism defined as follows
+    \begin{align*}
+        \phi: \Fb_3 C_3 &\to \frac{\Fb_3\Gamma}{(\alpha^3)} \\
+        1 &\mapsto e \\
+        g &\mapsto \alpha + 1
+    \end{align*}
+    is an isomorphism from \( \Fb_3 C_3 \) to \( \frac{\Fb_3\Gamma}{(\alpha^3)} \).    
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{theorem}
+    One has that \( \Fb_3 C_3 \) has three distinct indecomposable modules up to isomorphism.
+    
+    They are isomorphic to \( \frac{\Fb_3C_3}{(1 + g)}, \frac{\Fb_3C_3}{(1 + g)^2}, \) and \( \Fb_3C_3 \), respectively.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{theorem}
+    One has that \( \Hom_{\Fb_3C_3}(((1 + g), (1 + g)^2)) = \set{0, \mu} \), where \( \mu \) is defined as
+    TODO
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+% Show that there only is one non-trivial map between the indecomposable non-projective modules (Might not be true)
+
+% Show that Sigma(S) = M, Sigma(M) = S.
+
+% Show that S -> M -> S is exact.
+% Show that S -> M -> S -> M is dist.
