@@ -65,10 +65,40 @@
 \end{proof}
 
 \begin{theorem} % Naturality?
-    Let \( \mathcal{A} \) be an additive category. The functor \( \Hom(-, -): \mathcal{A}^{op} \times \mathcal{A} \to \Ab \) is additive in both arguments.
+    Let \( \Ac \) be an additive category.
+    
+    Then 
+    \begin{enumerate}
+        \item {
+            The functor \( \Hom(-_1 \oplus -_2, -_3): \Ac^{op} \times \Ac^{op} \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Hom(-_1, -_3) \oplus \Hom(-_2, -_3) \). With the isomorphism
+
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \Hom(-_1 \oplus -_2, -_3) & \Hom(-_1, -_3) \oplus \Hom(-_2, -_3) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (i_{-_1})^* \\ (i_{-_2})^* \end{psmallmatrix}} (m-1-2)
+                        (m-1-2) edge[curve={height=25pt}] node {\begin{psmallmatrix} (p_{-_1})^* & (p_{-_2})^* \end{psmallmatrix}} (m-1-1);
+                \end{tikzpicture}
+            \end{center}
+
+            \begin{align*}
+                \phi_{\tuple{-_1, -_2, -_3}}: \Hom(-_1 \oplus -_2, -_3) &\to \Hom(-_1, -_3) \oplus \Hom(-_2, -_3) \\
+            \end{align*}
+        }
+        \item {
+            The functor \( \Hom(-_1, -_2 \oplus -_3): \Ac^{op} \times \Ac \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Hom(-_1, -_2) \oplus \Hom(-_1, -_3) \).
+        }
+    \end{enumerate}
 \end{theorem}
 \begin{proof}
-    TODO: https://ncatlab.org/nlab/show/additive+functor
+    TODO: 
+    
+    https://ncatlab.org/nlab/show/additive+functor
+
+    https://ncatlab.org/nlab/show/hom-functor+preserves+limits
 \end{proof}
 
 
