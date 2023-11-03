@@ -42,29 +42,83 @@
 \begin{theorem}
     One has that \( \Fb_3 C_3 \) has three distinct indecomposable modules up to isomorphism.
     
-    They are isomorphic to \( \frac{\Fb_3C_3}{(1 + g)}, \frac{\Fb_3C_3}{(1 + g)^2}, \) and \( \Fb_3C_3 \), respectively.
+    They are isomorphic to \( \frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}, \) and \( \Fb_3C_3 \), respectively.
 \end{theorem}
 \begin{proof}
     TODO
 \end{proof}
 
 \begin{theorem} \label{thm:f_3c_3_mu}
-    Let \( \mu: \frac{\Fb_3C_3}{(1 + g)^2} \to \frac{\Fb_3C_3}{(1 + g)} \) be defined as TODO
+    Let \( \mu: \frac{\Fb_3C_3}{(g - 1)^2} \to \frac{\Fb_3C_3}{(g - 1)} \) be defined as TODO
 
-    Then \( \Hom_{\Fb_3C_3}\tuple{\frac{\Fb_3C_3}{(1 + g)^2}, \frac{\Fb_3C_3}{(1 + g)}} = \set{0, \mu} \)
+    Then \( \Hom_{\Fb_3C_3}\tuple{\frac{\Fb_3C_3}{(g - 1)^2}, \frac{\Fb_3C_3}{(g - 1)}} = \set{0, \mu} \)
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{theorem} \label{thm:f_3c_3_nu} % NEEDED TODO
+    Let 
+    \begin{align*}
+        \nu: \frac{\Fb_3C_3}{(g - 1)} &\to \frac{\Fb_3C_3}{(g - 1)^2} \\
+        [\tilde{a}1] \mapsto [\tilde{a}(g - 1)]
+    \end{align*}
+
+    Then \( \nu \) is well defined, and \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \nu} \)
+\end{theorem}
+\begin{proof}
+    First, want to prove that \( \nu \) is well defined.
+
+    Class-representation:
+
+    Let \( \bar{a} \in \frac{\Fb_3C_3}{(g - 1)} \). Then one has that \( \bar{a} = [a1 + bg + cg^2] = [a1 + b1 + c1] = [(a + b + c)1] \). And so any element of \( \frac{\Fb_3C_3}{(g - 1)} \) can be written as \( [\tilde{a}1] \) for som \( \tilde{a} \in \Fb_3 \).
+
+    Group homomorphism:
+
+    Let \( g \in \Fb_3C_3 \) be the generator of \( C_3 \). Then \( \nu([a1] + [b1]) = \nu([(a + b)1]) = [(a + b)(g - 1)] = [a(g - 1) + b(g - 1)] = [a(g - 1)] + [b(g - 1)] = \nu([a]) + \nu([b]) \).
+
+    Module homomorphism:
+
+    Let \( g \in \Fb_3C_3 \) be the generator of \( C_3 \). Then one has that for any \( r = a + bg + cg^2 \in \Fb_3C_3 \) that \( r[\tilde{a}1] = [r\tilde{a}1] = [(a + b + c)\tilde{a}1] \), and
+    \begin{align*}
+        r\nu([\tilde{a}1]) &= r[\tilde{a}(g - 1)] \\
+        &= [r\tilde{a}(g - 1)]
+        &= [(a + bg + cg^2)\tilde{a}(g - 1)] \\
+        &\vdots \\
+        &= [(a + b + c)\tilde{a}(g - 1)]
+        &= \nu(r[\tilde{a}1])
+    \end{align*}
+
+    Independent of choice of class-representation:
+
+    Let \( [a] = [b] \) in \( \frac{\Fb_3C_3}{(g - 1)} \). Then \( [a] - [b] = [r(g-1)] \) for some \( r \in \Fb_3C_3 \).
+
+    Then \( \nu([a]) - \nu([b]) = \nu([a] - [b]) = \nu([r(g - 1)]) = [r(g - 1)^2] = [0] \).
+
+    Secondly, want to show that \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \nu} \).
+
+    Let \( f \in \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} \), and let \( r \in \Fb_3C_3 \).
+    
+    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). However, 
+\end{proof}
+
+\begin{theorem} \label{thm:f_3c_3_mu_circ_nu_zero}
+    Let \( \mu \) and \( \nu \) be as in \autoref{thm:f_3c_3_mu} and \autoref{thm:f_3c_3_nu} respectively.
+
+    Then \( \mu \circ \nu = 0 \).
 \end{theorem}
 \begin{proof}
     TODO
 \end{proof}
 
 \begin{theorem}
-    Any object in \( \Stmod(\Fb_3C_3) \) is isomorphic to an object of the form \( \tuple{ \frac{\Fb_3C_3}{(1 + g)^2} }^n \oplus \tuple{ \frac{\Fb_3C_3}{(1 + g)} }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object.
+    Any object in \( \Stmod(\Fb_3C_3) \) is isomorphic to a direct sum \( \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^n \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object. \sloppy
 \end{theorem}
 \begin{proof}
     TODO
 \end{proof}
 
-\begin{theorem} % Naturality?
+\begin{theorem} % Is this even true?? TODO
     Let \( \Ac \) be an additive category.
     
     Then 
@@ -74,7 +128,7 @@
 
             \begin{center}
                 \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
+                    \diagram{m}{1cm}{2cm} {
                         \Hom(-_1 \oplus -_2, -_3) & \Hom(-_1, -_3) \oplus \Hom(-_2, -_3) \\
                     };
 
@@ -83,13 +137,21 @@
                         (m-1-2) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (p_{-_1})^* & (p_{-_2})^* \end{psmallmatrix}} (m-1-1);
                 \end{tikzpicture}
             \end{center}
-
-            \begin{align*}
-                \phi_{\tuple{-_1, -_2, -_3}}: \Hom(-_1 \oplus -_2, -_3) &\to \Hom(-_1, -_3) \oplus \Hom(-_2, -_3) \\
-            \end{align*}
         }
         \item {
-            The functor \( \Hom(-_1, -_2 \oplus -_3): \Ac^{op} \times \Ac \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Hom(-_1, -_2) \oplus \Hom(-_1, -_3) \).
+            The functor \( \Hom(-_1, -_2 \oplus -_3): \Ac^{op} \times \Ac \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Hom(-_1, -_2) \oplus \Hom(-_1, -_3) \). With the isomorphism
+
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Hom(-_1, -_2 \oplus -_3) & \Hom(-_1, -_2) \oplus \Hom(-_1, -_3) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (p_{-_2})_* \\ (p_{-_3})_* \end{psmallmatrix}} (m-1-2)
+                        (m-1-2) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (i_{-_2})_* & (i_{-_3})_* \end{psmallmatrix}} (m-1-1);
+                \end{tikzpicture}
+            \end{center}
         }
     \end{enumerate}
 \end{theorem}
@@ -101,6 +163,55 @@
     https://ncatlab.org/nlab/show/hom-functor+preserves+limits
 \end{proof}
 
+% Remark abuse of post-composition notation? TODO
+
+\begin{theorem} \label{thm:hom_direct_sum_map_nice}
+    Let \( \Ac \) be an additive category, and let \( A, B, C \in \Ac \). Let \( f: B \to C \). Let \( n \in \Nb \).
+
+    Then:
+    \begin{enumerate}
+        \item {
+            The following diagram commutes
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{3cm}{2cm} {
+                        \Ac(A, B^n) & \Ac(A, C^n) \\
+                        \Ac(A, B)^n & \Ac(A, C)^n \\
+                    };
+        
+                    \draw[math]
+                        (m-1-1) edge node {(f^n)_*} (m-1-2)
+                            edge node { \begin{psmallmatrix} (p_1^B)_* \\ (p_2^B)_* \\ \vdots \\ (p_n^B)_* \end{psmallmatrix} } (m-2-1)
+                        (m-1-2) edge node { \begin{psmallmatrix} (p_1^C)_* \\ (p_2^C)_* \\ \vdots \\ (p_n^C)_* \end{psmallmatrix} } (m-2-2)
+                        
+                        (m-2-1) edge node {(f_*)^n} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+        }
+        \item {
+            The following diagram commutes
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{3cm}{2cm} {
+                        \Ac(A^n, B) & \Ac(A^n, C) \\
+                        \Ac(A, B)^n & \Ac(A, C)^n \\
+                    };
+        
+                    \draw[math]
+                        (m-1-1) edge node {f_*} (m-1-2)
+                            edge node { \begin{psmallmatrix} (i_1^A)^* \\ (i_2^A)^* \\ \vdots \\ (i_n^A)^* \end{psmallmatrix} } (m-2-1)
+                        (m-1-2) edge node { \begin{psmallmatrix} (i_1^A)^* \\ (i_2^A)^* \\ \vdots \\ (i_n^A)^* \end{psmallmatrix} } (m-2-2)
+                        
+                        (m-2-1) edge node {(f_*)^n} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    TODO: Notes, example projective class.
+\end{proof}
+
 
 % Show that there only is one non-trivial map between the indecomposable non-projective modules (Might not be true)
 
@@ -110,7 +221,7 @@
 % Show that S -> M -> S -> M is dist.
 
 \begin{theorem}
-    Let \( \Pc = \set{ \tuple{ \frac{\Fb_3C_3}{(1 + g)} }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \mu: \frac{\Fb_3C_3}{(1 + g)^2} \to \frac{\Fb_3C_3}{(1 + g)} \) be as in \autoref{thm:f_3c_3_mu} and let \( \Nc = \set{ \tuple{ \mu }^n \mid n \in \Nb } \union \set{ 0 } \).
+    Let \( \Pc = \set{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \mu: \frac{\Fb_3C_3}{(g - 1)^2} \to \frac{\Fb_3C_3}{(g - 1)} \) be as in \autoref{thm:f_3c_3_mu} and let \( \Nc = \set{ \tuple{ \mu }^n \mid n \in \Nb } \union \set{ 0 } \).
 
     Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Stmod(\Fb_3C_3) \).
 \end{theorem}
@@ -119,15 +230,40 @@
 
     \begin{enumerate}
         \item {
-            \( \tuple{ \Rightarrow } \) Fix any \( n \in \Nb \). Let \( f = \tuple{ \mu }^n \in \Nc \).
-            Then fix any \( m \in \Nb \), and let \( P = \tuple{ \frac{\Fb_3C_3}{(1 + g)} }^m \).
+            \( \tuple{ \Rightarrow } \) Let \( f \in \Nc \).
 
-            Then 
-            \[
-                \tuple{ \tuple{ \mu }^n }_* : \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(1 + g)^2}}^n } \to \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(1 + g)}}^n }.
-            \]
-            % Need naturality? TODO
+            If \( f = 0 \), then the statement is true.
+
+            Assume \( f \neq 0 \). Then \( f = \tuple{ \mu }^n \in \Nc \) for some \( n \in \Nb \).
             
+            Let \( P \in \Pc \)
+            
+            If \( P = 0 \), then the statement is true.
+
+            Assume \( P = \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^m \) for some \( m \in \Nb \).
+
+            Then using \autoref{thm:hom_direct_sum_map_nice}, the following map
+            \[
+                \tuple{ \tuple{ \mu }^n }_* : \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(g - 1)^2}}^n } \to \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(g - 1)}}^n }.
+            \]
+            can be written as
+            \[
+                \tuple{ \tuple{ \mu }^n }_* = \phi \circ (\mu_*)^{nm} \circ \psi
+            \]
+            where \( \phi \) and \( \psi \) are isomorphisms.
+
+            From \autoref{thm:f_3c_3_nu} one has that \( \Stmod(\Fb_3C_3)\tuple{ \frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2} } = \set{ 0, \nu } \).
+
+            And from \autoref{thm:f_3c_3_mu_circ_nu_zero} one gets that applying \( (\mu)_* \) to either \( 0 \) or \( \nu \) gives the zero map.
+
+            Then
+            \[
+                \tuple{ \tuple{ \mu }^n }_* = \phi \circ (\mu_*)^{nm} \circ \psi = \phi \circ 0^{nm} \circ \psi = 0
+            \]
+
+            Since the choice of \( P \in \Pc \) was arbitrary. One must have that it is correct for every \( P \in \Pc \). And likewise for any \( f \in \Nc \).
+
+            \( ( \Leftarrow ) \) TODO
         }
     \end{enumerate}
 \end{proof}
