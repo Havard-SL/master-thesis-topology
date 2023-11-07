@@ -1,4 +1,5 @@
 \section{Properties of \texorpdfstring{\( \Stmod(\Fb_3 C_3) \)}{Stmod(F\_3C\_3)}} % TODO: Not boldface, the math-operator and \Fb doesnt become bold.
+% TODO another class possible if P = M^n?
 
 % Isomorphic to path-algebra with relations
 
@@ -57,6 +58,13 @@
     TODO
 \end{proof}
 
+\begin{lemma} \label{lem:classify_m}
+    One has that \( \frac{\Fb_3C_3}{(g - 1)^2} = \set{[\pm 1], [\pm g], [\pm g^2], [\pm (g - 1)]} \)
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
 \begin{theorem} \label{thm:f_3c_3_nu} % NEEDED TODO
     Let 
     \begin{align*}
@@ -64,7 +72,7 @@
         [\tilde{a}1] \mapsto [\tilde{a}(g - 1)]
     \end{align*}
 
-    Then \( \nu \) is well defined, and \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \nu} \)
+    Then \( \nu \) is well defined, and \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \pm \nu} \)
 \end{theorem}
 \begin{proof}
     First, want to prove that \( \nu \) is well defined.
@@ -82,10 +90,10 @@
     Let \( g \in \Fb_3C_3 \) be the generator of \( C_3 \). Then one has that for any \( r = a + bg + cg^2 \in \Fb_3C_3 \) that \( r[\tilde{a}1] = [r\tilde{a}1] = [(a + b + c)\tilde{a}1] \), and
     \begin{align*}
         r\nu([\tilde{a}1]) &= r[\tilde{a}(g - 1)] \\
-        &= [r\tilde{a}(g - 1)]
+        &= [r\tilde{a}(g - 1)] \\
         &= [(a + bg + cg^2)\tilde{a}(g - 1)] \\
         &\vdots \\
-        &= [(a + b + c)\tilde{a}(g - 1)]
+        &= [(a + b + c)\tilde{a}(g - 1)] \\
         &= \nu(r[\tilde{a}1])
     \end{align*}
 
@@ -95,11 +103,15 @@
 
     Then \( \nu([a]) - \nu([b]) = \nu([a] - [b]) = \nu([r(g - 1)]) = [r(g - 1)^2] = [0] \).
 
-    Secondly, want to show that \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \nu} \).
+    Secondly, want to show that \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \pm \nu} \).
 
     Let \( f \in \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} \), and let \( r \in \Fb_3C_3 \).
     
-    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). However, 
+    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). And from \autoref{lem:classify_m} on has that \( \frac{\Fb_3C_3}{(g - 1)^2} = \set{[\pm (g - 1)], [\pm 1], [\pm g], [\pm g^2]} \).
+
+    However one can see that if \( [1] \) is sent to \( [\pm 1], [\pm g] \), or \( [\pm g^2] \), then \( f([0]) = f([g - 1]) = (g - 1)f([1]) \neq [0] = [g^2 + g + 1] = [(g - 1)^2] \), which would imply that \( f \) is \emph{not} a group homomorphism.
+
+    Therefore \( [1] \) has to be sent to either \( [(g - 1)] \) or \( [-(g - 1)] \). These maps, being \( \nu \) and \( -\nu \) respectivly.
 \end{proof}
 
 \begin{theorem} \label{thm:f_3c_3_mu_circ_nu_zero}
@@ -111,7 +123,7 @@
     TODO
 \end{proof}
 
-\begin{theorem}
+\begin{theorem} \label{thm:f_3c_3_decomposition}
     Any object in \( \Stmod(\Fb_3C_3) \) is isomorphic to a direct sum \( \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^n \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object. \sloppy
 \end{theorem}
 \begin{proof}
@@ -220,8 +232,59 @@
 % Show that S -> M -> S is exact.
 % Show that S -> M -> S -> M is dist.
 
-\begin{theorem}
-    Let \( \Pc = \set{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \mu: \frac{\Fb_3C_3}{(g - 1)^2} \to \frac{\Fb_3C_3}{(g - 1)} \) be as in \autoref{thm:f_3c_3_mu} and let \( \Nc = \set{ \tuple{ \mu }^n \mid n \in \Nb } \union \set{ 0 } \).
+\begin{theorem} \label{thm:F_functor}
+    Let \( F: \Stmod(\Fb_3C_3) \to \Stmod(\Fb_3C_3) \) be a ``functor'' that takes any object \( A \in \Stmod(\Fb_3C_3) \) and maps it to its decomposition by \autoref{thm:f_3c_3_decomposition}, and morphisms are induced by the isomorphisms from the decomposition. I.e. there are some \( n, m \in \Nb_0 \) such that \( A \mapsto F(A) = \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^n \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^m \). And furthermore for \( f \in \Stmod(\Fb_3C_3)\tuple{A, B} \), one has \( f \mapsto F(f) = \phi_A^{-1} \circ f \circ \phi_B \), where \( \phi_A \) and \( \phi_B \) are the chosen isomorphisms between \( A \) and it's decomposition, and \( B \) and it's decomposition, respectively.
+
+    Then \( F \) is a well defined functor.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+% Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
+\begin{definition} % Unholy definition.
+    Let the functor \( F \) be as in \autoref{thm:F_functor}.
+
+    Define the set \( P_B \) as follows:
+
+    For any object \( A, B \in \Stmod(\Fb_3C_3) \), and for any \( f \in \Stmod(\Fb_3C_3)\tuple{A, B} \).
+
+    Then \( f \in P_B \iff \)
+
+    For
+    \begin{align*}
+        F(f) &\in \Stmod(\Fb_3C_3)\tuple{\tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_A} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_A}, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_B} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_B}} \\
+        &\stackrel{\phi}{\cong} \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{n_An_B} \\
+        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{n_Am_B} \\
+        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{m_An_B} \\
+        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{m_Am_B}
+    \end{align*}
+    With \( p_1, p_2, p_3, p_4 \) being the projection maps down to the four main components.
+
+    One has that all of the following are true:
+    \begin{enumerate}
+        \item {
+            \( p_1 \circ \phi \circ F(f) = \oplus_{n_An_B} \set{0, \cdot(\pm (g - 1))} \).
+        }
+        \item {
+            \( p_3 \circ \phi \circ F(f) = 0 \).
+        }
+        \item {
+            \( p_4 \circ \phi \circ F(f) = 0 \).
+        }
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Definitely needf to remark on the previous definition.... 
+    
+    Any morphism can not have any component from S to S, or S to M, as well as they can only have one certain component from M to M.
+
+    TODO: Fix
+\end{remark}
+
+\begin{theorem} % Major rewrite of first part! TODO
+    Let \( \Pc = \set{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \Nc = P_B \union \set{ 0 } \).
 
     Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Stmod(\Fb_3C_3) \).
 \end{theorem}
@@ -252,9 +315,9 @@
             \]
             where \( \phi \) and \( \psi \) are isomorphisms.
 
-            From \autoref{thm:f_3c_3_nu} one has that \( \Stmod(\Fb_3C_3)\tuple{ \frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2} } = \set{ 0, \nu } \).
+            From \autoref{thm:f_3c_3_nu} one has that \( \Stmod(\Fb_3C_3)\tuple{ \frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2} } = \set{ 0, \pm \nu } \).
 
-            And from \autoref{thm:f_3c_3_mu_circ_nu_zero} one gets that applying \( (\mu)_* \) to either \( 0 \) or \( \nu \) gives the zero map.
+            And from \autoref{thm:f_3c_3_mu_circ_nu_zero} one gets that applying \( (\mu)_* \) to either \( 0 \) or \( \pm \nu \) gives the zero map.
 
             Then
             \[
@@ -263,7 +326,15 @@
 
             Since the choice of \( P \in \Pc \) was arbitrary. One must have that it is correct for every \( P \in \Pc \). And likewise for any \( f \in \Nc \).
 
-            \( ( \Leftarrow ) \) TODO
+            \( ( \Leftarrow ) \) Let \( A, B \in \Stmod(\Fb_3C_3) \) be two arbitrary objects, and let \( f \in \Stmod(\Fb_3C_3)\tuple{ A, B } \).
+
+            If \( f = 0 \), then the statement is true. 
+            
+            Assume \( f \neq 0 \) (if possible). % Allowed to say this? TODO
+
+            From \autoref{thm:f_3c_3_decomposition}, one has integers \( n_A, m_A, n_B, m_b \in \Nc_0 \) such that \( A \cong \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_A} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_A} \), and \( B \cong \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_B} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_B} \).
+
+            TODO show that f is in Nc.
         }
     \end{enumerate}
 \end{proof}
