@@ -261,12 +261,12 @@
         &\oplus \Mc\tuple{ M, M }^{m_Am_B}
     \end{align*}
 
-    With \( p_1, p_2, p_3, p_4 \) being the projection maps down to the four main components.
+    With \( p_{S, S}, p_{S, M}, p_{M, S}, p_{M, M} \) being the projection maps down to the four main components.
 \end{remark}
 
 % Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
 \begin{definition} % Unholy definition.
-    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi, p_1, p_2, p_3, p_4 \) be as in \autoref{rem:big_iso}.
+    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi, p_{S, S}, p_{S, M}, p_{M, S}, p_{M, M} \) be as in \autoref{rem:big_iso}.
 
     Define the set \( P_B \) as follows:
 
@@ -277,13 +277,13 @@
     All of the following are true:
     \begin{enumerate}
         \item {
-            \( p_1 \circ \phi \circ F(f) = 0 \).
+            \( p_{S, S} \circ \phi \circ F(f) = 0 \).
         }
         \item {
-            \( p_2 \circ \phi \circ F(f) = 0 \).
+            \( p_{S, M} \circ \phi \circ F(f) = 0 \).
         }
         \item {
-            \( p_4 \circ \phi \circ F(f) = \oplus_{n_An_B} \set{0, \cdot(\pm (g - 1))} \).
+            \( p_{M, M} \circ \phi \circ F(f) = \set{0, \cdot(\pm (g - 1))}^{n_An_B} \).
         }
     \end{enumerate}
 \end{definition}
