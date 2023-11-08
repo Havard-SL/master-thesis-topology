@@ -3,8 +3,8 @@
 \contentsline {section}{\numberline {3}What is Toda Brackets?}{12}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Counterexample from article (TODO)}{13}{subsection.3.1}%
 \contentsline {section}{\numberline {4}Examples of Toda brackets}{13}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Example 1}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Example 1}{13}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Example 2}{14}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Example 3}{16}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Example 4}{16}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Projective and Injective classes}{18}{section.5}%
+\contentsline {subsection}{\numberline {4.3}Example 3}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Example 4}{15}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Projective and Injective classes}{17}{section.5}%

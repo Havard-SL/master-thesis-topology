@@ -241,9 +241,22 @@
     TODO
 \end{proof}
 
+\begin{remark} \label{rem:big_iso}
+    By using \autoref{thm:hom_direct_sum_map_nice} one gets that there is a (natural) isomorphism, \( \phi \) such that
+    \begin{align*}
+        &\Stmod(\Fb_3C_3)\tuple{\tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_A} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_A}, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_B} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_B}} \\
+        &\stackrel{\phi}{\cong} \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{n_An_B} \\
+        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{n_Am_B} \\
+        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{m_An_B} \\
+        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{m_Am_B}
+    \end{align*}
+
+    With \( p_1, p_2, p_3, p_4 \) being the projection maps down to the four main components.
+\end{remark}
+
 % Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
 \begin{definition} % Unholy definition.
-    Let the functor \( F \) be as in \autoref{thm:F_functor}.
+    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi, p_1, p_2, p_3, p_4 \) be as in \autoref{rem:big_iso}.
 
     Define the set \( P_B \) as follows:
 
@@ -251,17 +264,7 @@
 
     Then \( f \in P_B \iff \)
 
-    For
-    \begin{align*}
-        F(f) &\in \Stmod(\Fb_3C_3)\tuple{\tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_A} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_A}, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_B} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_B}} \\
-        &\stackrel{\phi}{\cong} \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{n_An_B} \\
-        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{n_Am_B} \\
-        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{m_An_B} \\
-        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{m_Am_B}
-    \end{align*}
-    With \( p_1, p_2, p_3, p_4 \) being the projection maps down to the four main components.
-
-    One has that all of the following are true:
+    All of the following are true:
     \begin{enumerate}
         \item {
             \( p_1 \circ \phi \circ F(f) = \oplus_{n_An_B} \set{0, \cdot(\pm (g - 1))} \).
