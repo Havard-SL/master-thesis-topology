@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Stable module category is triangulated}{1}{section.1}%
-\contentsline {section}{\numberline {2}Properties of \( \Stmod ({\symbb {F}}_3 C_3) \)}{7}{section.2}%
+\contentsline {section}{\numberline {2}Properties of \( \stablemod \left ( {\symbb {F}}_3 C_3 \right ) \)}{7}{section.2}%
 \contentsline {section}{\numberline {3}What is Toda Brackets?}{12}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Counterexample from article (TODO)}{13}{subsection.3.1}%
 \contentsline {section}{\numberline {4}Examples of Toda brackets}{13}{section.4}%

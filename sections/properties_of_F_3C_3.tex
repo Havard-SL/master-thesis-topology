@@ -1,21 +1,21 @@
-\section{Properties of \texorpdfstring{\( \Stmod(\Fb_3 C_3) \)}{Stmod(F\_3C\_3)}} % TODO: Not boldface, the math-operator and \Fb doesnt become bold.
+\section{Properties of \texorpdfstring{\( \Stmod{\Fb_3 C_3} \)}{Stmod(F\_3C\_3)}} % TODO: Not boldface, the math-operator and \Fb doesnt become bold.
 % TODO another class possible if P = M^n?
 
 % Isomorphic to path-algebra with relations
 
-\begin{definition}
+\begin{notation}
     Let \( \Fb_3 \) be the finite field with \( 3 \) elements.
-\end{definition}
+\end{notation}
 
-\begin{definition}
+\begin{notation}
     Let \( C_3 \) be the cyclic group with \( 3 \) elements.
-\end{definition}
+\end{notation}
 
-\begin{definition}
+\begin{notation}
     Let \( \Fb_3 C_3 \) be the group algebra of \( \Fb_3 \) over \( C_3 \).
-\end{definition}
+\end{notation}
 
-\begin{theorem}
+\begin{lemma}
     Let \( \Gamma = \)
     \begin{tikzpicture}
         \diagram{m}{1cm}{1cm} {
@@ -35,51 +35,61 @@
         g &\mapsto \alpha + 1
     \end{align*}
     is an isomorphism from \( \Fb_3 C_3 \) to \( \frac{\Fb_3\Gamma}{(\alpha^3)} \).    
-\end{theorem}
-\begin{proof}
-    TODO
-\end{proof}
-
-\begin{theorem}
-    One has that \( \Fb_3 C_3 \) has three distinct indecomposable modules up to isomorphism.
-    
-    They are isomorphic to \( \frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}, \) and \( \Fb_3C_3 \), respectively.
-\end{theorem}
-\begin{proof}
-    TODO
-\end{proof}
-
-\begin{theorem} \label{thm:f_3c_3_mu}
-    Let \( \mu: \frac{\Fb_3C_3}{(g - 1)^2} \to \frac{\Fb_3C_3}{(g - 1)} \) be defined as TODO
-
-    Then \( \Hom_{\Fb_3C_3}\tuple{\frac{\Fb_3C_3}{(g - 1)^2}, \frac{\Fb_3C_3}{(g - 1)}} = \set{0, \mu} \)
-\end{theorem}
-\begin{proof}
-    TODO
-\end{proof}
-
-\begin{lemma} \label{lem:classify_m}
-    One has that \( \frac{\Fb_3C_3}{(g - 1)^2} = \set{[\pm 1], [\pm g], [\pm g^2], [\pm (g - 1)]} \)
 \end{lemma}
 \begin{proof}
     TODO
 \end{proof}
 
-\begin{theorem} \label{thm:f_3c_3_nu} % NEEDED TODO
+\begin{definition}
+    Let \( S := \frac{\Fb_3C_3}{(g - 1)} \), let \( M := \frac{\Fb_3C_3}{(g - 1)^2} \), and let \( P := {\Fb_3C_3}_{\Fb_3C_3} \).
+\end{definition}
+
+\begin{lemma}
+    One has that \( \Fb_3 C_3 \) has three distinct indecomposable modules up to isomorphism.
+    
+    They are isomorphic to \( S, M, \) and \( P \) with \( S \) a simple module, and \( P \) a projective module.
+
+    Furthermore, neither \( S \) or \( M \) are projective modules.
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{definition}
+    Let \( \Mc := \Stmod{\Fb_3C_3} \).
+\end{definition}
+
+\begin{lemma} \label{thm:f_3c_3_mu}
+    Let \( \mu: M \to S \) be defined as TODO
+
+    Then \( \Mc\tuple{M, S} = \set{0, \pm\mu} \)
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:classify_m}
+    One has that \( M = \set{[\pm 1], [\pm g], [\pm g^2], [\pm (g - 1)]} \)
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{thm:f_3c_3_nu} % NEEDED TODO
     Let 
     \begin{align*}
-        \nu: \frac{\Fb_3C_3}{(g - 1)} &\to \frac{\Fb_3C_3}{(g - 1)^2} \\
+        \nu: S &\to M \\
         [\tilde{a}1] \mapsto [\tilde{a}(g - 1)]
     \end{align*}
 
-    Then \( \nu \) is well defined, and \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \pm \nu} \)
-\end{theorem}
+    Then \( \nu \) is well defined, and \( \Mc\tuple{S, M} = \set{0, \pm \nu} \)
+\end{lemma}
 \begin{proof}
     First, want to prove that \( \nu \) is well defined.
 
     Class-representation:
 
-    Let \( \bar{a} \in \frac{\Fb_3C_3}{(g - 1)} \). Then one has that \( \bar{a} = [a1 + bg + cg^2] = [a1 + b1 + c1] = [(a + b + c)1] \). And so any element of \( \frac{\Fb_3C_3}{(g - 1)} \) can be written as \( [\tilde{a}1] \) for som \( \tilde{a} \in \Fb_3 \).
+    Let \( \bar{a} \in S \). Then one has that \( \bar{a} = [a1 + bg + cg^2] = [a1 + b1 + c1] = [(a + b + c)1] \). And so any element of \( S \) can be written as \( [\tilde{a}1] \) for som \( \tilde{a} \in \Fb_3 \).
 
     Group homomorphism:
 
@@ -99,49 +109,49 @@
 
     Independent of choice of class-representation:
 
-    Let \( [a] = [b] \) in \( \frac{\Fb_3C_3}{(g - 1)} \). Then \( [a] - [b] = [r(g-1)] \) for some \( r \in \Fb_3C_3 \).
+    Let \( [a] = [b] \) in \( S \). Then \( [a] - [b] = [r(g-1)] \) for some \( r \in \Fb_3C_3 \).
 
     Then \( \nu([a]) - \nu([b]) = \nu([a] - [b]) = \nu([r(g - 1)]) = [r(g - 1)^2] = [0] \).
 
-    Secondly, want to show that \( \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} = \set{0, \pm \nu} \).
+    Secondly, want to show that \( \Mc\tuple{S, M} = \set{0, \pm \nu} \).
 
-    Let \( f \in \Stmod(\Fb_3C_3)\tuple{\frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2}} \), and let \( r \in \Fb_3C_3 \).
+    Let \( f \in \Mc\tuple{S, M} \), and let \( r \in \Fb_3C_3 \).
     
-    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). And from \autoref{lem:classify_m} on has that \( \frac{\Fb_3C_3}{(g - 1)^2} = \set{[\pm (g - 1)], [\pm 1], [\pm g], [\pm g^2]} \).
+    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). And from \autoref{lem:classify_m} on has that \( M = \set{[\pm (g - 1)], [\pm 1], [\pm g], [\pm g^2]} \).
 
     However one can see that if \( [1] \) is sent to \( [\pm 1], [\pm g] \), or \( [\pm g^2] \), then \( f([0]) = f([g - 1]) = (g - 1)f([1]) \neq [0] = [g^2 + g + 1] = [(g - 1)^2] \), which would imply that \( f \) is \emph{not} a group homomorphism.
 
     Therefore \( [1] \) has to be sent to either \( [(g - 1)] \) or \( [-(g - 1)] \). These maps, being \( \nu \) and \( -\nu \) respectivly.
 \end{proof}
 
-\begin{theorem} \label{thm:f_3c_3_mu_circ_nu_zero}
+\begin{lemma} \label{thm:f_3c_3_mu_circ_nu_zero}
     Let \( \mu \) and \( \nu \) be as in \autoref{thm:f_3c_3_mu} and \autoref{thm:f_3c_3_nu} respectively.
 
     Then \( \mu \circ \nu = 0 \).
-\end{theorem}
+\end{lemma}
 \begin{proof}
     TODO
 \end{proof}
 
-\begin{theorem} \label{thm:f_3c_3_decomposition}
-    Any object in \( \Stmod(\Fb_3C_3) \) is isomorphic to a direct sum \( \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^n \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object. \sloppy
-\end{theorem}
+\begin{lemma} \label{thm:f_3c_3_decomposition}
+    Any object in \( \Mc \) is isomorphic to a direct sum \( \tuple{ S }^n \oplus \tuple{ M }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object. \sloppy
+\end{lemma}
 \begin{proof}
     TODO
 \end{proof}
 
-\begin{theorem} % Is this even true?? TODO
+\begin{lemma} % Is this even true?? TODO
     Let \( \Ac \) be an additive category.
     
     Then 
     \begin{enumerate}
         \item {
-            The functor \( \Hom(-_1 \oplus -_2, -_3): \Ac^{op} \times \Ac^{op} \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Hom(-_1, -_3) \oplus \Hom(-_2, -_3) \). With the isomorphism
+            The functor \( \Ac(-_1 \oplus -_2, -_3): \Ac^{op} \times \Ac^{op} \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Ac(-_1, -_3) \oplus \Ac(-_2, -_3) \). With the isomorphism
 
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{2cm} {
-                        \Hom(-_1 \oplus -_2, -_3) & \Hom(-_1, -_3) \oplus \Hom(-_2, -_3) \\
+                        \Ac(-_1 \oplus -_2, -_3) & \Ac(-_1, -_3) \oplus \Ac(-_2, -_3) \\
                     };
 
                     \draw[math]
@@ -151,12 +161,12 @@
             \end{center}
         }
         \item {
-            The functor \( \Hom(-_1, -_2 \oplus -_3): \Ac^{op} \times \Ac \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Hom(-_1, -_2) \oplus \Hom(-_1, -_3) \). With the isomorphism
+            The functor \( \Ac(-_1, -_2 \oplus -_3): \Ac^{op} \times \Ac \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Ac(-_1, -_2) \oplus \Ac(-_1, -_3) \). With the isomorphism
 
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{2cm} {
-                        \Hom(-_1, -_2 \oplus -_3) & \Hom(-_1, -_2) \oplus \Hom(-_1, -_3) \\
+                        \Ac(-_1, -_2 \oplus -_3) & \Ac(-_1, -_2) \oplus \Ac(-_1, -_3) \\
                     };
 
                     \draw[math]
@@ -166,7 +176,7 @@
             \end{center}
         }
     \end{enumerate}
-\end{theorem}
+\end{lemma}
 \begin{proof}
     TODO: 
     
@@ -177,7 +187,7 @@
 
 % Remark abuse of post-composition notation? TODO
 
-\begin{theorem} \label{thm:hom_direct_sum_map_nice}
+\begin{lemma} \label{thm:hom_direct_sum_map_nice}
     Let \( \Ac \) be an additive category, and let \( A, B, C \in \Ac \). Let \( f: B \to C \). Let \( n \in \Nb \).
 
     Then:
@@ -219,7 +229,7 @@
             \end{center}
         }
     \end{enumerate}
-\end{theorem}
+\end{lemma}
 \begin{proof}
     TODO: Notes, example projective class.
 \end{proof}
@@ -232,11 +242,11 @@
 % Show that S -> M -> S is exact.
 % Show that S -> M -> S -> M is dist.
 
-\begin{theorem} \label{thm:F_functor}
-    Let \( F: \Stmod(\Fb_3C_3) \to \Stmod(\Fb_3C_3) \) be a ``functor'' that takes any object \( A \in \Stmod(\Fb_3C_3) \) and maps it to its decomposition by \autoref{thm:f_3c_3_decomposition}, and morphisms are induced by the isomorphisms from the decomposition. I.e. there are some \( n, m \in \Nb_0 \) such that \( A \mapsto F(A) = \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^n \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^m \). And furthermore for \( f \in \Stmod(\Fb_3C_3)\tuple{A, B} \), one has \( f \mapsto F(f) = \phi_A^{-1} \circ f \circ \phi_B \), where \( \phi_A \) and \( \phi_B \) are the chosen isomorphisms between \( A \) and it's decomposition, and \( B \) and it's decomposition, respectively.
+\begin{lemma} \label{thm:F_functor} % Assignment OK? TODO
+    Let \( F: \Mc \to \Mc \) be an assignment that takes any object \( A \in \Mc \) and maps it to its decomposition by \autoref{thm:f_3c_3_decomposition}, and morphisms are induced by the isomorphisms from the decomposition. I.e. there are some \( n, m \in \Nb_0 \) such that \( A \mapsto F(A) = \tuple{ S }^n \oplus \tuple{ M }^m \). And furthermore for \( f \in \Mc\tuple{A, B} \), one has \( f \mapsto F(f) = \phi_A^{-1} \circ f \circ \phi_B \), where \( \phi_A \) and \( \phi_B \) are the chosen isomorphisms between \( A \) and it's decomposition, and \( B \) and it's decomposition, respectively.
 
     Then \( F \) is a well defined functor.
-\end{theorem}
+\end{lemma}
 \begin{proof}
     TODO
 \end{proof}
@@ -244,11 +254,11 @@
 \begin{remark} \label{rem:big_iso}
     By using \autoref{thm:hom_direct_sum_map_nice} one gets that there is a (natural) isomorphism, \( \phi \) such that
     \begin{align*}
-        &\Stmod(\Fb_3C_3)\tuple{\tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_A} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_A}, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_B} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_B}} \\
-        &\stackrel{\phi}{\cong} \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{n_An_B} \\
-        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{n_Am_B} \\
-        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} } }^{m_An_B} \\
-        &\oplus \Stmod(\Fb_3C_3)\tuple{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }, \tuple{ \frac{\Fb_3C_3}{(g - 1)} } }^{m_Am_B}
+        &\Mc\tuple{\tuple{ S }^{n_A} \oplus \tuple{ M }^{m_A}, \tuple{ S }^{n_B} \oplus \tuple{ M }^{m_B}} \\
+        &\stackrel{\phi}{\cong} \Mc\tuple{ S, S }^{n_An_B} \\
+        &\oplus \Mc\tuple{ S, M }^{n_Am_B} \\
+        &\oplus \Mc\tuple{ M, S }^{m_An_B} \\
+        &\oplus \Mc\tuple{ M, M }^{m_Am_B}
     \end{align*}
 
     With \( p_1, p_2, p_3, p_4 \) being the projection maps down to the four main components.
@@ -260,20 +270,20 @@
 
     Define the set \( P_B \) as follows:
 
-    For any object \( A, B \in \Stmod(\Fb_3C_3) \), and for any \( f \in \Stmod(\Fb_3C_3)\tuple{A, B} \).
+    For any object \( A, B \in \Mc \), and for any \( f \in \Mc\tuple{A, B} \).
 
     Then \( f \in P_B \iff \)
 
     All of the following are true:
     \begin{enumerate}
         \item {
-            \( p_1 \circ \phi \circ F(f) = \oplus_{n_An_B} \set{0, \cdot(\pm (g - 1))} \).
+            \( p_1 \circ \phi \circ F(f) = 0 \).
         }
         \item {
-            \( p_3 \circ \phi \circ F(f) = 0 \).
+            \( p_2 \circ \phi \circ F(f) = 0 \).
         }
         \item {
-            \( p_4 \circ \phi \circ F(f) = 0 \).
+            \( p_4 \circ \phi \circ F(f) = \oplus_{n_An_B} \set{0, \cdot(\pm (g - 1))} \).
         }
     \end{enumerate}
 \end{definition}
@@ -286,11 +296,11 @@
     TODO: Fix
 \end{remark}
 
-\begin{theorem} % Major rewrite of first part! TODO
-    Let \( \Pc = \set{ \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \Nc = P_B \union \set{ 0 } \).
+\begin{example} % Major rewrite of first part! TODO
+    Let \( \Pc = \set{ \tuple{ S }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \Nc = P_B \union \set{ 0 } \).
 
-    Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Stmod(\Fb_3C_3) \).
-\end{theorem}
+    Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Mc \).
+\end{example}
 \begin{proof}
     Need to show that \( \tuple{ \Pc, \Nc } \) satisfies the three properties in \autoref{def:projective_class}.
 
@@ -306,11 +316,11 @@
             
             If \( P = 0 \), then the statement is true.
 
-            Assume \( P = \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^m \) for some \( m \in \Nb \).
+            Assume \( P = \tuple{ S }^m \) for some \( m \in \Nb \).
 
             Then using \autoref{thm:hom_direct_sum_map_nice}, the following map
             \[
-                \tuple{ \tuple{ \mu }^n }_* : \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(g - 1)^2}}^n } \to \Stmod(\Fb_3C_3)\tuple{P^m, \tuple{\frac{\Fb_3C_3}{(g - 1)}}^n }.
+                \tuple{ \tuple{ \mu }^n }_* : \Mc\tuple{P^m, \tuple{M}^n } \to \Mc\tuple{P^m, \tuple{S}^n }.
             \]
             can be written as
             \[
@@ -318,7 +328,7 @@
             \]
             where \( \phi \) and \( \psi \) are isomorphisms.
 
-            From \autoref{thm:f_3c_3_nu} one has that \( \Stmod(\Fb_3C_3)\tuple{ \frac{\Fb_3C_3}{(g - 1)}, \frac{\Fb_3C_3}{(g - 1)^2} } = \set{ 0, \pm \nu } \).
+            From \autoref{thm:f_3c_3_nu} one has that \( \Mc\tuple{ S, M } = \set{ 0, \pm \nu } \).
 
             And from \autoref{thm:f_3c_3_mu_circ_nu_zero} one gets that applying \( (\mu)_* \) to either \( 0 \) or \( \pm \nu \) gives the zero map.
 
@@ -329,13 +339,13 @@
 
             Since the choice of \( P \in \Pc \) was arbitrary. One must have that it is correct for every \( P \in \Pc \). And likewise for any \( f \in \Nc \).
 
-            \( ( \Leftarrow ) \) Let \( A, B \in \Stmod(\Fb_3C_3) \) be two arbitrary objects, and let \( f \in \Stmod(\Fb_3C_3)\tuple{ A, B } \).
+            \( ( \Leftarrow ) \) Let \( A, B \in \Mc \) be two arbitrary objects, and let \( f \in \Mc\tuple{ A, B } \).
 
             If \( f = 0 \), then the statement is true. 
             
             Assume \( f \neq 0 \) (if possible). % Allowed to say this? TODO
 
-            From \autoref{thm:f_3c_3_decomposition}, one has integers \( n_A, m_A, n_B, m_b \in \Nc_0 \) such that \( A \cong \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_A} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_A} \), and \( B \cong \tuple{ \frac{\Fb_3C_3}{(g - 1)^2} }^{n_B} \oplus \tuple{ \frac{\Fb_3C_3}{(g - 1)} }^{m_B} \).
+            From \autoref{thm:f_3c_3_decomposition}, one has integers \( n_A, m_A, n_B, m_b \in \Nc_0 \) such that \( A \cong \tuple{ M }^{n_A} \oplus \tuple{ S }^{m_A} \), and \( B \cong \tuple{ M }^{n_B} \oplus \tuple{ S }^{m_B} \).
 
             TODO show that f is in Nc.
         }
