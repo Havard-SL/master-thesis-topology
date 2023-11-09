@@ -296,7 +296,7 @@
             \tuple{ i_{S^{n_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \tuple{ i_{M^{m_A}}^{S^{n_B} \oplus M^{m_B}} }^*
         \end{pmatrix} \\
-        &= \begin{pmatrix}
+        &= \begin{pmatrix} % Wrong indexes, need some n_B and m_B's TODO
             \tuple{ p_{S^{n_A} \oplus M^{m_A}}^S }_* \tuple{ i_S^{S^{n_A} \oplus M^{m_A}} }^* \\
             \vdots \\
             \tuple{ p_{S^{n_A} \oplus M^{m_A}}^S }_* \tuple{ i_S^{S^{n_A} \oplus M^{m_A}} }^* \\
@@ -347,6 +347,8 @@
     TODO: Fix
 \end{remark}
 
+% Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
+% Seems so obvious that there should be a simpler way to do things. TODO
 \begin{example} % Major rewrite of first part! TODO
     Let \( \Pc = \set{ \tuple{ S }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \Nc = P_B \union \set{ 0 } \).
 
@@ -435,7 +437,129 @@
                         (m-2-1) edge node {\psi_B \circ F(f)_* \circ \psi_A^{-1}} (m-2-2);
                 \end{tikzpicture}
             \end{center}
-            Where 
+            Where
+            \[
+                \psi_A^{-1} = \begin{pmatrix}
+                    \tuple{ i_S^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ i_S^{S^{n_A} \oplus M^{m_A}} }_* & \tuple{ i_M^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ i_M^{S^{n_A} \oplus M^{m_A}} }_*
+                \end{pmatrix}
+            \]
+            and
+            \[
+                \psi_B = \begin{pmatrix}
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S }_* \\
+                    \vdots \\
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S }_* \\
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M }_* \\
+                    \vdots \\
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M }_*
+                \end{pmatrix}.
+            \]
+            This gives
+            \[
+                \psi_B \circ F(f)_* \circ \psi_A^{-1} = \begin{pmatrix}
+                    F_1 & F_2 \\
+                    F_3 & F_4
+                \end{pmatrix}
+            \]
+            where
+            \[
+                F_1 = \begin{pmatrix}
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* \\
+                \end{pmatrix},
+            \]
+            \[
+                F_2 = \begin{pmatrix}
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* \\
+                \end{pmatrix},
+            \]
+            \[
+                F_3 = \begin{pmatrix}
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} }_* \\
+                \end{pmatrix},
+            \]
+            and
+            \[
+                F_4 = \begin{pmatrix}
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^M \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} }_* \\
+                \end{pmatrix}.
+            \]
+            But from the definition of \( P_B \), one has that
+            \[
+                \phi \circ F(f) = \begin{pmatrix}
+                     p_{S^{n_A} \oplus M^{m_A}}^S \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} \\
+                    \vdots \\
+                    p_{S^{n_A} \oplus M^{m_A}}^S \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} \\
+                    p_{S^{n_A} \oplus M^{m_A}}^M \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} \\
+                    \vdots \\
+                    p_{S^{n_A} \oplus M^{m_A}}^M \circ F(f) \circ i_S^{S^{n_A} \oplus M^{m_A}} \\
+                    p_{S^{n_A} \oplus M^{m_A}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} \\
+                    \vdots \\
+                    p_{S^{n_A} \oplus M^{m_A}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} \\
+                    p_{S^{n_A} \oplus M^{m_A}}^M \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} \\
+                    \vdots \\
+                    p_{S^{n_A} \oplus M^{m_A}}^M \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}}
+                \end{pmatrix}
+                = \begin{pmatrix}
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    p_{S^{n_A} \oplus M^{m_A}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} \\
+                    \vdots \\
+                    p_{S^{n_A} \oplus M^{m_A}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} \\
+                    \set{0, \cdot(\pm(g - 1))} \\
+                    \vdots \\
+                    \set{0, \cdot(\pm(g - 1))}
+                \end{pmatrix}.
+            \]
+            This implies that
+            \[
+                F_1 = 0, F_3 = 0,
+            \]
+            and
+            \[
+                F_4 = \begin{pmatrix}
+                    \set{0, \cdot(\pm(g - 1))} & \dots & \set{0, \cdot(\pm(g - 1))} \\
+                    \vdots & \ddots & \vdots \\
+                    \set{0, \cdot(\pm(g - 1))} & \dots & \set{0, \cdot(\pm(g - 1))}
+                \end{pmatrix}.
+            \]
+            Using this information about \( \psi_B \circ F(f)_* \circ \psi_A^{-1} \), observe its pointwise values for any \( \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \in \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A} \).
+            
+            First note that by \autoref{thm:f_3c_3_nu}, one has that \( h_i = \set{0, \pm \nu} \) for all \( i \).
+
+            Also note that by TODO: Create lemma
+            \[
+                F_4 \begin{pmatrix}
+                    \set{0, \pm \nu} \\
+                    \vdots \\
+                    \set{0, \pm \nu}
+                \end{pmatrix} = 0
+            \]
+
+            This implies
+            \[
+                \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} = \begin{pmatrix}
+                    0 & F_2 \begin{psmallmatrix}
+                        \set{0, \pm \nu} \\
+                        \vdots \\
+                        \set{0, \pm \nu}
+                    \end{psmallmatrix} \\
+                    0 & 0
+                \end{pmatrix}
+            \]
+
+            TODO: Finish final part!!
             % Then using \autoref{thm:hom_direct_sum_map_nice}, the following map
             % \[
             %     \tuple{ \tuple{ \mu }^n }_* : \Mc\tuple{P^m, \tuple{M}^n } \to \Mc\tuple{P^m, \tuple{S}^n }.
