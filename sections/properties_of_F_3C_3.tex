@@ -133,6 +133,19 @@
     TODO
 \end{proof}
 
+\begin{lemma} \label{lem:g-1_circ_nu_equals_zero}
+    Let \( \nu \) be as in \autoref{thm:f_3c_3_nu}. Let
+    \begin{align*}
+        \cdot(g - 1): M &\to M \\
+        [a1 + bg] &\mapsto [(g - 1)(a1 + bg)]
+    \end{align*}
+
+    Then \( \cdot(g - 1) \circ \nu = 0 \) 
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
 \begin{lemma} \label{thm:f_3c_3_decomposition}
     Any object in \( \Mc \) is isomorphic to a direct sum \( \tuple{ S }^n \oplus \tuple{ M }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object. \sloppy
 \end{lemma}
@@ -185,8 +198,17 @@
     https://ncatlab.org/nlab/show/hom-functor+preserves+limits
 \end{proof}
 
+\begin{notation}
+    Let \( \Ac \) be an additive category, and let \( A, B \in \Ac \).
+
+    Then denote the projection from \( A \oplus B \) to \( A \) by \( p_{A \oplus B}^A \), and denote the inclusion of \( A \) into \( A \oplus B \) by \( i_A^{A \oplus B} \).
+
+    Furthermore, for any \( n \in \Nb \), and any \( i \in \set{1, 2, \dots, n} \), denote the projection from \( A^n \) to the \( i \)-th summand of \( A^n \) by \( p_{A^n}^{A_i} \). Similarly, denote the inclusion of the \( i \)-th summand of \( A^n \) into \( A^n \) by \( i_{A_i}^{A^n} \).
+\end{notation}
+
 % Remark abuse of post-composition notation? TODO
 
+% Problems with same n on lhs and rhs? TODO
 \begin{lemma} \label{thm:hom_direct_sum_map_nice}
     Let \( \Ac \) be an additive category, and let \( A, B, C \in \Ac \). Let \( f: B \to C \). Let \( n \in \Nb \).
 
@@ -203,8 +225,8 @@
         
                     \draw[math]
                         (m-1-1) edge node {(f^n)_*} (m-1-2)
-                            edge node { \begin{psmallmatrix} (p_1^B)_* \\ (p_2^B)_* \\ \vdots \\ (p_n^B)_* \end{psmallmatrix} } (m-2-1)
-                        (m-1-2) edge node { \begin{psmallmatrix} (p_1^C)_* \\ (p_2^C)_* \\ \vdots \\ (p_n^C)_* \end{psmallmatrix} } (m-2-2)
+                            edge node { \begin{psmallmatrix} (p_{B^n}^{B_1})_* \\ (p_{B^n}^{B_2})_* \\ \vdots \\ ({B^n}^{B_n})_* \end{psmallmatrix} } (m-2-1)
+                        (m-1-2) edge node { \begin{psmallmatrix} (p_{C^n}^{C_1})_* \\ (p_{C^n}^{C_2})_* \\ \vdots \\ (p_{C^n}^{C_n})_* \end{psmallmatrix} } (m-2-2)
                         
                         (m-2-1) edge node {(f_*)^n} (m-2-2);
                 \end{tikzpicture}
@@ -221,8 +243,8 @@
         
                     \draw[math]
                         (m-1-1) edge node {f_*} (m-1-2)
-                            edge node { \begin{psmallmatrix} (i_1^A)^* \\ (i_2^A)^* \\ \vdots \\ (i_n^A)^* \end{psmallmatrix} } (m-2-1)
-                        (m-1-2) edge node { \begin{psmallmatrix} (i_1^A)^* \\ (i_2^A)^* \\ \vdots \\ (i_n^A)^* \end{psmallmatrix} } (m-2-2)
+                            edge node { \begin{psmallmatrix} (i_{A_1}^{A^n})^* \\ (i_{A_2}^{A^n})^* \\ \vdots \\ (i_{A_n}^{A^n})^* \end{psmallmatrix} } (m-2-1)
+                        (m-1-2) edge node { \begin{psmallmatrix} (i_{A_1}^{A^n})^* \\ (i_{A_2}^{A^n})^* \\ \vdots \\ (i_{A_n}^{A^n})^* \end{psmallmatrix} } (m-2-2)
                         
                         (m-2-1) edge node {(f_*)^n} (m-2-2);
                 \end{tikzpicture}
@@ -242,10 +264,14 @@
 % Show that S -> M -> S is exact.
 % Show that S -> M -> S -> M is dist.
 
-\begin{lemma} \label{thm:F_functor} % Assignment OK? TODO
-    Let \( F: \Mc \to \Mc \) be an assignment that takes any object \( A \in \Mc \) and maps it to its decomposition by \autoref{thm:f_3c_3_decomposition}, and morphisms are induced by the isomorphisms from the decomposition. I.e. there are some \( n, m \in \Nb_0 \) such that \( A \mapsto F(A) = \tuple{ S }^n \oplus \tuple{ M }^m \). And furthermore for \( f \in \Mc\tuple{A, B} \), one has \( f \mapsto F(f) = \phi_A^{-1} \circ f \circ \phi_B \), where \( \phi_A \) and \( \phi_B \) are the chosen isomorphisms between \( A \) and it's decomposition, and \( B \) and it's decomposition, respectively.
+\begin{definition} \label{thm:F_functor} % Assignment OK? TODO
+    Define \( F: \Mc \to \Mc \) be an assignment that takes any object \( A \in \Mc \) and maps it to its decomposition by \autoref{thm:f_3c_3_decomposition}, and morphisms are induced by the isomorphisms from the decomposition. 
+    
+    I.e. there are some \( n, m \in \Nb_0 \) such that \( A \mapsto F(A) = S^n \oplus M^m \). And furthermore for \( f \in \Mc\tuple{A, B} \), one has \( f \mapsto F(f) = \phi_A^{-1} \circ f \circ \phi_B \), where \( \phi_A \) and \( \phi_B \) are the chosen isomorphisms between \( A \) and it's decomposition, and \( B \) and it's decomposition, respectively.
+\end{definition}
 
-    Then \( F \) is a well defined functor.
+\begin{lemma}
+    The assignment \( F \) from \autoref{thm:F_functor} is a functor.
 \end{lemma}
 \begin{proof}
     TODO
@@ -254,7 +280,7 @@
 \begin{remark} \label{rem:big_iso}
     By using \autoref{thm:hom_direct_sum_map_nice} one gets that there is a (natural) isomorphism, \( \phi \) such that
     \begin{align*}
-        &\Mc\tuple{\tuple{ S }^{n_A} \oplus \tuple{ M }^{m_A}, \tuple{ S }^{n_B} \oplus \tuple{ M }^{m_B}} \\
+        &\Mc\tuple{S^{n_A} \oplus M^{m_A}, S^{n_B} \oplus M^{m_B}} \\
         &\stackrel{\phi}{\cong} \Mc\tuple{ S, S }^{n_An_B} \\
         &\oplus \Mc\tuple{ S, M }^{n_Am_B} \\
         &\oplus \Mc\tuple{ M, S }^{m_An_B} \\
@@ -349,6 +375,7 @@
 
 % Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
 % Seems so obvious that there should be a simpler way to do things. TODO
+% Is i_A^A+B+C = i_A+B^A+B+C \circ i_A^A+B? TODO
 \begin{example} % Major rewrite of first part! TODO
     Let \( \Pc = \set{ \tuple{ S }^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \Nc = P_B \union \set{ 0 } \).
 
@@ -421,22 +448,27 @@
                         (m-2-1) edge node {F(f)_*} (m-2-2);
                 \end{tikzpicture}
             \end{center}
-            Expanding downwards, one gets the following commutative diagram
-            \begin{center}
-                \begin{tikzpicture}
+            Expanding downwards, using \autoref{thm:hom_direct_sum_map_nice}, one gets the following commutative diagram
+            \begin{equation}
+                \begin{tikzpicture} \label{tikz:f_star}
                     \diagram{m}{1cm}{3cm} {
+                        \Mc(S, A) & \Mc(S, B) \\
                         \Mc\tuple{S, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{S, S^{n_B} \oplus M^{m_B} } \\
                         \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A} & \Mc(S, S)^{n_B} \oplus \Mc(S, M)^{m_B} \\
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {F(f)_*} (m-1-2)
-                            edge node {\psi_A} node[marking, below] {\sim} (m-2-1)
-                        (m-1-2) edge node {\psi_B} node[marking, below] {\sim} (m-2-2)
+                        (m-1-1) edge node {f_*} (m-1-2)
+                            edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
+                        (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
 
-                        (m-2-1) edge node {\psi_B \circ F(f)_* \circ \psi_A^{-1}} (m-2-2);
+                        (m-2-1) edge node {F(f)_*} (m-2-2)
+                            edge node {\psi_A} node[marking, below] {\sim} (m-3-1)
+                        (m-2-2) edge node {\psi_B} node[marking, below] {\sim} (m-3-2)
+
+                        (m-3-1) edge node {\psi_B \circ F(f)_* \circ \psi_A^{-1}} (m-3-2);
                 \end{tikzpicture}
-            \end{center}
+            \end{equation}
             Where
             \[
                 \psi_A^{-1} = \begin{pmatrix}
@@ -538,58 +570,84 @@
             
             First note that by \autoref{thm:f_3c_3_nu}, one has that \( h_i = \set{0, \pm \nu} \) for all \( i \).
 
-            Also note that by TODO: Create lemma
+            Also note that by \autoref{lem:g-1_circ_nu_equals_zero} one has
             \[
                 F_4 \begin{pmatrix}
                     \set{0, \pm \nu} \\
                     \vdots \\
                     \set{0, \pm \nu}
-                \end{pmatrix} = 0
+                \end{pmatrix} = 0.
+            \]
+            And by \autoref{thm:f_3c_3_mu} one has that
+            \[
+                p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} \in \Mc(M, M) = \set{0, \pm \mu}
+            \]
+            And furthermore by \autoref{thm:f_3c_3_mu_circ_nu_zero} this implies that
+            \[
+                F_2 \begin{pmatrix}
+                    \set{0, \pm \nu} \\
+                    \vdots \\
+                    \set{0, \pm \nu}
+                \end{pmatrix} = 0.
             \]
 
-            This implies
-            \[
-                \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} = \begin{pmatrix}
+            All in all, this implies
+            \begin{multline*}
+                \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \\
+                = \begin{pmatrix}
+                    F_1 & F_2 \\
+                    F_3 & F_4
+                \end{pmatrix} \tuple{g_1, \dots, g_{n_A}, \set{0, \pm \nu}, \dots, \set{0, \pm \nu}} \\
+                = \begin{pmatrix}
                     0 & F_2 \begin{psmallmatrix}
                         \set{0, \pm \nu} \\
                         \vdots \\
                         \set{0, \pm \nu}
                     \end{psmallmatrix} \\
-                    0 & 0
-                \end{pmatrix}
-            \]
+                    0 & F_4 \begin{psmallmatrix}
+                        \set{0, \pm \nu} \\
+                        \vdots \\
+                        \set{0, \pm \nu}
+                    \end{psmallmatrix} \\
+                \end{pmatrix} 
+                = 0.
+            \end{multline*}
 
-            TODO: Finish final part!!
-            % Then using \autoref{thm:hom_direct_sum_map_nice}, the following map
-            % \[
-            %     \tuple{ \tuple{ \mu }^n }_* : \Mc\tuple{P^m, \tuple{M}^n } \to \Mc\tuple{P^m, \tuple{S}^n }.
-            % \]
-            % can be written as
-            % \[
-            %     \tuple{ \tuple{ \mu }^n }_* = \phi \circ (\mu_*)^{nm} \circ \psi
-            % \]
-            % where \( \phi \) and \( \psi \) are isomorphisms.
+            So by commutativity of \autoref{tikz:f_star}, as well as the vertical maps all being isomorphisms, \( f_* = 0 \).
 
-            % From \autoref{thm:f_3c_3_nu} one has that \( \Mc\tuple{ S, M } = \set{ 0, \pm \nu } \).
+            \( ( \Leftarrow ) \) Show this implication by a counter-positive argument.
 
-            % And from \autoref{thm:f_3c_3_mu_circ_nu_zero} one gets that applying \( (\mu)_* \) to either \( 0 \) or \( \pm \nu \) gives the zero map.
+            Assume \( f: A \to B \) with \( f \neq \Nc \)
 
-            % Then
-            % \[
-            %     \tuple{ \tuple{ \mu }^n }_* = \phi \circ (\mu_*)^{nm} \circ \psi = \phi \circ 0^{nm} \circ \psi = 0
-            % \]
+            Then first of all, \( f \neq 0 \).
 
-            % Since the choice of \( P \in \Pc \) was arbitrary. One must have that it is correct for every \( P \in \Pc \). And likewise for any \( f \in \Nc \).
+            Want to show that for all \( \tilde{P} \in \Pc \), one has that \( f_*: \Mc(\tilde{P}, A) \to \Mc(\tilde{P}, B)\) is non-zero.
 
-            \( ( \Leftarrow ) \) Let \( A, B \in \Mc \) be two arbitrary objects, and let \( f \in \Mc\tuple{ A, B } \).
+            If \( \tilde{P} = 0 \), then \( f_* \) is zero, so assume that \( \tilde{P} \neq 0 \). Then there is some \( k \in \Nb \) such that \( \tilde{P} = S^k \).
 
-            If \( f = 0 \), then the statement is true. 
-            
-            Assume \( f \neq 0 \) (if possible). % Allowed to say this? TODO
+            Using the diagram and maps from \autoref{tikz:f_star}, want to show that \( \psi_B \circ F(f)_* \circ \psi_A^{-1} \) is pointwise non-zero.
 
-            From \autoref{thm:f_3c_3_decomposition}, one has integers \( n_A, m_A, n_B, m_b \in \Nc_0 \) such that \( A \cong \tuple{ M }^{n_A} \oplus \tuple{ S }^{m_A} \), and \( B \cong \tuple{ M }^{n_B} \oplus \tuple{ S }^{m_B} \).
+            In order to prove this, split the cases up by which point in \autoref{def:unholy} that we assume \( f \) not to fulfill:
+            \begin{enumerate}
+                \item {
+                    Assume that \( p_{S, S} \circ \phi \circ F(f) \neq 0 \).
 
-            TODO show that f is in Nc.
+                    Then \( F_1 \neq 0 \).
+
+                    That implies that there is some \( j \in \Nb \) such that 
+                    \begin{multline*}
+                        \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{\Id_S, \dots, \Id_S, 0, \dots, 0} \\
+                        =
+                        \begin{pmatrix}
+                            F_1 & F_2 \\
+                            F_3 & F_4
+                        \end{pmatrix}
+                        \tuple{\Id_S, \dots, \Id_S, 0, \dots, 0} \\
+                        =
+                        TODO
+                    \end{multline*}
+                }
+            \end{enumerate} 
         }
     \end{enumerate}
 \end{proof}
