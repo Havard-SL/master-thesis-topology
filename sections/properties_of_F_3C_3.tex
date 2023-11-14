@@ -286,8 +286,8 @@
     TODO
 \end{proof}
 
-\begin{lemma}
-    One has that \( 0 \in \Mc\tuple{M, M} \) and \( \pm(\cdot(g - 1)) \in \Mc\tuple{M, M} \) are the only non-surjective morphisms.
+\begin{lemma} \label{lem:only_non_surjective_M_to_M}
+    One has that \( 0 \) and \( \pm(\cdot(g - 1)) \) are the only non-isomorphism morphisms in \( \Mc\tuple{M, M} \).
 \end{lemma}
 \begin{proof}
     TODO
@@ -428,6 +428,62 @@
     TODO: Fix
 \end{remark}
 
+\begin{remark} \label{rem:F_properties}
+    Given the following commutative diagram by the definition of \( F \)
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A & B \\
+                        S^{n_A} \oplus M^{m_A} & S^{n_B} \oplus M^{m_B} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge node {\phi_A} node[marking, below] {\sim} (m-2-1)
+                        (m-1-2) edge node {\phi_B} node[marking, below] {\sim} (m-2-2)
+
+                        (m-2-1) edge node {F(f)} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+            Applying the functor \( \Mc(\tilde{P}, -) \) to this, one gets the following commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Mc(\tilde{P}, A) & \Mc(\tilde{P}, B) \\
+                        \Mc\tuple{\tilde{P}, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{\tilde{P}, S^{n_B} \oplus M^{m_B} } \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f_*} (m-1-2)
+                            edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
+                        (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
+
+                        (m-2-1) edge node {F(f)_*} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+            Expanding downwards, using \autoref{thm:hom_direct_sum_map_nice}, one gets the following commutative diagram
+            \begin{equation}
+                \begin{tikzpicture} \label{tikz:f_star}
+                    \diagram{m}{1cm}{3cm} {
+                        \Mc(\tilde{P}, A) & \Mc(\tilde{P}, B) \\
+                        \Mc\tuple{\tilde{P}, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{\tilde{P}, S^{n_B} \oplus M^{m_B} } \\
+                        \Mc(\tilde{P}, S)^{n_A} \oplus \Mc(\tilde{P}, M)^{m_A} & \Mc(\tilde{P}, S)^{n_B} \oplus \Mc(\tilde{P}, M)^{m_B} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f_*} (m-1-2)
+                            edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
+                        (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
+
+                        (m-2-1) edge node {F(f)_*} (m-2-2)
+                            edge node {\psi_A} node[marking, below] {\sim} (m-3-1)
+                        (m-2-2) edge node {\psi_B} node[marking, below] {\sim} (m-3-2)
+
+                        (m-3-1) edge node {\psi_B \circ F(f)_* \circ \psi_A^{-1}} (m-3-2);
+                \end{tikzpicture}
+            \end{equation}
+\end{remark}
+
 % Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
 % Seems so obvious that there should be a simpler way to do things. TODO
 % Is i_A^A+B+C = i_A+B^A+B+C \circ i_A^A+B? TODO
@@ -471,60 +527,7 @@
             \end{center}
             It suffices to check that \( f_*: \Mc\tuple{S, A} \to \Mc\tuple{S, B} \) is zero.
 
-            Given the following commutative diagram by the definition of \( F \)
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        A & B \\
-                        S^{n_A} \oplus M^{m_A} & S^{n_B} \oplus M^{m_B} \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {f} (m-1-2)
-                            edge node {\phi_A} node[marking, below] {\sim} (m-2-1)
-                        (m-1-2) edge node {\phi_B} node[marking, below] {\sim} (m-2-2)
-
-                        (m-2-1) edge node {F(f)} (m-2-2);
-                \end{tikzpicture}
-            \end{center}
-            Applying the functor \( \Mc(S, -) \) to this, one gets the following commutative diagram
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{2cm} {
-                        \Mc(S, A) & \Mc(S, B) \\
-                        \Mc\tuple{S, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{S, S^{n_B} \oplus M^{m_B} } \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {f_*} (m-1-2)
-                            edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
-                        (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
-
-                        (m-2-1) edge node {F(f)_*} (m-2-2);
-                \end{tikzpicture}
-            \end{center}
-            Expanding downwards, using \autoref{thm:hom_direct_sum_map_nice}, one gets the following commutative diagram
-            \begin{equation}
-                \begin{tikzpicture} \label{tikz:f_star}
-                    \diagram{m}{1cm}{3cm} {
-                        \Mc(S, A) & \Mc(S, B) \\
-                        \Mc\tuple{S, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{S, S^{n_B} \oplus M^{m_B} } \\
-                        \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A} & \Mc(S, S)^{n_B} \oplus \Mc(S, M)^{m_B} \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {f_*} (m-1-2)
-                            edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
-                        (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
-
-                        (m-2-1) edge node {F(f)_*} (m-2-2)
-                            edge node {\psi_A} node[marking, below] {\sim} (m-3-1)
-                        (m-2-2) edge node {\psi_B} node[marking, below] {\sim} (m-3-2)
-
-                        (m-3-1) edge node {\psi_B \circ F(f)_* \circ \psi_A^{-1}} (m-3-2);
-                \end{tikzpicture}
-            \end{equation}
-            Where
+            Using \autoref{rem:F_properties} with \( \tilde{P} = S \), one gets the following morphisms:
             \[
                 \psi_A^{-1} = \begin{pmatrix}
                     \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* & \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_*
@@ -726,9 +729,39 @@
                 \item {
                     Assume that \( p_{M, M} \circ \phi \circ F(f) \neq \set{0, \cdot(\pm (g - 1))}^{m_A m_B} \).
 
-                    By there is some \( j, k \in \Nb \) such that \( p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{M^{n_A} \oplus M^{m_A}} \).
+                    By \autoref{lem:only_non_surjective_M_to_M} there is some \( j, k \in \Nb \) such that \( p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{M^{n_A} \oplus M^{m_A}} \) is an isomorphism.
+
+                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \nu \) in the \( n_A + k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \nu, 0, \dots, 0} \). Such that
+                    \[
+                        \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{\alpha}
+                        =
+                        \begin{pmatrix}
+                            F_1 & F_2 \\
+                            F_3 & F_4
+                        \end{pmatrix}
+                        \tuple{0, \dots, 0, \nu, 0, \dots, 0}
+                        = \beta
+                    \]
+                    where in the \( j + n_B \)-th coordinate of \( \beta \) there is a term \( p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \circ \nu \) that is non-zero because it is a non-zero morphism composed with an isomorphism.
                 }
             \end{enumerate} 
+        }
+        \item {
+            \( (\Rightarrow) \) Let \( \tilde{P} \in \Pc \).
+
+            % If \( \tilde{P} = 0 \), then its true.
+
+            % Assume \( \tilde{P} \neq 0 \), i.e. there is some \( k \in \Nb \) such that \( \tilde{P} = S^k \).
+
+            Let \( A, B \in \Mc \), and let \( f \in \Mc(A, B) \intersect \Nc \). Then by point 1, \( (\Rightarrow) \) previously, one gets that \( f_* = 0 \).
+            
+            \( (\Leftarrow) \) Want to show this by a counter positive argument.
+
+            Assume \( \tilde{P} \not\in \Pc \). That implies there is some \( k \in \Nb \) and \( j \in \Nb_0 \) such that \( \tilde{P} = S^j \oplus M^k \).
+
+            If \( f = 0 \), then it's true. Assume \( f \neq 0 \).
+
+
         }
     \end{enumerate}
 \end{proof}
