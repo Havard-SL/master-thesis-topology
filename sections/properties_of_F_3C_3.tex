@@ -117,7 +117,7 @@
 
     Let \( f \in \Mc\tuple{S, M} \), and let \( r \in \Fb_3C_3 \).
     
-    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). And from \autoref{lem:classify_m} on has that \( M = \set{[\pm (g - 1)], [\pm 1], [\pm g], [\pm g^2]} \).
+    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). And from \autoref{lem:classify_m} on has that \( M = \set{[\pm (g - 1)], [\pm 1], [\pm g], [\pm g^2]} \). \sloppy
 
     However one can see that if \( [1] \) is sent to \( [\pm 1], [\pm g] \), or \( [\pm g^2] \), then \( f([0]) = f([g - 1]) = (g - 1)f([1]) \neq [0] = [g^2 + g + 1] = [(g - 1)^2] \), which would imply that \( f \) is \emph{not} a group homomorphism.
 
@@ -328,7 +328,7 @@
         g_1 =
         \begin{pmatrix}
             \tuple{ i_{S^{n_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
-            \tuple{ i_{M^{m_A}}^{S^{n_B} \oplus M^{m_B}} }^*
+            \tuple{ i_{M^{m_A}}^{S^{n_A} \oplus M^{m_A}} }^*
         \end{pmatrix},
     \]
     \[
@@ -393,7 +393,16 @@
         \end{pmatrix}.
     \]
 
-    Furthermore let \( p_{S, S}, p_{S, M}, p_{M, S}, p_{M, M} \) being the projection maps from \( \Mc\tuple{S, S}^{n_A n_B} \oplus \Mc\tuple{S, M}^{n_A m_B} \oplus \Mc\tuple{M, S}^{m_A n_B} \oplus \Mc\tuple{M, M}^{m_A m_B} \) to \( \Mc\tuple{S, S}^{n_A n_B}, \Mc\tuple{S, M}^{n_A m_B}, \Mc\tuple{M, S}^{m_A n_B}, \) and \( \Mc\tuple{M, M}^{m_A m_B}  \) respectively.
+    Similarly one has that
+    \[
+        \phi^{-1} = g_1^{-1} \circ g_2^{-1} \circ g_3^{-1} = TODO
+    \]
+
+    Furthermore let \( p_{S, S}, p_{S, M}, p_{M, S} \) and \( p_{M, M} \) be the projection maps from
+    \[
+        \Mc\tuple{S, S}^{n_A n_B} \oplus \Mc\tuple{S, M}^{n_A m_B} \oplus \Mc\tuple{M, S}^{m_A n_B} \oplus \Mc\tuple{M, M}^{m_A m_B}
+    \]
+    to \( \Mc\tuple{S, S}^{n_A n_B}, \Mc\tuple{S, M}^{n_A m_B}, \Mc\tuple{M, S}^{m_A n_B}, \) and \( \Mc\tuple{M, M}^{m_A m_B}  \) respectively.
 \end{remark}
 
 % Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
@@ -430,58 +439,53 @@
 
 \begin{remark} \label{rem:F_properties}
     Given the following commutative diagram by the definition of \( F \)
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        A & B \\
-                        S^{n_A} \oplus M^{m_A} & S^{n_B} \oplus M^{m_B} \\
-                    };
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A & B \\
+                S^{n_A} \oplus M^{m_A} & S^{n_B} \oplus M^{m_B} \\
+            };
 
-                    \draw[math]
-                        (m-1-1) edge node {f} (m-1-2)
-                            edge node {\phi_A} node[marking, below] {\sim} (m-2-1)
-                        (m-1-2) edge node {\phi_B} node[marking, below] {\sim} (m-2-2)
+            \draw[math]
+                (m-1-1) edge node {f} (m-1-2)
+                    edge node {\psi_A} node[marking, below] {\sim} (m-2-1)
+                (m-1-2) edge node {\psi_B} node[marking, below] {\sim} (m-2-2)
 
-                        (m-2-1) edge node {F(f)} (m-2-2);
-                \end{tikzpicture}
-            \end{center}
-            Applying the functor \( \Mc(\tilde{P}, -) \) to this, one gets the following commutative diagram
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{2cm} {
-                        \Mc(\tilde{P}, A) & \Mc(\tilde{P}, B) \\
-                        \Mc\tuple{\tilde{P}, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{\tilde{P}, S^{n_B} \oplus M^{m_B} } \\
-                    };
+                (m-2-1) edge node {F(f)} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    Applying the functor \( \Mc(S^j \oplus M^k, -) \) to this, one gets the following commutative diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                \Mc(S^j \oplus M^k, A) & \Mc(S^j \oplus M^k, B) \\
+                \Mc\tuple{S^j \oplus M^k, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{S^j \oplus M^k, S^{n_B} \oplus M^{m_B} } \\
+            };
 
-                    \draw[math]
-                        (m-1-1) edge node {f_*} (m-1-2)
-                            edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
-                        (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
+            \draw[math]
+                (m-1-1) edge node {f_*} (m-1-2)
+                    edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
+                (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
 
-                        (m-2-1) edge node {F(f)_*} (m-2-2);
-                \end{tikzpicture}
-            \end{center}
-            Expanding downwards, using \autoref{thm:hom_direct_sum_map_nice}, one gets the following commutative diagram
-            \begin{equation}
-                \begin{tikzpicture} \label{tikz:f_star}
-                    \diagram{m}{1cm}{3cm} {
-                        \Mc(\tilde{P}, A) & \Mc(\tilde{P}, B) \\
-                        \Mc\tuple{\tilde{P}, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{\tilde{P}, S^{n_B} \oplus M^{m_B} } \\
-                        \Mc(\tilde{P}, S)^{n_A} \oplus \Mc(\tilde{P}, M)^{m_A} & \Mc(\tilde{P}, S)^{n_B} \oplus \Mc(\tilde{P}, M)^{m_B} \\
-                    };
+                (m-2-1) edge node {F(f)_*} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    Expanding downwards (and flipping it over to make it fit), using \autoref{rem:big_iso}, one gets the following commutative diagram
+    \begin{equation}
+        \begin{tikzpicture}[every node/.style={scale=0.85}] \label{tikz:f_star}
+            \diagram{m}{1cm}{1cm} {
+                \Mc\tuple{S^j \oplus M^k, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{S, S}^{j n_A} \oplus \Mc\tuple{S, M}^{j m_A} \oplus \Mc\tuple{M, S}^{k n_A} \oplus \Mc\tuple{M, M}^{k m_A} \\
+                \Mc\tuple{S^j \oplus M^k, S^{n_B} \oplus M^{m_B} } & \Mc\tuple{S, S}^{j n_B} \oplus \Mc\tuple{S, M}^{j m_B} \oplus \Mc\tuple{M, S}^{k n_B} \oplus \Mc\tuple{M, M}^{k m_B} \\
+            };
 
-                    \draw[math]
-                        (m-1-1) edge node {f_*} (m-1-2)
-                            edge node {(\phi_A)_*} node[marking, below] {\sim} (m-2-1)
-                        (m-1-2) edge node {(\phi_B)_*} node[marking, below] {\sim} (m-2-2)
-
-                        (m-2-1) edge node {F(f)_*} (m-2-2)
-                            edge node {\psi_A} node[marking, below] {\sim} (m-3-1)
-                        (m-2-2) edge node {\psi_B} node[marking, below] {\sim} (m-3-2)
-
-                        (m-3-1) edge node {\psi_B \circ F(f)_* \circ \psi_A^{-1}} (m-3-2);
-                \end{tikzpicture}
-            \end{equation}
+            \draw[math]
+                (m-1-1) edge node {\phi_A} node[marking, below] {\sim} (m-1-2)
+                    edge node {F(f)_*} (m-2-1)
+                (m-1-2) edge node {\phi_B \circ F(f)_* \circ \phi_A^{-1}} (m-2-2)
+                    
+                (m-2-1) edge node {\phi_B} node[marking, below] {\sim} (m-2-2);
+        \end{tikzpicture}
+    \end{equation}
 \end{remark}
 
 % Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
@@ -672,7 +676,7 @@
                 = 0.
             \end{multline*}
 
-            So by commutativity of \autoref{tikz:f_star}, as well as the vertical maps all being isomorphisms, \( f_* = 0 \).
+            So by commutativity of \autoref{tikz:f_star} as well as the vertical maps all being isomorphisms, it follows that \( f_* = 0 \).
 
             \( ( \Leftarrow ) \) Show this implication by a counter-positive argument.
 
