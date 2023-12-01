@@ -328,108 +328,112 @@
     Where
     \[
         g_1 =
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ i_{S^{n_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \tuple{ i_{M^{m_A}}^{S^{n_A} \oplus M^{m_A}} }^*
-        \end{pmatrix},
+        \end{psmallmatrix},
     \]
     \[
         g_2 =
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S^{n_B}} }_* \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M^{m_B}} }_*
-        \end{pmatrix}
+        \end{psmallmatrix}
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S^{n_B}} }_* \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M^{m_B}} }_*
-        \end{pmatrix}
+        \end{psmallmatrix}
     \]
     \begin{multline*}
         g_3 =
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             (p_{S^{n_B}}^{S_1})_* \circ (i_{S_1}^{S^{n_A}})^* \\
             (p_{S^{n_B}}^{S_2})_* \circ (i_{S_1}^{S^{n_A}})^* \\
             \vdots \\
             (p_{S^{n_B}}^{S_{n_B}})_* \circ (i_{S_{n_A}}^{S^{n_A}})^*
-        \end{pmatrix}
+        \end{psmallmatrix}
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             (p_{M^{m_B}}^{M_1})_* \circ (i_{S_1}^{S^{n_A}})^* \\
             (p_{M^{m_B}}^{M_2})_* \circ (i_{S_1}^{S^{n_A}})^* \\
             \vdots \\
             (p_{M^{m_B}}^{M_{m_B}})_* \circ (i_{S_{n_A}}^{S^{n_A}})^*
-        \end{pmatrix} \\
+        \end{psmallmatrix}
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             (p_{S^{n_B}}^{S_1})_* \circ (i_{M_1}^{M^{m_A}})^* \\
             (p_{S^{n_B}}^{S_2})_* \circ (i_{M_1}^{M^{m_A}})^* \\
             \vdots \\
             (p_{S^{n_B}}^{S_{n_B}})_* \circ (i_{M_{m_A}}^{M^{m_A}})^*
-        \end{pmatrix}
+        \end{psmallmatrix}
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             (p_{M^{m_B}}^{M_1})_* \circ (i_{M_1}^{M^{m_A}})^* \\
             (p_{M^{m_B}}^{M_2})_* \circ (i_{M_1}^{M^{m_A}})^* \\
             \vdots \\
             (p_{M^{m_B}}^{M_{m_B}})_* \circ (i_{M_{m_A}}^{M^{m_A}})^*
-        \end{pmatrix}
+        \end{psmallmatrix}
     \end{multline*}
 
     Where from \autoref{lem:projection_unique} one can calculate
     \[
         \phi = g_3 \circ g_2 \circ g_1 =
-        \begin{pmatrix} % Wrong indexes, need some n_B and m_B's TODO
+        \begin{psmallmatrix} % Wrong indexes, need some n_B and m_B's TODO
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \vdots \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} }_* \circ \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \vdots \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_* \circ \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \vdots \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} }_* \circ \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \vdots \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_* \circ \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
-        \end{pmatrix}.
+        \end{psmallmatrix}.
     \]
 
     Similarly one has that \( \phi^{-1} = g_1^{-1} \circ g_2^{-1} \circ g_3^{-1} \), where
     \[
         g_1^{-1} =
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S^{n_A}} }^*, & \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M^{m_A}} }^*
-        \end{pmatrix},
+        \end{psmallmatrix},
     \]
     \[
         g_2^{-1} =
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ i_{S^{n_B}}^{S^{n_B} \oplus M^{m_B}} }_*, & \tuple{ i_{M^{m_B}}^{S^{n_B} \oplus M^{m_B}} }_*
-        \end{pmatrix}
+        \end{psmallmatrix}
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ i_{S^{n_B}}^{S^{n_B} \oplus M^{m_B}} }_*, & \tuple{ i_{M^{m_B}}^{S^{n_B} \oplus M^{m_B}} }_*
-        \end{pmatrix},
+        \end{psmallmatrix},
     \]
     and
     \begin{multline*}
         g_3^{-1} =
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ p_{S^{n_A}}^{S_1} }^* \circ \tuple{ i_{S_1}^{S^{n_B}} }_*, & \tuple{ p_{S^{n_A}}^{S_1} }^* \circ \tuple{ i_{S_2}^{S^{n_B}} }_*, & \dots, & \tuple{ p_{S^{n_A}}^{S_{n_A}} }^* \circ \tuple{ i_{S_{n_B}}^{S^{n_B}} }_*
-        \end{pmatrix} \\
+        \end{psmallmatrix} \\
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ p_{S^{n_A}}^{S_1} }^* \circ \tuple{ i_{M_1}^{M^{m_B}} }_*, & \tuple{ p_{S^{n_A}}^{S_1} }^* \circ \tuple{ i_{M_2}^{M^{m_B}} }_*, & \dots, & \tuple{ p_{S^{n_A}}^{S_{n_A}} }^* \circ \tuple{ i_{M_{m_B}}^{M^{m_B}} }_*
-        \end{pmatrix} \\
+        \end{psmallmatrix} \\
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ p_{M^{m_A}}^{M_1} }^* \circ \tuple{ i_{S_1}^{S^{n_B}} }_*, & \tuple{ p_{M^{m_A}}^{M_1} }^* \circ \tuple{ i_{S_2}^{S^{n_B}} }_*, & \dots, & \tuple{ p_{M^{m_A}}^{M_{m_A}} }^* \circ \tuple{ i_{S_{n_B}}^{S^{n_B}} }_*
-        \end{pmatrix} \\
+        \end{psmallmatrix} \\
         \oplus
-        \begin{pmatrix}
+        \begin{psmallmatrix}
             \tuple{ p_{M^{m_A}}^{M_1} }^* \circ \tuple{ i_{M_1}^{M^{m_B}} }_*, & \tuple{ p_{M^{m_A}}^{M_1} }^* \circ \tuple{ i_{M_2}^{M^{m_B}} }_*, & \dots, & \tuple{ p_{M^{m_A}}^{M_{m_A}} }^* \circ \tuple{ i_{M_{m_B}}^{M^{m_B}} }_*
-        \end{pmatrix}.
+        \end{psmallmatrix}.
     \end{multline*}
 
     This gives
@@ -531,12 +535,74 @@
                 (m-2-1) edge node {\phi_B} node[marking, below] {\sim} (m-2-2);
         \end{tikzpicture}
     \end{equation}
-    Furthermore, one has
+    But checking if \( F(f)_* \) is zero by looking at \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is extremely overkill, since many of the elements in the big matrix that would result from multiplying and checking these details would end up zero. This is because \( F(f)_* \) is simply post-composing, and there is no pre-composing.
+    
+    If one were to calculate \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \), one would get something like This
     \[
         \phi_B \circ F(f)_* \circ \phi_A^{-1} =
-        TODO
+        \begin{pmatrix}
+            A & B & C & D \\
+            E & F & G & H \\
+            I & J & K & L \\
+            M & N & O & P
+        \end{pmatrix}
     \]
-    where 
+    Where these ``blocks'': \( A, B, C, D \), etc. would correspond to what \( F(f)_* \) does on the part that goes from one main summand in the domain to another main summand in the codomain. Immediately one can see that many blocks are all zero, since there is no part of \( F(f) \) that could possibly go from e.g. \( \Mc(S, S) \) to \( \Mc(M, S) \), since it is simply post composing. This makes \( C, D, G, H, I, J, M, N \) all zero. But in addition to making half of the blocks completely zero, most of the non-zero blocks themselves are zero. Take for example block \( A \), which would look something like this
+    \[
+        A =
+        \begin{psmallmatrix}
+            \tuple{ \iota_{S_1}^{S_1} }^* \circ \tuple{ F(f)_{S_1}^{S_1} }_* &
+            \tuple{ \iota_{S_1}^{S_1} }^* \circ \tuple{ F(f)_{S_2}^{S_1} }_* &
+            \dots &
+            \tuple{ \iota_{S_1}^{S_j} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S_1} }_* \\
+            \tuple{ \iota_{S_1}^{S_1} }^* \circ \tuple{ F(f)_{S_1}^{S_2} }_* &
+            \tuple{ \iota_{S_1}^{S_1} }^* \circ \tuple{ F(f)_{S_2}^{S_2} }_* &
+            \dots &
+            \tuple{ \iota_{S_1}^{S_j} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S_2} }_* \\
+            \vdots &
+            \vdots &
+            \ddots &
+            \vdots \\
+            \tuple{ \iota_{S_j}^{S_1} }^* \circ \tuple{ F(f)_{S_1}^{S_{n_B}} }_* &
+            \tuple{ \iota_{S_j}^{S_1} }^* \circ \tuple{ F(f)_{S_2}^{S_{n_B}} }_* &
+            \dots &
+            \tuple{ \iota_{S_j}^{S_j} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S_{n_B}} }_*
+        \end{psmallmatrix}
+    \]
+    Where
+    \[
+        F(f)_{S_i}^{S_j} := p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_i}^{S^{n_A} \oplus M^{m_A}}
+    \]
+    and
+    \[
+        \iota_{S_i}^{S^j} := p_{S^j \oplus M^k}^{S_j} \circ i_{S_i}^{S^j \oplus M^k}.
+    \]
+    However, one has that \( \iota_{S_i}^{S_j} \) is zero unless \( i = j \). This makes most of the entries in \( A \), except for certain ``blocks'' on the diagonal, equal to \( 0 \).
+
+    Therefore it would be better to check if \( F(f)_* \) is zero by checking wether \( \phi_B \circ F(f)_* \) is equal to zero.
+
+    One has that
+    \[
+        \phi_B \circ F(f)_* =
+        \begin{psmallmatrix} % Wrong indexes, need some n_B and m_B's TODO
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
+        \end{psmallmatrix}
+    \]
 \end{remark}
 
 % Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
