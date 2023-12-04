@@ -454,38 +454,6 @@
     to \( \Mc\tuple{S, S}^{n_A n_B}, \Mc\tuple{S, M}^{n_A m_B}, \Mc\tuple{M, S}^{m_A n_B}, \) and \( \Mc\tuple{M, M}^{m_A m_B}  \) respectively.
 \end{remark}
 
-% Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
-\begin{definition} \label{def:unholy} % Unholy definition.
-    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi, p_{S, S}, p_{S, M}, p_{M, S}, p_{M, M} \) be as in \autoref{rem:big_iso}.
-
-    Define the set \( P_B \) as follows:
-
-    For any object \( A, B \in \Mc \), and for any \( f \in \Mc\tuple{A, B} \).
-
-    Then \( f \in P_B \iff \)
-
-    All of the following are true:
-    \begin{enumerate}
-        \item {
-            \( p_{S, S} \circ \phi \circ F(f) = 0 \).
-        }
-        \item {
-            \( p_{S, M} \circ \phi \circ F(f) = 0 \).
-        }
-        \item {
-            \( p_{M, M} \circ \phi \circ F(f) = \set{0, \cdot(\pm (g - 1))}^{m_A m_B} \).
-        }
-    \end{enumerate}
-\end{definition}
-
-\begin{remark}
-    Definitely needf to remark on the previous definition.... 
-    
-    Any morphism can not have any component from S to S, or S to M, as well as they can only have one certain component from M to M.
-
-    TODO: Fix
-\end{remark}
-
 \begin{remark} \label{rem:F_properties}
     Given the following commutative diagram by the definition of \( F \)
     \begin{center}
@@ -569,40 +537,150 @@
             \tuple{ \iota_{S_j}^{S_j} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S_{n_B}} }_*
         \end{psmallmatrix}
     \]
-    Where
+    Where for \( A, B \in \set{ S, M } \)
     \[
-        F(f)_{S_i}^{S_j} := p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_i}^{S^{n_A} \oplus M^{m_A}}
+        F(f)_{A_a}^{B_b} := p_{S^{n_B} \oplus M^{m_B}}^{B_b} \circ F(f) \circ i_{A_a}^{S^{n_A} \oplus M^{m_A}}
     \]
     and
     \[
-        \iota_{S_i}^{S^j} := p_{S^j \oplus M^k}^{S_j} \circ i_{S_i}^{S^j \oplus M^k}.
+        \iota_{A_a}^{B_b} := p_{S^j \oplus M^k}^{B_b} \circ i_{A_a}^{S^j \oplus M^k}.
     \]
-    However, one has that \( \iota_{S_i}^{S_j} \) is zero unless \( i = j \). This makes most of the entries in \( A \), except for certain ``blocks'' on the diagonal, equal to \( 0 \).
+    However, one has that \( \iota_{A_a}^{B_b} \) is zero unless \( a = b \) and \( A = B \). This makes most of the entries in \( A \), except for certain ``blocks'' on the diagonal, equal to \( 0 \).
 
-    Therefore it would be better to check if \( F(f)_* \) is zero by checking wether \( \phi_B \circ F(f)_* \) is equal to zero.
-
-    One has that
+    In fact, one can write
     \[
-        \phi_B \circ F(f)_* =
-        \begin{psmallmatrix} % Wrong indexes, need some n_B and m_B's TODO
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-            \vdots \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-            \vdots \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-            \vdots \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-            \vdots \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
-        \end{psmallmatrix}
+        A = \oplus_{i = 1}^{j}
+        \begin{psmallmatrix}
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_1}^{S_1} }_* &
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_2}^{S_1} }_* &
+            \dots &
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S^1} }_* \\
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_1}^{S_2} }_* &
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_2}^{S_2} }_* &
+            \dots &
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S^2} }_* \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_1}^{S_{n_B}} }_* &
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_2}^{S_{n_B}} }_* &
+            \dots &
+            \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S^{n_B}} }_* \\
+        \end{psmallmatrix}.
     \]
+    For \( A, B, C \in \set{S, M} \) and
+    \[
+        a = 
+        \begin{cases}
+            j & A = S \\
+            k & A = M
+        \end{cases},
+        b =
+        \begin{cases}
+            n_A & B = S \\
+            m_A & B = M
+        \end{cases},
+        c =
+        \begin{cases}
+            n_B & C = S \\
+            m_B & C = M
+        \end{cases},
+    \]
+    let
+    \[
+        L_{A, B, C} = \oplus_{i = 1}^{a}
+        \begin{psmallmatrix}
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_1}^{C_1} }_* &
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_2}^{C_1} }_* &
+            \dots &
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_b}^{C_1} }_* \\
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_1}^{C_2} }_* &
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_2}^{C_2} }_* &
+            \dots &
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_b}^{C_2} }_* \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_1}^{C_c} }_* &
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_2}^{C_c} }_* &
+            \dots &
+            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_b}^{C_c} }_* \\
+        \end{psmallmatrix}.
+    \]
+    Then one gets that
+    \[
+        \phi_B \circ F(f)_* \circ \phi_A^{-1} =
+        \begin{pmatrix}
+            L_{S, S, S} & L_{S, M, S} \\
+            L_{S, S, M } & L_{S, M, M}
+        \end{pmatrix}
+        \oplus
+        \begin{pmatrix}
+            L_{M, S, S} & L_{M, M, S} \\
+            L_{M, S, M} & L_{M, M, M}
+        \end{pmatrix}.
+    \]
+    
+
+    % Therefore it would be better to check if \( F(f)_* \) is zero by checking wether \( \phi_B \circ F(f)_* \) is equal to zero.
+
+    % One has that
+    % \[
+    %     \phi_B \circ F(f)_* =
+    %     \begin{psmallmatrix} % Wrong indexes, need some n_B and m_B's TODO
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \vdots \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \vdots \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \vdots \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
+    %         \vdots \\
+    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
+    %     \end{psmallmatrix}
+    % \]
+\end{remark}
+
+% Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
+\begin{definition} \label{def:unholy} % Unholy definition.
+    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi, p_{S, S}, p_{S, M}, p_{M, S}, p_{M, M} \) be as in \autoref{rem:big_iso}.
+
+    Define the set \( P_B \) as follows:
+
+    For any object \( A, B \in \Mc \), and for any \( f \in \Mc\tuple{A, B} \).
+
+    Then \( f \in P_B \iff \)
+
+    All of the following are true:
+    \begin{enumerate}
+        \item {
+            \( p_{S, S} \circ \phi \circ F(f) = 0 \).
+        }
+        \item {
+            \( p_{S, M} \circ \phi \circ F(f) = 0 \).
+        }
+        \item {
+            \( p_{M, M} \circ \phi \circ F(f) \in \set{0, \cdot(\pm (g - 1))}^{m_A m_B} \).
+        }
+    \end{enumerate}
+
+    Using the notation in \autoref{rem:F_properties}, then this is equivalent to
+    \begin{enumerate}
+        \item \( F(f)_{S_a}^{S_b} = 0 \) for \( 1 \leq a \leq n_A \) and \( 1 \leq b \leq n_B \). (All \(a, b\))
+        \item \( F(f)_{S_a}^{M_b} = 0 \) for \( 1 \leq a \leq n_A \) and \( 1 \leq b \leq m_B \). (All \(a, b\))
+        \item \( F(f)_{M_a}^{M_b} \in \set{0, \cdot(\pm (g - 1))} \) for \( 1 \leq a \leq n_B \) and \( 1 \leq b \leq m_B \). (All \(a, b\))
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Definitely need to remark on the previous definition.... 
+    
+    Any morphism can not have any component from S to S, or S to M, as well as they can only have one certain component from M to M.
+
+    TODO: Fix
 \end{remark}
 
 % Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
@@ -628,7 +706,7 @@
             
             If \( \tilde{P} = 0 \), then the statement is true.
 
-            Assume \( \tilde{P} = S^k \) for some \( k \in \Nb \).
+            Assume \( \tilde{P} = S^j \) for some \( j \in \Nb \).
 
             Then from \autoref{thm:hom_direct_sum_map_nice}, one gets the following commutative diagram
             \begin{center}
@@ -648,76 +726,102 @@
             \end{center}
             It suffices to check that \( f_*: \Mc\tuple{S, A} \to \Mc\tuple{S, B} \) is zero.
 
-            Using \autoref{rem:F_properties} with \( j = 1 \) and \( k = 0 \), one gets the following morphisms:
-            \[
-                \phi_A^{-1} = \begin{pmatrix}
-                    \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* & \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_*
-                \end{pmatrix}
-            \]
-            and
-            \[
-                \phi_B = \begin{pmatrix}
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \\
-                    \vdots \\
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} }_* \\
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \\
-                    \vdots \\
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_*
-                \end{pmatrix}.
-            \]
+            Using \autoref{rem:F_properties} with \( j = 1 \) and \( k = 0 \), one gets
+            % \[
+            %     \phi_A^{-1} = \begin{pmatrix}
+            %         \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* &
+            %         \dots &
+            %         \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* &
+            %         \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* &
+            %         \dots &
+            %         \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_*
+            %     \end{pmatrix}
+            % \]
+            % and
+            % \[
+            %     \phi_B = \begin{pmatrix}
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \\
+            %         \vdots \\
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} }_* \\
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \\
+            %         \vdots \\
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_*
+            %     \end{pmatrix}.
+            % \]
             This gives
             \[
                 \phi_B \circ F(f)_* \circ \phi_A^{-1} =
                 \begin{pmatrix}
-                    F_1 & F_2 \\
-                    F_3 & F_4
+                    L_{S, S, S} & L_{S, M, S} \\
+                    L_{S, S, M} & L_{S, M, M}
                 \end{pmatrix}
             \]
             where
             \[
-                F_1 = \begin{pmatrix}
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) \circ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) \circ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                L_{S, S, S} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{S_1}^{S_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{n_A}}^{S_1} }_* \\
                     \vdots & \ddots & \vdots \\
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) \circ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) \circ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \tuple{ F(f)_{S_1}^{S_{n_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{m_A}}^{S_{n_B}} }_* \\
                 \end{pmatrix},
             \]
             \[
-                F_2 = \begin{pmatrix}
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) \circ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) \circ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                L_{S, M, S} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{M_1}^{S_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{S_1} }_* \\
                     \vdots & \ddots & \vdots \\
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) \circ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) \circ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \tuple{ F(f)_{M_1}^{S_{n_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{S_{n_B}} }_* \\
                 \end{pmatrix},
             \]
             \[
-                F_3 = \begin{pmatrix}
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) \circ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) \circ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                L_{S, S, M} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{S_1}^{M_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{n_A}}^{M_1} }_* \\
                     \vdots & \ddots & \vdots \\
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) \circ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) \circ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \tuple{ F(f)_{S_1}^{M_{m_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{n_A}}^{M_{m_B}} }_* \\
                 \end{pmatrix},
             \]
             and
             \[
-                F_4 = \begin{pmatrix}
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) \circ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) \circ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                L_{S, M, M} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{M_1}^{M_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{M_1} }_* \\
                     \vdots & \ddots & \vdots \\
-                    \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) \circ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* & \dots & \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) \circ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_* \\
+                    \tuple{ F(f)_{M_1}^{M_{m_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{M_{m_B}} }_* \\
                 \end{pmatrix}.
             \]
             But from the definition of \( P_B \), one has that
             \[
-                \phi \circ F(f) = \begin{pmatrix}
-                     p_{S^{n_A} \oplus M^{m_A}}^{S_1} \circ F(f) \circ i_{S_1}^{S^{n_A} \oplus M^{m_A}} \\
+                \phi \circ F(f) =
+                \begin{pmatrix}
+                    F(f)_{S_1}^{S_1} \\
                     \vdots \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{S_{n_A}} \circ F(f) \circ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{M_1} \circ F(f) \circ i_{S_1}^{S^{n_A} \oplus M^{m_A}} \\
+                    F(f)_{S_{n_A}}^{S_{n_A}} \\
+                    F(f)_{S_1}^{M_1} \\
                     \vdots \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{M_{m_A}} \circ F(f) \circ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{S_1} \circ F(f) \circ i_{M_1}^{S^{n_A} \oplus M^{m_A}} \\
+                    F(f)_{S_{n_A}}^{M_{m_A}} \\
+                    F(f)_{M_1}^{S_1} \\
                     \vdots \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{S_{n_A}} \circ F(f) \circ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{M_1} \circ F(f) \circ i_{M_1}^{S^{n_A} \oplus M^{m_A}} \\
+                    F(f)_{M_{m_A}}^{S_{n_A}} \\
+                    F(f)_{M_1}^{M_1} \\
                     \vdots \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{M_{m_A}} \circ F(f) \circ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}}
+                    F(f)_{M_{m_A}}^{M_{m_A}}
                 \end{pmatrix}
                 = \begin{pmatrix}
                     0 \\
@@ -726,9 +830,9 @@
                     0 \\
                     \vdots \\
                     0 \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{S_1} \circ F(f) \circ i_{M_1}^{S^{n_A} \oplus M^{m_A}} \\
+                    F(f)_{M_1}^{S_1} \\
                     \vdots \\
-                    p_{S^{n_A} \oplus M^{m_A}}^{S_{n_A}} \circ F(f) \circ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} \\
+                    F(f)_{M_{m_A}}^{S_{n_A}} \\
                     \set{0, \cdot(\pm(g - 1))} \\
                     \vdots \\
                     \set{0, \cdot(\pm(g - 1))}
@@ -736,23 +840,25 @@
             \]
             This implies that
             \[
-                F_1 = 0, F_3 = 0,
+                L_{S, S, S} = 0, L_{S, S, M} = 0,
             \]
             and
             \[
-                F_4 = \begin{pmatrix}
+                L_{S, M, M} =
+                \begin{pmatrix}
                     \set{0, \cdot(\pm(g - 1))} & \dots & \set{0, \cdot(\pm(g - 1))} \\
                     \vdots & \ddots & \vdots \\
                     \set{0, \cdot(\pm(g - 1))} & \dots & \set{0, \cdot(\pm(g - 1))}
                 \end{pmatrix}.
             \]
-            Using this information about \( \psi_B \circ F(f)_* \circ \psi_A^{-1} \), observe its pointwise values for any \( \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \in \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A} \).
+            Using this information about \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \), observe its pointwise values for any \( \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \in \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A} \).
             
             First note that by \autoref{thm:f_3c_3_nu}, one has that \( h_i = \set{0, \pm \nu} \) for all \( i \).
 
             Also note that by \autoref{lem:g-1_circ_nu_equals_zero} one has
             \[
-                F_4 \begin{pmatrix}
+                L_{S, M, M}
+                \begin{pmatrix}
                     \set{0, \pm \nu} \\
                     \vdots \\
                     \set{0, \pm \nu}
@@ -760,11 +866,12 @@
             \]
             And by \autoref{thm:f_3c_3_mu} one has that
             \[
-                p_{S^{n_B} \oplus M^{m_B}}^S \circ F(f) \circ i_M^{S^{n_A} \oplus M^{m_A}} \in \Mc(M, M) = \set{0, \pm \mu}
+                F(f)_{M_a}^{S_b} = p_{S^{n_B} \oplus M^{m_B}}^{S_b} \circ F(f) \circ i_{M_a}^{S^{n_A} \oplus M^{m_A}} \in \Mc(M, M) = \set{0, \pm \mu}
             \]
             And furthermore by \autoref{thm:f_3c_3_mu_circ_nu_zero} this implies that
             \[
-                F_2 \begin{pmatrix}
+                L_{S, M, S}
+                \begin{pmatrix}
                     \set{0, \pm \nu} \\
                     \vdots \\
                     \set{0, \pm \nu}
@@ -773,18 +880,23 @@
 
             All in all, this implies
             \begin{multline*}
-                \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \\
-                = \begin{pmatrix}
-                    F_1 & F_2 \\
-                    F_3 & F_4
-                \end{pmatrix} \tuple{g_1, \dots, g_{n_A}, \set{0, \pm \nu}, \dots, \set{0, \pm \nu}} \\
-                = \begin{pmatrix}
-                    0 & F_2 \begin{psmallmatrix}
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \\
+                =
+                \begin{pmatrix}
+                    L_{S, S, S} & L_{S, M, S} \\
+                    L_{S, S, M} & L_{S, M, M}
+                \end{pmatrix}
+                \tuple{g_1, \dots, g_{n_A}, \set{0, \pm \nu}, \dots, \set{0, \pm \nu}} \\
+                =
+                \begin{pmatrix}
+                    0 & L_{S, M, S}
+                    \begin{psmallmatrix}
                         \set{0, \pm \nu} \\
                         \vdots \\
                         \set{0, \pm \nu}
                     \end{psmallmatrix} \\
-                    0 & F_4 \begin{psmallmatrix}
+                    0 & L_{S, M, M}
+                    \begin{psmallmatrix}
                         \set{0, \pm \nu} \\
                         \vdots \\
                         \set{0, \pm \nu}
@@ -797,7 +909,7 @@
 
             \( ( \Leftarrow ) \) Show this implication by a counter-positive argument.
 
-            Assume \( f: A \to B \) with \( f \neq \Nc \)
+            Assume \( f: A \to B \) with \( f \not\in \Nc \)
 
             Then first of all, \( f \neq 0 \).
 
@@ -805,65 +917,90 @@
 
             If \( \tilde{P} = 0 \), then \( f_* \) is zero, so assume that \( \tilde{P} \neq 0 \). Then there is some \( k \in \Nb \) such that \( \tilde{P} = S^k \).
 
-            Using the diagram and maps from \autoref{tikz:f_star}, want to show that \( \psi_B \circ F(f)_* \circ \psi_A^{-1} \) is pointwise non-zero.
+            Using the diagram and maps from \autoref{tikz:f_star}, want to show that \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is pointwise non-zero.
 
             In order to prove this, split the cases up by which point in \autoref{def:unholy} that we assume \( f \) not to fulfill:
             \begin{enumerate}
                 \item {
                     Assume that \( p_{S, S} \circ \phi \circ F(f) \neq 0 \).
 
-                    Then there is some \( j, k \in \Nb \) such that \( p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \neq 0 \) is non-zero.
+                    Then there is some \( j, k \in \Nb \) such that
+                    \[
+                        F(f)_{S_k}^{S_j} = p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \neq 0
+                    \]
+                    is non-zero.
 
                     Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
                     \[
-                        \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{\alpha}
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
                         =
                         \begin{pmatrix}
-                            F_1 & F_2 \\
-                            F_3 & F_4
+                            L_{S, S, S} & L_{S, M, S} \\
+                            L_{S, S, M} & L_{S, M, M}
                         \end{pmatrix}
                         \tuple{0, \dots, 0, \Id_S, 0, \dots, 0}
                         = \beta
                     \]
-                    where in the \( j \)-th coordinate of \( \beta \) there is a non-zero term \( p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \).
+                    where in the \( j \)-th coordinate of \( \beta \) there is a non-zero term
+                    \[
+                        F(f)_{S_k}^{S_j} =
+                        p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}}.
+                    \]
 
                     Then \( f \not\in \Nc \). 
                 }
                 \item {
                     Assume that \( p_{S, M} \circ \phi \circ F(f) \neq 0 \).
 
-                    Then there is some \( j, k \in \Nb \) such that \( p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \) is non-zero.
+                    Then there is some \( j, k \in \Nb \) such that
+                    \[
+                        F(f)_{S_k}^{M_j} = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}}
+                    \]
+                    is non-zero.
 
                     Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
                     \[
-                        \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{\alpha}
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
                         =
                         \begin{pmatrix}
-                            F_1 & F_2 \\
-                            F_3 & F_4
+                            L_{S, S, S} & L_{S, M, S} \\
+                            K_{S, S, M} & L_{S, M, M}
                         \end{pmatrix}
                         \tuple{0, \dots, 0, \Id_S, 0, \dots, 0}
                         = \beta
                     \]
-                    where in the \( j + n_B \)-th coordinate of \( \beta \) there is a non-zero term \( p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \).
+                    where in the \( j + n_B \)-th coordinate of \( \beta \) there is a non-zero term
+                    \[
+                        F(f)_{S_k}^{M_j} = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}}.
+                    \]
+                    Then \( f \not\in \Nc \).
                 }
                 \item {
-                    Assume that \( p_{M, M} \circ \phi \circ F(f) \neq \set{0, \cdot(\pm (g - 1))}^{m_A m_B} \).
+                    Assume that \( p_{M, M} \circ \phi \circ F(f) \not\in \set{0, \cdot(\pm (g - 1))}^{m_A m_B} \), i.e. there is some \( j, k \in \Nb \) such that
+                    \[
+                        F(f)_{M_k}^{M_j} \not\in \set{0, \pm(g - 1)}
+                    \]
 
-                    By \autoref{lem:only_non_surjective_M_to_M} there is some \( j, k \in \Nb \) such that \( p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{M^{n_A} \oplus M^{m_A}} \) is an isomorphism.
+                    By \autoref{lem:only_non_surjective_M_to_M} that means that \( F(f)_{M_k}^{M_j} \) is an isomorphism.
 
                     Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \nu \) in the \( n_A + k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \nu, 0, \dots, 0} \). Such that
                     \[
-                        \psi_B \circ F(f)_* \circ \psi_A^{-1} \tuple{\alpha}
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
                         =
                         \begin{pmatrix}
-                            F_1 & F_2 \\
-                            F_3 & F_4
+                            L_{S, S, S} & L_{S, M, S} \\
+                            L_{S, S, M} & L_{S, M, M}
                         \end{pmatrix}
                         \tuple{0, \dots, 0, \nu, 0, \dots, 0}
                         = \beta
                     \]
-                    where in the \( j + n_B \)-th coordinate of \( \beta \) there is a term \( p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \circ \nu \) that is non-zero because it is a non-zero morphism composed with an isomorphism.
+                    where in the \( j + n_B \)-th coordinate of \( \beta \) there is a term
+                    \[
+                        F(f)_{M_k}^{M_j} \circ \nu = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{M_k}^{S^{n_A} \oplus M^{m_A}} \circ \nu
+                    \]
+                    that is non-zero because it is a non-zero morphism composed with an isomorphism.
+
+                    Therefore \( f \not\in \Nc \).
                 }
             \end{enumerate} 
         }
