@@ -149,7 +149,7 @@
 \end{proof}
 
 \begin{lemma} \label{thm:f_3c_3_decomposition}
-    Any object in \( \Mc \) is isomorphic to a direct sum \( \tuple{ S }^n \oplus \tuple{ M }^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object.
+    Any object in \( \Mc \) is isomorphic to a direct sum \( S^n \oplus M^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object.
 \end{lemma}
 \begin{proof}
     TODO
@@ -515,7 +515,7 @@
             M & N & O & P
         \end{pmatrix}
     \]
-    Where these ``blocks'': \( A, B, C, D \), etc. would correspond to what \( F(f)_* \) does on the part that goes from one main summand in the domain to another main summand in the codomain. Immediately one can see that many blocks are all zero, since there is no part of \( F(f) \) that could possibly go from e.g. \( \Mc(S, S) \) to \( \Mc(M, S) \), since it is simply post composing. This makes \( C, D, G, H, I, J, M, N \) all zero. But in addition to making half of the blocks completely zero, most of the non-zero blocks themselves are zero. Take for example block \( A \), which would look something like this
+    Where these ``blocks'': \( A, B, C, D \), etc. would correspond to what \( F(f)_* \) does on the part that goes from one main summand in the domain to another main summand in the codomain. Immediately one can see that many blocks are all zero, since there is no part of \( F(f)_* \) that could possibly go from e.g. \( \Mc(S, S) \) to \( \Mc(M, S) \), since it is simply post composing. This makes \( C, D, G, H, I, J, M, N \) all zero. But in addition to making half of the blocks completely zero, most of the non-zero blocks themselves are zero. Take for example block \( A \), which would look something like this
     \[
         A =
         \begin{psmallmatrix}
@@ -545,10 +545,10 @@
     \[
         \iota_{A_a}^{B_b} := p_{S^j \oplus M^k}^{B_b} \circ i_{A_a}^{S^j \oplus M^k}.
     \]
-    However, one has that \( \iota_{A_a}^{B_b} \) is zero unless \( a = b \) and \( A = B \). This makes most of the entries in \( A \), except for certain ``blocks'' on the diagonal, equal to \( 0 \).
+    However, one has that \( \iota_{A_a}^{B_b} \) is zero unless \( a = b \) and \( A = B \), and the identity map otherwise. This makes most of the entries in \( A \), except for certain ``blocks'' on the diagonal, equal to \( 0 \).
 
     In fact, one can write
-    \[
+    \begin{multline*}
         A = \oplus_{i = 1}^{j}
         \begin{psmallmatrix}
             \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_1}^{S_1} }_* &
@@ -564,8 +564,24 @@
             \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_2}^{S_{n_B}} }_* &
             \dots &
             \tuple{ \iota_{S_i}^{S_i} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S^{n_B}} }_* \\
-        \end{psmallmatrix}.
-    \]
+        \end{psmallmatrix} \\
+        = \oplus_{i = 1}^{j}
+        \begin{psmallmatrix}
+            \tuple{ F(f)_{S_1}^{S_1} }_* &
+            \tuple{ F(f)_{S_2}^{S_1} }_* &
+            \dots &
+            \tuple{ F(f)_{S_{n_A}}^{S^1} }_* \\
+            \tuple{ F(f)_{S_1}^{S_2} }_* &
+            \tuple{ F(f)_{S_2}^{S_2} }_* &
+            \dots &
+            \tuple{ F(f)_{S_{n_A}}^{S^2} }_* \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \tuple{ F(f)_{S_1}^{S_{n_B}} }_* &
+            \tuple{ F(f)_{S_2}^{S_{n_B}} }_* &
+            \dots &
+            \tuple{ F(f)_{S_{n_A}}^{S^{n_B}} }_* \\
+        \end{psmallmatrix}
+    \end{multline*}
     For \( A, B, C \in \set{S, M} \) and
     \[
         a = 
@@ -588,19 +604,19 @@
     \[
         L_{A, B, C} = \oplus_{i = 1}^{a}
         \begin{psmallmatrix}
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_1}^{C_1} }_* &
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_2}^{C_1} }_* &
+            \tuple{ F(f)_{B_1}^{C_1} }_* &
+            \tuple{ F(f)_{B_2}^{C_1} }_* &
             \dots &
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_b}^{C_1} }_* \\
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_1}^{C_2} }_* &
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_2}^{C_2} }_* &
+            \tuple{ F(f)_{B_b}^{C_1} }_* \\
+            \tuple{ F(f)_{B_1}^{C_2} }_* &
+            \tuple{ F(f)_{B_2}^{C_2} }_* &
             \dots &
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_b}^{C_2} }_* \\
+            \tuple{ F(f)_{B_b}^{C_2} }_* \\
             \vdots & \vdots & \ddots & \vdots \\
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_1}^{C_c} }_* &
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_2}^{C_c} }_* &
+            \tuple{ F(f)_{B_1}^{C_c} }_* &
+            \tuple{ F(f)_{B_2}^{C_c} }_* &
             \dots &
-            \tuple{ \iota_{A_i}^{A_i} }^* \circ \tuple{ F(f)_{B_b}^{C_c} }_* \\
+            \tuple{ F(f)_{B_b}^{C_c} }_* \\
         \end{psmallmatrix}.
     \]
     Then one gets that
@@ -643,6 +659,34 @@
     %     \end{psmallmatrix}
     % \]
 \end{remark}
+
+\begin{lemma} \label{lem:sigma_switch_s_m}
+    In \( \Stmod{\Fb_3C_3} \) one has that \( \Sigma(S) \cong M \) and \( \Sigma(M) \cong S \).
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:s_m_s_distinguished}
+    Let \( \mu \) be as in \autoref{thm:f_3c_3_mu}, and let \( \nu \) be as in \autoref{thm:f_3c_3_nu}.
+
+    Then, setting the rightmost \( M \cong \Sigma(S) \) by \autoref{lem:sigma_switch_s_m}, the following triangle is distinguished in \( \Stmod{\Fb_3C_3} \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                S & M & S & M \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\nu} (m-1-2)
+                (m-1-2) edge node {\mu} (m-1-3)
+                (m-1-3) edge node {\nu} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
 
 % Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
 \begin{definition} \label{def:unholy} % Unholy definition.
@@ -964,7 +1008,7 @@
                         =
                         \begin{pmatrix}
                             L_{S, S, S} & L_{S, M, S} \\
-                            K_{S, S, M} & L_{S, M, M}
+                            L_{S, S, M} & L_{S, M, M}
                         \end{pmatrix}
                         \tuple{0, \dots, 0, \Id_S, 0, \dots, 0}
                         = \beta
@@ -996,7 +1040,7 @@
                     \]
                     where in the \( j + n_B \)-th coordinate of \( \beta \) there is a term
                     \[
-                        F(f)_{M_k}^{M_j} \circ \nu = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{M_k}^{S^{n_A} \oplus M^{m_A}} \circ \nu
+                        F(f)_{M_k}^{M_j}( \nu ) = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{M_k}^{S^{n_A} \oplus M^{m_A}}( \nu )
                     \]
                     that is non-zero because it is a non-zero morphism composed with an isomorphism.
 
@@ -1017,11 +1061,148 @@
 
             Assume \( \tilde{P} \not\in \Pc \). That implies there is some \( k \in \Nb \) and \( j \in \Nb_0 \) such that \( \tilde{P} = S^j \oplus M^k \).
 
-            If \( f = 0 \), then it's true. Assume \( f \neq 0 \).
+            Want to find some \( f \in \Tc(A, B) \intersect \Nc \) such that
+            \[
+                f_*: \Tc(P, A) \to \Tc(P, B)
+            \]
+            is non-zero.
 
             From \autoref{rem:F_properties}, it is sufficient to show that the map \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
 
+            Let \( A \cong B \cong M \) and let \( F(f) = \cdot(g - 1) \). Then \( n_A = n_B = 0 \) and \( m_A = m_B = 1 \) gives that
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} =
+                \begin{pmatrix}
+                    L_{S, S, S} & L_{S, M, S} \\
+                    L_{S, S, M } & L_{S, M, M}
+                \end{pmatrix}
+                \oplus
+                \begin{pmatrix}
+                    L_{M, S, S} & L_{M, M, S} \\
+                    L_{M, S, M} & L_{M, M, M}
+                \end{pmatrix}
+            \]
+            turns into
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1}
+                = L_{S, M, M} \oplus L_{M, M, M}
+                = \tuple{ \oplus_{i=1}^j F(f)_* }
+                \oplus
+                \tuple{ \oplus_{i=1}^k F(f)_* }.
+            \]
+            Also, by assumption,
+            \[
+                F(f) = p_{M, M} \circ \phi ( F(f) ) = \cdot(g-1) \in \set{0, \cdot( \pm(g - 1) )} \subseteq \Nc.
+            \]
+            However, look at \( \alpha = \tuple{ 0, \dots, 0, \Id_M, 0, \dots, 0 } \), that is only non-zero at coordinate \( j + 1 \).
+            
+            Then
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} (\alpha)
+                =
+                \tuple{ \oplus_{i=1}^j (\cdot(g-1))_* }
+                \oplus
+                \tuple{ \oplus_{i=1}^k (\cdot(g-1))_* }
+                (\alpha)
+                = \beta
+            \]
+            First of all, applying \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) to \( \alpha \) is well defined, since while \( j \) could be zero, \( k \) is always non-zero by the assumption that \( P \not\in \Pc \). In addition, coordinate \( j + 1 \) to \( j + k \) are all maps from \( M \) to \( M \).
 
+            Secondly, it follows that the \( j + 1 \)-th coordiate of \( \beta \) is \( \cdot(g-1) \) which is a non-zero map. And hence, the map \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
+        }
+        \item {
+            For every \( X \in \Tc \) one has that \( X \cong S^j \oplus M^k \) for some \( j, k \in \Nb_0 \).
+
+            Firstly, note that the following triangle is distinguished
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        S & S & 0 & \Sigma(S) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\Id_s} (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            And since distinguished triangles are closed under direct sums, it follows that the following triangle is also distinguished
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        S^j & S^j & 0 & \Sigma(S)^j \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {( \Id_s )^j} (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            And by \autoref{lem:s_m_s_distinguished} it follows that
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        S^k & M^k & S^k & \Sigma(S)^k \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {( \nu )^k} (m-1-2)
+                        (m-1-2) edge node {( \mu )^k} (m-1-3)
+                        (m-1-3) edge node {( \nu )^k} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            is also distinguished.
+
+            Taking the direct summand of these distinguished triangles yields the following distinguished triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        S^j \oplus S^k & S^j \oplus M^k & S^k & \Sigma(S)^j \oplus \Sigma(S)^k \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {(\Id_S)^j \oplus ( \nu )^k} (m-1-2)
+                        (m-1-2) edge node {(0)^j \oplus ( \mu )^k} (m-1-3)
+                        (m-1-3) edge node {(0)^j \oplus ( \nu )^k} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            Need to check if this triangle satisfies the criteria.
+            
+            Firstly, \( S^j \oplus S^k \cong S^{j + k} \) is in \( \Pc \). Secondly need to check that the middle-left map \( (0)^j \oplus ( \mu )^k \) is in \( \Nc \).
+            \[
+                \phi((0)^j \oplus ( \mu )^k) =
+                \begin{psmallmatrix}
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    \mu \\
+                    \vdots \\
+                    \mu \\
+                    0 \\
+                    \vdots \\
+                    0
+                \end{psmallmatrix}
+            \]
+            Which satisfies the criteria that any map in \( \Nc \) need to follow.
+
+            Therefore the following distinguished triangle satisfies all the criteria
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        S^{j + k} & S^j \oplus M^k & S^k & \Sigma(S)^{j + k} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {(\Id_S)^j \oplus ( \nu )^k} (m-1-2)
+                        (m-1-2) edge node {(0)^j \oplus ( \mu )^k} (m-1-3)
+                        (m-1-3) edge node {(0)^j \oplus ( \nu )^k} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
         }
     \end{enumerate}
+    Therefore, \( (\Pc, \Nc) \) is a projective class.
 \end{proof}
