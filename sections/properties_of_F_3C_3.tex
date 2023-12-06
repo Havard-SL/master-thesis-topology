@@ -1206,3 +1206,43 @@
     \end{enumerate}
     Therefore, \( (\Pc, \Nc) \) is a projective class.
 \end{proof}
+
+\begin{definition} \label{def:P_M}
+    Let the functor \( F \) be as in \autoref{thm:F_functor}, and let \( \phi \) be as in \autoref{rem:big_iso}. Furthermore use the notation from \autoref{rem:F_properties}.
+
+    Let \( P_M \) be defined as follows:
+
+    For any object \( A, B \in \Mc \), and for any \( f \in \Mc(A, B) \).
+
+    Then \( f \in P_M  \iff \)
+
+    All of the following are true:
+    \begin{enumerate}
+        \item \( F(f)_{S_a}^{S_b} = 0 \) for all \( a, b \).
+        \item \( F(f)_{M_a}^{S_b} = 0 \) for all \( a, b \).
+        \item \( F(f)_{M_a}^{M_b} = 0 \) for all \( a, b \).
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Let \( P_M \) be as in \autoref{def:P_M}.
+
+    Let \( \Pc = \set{S^n \mid n \in \Nb_0} \) and let \( \Nc = P_M \).
+
+    Then \( (\Pc, \Nc) \) is a projective class.
+\end{example}
+\begin{proof}
+    Need to show that \( (\Pc, \Nc) \) satisfies the three properties in \autoref{def:projective_class}.
+
+    \begin{enumerate}
+        \item {
+            \( (\Rightarrow) \) Let \( f \in \Nc \).
+
+            If \( f = 0 \), then the statement is true. Assume therefore that \( f \neq 0 \).
+
+            Then \( f \in \Mc\tuple{A, B} \) for two non-zero modules \( A, B \in \Mc \), satisfying \autoref{def:P_M}.
+
+            
+        }
+    \end{enumerate}
+\end{proof}
