@@ -984,7 +984,7 @@
                     is non-zero.
 
                     Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
-                    \[
+                    \[ % Not correct TODO, because \tilde{P} is a direct summand of S-es, not just one S.
                         \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
                         =
                         \begin{pmatrix}
@@ -1236,7 +1236,7 @@
 \begin{example}
     Let \( P_M \) be as in \autoref{def:P_M}.
 
-    Let \( \Pc = \set{S^n \mid n \in \Nb_0} \) and let \( \Nc = P_M \).
+    Let \( \Pc = \set{M^n \mid n \in \Nb_0} \) and let \( \Nc = P_M \).
 
     Then \( (\Pc, \Nc) \) is a projective class.
 \end{example}
@@ -1360,6 +1360,25 @@
             \begin{enumerate}
                 \item {
                     Assume that \( F(f)_{S_a}^{S_b} \neq 0 \) for some \( a, b \).
+
+                    That implies that \( L_{S, S, S} \neq 0 \) in the \( b, a \)-th coordinate. Therefore for \( \alpha = \tuple{ 0, \dots 0, \Id_S, 0, \dots, 0 } \) a \( (n_a + m_a) \)-tuple that is entirely zero, except for in coordinate \( a \) where it is \( \Id_S \).
+
+                    Taking
+                    \[
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} (\alpha) =
+                        \begin{pmatrix}
+                            L_{M, S, S} & L_{M, M, S} \\
+                            L_{M, S, M} & L_{M, M, M}
+                        \end{pmatrix}
+                        \tuple{ 0, \dots 0, \Id_S, 0, \dots, 0 }
+                        = \beta
+                    \]
+                    one gets that the \( b \)-th coordinate of \( \beta \) has the value \( F(f)_{S_a}^{S_b} \) which is by assumption non-zero, and so \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
+                }
+                \item {
+                    Assume that there is some \( a, b \) such that \( F(f)_{M_a}^{S_b} \neq 0 \).
+
+
                 }
             \end{enumerate}
         }
