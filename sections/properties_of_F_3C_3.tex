@@ -157,6 +157,20 @@
     TODO
 \end{proof}
 
+\begin{lemma} \label{lem:only_non_surjective_M_to_M}
+    One has that \( 0 \) and \( \pm(\cdot(g - 1)) \) are the only non-isomorphism morphisms in \( \Mc\tuple{M, M} \).
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:S-to-S}
+    One has that
+    \[
+        \Mc\tuple{S, S} = \set{0, \pm \Id_S}
+    \]
+\end{lemma}
+
 \begin{lemma} \label{thm:f_3c_3_decomposition}
     Any object in \( \Mc \) is isomorphic to a direct sum \( S^n \oplus M^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object.
 \end{lemma}
@@ -292,13 +306,6 @@
     Let \( \Ac \) be an additive category. Let \( A, B, C \in \Ac \).
 
     Then \( p_{A \oplus B}^A \circ p_{A \oplus B \oplus C}^{A \oplus B} = p_{A \oplus B \oplus C}^A \), and \( i_{A \oplus B}^{A \oplus B \oplus C} \circ i_A^{A \oplus B} = i_A^{A \oplus B \oplus C} \).
-\end{lemma}
-\begin{proof}
-    TODO
-\end{proof}
-
-\begin{lemma} \label{lem:only_non_surjective_M_to_M}
-    One has that \( 0 \) and \( \pm(\cdot(g - 1)) \) are the only non-isomorphism morphisms in \( \Mc\tuple{M, M} \).
 \end{lemma}
 \begin{proof}
     TODO
@@ -698,33 +705,21 @@
 \end{proof}
 
 % Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
+% TODO: Need to say that phi(F(f)) = big matrix with F(f)_B^C etc.. !
 \begin{definition} \label{def:unholy} % Unholy definition.
-    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi, p_{S, S}, p_{S, M}, p_{M, S}, p_{M, M} \) be as in \autoref{rem:big_iso}.
+    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi \) be as in \autoref{rem:big_iso}, and use the notation from \autoref{rem:F_properties}.
 
-    Define the set \( P_B \) as follows:
+    Define the set \( P_S \) as follows:
 
     For any object \( A, B \in \Mc \), and for any \( f \in \Mc\tuple{A, B} \).
 
-    Then \( f \in P_B \iff \)
+    Then \( f \in P_S \iff \)
 
     All of the following are true:
     \begin{enumerate}
-        \item {
-            \( p_{S, S} \circ \phi \circ F(f) = 0 \).
-        }
-        \item {
-            \( p_{S, M} \circ \phi \circ F(f) = 0 \).
-        }
-        \item {
-            \( p_{M, M} \circ \phi \circ F(f) \in \set{0, \cdot(\pm (g - 1))}^{m_A m_B} \).
-        }
-    \end{enumerate}
-
-    Using the notation in \autoref{rem:F_properties}, then this is equivalent to
-    \begin{enumerate}
-        \item \( F(f)_{S_a}^{S_b} = 0 \) for \( 1 \leq a \leq n_A \) and \( 1 \leq b \leq n_B \). (All \(a, b\))
-        \item \( F(f)_{S_a}^{M_b} = 0 \) for \( 1 \leq a \leq n_A \) and \( 1 \leq b \leq m_B \). (All \(a, b\))
-        \item \( F(f)_{M_a}^{M_b} \in \set{0, \cdot(\pm (g - 1))} \) for \( 1 \leq a \leq n_B \) and \( 1 \leq b \leq m_B \). (All \(a, b\))
+        \item \( F(f)_{S_a}^{S_b} = 0 \) for all \( a, b \).
+        \item \( F(f)_{S_a}^{M_b} = 0 \) for all  \( a, b \).
+        \item \( F(f)_{M_a}^{M_b} \in \set{0, \cdot(\pm (g - 1))} \) for all \( a, b \).
     \end{enumerate}
 \end{definition}
 
@@ -740,7 +735,7 @@
 % Seems so obvious that there should be a simpler way to do things. TODO
 % Is i_A^A+B+C = i_A+B^A+B+C \circ i_A^A+B? TODO
 \begin{example} % Major rewrite of first part! TODO
-    Let \( \Pc = \set{ S^n \mid n \in \Nb } \union \set{ 0 } \). Let \( \Nc = P_B \union \set{ 0 } \).
+    Let \( \Pc = \set{ S^n \mid n \in \Nb } \). Let \( \Nc = P_S \).
 
     Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Mc \).
 \end{example}
@@ -765,8 +760,8 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        \Mc\tuple{S^k, A} & \Mc\tuple{S^k, B} \\
-                        \Mc\tuple{S, A}^k & \Mc\tuple{S, B}^k \\
+                        \Mc\tuple{S^j, A} & \Mc\tuple{S^j, B} \\
+                        \Mc\tuple{S, A}^j & \Mc\tuple{S, B}^j \\
                     };
 
                     \draw[math]
@@ -774,7 +769,7 @@
                             edge node[marking, above] {\sim} (m-2-1)
                         (m-1-2) edge node[marking, above] {\sim} (m-2-2)
 
-                        (m-2-1) edge node {(f_*)^k} (m-2-2);
+                        (m-2-1) edge node {(f_*)^j} (m-2-2);
                 \end{tikzpicture}
             \end{center}
             It suffices to check that \( f_*: \Mc\tuple{S, A} \to \Mc\tuple{S, B} \) is zero.
@@ -859,7 +854,7 @@
                     \tuple{ F(f)_{M_{m_A}}^{M_{m_B}} }_* \\
                 \end{pmatrix}.
             \]
-            But from the definition of \( P_B \), one has that
+            But from the definition of \( P_S \), one has that
             \[
                 \phi \circ F(f) =
                 \begin{pmatrix}
@@ -904,8 +899,10 @@
                     \set{0, \cdot(\pm(g - 1))} & \dots & \set{0, \cdot(\pm(g - 1))}
                 \end{pmatrix}.
             \]
-            Using this information about \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \), observe its pointwise values for any \( \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \in \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A} \).
-            
+            Using this information about \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \), observe its pointwise values for any 
+            \[
+                \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \in \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A}.
+            \]
             First note that by \autoref{thm:f_3c_3_nu}, one has that \( h_i = \set{0, \pm \nu} \) for all \( i \).
 
             Also note that by \autoref{lem:g-1_circ_nu_equals_zero} one has
@@ -964,27 +961,23 @@
 
             Assume \( f: A \to B \) with \( f \not\in \Nc \)
 
-            Then first of all, \( f \neq 0 \).
+            Want to show that there exist a \( \tilde{P} \in \Pc \) such that \( f_*: \Mc(\tilde{P}, A) \to \Mc(\tilde{P}, B)\) is non-zero.
 
-            Want to show that for all \( \tilde{P} \in \Pc \), one has that \( f_*: \Mc(\tilde{P}, A) \to \Mc(\tilde{P}, B)\) is non-zero.
+            Assume therefore that \( \tilde{P} = S \).
 
-            If \( \tilde{P} = 0 \), then \( f_* \) is zero, so assume that \( \tilde{P} \neq 0 \). Then there is some \( k \in \Nb \) such that \( \tilde{P} = S^k \).
-
-            Using the diagram and maps from \autoref{tikz:f_star}, want to show that \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is pointwise non-zero.
+            Therefore, using \( j = 1 \) the diagram and maps from \autoref{tikz:f_star}, want to show that \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is pointwise non-zero.
 
             In order to prove this, split the cases up by which point in \autoref{def:unholy} that we assume \( f \) not to fulfill:
             \begin{enumerate}
                 \item {
-                    Assume that \( p_{S, S} \circ \phi \circ F(f) \neq 0 \).
-
-                    Then there is some \( j, k \in \Nb \) such that
+                    Assume that there is some \( a, b \in \Nb \) such that
                     \[
-                        F(f)_{S_k}^{S_j} = p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}} \neq 0
+                        F(f)_{S_a}^{S_b}
                     \]
                     is non-zero.
 
-                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
-                    \[ % Not correct TODO, because \tilde{P} is a direct summand of S-es, not just one S.
+                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( a \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
+                    \[
                         \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
                         =
                         \begin{pmatrix}
@@ -994,24 +987,20 @@
                         \tuple{0, \dots, 0, \Id_S, 0, \dots, 0}
                         = \beta
                     \]
-                    where in the \( j \)-th coordinate of \( \beta \) there is a non-zero term
+                    where in the \( b \)-th coordinate of \( \beta \) there is a non-zero term
                     \[
-                        F(f)_{S_k}^{S_j} =
-                        p_{S^{n_B} \oplus M^{m_B}}^{S_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}}.
+                        F(f)_{S_a}^{S_b} \circ \Id_S = F(f)_{S_a}^{S_b}.
                     \]
-
                     Then \( f \not\in \Nc \). 
                 }
                 \item {
-                    Assume that \( p_{S, M} \circ \phi \circ F(f) \neq 0 \).
-
-                    Then there is some \( j, k \in \Nb \) such that
+                    Assume that there is some \( a, b \in \Nb \) such that
                     \[
-                        F(f)_{S_k}^{M_j} = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}}
+                        F(f)_{S_a}^{M_b}
                     \]
                     is non-zero.
 
-                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
+                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( a \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
                     \[
                         \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
                         =
@@ -1022,21 +1011,21 @@
                         \tuple{0, \dots, 0, \Id_S, 0, \dots, 0}
                         = \beta
                     \]
-                    where in the \( j + n_B \)-th coordinate of \( \beta \) there is a non-zero term
+                    where in the \( ( n_B + b ) \)-th coordinate of \( \beta \) there is a non-zero term
                     \[
-                        F(f)_{S_k}^{M_j} = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{S_k}^{S^{n_A} \oplus M^{m_A}}.
+                        F(f)_{S_a}^{M_b} \circ \Id_S = F(f)_{S_a}^{M_b}
                     \]
                     Then \( f \not\in \Nc \).
                 }
                 \item {
-                    Assume that \( p_{M, M} \circ \phi \circ F(f) \not\in \set{0, \cdot(\pm (g - 1))}^{m_A m_B} \), i.e. there is some \( j, k \in \Nb \) such that
+                    Assume that there is some \( a, b \in \Nb \) such that
                     \[
-                        F(f)_{M_k}^{M_j} \not\in \set{0, \pm(g - 1)}
+                        F(f)_{M_a}^{M_b} \not\in \set{0, \pm(g - 1)}
                     \]
 
-                    By \autoref{lem:only_non_surjective_M_to_M} that means that \( F(f)_{M_k}^{M_j} \) is an isomorphism.
+                    By \autoref{lem:only_non_surjective_M_to_M} that means that \( F(f)_{M_a}^{M_b} \) is an isomorphism.
 
-                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \nu \) in the \( n_A + k \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \nu, 0, \dots, 0} \). Such that
+                    Then there is an \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \nu \) in the \( (n_A + a) \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \nu, 0, \dots, 0} \). Such that
                     \[
                         \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
                         =
@@ -1047,9 +1036,9 @@
                         \tuple{0, \dots, 0, \nu, 0, \dots, 0}
                         = \beta
                     \]
-                    where in the \( j + n_B \)-th coordinate of \( \beta \) there is a term
+                    where in the \( (n_B + b) \)-th coordinate of \( \beta \) there is a term
                     \[
-                        F(f)_{M_k}^{M_j}( \nu ) = p_{S^{n_B} \oplus M^{m_B}}^{M_j} \circ F(f) \circ i_{M_k}^{S^{n_A} \oplus M^{m_A}}( \nu )
+                        F(f)_{M_a}^{M_b} \circ \nu
                     \]
                     that is non-zero because it is a non-zero morphism composed with an isomorphism.
 
@@ -1060,15 +1049,11 @@
         \item {
             \( (\Rightarrow) \) Let \( \tilde{P} \in \Pc \).
 
-            % If \( \tilde{P} = 0 \), then its true.
-
-            % Assume \( \tilde{P} \neq 0 \), i.e. there is some \( k \in \Nb \) such that \( \tilde{P} = S^k \).
-
             Let \( A, B \in \Mc \), and let \( f \in \Mc(A, B) \intersect \Nc \). Then by point 1, \( (\Rightarrow) \) previously, one gets that \( f_* = 0 \).
             
             \( (\Leftarrow) \) Want to show this by a counter positive argument.
 
-            Assume \( \tilde{P} \not\in \Pc \). That implies there is some \( k \in \Nb \) and \( j \in \Nb_0 \) such that \( \tilde{P} = S^j \oplus M^k \).
+            Assume \( \tilde{P} \not\in \Pc \). That implies there is some \( j \in \Nb_0 \) and \( k \in \Nb \) such that \( \tilde{P} = S^j \oplus M^k \).
 
             Want to find some \( f \in \Tc(A, B) \intersect \Nc \) such that
             \[
@@ -1101,9 +1086,9 @@
             \]
             Also, by assumption,
             \[
-                F(f) = p_{M, M} \circ \phi ( F(f) ) = \cdot(g-1) \in \set{0, \cdot( \pm(g - 1) )} \subseteq \Nc.
+                F(f) = \cdot(g-1) \in \set{0, \cdot( \pm(g - 1) )} \subseteq \Nc.
             \]
-            However, look at \( \alpha = \tuple{ 0, \dots, 0, \Id_M, 0, \dots, 0 } \), that is only non-zero at coordinate \( j + 1 \).
+            However, look at the \( (j + k) \)-tuple \( \alpha = \tuple{ 0, \dots, 0, \Id_M, 0, \dots, 0 } \), that is only non-zero at coordinate \( j + 1 \).
             
             Then
             \[
@@ -1172,15 +1157,32 @@
 
                     \draw[math]
                         (m-1-1) edge node {(\Id_S)^j \oplus ( \nu )^k} (m-1-2)
-                        (m-1-2) edge node {(0)^j \oplus ( \mu )^k} (m-1-3)
-                        (m-1-3) edge node {(0)^j \oplus ( \nu )^k} (m-1-4);
+                        (m-1-2) edge node {
+                            \begin{psmallmatrix}
+                                0 & ( \mu )^k
+                            \end{psmallmatrix}
+                            } (m-1-3)
+                        (m-1-3) edge node {
+                            \begin{psmallmatrix}
+                                0 \\
+                                ( \nu )^k
+                            \end{psmallmatrix}
+                            } (m-1-4);
                 \end{tikzpicture}
             \end{center}
             Need to check if this triangle satisfies the criteria.
             
-            Firstly, \( S^j \oplus S^k \cong S^{j + k} \) is in \( \Pc \). Secondly need to check that the middle-left map \( (0)^j \oplus ( \mu )^k \) is in \( \Nc \).
+            Firstly, \( S^j \oplus S^k \cong S^{j + k} \) is in \( \Pc \). Secondly need to check that the middle map \( 
+                \begin{psmallmatrix}
+                    0 & ( \mu )^k
+                \end{psmallmatrix} 
+                \) is in \( \Nc \).
             \[
-                \phi((0)^j \oplus ( \mu )^k) =
+                \phi(
+                    \begin{psmallmatrix}
+                        0 & ( \mu )^k
+                    \end{psmallmatrix}
+                    ) =
                 \begin{psmallmatrix}
                     0 \\
                     \vdots \\
@@ -1207,8 +1209,17 @@
 
                     \draw[math]
                         (m-1-1) edge node {(\Id_S)^j \oplus ( \nu )^k} (m-1-2)
-                        (m-1-2) edge node {(0)^j \oplus ( \mu )^k} (m-1-3)
-                        (m-1-3) edge node {(0)^j \oplus ( \nu )^k} (m-1-4);
+                        (m-1-2) edge node {
+                            \begin{psmallmatrix}
+                                0 & ( \mu )^k
+                            \end{psmallmatrix}
+                            } (m-1-3)
+                        (m-1-3) edge node {
+                            \begin{psmallmatrix}
+                                0 \\
+                                ( \nu )^k
+                            \end{psmallmatrix}
+                            } (m-1-4);
                 \end{tikzpicture}
             \end{center}
         }
@@ -1348,11 +1359,13 @@
 
             Then first of all \( f \neq 0 \) and so \( A, B \neq 0 \).
 
-            Want to show that for all \( \tilde{P} \in \Pc \), one has that
+            Want to show that there exist some \( \tilde{P} \in \Pc \) such that
             \[
                 f_*: \Mc\tuple{\tilde{P}, A} \to \Mc\tuple{\tilde{P}, B}
             \]
             is non-zero.
+
+            Assume that \( \tilde{P} = M \).
 
             By \autoref{rem:F_properties} it is sufficient to show that \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
 
@@ -1361,7 +1374,31 @@
                 \item {
                     Assume that \( F(f)_{S_a}^{S_b} \neq 0 \) for some \( a, b \).
 
-                    That implies that \( L_{S, S, S} \neq 0 \) in the \( b, a \)-th coordinate. Therefore for \( \alpha = \tuple{ 0, \dots 0, \Id_S, 0, \dots, 0 } \) a \( (n_a + m_a) \)-tuple that is entirely zero, except for in coordinate \( a \) where it is \( \Id_S \).
+                    That implies that 
+                    \( 
+                        L_{M, S, S} \neq 0 
+                    \)
+                    in the 
+                    \( 
+                        b, a
+                    \)
+                    -th coordinate.
+                    Therefore for
+                    \[
+                        \alpha = \tuple{ 0, \dots 0, \mu, 0, \dots, 0 }
+                    \]
+                    a
+                    \(
+                        (n_a + m_a)
+                    \)
+                    -tuple that is entirely zero, except for in coordinate
+                    \(
+                        a
+                    \)
+                    where it is
+                    \(
+                        \mu
+                    \).
 
                     Taking
                     \[
@@ -1370,17 +1407,241 @@
                             L_{M, S, S} & L_{M, M, S} \\
                             L_{M, S, M} & L_{M, M, M}
                         \end{pmatrix}
-                        \tuple{ 0, \dots 0, \Id_S, 0, \dots, 0 }
+                        \tuple{ 0, \dots 0, \mu, 0, \dots, 0 }
                         = \beta
                     \]
-                    one gets that the \( b \)-th coordinate of \( \beta \) has the value \( F(f)_{S_a}^{S_b} \) which is by assumption non-zero, and so \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
+                    one gets that the \( b \)-th coordinate of \( \beta \) has the value \( F(f)_{S_a}^{S_b} \circ \mu \).
+                    
+                    By assumption, \( F(f)_{S_a}^{S_b} \neq 0 \), and therefore by \autoref{lem:S-to-S} \( F(f)_{S_a}^{S_b} = \pm \Id_S \). However, this implies that \( F(f)_{S_a}^{S_b} \circ \mu = \mu \neq 0 \).
+                    
+                    And so \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
                 }
                 \item {
                     Assume that there is some \( a, b \) such that \( F(f)_{M_a}^{S_b} \neq 0 \).
 
+                    Let
+                    \[
+                        \alpha = \tuple{0, \dots, 0, \Id_M, 0, \dots, 0}
+                    \]
+                    be a \( ( n_a + m_A ) \)-tuple that is all zeroes, except for \( \Id_M \) in the \( ( n_A + a ) \)-th coordinate.
 
+                    Then
+                    \[
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} (\alpha) =
+                        \begin{pmatrix}
+                            L_{M, S, S} & L_{M, M, S} \\
+                            L_{M, S, M} & L_{M, M, M}
+                        \end{pmatrix}
+                        \tuple{ 0, \dots 0, \Id_M, 0, \dots, 0 }
+                        = \beta
+                    \]
+                    where in the \( b \)-th coordinate it has the value \( F(f)_{M_a}^{S_b} \circ \Id_M = F(f)_{M_a}^{S_b} \), which is non-zero by assumption, and therefore it follows that \( f \not\in \Nc \).
+                }
+                \item {
+                    Assume that there is some \( a, b \) such that \( F(f)_{M_a}^{M_b} \neq 0 \).
+
+                    Let
+                    \[
+                        \alpha = \tuple{0, \dots, 0, \Id_M, 0, \dots, 0}
+                    \]
+                    be a \( ( n_a + m_A ) \)-tuple that is all zeroes, except for \( \Id_M \) in the \( ( n_A + a ) \)-th coordinate.
+
+                    Then
+                    \[
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} (\alpha) =
+                        \begin{pmatrix}
+                            L_{M, S, S} & L_{M, M, S} \\
+                            L_{M, S, M} & L_{M, M, M}
+                        \end{pmatrix}
+                        \tuple{ 0, \dots 0, \Id_M, 0, \dots, 0 }
+                        = \beta
+                    \]
+                    where in the \( ( n_B + b ) \)-th coordinate it has the value \( F(f)_{M_a}^{M_b} \circ \Id_M = F(f)_{M_a}^{M_b} \), which is non-zero by assumption, and therefore it follows that \( f \not\in \Nc \).
                 }
             \end{enumerate}
         }
+        \item {
+            \( ( \Rightarrow ) \) this is implied by point 1 \( (\Rightarrow) \).
+
+            \( ( \Leftarrow ) \) want to show this by a contrapositive argument.
+
+            Assume \( \tilde{P} \not\in \Pc \). Then there are some \( j \in \Nb \) and \( k \in \Nb_0 \) such that \( \tilde{P} = S^j \oplus M^k \).
+
+            Want to show that there there exists some \( A, B, \in \Mc \) and \( f \in \Mc\tuple{A, B} \intersect \Nc \) such that
+            \[
+                f_*: \Mc\tuple{\tilde{P}, A} \to \Mc\tuple{\tilde{P}, B}
+            \]
+            is non-zero.
+
+            Let \( A \cong S \) and \( B \cong M \) with \( F(f) = \nu \).
+
+            Then one has that \( n_a = m_b = 1 \) and \( m_a = n_b = 0 \).
+
+            This makes
+            \begin{align*}
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} &=
+                \begin{pmatrix}
+                    L_{S, S, S} & L_{S, M, S} \\
+                    L_{S, S, M } & L_{S, M, M}
+                \end{pmatrix}
+                \oplus
+                \begin{pmatrix}
+                    L_{M, S, S} & L_{M, M, S} \\
+                    L_{M, S, M} & L_{M, M, M}
+                \end{pmatrix} \\
+                &= L_{S, S, M} \oplus L_{M, S, M} \\
+                &= \tuple{\nu}_*^j \oplus \tuple{\nu}_*^k
+            \end{align*}
+
+            Let \( \alpha = \tuple{\Id_S, 0, \dots, 0} \) be a \( (j + k) \)-tuple where the only non-zero coordinate is the first one, which is \( \Id_S \).
+
+            First of all \( \alpha \) is well-defined, since by assumption \( j > 0 \), and so the first element will always exist.
+
+            Considering
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha} =
+                \tuple{\nu}_*^j \oplus \tuple{\nu}_*^k \tuple{\alpha} =
+                \beta
+            \]
+
+            Where the first coordinate of \( \beta \) is
+            \[
+                \nu \circ \Id_S = \nu
+            \]
+            which is non-zero, and therefore \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \neq 0 \).
+        }
+        \item {
+            From \autoref{thm:f_3c_3_decomposition} one has that for any \( X \in \Mc \), there exist \( j, k \in \Nb \) such that \( X \cong S^j \oplus M^k \).
+
+            First, note that the following triangle is distinguished
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        M & M & 0 & \Sigma(M) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\Id_M} (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+
+            And taking the direct summand of a distinguished triangle is distinguished, therefore the following triangle is also distinguished
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        M^k & M^k & 0 & \Sigma(M)^k \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\tuple{\Id_M}^k} (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+
+            By \autoref{lem:s_m_s_distinguished} one has the following distinguished triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        S & M & S & \Sigma(S) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\nu} (m-1-2)
+                        (m-1-2) edge node {\mu} (m-1-3)
+                        (m-1-3) edge node {\nu} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+
+            Shifting the above triangle yields the following distinguished triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \Sigma^{-1}(S) & S & M & S \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {-\mu} (m-1-2)
+                        (m-1-2) edge node {\nu} (m-1-3)
+                        (m-1-3) edge node {\mu} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+
+            Taking the direct summand of this distinguished triangle with itself \( j \) times, as well as using \autoref{lem:sigma_switch_s_m} by identifying \( \Sigma^{-1}\tuple{S} \cong M \) and \( S \cong \Sigma\tuple{M} \), yields the following distinguished triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        M^j & S^j & M^j & \Sigma(M)^j \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\tuple{-\mu}^j} (m-1-2)
+                        (m-1-2) edge node {\tuple{\nu}^j} (m-1-3)
+                        (m-1-3) edge node {\tuple{\mu}^j} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+
+            % TODO: Refrence the tikzpictures
+            And finally, taking the direct summand of the two biggest distinguished triangles yields the following distinguished triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        M^{j + k} & S^j \oplus M^k & M^j & \Sigma(M)^{j + k} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\tuple{-\mu}^j \oplus \tuple{\Id_M}^k} (m-1-2)
+                        (m-1-2) edge node {
+                            \begin{psmallmatrix}
+                                \tuple{\nu}^j & 0
+                            \end{psmallmatrix}
+                            } (m-1-3)
+                        (m-1-3) edge node {
+                            \begin{psmallmatrix}
+                                \tuple{\mu}^j \\
+                                0
+                            \end{psmallmatrix}
+                            } (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            Need to check if this triangle satisfies the conditions.
+
+            Firstly, \( M^{j + k} \) is in \( \Pc \).
+
+            Secondly, need to check if \( 
+                \begin{psmallmatrix}
+                    \tuple{\nu}^j & 0
+                \end{psmallmatrix}
+            \) is in \( \Nc \).
+
+            Look at
+            \[
+                \phi\tuple{
+                    \begin{psmallmatrix}
+                        \tuple{\nu}^j & 0
+                    \end{psmallmatrix}
+                }
+                =
+                \begin{psmallmatrix}
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    \nu \\
+                    \vdots \\
+                    \nu \\
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    0 \\
+                    \vdots \\
+                    0
+                \end{psmallmatrix}
+            \]
+            which satisfies the criteria that any map in \( \Nc \) need to follow.
+        }
     \end{enumerate}
+    
+    Therefore \( \tuple{\Pc, \Nc} \) is a projective class.
 \end{proof}
