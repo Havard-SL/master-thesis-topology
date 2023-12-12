@@ -1,7 +1,5 @@
-\section{Properties of \texorpdfstring{\( \Stmod{\Fb_3 C_3} \)}{Stmod(F\_3C\_3)}} % TODO: Not boldface, the math-operator and \Fb doesnt become bold.
-% TODO another class possible if P = M^n?
-
-% Isomorphic to path-algebra with relations
+% TODO: Not boldface, the math-operator and \Fb doesnt become bold.
+\section{Properties of \texorpdfstring{\( \Stmod{\Fb_3 C_3} \)}{Stmod(F\_3C\_3)}} 
 
 \begin{notation}
     Let \( \Fb_3 \) be the finite field with \( 3 \) elements.
@@ -75,7 +73,7 @@
     TODO
 \end{proof}
 
-\begin{lemma} \label{thm:f_3c_3_nu} % NEEDED TODO
+\begin{lemma} \label{thm:f_3c_3_nu}
     Let 
     \begin{align*}
         \nu: S &\to M \\
@@ -170,9 +168,40 @@
         \Mc\tuple{S, S} = \set{0, \pm \Id_S}
     \]
 \end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
 
 \begin{lemma} \label{thm:f_3c_3_decomposition}
     Any object in \( \Mc \) is isomorphic to a direct sum \( S^n \oplus M^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object.
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:sigma_switch_s_m}
+    In \( \Mc \) one has that \( \Sigma(S) \cong M \) and \( \Sigma(M) \cong S \).
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:s_m_s_distinguished}
+    Let \( \mu \) be as in \autoref{thm:f_3c_3_mu}, and let \( \nu \) be as in \autoref{thm:f_3c_3_nu}.
+
+    Then, setting the rightmost \( M \cong \Sigma(S) \) by \autoref{lem:sigma_switch_s_m}, the following triangle is distinguished in \( \Mc \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                S & M & S & M \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\nu} (m-1-2)
+                (m-1-2) edge node {\mu} (m-1-3)
+                (m-1-3) edge node {\nu} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
 \end{lemma}
 \begin{proof}
     TODO
@@ -186,7 +215,8 @@
     Furthermore, for any \( n \in \Nb \), and any \( i \in \set{1, 2, \dots, n} \), denote the projection from \( A^n \) to the \( i \)-th summand of \( A^n \) by \( p_{A^n}^{A_i} \). Similarly, denote the inclusion of the \( i \)-th summand of \( A^n \) into \( A^n \) by \( i_{A_i}^{A^n} \).
 \end{notation}
 
-\begin{lemma} % Is this even true?? TODO
+% TODO: Look into if this is true. Category thery definitions.
+\begin{lemma} \label{lem:hom_natural_iso}
     Let \( \Ac \) be an additive category.
     
     Then 
@@ -231,9 +261,93 @@
     https://ncatlab.org/nlab/show/hom-functor+preserves+limits
 \end{proof}
 
-% Remark abuse of post-composition notation? TODO
+% TODO: Remark abuse of post-composition notation?
 
-% Problems with same n on lhs and rhs? TODO
+\begin{lemma} \label{lem:hom_split_over_direct_sum_n_naturally}
+    Let \( \Ac \) be an additive category, and let \( n \in \Nb \).
+    
+    Then 
+    \begin{enumerate}
+        \item {
+            The functor
+            \[
+                \Ac\tuple{\bigoplus_{i = 1}^n -_i, -_{n + 1}}: \tuple{\Ac^{op}}^n \times \Ac \to \Ab
+            \]
+            is naturally isomorphic to the functor
+            \[
+                \bigoplus_{i = 1}^n \Ac\tuple{-_i, -_{n + 1}}
+            \]
+            with the isomorphism
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Ac\tuple{\bigoplus_{i = 1}^n -_i, -_{n + 1}} &
+                        \bigoplus_{i = 1}^n \Ac\tuple{-_i, -_{n + 1}} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (i_{-_1}^{\bigoplus_{i = 1}^n -_i})^* \\
+                                (i_{-_2}^{\bigoplus_{i = 1}^n -_i})^* \\
+                                \vdots \\
+                                (i_{-_n}^{\bigoplus_{i = 1}^n -_i})^*
+                            \end{psmallmatrix}
+                            } (m-1-2)
+                        (m-1-2) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (p_{\bigoplus_{i = 1}^n -_i}^{-_1})^* &
+                                (p_{\bigoplus_{i = 1}^n -_i}^{-_2})^* &
+                                \dots &
+                                (p_{\bigoplus_{i = 1}^n -_i}^{-_n})^*
+                            \end{psmallmatrix}
+                            } (m-1-1);
+                \end{tikzpicture}
+            \end{center}
+        }
+        \item {
+            The functor
+            \[
+                \Ac\tuple{-_1, \bigoplus_{i = 2}^{n + 1} -_i}: \Ac^{op} \times \tuple{\Ac}^n \to \Ab
+            \]
+            is naturally isomorphic to the functor
+            \[
+                \bigoplus_{i = 2}^{n + 1}\Ac\tuple{-_1, -_i}
+            \]
+            with the isomorphism
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Ac\tuple{-_1, \bigoplus_{i = 2}^{n + 1} -_i} &
+                        \bigoplus_{i = 2}^{n + 1}\Ac\tuple{-_1, -_i} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (p_{\bigoplus_{i = 2}^{n + 1} -_i}^{-_2})_* \\
+                                (p_{\bigoplus_{i = 2}^{n + 1} -_i}^{-_3})_* \\
+                                \vdots \\
+                                (p_{\bigoplus_{i = 2}^{n + 1} -_i}^{-_{n + 1}})_*
+                            \end{psmallmatrix}
+                            } (m-1-2)
+                        (m-1-2) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (i_{-_2}^{\bigoplus_{i = 2}^{n + 1} -_i})_* &
+                                (i_{-_3}^{\bigoplus_{i = 2}^{n + 1} -_i})_* &
+                                \dots &
+                                (i_{-_{n + 1}}^{\bigoplus_{i = 2}^{n + 1} -_i})_*
+                            \end{psmallmatrix}
+                            } (m-1-1);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO: Itarately apply \autoref{lem:hom_natural_iso}.
+\end{proof}
+
 \begin{lemma} \label{thm:hom_direct_sum_map_nice}
     Let \( \Ac \) be an additive category, and let \( A, B, C \in \Ac \). Let \( f: B \to C \). Let \( n \in \Nb \).
 
@@ -281,18 +395,10 @@
     TODO: Notes, example projective class.
 \end{proof}
 
-
-% Show that there only is one non-trivial map between the indecomposable non-projective modules (Might not be true)
-
-% Show that Sigma(S) = M, Sigma(M) = S.
-
-% Show that S -> M -> S is exact.
-% Show that S -> M -> S -> M is dist.
-
-\begin{definition} \label{thm:F_functor} % Assignment OK? TODO
-    Define \( F: \Mc \to \Mc \) be an assignment that takes any object \( A \in \Mc \) and maps it to its decomposition by \autoref{thm:f_3c_3_decomposition}, and morphisms are induced by the isomorphisms from the decomposition. 
+\begin{definition} \label{thm:F_functor}
+    Define \( F: \Mc \to \Mc \) to be an assignment that takes any object \( A \in \Mc \) and maps it to its decomposition by \autoref{thm:f_3c_3_decomposition}, and morphisms are induced by the isomorphisms from the decomposition. 
     
-    I.e. there are some \( n, m \in \Nb_0 \) such that \( A \mapsto F(A) = S^n \oplus M^m \). And furthermore for \( f \in \Mc\tuple{A, B} \), one has \( f \mapsto F(f) = \phi_A^{-1} \circ f \circ \phi_B \), where \( \phi_A \) and \( \phi_B \) are the chosen isomorphisms between \( A \) and it's decomposition, and \( B \) and it's decomposition, respectively.
+    I.e. there are some \( n, m \in \Nb_0 \) such that \( A \mapsto F(A) = S^n \oplus M^m \). And furthermore for \( f \in \Mc\tuple{A, B} \), one has \( f \mapsto F(f) := \psi_A^{-1} \circ f \circ \psi_B \), where \( \psi_A \) and \( \psi_B \) are the chosen isomorphisms between \( A \) and it's decomposition, and \( B \) and it's decomposition, respectively.
 \end{definition}
 
 \begin{lemma}
@@ -302,17 +408,19 @@
     TODO
 \end{proof}
 
-\begin{lemma} \label{lem:projection_unique} % Is even true?? TODO
+\begin{lemma} \label{lem:projection_unique}
     Let \( \Ac \) be an additive category. Let \( A, B, C \in \Ac \).
 
-    Then \( p_{A \oplus B}^A \circ p_{A \oplus B \oplus C}^{A \oplus B} = p_{A \oplus B \oplus C}^A \), and \( i_{A \oplus B}^{A \oplus B \oplus C} \circ i_A^{A \oplus B} = i_A^{A \oplus B \oplus C} \).
+    Then \( p_{A \oplus B}^A \circ p_{A \oplus B \oplus C}^{A \oplus B} \) is ``equal'' to \( p_{A \oplus B \oplus C}^A \) up to pre-composing with an isomorphism, which is omitted from the notation.
+    
+    Likewise \( i_{A \oplus B}^{A \oplus B \oplus C} \circ i_A^{A \oplus B} \) is ``equal'' to \( i_A^{A \oplus B \oplus C} \) up to pre-composing with an isomorphism, which is omitted from the notation.
 \end{lemma}
 \begin{proof}
     TODO
 \end{proof}
 
 \begin{remark} \label{rem:big_iso}
-    By using \autoref{thm:hom_direct_sum_map_nice} one gets that the following diagram
+    By using \autoref{lem:hom_split_over_direct_sum_n_naturally} one gets that the following diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -361,6 +469,7 @@
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M^{m_B}} }_*
         \end{psmallmatrix}
     \]
+    and
     \begin{multline*}
         g_3 =
         \begin{psmallmatrix}
@@ -389,13 +498,13 @@
             (p_{M^{m_B}}^{M_2})_* \circ (i_{M_1}^{M^{m_A}})^* \\
             \vdots \\
             (p_{M^{m_B}}^{M_{m_B}})_* \circ (i_{M_{m_A}}^{M^{m_A}})^*
-        \end{psmallmatrix}
+        \end{psmallmatrix}.
     \end{multline*}
 
-    Where from \autoref{lem:projection_unique} one can calculate
+    And from \autoref{lem:projection_unique} one can calculate
     \[
         \phi = g_3 \circ g_2 \circ g_1 =
-        \begin{psmallmatrix} % Wrong indexes, need some n_B and m_B's TODO
+        \begin{psmallmatrix}
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \vdots \\
@@ -411,7 +520,7 @@
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
             \vdots \\
-            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_* \circ \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_* \circ \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }^*
         \end{psmallmatrix}.
     \]
 
@@ -452,22 +561,39 @@
         \end{psmallmatrix}.
     \end{multline*}
 
-    This gives
+    This gives (a wide, one index tall matrix)
     \begin{multline*}
         \phi^{-1} =  g_1^{-1} \circ g_2^{-1} \circ g_3^{-1} = \\
         \biggl(
-            \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{S_1}^{S^{n_B} \oplus M^{m_B}} }_*, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{S_2}^{S^{n_B} \oplus M^{m_B}} }_*, \dots, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_{n_A}} }^* \circ \tuple{ i_{S_{n_B}}^{S^{n_B} \oplus M^{m_B}} }_*, \\
-            \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{M_1}^{S^{n_B} \oplus M^{m_B}} }_*, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{M_2}^{S^{n_B} \oplus M^{m_B}} }_*, \dots, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_{n_A}} }^* \circ \tuple{ i_{M_{m_B}}^{S^{n_B} \oplus M^{m_B}} }_*, \\
-            \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{S_1}^{S^{n_B} \oplus M^{m_B}} }_*, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{S_2}^{S^{n_B} \oplus M^{m_B}} }_*, \dots, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_{m_A}} }^* \circ \tuple{ i_{S_{n_B}}^{S^{n_B} \oplus M^{m_B}} }_*, \\
-            \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{M_1}^{S^{n_B} \oplus M^{m_B}} }_*, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{M_2}^{S^{n_B} \oplus M^{m_B}} }_*, \dots, \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_{m_A}} }^* \circ \tuple{ i_{M_{m_B}}^{S^{n_B} \oplus M^{m_B}} }_*
+            \begin{smallmatrix}
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{S_1}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{S_2}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \dots &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_{n_A}} }^* \circ \tuple{ i_{S_{n_B}}^{S^{n_B} \oplus M^{m_B}} }_*
+            \end{smallmatrix}
+            \\
+            \begin{smallmatrix}
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{M_1}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_1} }^* \circ \tuple{ i_{M_2}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \dots &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{S_{n_A}} }^* \circ \tuple{ i_{M_{m_B}}^{S^{n_B} \oplus M^{m_B}} }_*
+            \end{smallmatrix}
+            \\
+            \begin{smallmatrix}
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{S_1}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{S_2}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \dots &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_{m_A}} }^* \circ \tuple{ i_{S_{n_B}}^{S^{n_B} \oplus M^{m_B}} }_*
+            \end{smallmatrix}
+            \\
+            \begin{smallmatrix}
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{M_1}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_1} }^* \circ \tuple{ i_{M_2}^{S^{n_B} \oplus M^{m_B}} }_* &
+                \dots &
+                \tuple{ p_{S^{n_A} \oplus M^{m_A}}^{M_{m_A}} }^* \circ \tuple{ i_{M_{m_B}}^{S^{n_B} \oplus M^{m_B}} }_*
+            \end{smallmatrix}
         \biggr)
     \end{multline*}
-
-    Furthermore let \( p_{S, S}, p_{S, M}, p_{M, S} \) and \( p_{M, M} \) be the projection maps from
-    \[
-        \Mc\tuple{S, S}^{n_A n_B} \oplus \Mc\tuple{S, M}^{n_A m_B} \oplus \Mc\tuple{M, S}^{m_A n_B} \oplus \Mc\tuple{M, M}^{m_A m_B}
-    \]
-    to \( \Mc\tuple{S, S}^{n_A n_B}, \Mc\tuple{S, M}^{n_A m_B}, \Mc\tuple{M, S}^{m_A n_B}, \) and \( \Mc\tuple{M, M}^{m_A m_B}  \) respectively.
 \end{remark}
 
 \begin{remark} \label{rem:F_properties}
@@ -504,8 +630,8 @@
         \end{tikzpicture}
     \end{center}
     Expanding downwards (and flipping it over to make it fit), using \autoref{rem:big_iso}, one gets the following commutative diagram
-    \begin{equation}
-        \begin{tikzpicture}[every node/.style={scale=0.85}] \label{tikz:f_star}
+    \begin{center}
+        \begin{tikzpicture}[every node/.style={scale=0.93}] \label{tikz:f_star}
             \diagram{m}{1cm}{1cm} {
                 \Mc\tuple{S^j \oplus M^k, S^{n_A} \oplus M^{m_A} } & \Mc\tuple{S, S}^{j n_A} \oplus \Mc\tuple{S, M}^{j m_A} \oplus \Mc\tuple{M, S}^{k n_A} \oplus \Mc\tuple{M, M}^{k m_A} \\
                 \Mc\tuple{S^j \oplus M^k, S^{n_B} \oplus M^{m_B} } & \Mc\tuple{S, S}^{j n_B} \oplus \Mc\tuple{S, M}^{j m_B} \oplus \Mc\tuple{M, S}^{k n_B} \oplus \Mc\tuple{M, M}^{k m_B} \\
@@ -518,9 +644,7 @@
                     
                 (m-2-1) edge node {\phi_B} node[marking, below] {\sim} (m-2-2);
         \end{tikzpicture}
-    \end{equation}
-    But checking if \( F(f)_* \) is zero by looking at \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is extremely overkill, since many of the elements in the big matrix that would result from multiplying and checking these details would end up zero. This is because \( F(f)_* \) is simply post-composing, and there is no pre-composing.
-    
+    \end{center}
     If one were to calculate \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \), one would get something like This
     \[
         \phi_B \circ F(f)_* \circ \phi_A^{-1} =
@@ -531,7 +655,24 @@
             M & N & O & P
         \end{pmatrix}
     \]
-    Where these ``blocks'': \( A, B, C, D \), etc. would correspond to what \( F(f)_* \) does on the part that goes from one main summand in the domain to another main summand in the codomain. Immediately one can see that many blocks are all zero, since there is no part of \( F(f)_* \) that could possibly go from e.g. \( \Mc(S, S) \) to \( \Mc(M, S) \), since it is simply post composing. This makes \( C, D, G, H, I, J, M, N \) all zero. But in addition to making half of the blocks completely zero, most of the non-zero blocks themselves are zero. Take for example block \( A \), which would look something like this
+    Where these ``blocks'': \( A, B, C, D \), etc. corresponds to what \( F(f)_* \) does on the part that goes from one main summand in the domain to another main summand in the codomain.
+    
+    But checking if \( F(f)_* \) is zero by looking at the every ``block'' of \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is overkill, since many of the elements in the big matrix are actually zero. This is because \( F(f)_* \) is simply post-composing while there is no pre-composing going on.
+    
+    One can see that many blocks are all zero, since there is no part of \( F(f)_* \) that could possibly go from e.g. \( \Mc(S, S) \) to \( \Mc(M, S) \), since it is only post composing. This makes \( C, D, G \) and \( H \) as well as \( I, J, M \) and \( N \), all zero. But in addition to making half of the blocks completely zero, most of the non-zero blocks themselves are zero, which will be explored in the next paragraph.
+    
+    Let \( \tilde{A}, \tilde{B} \in \set{ S, M } \) and let \( a, b \in \Nb \) (such that it makes sense below)
+
+    Then define
+    \[
+        F(f)_{\tilde{A}_a}^{\tilde{B}_b} := p_{S^{n_B} \oplus M^{m_B}}^{\tilde{B}_b} \circ F(f) \circ i_{\tilde{A}_a}^{S^{n_A} \oplus M^{m_A}}
+    \]
+    and
+    \[
+        \iota_{\tilde{A}_a}^{\tilde{B}_b} := p_{S^j \oplus M^k}^{\tilde{B}_b} \circ i_{\tilde{A}_a}^{S^j \oplus M^k}.
+    \]
+
+    Then take for example block \( A \), it would look something like this
     \[
         A =
         \begin{psmallmatrix}
@@ -553,15 +694,7 @@
             \tuple{ \iota_{S_j}^{S_j} }^* \circ \tuple{ F(f)_{S_{n_A}}^{S_{n_B}} }_*
         \end{psmallmatrix}
     \]
-    Where for \( A, B \in \set{ S, M } \)
-    \[
-        F(f)_{A_a}^{B_b} := p_{S^{n_B} \oplus M^{m_B}}^{B_b} \circ F(f) \circ i_{A_a}^{S^{n_A} \oplus M^{m_A}}
-    \]
-    and
-    \[
-        \iota_{A_a}^{B_b} := p_{S^j \oplus M^k}^{B_b} \circ i_{A_a}^{S^j \oplus M^k}.
-    \]
-    However, one has that \( \iota_{A_a}^{B_b} \) is zero unless \( a = b \) and \( A = B \), and the identity map otherwise. This makes most of the entries in \( A \), except for certain ``blocks'' on the diagonal, equal to \( 0 \).
+    However, one has that \( \iota_{\tilde{A}_a}^{\tilde{B}_b} \) is zero unless \( a = b \) and \( A = B \), and the identity map otherwise. This makes most of the entries in \( A \), except for certain ``blocks'' on the diagonal, equal to \( 0 \).
 
     In fact, one can write
     \begin{multline*}
@@ -648,65 +781,71 @@
             L_{M, S, M} & L_{M, M, M}
         \end{pmatrix}.
     \]
-    
-
-    % Therefore it would be better to check if \( F(f)_* \) is zero by checking wether \( \phi_B \circ F(f)_* \) is equal to zero.
-
-    % One has that
-    % \[
-    %     \phi_B \circ F(f)_* =
-    %     \begin{psmallmatrix} % Wrong indexes, need some n_B and m_B's TODO
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \vdots \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{S_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \vdots \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{S_{j}}^{S^{j} \oplus M^{k}} }^* \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \vdots \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} \circ F(f) }_* \circ \tuple{ i_{M_1}^{S^{j} \oplus M^{k}} }^* \\
-    %         \vdots \\
-    %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} \circ F(f) }_* \circ \tuple{ i_{M_{k}}^{S^{j} \oplus M^{k}} }^* \\
-    %     \end{psmallmatrix}
-    % \]
 \end{remark}
 
-\begin{lemma} \label{lem:sigma_switch_s_m}
-    In \( \Stmod{\Fb_3C_3} \) one has that \( \Sigma(S) \cong M \) and \( \Sigma(M) \cong S \).
-\end{lemma}
-\begin{proof}
-    TODO
-\end{proof}
+\begin{remark} \label{rem:phi_and_L_connection}
+    One may wonder if there is a more direct connection between the \( \phi \) in \autoref{rem:big_iso}, and the map
+    \[
+        \phi_B \circ F(f)_* \circ \phi_A^{-1} =
+        \begin{pmatrix}
+            L_{S, S, S} & L_{S, M, S} \\
+            L_{S, S, M } & L_{S, M, M}
+        \end{pmatrix}
+        \oplus
+        \begin{pmatrix}
+            L_{M, S, S} & L_{M, M, S} \\
+            L_{M, S, M} & L_{M, M, M}
+        \end{pmatrix}.
+    \]
+    from \autoref{rem:F_properties}, and in fact, there is one major similarity which will be used in the proceeding examples.
 
-\begin{lemma} \label{lem:s_m_s_distinguished}
-    Let \( \mu \) be as in \autoref{thm:f_3c_3_mu}, and let \( \nu \) be as in \autoref{thm:f_3c_3_nu}.
+    One can write
+    \[
+        \phi \tuple{F(f)}
+        =
+        \begin{psmallmatrix}
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} }_* \circ \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} }_* \circ \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_* \circ \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_2} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} }_* \circ \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_2} }_* \circ \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }^* \\
+            \vdots \\
+            \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_* \circ \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }^*
+        \end{psmallmatrix}
+        \tuple{F(f)}
+        =
+        \begin{psmallmatrix}
+            F(f)_{S_1}^{S_1} \\
+            F(f)_{S_1}^{S_2} \\
+            \vdots \\
+            F(f)_{S_{n_B}}^{S_{n_A}} \\
+            F(f)_{S_1}^{M_1} \\
+            F(f)_{S_1}^{M_2} \\
+            \vdots \\
+            F(f)_{S_{n_B}}^{M_{m_A}} \\
+            F(f)_{M_1}^{S_1} \\
+            F(f)_{M_1}^{S_2} \\
+            \vdots \\
+            F(f)_{M_{m_B}}^{S_{n_A}} \\
+            F(f)_{M_1}^{M_1} \\
+            F(f)_{M_1}^{M_2} \\
+            \vdots \\
+            F(f)_{M_{m_B}}^{M_{m_A}}
+        \end{psmallmatrix}
+    \]
+    In other words, one can think of taking \( \phi(F(f)) \) as ``stretching out'' the elements of \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \).
+\end{remark}
 
-    Then, setting the rightmost \( M \cong \Sigma(S) \) by \autoref{lem:sigma_switch_s_m}, the following triangle is distinguished in \( \Stmod{\Fb_3C_3} \)
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                S & M & S & M \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {\nu} (m-1-2)
-                (m-1-2) edge node {\mu} (m-1-3)
-                (m-1-3) edge node {\nu} (m-1-4);
-        \end{tikzpicture}
-    \end{center}
-\end{lemma}
-\begin{proof}
-    TODO
-\end{proof}
-
-% Independent of choice of F, possibly, due to krull-remak-schmidt uniqe decomposition? TODO
-% TODO: Need to say that phi(F(f)) = big matrix with F(f)_B^C etc.. !
-\begin{definition} \label{def:unholy} % Unholy definition.
+\begin{definition} \label{def:unholy}
     Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi \) be as in \autoref{rem:big_iso}, and use the notation from \autoref{rem:F_properties}.
 
     Define the set \( P_S \) as follows:
@@ -723,6 +862,7 @@
     \end{enumerate}
 \end{definition}
 
+% TODO: Mention the connection to phi as mentioned in the remark above? Might be overkill.
 \begin{remark}
     Definitely need to remark on the previous definition.... 
     
@@ -731,10 +871,9 @@
     TODO: Fix
 \end{remark}
 
-% Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
-% Seems so obvious that there should be a simpler way to do things. TODO
-% Is i_A^A+B+C = i_A+B^A+B+C \circ i_A^A+B? TODO
-\begin{example} % Major rewrite of first part! TODO
+% TODO: Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
+% TODO: Seems so obvious that there should be a simpler way to do things.
+\begin{example}
     Let \( \Pc = \set{ S^n \mid n \in \Nb } \). Let \( \Nc = P_S \).
 
     Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Mc \).
@@ -854,7 +993,7 @@
                     \tuple{ F(f)_{M_{m_A}}^{M_{m_B}} }_* \\
                 \end{pmatrix}.
             \]
-            But from the definition of \( P_S \), one has that
+            But from the definition of \( P_S \), using \autoref{rem:phi_and_L_connection} one has that
             \[
                 \phi \circ F(f) =
                 \begin{pmatrix}
@@ -871,7 +1010,8 @@
                     \vdots \\
                     F(f)_{M_{m_A}}^{M_{m_A}}
                 \end{pmatrix}
-                = \begin{pmatrix}
+                =
+                \begin{pmatrix}
                     0 \\
                     \vdots \\
                     0 \\
@@ -955,7 +1095,7 @@
                 = 0.
             \end{multline*}
 
-            So by commutativity of \autoref{tikz:f_star} as well as the vertical maps all being isomorphisms, it follows that \( f_* = 0 \).
+            So by \autoref{rem:F_properties} as well as the vertical maps all being isomorphisms, it follows that \( f_* = 0 \).
 
             \( ( \Leftarrow ) \) Show this implication by a counter-positive argument.
 
@@ -965,7 +1105,7 @@
 
             Assume therefore that \( \tilde{P} = S \).
 
-            Therefore, using \( j = 1 \) the diagram and maps from \autoref{tikz:f_star}, want to show that \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is pointwise non-zero.
+            Therefore, using \( j = 1 \) and the notation from \autoref{rem:F_properties}, want to show that \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is pointwise non-zero.
 
             In order to prove this, split the cases up by which point in \autoref{def:unholy} that we assume \( f \) not to fulfill:
             \begin{enumerate}
@@ -1172,11 +1312,15 @@
             \end{center}
             Need to check if this triangle satisfies the criteria.
             
-            Firstly, \( S^j \oplus S^k \cong S^{j + k} \) is in \( \Pc \). Secondly need to check that the middle map \( 
+            Firstly, \( S^j \oplus S^k \cong S^{j + k} \) is in \( \Pc \). Secondly need to check that the middle map 
+            \( 
                 \begin{psmallmatrix}
                     0 & ( \mu )^k
                 \end{psmallmatrix} 
-                \) is in \( \Nc \).
+            \)
+            is in \( \Nc \).
+
+            Using \autoref{rem:phi_and_L_connection}, it follows that
             \[
                 \phi(
                     \begin{psmallmatrix}
@@ -1616,7 +1760,7 @@
                 \end{psmallmatrix}
             \) is in \( \Nc \).
 
-            Look at
+            Uisng \autoref{rem:phi_and_L_connection}, it follows that
             \[
                 \phi\tuple{
                     \begin{psmallmatrix}
