@@ -1,0 +1,187 @@
+\begin{notation}
+    Let \( \Ac \) be an additive category, and let \( A, B \in \Ac \).
+
+    Then denote the projection from \( A \oplus B \) to \( A \) by \( p_{A \oplus B}^A \), and denote the inclusion of \( A \) into \( A \oplus B \) by \( i_A^{A \oplus B} \).
+
+    Furthermore, for any \( n \in \Nb \), and any \( i \in \set{1, 2, \dots, n} \), denote the projection from \( A^n \) to the \( i \)-th summand of \( A^n \) by \( p_{A^n}^{A_i} \). Similarly, denote the inclusion of the \( i \)-th summand of \( A^n \) into \( A^n \) by \( i_{A_i}^{A^n} \).
+\end{notation}
+
+% TODO: Look into if this is true. Category thery definitions.
+\begin{lemma} \label{lem:hom_natural_iso}
+    Let \( \Ac \) be an additive category.
+    
+    Then 
+    \begin{enumerate}
+        \item {
+            The functor \( \Ac(-_1 \oplus -_2, -_3): \Ac^{op} \times \Ac^{op} \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Ac(-_1, -_3) \oplus \Ac(-_2, -_3) \). With the isomorphism
+
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Ac(-_1 \oplus -_2, -_3) & \Ac(-_1, -_3) \oplus \Ac(-_2, -_3) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (i_{-_1}^{-_1 \oplus -_2})^* \\ (i_{-_2}^{-_1 \oplus -_2})^* \end{psmallmatrix}} (m-1-2)
+                        (m-1-2) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (p_{-_1 \oplus -_2}^{-_1})^* & (p_{-_1 \oplus -_2}^{-_2})^* \end{psmallmatrix}} (m-1-1);
+                \end{tikzpicture}
+            \end{center}
+        }
+        \item {
+            The functor \( \Ac(-_1, -_2 \oplus -_3): \Ac^{op} \times \Ac \times \Ac \to \Ab \) is naturally isomorphic to the functor \( \Ac(-_1, -_2) \oplus \Ac(-_1, -_3) \). With the isomorphism
+
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Ac(-_1, -_2 \oplus -_3) & \Ac(-_1, -_2) \oplus \Ac(-_1, -_3) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (p_{-_2 \oplus -_3}^{-_2})_* \\ (p_{-_2 \oplus -_3}^{-_3})_* \end{psmallmatrix}} (m-1-2)
+                        (m-1-2) edge[curve={height=-25pt}] node {\begin{psmallmatrix} (i_{-_2}^{-_2 \oplus -_3})_* & (i_{-_3}^{-_2 \oplus -_3})_* \end{psmallmatrix}} (m-1-1);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO: 
+    
+    https://ncatlab.org/nlab/show/additive+functor
+
+    https://ncatlab.org/nlab/show/hom-functor+preserves+limits
+\end{proof}
+
+% TODO: Remark abuse of post-composition notation?
+
+\begin{lemma} \label{lem:hom_split_over_direct_sum_n_naturally}
+    Let \( \Ac \) be an additive category, and let \( n \in \Nb \).
+    
+    Then 
+    \begin{enumerate}
+        \item {
+            The functor
+            \[
+                \Ac\tuple{\bigoplus_{i = 1}^n -_i, -_{n + 1}}: \tuple{\Ac^{op}}^n \times \Ac \to \Ab
+            \]
+            is naturally isomorphic to the functor
+            \[
+                \bigoplus_{i = 1}^n \Ac\tuple{-_i, -_{n + 1}}
+            \]
+            with the isomorphism
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Ac\tuple{\bigoplus_{i = 1}^n -_i, -_{n + 1}} &
+                        \bigoplus_{i = 1}^n \Ac\tuple{-_i, -_{n + 1}} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (i_{-_1}^{\bigoplus_{i = 1}^n -_i})^* \\
+                                (i_{-_2}^{\bigoplus_{i = 1}^n -_i})^* \\
+                                \vdots \\
+                                (i_{-_n}^{\bigoplus_{i = 1}^n -_i})^*
+                            \end{psmallmatrix}
+                            } (m-1-2)
+                        (m-1-2) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (p_{\bigoplus_{i = 1}^n -_i}^{-_1})^* &
+                                (p_{\bigoplus_{i = 1}^n -_i}^{-_2})^* &
+                                \dots &
+                                (p_{\bigoplus_{i = 1}^n -_i}^{-_n})^*
+                            \end{psmallmatrix}
+                            } (m-1-1);
+                \end{tikzpicture}
+            \end{center}
+        }
+        \item {
+            The functor
+            \[
+                \Ac\tuple{-_1, \bigoplus_{i = 2}^{n + 1} -_i}: \Ac^{op} \times \tuple{\Ac}^n \to \Ab
+            \]
+            is naturally isomorphic to the functor
+            \[
+                \bigoplus_{i = 2}^{n + 1}\Ac\tuple{-_1, -_i}
+            \]
+            with the isomorphism
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        \Ac\tuple{-_1, \bigoplus_{i = 2}^{n + 1} -_i} &
+                        \bigoplus_{i = 2}^{n + 1}\Ac\tuple{-_1, -_i} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (p_{\bigoplus_{i = 2}^{n + 1} -_i}^{-_2})_* \\
+                                (p_{\bigoplus_{i = 2}^{n + 1} -_i}^{-_3})_* \\
+                                \vdots \\
+                                (p_{\bigoplus_{i = 2}^{n + 1} -_i}^{-_{n + 1}})_*
+                            \end{psmallmatrix}
+                            } (m-1-2)
+                        (m-1-2) edge[curve={height=-25pt}] node {
+                            \begin{psmallmatrix}
+                                (i_{-_2}^{\bigoplus_{i = 2}^{n + 1} -_i})_* &
+                                (i_{-_3}^{\bigoplus_{i = 2}^{n + 1} -_i})_* &
+                                \dots &
+                                (i_{-_{n + 1}}^{\bigoplus_{i = 2}^{n + 1} -_i})_*
+                            \end{psmallmatrix}
+                            } (m-1-1);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO: Itarately apply \autoref{lem:hom_natural_iso}.
+\end{proof}
+
+\begin{lemma} \label{thm:hom_direct_sum_map_nice}
+    Let \( \Ac \) be an additive category, and let \( A, B, C \in \Ac \). Let \( f: B \to C \). Let \( n \in \Nb \).
+
+    Then:
+    \begin{enumerate}
+        \item {
+            The following diagram commutes
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{3cm}{2cm} {
+                        \Ac(A, B^n) & \Ac(A, C^n) \\
+                        \Ac(A, B)^n & \Ac(A, C)^n \\
+                    };
+        
+                    \draw[math]
+                        (m-1-1) edge node {(f^n)_*} (m-1-2)
+                            edge node { \begin{psmallmatrix} (p_{B^n}^{B_1})_* \\ (p_{B^n}^{B_2})_* \\ \vdots \\ (p_{B^n}^{B_n})_* \end{psmallmatrix} } (m-2-1)
+                        (m-1-2) edge node { \begin{psmallmatrix} (p_{C^n}^{C_1})_* \\ (p_{C^n}^{C_2})_* \\ \vdots \\ (p_{C^n}^{C_n})_* \end{psmallmatrix} } (m-2-2)
+                        
+                        (m-2-1) edge node {(f_*)^n} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+        }
+        \item {
+            The following diagram commutes
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{3cm}{2cm} {
+                        \Ac(A^n, B) & \Ac(A^n, C) \\
+                        \Ac(A, B)^n & \Ac(A, C)^n \\
+                    };
+        
+                    \draw[math]
+                        (m-1-1) edge node {f_*} (m-1-2)
+                            edge node { \begin{psmallmatrix} (i_{A_1}^{A^n})^* \\ (i_{A_2}^{A^n})^* \\ \vdots \\ (i_{A_n}^{A^n})^* \end{psmallmatrix} } (m-2-1)
+                        (m-1-2) edge node { \begin{psmallmatrix} (i_{A_1}^{A^n})^* \\ (i_{A_2}^{A^n})^* \\ \vdots \\ (i_{A_n}^{A^n})^* \end{psmallmatrix} } (m-2-2)
+                        
+                        (m-2-1) edge node {(f_*)^n} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO: Notes, example projective class.
+\end{proof}

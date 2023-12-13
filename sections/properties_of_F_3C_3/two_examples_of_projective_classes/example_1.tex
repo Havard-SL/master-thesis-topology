@@ -1,0 +1,525 @@
+\begin{definition} \label{def:unholy}
+    Let the functor \( F \) be as in \autoref{thm:F_functor}.  Let, \( \phi \) be as in \autoref{rem:big_iso}, and use the notation from \autoref{rem:F_properties}.
+
+    Define the set \( P_S \) as follows:
+
+    For any object \( A, B \in \Mc \), and for any \( f \in \Mc\tuple{A, B} \).
+
+    Then \( f \in P_S \iff \)
+
+    All of the following are true:
+    \begin{enumerate}
+        \item \( F(f)_{S_a}^{S_b} = 0 \) for all \( a, b \).
+        \item \( F(f)_{S_a}^{M_b} = 0 \) for all  \( a, b \).
+        \item \( F(f)_{M_a}^{M_b} \in \set{0, \cdot(\pm (g - 1))} \) for all \( a, b \).
+    \end{enumerate}
+\end{definition}
+
+% TODO: Mention the connection to phi as mentioned in the remark above? Might be overkill.
+\begin{remark}
+    Definitely need to remark on the previous definition.... 
+    
+    Any morphism can not have any component from S to S, or S to M, as well as they can only have one certain component from M to M.
+
+    TODO: Fix
+\end{remark}
+
+% TODO: Possible to simplify proof by saying that postcomposing with a map in Nc is the same as precomposing with any map from the hom-sets?
+% TODO: Seems so obvious that there should be a simpler way to do things.
+\begin{example}
+    Let \( \Pc = \set{ S^n \mid n \in \Nb } \). Let \( \Nc = P_S \).
+
+    Then \( \tuple{ \Pc, \Nc} \) is a projective class in \( \Mc \).
+\end{example}
+\begin{proof}
+    Need to show that \( \tuple{ \Pc, \Nc } \) satisfies the three properties in \autoref{def:projective_class}.
+
+    \begin{enumerate}
+        \item {
+            \( \tuple{ \Rightarrow } \) Let \( f \in \Nc \).
+
+            If \( f = 0 \), then the statement is true.
+
+            Assume \( f \neq 0 \). Then \( f \in \Mc\tuple{A, B} \) for two non-zero modules \( A, B \in \Mc \), and satisfying \autoref{def:unholy}.
+            
+            Let \( \tilde{P} \in \Pc \)
+            
+            If \( \tilde{P} = 0 \), then the statement is true.
+
+            Assume \( \tilde{P} = S^j \) for some \( j \in \Nb \).
+
+            Then from \autoref{thm:hom_direct_sum_map_nice}, one gets the following commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \Mc\tuple{S^j, A} & \Mc\tuple{S^j, B} \\
+                        \Mc\tuple{S, A}^j & \Mc\tuple{S, B}^j \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f_*} (m-1-2)
+                            edge node[marking, above] {\sim} (m-2-1)
+                        (m-1-2) edge node[marking, above] {\sim} (m-2-2)
+
+                        (m-2-1) edge node {(f_*)^j} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+            It suffices to check that \( f_*: \Mc\tuple{S, A} \to \Mc\tuple{S, B} \) is zero.
+
+            Using \autoref{rem:F_properties} with \( j = 1 \) and \( k = 0 \), one gets
+            % \[
+            %     \phi_A^{-1} = \begin{pmatrix}
+            %         \tuple{ i_{S_1}^{S^{n_A} \oplus M^{m_A}} }_* &
+            %         \dots &
+            %         \tuple{ i_{S_{n_A}}^{S^{n_A} \oplus M^{m_A}} }_* &
+            %         \tuple{ i_{M_1}^{S^{n_A} \oplus M^{m_A}} }_* &
+            %         \dots &
+            %         \tuple{ i_{M_{m_A}}^{S^{n_A} \oplus M^{m_A}} }_*
+            %     \end{pmatrix}
+            % \]
+            % and
+            % \[
+            %     \phi_B = \begin{pmatrix}
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_1} }_* \\
+            %         \vdots \\
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{S_{n_B}} }_* \\
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_1} }_* \\
+            %         \vdots \\
+            %         \tuple{ p_{S^{n_B} \oplus M^{m_B}}^{M_{m_B}} }_*
+            %     \end{pmatrix}.
+            % \]
+            This gives
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} =
+                \begin{pmatrix}
+                    L_{S, S, S} & L_{S, M, S} \\
+                    L_{S, S, M} & L_{S, M, M}
+                \end{pmatrix}
+            \]
+            where
+            \[
+                L_{S, S, S} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{S_1}^{S_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{n_A}}^{S_1} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ F(f)_{S_1}^{S_{n_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{m_A}}^{S_{n_B}} }_* \\
+                \end{pmatrix},
+            \]
+            \[
+                L_{S, M, S} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{M_1}^{S_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{S_1} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ F(f)_{M_1}^{S_{n_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{S_{n_B}} }_* \\
+                \end{pmatrix},
+            \]
+            \[
+                L_{S, S, M} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{S_1}^{M_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{n_A}}^{M_1} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ F(f)_{S_1}^{M_{m_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{S_{n_A}}^{M_{m_B}} }_* \\
+                \end{pmatrix},
+            \]
+            and
+            \[
+                L_{S, M, M} =
+                \begin{pmatrix}
+                    \tuple{ F(f)_{M_1}^{M_1} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{M_1} }_* \\
+                    \vdots & \ddots & \vdots \\
+                    \tuple{ F(f)_{M_1}^{M_{m_B}} }_* &
+                    \dots &
+                    \tuple{ F(f)_{M_{m_A}}^{M_{m_B}} }_* \\
+                \end{pmatrix}.
+            \]
+            But from the definition of \( P_S \), using \autoref{rem:phi_and_L_connection} one has that
+            \[
+                \phi \circ F(f) =
+                \begin{pmatrix}
+                    F(f)_{S_1}^{S_1} \\
+                    \vdots \\
+                    F(f)_{S_{n_A}}^{S_{n_A}} \\
+                    F(f)_{S_1}^{M_1} \\
+                    \vdots \\
+                    F(f)_{S_{n_A}}^{M_{m_A}} \\
+                    F(f)_{M_1}^{S_1} \\
+                    \vdots \\
+                    F(f)_{M_{m_A}}^{S_{n_A}} \\
+                    F(f)_{M_1}^{M_1} \\
+                    \vdots \\
+                    F(f)_{M_{m_A}}^{M_{m_A}}
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    F(f)_{M_1}^{S_1} \\
+                    \vdots \\
+                    F(f)_{M_{m_A}}^{S_{n_A}} \\
+                    \set{0, \cdot(\pm(g - 1))} \\
+                    \vdots \\
+                    \set{0, \cdot(\pm(g - 1))}
+                \end{pmatrix}.
+            \]
+            This implies that
+            \[
+                L_{S, S, S} = 0, L_{S, S, M} = 0,
+            \]
+            and
+            \[
+                L_{S, M, M} =
+                \begin{pmatrix}
+                    \set{0, \cdot(\pm(g - 1))} & \dots & \set{0, \cdot(\pm(g - 1))} \\
+                    \vdots & \ddots & \vdots \\
+                    \set{0, \cdot(\pm(g - 1))} & \dots & \set{0, \cdot(\pm(g - 1))}
+                \end{pmatrix}.
+            \]
+            Using this information about \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \), observe its pointwise values for any 
+            \[
+                \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \in \Mc(S, S)^{n_A} \oplus \Mc(S, M)^{m_A}.
+            \]
+            First note that by \autoref{thm:f_3c_3_nu}, one has that \( h_i = \set{0, \pm \nu} \) for all \( i \).
+
+            Also note that by \autoref{lem:g-1_circ_nu_equals_zero} one has
+            \[
+                L_{S, M, M}
+                \begin{pmatrix}
+                    \set{0, \pm \nu} \\
+                    \vdots \\
+                    \set{0, \pm \nu}
+                \end{pmatrix} = 0.
+            \]
+            And by \autoref{thm:f_3c_3_mu} one has that
+            \[
+                F(f)_{M_a}^{S_b} = p_{S^{n_B} \oplus M^{m_B}}^{S_b} \circ F(f) \circ i_{M_a}^{S^{n_A} \oplus M^{m_A}} \in \Mc(M, M) = \set{0, \pm \mu}
+            \]
+            And furthermore by \autoref{thm:f_3c_3_mu_circ_nu_zero} this implies that
+            \[
+                L_{S, M, S}
+                \begin{pmatrix}
+                    \set{0, \pm \nu} \\
+                    \vdots \\
+                    \set{0, \pm \nu}
+                \end{pmatrix} = 0.
+            \]
+
+            All in all, this implies
+            \begin{multline*}
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{g_1, \dots, g_{n_A}, h_1, \dots, h_{m_A}} \\
+                =
+                \begin{pmatrix}
+                    L_{S, S, S} & L_{S, M, S} \\
+                    L_{S, S, M} & L_{S, M, M}
+                \end{pmatrix}
+                \tuple{g_1, \dots, g_{n_A}, \set{0, \pm \nu}, \dots, \set{0, \pm \nu}} \\
+                =
+                \begin{pmatrix}
+                    0 & L_{S, M, S}
+                    \begin{psmallmatrix}
+                        \set{0, \pm \nu} \\
+                        \vdots \\
+                        \set{0, \pm \nu}
+                    \end{psmallmatrix} \\
+                    0 & L_{S, M, M}
+                    \begin{psmallmatrix}
+                        \set{0, \pm \nu} \\
+                        \vdots \\
+                        \set{0, \pm \nu}
+                    \end{psmallmatrix} \\
+                \end{pmatrix} 
+                = 0.
+            \end{multline*}
+
+            So by \autoref{rem:F_properties} as well as the vertical maps all being isomorphisms, it follows that \( f_* = 0 \).
+
+            \( ( \Leftarrow ) \) Show this implication by a counter-positive argument.
+
+            Assume \( f: A \to B \) with \( f \not\in \Nc \)
+
+            Want to show that there exist a \( \tilde{P} \in \Pc \) such that \( f_*: \Mc(\tilde{P}, A) \to \Mc(\tilde{P}, B)\) is non-zero.
+
+            Assume therefore that \( \tilde{P} = S \).
+
+            Therefore, using \( j = 1 \) and the notation from \autoref{rem:F_properties}, want to show that \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is pointwise non-zero.
+
+            In order to prove this, split the cases up by which point in \autoref{def:unholy} that we assume \( f \) not to fulfill:
+            \begin{enumerate}
+                \item {
+                    Assume that there is some \( a, b \in \Nb \) such that
+                    \[
+                        F(f)_{S_a}^{S_b}
+                    \]
+                    is non-zero.
+
+                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( a \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
+                    \[
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
+                        =
+                        \begin{pmatrix}
+                            L_{S, S, S} & L_{S, M, S} \\
+                            L_{S, S, M} & L_{S, M, M}
+                        \end{pmatrix}
+                        \tuple{0, \dots, 0, \Id_S, 0, \dots, 0}
+                        = \beta
+                    \]
+                    where in the \( b \)-th coordinate of \( \beta \) there is a non-zero term
+                    \[
+                        F(f)_{S_a}^{S_b} \circ \Id_S = F(f)_{S_a}^{S_b}.
+                    \]
+                    Then \( f \not\in \Nc \). 
+                }
+                \item {
+                    Assume that there is some \( a, b \in \Nb \) such that
+                    \[
+                        F(f)_{S_a}^{M_b}
+                    \]
+                    is non-zero.
+
+                    Then there is a \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \Id_S \) in the \( a \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \Id_S, 0, \dots, 0} \). Such that
+                    \[
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
+                        =
+                        \begin{pmatrix}
+                            L_{S, S, S} & L_{S, M, S} \\
+                            L_{S, S, M} & L_{S, M, M}
+                        \end{pmatrix}
+                        \tuple{0, \dots, 0, \Id_S, 0, \dots, 0}
+                        = \beta
+                    \]
+                    where in the \( ( n_B + b ) \)-th coordinate of \( \beta \) there is a non-zero term
+                    \[
+                        F(f)_{S_a}^{M_b} \circ \Id_S = F(f)_{S_a}^{M_b}
+                    \]
+                    Then \( f \not\in \Nc \).
+                }
+                \item {
+                    Assume that there is some \( a, b \in \Nb \) such that
+                    \[
+                        F(f)_{M_a}^{M_b} \not\in \set{0, \pm(g - 1)}
+                    \]
+
+                    By \autoref{lem:only_non_surjective_M_to_M} that means that \( F(f)_{M_a}^{M_b} \) is an isomorphism.
+
+                    Then there is an \( (n_A + m_A) \)-tuple that has all zeroes, except for \( \nu \) in the \( (n_A + a) \)-th coordinate. I.e. \( \alpha = \tuple{0, \dots, 0, \nu, 0, \dots, 0} \). Such that
+                    \[
+                        \phi_B \circ F(f)_* \circ \phi_A^{-1} \tuple{\alpha}
+                        =
+                        \begin{pmatrix}
+                            L_{S, S, S} & L_{S, M, S} \\
+                            L_{S, S, M} & L_{S, M, M}
+                        \end{pmatrix}
+                        \tuple{0, \dots, 0, \nu, 0, \dots, 0}
+                        = \beta
+                    \]
+                    where in the \( (n_B + b) \)-th coordinate of \( \beta \) there is a term
+                    \[
+                        F(f)_{M_a}^{M_b} \circ \nu
+                    \]
+                    that is non-zero because it is a non-zero morphism composed with an isomorphism.
+
+                    Therefore \( f \not\in \Nc \).
+                }
+            \end{enumerate} 
+        }
+        \item {
+            \( (\Rightarrow) \) Let \( \tilde{P} \in \Pc \).
+
+            Let \( A, B \in \Mc \), and let \( f \in \Mc(A, B) \intersect \Nc \). Then by point 1, \( (\Rightarrow) \) previously, one gets that \( f_* = 0 \).
+            
+            \( (\Leftarrow) \) Want to show this by a counter positive argument.
+
+            Assume \( \tilde{P} \not\in \Pc \). That implies there is some \( j \in \Nb_0 \) and \( k \in \Nb \) such that \( \tilde{P} = S^j \oplus M^k \).
+
+            Want to find some \( f \in \Tc(A, B) \intersect \Nc \) such that
+            \[
+                f_*: \Tc(P, A) \to \Tc(P, B)
+            \]
+            is non-zero.
+
+            From \autoref{rem:F_properties}, it is sufficient to show that the map \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
+
+            Let \( A \cong B \cong M \) and let \( F(f) = \cdot(g - 1) \). Then \( n_A = n_B = 0 \) and \( m_A = m_B = 1 \) gives that
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} =
+                \begin{pmatrix}
+                    L_{S, S, S} & L_{S, M, S} \\
+                    L_{S, S, M } & L_{S, M, M}
+                \end{pmatrix}
+                \oplus
+                \begin{pmatrix}
+                    L_{M, S, S} & L_{M, M, S} \\
+                    L_{M, S, M} & L_{M, M, M}
+                \end{pmatrix}
+            \]
+            turns into
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1}
+                = L_{S, M, M} \oplus L_{M, M, M}
+                = \tuple{ \oplus_{i=1}^j F(f)_* }
+                \oplus
+                \tuple{ \oplus_{i=1}^k F(f)_* }.
+            \]
+            Also, by assumption,
+            \[
+                F(f) = \cdot(g-1) \in \set{0, \cdot( \pm(g - 1) )} \subseteq \Nc.
+            \]
+            However, look at the \( (j + k) \)-tuple \( \alpha = \tuple{ 0, \dots, 0, \Id_M, 0, \dots, 0 } \), that is only non-zero at coordinate \( j + 1 \).
+            
+            Then
+            \[
+                \phi_B \circ F(f)_* \circ \phi_A^{-1} (\alpha)
+                =
+                \tuple{ \oplus_{i=1}^j (\cdot(g-1))_* }
+                \oplus
+                \tuple{ \oplus_{i=1}^k (\cdot(g-1))_* }
+                (\alpha)
+                = \beta
+            \]
+            First of all, applying \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) to \( \alpha \) is well defined, since while \( j \) could be zero, \( k \) is always non-zero by the assumption that \( P \not\in \Pc \). In addition, coordinate \( j + 1 \) to \( j + k \) are all maps from \( M \) to \( M \).
+
+            Secondly, it follows that the \( j + 1 \)-th coordiate of \( \beta \) is \( \cdot(g-1) \) which is a non-zero map. And hence, the map \( \phi_B \circ F(f)_* \circ \phi_A^{-1} \) is non-zero.
+        }
+        \item {
+            For every \( X \in \Tc \) one has that \( X \cong S^j \oplus M^k \) for some \( j, k \in \Nb_0 \).
+
+            Firstly, note that the following triangle is distinguished
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        S & S & 0 & \Sigma(S) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\Id_s} (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            And since distinguished triangles are closed under direct sums, it follows that the following triangle is also distinguished
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        S^j & S^j & 0 & \Sigma(S)^j \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {( \Id_s )^j} (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            And by \autoref{lem:s_m_s_distinguished} it follows that
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        S^k & M^k & S^k & \Sigma(S)^k \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {( \nu )^k} (m-1-2)
+                        (m-1-2) edge node {( \mu )^k} (m-1-3)
+                        (m-1-3) edge node {( \nu )^k} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            is also distinguished.
+
+            Taking the direct summand of these distinguished triangles yields the following distinguished triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        S^j \oplus S^k & S^j \oplus M^k & S^k & \Sigma(S)^j \oplus \Sigma(S)^k \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {(\Id_S)^j \oplus ( \nu )^k} (m-1-2)
+                        (m-1-2) edge node {
+                            \begin{psmallmatrix}
+                                0 & ( \mu )^k
+                            \end{psmallmatrix}
+                            } (m-1-3)
+                        (m-1-3) edge node {
+                            \begin{psmallmatrix}
+                                0 \\
+                                ( \nu )^k
+                            \end{psmallmatrix}
+                            } (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            Need to check if this triangle satisfies the criteria.
+            
+            Firstly, \( S^j \oplus S^k \cong S^{j + k} \) is in \( \Pc \). Secondly need to check that the middle map 
+            \( 
+                \begin{psmallmatrix}
+                    0 & ( \mu )^k
+                \end{psmallmatrix} 
+            \)
+            is in \( \Nc \).
+
+            Using \autoref{rem:phi_and_L_connection}, it follows that
+            \[
+                \phi(
+                    \begin{psmallmatrix}
+                        0 & ( \mu )^k
+                    \end{psmallmatrix}
+                    ) =
+                \begin{psmallmatrix}
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    \mu \\
+                    \vdots \\
+                    \mu \\
+                    0 \\
+                    \vdots \\
+                    0
+                \end{psmallmatrix}
+            \]
+            Which satisfies the criteria that any map in \( \Nc \) need to follow.
+
+            Therefore the following distinguished triangle satisfies all the criteria
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        S^{j + k} & S^j \oplus M^k & S^k & \Sigma(S)^{j + k} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {(\Id_S)^j \oplus ( \nu )^k} (m-1-2)
+                        (m-1-2) edge node {
+                            \begin{psmallmatrix}
+                                0 & ( \mu )^k
+                            \end{psmallmatrix}
+                            } (m-1-3)
+                        (m-1-3) edge node {
+                            \begin{psmallmatrix}
+                                0 \\
+                                ( \nu )^k
+                            \end{psmallmatrix}
+                            } (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{enumerate}
+    Therefore, \( (\Pc, \Nc) \) is a projective class.
+\end{proof}

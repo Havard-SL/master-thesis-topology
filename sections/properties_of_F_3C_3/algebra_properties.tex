@@ -1,0 +1,193 @@
+\begin{lemma}
+    Let \( \Gamma = \)
+    \begin{tikzpicture}
+        \diagram{m}{1cm}{1cm} {
+            1 \\
+        };
+
+        \draw[math]
+            (m-1-1) edge[in=150, out=30, looseness=4.8] node[swap] {\alpha} (m-1-1);
+    \end{tikzpicture}
+    be a quiver.
+    Let \( g \in \Fb_3 C_3 \) be the generator of \( C_3 \).
+    
+    Then the algebra homomorphism defined as follows
+    \begin{align*}
+        \phi: \Fb_3 C_3 &\to \frac{\Fb_3\Gamma}{(\alpha^3)} \\
+        1 &\mapsto e \\
+        g &\mapsto \alpha + 1
+    \end{align*}
+    is an isomorphism from \( \Fb_3 C_3 \) to \( \frac{\Fb_3\Gamma}{(\alpha^3)} \).    
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{definition}
+    Let \( S := \frac{\Fb_3C_3}{(g - 1)} \), let \( M := \frac{\Fb_3C_3}{(g - 1)^2} \), and let \( P := {\Fb_3C_3}_{\Fb_3C_3} \).
+\end{definition}
+
+\begin{lemma}
+    One has that \( \Fb_3 C_3 \) has three distinct indecomposable modules up to isomorphism.
+    
+    They are isomorphic to \( S, M, \) and \( P \) with \( S \) a simple module, and \( P \) a projective module.
+
+    Furthermore, neither \( S \) or \( M \) are projective modules.
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{definition}
+    Let \( \Mc := \Stmod{\Fb_3C_3} \).
+\end{definition}
+
+\begin{lemma} \label{thm:f_3c_3_mu}
+    Let \( \mu: M \to S \) be defined as TODO
+
+    Then \( \Mc\tuple{M, S} = \set{0, \pm\mu} \)
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:classify_m}
+    One has that \( M = \set{[\pm 1], [\pm g], [\pm g^2], [\pm (g - 1)]} \)
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{thm:f_3c_3_nu}
+    Let 
+    \begin{align*}
+        \nu: S &\to M \\
+        [\tilde{a}1] \mapsto [\tilde{a}(g - 1)]
+    \end{align*}
+
+    Then \( \nu \) is well defined, and \( \Mc\tuple{S, M} = \set{0, \pm \nu} \)
+\end{lemma}
+\begin{proof}
+    First, want to prove that \( \nu \) is well defined.
+
+    Class-representation:
+
+    Let \( \bar{a} \in S \). Then one has that \( \bar{a} = [a1 + bg + cg^2] = [a1 + b1 + c1] = [(a + b + c)1] \). And so any element of \( S \) can be written as \( [\tilde{a}1] \) for som \( \tilde{a} \in \Fb_3 \).
+
+    Group homomorphism:
+
+    Let \( g \in \Fb_3C_3 \) be the generator of \( C_3 \). Then \( \nu([a1] + [b1]) = \nu([(a + b)1]) = [(a + b)(g - 1)] = [a(g - 1) + b(g - 1)] = [a(g - 1)] + [b(g - 1)] = \nu([a]) + \nu([b]) \).
+
+    Module homomorphism:
+
+    Let \( g \in \Fb_3C_3 \) be the generator of \( C_3 \). Then one has that for any \( r = a + bg + cg^2 \in \Fb_3C_3 \) that \( r[\tilde{a}1] = [r\tilde{a}1] = [(a + b + c)\tilde{a}1] \), and
+    \begin{align*}
+        r\nu([\tilde{a}1]) &= r[\tilde{a}(g - 1)] \\
+        &= [r\tilde{a}(g - 1)] \\
+        &= [(a + bg + cg^2)\tilde{a}(g - 1)] \\
+        &\vdots \\
+        &= [(a + b + c)\tilde{a}(g - 1)] \\
+        &= \nu(r[\tilde{a}1])
+    \end{align*}
+
+    Independent of choice of class-representation:
+
+    Let \( [a] = [b] \) in \( S \). Then \( [a] - [b] = [r(g-1)] \) for some \( r \in \Fb_3C_3 \).
+
+    Then \( \nu([a]) - \nu([b]) = \nu([a] - [b]) = \nu([r(g - 1)]) = [r(g - 1)^2] = [0] \).
+
+    Secondly, want to show that \( \Mc\tuple{S, M} = \set{0, \pm \nu} \).
+
+    Let \( f \in \Mc\tuple{S, M} \), and let \( r \in \Fb_3C_3 \).
+    
+    Then \( f \) is a module homomorphism, and one therefore has that \( f([a1]) = a1 f([1]) \). And so \( f \) is fully determined by the value of \( f([1]) \). 
+    
+    And from \autoref{lem:classify_m} on has that \( M = \set{[\pm (g - 1)], [\pm 1], [\pm g], [\pm g^2]} \).
+
+    However one can see that if \( [1] \) is sent to \( [\pm 1], [\pm g] \), or \( [\pm g^2] \), then \( f([0]) = f([g - 1]) = (g - 1)f([1]) \neq [0] = [g^2 + g + 1] = [(g - 1)^2] \), which would imply that \( f \) is \emph{not} a group homomorphism.
+
+    Therefore \( [1] \) has to be sent to either \( [(g - 1)] \) or \( [-(g - 1)] \). These maps, being \( \nu \) and \( -\nu \) respectivly.
+\end{proof}
+
+\begin{lemma} \label{thm:f_3c_3_mu_circ_nu_zero}
+    Let \( \mu \) and \( \nu \) be as in \autoref{thm:f_3c_3_mu} and \autoref{thm:f_3c_3_nu} respectively.
+
+    Then \( \mu \circ \nu = 0 \).
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{thm:f_3c_3_nu_circ_mu_zero}
+    Let \( \mu \) and \( \nu \) be as in \autoref{thm:f_3c_3_mu} and \autoref{thm:f_3c_3_nu} respectively.
+
+    Then \( \nu \circ \mu = 0 \).
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:g-1_circ_nu_equals_zero}
+    Let \( \nu \) be as in \autoref{thm:f_3c_3_nu}. Let
+    \begin{align*}
+        \cdot(g - 1): M &\to M \\
+        [a1 + bg] &\mapsto [(g - 1)(a1 + bg)]
+    \end{align*}
+
+    Then \( \cdot(g - 1) \circ \nu = 0 \) 
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:only_non_surjective_M_to_M}
+    One has that \( 0 \) and \( \pm(\cdot(g - 1)) \) are the only non-isomorphism morphisms in \( \Mc\tuple{M, M} \).
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:S-to-S}
+    One has that
+    \[
+        \Mc\tuple{S, S} = \set{0, \pm \Id_S}
+    \]
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{thm:f_3c_3_decomposition}
+    Any object in \( \Mc \) is isomorphic to a direct sum \( S^n \oplus M^m \) for \( n, m \in \Nb_0 \), where taking the power of \( 0 \) gives the zero object.
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:sigma_switch_s_m}
+    In \( \Mc \) one has that \( \Sigma(S) \cong M \) and \( \Sigma(M) \cong S \).
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma} \label{lem:s_m_s_distinguished}
+    Let \( \mu \) be as in \autoref{thm:f_3c_3_mu}, and let \( \nu \) be as in \autoref{thm:f_3c_3_nu}.
+
+    Then, setting the rightmost \( M \cong \Sigma(S) \) by \autoref{lem:sigma_switch_s_m}, the following triangle is distinguished in \( \Mc \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                S & M & S & M \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\nu} (m-1-2)
+                (m-1-2) edge node {\mu} (m-1-3)
+                (m-1-3) edge node {\nu} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
