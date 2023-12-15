@@ -1,0 +1,58 @@
+% MS-Question: Is it fine to define over a commutative ring?
+% TODO: Fine to define with respect to non-commutative algebras?
+\begin{definition}
+    Let \( A \) be an (unital) associative algebra over a commutative (unital) ring \( R \). Furthermore, let \( A \) have a graded ring structure. Let \( R \cdot 1 \subseteq A_0 \).
+
+    Then \( A \) is called a \emph{graded algebra over \( R \)}.
+\end{definition}
+
+\begin{notation}
+    Let \( A \) be a graded algebra over \( R \).
+
+    Then the degree of an element \( a \in A \) is denoted \emph{\( \abs{a} \)}.
+\end{notation}
+
+\begin{definition}
+    Let \( A \) be a graded algebra over \( R \).
+
+    If there is a graded algebra over \( R \) epimorphism of degree \( 1 \), denoted \( d_A \), (i.e. for any \( i \in \Zb \), \( d_A |_{A_i}: A_i \to A_{i + 1} \))
+    with the following properties:
+    \begin{enumerate}
+        \item One has that \( d \circ d = 0 \).
+        \item {
+            For \( a, b \in A \), one has that
+            \[
+                d\tuple{a \cdot b}
+                =
+                \tuple{d\tuple{a}} \cdot b + \tuple{-1}^{\abs{a}}a \cdot \tuple{d\tuple{b}}.
+            \]
+            }
+    \end{enumerate}
+
+    Then \( A \) is called a \emph{differentially graded algebra over \( R \)}.
+\end{definition}
+
+% MS-Question: What is the correct terminology of a degree-preserving algebra homomorphism?
+% MS-Question: Keller doesn't use "pre-additive", but rather "k-linear", what does that mean?
+% MS-Question: Both Keller and Bondav--Kapranov use tensor product in the definition on composition, shouldn't it be (regular) product? Also, isnt the composition order the other way around?
+% MS-Question: Is (associative) graded algebras over commutative rings an abelian category?
+% TODO: Is d(\Id_A) = 0 a neccesary condition? Is \Id_A = 1_A?
+\begin{definition}
+    Let \( \Cc \) be a pre-additive category, where for any \( A, B, C \in \Cc \) one has that all of the following hold:
+    \begin{enumerate}
+        \item {
+            \[
+                \Cc\tuple{A, B}
+            \]
+            is a differentially graded algebra over \( R \).
+        }
+        \item {
+            The composition map
+            \[
+                \Cc\tuple{A, B} \oplus \Cc\tuple{B, C} \to \Cc\tuple{A, C}
+            \]
+            is a graded \( R \)-algebra homomorphism of degree \( 0 \).
+        }
+    \end{enumerate}
+    Then \( \Cc \) is called a \emph{differentially graded category over \( R \)}.
+\end{definition}
