@@ -1,4 +1,4 @@
-% MS-Question: Is it fine to define over a commutative ring?
+% MS-Question: Is it fine to define over a commutative ring? -> Yes
 % TODO: Fine to define with respect to non-commutative algebras?
 \begin{definition}
     Let \( A \) be an (unital) associative algebra over a commutative (unital) ring \( R \). Furthermore, let \( A \) have a graded ring structure. Let \( R \cdot 1 \subseteq A_0 \).
@@ -6,10 +6,12 @@
     Then \( A \) is called a \emph{graded algebra over \( R \)}.
 \end{definition}
 
+% MS-Question: Is the degree the ``biggest'' i such that a|_{A_i} is non-zero? -> Probably only defined for homogenous elements.
+% -> No! Change the definitions TODO
 \begin{notation}
     Let \( A \) be a graded algebra over \( R \).
 
-    Then the degree of an element \( a \in A \) is denoted \emph{\( \abs{a} \)}.
+    Then the degree of a \emph{homogenous} element \( a \in A \) is denoted \emph{\( \abs{a} \)}.
 \end{notation}
 
 \begin{definition}
@@ -20,11 +22,11 @@
     \begin{enumerate}
         \item One has that \( d \circ d = 0 \).
         \item {
-            For \( a, b \in A \), one has that
+            For \( a, b \in A \) with \( a \) homogenous, one has that
             \[
                 d\tuple{a \cdot b}
                 =
-                \tuple{d\tuple{a}} \cdot b + \tuple{-1}^{\abs{a}}a \cdot \tuple{d\tuple{b}}.
+                d\tuple{a} \cdot b + \tuple{-1}^{\abs{a}}a \cdot d\tuple{b}.
             \]
             }
     \end{enumerate}
@@ -32,11 +34,16 @@
     Then \( A \) is called a \emph{differentially graded algebra over \( R \)}.
 \end{definition}
 
-% MS-Question: What is the correct terminology of a degree-preserving algebra homomorphism?
-% MS-Question: Keller doesn't use "pre-additive", but rather "k-linear", what does that mean?
-% MS-Question: Both Keller and Bondav--Kapranov use tensor product in the definition on composition, shouldn't it be (regular) product? Also, isnt the composition order the other way around?
-% MS-Question: Is (associative) graded algebras over commutative rings an abelian category?
-% TODO: Is d(\Id_A) = 0 a neccesary condition? Is \Id_A = 1_A?
+\begin{remark}
+    The composition maps in a algebra-enriched category factors through the tensor product... TODO
+\end{remark}
+
+% MS-Question: What is the correct terminology of a degree-preserving algebra homomorphism? -> Degree 0 homomorphism.
+% MS-Question: Keller doesn't use "pre-additive", but rather "k-linear", what does that mean? -> Probably the same as in the lecture notes.
+% MS-Question: Both Keller and Bondav--Kapranov use tensor product in the definition on composition, shouldn't it be (regular) product? Also, the composition order isthe other way around in both texts, why so? -> Tensor product is by the lecture notes argument, order is by convention. Most likely tensor product is symmetric, so it makes little difference.
+% MS-Question: Is (associative) graded algebras over commutative rings an abelian category? -> Most likely.
+% MS-Question: This definition of composition wont add degrees, it will only take the max of the degrees. What is the grading of direct sum? And if composition factors through tensor products, what is the grading of the tensor product and is it different than level-wise? -> Direct sum is probably level wise, and tensor product is usually ``diagonal''. The composition is probably only defined from the tensor product.
+% TODO: Is d(\Id_A) = 0 a neccesary condition? Is \Id_A = 1_A? -> It follows from enrichment that the identity morhpism is the identity element. Therefore it is implied.
 \begin{definition}
     Let \( \Cc \) be a pre-additive category, where for any \( A, B, C \in \Cc \) one has that all of the following hold:
     \begin{enumerate}
@@ -49,7 +56,7 @@
         \item {
             The composition map
             \[
-                \Cc\tuple{A, B} \oplus \Cc\tuple{B, C} \to \Cc\tuple{A, C}
+                \Cc\tuple{B, C} \otimes \Cc\tuple{A, B}  \to \Cc\tuple{A, C}
             \]
             is a graded \( R \)-algebra homomorphism of degree \( 0 \).
         }
