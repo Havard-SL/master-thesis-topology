@@ -1,5 +1,5 @@
 % MS-Question: Is it fine to define over a commutative ring? -> Yes
-% TODO: Fine to define with respect to non-commutative algebras?
+% TODO: Fine to define with respect to non-commutative algebras? -> We shall see!
 \begin{definition}
     Let \( A \) be an (unital) associative algebra over a commutative (unital) ring \( R \). Furthermore, let \( A \) have a graded ring structure. Let \( R \cdot 1 \subseteq A_0 \).
 
@@ -17,7 +17,7 @@
 \begin{definition}
     Let \( A \) be a graded algebra over \( R \).
 
-    If there is a graded algebra over \( R \) epimorphism of degree \( 1 \), denoted \( d_A \), (i.e. for any \( i \in \Zb \), \( d_A |_{A_i}: A_i \to A_{i + 1} \))
+    If there is a graded algebra over \( R \) -epimorphism of degree \( 1 \), denoted \( d_A \), (i.e. for any \( i \in \Zb \), \( d_A |_{A_i}: A_i \to A_{i + 1} \))
     with the following properties:
     \begin{enumerate}
         \item One has that \( d \circ d = 0 \).
@@ -34,16 +34,31 @@
     Then \( A \) is called a \emph{differentially graded algebra over \( R \)}.
 \end{definition}
 
+\begin{definition}
+    Let \( A, B \) be two differentially graded algebras over \( R \).
+
+    TODO: Tensor product
+\end{definition}
+
+% MS-Question: Should I specify this or go straight to just the definition of enrichment (where the monoid in the monoidal category defines the tensor product.)? If not, does the tensor product for DG-categories have a similar universal property as it has for modules?
 \begin{remark}
     The composition maps in a algebra-enriched category factors through the tensor product... TODO
 \end{remark}
 
-% MS-Question: What is the correct terminology of a degree-preserving algebra homomorphism? -> Degree 0 homomorphism.
-% MS-Question: Keller doesn't use "pre-additive", but rather "k-linear", what does that mean? -> Probably the same as in the lecture notes.
-% MS-Question: Both Keller and Bondav--Kapranov use tensor product in the definition on composition, shouldn't it be (regular) product? Also, the composition order isthe other way around in both texts, why so? -> Tensor product is by the lecture notes argument, order is by convention. Most likely tensor product is symmetric, so it makes little difference.
-% MS-Question: Is (associative) graded algebras over commutative rings an abelian category? -> Most likely.
-% MS-Question: This definition of composition wont add degrees, it will only take the max of the degrees. What is the grading of direct sum? And if composition factors through tensor products, what is the grading of the tensor product and is it different than level-wise? -> Direct sum is probably level wise, and tensor product is usually ``diagonal''. The composition is probably only defined from the tensor product.
-% TODO: Is d(\Id_A) = 0 a neccesary condition? Is \Id_A = 1_A? -> It follows from enrichment that the identity morhpism is the identity element. Therefore it is implied.
+% MS-Question: What is the correct terminology of a degree-preserving algebra homomorphism? 
+    % -> Degree 0 homomorphism.
+% MS-Question: Keller doesn't use "pre-additive", but rather "k-linear", what does that mean? 
+    % -> Probably the same as in the lecture notes.
+% MS-Question: Both Keller and Bondav--Kapranov use tensor product in the definition on composition, shouldn't it be (regular) product? Also, the composition order isthe other way around in both texts, why so? 
+    % -> Tensor product is by the lecture notes argument, order is by convention. Most likely tensor product is symmetric, so it makes little difference.
+% MS-Question: Is (associative) graded algebras over commutative rings an abelian category? 
+    % -> Most likely.
+% MS-Question: This definition of composition wont add degrees, it will only take the max of the degrees. What is the grading of direct sum? And if composition factors through tensor products, what is the grading of the tensor product and is it different than level-wise? 
+    % -> Direct sum is probably level wise, and tensor product is usually ``diagonal''. The composition is probably only defined from the tensor product.
+% TODO: Is d(\Id_A) = 0 a neccesary condition? Is \Id_A = 1_A? 
+    % -> It follows from enrichment that the identity morhpism is the identity element. Therefore it is implied.
+
+% MS-Question: Is this the definition of a DG-enhanced category?
 \begin{definition}
     Let \( \Cc \) be a pre-additive category, where for any \( A, B, C \in \Cc \) one has that all of the following hold:
     \begin{enumerate}
@@ -63,3 +78,15 @@
     \end{enumerate}
     Then \( \Cc \) is called a \emph{differentially graded category over \( R \)}.
 \end{definition}
+
+\begin{remark}
+    At least one author (TODO:Ref) specified an additional property when defining a differentially graded category over \( R \), namely that for any element \( A \in \Cc \), one has \( d(\Id_A) = 0 \).
+
+    However by (TODO:Sebastian said so for enrichments) one has that \( \Id_A \) is the identity element. Therefore the property is implied by the following argument:
+    
+    If one has that \( \Id_A \) is the identity element in the differentially graded algebra \( \Cc\tuple{A, A} \). Then \( \abs{\Id_A} = 0 \) and it follows that
+    \[
+        d(\Id_A) = d(\Id_A \cdot \Id_A) = d(\Id_A) \cdot \Id_A + (-1)^0 \Id_A \cdot d(\Id_A) = 2d(\Id_A)
+    \]
+    which implies that \( d(\Id_A) = 0 \).
+\end{remark}
