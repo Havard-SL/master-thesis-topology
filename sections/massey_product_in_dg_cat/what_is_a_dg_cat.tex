@@ -1,5 +1,16 @@
 % MS-Question: Is it fine to define over a commutative ring? -> Yes
 % TODO: Fine to define with respect to non-commutative algebras? -> We shall see!
+\begin{notation}
+    Let \( \Cc \) be any pre-additive category.
+    
+    Then let \( C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
+
+    Furthermore let the differential in these chain complexes have \emph{ascending} order. I.e. for \( M_i, M_{i+1} \) adjacent objects in a chain complex in \( C \tuple{\Cc} \), the differential would be
+    \[
+        d_i : M_i \to M_{i + 1}.
+    \]
+\end{notation}
+
 \begin{definition}
     Let \( A \) be an (unital) associative algebra over a commutative (unital) ring \( R \). Furthermore, let \( A \) have a graded ring structure. Let \( R \cdot 1 \subseteq A_0 \).
 
@@ -40,7 +51,8 @@
     TODO: Tensor product
 \end{definition}
 
-% MS-Question: Should I specify this or go straight to just the definition of enrichment (where the monoid in the monoidal category defines the tensor product.)? If not, does the tensor product for DG-categories have a similar universal property as it has for modules?
+% MS-Question: Should I specify this or go straight to just the definition of enrichment (where the monoid in the monoidal category defines the tensor product.)? If not, does the tensor product for GRMod_R have a similar universal property as it has for modules?<
+    % -> Maybe have a universal property?
 \begin{remark}
     The composition maps in a algebra-enriched category factors through the tensor product... TODO
 \end{remark}
