@@ -141,12 +141,13 @@ I have found three different definitions of a DG-category:
     Then \( \tuple{C \tuple{\Mod(R)}, \otimes, I} \) is a symmetric monoidal category.
 \end{fact}
 
-This thesis will be using this definition, which is similar to the one given by Berest--Mehrle, but not restricted to small categories.
+This thesis will be using the following definition, which is similar to the one given by Berest--Mehrle, but not restricted to small categories.
 \begin{definition}[DG-category, will be used in this thesis]
     Let \( R \) be a commutative ring with identity.
 
     Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( C \tuple{\Mod(R)} \).
 \end{definition}
+This definition also appear in Jasso--Muro p. 29. (TODO: Ref), except they define it for a field and not a commutative ring with identity.
 
 % https://mathoverflow.net/questions/17951/what-tensor-product-of-chain-complexes-satisfies-the-usual-universal-property
 \begin{remark}
@@ -182,7 +183,7 @@ This thesis will be using this definition, which is similar to the one given by 
 \begin{definition}
     Let \( A \) be a graded algebra over \( R \).
 
-    If there is a 'graded algebra over \( R \)' -epimorphism of degree \( 1 \), denoted \( d_A \), (i.e. for any \( i \in \Zb \), \( d_A |_{A_i}: A_i \to A_{i + 1} \))
+    If there is a 'graded algebra over \( R \)' -endomorphism of degree \( 1 \), denoted \( d_A \), (i.e. for any \( i \in \Zb \), \( d_A |_{A_i}: A_i \to A_{i + 1} \))
     with the following properties:
     \begin{enumerate}
         \item One has that \( d \circ d = 0 \).

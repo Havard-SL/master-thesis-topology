@@ -1,4 +1,50 @@
+\begin{notation}
+    Let \( R \) be a commutative ring with identity.
+
+    Then let \( G \Mod(R) \) denote the category of graded \( R \)-modules.
+\end{notation}
+
+\begin{notation}
+    Let \( R \) be a commutative ring with identity.
+
+    Then let
+    \[
+        H^*: C \tuple{\Mod(R)} \to G \Mod(R)
+    \]
+    be the cohomology functor.
+\end{notation}
+
+% \begin{lemma}
+%     One has that \( H^* \) is a full functor.
+% \end{lemma}
+
+% \begin{proof}
+%     TODO
+% \end{proof}
+
+% TODO: Define H(\Cc).
 \begin{definition}
+    Let \( \Cc \) be a differentially graded category over \( R \).
+
+    Let \( \Kc \) be the following category:
+    \begin{enumerate}
+        \item Let \( \Obj(\Kc) = \Obj(\Cc) \).
+        \item For any \( A, B \in \Obj(\Kc) \), let \( \Kc(A, B) = H^* \tuple{\Cc(A, B)} \).
+        \item {
+            For any \( A, B, C \in \Obj(\Kc) \), for any \( f \in \Kc(A, B) \) and \( g \in \Kc(B, C) \)
+
+            Let composition in \( \Kc \) be defined as follows
+            \[
+                g \circ f = 
+            \]
+            TODO
+        }
+    \end{enumerate}
+\end{definition}
+
+% TODO: Fix definition, should be defined on H^*(\Cc)!!
+\begin{definition}
+    \label{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat}
     Let \( \Cc \) be a differentially graded category over \( R \).
 
     Let the following be a diagram in \( \Cc \)
@@ -17,40 +63,27 @@
 
     Where \( f_1, f_2 \) and \( f_3 \) are homogenous elements with degree \( d_1, d_2 \) and \( d_3 \) respectively.
 
-    Furthermore, let
-    \[
-        H^*(-): DGAlg_R \to GRing
-    \]
-    be the cohomology functor.
-
     Then let:
     \[
         \set{
             H^* \tuple{
-                (-1)^{\abs{f_3} + \abs{f_2}}s \circ f_1 + (-1)^{\abs{f_3} + 1} f_3 \circ t
+                (-1)^{\abs{f_2}} \tuple{ (-1)^{\abs{f_3}} f_3 \circ t - s \circ f_1 }
             }
             \mid
-            d(s) = (-1)^{f_3 + 1} f_3 \circ f_2, \quad
-            d(t) = (-1)^{f_2 + 1} f_2 \circ f_1
+            d(s) = f_3 \circ f_2, \quad
+            d(t) = f_2 \circ f_1
         }
     \]
     This is a subset of \( H^* \tuple{\Cc \tuple{X_1, X_4}} \), called the \emph{Massey product of \( f_3, f_2 \) and \( f_1 \)}, and is denoted as \( \toda{H^* \tuple{f_3}, H^* \tuple{f_2}, H^* \tuple{f_1} } \).
 \end{definition}
 
-Can rewrite last part to:
-\[
-    \set{
-        H^* \tuple{
-             (-1)^{\abs{f_2}} \tuple{ (-1)^{\abs{f_3}} f_3 \circ t - s \circ f_1 }
-        }
-        \mid
-        d(s) = f_3 \circ f_2, \quad
-        d(t) = f_2 \circ f_1
-    }
-\]
-
 \begin{remark}
     In particular, considering the degrees of \( f_1, f_2 \) and \( f_3 \), one can see that the only non-zero degree of \( \toda{H^* \tuple{f_3}, H^* \tuple{f_2}, H^* \tuple{f_1} } \subset H^* \tuple{\Cc \tuple{X_1, X_4}} \) is in \( H^{d_3 + d_2 + d_1 - 1} \tuple{\Cc \tuple{X_1, X_4}} \).
 \end{remark}
 
-% TODO: Add definition for non-homogenous
+% Computations done on ReMarkable Massey Product/Definition Massey prod p2
+\begin{remark}
+    Comparing \autoref{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat} and the definition for massey product in a DG category given by Jasso--Muro 2023 (TODO: Ref) in ``Definition 4.2.1'' with \( d = 1 \) we can see that both definitions agree.
+\end{remark}
+
+% TODO: Add definition for non-homogenous. Is there even a definition for non-homogenous?
