@@ -14,15 +14,21 @@
     be the cohomology functor.
 \end{notation}
 
-% \begin{lemma}
-%     One has that \( H^* \) is a full functor.
-% \end{lemma}
+% SRC Künneth: https://ncatlab.org/nlab/show/K%C3%BCnneth+theorem
+% MS-Question: Isn't cohomology contravariant?
+\begin{fact}
+    Considering objects of \( G \Mod(R) \) as chain complexes with a zero-differential, one can define a tensor product using \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/tensor_product_of_chain_complexes}.
 
-% \begin{proof}
-%     TODO
-% \end{proof}
+    Let \( A, B \in C \tuple{\Mod(R)} \).
 
-% TODO: Define H(\Cc).
+    By the algebraic Künneth theorem when \( R \) is a field, there is an isomorphism
+    \[
+        \phi: H^*(A) \otimes H^*(B) \stackrel{\sim}{\to} H^*(A \otimes B)
+    \]
+    TODO
+\end{fact}
+
+% MS-Question: Does the composition definition work?
 \begin{definition}
     Let \( \Cc \) be a differentially graded category over \( R \).
 
