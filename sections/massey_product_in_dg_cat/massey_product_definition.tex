@@ -17,6 +17,7 @@
 % SRC Künneth: https://ncatlab.org/nlab/show/K%C3%BCnneth+theorem
 % MS-Question: Isn't cohomology contravariant?
 \begin{fact}
+    \label{fact:massey_product_in_dg_cat/massey_product_definition/algebraic_kunneth_isomorphism}
     Considering objects of \( G \Mod(R) \) as chain complexes with a zero-differential, one can define a tensor product using \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/tensor_product_of_chain_complexes}.
 
     Let \( A, B \in C \tuple{\Mod(R)} \).
@@ -30,9 +31,9 @@
 
 % MS-Question: Does the composition definition work?
 \begin{definition}
-    Let \( \Cc \) be a differentially graded category over \( R \).
+    Let \( \Cc \) be a differentially graded category over a field \( R \), and let \( \phi \) be as in \autoref{fact:massey_product_in_dg_cat/massey_product_definition/algebraic_kunneth_isomorphism}.
 
-    Let \( \Kc \) be the following category:
+    Let \( \Kc \) be the following (enriched) category:
     \begin{enumerate}
         \item Let \( \Obj(\Kc) = \Obj(\Cc) \).
         \item For any \( A, B \in \Obj(\Kc) \), let \( \Kc(A, B) = H^* \tuple{\Cc(A, B)} \).
@@ -41,11 +42,29 @@
 
             Let composition in \( \Kc \) be defined as follows
             \[
-                g \circ f = 
+                \circ_{\Kc}(g \otimes f): \Kc(B, C) \otimes \Kc(A, B) \to \Kc(A, C)
             \]
-            TODO
+            where \( \circ_{\Kc} \) is the composition
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1.3cm} {
+                        \Kc(B, C) \otimes \Kc(A, B) & & \Kc(A, C) \\
+                        H^*\tuple{\Cc(B, C)} \otimes H^*\tuple{\Cc(A, B)} & H^*\tuple{\Cc(B, C) \otimes \Cc(A, B)} & H^*\tuple{\Cc(A, C)} \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[dashed] node {\circ_{\Kc}} (m-1-3)
+                            edge[equal] (m-2-1)
+                        (m-1-3) edge[equal] (m-2-3)
+                        
+                        (m-2-1) edge node {\phi} node[swap] {\sim} (m-2-2)
+                        (m-2-2) edge node {H^*(\circ_{\Cc})} (m-2-3); 
+                \end{tikzpicture}
+            \end{center}
         }
     \end{enumerate}
+
+    Then the category \( \Kc \) is denoted as \( H^*(\Cc) \).
 \end{definition}
 
 % TODO: Fix definition, should be defined on H^*(\Cc)!!
