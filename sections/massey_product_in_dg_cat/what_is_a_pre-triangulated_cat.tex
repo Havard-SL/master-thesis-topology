@@ -1,5 +1,39 @@
-I have found two definitions for a pre-triangulated category
+There are multiple definitions of an algebraic triangulated categoery. In this thesis, the definition used will be from TODO:Cite Jasso--Muro.
 
-\begin{definition}[Bondal--Kapranov 1991, pre-triangulated category]
-    Let \( \Cc \) be a DG-category.
+\begin{definition}
+    Let \( R \) be a commutative ring with identity.
+
+    Then let \( C_{dg}(\Mod(R)) \) be a DG-category defined as follows:
+    \begin{enumerate}
+        \item {
+            \( \Obj(C_{dg}(\Mod(R))) := \Obj(C(\Mod(R))) \).
+        }
+        \item {
+            For \( A, B \in \Obj(C_{dg}(\Mod(R))) \) let
+            \[ 
+                \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_i := \bigoplus_{j \in \Zb} \Hom_{\Mod(R)}(A_j, B_{j + i})
+            \]
+            with
+            \[
+                \Hom_{C_{dg}(\Mod(R))}(A, B) = \bigoplus_{i \in \Zb} \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_i.
+            \]
+
+            Let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) as objects of \( C(\Mod(R)) \), respectively.
+
+            % TODO: This is slight abuse of notation. Should I fix?
+            Let the differential of \( \Hom_{C_{dg}(\Mod(R))}(A, B) \) is defined as follows
+            \begin{align*}
+                d_i: \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_i &\to \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_{i + 1} \\
+                f &\mapsto d_B \circ f - (-1)^i f \circ d_A
+            \end{align*}
+        }
+        \item {
+            For \( A, B, C \in \Obj(C_{dg}(\Mod(R))) \), let
+            \[
+                \circ_{C_{dg}(\Mod(R))}: \Hom_{C_{dg}(\Mod(R))}(B, C) \otimes \Hom_{C_{dg}(\Mod(R))}(A, B) \to \Hom_{C_{dg}(\Mod(R))}(A, C)
+            \]
+
+            TODO
+        }
+    \end{enumerate}
 \end{definition}
