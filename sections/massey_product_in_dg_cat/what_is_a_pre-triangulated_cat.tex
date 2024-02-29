@@ -1,39 +1,100 @@
 There are multiple definitions of an algebraic triangulated categoery. In this thesis, the definition used will be from TODO:Cite Jasso--Muro.
 
-\begin{definition}
+% TODO Cite: Jasso--Muro
+\begin{definition}[\( \C_{\dg}(\Mod(R)) \)]
     Let \( R \) be a commutative ring with identity.
 
-    Then let \( C_{dg}(\Mod(R)) \) be a DG-category defined as follows:
+    Then let \emph{\( \C_{\dg}(\Mod(R)) \)} be a DG-category defined as follows
     \begin{enumerate}
         \item {
-            \( \Obj(C_{dg}(\Mod(R))) := \Obj(C(\Mod(R))) \).
+            \( \Obj(\C_{\dg}(\Mod(R))) := \Obj(\C(\Mod(R))) \).
         }
         \item {
-            For \( A, B \in \Obj(C_{dg}(\Mod(R))) \) let
+            For \( A, B \in \Obj(\C_{\dg}(\Mod(R))) \) let
             \[ 
-                \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_i := \bigoplus_{j \in \Zb} \Hom_{\Mod(R)}(A_j, B_{j + i})
+                \tuple{\C_{\dg}(\Mod(R))(A, B)}_i := \bigoplus_{j \in \Zb} \Mod(R)(A_j, B_{j + i})
             \]
             with
             \[
-                \Hom_{C_{dg}(\Mod(R))}(A, B) = \bigoplus_{i \in \Zb} \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_i.
+                \C_{\dg}(\Mod(R))(A, B) = \bigoplus_{i \in \Zb} \tuple{\C_{\dg}(\Mod(R))(A, B)}_i.
             \]
 
-            Let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) as objects of \( C(\Mod(R)) \), respectively.
+            Let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) as objects of \( \C(\Mod(R)) \), respectively.
 
-            % TODO: This is slight abuse of notation. Should I fix?
-            Let the differential of \( \Hom_{C_{dg}(\Mod(R))}(A, B) \) is defined as follows
+            % TODO: This is slight abuse of notation (d_B and d_A are defined on A, B, not A_j, B_{j + i}). Should I fix?
+            Let the differential of \( \C_{\dg}(\Mod(R))(A, B) \) be defined as follows
             \begin{align*}
-                d_i: \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_i &\to \tuple{\Hom_{C_{dg}(\Mod(R))}(A, B)}_{i + 1} \\
+                d_i: \tuple{\C_{\dg}(\Mod(R))(A, B)}_i &\to \tuple{\C_{\dg}(\Mod(R))(A, B)}_{i + 1} \\
                 f &\mapsto d_B \circ f - (-1)^i f \circ d_A
             \end{align*}
         }
         \item {
-            For \( A, B, C \in \Obj(C_{dg}(\Mod(R))) \), let
+            For \( A, B, C \in \Obj(\C_{\dg}(\Mod(R))) \), let
             \[
-                \circ_{C_{dg}(\Mod(R))}: \Hom_{C_{dg}(\Mod(R))}(B, C) \otimes \Hom_{C_{dg}(\Mod(R))}(A, B) \to \Hom_{C_{dg}(\Mod(R))}(A, C)
+                \circ_{\C_{\dg}(\Mod(R))}: \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) \to \C_{\dg}(\Mod(R))(A, C)
             \]
-
-            TODO
+            % TODO: Explain more?
+            be defined as expected.
         }
     \end{enumerate}
 \end{definition}
+
+% TODO Cite: Jasso--Muro
+% TODO: Elaborate on enriched functor?
+\begin{definition}[DG-functor]
+    An enriched functor between two DG-categories is called a \emph{DG-functor}.
+\end{definition}
+
+% MS-question: Remark below.
+\begin{remark}
+    % Bondal--Kapranov has as definition
+    Enriched functor between DG-categories implies it preserves differentials and grading? TODO
+\end{remark}
+
+\begin{definition}[Opposite DG-category]
+    Let \( \Cc \) be a DG-category.
+
+    Then let \( \Cc^{op} \) be the DG-category defined as follows
+    \begin{enumerate}
+        \item {
+            \( \Obj(\Cc^{op}) := \Obj(\Cc) \)
+        }
+        \item {
+            For \( A, B \in \Cc^{op} \), let \( \Cc^{op}(A, B) := \Cc(B, A) \).
+        }
+        \item {
+            For \( A, B, C \in \Cc^{op} \), with \( f \in \Cc^{op}(B, C) \) and \( g \in \Cc^{op}(A, B) \) homogeneous elements of degree \( d_f \) and \( d_g \) respectively.
+
+            Let composition be defined as
+            \begin{align*}
+                \circ_{\Cc^{op}}: \Cc^{op}(B, C) \otimes \Cc^{op}(A, B) &\to \Cc^{op}(A, C) \\
+                f \otimes g &\mapsto (-1)^{d_f d_g} \circ_{\Cc} (g \otimes f)
+            \end{align*}
+            % TODO: Why can I say this? Need some statement saying all elementary tensors are a sum of homogeneous elementary tensors?
+            and extended to all other elementary tensors.
+        }
+    \end{enumerate}
+\end{definition}
+
+\begin{notation}
+    For two DG-categories \( \Ac, \Bc \), let \( \Fun_{\dg}(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \).
+\end{notation}
+
+% TODO: Cite: Jasso--Muro
+\begin{definition}[\( \dgMod_{\dg}(\Cc) \)]
+    Let \( \Cc \) be a DG-category, and let \( R \) be a commutative ring (with unit).
+
+    % TODO: Why "Right"?
+    Then define the \emph{DG-category of (right) DG \( \Cc \)-modules} as
+    \[
+        \dgMod_{\dg}(\Cc) := \Fun_{\dg}(\Cc^{op}, \C_{\dg}(\Mod(R))).
+    \]
+\end{definition}
+
+% TODO: Should be true according to Jasso--Muro
+\begin{proposition}
+    \( \dgMod_{\dg}(\Cc) \) is a DG-category.
+\end{proposition}
+\begin{proof}
+    TODO
+\end{proof}

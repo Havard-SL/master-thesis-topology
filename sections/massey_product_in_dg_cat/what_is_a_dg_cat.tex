@@ -1,16 +1,16 @@
 \begin{notation}
     Let \( \Cc \) be any additive category.
     
-    Then let \( C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
+    Then let \( \C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
 
-    Furthermore let the differential in these chain complexes have \emph{ascending} order. I.e. for \( M_i, M_{i+1} \in \Cc \) which are adjacent objects in a chain complex \( M \in C \tuple{\Cc} \), the differential would be
+    Furthermore let the differential in these chain complexes have \emph{ascending} order. I.e. for \( M_i, M_{i+1} \in \Cc \) which are adjacent objects in a chain complex \( M \in \C \tuple{\Cc} \), the differential would be
     \[
         d_i : M_i \to M_{i + 1}.
     \]
 \end{notation}
 
 \begin{notation}
-    Let \( R \) be a commutative ring with identity. Let \( A \in C \tuple{\Mod(R)} \).
+    Let \( R \) be a commutative ring with identity. Let \( A \in \C \tuple{\Mod(R)} \).
 
     Then the degree of a \emph{homogenous} element \( a \in A \) is denoted \emph{\( \abs{a} \)}.
 \end{notation}
@@ -18,7 +18,7 @@
 % TODO: Prove that the resulting chain complex is a chain complex? At least add a refrence.
 \begin{definition}
     \label{def:massey_product_in_dg_cat/what_is_a_dg_cat/tensor_product_of_chain_complexes}
-    Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in C \tuple{\Mod(R)} \).
+    Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in \C \tuple{\Mod(R)} \).
 
     Then define the modules
     \[
@@ -43,15 +43,15 @@
 %     A \emph{DG-category} \( \Cc \) is a category satisfying the following criteria:
 %     \begin{enumerate}
 %         \item \( \Cc \) is pre-additive.
-%         \item The hom-sets of \( \Cc \) are objects in \( C \tuple{Ab} \).
+%         \item The hom-sets of \( \Cc \) are objects in \( \C \tuple{Ab} \).
 %         \item{
-%             Composition is done with the tensor product, and should be a \( C \tuple{\Ab} \)-morphism.
+%             Composition is done with the tensor product, and should be a \( \C \tuple{\Ab} \)-morphism.
 
 %             I.e:
 %             \[
-%                 \circ_{A,B,C}: \Cc \tuple{B, C} \otimes \Cc \tuple{A, B} \to \Cc \tuple{A, C}
+%                 \circ_{A,B,\C}: \Cc \tuple{B, \C} \otimes \Cc \tuple{A, B} \to \Cc \tuple{A, \C}
 %             \]
-%             should be a \( C \tuple{\Ab} \)-morphism.
+%             should be a \( \C \tuple{\Ab} \)-morphism.
 %         }
 %         \item For all \( A \in \Cc \), \( d(\Id_A) = 0 \).
 %     \end{enumerate}
@@ -63,15 +63,15 @@
 
 %     A \emph{DG-category} \( \Cc \) is a category satisfying the following criteria:
 %     \begin{enumerate}
-%         \item The hom-sets of \( \Cc \) are objects in \( C \tuple{\Mod \tuple{R} } \).
+%         \item The hom-sets of \( \Cc \) are objects in \( \C \tuple{\Mod \tuple{R} } \).
 %         \item{
-%             Composition is done with the tensor product, and should be a \( C \tuple{\Mod \tuple{R} } \)-morphism.
+%             Composition is done with the tensor product, and should be a \( \C \tuple{\Mod \tuple{R} } \)-morphism.
 
 %             I.e:
 %             \[
 %                 \circ_{A, B, C}: \Cc \tuple{B, C} \otimes \Cc \tuple{A, B} \to \tuple{A, C}
 %             \]
-%             should be a \( C \tuple{\Mod \tuple{R} } \)-morphism.
+%             should be a \( \C \tuple{\Mod \tuple{R} } \)-morphism.
 %         }
 %         \item {
 %             For \( f \in \Cc \tuple{A, B} \) any element, and \( g \in \Cc \tuple{B, C} \) a homogenous element, then
@@ -87,14 +87,14 @@
 %     \label{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_berest--mehrle_2017}
 %     Let \( R \) be a commutative ring.
 
-%     A \emph{DG-category} \( \Cc \) is a small category enriched in the category \( C \tuple{\Mod(R)} \).
+%     A \emph{DG-category} \( \Cc \) is a small category enriched in the category \( \C \tuple{\Mod(R)} \).
 
 %     This is excplicitly that \( \Cc \) consists of the following data:
 %     \begin{enumerate}
 %         \item A set of objects \( Ob(\Cc) \).
-%         \item Every pair of objects \( A, B \in \Cc \) correspond to an object in \( C \tuple{\Mod(R)} \).
+%         \item Every pair of objects \( A, B \in \Cc \) correspond to an object in \( \C \tuple{\Mod(R)} \).
 %         \item{
-%             For every triple \( A, B, C \in \Cc \) there is a \( C \tuple{\Mod(R)} \) homomorphism \( \circ_{A,B,C} \):
+%             For every triple \( A, B, C \in \Cc \) there is a \( \C \tuple{\Mod(R)} \) homomorphism \( \circ_{A,B,C} \):
 %             \[
 %                 \circ_{A, B, C}: \Cc(B, C) \otimes \Cc(A, B) \to \Cc(A, C)
 %             \]
@@ -122,7 +122,7 @@
 %     Also, \emph{I think} many of the points of the definitions are redundant. The supsecting redudnat points are as follows:
 %     \begin{itemize}
 %         \item {
-%             In \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_bondal--kapranov_1991} both point 1 and point 4 are redundant. Since objects in \( C \tuple{\Ab} \) are abelian groups, the category is already pre-additive.
+%             In \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_bondal--kapranov_1991} both point 1 and point 4 are redundant. Since objects in \( \C \tuple{\Ab} \) are abelian groups, the category is already pre-additive.
             
 %             And by sign conventions (TODO: Ref/explain/find out/understand/help!), point 2 and 3 imply a leibniz-like rule as in \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_keller_1994} point 3, which by \autoref{rem:massey_product_in_dg_cat/what_is_a_dg_cat/d_of_id_is_zero} implies point 4.
 %         }
@@ -137,9 +137,9 @@
 % MS-Question: Do I lack data in this definition?
 % https://ncatlab.org/nlab/show/category+of+chain+complexes
 \begin{fact}[nlab]
-    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( C \tuple{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( C \tuple{\Mod(R)} \) consisting solely of \( 0 \)-objects in non-zero degrees, and the \( R \)-module \( R \) in degree 0. 
+    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \tuple{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( \C \tuple{\Mod(R)} \) consisting solely of \( 0 \)-objects in non-zero degrees, and the \( R \)-module \( R \) in degree 0. 
 
-    Then \( \tuple{C \tuple{\Mod(R)}, \otimes, I} \) is a symmetric monoidal category.
+    Then \( \tuple{\C \tuple{\Mod(R)}, \otimes, I} \) is a symmetric monoidal category.
 \end{fact}
 
 % This thesis will be using the following definition, which is similar to the one given by Berest--Mehrle, but not restricted to small categories.
@@ -147,7 +147,7 @@
 \begin{definition}% [DG-category]
     Let \( R \) be a commutative ring with identity.
 
-    Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( C \tuple{\Mod(R)} \).
+    Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( \C \tuple{\Mod(R)} \).
 \end{definition}
 This definition also appear in Jasso--Muro p. 29. (TODO: Ref), except they define it for a field and not a commutative ring with identity.
 
