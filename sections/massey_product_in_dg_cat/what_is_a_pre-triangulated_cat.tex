@@ -70,19 +70,22 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
                 \circ_{\Cc^{op}}: \Cc^{op}(B, C) \otimes \Cc^{op}(A, B) &\to \Cc^{op}(A, C) \\
                 f \otimes g &\mapsto (-1)^{d_f d_g} \circ_{\Cc} (g \otimes f)
             \end{align*}
-            % TODO: Why can I say this? Need some statement saying all elementary tensors are a sum of homogeneous elementary tensors?
+            % TODO: Why can I say this? Need some statement saying all elementary tensors are a sum of homogeneous elementary tensors? As well as saying that the set of elementary tensors generate all elements in the tensor product?
             and extended to all other elementary tensors.
         }
     \end{enumerate}
 \end{definition}
 
+% TODO: DG-categories over the same ring?
+% TODO: Need to show that it's a category?
 \begin{notation}
     For two DG-categories \( \Ac, \Bc \), let \( \Fun_{\dg}(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \).
 \end{notation}
 
 % TODO: Cite: Jasso--Muro
+% No mention of the ring in the notation? -> Implied since DG-category is over a ring!
 \begin{definition}[\( \dgMod_{\dg}(\Cc) \)]
-    Let \( \Cc \) be a DG-category, and let \( R \) be a commutative ring (with unit).
+    Let \( \Cc \) be a DG-category over \( R \).
 
     % TODO: Why "Right"?
     Then define the \emph{DG-category of (right) DG \( \Cc \)-modules} as
@@ -92,9 +95,69 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 \end{definition}
 
 % TODO: Should be true according to Jasso--Muro
+% TODO: DG-category over R?
 \begin{proposition}
     \( \dgMod_{\dg}(\Cc) \) is a DG-category.
 \end{proposition}
 \begin{proof}
     TODO
 \end{proof}
+
+\begin{definition}[DG Yoneda embedding]
+    Let \( \Cc \) be a DG-category over \( R \).
+    
+    Then let \( \mathbf{h} \) be the functor defined as follows
+    \begin{align*}
+        \mathbf{h}: \Cc &\to \dgMod_{\dg}(\Cc) \\
+        A &\mapsto \Cc(-, A)
+    \end{align*}
+
+    This functor is called the \emph{DG Yoneda embedding of \( \Cc \)}.
+\end{definition}
+
+% TODO: Add Yoneda embedding identifies \Cc with a full subcategory of \dgMod_dg(\Cc)?
+
+\begin{definition}[0th cohomology category of a DG category]
+    Let \( \Cc \) be a DG category over \( R \).
+
+    Then let \( H^0(\Cc) \) be the following (enriched over \( \Mod(R) \) TODO) category defined as follows
+    \begin{enumerate}
+        \item {
+            Let \( \Obj(H^0(\Cc)) := \Obj(\Cc) \).
+        }
+        \item {
+            Let \( A, B \in H^0(\Cc) \).
+
+            Then let \( H^0(\Cc)(A, B) := H^0(\Cc(A, B)) \).
+        }
+        \item {
+            Let \( A, B, C \in H^0(\Cc) \) with \( f \in H^0(B, C) \) and \( g \in H^0(A, B) \).
+
+            Then by \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}, there exists \( \tilde{f} \in \Cc(B, C), \tilde{g} \in \Cc(A, B) \) such that \( H^0(\tilde{f}) = f \) and \( H^0(\tilde{g}) = g \).
+
+            % TODO: Need to show that this is well defined?
+            Then let composition be defined on elementary tensors as follows
+            \begin{align*}
+                \circ_{H^0(\Cc)}: H^0(\Cc)(B, C) \otimes H^0(\Cc)(A, B) &\to H^0(\Cc)(A, C) \\
+                f \otimes g &\mapsto H^0(\circ_{\Cc}(\tilde{f} \otimes \tilde{g}))
+            \end{align*}
+        }
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    \( H^0(\dgMod_{\dg}(\Cc)) \) is a triangulated category.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{definition}[Derived DG category]
+    Let \( \Cc \) be a DG category.
+
+    TODO
+
+    % Acyclic kernel? Projective objects? Spanned?
+    % Krause 07 -> Compact objects, maybe more.
+    % Keller 94 -> Another definition of derived DG category.
+\end{definition}

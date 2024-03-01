@@ -28,6 +28,18 @@
     TODO
 \end{fact}
 
+\begin{lemma}
+    \label{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}
+    Let \( \Cc \) be a differentially graded category over \( R \), and let \( A, B \in H^*(\Cc) \). Let \( g \in H^*(\Cc)(A, B) \).
+
+    Then there is an element \( f \in \Cc(A, B) \) such that \( H^*(f) = g \).
+
+    Furthermore, if \( g \) is homogeneous of degree \( d \), then there exist an \( f \) that is also homogeneous of degree \( d \).
+\end{lemma}
+\begin{proof}
+    TODO: Prove
+\end{proof}
+
 % MS-Question: Does the composition definition work? Also TODO below.
 % TODO: Find definition of composition that does not rely on kunneth isomorphism, but only the existance of a morphism. Ask MS!
 \begin{definition}
@@ -40,8 +52,9 @@
         \item {
             % TODO: Need proof of the following statement
             % TODO: Change wording
-            For any \( A, B, C \in \Obj(H^*(\Cc)) \) and for any \( f \in H^*(\Cc)(A, B) \) and \( g \in H^*(\Cc)(B, C) \), there are representatives \( \tilde{f} \in \Cc(A, B) \) and \( \tilde{g} \in \Cc(B, C) \) respectively, I.e: \( H^*(\tilde{f}) = f \) and \( H^*(\tilde{g}) = g \).
+            For any \( A, B, C \in \Obj(H^*(\Cc)) \) and for any \( f \in H^*(\Cc)(A, B) \) and \( g \in H^*(\Cc)(B, C) \), there are representatives \( \tilde{f} \in \Cc(A, B) \) and \( \tilde{g} \in \Cc(B, C) \) respectively by \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}, I.e: \( H^*(\tilde{f}) = f \) and \( H^*(\tilde{g}) = g \).
 
+            % TODO: Need to check if this is well defined.
             Let composition in \( H^*(\Cc) \) be defined on elementary tensors as follows
             \begin{align*}
                 \circ_{H^*(\Cc)}: H^*(\Cc)(B, C) \otimes H^*(\Cc)(A, B) &\to H^*(\Cc)(A, C) \\
@@ -82,16 +95,6 @@
     %             \end{tikzpicture}
     %         \end{center}
 \end{remark}
-
-\begin{lemma}
-    \label{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}
-    Let \( \Cc \) be a differentially graded category over \( R \), and let \( A, B \in H^*(\Cc) \). Let \( g \in H^*(\Cc)(A, B) \) be homogeneous of degree \( d \).
-
-    Then there is a homogeneous element \( f \in \Cc(A, B) \) of degree \( d \) such that \( H^*(f) = g \).
-\end{lemma}
-\begin{proof}
-    TODO
-\end{proof}
 
 % TODO: Why is degrees preserved when choosing representatives?
 % SRC: Wikipedia https://en.wikipedia.org/wiki/Massey_product and TODO:guessing
