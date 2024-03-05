@@ -51,6 +51,13 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     Enriched functor between DG-categories implies it preserves differentials and grading? TODO
 \end{remark}
 
+% TODO: DG-categories over the same ring?
+% TODO: Need to show that it's a category?
+% MS-Question: Correct? Berest--Mehrle (LN) has another def.
+\begin{notation}
+    For two DG-categories \( \Ac, \Bc \), let \( \Fun_{\dg}(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \).
+\end{notation}
+
 \begin{definition}[Opposite DG-category]
     Let \( \Cc \) be a DG-category.
 
@@ -75,12 +82,6 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         }
     \end{enumerate}
 \end{definition}
-
-% TODO: DG-categories over the same ring?
-% TODO: Need to show that it's a category?
-\begin{notation}
-    For two DG-categories \( \Ac, \Bc \), let \( \Fun_{\dg}(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \).
-\end{notation}
 
 % TODO: Cite: Jasso--Muro
 % No mention of the ring in the notation? -> Implied since DG-category is over a ring!
@@ -152,12 +153,19 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     TODO
 \end{proof}
 
+% MS-Question: Have seen definition of small category that is that the class of iso classes are small, not the class of objects. What is correct? Are they equivalent?
+
+% TODO: Various definitions and idiosyncracies. Which is correct?
+    % Acyclic kernel? Projective objects? Spanned?
+    % Krause 07 -> Compact objects, maybe more.
+    % Keller 94 -> Another definition of derived DG category.
+% TODO: Following def from Krause 07, but not explicitly written down. Is it correct?
 \begin{definition}[Derived DG category]
     Let \( \Cc \) be a DG category.
 
     TODO
+    % Localize WRT  quasi-iso.
 
-    % Acyclic kernel? Projective objects? Spanned?
-    % Krause 07 -> Compact objects, maybe more.
-    % Keller 94 -> Another definition of derived DG category.
 \end{definition}
+
+% MS-Quastion: Why are small categories sometimes mentioned in def of derived category? Something to do with localization being well defined?
