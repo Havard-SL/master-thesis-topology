@@ -105,6 +105,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 \end{proof}
 
 \begin{definition}[DG Yoneda embedding]
+    \label{def:DG_Yoneda_embedding}
     Let \( \Cc \) be a DG-category over \( R \).
     
     Then let \( \mathbf{h} \) be the functor defined as follows
@@ -118,6 +119,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 
 % TODO: Add Yoneda embedding identifies \Cc with a full subcategory of \dgMod_dg(\Cc)?
 
+% TODO: Could define this for Mod(R)-enriched categories?
 \begin{definition}[0th cohomology category of a DG category]
     Let \( \Cc \) be a DG category over \( R \).
 
@@ -160,12 +162,65 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     % Krause 07 -> Compact objects, maybe more.
     % Keller 94 -> Another definition of derived DG category.
 % TODO: Following def from Krause 07, but not explicitly written down. Is it correct?
-\begin{definition}[Derived DG category]
+\begin{definition}[Derived DG-category]
     Let \( \Cc \) be a DG category.
 
     TODO
     % Localize WRT  quasi-iso.
-
 \end{definition}
 
 % MS-Quastion: Why are small categories sometimes mentioned in def of derived category? Something to do with localization being well defined?
+
+% MS-Question: Arbitrary coproducts <=> infinite coproducts?
+\begin{definition}[Compact objects of a category]
+    Let \( \Cc \) be a(n) (enriched) category with arbitrary coproduct. Let \( X \in \Cc \). 
+    
+    Then if \( X \) has the following property:
+    
+    For any index set \( I \) and any morphism \( f: X \to \coprod_{i \in I} Y_i \), there is a finite index set \( J \subseteq I \) such that \( f \) factors through \( \coprod_{j \in J} Y_j \).
+    
+    Define \( X \) as a \emph{compact object in \( \Cc \)}.
+\end{definition}
+
+% MS-Question: Correct use of "span"?
+\begin{definition}[Perfect derived DG-category]
+    Let \( \D(\Cc) \) be the derived DG-category of \( \Cc \).
+
+    Then define \( \D^c(\Cc) \) to be the full subcategory of \( \D(\Cc) \) consisting of all compact objects in \( \D(\Cc) \). This is called the \emph{perfect derived DG-category of \( \Cc \)}.
+\end{definition}
+
+% TODO: Cite: Jasso--Muro says so
+\begin{proposition}
+    \( \D^c(\Cc) \) is triangulated.
+\end{proposition}
+\begin{proof}
+    TODO
+\end{proof}
+
+% TODO: Is this even a functor? Or well defined? Probably need to show well defined and that every morphism in H^0(A) has a representative in A.
+\begin{definition}[\( H^0 \)-induced functor]
+    \label{def:H^0-induced_functor}
+    Let \( \Ac \) and \( \Bc \) be two DG-categories, and let \( F: \Ac \to \Bc \) be a functor between them.
+
+    Then define the functor \( H^0(F) \) as follows:
+    \begin{align*}
+        H^0(F): H^0(\Ac) &\to H^0(\Bc) \\
+        A &\mapsto F(A) \\
+        (H^0(f): A \to B) &\mapsto (H^0(F(f)): F(A) \to F(B)) 
+    \end{align*}
+
+    This is called the \( H^0 \)-induced functor of \( F \).
+\end{definition}
+
+\begin{remark}
+    Let \( \mathbf{h} \) be the DG-Yoneda embedding from \autoref{def:DG_Yoneda_embedding}.
+
+    Then 
+
+\end{remark}
+
+% TODO: Why need small?
+% MS-Question: Is the name OK?
+\begin{definition}[pre-triangulated DG-category]
+    Let \( \Cc \) be a small DG-category.
+\end{definition}
