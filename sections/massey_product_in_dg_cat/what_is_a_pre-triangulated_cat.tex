@@ -55,7 +55,9 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 % TODO: Need to show that it's a category?
 % MS-Question: Correct? Berest--Mehrle (LN) has another def. -> Subscript dg betyr enriched.
 \begin{notation}
-    For two DG-categories \( \Ac, \Bc \), let \( \Fun_{\dg}(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \).
+    For two DG-categories \( \Ac, \Bc \) over the same commutative ring \( R \), let \( \Fun_{\dg}(\Ac, \Bc) \) denote the DG-category over \( R \) of all DG-functors from \( \Ac \) to \( \Bc \).
+
+    TODO: Show DG-structure.
 \end{notation}
 
 \begin{definition}[Opposite DG-category]
@@ -93,10 +95,12 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \[
         \dgMod_{\dg}(\Cc) := \Fun_{\dg}(\Cc^{op}, \C_{\dg}(\Mod(R))).
     \]
+    Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
 \end{definition}
 
 % TODO: Should be true according to Jasso--Muro
 % TODO: DG-category over R?
+% Probably true by the definition considering Fun_dg is a DG cat.
 \begin{proposition}
     \( \dgMod_{\dg}(\Cc) \) is a DG-category.
 \end{proposition}
@@ -157,33 +161,57 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 
 % MS-Question: Have seen definition of small category that is that the class of iso classes are small, not the class of objects. What is correct? Are they equivalent? -> Essentially small.
 
+\begin{definition}[Acyclic DG-module]
+    Let \( \Cc \) be a DG-category over a commutative ring (with identity) \( R \). Furthermore, let \( A \in \dgMod_{\dg}(\Cc) \) be a DG-module over \( \Cc \).
+
+    Then \( A \) is called \emph{acyclic} if for any \( X \in \Cc \), one has that \( A(X) \in \C_{\dg}(\Mod(R)) \) is acyclic, i.e. \( H^*(A(X)) = 0 \).
+\end{definition}
+
+% TODO: Is \dgMod_{\dg}(\Cc) abelian?/Have kernels?
+\begin{definition}[DG-projective module]
+    Let \( P \in \dgMod_{\dg}(\Cc) \) be a DG-module.
+
+    Then \( P \) is called a \emph{DG-projective module over \( \Cc \)} if:
+    
+    For any DG-module \( A \in \dgMod_{\dg}(\Cc) \) and any epimorphism \( f \in \dgMod_{dg}(\Cc)(A, P) \) where \( \ker(f) \in \dgMod_{\dg}(\Cc) \) is acyclic. Then \( f \) is split.
+\end{definition}
+
 % TODO: Various definitions and idiosyncracies. Which is correct?
     % Acyclic kernel? Projective objects? Spanned?
     % Krause 07 -> Compact objects, maybe more.
     % Keller 94 -> Another definition of derived DG category.
 % TODO: Following def from Krause 07, but not explicitly written down. Is it correct?
 \begin{definition}[Derived DG-category]
-    Let \( \Cc \) be a DG category.
+    Let \( \Cc \) be a DG-category.
 
-    TODO
-    % Localize WRT  quasi-iso.
+    The \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \) spanned by the objects of \( \dgMod_{\dg}(\Cc) \) that are DG-projective.
 \end{definition}
+
+% MS-Question: What is coproduct for the derived category?
+% Cite: Jasso--Muro p.31, only a statement, no proof
+\begin{proposition}
+    \( \D(\Cc) \) is closed under arbitrary coproduct.
+\end{proposition}
+\begin{proof}
+    TODO
+\end{proof}
 
 % MS-Quastion: Why are small categories sometimes mentioned in def of derived category? Something to do with localization being well defined?
 
 % MS-Question: Arbitrary coproducts <=> infinite coproducts? -> Need triangulated property for this to make sense.
+% Cite: Krause 07 p. 29
 \begin{definition}[Compact objects of a category]
-    Let \( \Cc \) be a(n) (enriched) category with arbitrary coproduct. Let \( X \in \Cc \). 
+    Let \( \Cc \) be a triangulated category with arbitrary coproduct. Let \( X \in \Cc \). 
     
     Then if \( X \) has the following property:
     
     For any index set \( I \) and any morphism \( f: X \to \coprod_{i \in I} Y_i \), there is a finite index set \( J \subseteq I \) such that \( f \) factors through \( \coprod_{j \in J} Y_j \).
     
-    Define \( X \) as a \emph{compact object in \( \Cc \)}.
+    Then define \( X \) as a \emph{compact object in \( \Cc \)}.
 \end{definition}
 
-% MS-Question: Correct use of "span"?
-\begin{definition}[Perfect derived DG-category]
+% TODO: Is the derived category triangulated? Need to be in order for previous def to apply.
+\begin{definition}[Perfect derived DG-category \( \D^c(\Cc) \)]
     Let \( \D(\Cc) \) be the derived DG-category of \( \Cc \).
 
     Then define \( \D^c(\Cc) \) to be the full subcategory of \( \D(\Cc) \) consisting of all compact objects in \( \D(\Cc) \). This is called the \emph{perfect derived DG-category of \( \Cc \)}.
@@ -212,15 +240,35 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     This is called the \( H^0 \)-induced functor of \( F \).
 \end{definition}
 
+\begin{theorem}
+    \autoref{def:H^0-induced_functor} is a well-defined functor.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+% Want to show that H^0(h) has codomain D^c(\Cc)
 \begin{remark}
-    Let \( \mathbf{h} \) be the DG-Yoneda embedding from \autoref{def:DG_Yoneda_embedding}.
+    Let \( \mathbf{h}: \Cc \to \dgMod_{\dg}(\Cc) \) be the DG-Yoneda embedding from \autoref{def:DG_Yoneda_embedding}.
 
-    Then 
+    Then for any \( A \in \Cc \), one has that \( H^0(\mathbf{h})(A) \) is both DG-projective and compact.
+    
+    TODO: SHOW!!!
 
+    Therefore one has that the functor \( H^0(\mathbf{h}): H^0(\Cc) \to H^0(\dgMod_{\dg}(\Cc)) \) factors through \( \D^c(\Cc) \). Denote this functor with the same notation:
+    \[
+        H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc)
+    \]
 \end{remark}
 
-% TODO: Why need small?
-% MS-Question: Is the name OK?
+\begin{remark}
+    \( H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc) \) is fully faithful.
+\end{remark}
+
+% TODO: Why need small? Probably something with derived.
+% TODO: Heilt ordrett nesten frå Jasso--Muro 2023 p. 32, burde kanskje omformulera?
 \begin{definition}[pre-triangulated DG-category]
     Let \( \Cc \) be a small DG-category.
+
+    Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if the image of the (fully faithful) functor \( H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc) \) is a triangulated subcategory of \( \D^c(Cc) \).
 \end{definition}
