@@ -1,0 +1,72 @@
+% First need to extend massey-prod definition to H^0
+
+% MS-Question: I Jasso--Muro så er dette berre definert for element av dgMod (Ingen subscript!)
+% TODO: This is also the same shift functor that makes H^0(dgmodblabla) triangulated. Probably not neccesary to specify then.
+\begin{proposition}
+    Let \( \Cc \) be a DG-category over \( R \). Let \( \Sigma \) be the shift functor on \( \C_{\dg}(\Mod(R)) \). Let \( A, B \in \dgMod_{\dg} \).
+
+    Then
+    \[
+        H^i(\dgMod_{\dg}(\Cc)(A, B)) \cong H^0(\dgMod_{\dg}(\Cc))(A, \Sigma^i \circ B).
+    \]
+\end{proposition}
+\begin{proof}
+    TODO
+\end{proof}
+
+% TODO: H^0-category is a "subset" of H^*
+\begin{remark}
+    \label{rem:induced_massey_product_on_H-0}
+    Given a DG-category \( \Cc \) and a diagram in \( H^0(\Cc) \) as follows
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_1 & X_2 & X_3 & X_4 \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3)
+                (m-1-3) edge node {f_3} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    Then this can be considered a diagram in \( H^*(\Cc) \) consisting of homogeneous of degree \( 0 \) morphisms.
+
+    Then by \autoref{rem:massey_product_in_dg_cat/massey_product_definition/massey_product_sum_of_degrees} one has that this ``induced'' massey product of \( \massey{f_3, f_2, f_1} \) is a subset of \( H^{-1} \tuple{\Cc \tuple{X_1, X_4}} \).
+\end{remark}
+
+\begin{remark}
+    Building on the idea in \autoref{rem:induced_massey_product_on_H-0}, let \( \Tc \) be an algebraic triangulated category, and let the following be a diagram in \( \Tc \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_1 & X_2 & X_3 & X_4 \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3)
+                (m-1-3) edge node {f_3} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+
+    TODO: Write out more details in order to connect massey and toda in algebraic triangulated categories.
+\end{remark}
+
+\begin{theorem}
+    Let \( \Tc \) be an algebraic triangulated category. Furthermore let the following be a diagram in \( \Tc \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_1 & X_2 & X_3 & X_4 \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3)
+                (m-1-3) edge node {f_3} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    % MS-question: Massey product ser stygt ut.
+    Then \( \toda{f_3, f_2, f_1} = (-1)^{TODO} \massey{f_3, f_2, f_1} \).
+\end{theorem}

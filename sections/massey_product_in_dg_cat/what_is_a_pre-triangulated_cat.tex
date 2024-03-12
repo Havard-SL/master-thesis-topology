@@ -184,7 +184,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 \begin{definition}[Derived DG-category]
     Let \( \Cc \) be a DG-category.
 
-    The \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \) spanned by the objects of \( \dgMod_{\dg}(\Cc) \) that are DG-projective.
+    Then the \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \) spanned by the objects of \( \dgMod_{\dg}(\Cc) \) that are DG-projective.
 \end{definition}
 
 % MS-Question: What is coproduct for the derived category?
@@ -263,6 +263,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 
 \begin{remark}
     \( H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc) \) is fully faithful.
+
+    TODO: Prove
 \end{remark}
 
 % TODO: Why need small? Probably something with derived.
@@ -271,4 +273,10 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     Let \( \Cc \) be a small DG-category.
 
     Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if the image of the (fully faithful) functor \( H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc) \) is a triangulated subcategory of \( \D^c(Cc) \).
+\end{definition}
+
+\begin{definition}[Algebraic triangulated category/enhanced triangulated category]
+    Let \( \Tc \) be a triangulated category.
+
+    Then \( \Tc \) is called an \emph{algebraic triangulated category} or an \emph{enhanced triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), such that \( H^0(\Cc) \) is equivalent to \( \Tc \).
 \end{definition}
