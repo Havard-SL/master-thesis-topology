@@ -152,8 +152,11 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \end{enumerate}
 \end{definition}
 
+% TODO: What are the triangles? Is the shioft functor correct on maps?
 \begin{theorem}
-    \( H^0(\dgMod_{\dg}(\Cc)) \) is a triangulated category.
+    Let \( \Cc \) be a DG-category over \( R \). Let \( \Sigma_{\C_{\dg}(\Mod(R))} \) be the shift functor on \( \C_{\dg}(\Mod(R)) \).
+
+    Then \( H^0(\dgMod_{\dg}(\Cc)) \) is a triangulated category with the shift functor \( \Sigma(-) = \Sigma_{\C_{\dg}(\Mod(R))} \circ - \).
 \end{theorem}
 \begin{proof}
     TODO
@@ -275,8 +278,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if the image of the (fully faithful) functor \( H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc) \) is a triangulated subcategory of \( \D^c(Cc) \).
 \end{definition}
 
-\begin{definition}[Algebraic triangulated category/enhanced triangulated category]
+\begin{definition}[Algebraic triangulated category]
     Let \( \Tc \) be a triangulated category.
 
-    Then \( \Tc \) is called an \emph{algebraic triangulated category} or an \emph{enhanced triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), such that \( H^0(\Cc) \) is equivalent to \( \Tc \).
+    Then \( \Tc \) is called an \emph{algebraic triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), such that \( H^0(\Cc) \) is equivalent to \( \Tc \).
 \end{definition}
