@@ -32,6 +32,7 @@
 \end{remark}
 
 \begin{definition}[Massey product on \( H^0(\dgMod_{\dg}(\Cc)) \)]
+    \label{def:massey_product_H^0(dgMod_dg(C))}
     Let \( \Cc \) be a DG-category. Let the following be a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \)
     \begin{center}
         \begin{tikzpicture}
@@ -60,14 +61,14 @@
     \end{center}
     where all the maps are of degree \( 0 \).
 
-    % MS-Question: Overly complicated?
+    % MS-Question: Overly complicated and imprecise on domains and stuff.
     By \autoref{rem:massey_product_in_dg_cat/massey_product_definition/massey_product_sum_of_degrees} the massey product of these maps \( \massey{\iota(f_3), \iota(f_2), \iota(f_1)} \) only have non-zero components in \( H^{-1}(\dgMod_{\dg}(\Cc)(X_1, X_4)) \). Then, using the ismorphism \( \phi \) in \autoref{prop:H^i_dgmod_cong_H^0_with_shift} one has that \( \phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)}) \subseteq H^0(\dgMod_{\dg}(\Cc)(X_1, \Sigma^{-1}X_4)) \). This in turn means that \( \phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)}) \subseteq \im(\iota_{X_1, \Sigma^{-1}(X_4)}) \). But since \( \iota \) is a faithful and dense funcor, it follows that there is a unique subset \( M \subseteq H^0(\dgMod_{\dg}(\Cc))(X_1, \Sigma^{-1}(X_4)) \) such that \( \iota(M) = \phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)}) \).
 
     Then define this \( M \) as the \emph{massey product on \( H^0(\dgMod_{\dg}(\Cc)) \)}.
 \end{definition}
 
-% TODO: Specify that fully faithful is an embedding? And that the functor is exact?
-\begin{remark}
+% TODO: Specify that the functor is exact?
+\begin{definition}[Massey product in an algebraic triangulated category]
     Let \( \Tc \) be an algebraic triangulated category, and let the following be a diagram in \( \Tc \)
     \begin{center}
         \begin{tikzpicture}
@@ -86,7 +87,7 @@
 
     To recap, one has the relation:
     \[
-        \Tc \cong H^0(\Cc) \cong \im(H^0(\mathbf{h})) \stackrel{full}{\subseteq} \D^c(\Cc) \stackrel{full}{\subseteq} \D(\Cc) \stackrel{full}{\subseteq} H^0(\dgMod_{\dg}(\Cc))
+        \Tc \cong H^0(\Cc) \cong  \stackrel{full}{\subseteq} \D^c(\Cc) \stackrel{full}{\subseteq} \D(\Cc) \stackrel{full}{\subseteq} H^0(\dgMod_{\dg}(\Cc))
     \]
 
     Let \( F \) denote the functor that takes \( F: \Tc \hookrightarrow H^0(\dgMod_{\dg}(\Cc)) \) by the maps above. Then one has that the above diagram in \( \Tc \) can be viewed as a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \) as follows
@@ -103,10 +104,8 @@
         \end{tikzpicture}
     \end{center}
     
-    Furthermore
-
-    TODO: Write out more details in order to connect massey and toda in algebraic triangulated categories.
-\end{remark}
+    On the above diagram one can take the massey product (as in \autoref{def:massey_product_H^0(dgMod_dg(C))}). This yields a subset \( \massey{F(f_3), F(f_2), F(f_1)} \subseteq H^0(\dgMod_{\dg}(\Cc))(F(X_1), \Sigma^{-1}(F(X_4))) \), and since \( \im(H^0(\mathbf{h})) \) is a full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \), one has that \( \massey{F(f_3), F(f_2), F(f_1)} \subseteq \im(H^0(\mathbf{h}))(F(X_1), \Sigma^{-1}(F(X_4))) \) and therefore isomorphic as a set to a subset of \( \Tc(X_1, \Sigma^{-1}(X_4)) \cong \Tc(\Sigma(X_1), X_4) \). This subset is denoted as \( \massey{f_3, f_2, f_1} \) and is called the \emph{massey product of \( \Tc \)}.
+\end{definition}
 
 \begin{theorem}
     Let \( \Tc \) be an algebraic triangulated category. Furthermore let the following be a diagram in \( \Tc \)
