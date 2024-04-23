@@ -10,7 +10,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             \( \Obj(\C_{\dg}(\Mod(R))) := \Obj(\C(\Mod(R))) \).
         }
         \item {
-            For \( A, B \in \Obj(\C_{\dg}(\Mod(R))) \) let
+            For \( A, B \in \C_{\dg}(\Mod(R)) \) let
             \[ 
                 \tuple{\C_{\dg}(\Mod(R))(A, B)}_i := \bigoplus_{j \in \Zb} \Mod(R)(A_j, B_{j + i})
             \]
@@ -29,7 +29,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             \end{align*}
         }
         \item {
-            For \( A, B, C \in \Obj(\C_{\dg}(\Mod(R))) \), let
+            For \( A, B, C \in \C_{\dg}(\Mod(R)) \), let
             \[
                 \circ_{\C_{\dg}(\Mod(R))}: \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) \to \C_{\dg}(\Mod(R))(A, C)
             \]
@@ -108,6 +108,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     TODO
 \end{proof}
 
+% TODO: Why is \Cc(-, A) a functor into \C_{\dg}(\Mod(R))?
 \begin{definition}[DG Yoneda embedding]
     \label{def:DG_Yoneda_embedding}
     Let \( \Cc \) be a DG-category over \( R \).
@@ -138,21 +139,23 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             Then let \( H^0(\Cc)(A, B) := H^0(\Cc(A, B)) \).
         }
         \item {
-            Let \( A, B, C \in H^0(\Cc) \) with \( f \in H^0(B, C) \) and \( g \in H^0(A, B) \).
+            Let \( A, B, C \in H^0(\Cc) \) with \( f_1 \in H^0(A, B) \) and \( f_2 \in H^0(B, C) \).
 
-            Then by \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}, there exists \( \tilde{f} \in \Cc(B, C), \tilde{g} \in \Cc(A, B) \) such that \( H^0(\tilde{f}) = f \) and \( H^0(\tilde{g}) = g \).
+            Then by \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}, there exists \( g_1 \in \Cc(A, \B) \), and \( g_2 \in \Cc(B, C) \) such that \( \class{g_1} = f_1 \) and \( \class{g_2} = f_2 \).
 
+            % TODO: Slight abuse of notation taking a "class" of an element of a chain complex.
             % TODO: Need to show that this is well defined?
             Then let composition be defined on elementary tensors as follows
             \begin{align*}
                 \circ_{H^0(\Cc)}: H^0(\Cc)(B, C) \otimes H^0(\Cc)(A, B) &\to H^0(\Cc)(A, C) \\
-                f \otimes g &\mapsto H^0(\circ_{\Cc}(\tilde{f} \otimes \tilde{g}))
+                f_2 \otimes f_1 &\mapsto \class{ \circ_{\Cc}(g_2 \otimes g_1) }
             \end{align*}
         }
     \end{enumerate}
 \end{definition}
 
-% TODO: What are the triangles? Is the shioft functor correct on maps?
+% TODO: What are the triangles? Is the shift functor correct on maps?
+% TODO: Incorrect/abuse of notation, how does the shift work on maps?
 \begin{theorem}
     Let \( \Cc \) be a DG-category over \( R \). Let \( \Sigma_{\C_{\dg}(\Mod(R))} \) be the shift functor on \( \C_{\dg}(\Mod(R)) \).
 

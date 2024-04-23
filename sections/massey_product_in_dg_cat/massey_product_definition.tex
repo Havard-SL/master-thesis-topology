@@ -1,7 +1,7 @@
 \begin{notation}
     Let \( R \) be a commutative ring with identity.
 
-    Then let \( \Mod_{\star}(R) \) denote the category of graded \( R \)-modules.
+    Then let \( \Mod_{\bullet}(R) \) denote the category of graded \( R \)-modules.
 \end{notation}
 
 \begin{notation}
@@ -9,7 +9,7 @@
 
     Then let
     \[
-        H^*: C \tuple{\Mod(R)} \to \Mod_{\star}(R)
+        H^\bullet: \C\tuple{\Mod(R)} \to \Mod_{\bullet}(R)
     \]
     be the cohomology functor.
 \end{notation}
@@ -17,24 +17,24 @@
 % SRC Künneth: https://ncatlab.org/nlab/show/K%C3%BCnneth+theorem
 \begin{fact}
     \label{fact:massey_product_in_dg_cat/massey_product_definition/algebraic_kunneth_isomorphism}
-    Considering objects of \( \Mod_{\star}(R) \) as chain complexes with a zero-differential, one can define a tensor product using \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/tensor_product_of_chain_complexes}.
+    Considering objects of \( \Mod_{\bullet}(R) \) as chain complexes with a zero-differential, one can define a tensor product using \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/tensor_product_of_chain_complexes}.
 
-    Let \( A, B \in C \tuple{\Mod(R)} \).
+    Let \( A, B \in \C\tuple{\Mod(R)} \).
 
     By the algebraic Künneth theorem when \( R \) is a field, there is an isomorphism
     \[
-        \phi: H^*(A) \otimes H^*(B) \stackrel{\sim}{\to} H^*(A \otimes B)
+        \phi: H^\bullet(A) \otimes H^\bullet(B) \stackrel{\sim}{\to} H^\bullet(A \otimes B)
     \]
     TODO
 \end{fact}
 
 \begin{lemma}
     \label{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}
-    Let \( \Cc \) be a differentially graded category over \( R \), and let \( A, B \in H^*(\Cc) \). Let \( g \in H^*(\Cc)(A, B) \).
+    Let \( \Cc \) be a differentially graded category over \( R \), and let \( A, B \in H^\bullet(\Cc) \). Let \( f \in H^\bullet(\Cc)(A, B) \).
 
-    Then there is an element \( f \in \Cc(A, B) \) such that \( H^*(f) = g \).
+    Then there is a cocycle representative \( g \in \Cc(A, B) \) such that \( [g] = f \).
 
-    Furthermore, if \( g \) is homogeneous of degree \( d \), then there exist an \( f \) that is also homogeneous of degree \( d \).
+    Furthermore, if \( f \) is homogeneous of degree \( d \), then there exist an \( g \) that is also homogeneous of degree \( d \).
 \end{lemma}
 \begin{proof}
     TODO: Prove
@@ -45,20 +45,21 @@
 \begin{definition}
     Let \( \Cc \) be a differentially graded category over  \( R \).
 
-    Let \( H^*(\Cc) \) be the following (enriched over \( C\tuple{\Mod(R)} \)) category:
+    Let \( H^\bullet(\Cc) \) be the following (enriched over \( C\tuple{\Mod(R)} \)) category:
     \begin{enumerate}
-        \item Let \( \Obj(H^*(\Cc)) := \Obj(\Cc) \).
-        \item For any \( A, B \in \Obj(H^*(\Cc)) \), let \( H^*(\Cc)(A, B) := H^* \tuple{\Cc(A, B)} \).
+        \item Let \( \Obj(H^\bullet(\Cc)) := \Obj(\Cc) \).
+        \item For any \( A, B \in \Obj(H^\bullet(\Cc)) \), let \( H^\bullet(\Cc)(A, B) := H^\bullet \tuple{\Cc(A, B)} \).
         \item {
             % TODO: Need proof of the following statement
             % TODO: Change wording
-            For any \( A, B, C \in \Obj(H^*(\Cc)) \) and for any \( f \in H^*(\Cc)(A, B) \) and \( g \in H^*(\Cc)(B, C) \), there are representatives \( \tilde{f} \in \Cc(A, B) \) and \( \tilde{g} \in \Cc(B, C) \) respectively by \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}, I.e: \( H^*(\tilde{f}) = f \) and \( H^*(\tilde{g}) = g \).
+            For any \( A, B, C \in \Obj(H^\bullet(\Cc)) \) and for any \( f_1 \in H^\bullet(\Cc)(A, B) \) and \( f_2 \in H^\bullet(\Cc)(B, C) \), let \( g_1 \in \Cc(A, B) \) and \( g_2 \in \Cc(B, C) \) be representatives of \( f_1 \) and \( f_2 \), respectively from \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}.
 
-            % TODO: Need to check if this is well defined.
-            Let composition in \( H^*(\Cc) \) be defined on elementary tensors as follows
+            % TODO: Slight abuse of notation taking a "class" of an element of a chain complex.
+            % TODO: Need to check if this is well defined, as in not dependant on choice of representative as well as that \circ_{\Cc}(g_1 \otimes g_2) is a cocycle.
+            Let composition in \( H^\bullet(\Cc) \) be defined on elementary tensors as follows
             \begin{align*}
-                \circ_{H^*(\Cc)}: H^*(\Cc)(B, C) \otimes H^*(\Cc)(A, B) &\to H^*(\Cc)(A, C) \\
-                g \otimes f &\mapsto H^*(\circ_{\Cc}(\tilde{g} \otimes \tilde{f}))
+                \circ_{H^\bullet(\Cc)}: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C) \\
+                f_1 \otimes f_2 &\mapsto \class{ \circ_{\Cc}(g_1 \otimes g_2) }
             \end{align*}
             % Connection to [f] \otimes [g] \mapsto [f \otimes g] \mapsto [\circ(f \otimes g)]?? TODO
             % Is this even well defined/allowed? Need to check if every element in tensor product is a (finite?) sum of elementary tensors. TODO
@@ -82,7 +83,7 @@
     %             \begin{tikzpicture}
     %                 \diagram{m}{1cm}{1.3cm} {
     %                     \Kc(B, C) \otimes \Kc(A, B) & & \Kc(A, C) \\
-    %                     H^*\tuple{\Cc(B, C)} \otimes H^*\tuple{\Cc(A, B)} & H^*\tuple{\Cc(B, C) \otimes \Cc(A, B)} & H^*\tuple{\Cc(A, C)} \\
+    %                     H^\bullet\tuple{\Cc(B, C)} \otimes H^\bullet\tuple{\Cc(A, B)} & H^\bullet\tuple{\Cc(B, C) \otimes \Cc(A, B)} & H^\bullet\tuple{\Cc(A, C)} \\
     %                 };
 
     %                 \draw[math]
@@ -91,18 +92,19 @@
     %                     (m-1-3) edge[equal] (m-2-3)
                         
     %                     (m-2-1) edge node {\phi} node[swap] {\sim} (m-2-2)
-    %                     (m-2-2) edge node {H^*(\circ_{\Cc})} (m-2-3); 
+    %                     (m-2-2) edge node {H^\bullet(\circ_{\Cc})} (m-2-3); 
     %             \end{tikzpicture}
     %         \end{center}
 \end{remark}
 
 % TODO: Why is degrees preserved when choosing representatives?
 % SRC: Wikipedia https://en.wikipedia.org/wiki/Massey_product and TODO:guessing
+% TODO: Show that definition is well defined as in massey product makes cocycles and can therefore take representatives.
 \begin{definition}
     \label{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat}
     Let \( \Cc \) be a differentially graded category over \( R \).
 
-    Let the following be a diagram in \( H^*(\Cc) \)
+    Let the following be a diagram in \( H^\bullet(\Cc) \)
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -110,44 +112,45 @@
             };
 
             \draw[math]
-                (m-1-1) edge node {g_1} (m-1-2)
-                (m-1-2) edge node {g_2} (m-1-3)
-                (m-1-3) edge node {g_3} (m-1-4);
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3)
+                (m-1-3) edge node {f_3} (m-1-4);
         \end{tikzpicture}
     \end{center}
 
-    Where \( g_1, g_2 \) and \( g_3 \) are homogenous elements with degree \( d_1, d_2 \) and \( d_3 \) respectively.
+    Where \( f_1, f_2 \) and \( f_3 \) are homogenous elements with degree \( d_1, d_2 \) and \( d_3 \) respectively.
 
-    Then let \( f_1, f_2 \) and \( f_3 \) be the homogeneous representatives of the equivalence class of \( g_1, g_2 \) and \( g_3 \) respectively from \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}. I.e: \( H^*(f_1) = g_1, H^*(f_2) = g_2 \) and \( H^*(f_3) = g_3 \). These will also have degree \( d_1, d_2 \) and \( d_3 \) respectively.
+    Then let \( g_1, g_2 \) and \( g_3 \) be the homogeneous cocycle representatives of \( f_1, f_2 \) and \( f_3 \) respectively from \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}. Be the same lemma, these will also have degree \( d_1, d_2 \) and \( d_3 \) respectively.
 
-    Furthermore for a homogeneous element, \( h \) with degree \( d_h \), let \( \bar{h} := (-1)^{d_h + 1}h \).
+    Furthermore for a homogeneous element, \( h \in \C(\Mod(R)) \) with degree \( d_h \), let \( \bar{h} := (-1)^{d_h + 1}h \).
 
     Then let:
     \[
         \set{
-            H^* \tuple{
-                \bar{s} \circ f_1 + \bar{f_3} \circ t
+            \class{
+                \bar{s} \circ g_1 + \bar{g_3} \circ t
             }
             \mid
-            d(s) = \bar{f_3} \circ f_2, \quad
-            d(t) = \bar{f_2} \circ f_1
+            d(s) = \bar{g_3} \circ g_2, \quad
+            d(t) = \bar{g_2} \circ g_1
         }
     \]
-    This is a subset of \( H^* \tuple{\Cc \tuple{X_1, X_4}} \) and therefore also a subset of \( H^*(\Cc)(X_1, X_4) \), called the \emph{Massey product of \( g_3, g_2 \) and \( g_1 \)}, and is denoted as \( \toda{g_3, g_2, g_1 } \).
+    This is a subset of \( H^\bullet \tuple{\Cc \tuple{X_1, X_4}} \) and therefore also a subset of \( H^\bullet(\Cc)(X_1, X_4) \), called the \emph{Massey product of \( f_3, f_2 \) and \( f_1 \)}, and is denoted as \( \massey{f_3, f_2, f_1 } \).
 \end{definition}
 
 \begin{theorem}
     The Massey product definition in \autoref{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat} is well-defined.
 \end{theorem}
 \begin{proof}
-    Want to show that for different choices of representatives, that the definition returns the same subset.
+    Want to show that for different choices of representatives, that the definition returns the same subset. As well as that the massey product creates cocycles.
 
     TODO
 \end{proof}
 
+% TODO: Add comment about composition in DG-category adding the degrees of homogeneous elements.
 \begin{remark}
     \label{rem:massey_product_in_dg_cat/massey_product_definition/massey_product_sum_of_degrees}
-    In particular, considering the degrees of \( g_1, g_2 \) and \( g_3 \), one can see that the only non-zero degree of \( \massey{g_3, g_2, g_1 } \subseteq H^* \tuple{\Cc \tuple{X_1, X_4}} \) is in \( H^{d_3 + d_2 + d_1 - 1} \tuple{\Cc \tuple{X_1, X_4}} \).
+    In particular, considering the degrees of \( f_1, f_2 \) and \( f_3 \), one can see that the only non-zero degree of \( \massey{f_3, f_2, f_1 } \subseteq H^\bullet \tuple{\Cc \tuple{X_1, X_4}} \) is in \( H^{d_3 + d_2 + d_1 - 1} \tuple{\Cc \tuple{X_1, X_4}} \).
 \end{remark}
 
 % SRC: Computations done on ReMarkable Massey Product/Definition Massey prod p2
