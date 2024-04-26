@@ -51,14 +51,47 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     Enriched functor between DG-categories implies it preserves differentials and grading? TODO
 \end{remark}
 
-% TODO: DG-categories over the same ring?
+% SRC: Berest--Mehrle 2017 LN
+% \begin{definition}[DG-natural transformation]
+%     Let \( F, G: \Ac \to \Bc \) be two DG-functors.
+
+%     Then a collection of morphisms
+%     \[
+%         \alpha = \set{ \alpha_A \in \Bc(F(A), G(A)) \mid A \in \Ac }
+%     \]
+
+%     TODO: Find secondary source, can't see the connection to nlab
+% \end{definition}
+
 % TODO: Need to show that it's a category?
 % MS-Question: Correct? Berest--Mehrle (LN) has another def. -> Subscript dg betyr enriched.
-\begin{notation}
-    For two DG-categories \( \Ac, \Bc \) over the same commutative ring \( R \), let \( \Fun_{\dg}(\Ac, \Bc) \) denote the DG-category over \( R \) of all DG-functors from \( \Ac \) to \( \Bc \).
+% \begin{definition}[\( \Fun(\Ac, \Bc) \)]
+%     Let \( \Ac, \Bc \) be two DG-categories over the same commutative ring \( R \).
+    
+%     Then let \( \Fun(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \), with morphisms being DG-natural transformations.
+% TODO: Can't use this unless I have a definition of "DG-natural transformations".
+% \end{definition}
 
-    TODO: Show DG-structure.
-\end{notation}
+% SRC: Berest--Mehrle 2017 LN
+% TODO: Must \Ac be small in order to be well defined??
+\begin{definition}[\( \Fun_{\dg}(\Ac, \Bc) \)]
+    Let \( \Ac \) and \( \Bc \) be DG-categories over \( R \).
+
+    Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the following DG-category:
+    \begin{enumerate}
+        \item{
+            Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \)
+        }
+        \item{
+            For \( X, Y \in \Fun_{\dg}(\Ac, \Bc) \), let
+            \[
+                \tuple{\Fun_{\dg}(\Ac, \Bc)(X, Y)}_i
+                := \prod_{A \in \Ac} \tuple{\Bc\tuple{X(A), Y(A)}}_i
+            \]
+        }
+        TODO
+    \end{enumerate}
+\end{definition}
 
 \begin{definition}[Opposite DG-category]
     Let \( \Cc \) be a DG-category.
