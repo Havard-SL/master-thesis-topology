@@ -143,10 +143,15 @@
 
     Let \( f \in \massey{f_3, f_2, f_1} \) and let \( \bar{(-)} \) be as in \autoref{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat}.
     
-    Then by definition there exist representatives \( g_i \in \dgMod_{\dg}(X_i, X_{i + 1}) \) and some \( s, t \) such that
+    Then by definition there exist representatives \( g_i \in \dgMod_{\dg}(X_i, X_{i + 1}) \) and some \( s \in \dgMod_{\dg}(X_2, X_4) \) and \( t \in \dgMod_{\dg}(X_1, X_3) \) such that
     \[
-        f = \class{\bar{s} \circ g_1 - \bar{g}_3 \circ t}.
+        f = \phi\tuple{\class{\bar{s} \circ g_1 - \bar{g}_3 \circ t}}.
     \]
+
+    % TODO:
+    % Create alpha and beta in a way that they have degree 0.
+    % Show that alpha and beta are cocycles of degree 0
+    % Show that alpha and beta fits into a fiber-cofiber TB definition.
 \end{proof}
 
 \begin{corollary}

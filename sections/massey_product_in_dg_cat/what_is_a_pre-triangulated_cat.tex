@@ -75,6 +75,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 % SRC: Berest--Mehrle 2017 LN
 % TODO: Must \Ac be small in order to be well defined??
 \begin{definition}[\( \Fun_{\dg}(\Ac, \Bc) \)]
+    \label{def:dg_functor_category}
     Let \( \Ac \) and \( \Bc \) be DG-categories over \( R \).
 
     Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the following DG-category:
@@ -83,13 +84,16 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \)
         }
         \item{
-            For \( X, Y \in \Fun_{\dg}(\Ac, \Bc) \), let
+            For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let
             \[
-                \tuple{\Fun_{\dg}(\Ac, \Bc)(X, Y)}_i
-                := \prod_{A \in \Ac} \tuple{\Bc\tuple{X(A), Y(A)}}_i
+                \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
+                := \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
             \]
         }
-        TODO
+        TODO -- Need resources to define this
+        % Current ideas: MS-Question
+        % End
+        % Berest--Mehrle 2017 def?
     \end{enumerate}
 \end{definition}
 
@@ -130,16 +134,6 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \]
     Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
 \end{definition}
-
-% TODO: Should be true according to Jasso--Muro
-% TODO: DG-category over R?
-% Probably true by the definition considering Fun_dg is a DG cat.
-\begin{proposition}
-    \( \dgMod_{\dg}(\Cc) \) is a DG-category.
-\end{proposition}
-\begin{proof}
-    TODO
-\end{proof}
 
 % TODO: Why is \Cc(-, A) a functor into \C_{\dg}(\Mod(R))?
 \begin{definition}[DG Yoneda embedding]
