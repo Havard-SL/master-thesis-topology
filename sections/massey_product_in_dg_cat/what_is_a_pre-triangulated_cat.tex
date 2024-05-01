@@ -39,6 +39,70 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \end{enumerate}
 \end{definition}
 
+% SRC: JAsso--Muro 2023, p. 29
+\begin{definition}[\( \Sigma_{\C_{\dg}(Mod(R))} \)]
+    Let the functor \( \Sigma_{\C_{\dg}(Mod(R))} \) be defined as follows
+    \begin{enumerate}
+        \item {
+            For \( A \in \C_{\dg}(Mod(R)) \), let
+            \[
+                \Sigma_{\C_{\dg}(Mod(R))}(A) := \Sigma_{\C(\Mod(R))}(A)
+            \]
+        }
+        \item {
+            For \( f \in \C_{\dg}(Mod(R))(A, B) \) homogeneous of degree \( i \), let
+            \[
+                \Sigma_{\C_{\dg}(Mod(R))}(f):
+                \begin{pmatrix}
+                    \vdots \\
+                    a_1 \\
+                    a_0 \\
+                    a_{-1} \\
+                    \vdots
+                \end{pmatrix}
+                \mapsto
+                (-1)^i
+                \begin{pmatrix}
+                    \vdots \\
+                    f_{2-i}(a_{1-i}) \\
+                    f_{1-i}(a_{-i}) \\
+                    f_{-i}(a_{-1-i}) \\
+                    \vdots
+                \end{pmatrix}
+            \]
+            where the middle term in the left and right tuple are in degree \( 0 \).
+
+            % TODO: Keep this?
+            Or equivalently: for \( j \in \Zb \), let \( \tuple{\Sigma_{\C_{\dg}(Mod(R))}(f)}^j = (-1)^i f^{j + 1} \).
+        }
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Consider the following homogeneous of degree \( -1 \) map for \( A \in \C_{\dg}(\Mod(R)) \)
+    \begin{align*}
+        \sigma_A: A &\to \Sigma(A) \\
+        \begin{pmatrix}
+            \vdots \\
+            a_1 \\
+            a_0 \\
+            a_{-1} \\
+            \vdots
+        \end{pmatrix}
+        &\mapsto
+        \begin{pmatrix}
+            \vdots \\
+            a_2 \\
+            a_1 \\
+            a_0 \\
+            \vdots
+        \end{pmatrix}
+    \end{align*}
+    where the middle term in the left and right tuple are in degree \( 0 \).
+    
+    WIP
+\end{remark}
+
 % TODO Cite: Jasso--Muro
 % TODO: Elaborate on enriched functor?
 \begin{definition}[DG-functor]
@@ -84,12 +148,49 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \)
         }
         \item{
+            % TODO: Maybe fix the wording a bit here?
             For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let
+            \[
+                \eta^i \in \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
+            \]
+            be written as a collection of elements \( \eta_A^i \in \tuple{\Bc\tuple{F(A), G(A)}}_i \) for each \( A \in \Ac \).
+            
+            Then let
             \[
                 \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
                 \subseteq \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
             \]
-            such that for any \( A, B \in \Cc \) one has that the following diagram commutes
+            be the subset such that for any \( A, B \in \Ac \) and any \( f \in \Ac\tuple{A, B} \) the following diagram in \( \Bc \), where \( \eta_A^i \) and \( \eta_B^i \) are considered as homogeneous elements of degree \( i \), commutes
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        F(A) & G(A) \\
+                        F(B) & G(B) \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\eta_A^i} (m-1-2)
+                            edge node {F(f)} (m-2-1)
+                        (m-1-2) edge node {G(f)} (m-2-2)
+
+                        (m-2-1) edge node {\eta_B^i} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+            % TODO: Show this is a R-module
+
+            Then let
+            \[
+                \Fun_{\dg}(\Ac, \Bc)(F, G) := \bigoplus_{i \in \Zb} \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
+            \]
+            with the differential acting component wise for each \( i \in \Zb \) and \( A \in \Ac \) as follows
+            \[
+                d^i_A: \eta_A^i \mapsto d^i_{\C_{\dg}(\Mod(R))}(\eta_A^i) = d_{G(A)} \circ \eta_A^i - (-1)^i \eta_A^i \circ d_{F(A)}
+            \]
+            % TODO: Show that this differential has correct codomain.
+        }
+        \item {
+            Let composition be defined as expected.
+            % TODO: Show that composition is wll defined.
         }
         TODO -- Need resources to define this
         WIP: In notes, have tried showing that the differential is well defined.
