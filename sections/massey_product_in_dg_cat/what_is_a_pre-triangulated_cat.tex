@@ -99,8 +99,73 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \end{pmatrix}
     \end{align*}
     where the middle term in the left and right tuple are in degree \( 0 \).
-    
-    WIP
+
+    Consider this (suggestively named) homogeneous of degree \( 1 \) morphism
+    \begin{align*}
+        \sigma_A^{-1}: \Sigma(A) &\to A \\
+        \begin{pmatrix}
+            \vdots \\
+            a_1 \\
+            a_0 \\
+            a_{-1} \\
+            \vdots
+        \end{pmatrix}
+        &\mapsto
+        \begin{pmatrix}
+            \vdots \\
+            a_0 \\
+            a_{-1} \\
+            a_{-2} \\
+            \vdots
+        \end{pmatrix}.
+    \end{align*}
+
+    By looking at
+    \[
+        \sigma_A \circ \sigma_A^{-1}: \Sigma(A) \to \Sigma(A)
+    \]
+    one can see that it is exactly the identity morphism, and likewise for \( \sigma_A^{-1} \circ \sigma_A \), and the morphism is therefore the inverse of \( \sigma_A \).
+
+    Furthermore, for \( f \in \C_{\dg}(\Mod(R))(A, B) \), homogeneous of degree \( i \), consider the morphism
+    \[
+        \sigma_B \circ f \circ \sigma_A^{-1}.
+    \]
+    Looking at what the morphism is doing element-wise
+    \[
+        \begin{pmatrix}
+            \vdots \\
+            a_1 \\
+            a_0 \\
+            a_{-1} \\
+            \vdots
+        \end{pmatrix}
+        \stackrel{\sigma_A^{-1}}{\mapsto}
+        \begin{pmatrix}
+            \vdots \\
+            a_0 \\
+            a_{-1} \\
+            a_{-2} \\
+            \vdots
+        \end{pmatrix}
+        \stackrel{f}{\mapsto}
+        \begin{pmatrix}
+            \vdots \\
+            f_{1-i}(a_{-i}) \\
+            f_{-i}(a_{-1-i}) \\
+            f_{-1-i}(a_{-2-i}) \\
+            \vdots
+        \end{pmatrix}
+        \stackrel{\sigma_B}{\mapsto}
+        \begin{pmatrix}
+            \vdots \\
+            f_{2-i}(a_{1-i}) \\
+            f_{1-i}(a_{-i}) \\
+            f_{-i}(a_{-1-i}) \\
+            \vdots
+        \end{pmatrix}
+    \]
+    % TODO: Impliserar dette at det er naturleg iso?
+    one can see that it is exacly equal to \( (-1)^i\Sigma(f) \).
 \end{remark}
 
 % TODO Cite: Jasso--Muro
