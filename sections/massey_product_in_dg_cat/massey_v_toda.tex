@@ -123,7 +123,7 @@
 
     Question: How do I create a morphism \( \tilde{t} \in \dgMod_{\dg}(\Cc)(X_1, \Sigma^{-1}(X_3)) \) such that \( \tilde{t} \) is of degree \( 0 \) (and in ``some'' sense closely resembles \( t \)).
 
-    Since \( t \) is homogeneous of degree \( -1 \), we can capture its entire behaviour from the natural transformation \( t^{-1} \). By definition, for any \( A, B \in \Cc^{\op} \) and any \( f \in \Cc^{\op}(A, B) \) the following diagram commutes
+    Since \( t \) is homogeneous of degree \( -1 \), we can capture its entire behaviour from the natural transformation \( t^{-1} \) (NB: the superscript represents the index, not that the map is an inverse). By definition, for any \( A, B \in \Cc^{\op} \) and any \( f \in \Cc^{\op}(A, B) \) the following diagram commutes
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -183,25 +183,102 @@
         \Sigma^{-1}(\sigma_A^{-1}) \circ t_A^{-1}
     \]
     
-    % However, this does not yield a valid morphism in \( \dgMod_{\dg}(\Cc) \), namely because in order to be a valid morphism, by composition rules as well as definition, the outer square of the following diagram has to commute
-    % \begin{center}
-    %     \begin{tikzpicture}
-    %         \diagram{m}{2cm}{2cm} {
-    %             X_1(A) & X_3(A) & \Sigma^{-1}(X_3)(A) \\
-    %             X_1(B) & X_3(B) & \Sigma^{-1}(X_3)(B) \\
-    %         };
+    In order to be a valid morphism (aka. a natural transformation), by composition rules as well as definition, the outer square of the following diagram has to commute for any \( A, B \in \Cc^{\op} \) and \( f \in \Cc^{\op}(A, B) \).
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{2cm}{2cm} {
+                X_1(A) & X_3(A) & \Sigma^{-1}(X_3)(A) \\
+                X_1(B) & X_3(B) & \Sigma^{-1}(X_3)(B) \\
+            };
 
-    %         \draw[math]
-    %         (m-1-1) edge node {t_A^{-1}} (m-1-2)
-    %             edge node {X_1(f)} (m-2-1)
-    %         (m-1-2) edge node {\Sigma^{-1}(\sigma_A^{-1})} (m-1-3)
-    %             edge node {X_3(f)} (m-2-2)
-    %         (m-1-3) edge node {\Sigma^{-1}(X_3)(f)} (m-2-3)
+            \draw[math]
+            (m-1-1) edge node {t_A^{-1}} (m-1-2)
+                edge node {X_1(f)} (m-2-1)
+            (m-1-2) edge node {\Sigma^{-1}(\sigma_A^{-1})} (m-1-3)
+                edge node {X_3(f)} (m-2-2)
+            (m-1-3) edge node {\Sigma^{-1}(X_3)(f)} (m-2-3)
 
-    %         (m-2-1) edge node {t_B^{-1}} (m-2-2)
-    %         (m-2-2) edge node {\Sigma^{-1}(\sigma_B^{-1})} (m-2-3);
-    %     \end{tikzpicture}
-    % \end{center}
+            (m-2-1) edge node {t_B^{-1}} (m-2-2)
+            (m-2-2) edge node {\Sigma^{-1}(\sigma_B^{-1})} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
+
+    Since the leftmost square already commutes by definition, a sufficient result to show that the outer square commutes would be to show that the rightmost square also commutes.
+
+    However, let \( f \in \Cc^{\op}(A, A) \) be a homogeneous map of degree \( -1 \). Then want to see if the following square could commute:
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{2cm}{2cm} {
+                \Sigma(X_3)(A) & X_3(A) \\
+                \Sigma(X_3)(A) & X_3(A) \\
+            };
+
+            \draw[math]
+            (m-1-1) edge node {\sigma_A^{-1}} (m-1-2)
+                edge node {\Sigma(X_3)(f)} (m-2-1)
+            (m-1-2) edge node {X_3(f)} (m-2-2)
+
+            (m-2-1) edge node {\sigma_A^{-1}} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    Let's look at the maps element-wise:
+    \[
+        X_3(f) \circ \sigma_A^{-1} :
+        \begin{pmatrix}
+            \vdots \\
+            a_1 \\
+            a_0 \\
+            a_{-1} \\
+            \vdots
+        \end{pmatrix}
+        \mapsto
+        \begin{pmatrix}
+            \vdots \\
+            a_0 \\
+            a_{-1} \\
+            a_{-2} \\
+            \vdots
+        \end{pmatrix}
+        \mapsto
+        \begin{pmatrix}
+            \vdots \\
+            f_2(a_1) \\
+            f_1(a_0) \\
+            f_0(a_{-1}) \\
+            \vdots
+        \end{pmatrix}
+    \]
+    \[
+        \sigma_A^{-1} \circ \Sigma(X_3)(f) :
+        \begin{pmatrix}
+            \vdots \\
+            a_1 \\
+            a_0 \\
+            a_{-1} \\
+            \vdots
+        \end{pmatrix}
+        \mapsto
+        -
+        \begin{pmatrix}
+            \vdots \\
+            f_1(a_0) \\
+            f_0(a_{-1}) \\
+            f_{-1}(a_{-2}) \\
+            \vdots
+        \end{pmatrix}
+        \mapsto
+        -
+        \begin{pmatrix}
+            \vdots \\
+            f_2(a_1) \\
+            f_1(a_0) \\
+            f_0(a_{-1}) \\
+            \vdots
+        \end{pmatrix}
+    \]
+one can see that there is a sign difference between the two maps. This implies that \( \Sigma(X_3) \) is not naturally isomorphic to \( X_3 \) if any endomorphism ring contains a map of degree \( -1 \).
+
+My question is then: How do I construct this \( \tilde{t} \in \dgMod_{\Cc}(X_1, \Sigma^{-1}(X_3)) \)?
 \end{question}
 
 \begin{theorem}
