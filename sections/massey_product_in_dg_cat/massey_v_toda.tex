@@ -4,7 +4,7 @@
 % TODO: This is also the same shift functor that makes H^0(dgmodblabla) triangulated. Probably not neccesary to specify then.
 \begin{proposition}
     \label{prop:H^i_dgmod_cong_H^0_with_shift}
-    Let \( \Cc \) be a DG-category over \( R \). Let \( \Sigma \) be the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \). Let \( A, B \in \dgMod_{\dg}(\Cc) \).
+    Let \( \Cc \) be a DG-category over \( R \). Let \( \Sigma \) denote the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \). And let \( A, B \in \dgMod_{\dg}(\Cc) \).
 
     Then there is an isomorphism
     \[
@@ -31,6 +31,52 @@
     TODO: Show well defined.
 \end{remark}
 
+\begin{remark}
+    \label{rem:massey_in_H^0(dgMod_dg)}
+    Let \( \Cc \) be a DG-category. Let the following be a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_1 & X_2 & X_3 & X_4 \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3)
+                (m-1-3) edge node {f_3} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    Using the functor \( \iota \) from \autoref{rem:H^0_into_H^*_inclusion}, one can view the above diagram as a diagram in \( H^*(\dgMod_{\dg}(\Cc)) \) in the following manner
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_1 & X_2 & X_3 & X_4 \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\iota(f_1)} (m-1-2)
+                (m-1-2) edge node {\iota(f_2)} (m-1-3)
+                (m-1-3) edge node {\iota(f_3)} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    where all the maps are homogeneous of degree \( 0 \).
+
+    % MS-Question: Overly complicated and imprecise on domains and stuff.
+    By \autoref{rem:massey_product_in_dg_cat/massey_product_definition/massey_product_sum_of_degrees} the massey product of these maps, \( \massey{\iota(f_3), \iota(f_2), \iota(f_1)} \), only have non-zero components in \( H^{-1}(\dgMod_{\dg}(\Cc)(X_1, X_4)) \). Then, using the ismorphism \( \phi \) from \autoref{prop:H^i_dgmod_cong_H^0_with_shift} one has that
+    \[
+        \phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)}) \subseteq H^0(\dgMod_{\dg})(\Cc)(X_1, \Sigma^{-1}X_4).
+    \]
+    Since
+    \[
+        H^0(\dgMod_{\dg})(\Cc)(X_1, \Sigma^{-1}X_4) \cong H^0(\dgMod_{\dg})(\Cc)(\Sigma(X_1), X_4)
+    \]
+    one has the subset
+    \[
+        \Sigma(\phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)})) \subseteq H^0(\dgMod_{\dg})(\Cc)(\Sigma(X_1), X_4).
+    \]
+    Denote \( \Sigma(\phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)})) \), suggestively, as \( \massey{f_3, f_2, f_1} \).
+\end{remark}
+
 \begin{definition}[Massey product on \( H^0(\dgMod_{\dg}(\Cc)) \)]
     \label{def:massey_product_H^0(dgMod_dg(C))}
     Let \( \Cc \) be a DG-category. Let the following be a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \)
@@ -46,7 +92,13 @@
                 (m-1-3) edge node {f_3} (m-1-4);
         \end{tikzpicture}
     \end{center}
-    Using the functor \( \iota \) in \autoref{rem:H^0_into_H^*_inclusion} one can view the above diagram as a diagram in \( H^*(\dgMod_{\dg}(\Cc)) \) as follows
+    Let \( \massey{f_3, f_2, f_1} \subseteq H^0(\dgMod_{\dg})(\Cc)(X_1, \Sigma^{-1}X_4) \) be as in \autoref{rem:massey_in_H^0(dgMod_dg)}. This subset is called the \emph{massey product of \( f_3, f_2 \) and \( f_1 \) in \( H^0(\dgMod_{\dg}(\Cc)) \)}.
+\end{definition}
+
+% TODO: Specify that the functor is exact?
+\begin{remark}
+    \label{rem:massey_in_alg_tri_cat}
+    Let \( \Tc \) be an algebraic triangulated category, and let the following be a diagram in \( \Tc \)
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -54,20 +106,51 @@
             };
 
             \draw[math]
-                (m-1-1) edge node {\iota(f_1)} (m-1-2)
-                (m-1-2) edge node {\iota(f_2)} (m-1-3)
-                (m-1-3) edge node {\iota(f_3)} (m-1-4);
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3)
+                (m-1-3) edge node {f_3} (m-1-4);
+        \end{tikzpicture}.
+    \end{center}
+
+    Since \( \Tc \) is algebraic, it is equivalent to \( H^0(\Cc) \) for some pre-triangulated DG-category \( \Cc \). Furthermore, since \( \Cc \) is a pre-triangulated DG-category, one has that \( H^0(\Cc) \) is equivalent to \( \im(H^0(\mathbf{h})) \). And since \( \im(H^0(\mathbf{h})) \) is a full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \), the diagram above can be looked at as a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \).
+
+    To recap, one has the relation:
+    \[
+        \Tc \cong H^0(\Cc) \cong \im(H^0(\mathbf{h})) \stackrel{\text{full}}{\subseteq} \D^c(\Cc) \stackrel{\text{full}}{\subseteq} \D(\Cc) \stackrel{\text{full}}{\subseteq} H^0(\dgMod_{\dg}(\Cc))
+    \]
+    Let \( F \) denote the functor that takes \( F: \Tc \hookrightarrow H^0(\dgMod_{\dg}(\Cc)) \). Then one has that the above diagram in \( \Tc \) can be viewed as a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \) as follows
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                F(X_1) & F(X_2) & F(X_3) & F(X_4). \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {F(f_1)} (m-1-2)
+                (m-1-2) edge node {F(f_2)} (m-1-3)
+                (m-1-3) edge node {F(f_3)} (m-1-4);
         \end{tikzpicture}
     \end{center}
-    where all the maps are of degree \( 0 \).
+    
+    On the above diagram one can take the massey product (as in \autoref{def:massey_product_H^0(dgMod_dg(C))}). This yields a subset
+    \[
+        \massey{F(f_3), F(f_2), F(f_1)} \subseteq H^0(\dgMod_{\dg}(\Cc))(F(X_1), \Sigma^{-1}(F(X_4))).
+    \]
+    And since \( \im(H^0(\mathbf{h})) \) is a full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \), one has that
+    \[
+        \massey{F(f_3), F(f_2), F(f_1)} \subseteq \im(H^0(\mathbf{h}))(F(X_1), \Sigma^{-1}(F(X_4))).
+    \]
+    And since \( \Tc \cong \im(H^0(\mathbf{h})) \), there is a bijection
+    \[
+        \massey{F(f_3), F(f_2), F(f_1)} \leftrightarrow M \subseteq \Tc(X_1, \Sigma^{-1}(X_4)).
+    \]
+    Then since \( \Tc(X_1, \Sigma^{-1}(X_4)) \cong \Tc(\Sigma(X_1), X_4) \), one can look at the subset
+    \[
+        \Sigma(M) \subseteq \Tc(\Sigma(X_1), X_4).
+    \]
+    This subset is (suggestively) denoted as \( \massey{f_3, f_2, f_1} \).
+\end{remark}
 
-    % MS-Question: Overly complicated and imprecise on domains and stuff.
-    By \autoref{rem:massey_product_in_dg_cat/massey_product_definition/massey_product_sum_of_degrees} the massey product of these maps \( \massey{\iota(f_3), \iota(f_2), \iota(f_1)} \) only have non-zero components in \( H^{-1}(\dgMod_{\dg}(\Cc)(X_1, X_4)) \). Then, using the ismorphism \( \phi \) in \autoref{prop:H^i_dgmod_cong_H^0_with_shift} one has that \( \phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)}) \subseteq H^0(\dgMod_{\dg}(\Cc)(X_1, \Sigma^{-1}X_4)) \). This in turn means that \( \phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)}) \subseteq \im(\iota_{X_1, \Sigma^{-1}(X_4)}) \). But since \( \iota \) is a faithful and dense funcor, it follows that there is a unique subset \( M \subseteq H^0(\dgMod_{\dg}(\Cc))(X_1, \Sigma^{-1}(X_4)) \) such that \( \iota(M) = \phi(\massey{\iota(f_3), \iota(f_2), \iota(f_1)}) \).
-
-    Then define this \( M \) as the \emph{massey product on \( H^0(\dgMod_{\dg}(\Cc)) \)}.
-\end{definition}
-
-% TODO: Specify that the functor is exact?
 \begin{definition}[Massey product in an algebraic triangulated category]
     Let \( \Tc \) be an algebraic triangulated category, and let the following be a diagram in \( \Tc \)
     \begin{center}
@@ -82,29 +165,9 @@
                 (m-1-3) edge node {f_3} (m-1-4);
         \end{tikzpicture}
     \end{center}
+    Let \( \massey{f_3, f_2, f_1} \subseteq \Tc(\Sigma(X_1), X_4) \) be as in \autoref{rem:massey_in_alg_tri_cat}.
 
-    Since \( \Tc \) is algebraic, it is equivalent to \( H^0(\Cc) \) for some pre-triangulated DG-category \( \Cc \). Furthermore, since \( \Cc \) is a pre-triangulated DG-category, one has that \( H^0(\Cc) \) is equivalent to \( \im(H^0(\mathbf{h})) \). And since \( \im(H^0(\mathbf{h})) \) is a full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \), the diagram above can be looked at as a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \).
-
-    To recap, one has the relation:
-    \[
-        \Tc \cong H^0(\Cc) \cong \im(H^0(\mathbf{h})) \stackrel{full}{\subseteq} \D^c(\Cc) \stackrel{full}{\subseteq} \D(\Cc) \stackrel{full}{\subseteq} H^0(\dgMod_{\dg}(\Cc))
-    \]
-
-    Let \( F \) denote the functor that takes \( F: \Tc \hookrightarrow H^0(\dgMod_{\dg}(\Cc)) \) by the maps above. Then one has that the above diagram in \( \Tc \) can be viewed as a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \) as follows
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                F(X_1) & F(X_2) & F(X_3) & F(X_4). \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {F(f_1)} (m-1-2)
-                (m-1-2) edge node {F(f_2)} (m-1-3)
-                (m-1-3) edge node {F(f_3)} (m-1-4);
-        \end{tikzpicture}
-    \end{center}
-    
-    On the above diagram one can take the massey product (as in \autoref{def:massey_product_H^0(dgMod_dg(C))}). This yields a subset \( \massey{F(f_3), F(f_2), F(f_1)} \subseteq H^0(\dgMod_{\dg}(\Cc))(F(X_1), \Sigma^{-1}(F(X_4))) \), and since \( \im(H^0(\mathbf{h})) \) is a full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \), one has that \( \massey{F(f_3), F(f_2), F(f_1)} \subseteq \im(H^0(\mathbf{h}))(F(X_1), \Sigma^{-1}(F(X_4))) \) and therefore isomorphic as a set to a subset of \( \Tc(X_1, \Sigma^{-1}(X_4)) \cong \Tc(\Sigma(X_1), X_4) \). This subset is denoted as \( \massey{f_3, f_2, f_1} \) and is called the \emph{massey product of \( \Tc \)}.
+    This subset is called the \emph{massey product of \( f_3, f_2 \) and \( f_1 \) in an algebraic triangulated category}.
 \end{definition}
 
 % \begin{lemma}
@@ -306,7 +369,11 @@ My question is then: How do I construct this \( \tilde{t} \in \dgMod_{\Cc}(X_1, 
 
     Let \( f \in \massey{f_3, f_2, f_1} \) and let \( \bar{(-)} \) be as in \autoref{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat}.
     
-    Then by definition there exist representatives \( g_i \in \dgMod_{\dg}(X_i, X_{i + 1}) \) and some \( s \in \dgMod_{\dg}(X_2, X_4) \) and \( t \in \dgMod_{\dg}(X_1, X_3) \) such that
+    Then by definition there exist representatives
+    \[
+        g_i \in \dgMod_{\dg}(X_i, X_{i + 1}), s \in \dgMod_{\dg}(X_2, X_4) \text{ and } t \in \dgMod_{\dg}(X_1, X_3)
+    \]
+    such that
     \[
         f = \phi\tuple{\class{\bar{s} \circ g_1 - \bar{g}_3 \circ t}}.
     \]
