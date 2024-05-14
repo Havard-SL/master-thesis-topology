@@ -20,7 +20,7 @@
     \begin{center} % error meldingen på neste feil endre seg om ein bruke ampersand replacement med memoize!?!?! TODO
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                A & P & B \\
+                A \& P \& B \\
             };
 
             \draw[math]
@@ -34,7 +34,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                A & Q & B \\
+                A \& Q \& B \\
             };
 
             \draw[math]
@@ -50,7 +50,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                A & {P \oplus Q} & B \\
+                A \& {P \oplus Q} \& B \\
             };
 
             \draw[math]
@@ -80,8 +80,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                {\Omega(A)} & {P_A} & A \\
-                {\Omega(B)} & {P_B} & B \\
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B \\
             };
 
             \draw[math]
@@ -114,9 +114,9 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega(A)} & {P_A} & A \\
-                {\Omega(B)} & {P_B} & B \\
-                {\Omega(C)} & {P_C} & C \\
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B \\
+                {\Omega(C)} \& {P_C} \& C \\
             };
 
             \draw[math]
@@ -145,8 +145,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega(A)} & {P_A} & A \\
-                {\Omega(C)} & {P_C} & C \\
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(C)} \& {P_C} \& C \\
             };
 
             \draw[math]
@@ -171,8 +171,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega(A)} & {P_A} & A \\
-                {\Omega(A)} & {P_A} & A \\
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(A)} \& {P_A} \& A \\
             };
 
             \draw[math]
@@ -205,8 +205,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega(A)} & {P_A} & A \\
-                {\Omega(B)} & {P_B} & B \\
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B \\
             };
 
             \draw[math]
@@ -244,8 +244,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega(A)} & {P_A} & A \\
-                {\Omega(B)} & {P_B} & B \\
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B \\
             };
 
             \draw[math]
@@ -268,9 +268,9 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{3cm} {
-                \Omega(A) & P_A & A \\
-                && P \\
-                \Omega(B) & P_B & B \\
+                \Omega(A) \& P_A \& A \\
+                \&\& P \\
+                \Omega(B) \& P_B \& B \\
             };
 
             \draw[math]
@@ -329,9 +329,9 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Omega(A) & P_A & A \\
-                \Omega(A) & I_{\Omega(A)} & \Sigma \circ \Omega(A) \\
-                \Omega(A) & P_A & A \\
+                \Omega(A) \& P_A \& A \\
+                \Omega(A) \& I_{\Omega(A)} \& \Sigma \circ \Omega(A) \\
+                \Omega(A) \& P_A \& A \\
             };
 
             \draw[math]
@@ -359,8 +359,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Omega(A) & P_A & A \\
-                \Omega(A) & P_A & A \\
+                \Omega(A) \& P_A \& A \\
+                \Omega(A) \& P_A \& A \\
             };
 
             \draw[math]
@@ -387,9 +387,9 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Omega(A) & P & A \\
-                \Omega(A) & I & \Sigma \circ \Omega(A) \\
-                \Omega(B) & I & \Sigma \circ \Omega(B) \\
+                \Omega(A) \& P \& A \\
+                \Omega(A) \& I \& \Sigma \circ \Omega(A) \\
+                \Omega(B) \& I \& \Sigma \circ \Omega(B) \\
             };
 
             \draw[math]
@@ -415,9 +415,9 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Omega(A) & P & A \\
-                \Omega(B) & P & B \\
-                \Omega(B) & I & \Sigma \circ \Omega(B) \\
+                \Omega(A) \& P \& A \\
+                \Omega(B) \& P \& B \\
+                \Omega(B) \& I \& \Sigma \circ \Omega(B) \\
             };
 
             \draw[math]
@@ -445,8 +445,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{3cm} {
-                \Omega(A) & P & A \\
-                \Omega(B) & I & \Sigma \circ \Omega(B) \\
+                \Omega(A) \& P \& A \\
+                \Omega(B) \& I \& \Sigma \circ \Omega(B) \\
             };
 
             \draw[math]
@@ -475,8 +475,8 @@ I found two different definitions of distinguished triangles in \( \StMod(R) \) 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                A & B & C & \Sigma(A) \\
-                A & I_A \\
+                A \& B \& C \& \Sigma(A) \\
+                A \& I_A \\
             };
 
             \draw[math]
@@ -500,8 +500,8 @@ I found two different definitions of distinguished triangles in \( \StMod(R) \) 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                A & B & C_\alpha & \Sigma(A) \\
-                & I_A \\
+                A \& B \& C_\alpha \& \Sigma(A) \\
+                \& I_A \\
             };
 
             \draw[math]

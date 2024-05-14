@@ -18,7 +18,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{2cm} {
-                        \Ac(-_1 \oplus -_2, -_3) & \Ac(-_1, -_3) \oplus \Ac(-_2, -_3) \\
+                        \Ac(-_1 \oplus -_2, -_3) \& \Ac(-_1, -_3) \oplus \Ac(-_2, -_3) \\
                     };
 
                     \draw[math]
@@ -33,7 +33,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{2cm} {
-                        \Ac(-_1, -_2 \oplus -_3) & \Ac(-_1, -_2) \oplus \Ac(-_1, -_3) \\
+                        \Ac(-_1, -_2 \oplus -_3) \& \Ac(-_1, -_2) \oplus \Ac(-_1, -_3) \\
                     };
 
                     \draw[math]
@@ -72,7 +72,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{2cm} {
-                        \Ac\tuple{\bigoplus_{i = 1}^n -_i, -_{n + 1}} &
+                        \Ac\tuple{\bigoplus_{i = 1}^n -_i, -_{n + 1}} \&
                         \bigoplus_{i = 1}^n \Ac\tuple{-_i, -_{n + 1}} \\
                     };
 
@@ -109,7 +109,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{2cm} {
-                        \Ac\tuple{-_1, \bigoplus_{i = 2}^{n + 1} -_i} &
+                        \Ac\tuple{-_1, \bigoplus_{i = 2}^{n + 1} -_i} \&
                         \bigoplus_{i = 2}^{n + 1}\Ac\tuple{-_1, -_i} \\
                     };
 
@@ -149,8 +149,8 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{3cm}{2cm} {
-                        \Ac(A, B^n) & \Ac(A, C^n) \\
-                        \Ac(A, B)^n & \Ac(A, C)^n \\
+                        \Ac(A, B^n) \& \Ac(A, C^n) \\
+                        \Ac(A, B)^n \& \Ac(A, C)^n \\
                     };
         
                     \draw[math]
@@ -167,8 +167,8 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{3cm}{2cm} {
-                        \Ac(A^n, B) & \Ac(A^n, C) \\
-                        \Ac(A, B)^n & \Ac(A, C)^n \\
+                        \Ac(A^n, B) \& \Ac(A^n, C) \\
+                        \Ac(A, B)^n \& \Ac(A, C)^n \\
                     };
         
                     \draw[math]

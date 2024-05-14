@@ -15,6 +15,9 @@
 % Use [activate=false] to disable some features that causes issues with ragged2e. Not sure if setting this option disables every feature in the package entirely, or if it's still worth keeping then.
 \usepackage{microtype}
 
+% Enables memoization
+\usepackage[extract=no]{memoize}
+
 % Fiksa margin
 \usepackage[margin=2cm]{geometry}
 
@@ -47,10 +50,16 @@
 % For teorem, definisjon, bevis enviornments.
 \usepackage{amsthm}
 
+% For meir avanserte teoremkonstruksjonar.
+\usepackage{thmtools}
+
 % For psmallmatrix.
 \usepackage{mathtools}
 
-\usepackage{thmtools}
+% For boksar rundt tekst.
+\usepackage{tcolorbox}
+\tcbuselibrary{skins} % For å ha meir fancy boksar, trengs for "enhanced".
+\tcbuselibrary{breakable} % For å ha breakable boksar.
 
 % For svgar
 % \usepackage{svg}

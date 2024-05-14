@@ -1,6 +1,6 @@
 % Teoremstil
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -14,3 +14,33 @@
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{fact}[theorem]{Fact}
 \newtheorem{question}[theorem]{Question}
+
+\newcommand{\createbox}[1]{
+    \tcolorboxenvironment{#1}{
+        breakable, % Makes boxes breakable.
+        enhanced, % Required for making breaks fancy.
+        arc = 0mm, % Corners.
+        % sharp corners, % make the corners sharp
+        oversize, % Makes the box not "squish" the text, but rather extend the box into the margins.
+        colback = white, % Changes the background colour.
+        % parskip, % Behave better with parskip package (not sure what it does)
+        % beforeafter skip balanced = 0pt, % Change spacing before and after boxes.
+        parbox = false, % Make text formatting similar to the outside.
+        before upper=\vspace{-2\parskip}, % Fix for extra parskip that comes in the start of the box.
+    }
+}
+
+\createbox{theorem}
+\createbox{proposition}
+\createbox{corollary}
+\createbox{lemma}
+\createbox{definition}
+\createbox{example}
+\createbox{remark}
+\createbox{construction}
+\createbox{notation}
+\createbox{fact}
+\createbox{question}
+
+% TODO: Make proof connect to the theorem box. Maybe it will look better? Then it would be difficult to have text in between.
+\createbox{proof}

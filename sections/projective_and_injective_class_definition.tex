@@ -39,7 +39,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        0 & X & X & 0 \\
+                        0 \& X \& X \& 0 \\
                     };
 
                     \draw[math]
@@ -136,8 +136,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                X_0 && X_1 && X_2 && X_3 & \dots \\
-                & P_0 && P_1 && P_2 \\
+                X_0 \&\& X_1 \&\& X_2 \&\& X_3 \& \dots \\
+                \& P_0 \&\& P_1 \&\& P_2 \\
             };
 
             \draw[math]
@@ -160,7 +160,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                P_n & X_n & X_{n + 1} & \Sigma(P_n) \\
+                P_n \& X_n \& X_{n + 1} \& \Sigma(P_n) \\
             };
 
             \draw[math]
@@ -183,8 +183,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                Y_0 && Y_1 && Y_2 && Y_3 & \dots \\
-                & I_0 && I_1 && I_2 \\
+                Y_0 \&\& Y_1 \&\& Y_2 \&\& Y_3 \& \dots \\
+                \& I_0 \&\& I_1 \&\& I_2 \\
             };
 
             \draw[math]
@@ -207,7 +207,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Sigma^{-1}(I_n) & Y_{n + 1} & Y_n & I_n \\
+                \Sigma^{-1}(I_n) \& Y_{n + 1} \& Y_n \& I_n \\
             };
 
             \draw[math]
@@ -274,8 +274,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{2cm}{1cm} {
-                \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) && \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) \\
-                &  \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), I_s) \\
+                \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) \&\& \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) \\
+                \&  \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), I_s) \\
             };
 
             % Very sus 0-length arrow created when using anchors.
@@ -307,7 +307,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \Sigma^{-1}(I_s) & Y_{s+1} & Y_s & I_s \\
+                \Sigma^{-1}(I_s) \& Y_{s+1} \& Y_s \& I_s \\
             };
 
             \draw[math]
@@ -320,7 +320,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots & \Tc(\Sigma^{t-s}(X), Y_{s+1}) & \Tc(\Sigma^{t-s}(X), Y_s) & \Tc(\Sigma^{t-s}(X), I_s) & \dots \\
+                \dots \& \Tc(\Sigma^{t-s}(X), Y_{s+1}) \& \Tc(\Sigma^{t-s}(X), Y_s) \& \Tc(\Sigma^{t-s}(X), I_s) \& \dots \\
             };
 
             \draw[math]
@@ -339,7 +339,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                Y_{s+1} & Y_s & I_s & \Sigma(Y_{s+1}) \\
+                Y_{s+1} \& Y_s \& I_s \& \Sigma(Y_{s+1}) \\
             };
 
             \draw[math]
@@ -354,7 +354,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots & \Tc(\Sigma^{t-s}(X), Y_s) & \Tc(\Sigma^{t-s}(X), I_s) & \Tc(\Sigma^{t-s}(X), \Sigma(Y_{s + 1})) & \dots \\
+                \dots \& \Tc(\Sigma^{t-s}(X), Y_s) \& \Tc(\Sigma^{t-s}(X), I_s) \& \Tc(\Sigma^{t-s}(X), \Sigma(Y_{s + 1})) \& \dots \\
             };
 
             \draw[math]
@@ -368,7 +368,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots & \Tc(\Sigma^{t-s}(X), Y_s) & \Tc(\Sigma^{t-s}(X), I_s) & \Tc(\Sigma^{t-s-1}(X), Y_{s + 1}) & \dots \\
+                \dots \& \Tc(\Sigma^{t-s}(X), Y_s) \& \Tc(\Sigma^{t-s}(X), I_s) \& \Tc(\Sigma^{t-s-1}(X), Y_{s + 1}) \& \dots \\
             };
 
             \draw[math]
@@ -390,7 +390,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                I_{s - 1} & \Sigma(Y_s) & \Sigma(Y_{s - 1}) & \Sigma(I_{s - 1}) \\
+                I_{s - 1} \& \Sigma(Y_s) \& \Sigma(Y_{s - 1}) \& \Sigma(I_{s - 1}) \\
             };
 
             \draw[math]
@@ -405,7 +405,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots & \Tc(\Sigma^{t-s}(X), I_{s - 1}) & \Tc(\Sigma^{t-s}(X), \Sigma(Y_s)) & \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s - 1})) & \dots \\
+                \dots \& \Tc(\Sigma^{t-s}(X), I_{s - 1}) \& \Tc(\Sigma^{t-s}(X), \Sigma(Y_s)) \& \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s - 1})) \& \dots \\
             };
 
             \draw[math]
@@ -425,7 +425,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots & \Tc(\Sigma^{t-s}(X), I_{s - 1}) & \Tc(\Sigma^{t - s - 1}(X), Y_s) & \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1}) & \dots \\
+                \dots \& \Tc(\Sigma^{t-s}(X), I_{s - 1}) \& \Tc(\Sigma^{t - s - 1}(X), Y_s) \& \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1}) \& \dots \\
             };
 
             \draw[math]
@@ -450,8 +450,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \Sigma^{t - s}( X ) & \Sigma( Y_s ) & \Sigma( Y_{s - 1} ) \\
-                \Sigma^{t - s - 1}( X ) & Y_s & Y_{s - 1} \\
+                \Sigma^{t - s}( X ) \& \Sigma( Y_s ) \& \Sigma( Y_{s - 1} ) \\
+                \Sigma^{t - s - 1}( X ) \& Y_s \& Y_{s - 1} \\
             };
 
             \draw[math]
@@ -490,7 +490,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots & \Tc(\Sigma^{t-s}(X), I_{s - 1}) & \Tc(\Sigma^{t - s - 1}(X), Y_s) & \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1}) & \dots \\
+                \dots \& \Tc(\Sigma^{t-s}(X), I_{s - 1}) \& \Tc(\Sigma^{t - s - 1}(X), Y_s) \& \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1}) \& \dots \\
             };
 
             \draw[math]

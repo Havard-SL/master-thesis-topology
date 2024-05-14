@@ -6,3 +6,6 @@
 *.synctex.gz
 *.auxlock
 *.toc
+
+thesis.memo.dir
+thesis.mmz
