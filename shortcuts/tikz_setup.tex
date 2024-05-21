@@ -23,9 +23,12 @@
 
 % Marius Thaule TikZ matrix.
 \newcommand{\diagram}[3]{\matrix[ampersand replacement = \&] (#1) [matrix of math nodes,row
-  sep={#2},column sep={{{{#3, between origins}}}},text height=1.5ex,text
+  sep={#2},column sep={#3},text height=1.5ex,text
   depth=0.25ex]}
-
+% Modified to fix the distance between nodes. Useful for diagrams where there are diagonal arrows that should be paralell.
+\newcommand{\diagramorigin}[3]{\matrix[ampersand replacement = \&] (#1) [matrix of math nodes,row
+  sep={#2},column sep={#3, between origins},text height=1.5ex,text
+  depth=0.25ex]}
 
 % Set style of TikZ pictures to tikz-cd style.
 \tikzset{every picture/.append style={commutative diagrams/every diagram}}

@@ -16,7 +16,13 @@
 \usepackage{microtype}
 
 % Enables memoization
+% extract=no means that latexmk need to do the extracting itself. This is controlled by the latexmkrc file.
 \usepackage[extract=no]{memoize}
+
+% Uncomment the following to recompile every tikz-diagram.
+% \mmzset{
+%     recompile,
+% }
 
 % Fiksa margin
 \usepackage[margin=2cm]{geometry}
