@@ -1,0 +1,199 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Right-justify text. Creates some overfull hbox-es, and works weirdly with microtype.
+% \usepackage[document]{ragged2e}
+
+% Make language-specific tweaks, like changing section/theorem words or adding more hyphonation points.
+\usepackage[english]{babel}
+
+% For å kunna skriva æøå i tekstar MERK: Blir automatisk ubrukeleg med lualatex og fontspec
+% \usepackage[utf8]{inputenc}
+
+\usepackage[T1]{fontenc}
+
+% Adds hyphenation points and aims to improve paragraph rendering.
+% Use [activate=false] to disable some features that causes issues with ragged2e. Not sure if setting this option disables every feature in the package entirely, or if it's still worth keeping then.
+\usepackage{microtype}
+
+% Enables memoization
+% extract=no means that latexmk need to do the extracting itself. This is controlled by the latexmkrc file.
+\usepackage[extract=no]{memoize}
+
+% Uncomment the following to recompile every tikz-diagram.
+% \mmzset{
+%     recompile,
+% }
+
+% Fiksa margin
+\usepackage[margin=2cm]{geometry}
+
+% Fiksar datoformatet på tiitelen
+\usepackage[ddmmyyyy]{datetime}
+
+\usepackage{amssymb}
+
+% For visse mattesymbol, typ \mathbb
+\usepackage{amsmath}
+
+% Bilete
+\usepackage{graphicx}
+
+% For kodesnuttar og resultat
+% \usepackage{minted}
+
+% Kan endra på korleis listar ser ut
+\usepackage{enumitem}
+
+% For autoref
+\usepackage[hidelinks,colorlinks=true]{hyperref} 
+
+% For fargar på ting ein referer til i autoref
+\hypersetup{allcolors=[rgb]{0,0.31,0.62}}
+
+% For not needing to compile twice with hyperref (?)
+\usepackage{bookmark}
+
+% For teorem, definisjon, bevis enviornments.
+\usepackage{amsthm}
+
+% For meir avanserte teoremkonstruksjonar.
+\usepackage{thmtools}
+
+% For psmallmatrix.
+\usepackage{mathtools}
+
+% For boksar rundt tekst.
+\usepackage{tcolorbox}
+\tcbuselibrary{skins} % For å ha meir fancy boksar, trengs for "enhanced".
+\tcbuselibrary{breakable} % For å ha breakable boksar.
+
+% For svgar
+% \usepackage{svg}
+
+% Set svg mappo
+% \svgpath{svg/}
+
+% Fjernar indents ved nye avsnitt, men gjer linjeavstanden kortare (Kanskje)
+\usepackage{parskip} 
+
+% Lualatex font greie
+\usepackage{fontspec}
+
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+
+% TikZ!
+\usepackage{tikz}
+
+% Set fontar som blir brukt
+\setmathfont{Latin Modern Math} % Dette er standardfonten
+\setmathfont[range=\setminus]{Asana Math} % Somehow setting this changes tikz-cd arrow style
+% \setmainfont{Atkinson Hyperlegible}
+% \setmainfont{GFS Neohellenic Math}
+% \setmainfont{Fira Sans}
+% \setmathfont{Fira Math}
+% \setmathfont[range=\setminus]{Asana Math}
+
+\input{../shortcuts/tikz_setup.tex}
+
+\input{../shortcuts/list_tweak.tex}
+
+\input{../shortcuts/theorem_styles.tex}
+
+\input{../shortcuts/math_shortcuts.tex}
+
+\DeclareMathOperator{\cone}{cone}
+
+\title{Question}
+\author{Håvard Skjetne Lilleheie}
+
+\begin{document}
+
+This is a question pertaining to the proof of ``Proposition 4.2.8'' in Jasso--Muro 2023 (TODO SRC), using the notation and definitions from the same article.
+
+To simplify the question, I will be using \( d = 1 \).
+
+Let the following be a diagram in \( H^0(\dgMod_{\dg}(\Ac)) \)
+\begin{center}
+    \begin{tikzpicture}
+        \diagram{m}{1cm}{1cm} {
+            M_3 \& M_2 \& M_1 \& M_0 \\
+        };
+
+        \draw[math]
+            (m-1-1) edge node {f_3} (m-1-2)
+            (m-1-2) edge node {f_2} (m-1-3)
+            (m-1-3) edge node {f_1} (m-1-4);
+    \end{tikzpicture}
+\end{center}
+
+Let the following be a defining system for the above diagram
+\[
+    \set{g_{ij}: M_j \to M_i \mid 0 \leq i < j \leq 3, j - i < 3}.
+\]
+
+In the very first part of the proof, one takes the defining system and construct the maps \( \alpha \) and \( \beta \), and here lies the issue I've encountered.
+
+In the proof, one lets
+\[
+    \alpha :=
+    \begin{pmatrix}
+        g_{23} \\
+        g_{13}
+    \end{pmatrix}
+\]
+and declares that
+\[
+    \alpha: M_3 \to \cone(g_{12})[-1].
+\]
+
+However, by the definition of \( \cone(g_{12}) \) on page 48, one has that the underlying graded \( \Ac \)-module of \( \cone(g_{12})[-1] \) is \( M_2 \oplus M_3[-1] \), which does not fit with the codomain of \( g_{13} \) directly. Therefore I assume that there is some implicit way of turning the morphism
+\[
+    g_{13}: M_3 \to M_1
+\]
+into a morphism
+\[
+    \widetilde{g_{13}}: M_3 \to M_1[-1].
+\]
+In addition, this implicit change should change the degree from \( |g_{13}| = -1 \) into \( |\widetilde{g_{13}}| = 0 \) in order to later show that \( |\alpha| = 0 \).
+
+My question is then: What is \( \widetilde{g_{13}} \)?
+
+I have the following hypothesis that I can't make work:
+
+Consider the following morphisms in \( \C_{\dg}(k) \): For any \( A \in \C_{\dg}(k) \) let \( \sigma_A \) be the following degree \( 1 \) morphism
+\begin{center}
+    \newcommand{\height}{2cm}
+    \begin{tikzpicture}
+        \diagramorigin{m}{\height}{1cm} {
+            A \\
+            A[-1] \\
+        };
+
+        \draw[math]
+            (m-1-1) edge node {\sigma_A} (m-2-1);
+    \end{tikzpicture}
+    %
+    \begin{tikzpicture}
+        \diagramorigin{m}{\height}{2cm} {
+            \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
+            \cdots \& A_{-2} \& A_{-1} \& A_0 \& \cdots \\
+        };
+
+        \draw[math]
+            (m-1-1) edge node {d_A^{-2}} (m-1-2)
+                edge node {\Id} (m-2-2)
+            (m-1-2) edge node {d_A^{-1}} (m-1-3)
+                edge node {\Id} (m-2-3)
+            (m-1-3) edge node {d_A^0} (m-1-4)
+                edge node {\Id} (m-2-4)
+            (m-1-4) edge node {d_A^1} (m-1-5)
+                edge node {\Id} (m-2-5)
+
+            (m-2-1) edge node {-d_A^{-3}} (m-2-2)
+            (m-2-2) edge node {-d_A^{-2}} (m-2-3)
+            (m-2-3) edge node {-d_A^{-1}} (m-2-4)
+            (m-2-4) edge node {-d_A^0} (m-2-5);
+    \end{tikzpicture}
+\end{center}
+
+\end{document}

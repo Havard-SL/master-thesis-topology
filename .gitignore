@@ -7,5 +7,5 @@
 *.auxlock
 *.toc
 
-thesis.memo.dir
-thesis.mmz
+*.memo.dir
+*.mmz
