@@ -9,3 +9,6 @@
 
 *.memo.dir
 *.mmz
+
+*.bbl
+*.blg
