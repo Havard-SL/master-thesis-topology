@@ -315,7 +315,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             \]
             with the differential acting component wise for each \( i \in \Zb \) and \( A \in \Ac \) as follows
             \[
-                d^i_A: \eta_A^i \mapsto d^i_{\C_{\dg}(\Mod(R))}(\eta_A^i) = d_{G(A)} \circ \eta_A^i - (-1)^i \eta_A^i \circ d_{F(A)}
+                d: \eta_A^i \mapsto d_{\Bc(F(A), G(A))}(\eta_A^i)
             \]
             % TODO: Show that this differential has correct codomain.
         }
@@ -367,6 +367,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \dgMod_{\dg}(\Cc) := \Fun_{\dg}(\Cc^{op}, \C_{\dg}(\Mod(R))).
     \]
     Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
+
+    
 \end{definition}
 
 % TODO: Why is \Cc(-, A) a functor into \C_{\dg}(\Mod(R))?
