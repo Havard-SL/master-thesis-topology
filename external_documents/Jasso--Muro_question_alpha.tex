@@ -158,8 +158,10 @@ into some morphism
 \]
 In addition, this implicit change should change the degree from \( |g_{13}| = -1 \) into \( |\widetilde{g_{13}}| = 0 \) in order to later show that \( |\alpha| = 0 \).
 
-My question is then: What is \( \widetilde{g_{13}} \)?
-
+My question is then:
+\begin{center}
+    \textbf{What is \( \widetilde{g_{13}} \)?}
+\end{center}
 I have the following hypothesis that I can't make work:
 
 Consider the following morphisms in \( \C_{\dg}(k) \): For any \( A \in \C_{\dg}(k) \) let \( \sigma_A \) be the following degree \( 1 \) morphism
@@ -198,20 +200,21 @@ Consider the following morphisms in \( \C_{\dg}(k) \): For any \( A \in \C_{\dg}
     \end{tikzpicture}
 \end{center}
 
-Since \( g_{13} \in \dgMod_{\dg}(\Ac)(M_3, M_1) \) it is a \( \Zb \)-graded collection of natural transformations where in grade \( i \), the natural transformation maps consist of morphisms in \( \C_{\dg}(k) \) of degree \( i \).
+Since \( g_{13} \in \dgMod_{\dg}(\Ac)(M_3, M_1) \) it is a \( \Zb \)-graded collection of natural transformations where in grade \( i \), the natural transformation maps consist of morphisms in \( \C_{\dg}(k) \) of degree \( k \).
 
-Let \( (g_{13})^i \) be the notation for the \( i \)-th natural transformation of \( g_{13} \).
+Let \( (g_{13})^k \) denote the \( k \)-th natural transformation of \( g_{13} \).
 
-Furthermore, let \( (g_{13})^i_A \) be the notation for the \( i \)-th natural tranformation's map from \( M_3(A) \) to \( M_1(A) \).
+Furthermore, let \( (g_{13})^k_A \) denote the \( k \)-th natural tranformation map from \( M_3(A) \) to \( M_1(A) \).
 
 Using the above notation, I postulate that \( \widetilde{g_{13}} \) is the homogeneous of degree \( 0 \)-morphism with the \( 0 \)-th component being the natural transformation where for any \( A \in \Ac \), one has \( (\widetilde{g_{13}})_A^0 := \sigma_{M_1(A)} \circ (g_{13})^{-1}_A \). (This should encapsulate the entire behaviour of \( g_{13} \), since \( g_{13} \) is by definition homogeneous of degree \( -1 \).)
 
 In order for this to be true, one would need that for any \( f \in \Ac^{\op}(A, B) \), the outer rectangle of the following diagram should commute
-\begin{center}
+\begin{equation}
+    \label{eq:1}
     \begin{tikzpicture}
         \diagram{m}{2cm}{2cm} {
             M_3(A) \& M_1(A) \& M_1[-1](A) \\
-            M_3(B) \& M_1(B) \& M_1[-1](B) \\
+            M_3(B) \& M_1(B) \& M_1[-1](B). \\
         };
 
         \draw[math]
@@ -223,19 +226,21 @@ In order for this to be true, one would need that for any \( f \in \Ac^{\op}(A, 
 
             (m-2-1) edge node {(g_{13})_B^{-1}} (m-2-2)
             (m-2-2) edge node {\sigma_{M_1(B)}} (m-2-3);
-    \end{tikzpicture}.
-\end{center}
+    \end{tikzpicture}
+\end{equation}
 
 Since the left square commutes by definition, a sufficient condition in order for the outer rectangle to commute would be that the rightmost square commutes.
 
-However, I can't get the rightmost square to commute by the following argument:
+However, I can't get the rightmost square to commute for any \( A, B \in \Ac^{\op} \) by the following argument:
 
-Consider some \( A \in \Ac \) as well as a homogeneous of degree \( -1 \) endomorphism \( f \in \Ac(A, A) \). Then assuming that the rightmost square commutes, the following square should commute
+Consider some \( A \in \Ac \) and a homogeneous of degree \( -1 \) endomorphism \( f \in \Ac(A, A) \).
+
+Want to show that the rightmost square of \autoref{eq:1} with \( B = A \) commutes
 \begin{center}
     \begin{tikzpicture}
         \diagram{m}{2cm}{2cm} {
             M_1(A) \& M_1[-1](A) \\
-            M_1(A) \& M_1[-1](A) \\
+            M_1(A) \& M_1[-1](A). \\
         };
 
         \draw[math]
@@ -319,9 +324,9 @@ Let's look at what the different paths of the diagram look like:
             (m-3-4) edge (m-3-5);
     \end{tikzpicture}
 \end{center}
-one can see that there is a sign difference between the two maps, and the square therefore does not commute if there exist an endomorphism of degree \( -1 \) in \( \Ac \), which would be odd.
+one can see that there is a sign difference between the two maps and so the rightmost square of \autoref{eq:1} cannot commute if \( B = A \) and there is some homogeneous of degree \( -1 \) morphism in \( \Ac(A, A) \). The last two conditions don't \emph{feel} correct. I believe I may have misinterpreted some definition along the line.
 
-Another reason that it seems unlikely that the rightmost square should commute is because it could possibly imply that in \( \dgMod_{\dg}(\Ac) \), the shift functor is naturally isomorphic to the identity functor (since \( \sigma_A \) is an isomorphism for any \( A \)), which if true, sounds like a result that should have been mentioned at least once somewhere.
+Another reason that it seems unlikely that the rightmost square should commute is because it could possibly imply that in \( \dgMod_{\dg}(\Ac) \), the shift functor is naturally isomorphic to the identity functor (since \( \sigma_A \) is an isomorphism in \( \C_{\dg}(k)(A, A) \) for any \( A \)), which if true, sounds like a result that should have been mentioned at least once somewhere.
 
 \bibliography{Jasso--Muro_question}{}
 \bibliographystyle{utcaps}
