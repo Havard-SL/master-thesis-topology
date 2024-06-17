@@ -84,7 +84,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     Consider the following homogeneous of degree \( -1 \) map for \( A \in \C_{\dg}(\Mod(R)) \)
     \begin{center}
         \newcommand{\height}{2cm}
-
+        %
+        \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 A: \\
@@ -95,6 +96,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
                 (m-1-1) edge node {\sigma_A} (m-2-1);
         \end{tikzpicture}
         %
+        \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagramorigin{m}{\height}{3cm} {
                 \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
@@ -121,7 +123,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     Consider this (suggestively named) homogeneous of degree \( 1 \) morphism
     \begin{center}
         \newcommand{\height}{2cm}
-
+        %
+        \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \Sigma(A): \\
@@ -132,6 +135,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
                 (m-1-1) edge node {\sigma_A^{-1}} (m-2-1);
         \end{tikzpicture}
         %
+        \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagramorigin{m}{\height}{3cm} {
                 \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
@@ -172,7 +176,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     Looking at what the morphism is doing
     \begin{center}
         \newcommand{\height}{3cm}
-
+        %
+        \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \Sigma(A): \\
@@ -189,6 +194,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
                 (m-3-1) edge node {\sigma_B} (m-4-1);
         \end{tikzpicture}
         %
+        \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagramorigin{m}{\height}{3cm} {
                 \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
@@ -266,6 +272,81 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 %     Then let \( \Fun(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \), with morphisms being DG-natural transformations.
 % TODO: Can't use this unless I have a definition of "DG-natural transformations".
 % \end{definition}
+
+% TODO-Q: Does symmetry isomorphism commute with morphisms? I would guess so....
+% TODO-Q: The fact that \sum_{i \in \Zb} \sum_{j \in \Zb} G(f)_j \otimes \eta_{A, i} = G(f) \otimes \eta_A may only be true if chain complexes are viewed as coproducts.
+\begin{remark}[Functor category structure from Borceux]
+    \begin{center}
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \left( \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \right) \otimes \Cc(A', A'') \\
+                \C_{\dg}(\Mod(R))(F(A'), G(A')) \otimes \C_{\dg}(G(A'), G(A'')) \\
+                \C_{\dg}(G(A'), G(A'')) \otimes \C_{\dg}(\Mod(R))(F(A'), G(A')) \\
+                \C_{\dg}(F(A'), G(A'')) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\pi_{A'} \otimes G_{A', A''}} (m-2-1)
+
+                (m-2-1) edge node {s} (m-3-1)
+
+                (m-3-1) edge node {\circ} (m-4-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \eta \otimes f \\
+                \eta_A \otimes G(f) \\
+                \sum_{i \in \Zb} \sum_{j \in \Zb} (-1)^{ij} G(f)_j \otimes \eta_{A, i} \\
+                \sum_{i \in \Zb} \sum_{j \in \Zb} (-1)^{ij} G(f)_j \circ \eta_{A, i} \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[maps to] (m-2-1)
+
+                (m-2-1) edge[maps to] (m-3-1)
+
+                (m-3-1) edge[maps to] (m-4-1);
+        \end{tikzpicture}
+    \end{center}
+    Name the entire above composition of chain complex morphisms for \( \psi \).
+
+    For any \( k \in \Zb \) let \( \iota_{n,k} \) denote the inclusion
+    \[
+        \iota_n: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n \otimes \Cc(A', A'')_{n - k} \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_k
+    \]
+
+    Take the adjoint of (TODO:refrence above morphism) morphism gives the chain complex morphism
+    \[
+        \set{\phi_n}_{n \in \Zb}, \text{ where } \phi_n = \prod_{k \in \Zb} \tuple{ \eta_n \mapsto \psi_k \circ \iota_{n,k}(\eta_n \otimes ? ) }
+    \]
+    \begin{center}
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\phi} (m-2-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \eta \\
+                TODO \\
+            };
+        \end{tikzpicture}
+    \end{center}
+\end{remark}
 
 % SRC: Berest--Mehrle 2017 LN
 % TODO: Must \Ac be small in order to be well defined??
