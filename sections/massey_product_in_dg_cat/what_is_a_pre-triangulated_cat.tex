@@ -273,16 +273,94 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 % TODO: Can't use this unless I have a definition of "DG-natural transformations".
 % \end{definition}
 
+% SRC: Remarkable
+\begin{remark}[Tensor-internal hom adjunction in \( \C(\Mod(R)) \)]
+    Let \( A, B, C \) be chain complexes in \( \C(\Mod(R)) \) for some commutative ring \( R \).
+
+    Let  \( f \in \C(\Mod(R))\tuple{A \otimes B, C} \). Want to see what the adjoint of \( f \) is.
+
+    Let \( f = \set{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple{ \tuple{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
+
+    Then, unwrapping the definitions, one has that \( f \) looks like the following diagram
+    \begin{center}
+        TODO
+    \end{center}
+    Likewise, the adjoint has to look like the following diagram
+    \begin{center}
+        TODO: May need the definition of internal hom for this to make sense.
+    \end{center}
+
+    For any \( k, j \in \Zb \) let
+    \[
+        \iota_{k, j}: A_j \otimes B_{k - j} \hookrightarrow \coprod_{i \in \Zb} A_i \otimes B_{k - i}
+    \]
+    be the canonical \( j \)-th ``inclusion'' by the definintion of the coproduct \( \coprod_{i \in \Zb} A_i \otimes B_{k - i} \).
+
+    % Looking at the following diagram
+    % \begin{center}
+    %     \begin{tikzpicture}
+    %         \diagram{m}{1cm}{1cm} {
+    %             A_j \otimes B_{k - j} \& \coprod_{i \in \Zb} A_i \otimes B_{k - i} \& C_k \\
+    %         };
+
+    %         \draw[math]
+    %             (m-1-1) edge node {\iota_{k, j}} (m-1-2)
+    %             (m-1-2) edge node {f_k} (m-1-3);
+    %     \end{tikzpicture}
+    % \end{center}
+    Then take the hom-tensor adjoint in \( \Mod(R) \) of the morphism
+    \[
+        f_k \circ \iota_{k, j}: A_j \otimes B_{k - j} \to C_k.
+    \]
+    This yields a morphism
+    \begin{align*}
+        \phi_{f, j, k}: A_j &\to \Mod(R)(B_{k - j}, C_k) \\
+        a &\mapsto f_k \circ \iota_{k, j}(a \otimes ?).
+    \end{align*}
+    Then, since the choic of \( k \) is independent of the domain, by the universal property of the product there is some morphism
+    % TODO: Notation of ``product'' of morphisms. Is it allowed?
+    \[
+        \phi_{f, j} = \prod_{k \in \Zb} \phi_{f, j, k}: A_j \to \prod_{k \in \Zb} \Mod(R)\tuple{B_k, C_{k + j}}.
+    \]
+    Then the claim is that the adjoint is exactly
+    \[
+        \phi_f = \set{\phi_{f, j}}_{j \in \Zb}.
+    \]
+    In order to show this, need to show the following facts
+    \begin{enumerate}
+        \item {
+            That \( \phi_f \) is a chain morphism.
+        }
+        \item {
+            That the assignment \( f \mapsto \phi_f \) is an isomorphism of groups.
+        }
+        \item {
+            That there is a natural transformation
+            \[
+                \C(\Mod(R))(?_1 \otimes ?_2, ?_3) \cong \C(\Mod(R))(?_1, \left[ ?_2, ?_3 \right])
+            \]
+            where the natural isomorphisms are \( f \mapsto \phi_f \).
+        }
+    \end{enumerate}
+    Here are the proof(s - TODO)
+
+    1) Want to show that \( \phi_f \) is a chain morphism.
+
+    TODO: Write down, is written in Remarkable, but some details regarding simple tensors and if they suffice to show the results remain.
+\end{remark}
+
 % TODO-Q: Does symmetry isomorphism commute with morphisms? I would guess so....
 % TODO-Q: The fact that \sum_{i \in \Zb} \sum_{j \in \Zb} G(f)_j \otimes \eta_{A, i} = G(f) \otimes \eta_A may only be true if chain complexes are viewed as coproducts.
 \begin{remark}[Functor category structure from Borceux]
-    \begin{center}
+    The elements on the right side are part of the \( n \)-th component of the chain complexes.
+    \begin{equation}
+        \label{eq:functor_category_borceux}
         \newcommand{\height}{1cm}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \left( \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \right) \otimes \Cc(A', A'') \\
+                \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') \\
                 \C_{\dg}(\Mod(R))(F(A'), G(A')) \otimes \C_{\dg}(G(A'), G(A'')) \\
                 \C_{\dg}(G(A'), G(A'')) \otimes \C_{\dg}(\Mod(R))(F(A'), G(A')) \\
                 \C_{\dg}(F(A'), G(A'')) \\
@@ -299,7 +377,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta \otimes f \\
+                \eta \otimes f \in  \\
                 \eta_A \otimes G(f) \\
                 \sum_{i \in \Zb} \sum_{j \in \Zb} (-1)^{ij} G(f)_j \otimes \eta_{A, i} \\
                 \sum_{i \in \Zb} \sum_{j \in \Zb} (-1)^{ij} G(f)_j \circ \eta_{A, i} \\
@@ -312,15 +390,16 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 
                 (m-3-1) edge[maps to] (m-4-1);
         \end{tikzpicture}
-    \end{center}
+    \end{equation}
     Name the entire above composition of chain complex morphisms for \( \psi \).
 
     For any \( k \in \Zb \) let \( \iota_{n,k} \) denote the inclusion
-    \[
-        \iota_n: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n \otimes \Cc(A', A'')_{n - k} \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_k
-    \]
+    \begin{multline*}
+        \iota_n: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n \otimes \Cc(A', A'')_{n - k} \\
+        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_k
+    \end{multline*}
 
-    Take the adjoint of (TODO:refrence above morphism) morphism gives the chain complex morphism
+    Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism
     \[
         \set{\phi_n}_{n \in \Zb}, \text{ where } \phi_n = \prod_{k \in \Zb} \tuple{ \eta_n \mapsto \psi_k \circ \iota_{n,k}(\eta_n \otimes ? ) }
     \]
