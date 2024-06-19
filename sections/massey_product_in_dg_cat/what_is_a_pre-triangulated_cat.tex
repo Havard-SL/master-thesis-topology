@@ -351,8 +351,16 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 
 % TODO-Q: Does symmetry isomorphism commute with morphisms? I would guess so....
 % TODO-Q: The fact that \sum_{i \in \Zb} \sum_{j \in \Zb} G(f)_j \otimes \eta_{A, i} = G(f) \otimes \eta_A may only be true if chain complexes are viewed as coproducts.
+% TODO-Q: Need to show that any element in the n-th component of tensor product of two chain complexes are a ``sum'' of elementary tensors.
 \begin{remark}[Functor category structure from Borceux]
-    The elements on the right side are part of the \( n \)-th component of the chain complexes.
+    Let
+    \[
+        \eta = \set{\eta_i}_{i \in \Zb} \text{ where } \eta_i \in \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_i
+    \]
+    and let
+    \[
+        f = \set{f_i}_{i \in \Zb} \text{ where } f_i \in \Cc(A', A'')_i.
+    \]
     \begin{equation}
         \label{eq:functor_category_borceux}
         \newcommand{\height}{1cm}
@@ -377,10 +385,10 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta \otimes f \in  \\
-                \eta_A \otimes G(f) \\
-                \sum_{i \in \Zb} \sum_{j \in \Zb} (-1)^{ij} G(f)_j \otimes \eta_{A, i} \\
-                \sum_{i \in \Zb} \sum_{j \in \Zb} (-1)^{ij} G(f)_j \circ \eta_{A, i} \\
+                \sum_{i + j = n} \eta_i \otimes f_j  \\
+                \sum_{i + j = n} \eta_{i, A'} \otimes G(f_j) \\
+                \sum_{i + j = n} (-1)^{ij} G(f_j) \otimes \eta_{i, A'} \\
+                \sum_{i + j = n} (-1)^{ij} G(f_j) \circ \eta_{i, A'} \\
             };
 
             \draw[math]
@@ -391,17 +399,17 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
                 (m-3-1) edge[maps to] (m-4-1);
         \end{tikzpicture}
     \end{equation}
-    Name the entire above composition of chain complex morphisms for \( \psi \).
+    Name the entire above composition of chain complex morphisms for \( \psi_{A', A''} \).
 
     For any \( k \in \Zb \) let \( \iota_{n,k} \) denote the inclusion
     \begin{multline*}
-        \iota_n: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n \otimes \Cc(A', A'')_{n - k} \\
-        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_k
+        \iota_{n, k}: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_k \otimes \Cc(A', A'')_{n - k} \\
+        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_n
     \end{multline*}
 
     Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism
     \[
-        \set{\phi_n}_{n \in \Zb}, \text{ where } \phi_n = \prod_{k \in \Zb} \tuple{ \eta_n \mapsto \psi_k \circ \iota_{n,k}(\eta_n \otimes ? ) }
+        \phi_{A', A''} = \set{\phi_{A', A'', n}}_{n \in \Zb}, \text{ where } \phi_{A', A'', n} = \prod_{k \in \Zb} \tuple{ \eta_n \mapsto \psi_{A', A'', k} \circ \iota_{n,k}(\eta_n \otimes ? ) }
     \]
     \begin{center}
         \newcommand{\height}{1cm}
@@ -414,17 +422,84 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             };
 
             \draw[math]
-                (m-1-1) edge node {\phi} (m-2-1);
+                (m-1-1) edge node {\phi_{A', A''}} (m-2-1);
         \end{tikzpicture}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta \\
-                TODO \\
+                \eta_n \\
+                \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{n,k}(\eta_n \otimes ? ). \\
             };
+
+            \draw[math]
+                (m-1-1) edge[maps to] (m-2-1);
         \end{tikzpicture}
     \end{center}
+    And finally take the product of this map over all \( A', A'' \in \Cc \) to get the morphism
+    \begin{center}
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \prod_{A', A'' \in \Cc} \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\prod_{A', A'' \in \Cc} \phi_{A', A''}} (m-2-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \eta_n \\
+                \bigtimes_{A', A'' \in \Cc} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{n,k}(\eta_n \otimes ? ). \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[maps to] (m-2-1);
+        \end{tikzpicture}
+    \end{center}
+    Doing a similar constructian as in \autoref{eq:functor_category_borceux} look at the composition
+    \begin{center}
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') \\
+                \C_{\dg}(\Mod(R))(F(A''), G(A'')) \otimes \C_{\dg}(F(A'), F(A'')) \\
+                \C_{\dg}(F(A'), G(A'')) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\pi_{A''} \otimes F_{A', A''}} (m-2-1)
+
+                (m-2-1) edge node {\circ} (m-3-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \sum_{i + j = n} \eta_i \otimes f_j  \\
+                \sum_{i + j = n} \eta_{i, A''} \otimes F(f_j) \\
+                \sum_{i + j = n} \eta_{i, A''} \circ F(f_j) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[maps to] (m-2-1)
+
+                (m-2-1) edge[maps to] (m-3-1);
+        \end{tikzpicture}
+    \end{center}
+    Using this as \( \widetilde{\psi}_{A', A''} \) continue the construction as before by taking the adjoint and the product to end up with the map \( \widetilde{\phi}_{A', A''} \).
+
+    Then Borceux TODO:Cite states that \( \dgMod_{\dg}(\Cc)(F, G) \) is the equalizer of the following diagram
+    \begin{center}
+        TODO
+    \end{center} 
 \end{remark}
 
 % SRC: Berest--Mehrle 2017 LN
