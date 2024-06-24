@@ -392,7 +392,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             };
 
             \draw[math]
-                (m-1-1) edge[maps to] (m-2-1)
+                ([yshift=-2.5mm]m-1-1.south) edge[maps to] (m-2-1)
 
                 (m-2-1) edge[maps to] (m-3-1)
 
@@ -498,15 +498,14 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 
     Then Borceux TODO:Cite states that \( \dgMod_{\dg}(\Cc)(F, G) \) is the equalizer of the following diagram
     \begin{center}
-        \mmznext{recompile}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A))test4 \\
                 \prod_{A', A'' \in \Cc} \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
-            \draw[->, math] ($(m-1-1.south) + (0.25, 0)$) edge node {\prod_{A', A'' \in \Cc} \phi_{A', A''}} ($(m-2-1.north) + (0.25, 0)$);
-            \draw[->, math] ($(m-1-1.south) + (-0.25, 0)$) edge node[swap] {\prod_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
+            \path[math2] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
+            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
         \end{tikzpicture}
     \end{center} 
 \end{remark}
