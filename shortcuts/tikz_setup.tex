@@ -43,27 +43,24 @@
 }
 
 % Set style of TikZ pictures to tikz-cd style.
-\tikzset{%
-  every picture/.append style={%
-    commutative diagrams/every diagram%
-  }%
-}
+% \tikzset{%
+%   every picture/.append style={%
+%     commutative diagrams/every diagram%
+%   },%
+%   math/.style = {%
+%       commutative diagrams/every arrow,%
+%       commutative diagrams/every label,%
+%       execute at begin node=\(, execute at end node=\)%
+%     },%
+% }
 \tikzset{%
   math/.style = {%
-    % commutative diagrams/every arrow,%
-    commutative diagrams/every label,%
-    execute at begin node=\(, execute at end node=\)%
-  },%
-  math2/.style = {%
     auto,%
     ->,%
     font=\scriptsize,%
     execute at begin node=\(, execute at end node=\)%
   }%
 }
-% \tikzset{math/.style = {
-%   execute at begin node=\(, execute at end node=\)}
-% }
 
 % Shortcuts to tikz-cd styles.
 \tikzset{hook/.style = {commutative diagrams/hook}}
@@ -73,8 +70,6 @@
 \tikzset{squiggly/.style = {commutative diagrams/squiggly}}
 \tikzset{marking/.style = {commutative diagrams/marking}}
 \tikzset{maps to/.style = {commutative diagrams/maps to}}
-\tikzset{shift right/.style = {commutative diagrams/shift right}}
-\tikzset{shift left/.style = {commutative diagrams/shift left}}
 
 % From quiver:
 % A TikZ style for curved arrows of a fixed height, due to AndréC.

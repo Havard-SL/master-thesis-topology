@@ -355,11 +355,11 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 \begin{remark}[Functor category structure from Borceux]
     Let
     \[
-        \eta = \set{\eta_i}_{i \in \Zb} \text{ where } \eta_i \in \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_i
+        \eta = \set{\eta_n}_{n \in \Zb} \text{ where } \eta_n \in \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n
     \]
     and let
     \[
-        f = \set{f_i}_{i \in \Zb} \text{ where } f_i \in \Cc(A', A'')_i.
+        f = \set{f_n}_{n \in \Zb} \text{ where } f_i \in \Cc(A', A'')_n.
     \]
     \begin{equation}
         \label{eq:functor_category_borceux}
@@ -391,7 +391,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
                 \sum_{i + j = n} (-1)^{ij} G(f_j) \circ \eta_{i, A'} \\
             };
 
-            \draw[math]
+            \path[math]
                 ([yshift=-2.5mm]m-1-1.south) edge[maps to] (m-2-1)
 
                 (m-2-1) edge[maps to] (m-3-1)
@@ -401,16 +401,22 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \end{equation}
     Name the entire above composition of chain complex morphisms for \( \psi_{A', A''} \).
 
-    For any \( k \in \Zb \) let \( \iota_{n,k} \) denote the inclusion
+    For any \( k, j \in \Zb \) let \( \iota_{k,j} \) denote the inclusion
     \begin{multline*}
-        \iota_{n, k}: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_k \otimes \Cc(A', A'')_{n - k} \\
-        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_n
+        \iota_{k, j}: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j \otimes \Cc(A', A'')_{k - j} \\
+        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_k
     \end{multline*}
 
     Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism
     \[
-        \phi_{A', A''} = \set{\phi_{A', A'', n}}_{n \in \Zb}, \text{ where } \phi_{A', A'', n} = \prod_{k \in \Zb} \tuple{ \eta_n \mapsto \psi_{A', A'', k} \circ \iota_{n,k}(\eta_n \otimes ? ) }
+        \phi_{A', A''} = \set{\phi_{A', A'', j}}_{j \in \Zb}
     \]
+    where
+    \begin{align*}
+        \phi_{A', A'', j}:  \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j &\to \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right]_j \\
+        \eta_j &\mapsto \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ).
+    \end{align*}
+    Or in the same shape as previously
     \begin{center}
         \newcommand{\height}{1cm}
         %
@@ -428,8 +434,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta_n \\
-                \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{n,k}(\eta_n \otimes ? ). \\
+                \eta_j \\
+                \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ). \\
             };
 
             \draw[math]
@@ -455,7 +461,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta_n \\
-                \bigtimes_{A', A'' \in \Cc} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{n,k}(\eta_n \otimes ? ). \\
+                \bigtimes_{A', A'' \in \Cc} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ). \\
             };
 
             \draw[math]
@@ -500,14 +506,26 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A))test4 \\
+                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
                 \prod_{A', A'' \in \Cc} \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
-            \path[math2] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
+            \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
             \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
         \end{tikzpicture}
-    \end{center} 
+    \end{center}
+    Then the question remains, what properties would this equalizer have?
+
+    TODO: What is a sub chain complex? Does it make sense? 
+    
+    Consider a sub chain complex
+    \[
+        H \stackrel{\iota}{\hookrightarrow} \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A))
+    \]
+    where the following holds
+    \[
+        \prod\limits_{A', A'' \in \Cc} \phi_{A', A''} \circ \iota = \prod_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''} \circ \iota
+    \]
 \end{remark}
 
 % SRC: Berest--Mehrle 2017 LN
