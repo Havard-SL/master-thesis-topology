@@ -28,14 +28,33 @@
 % \newcommand{\toda}[1]{ \langle #1 \rangle }
 % \newcommand{\class}[1]{ \left[ #1 \right] }
 % \newcommand{\massey}[1]{ \langle \! \langle #1 \rangle \! \rangle }
-\newcommand{\Stmod}[1]{\stablemod\tuple{ #1 }}
-\DeclarePairedDelimiter{\abs}{\vert}{\vert}
-\DeclarePairedDelimiter{\set}{\{}{\}}
-\DeclarePairedDelimiter{\tuple}{(}{)}
-\DeclarePairedDelimiter{\toda}{\langle}{\rangle}
-\DeclarePairedDelimiter{\class}{[}{]}
-\DeclarePairedDelimiter{\massey}{\langle \! \langle}{\rangle \! \rangle}
 
+% SRC: https://tex.stackexchange.com/questions/94410/easily-change-behavior-of-declarepaireddelimiter
+% \NewDocumentCommand\xDeclarePairedDelimiter{mmm}
+%  {%
+%   \NewDocumentCommand#1{som}{%
+%    \IfNoValueTF{##2}
+%     {\IfBooleanTF{##1}{#2##3#3}{\mleft#2##3\mright#3}}
+%     {\mathopen{##2#2}##3\mathclose{##2#3}}%
+%   }%
+%  }
+% \xDeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+
+% Swaps * and non * version of \DeclarePairedDelimiter
+% \newcommand\swapifbranches[3]{#1{#3}{#2}}
+% \makeatletter
+% \MHInternalSyntaxOn
+% \patchcmd{\DeclarePairedDelimiter}{\@ifstar}{\swapifbranches\@ifstar}{}{}
+% \MHInternalSyntaxOff
+% \makeatother
+
+\newcommand{\Stmod}[1]{\stablemod\tuple{ #1 }}
+\DeclarePairedDelimiterX{\abs}[1]{\vert}{\vert}{#1}
+\DeclarePairedDelimiterX{\set}[1]{\{}{\}}{#1}
+\DeclarePairedDelimiterX{\tuple}[1]{(}{)}{#1}
+\DeclarePairedDelimiterX{\toda}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiterX{\class}[1]{[}{]}{#1}
+\DeclarePairedDelimiterX{\massey}[1]{\langle \! \langle}{\rangle \! \rangle}{#1}
 
 % New math operators
 \DeclareMathOperator{\Id}{Id}

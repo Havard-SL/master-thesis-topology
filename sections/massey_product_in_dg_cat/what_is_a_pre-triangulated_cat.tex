@@ -353,13 +353,15 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 % TODO-Q: The fact that \sum_{i \in \Zb} \sum_{j \in \Zb} G(f)_j \otimes \eta_{A, i} = G(f) \otimes \eta_A may only be true if chain complexes are viewed as coproducts.
 % TODO-Q: Need to show that any element in the n-th component of tensor product of two chain complexes are a ``sum'' of elementary tensors.
 \begin{remark}[Functor category structure from Borceux]
-    Let
+    Want to see what the homomorphism structure of \( \dgMod_{\dg}(\Cc) \) is, and what properties it has from the enriched category theory perspective based on Borceux TODO:SRC.
+    
+    Let \( F, G \in \dgMod_{\dg}(\Cc) \) and let
     \[
-        \eta = \set{\eta_n}_{n \in \Zb} \text{ where } \eta_n \in \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n
+        \eta = \set{\eta_n}_{n \in \Zb} \text{ where } \eta_n \in \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n
     \]
     and let
     \[
-        f = \set{f_n}_{n \in \Zb} \text{ where } f_i \in \Cc(A', A'')_n.
+        f = \set{f_n}_{n \in \Zb} \text{ where } f_i \in \Cc^{\op}(A', A'')_n.
     \]
     \begin{equation}
         \label{eq:functor_category_borceux}
@@ -368,7 +370,7 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') \\
+                \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
                 \C_{\dg}(\Mod(R))(F(A'), G(A')) \otimes \C_{\dg}(G(A'), G(A'')) \\
                 \C_{\dg}(G(A'), G(A'')) \otimes \C_{\dg}(\Mod(R))(F(A'), G(A')) \\
                 \C_{\dg}(F(A'), G(A'')) \\
@@ -403,8 +405,8 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
 
     For any \( k, j \in \Zb \) let \( \iota_{k,j} \) denote the inclusion
     \begin{multline*}
-        \iota_{k, j}: \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j \otimes \Cc(A', A'')_{k - j} \\
-        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') }_k
+        \iota_{k, j}: \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j \otimes \Cc^{\op}(A', A'')_{k - j} \\
+        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') }_k
     \end{multline*}
 
     Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism
@@ -412,19 +414,19 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \phi_{A', A''} = \set{\phi_{A', A'', j}}_{j \in \Zb}
     \]
     where
-    \begin{align*}
-        \phi_{A', A'', j}:  \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j &\to \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right]_j \\
-        \eta_j &\mapsto \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ).
-    \end{align*}
-    Or in the same shape as previously
+    % \begin{align*}
+    %     \phi_{A', A'', j}:  \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j &\to \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right]_j \\
+    %     \eta_j &\mapsto \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ).
+    % \end{align*}
+    % Or in the same shape as previously
     \begin{center}
         \newcommand{\height}{1cm}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
-                \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
             \draw[math]
@@ -442,40 +444,40 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
                 (m-1-1) edge[maps to] (m-2-1);
         \end{tikzpicture}
     \end{center}
-    And finally take the product of this map over all \( A', A'' \in \Cc \) to get the morphism
+    And finally take the product of this map over all \( A', A'' \in \Cc^{\op} \) to get the morphism
     \begin{center}
         \newcommand{\height}{1cm}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
-                \prod_{A', A'' \in \Cc} \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \prod_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
             \draw[math]
-                (m-1-1) edge node {\prod_{A', A'' \in \Cc} \phi_{A', A''}} (m-2-1);
+                (m-1-1) edge node {\prod_{A', A'' \in \Cc^{\op}} \phi_{A', A''}} (m-2-1);
         \end{tikzpicture}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta_n \\
-                \bigtimes_{A', A'' \in \Cc} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ). \\
+                \eta_j \\
+                \bigtimes_{A', A'' \in \Cc^{\op}} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ). \\
             };
 
             \draw[math]
                 (m-1-1) edge[maps to] (m-2-1);
         \end{tikzpicture}
     \end{center}
-    Doing a similar constructian as in \autoref{eq:functor_category_borceux} look at the composition
+    Doing a similar construction as in \autoref{eq:functor_category_borceux} look at the composition
     \begin{center}
         \newcommand{\height}{1cm}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple{ \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc(A', A'') \\
+                \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
                 \C_{\dg}(\Mod(R))(F(A''), G(A'')) \otimes \C_{\dg}(F(A'), F(A'')) \\
                 \C_{\dg}(F(A'), G(A'')) \\
             };
@@ -506,12 +508,12 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
-                \prod_{A', A'' \in \Cc} \left[ \Cc(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \prod_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
-            \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
-            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
+            \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
+            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
         \end{tikzpicture}
     \end{center}
     Then the question remains, what properties would this equalizer have?
@@ -520,12 +522,30 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     
     Consider a sub chain complex
     \[
-        H \stackrel{\iota}{\hookrightarrow} \prod_{A \in \Cc} \C_{\dg}(\Mod(R))(F(A), G(A))
+        H \stackrel{\iota}{\hookrightarrow} \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))
     \]
     where the following holds
     \[
-        \prod\limits_{A', A'' \in \Cc} \phi_{A', A''} \circ \iota = \prod_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''} \circ \iota
+        \prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} \circ \iota = \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''} \circ \iota.
     \]
+    Then \( H \) would for any \( j \in \Zb \) contain the elements
+    \[
+        \eta_j \in \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j = \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j
+    \]
+    such that
+    \begin{align*}
+        \tuple{ \prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} }_j (\eta_j) &= \tuple{ \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''} }_j (\eta_j) \\
+        &\Updownarrow \\
+        \bigtimes_{A', A'' \in \Cc^{\op}} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ) &= \bigtimes_{A', A'' \in \Cc^{\op}} \bigtimes_{k \in \Zb} \widetilde{\psi}_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? )
+        \intertext{Which are equal if for any \( A', A'' \in \Cc^{\op} \) and any \( k \in \Zb \) and any \( f \in \Cc^{\op}\tuple{A', A''}_{k - j} \) one has the following}
+        \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes f ) &= \widetilde{\psi}_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes f ) \\
+        &\Updownarrow \\
+        (-1)^{(k - j)*j}G_{A',A'',k - j}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', k - j}(f) \\
+        &\Updownarrow \\
+        (-1)^{|f||\eta_j|}G_{A',A'',|f|}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', |f|}(f) \\
+    \end{align*}
+
+    In plain english, this means that
 \end{remark}
 
 % SRC: Berest--Mehrle 2017 LN
