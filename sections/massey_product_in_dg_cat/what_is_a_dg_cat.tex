@@ -146,9 +146,16 @@
 %     In view of the above redundant points, \emph{I believe} that \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_berest--mehrle_2017} implies the other definitions.
 % \end{remark}
 
-\begin{remark}[Internal hom of chain complexes]
-    TODO
-\end{remark}
+\begin{definition}[Internal hom of chain complexes]
+    \label{def:internal_hom_of_chain_complexes}
+    Let \( A, B \in \C(\Cc) \) and let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) respectively.
+
+    Then define a chain complex \( \class{ A, B } \), where the \( i \)-th component is \( \coprod_{j \in \Zb} \Cc(A_j, B_{j + i}) \) and with the differentials defined as follows
+    \begin{align*}
+        d_i: \coprod_{j \in \Zb} \Cc(A_j, B_{j + i}) &\to \coprod_{j \in \Zb} \Cc(A_j, B_{j + i + 1}) \\
+        f &\mapsto d_B \circ f - (-1)^i f \circ d_A
+    \end{align*}
+\end{definition}
 
 % MS-Question: Do I lack data in this definition?
 % https://ncatlab.org/nlab/show/category+of+chain+complexes

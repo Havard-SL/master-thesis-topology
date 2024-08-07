@@ -10,23 +10,19 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
             \( \Obj(\C_{\dg}(\Mod(R))) := \Obj(\C(\Mod(R))) \).
         }
         \item {
-            For \( A, B \in \C_{\dg}(\Mod(R)) \) let
-            \[ 
-                \tuple{\C_{\dg}(\Mod(R))(A, B)}_i := \bigoplus_{j \in \Zb} \Mod(R)(A_j, B_{j + i})
-            \]
-            with
-            \[
-                \C_{\dg}(\Mod(R))(A, B) = \bigoplus_{i \in \Zb} \tuple{\C_{\dg}(\Mod(R))(A, B)}_i.
-            \]
+            Let \( A, B \in \C_{\dg}(\Mod(R)) \). Then let \( \class{A, B} \) denote the internal hom (\autoref{def:internal_hom_of_chain_complexes}) of \( \C(\Mod(R)) \) with respect to \( A, B \) as objects from \( \C(\Mod(R)) \).
 
-            Let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) as objects of \( \C(\Mod(R)) \), respectively.
+            Then let \( \C_{\dg}(\Mod(R))(A, B) := \class{A, B} \).
+            % \[ 
+            %     \tuple{\C_{\dg}(\Mod(R))(A, B)}_i := \coprod_{j \in \Zb} \Mod(R)(A_j, B_{j + i}).
+            % \]
+            % Let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) as objects of \( \C(\Mod(R)) \), respectively.
 
-            % TODO: This is slight abuse of notation (d_B and d_A are defined on A, B, not A_j, B_{j + i}). Should I fix?
-            Let the differential of \( \C_{\dg}(\Mod(R))(A, B) \) be defined as follows
-            \begin{align*}
-                d_i: \tuple{\C_{\dg}(\Mod(R))(A, B)}_i &\to \tuple{\C_{\dg}(\Mod(R))(A, B)}_{i + 1} \\
-                f &\mapsto d_B \circ f - (-1)^i f \circ d_A
-            \end{align*}
+            % Then define a chain complex \( \C_{\dg}(\Mod(R))(A, B) \), where the \( i \)-th component is \( \tuple{\C_{\dg}(\Mod(R))(A, B)}_i \) and with the differentials defined as follows
+            % \begin{align*}
+            %     d_i: \tuple{\C_{\dg}(\Mod(R))(A, B)}_i &\to \tuple{\C_{\dg}(\Mod(R))(A, B)}_{i + 1} \\
+            %     f &\mapsto d_B \circ f - (-1)^i f \circ d_A
+            % \end{align*}
         }
         \item {
             For \( A, B, C \in \C_{\dg}(\Mod(R)) \), let
@@ -361,8 +357,9 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     \]
     and let
     \[
-        f = \set{f_n}_{n \in \Zb} \text{ where } f_i \in \Cc^{\op}(A', A'')_n.
+        f = \set{f_n}_{n \in \Zb} \text{ where } f_i \in \Cc^{\op}(A', A'')_i.
     \]
+    Construct the following composition of morphisms
     \begin{equation}
         \label{eq:functor_category_borceux}
         \newcommand{\height}{1cm}
@@ -542,10 +539,21 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         &\Updownarrow \\
         (-1)^{(k - j)*j}G_{A',A'',k - j}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', k - j}(f) \\
         &\Updownarrow \\
-        (-1)^{|f||\eta_j|}G_{A',A'',|f|}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', |f|}(f) \\
+        (-1)^{|f||\eta_j|}G_{A',A'',|f|}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', |f|}(f). \\
     \end{align*}
 
-    In plain english, this means that
+    In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) \) is a chain sub complex of \( \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \) which is a chain complex where in the \( j \)-th component, one has
+    \[
+        \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j = \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j
+    \]
+    where every element is in the form
+    \[
+        \bigtimes_{A \in \Cc^{\op}} \eta_{j, A}
+    \]
+    where
+    \[
+        \eta_{j, A} \in \C_{\dg}(\Mod(R))(F(A), G(A))_j = \coprod_{i \in \Zb} \Mod(R)(F(A)_i, G(A_{i + j})).
+    \]
 \end{remark}
 
 % SRC: Berest--Mehrle 2017 LN
