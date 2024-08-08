@@ -345,6 +345,109 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
     TODO: Write down, is written in Remarkable, but some details regarding simple tensors and if they suffice to show the results remain.
 \end{remark}
 
+% SRC: Berest--Mehrle 2017 LN
+% TODO: Must \Ac be small in order to be well defined??
+\begin{definition}[\( \Fun_{\dg}(\Ac, \Bc) \)]
+    \label{def:dg_functor_category}
+    Let \( \Ac \) and \( \Bc \) be DG-categories over \( R \).
+
+    Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the following DG-category:
+    \begin{enumerate}
+        \item{
+            Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \)
+        }
+        \item{
+            For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in TODO: SRC Borceux.
+            % % TODO: Maybe fix the wording a bit here?
+            % For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let
+            % \[
+            %     \eta^i \in \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
+            % \]
+            % be written as a collection of elements \( \eta_A^i \in \tuple{\Bc\tuple{F(A), G(A)}}_i \) for each \( A \in \Ac \).
+            
+            % Then let
+            % \[
+            %     \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
+            %     \subseteq \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
+            % \]
+            % be the subset such that for any \( A, B \in \Ac \) and any \( f \in \Ac\tuple{A, B} \) the following diagram in \( \Bc \), where \( \eta_A^i \) and \( \eta_B^i \) are considered as homogeneous elements of degree \( i \), commutes
+            % \begin{center}
+            %     \begin{tikzpicture}
+            %         \diagram{m}{1cm}{1cm} {
+            %             F(A) \& G(A) \\
+            %             F(B) \& G(B) \\
+            %         };
+
+            %         \draw[math]
+            %             (m-1-1) edge node {\eta_A^i} (m-1-2)
+            %                 edge node {F(f)} (m-2-1)
+            %             (m-1-2) edge node {G(f)} (m-2-2)
+
+            %             (m-2-1) edge node {\eta_B^i} (m-2-2);
+            %     \end{tikzpicture}
+            % \end{center}
+            % % TODO: Show this is a R-module
+
+            % Then let
+            % \[
+            %     \Fun_{\dg}(\Ac, \Bc)(F, G) := \bigoplus_{i \in \Zb} \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
+            % \]
+            % with the differential acting component wise for each \( i \in \Zb \) and \( A \in \Ac \) as follows
+            % \[
+            %     d: \eta_A^i \mapsto d_{\Bc(F(A), G(A))}(\eta_A^i)
+            % \]
+            % % TODO: Show that this differential has correct codomain.
+        }
+        \item {
+            Let composition be defined as expected.
+            % TODO: Show that composition is wll defined.
+        }
+        TODO -- Need resources to define this
+        WIP: In notes, have tried showing that the differential is well defined.
+        % Current ideas: MS-Question
+        % End
+        % Berest--Mehrle 2017 def?
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Opposite DG-category]
+    Let \( \Cc \) be a DG-category.
+
+    Then let \( \Cc^{op} \) be the DG-category defined as follows
+    \begin{enumerate}
+        \item {
+            \( \Obj(\Cc^{op}) := \Obj(\Cc) \)
+        }
+        \item {
+            For \( A, B \in \Cc^{op} \), let \( \Cc^{op}(A, B) := \Cc(B, A) \).
+        }
+        \item {
+            For \( A, B, C \in \Cc^{op} \), with \( f \in \Cc^{op}(B, C) \) and \( g \in \Cc^{op}(A, B) \) homogeneous elements of degree \( d_f \) and \( d_g \) respectively.
+
+            Let composition be defined as
+            \begin{align*}
+                \circ_{\Cc^{op}}: \Cc^{op}(B, C) \otimes \Cc^{op}(A, B) &\to \Cc^{op}(A, C) \\
+                f \otimes g &\mapsto (-1)^{d_f d_g} \circ_{\Cc} (g \otimes f)
+            \end{align*}
+            % TODO: Why can I say this? Need some statement saying all elementary tensors are a sum of homogeneous elementary tensors? As well as saying that the set of elementary tensors generate all elements in the tensor product?
+            and extended to all other elementary tensors.
+        }
+    \end{enumerate}
+\end{definition}
+
+% TODO: Cite: Jasso--Muro
+% No mention of the ring in the notation? -> Implied since DG-category is over a ring!
+\begin{definition}[\( \dgMod_{\dg}(\Cc) \)]
+    Let \( \Cc \) be a DG-category over \( R \).
+
+    % TODO: Why "Right"?
+    Then define the \emph{DG-category of (right) DG \( \Cc \)-modules} as
+    \[
+        \dgMod_{\dg}(\Cc) := \Fun_{\dg}(\Cc^{op}, \C_{\dg}(\Mod(R))).
+    \]
+    Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
+\end{definition}
+
 % TODO-Q: Does symmetry isomorphism commute with morphisms? I would guess so....
 % TODO-Q: The fact that \sum_{i \in \Zb} \sum_{j \in \Zb} G(f)_j \otimes \eta_{A, i} = G(f) \otimes \eta_A may only be true if chain complexes are viewed as coproducts.
 % TODO-Q: Need to show that any element in the n-th component of tensor product of two chain complexes are a ``sum'' of elementary tensors.
@@ -538,127 +641,48 @@ There are multiple definitions of an algebraic triangulated categoery. In this t
         \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes f ) &= \widetilde{\psi}_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes f ) \\
         &\Updownarrow \\
         (-1)^{(k - j)*j}G_{A',A'',k - j}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', k - j}(f) \\
-        &\Updownarrow \\
-        (-1)^{|f||\eta_j|}G_{A',A'',|f|}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', |f|}(f). \\
+        % &\Updownarrow \\
+        % (-1)^{|f||\eta_j|}G_{A',A'',|f|}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', |f|}(f). \\
+        % EXPLANATION: There is no ``homogeneous'' element in a chain complex.
     \end{align*}
 
-    In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) \) is a chain sub complex of \( \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \) which is a chain complex where in the \( j \)-th component, one has
-    \[
-        \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j = \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j
-    \]
-    where every element is in the form
-    \[
-        \bigtimes_{A \in \Cc^{\op}} \eta_{j, A}
-    \]
-    where
-    \[
-        \eta_{j, A} \in \C_{\dg}(\Mod(R))(F(A), G(A))_j = \coprod_{i \in \Zb} \Mod(R)(F(A)_i, G(A_{i + j})).
-    \]
-\end{remark}
-
-% SRC: Berest--Mehrle 2017 LN
-% TODO: Must \Ac be small in order to be well defined??
-\begin{definition}[\( \Fun_{\dg}(\Ac, \Bc) \)]
-    \label{def:dg_functor_category}
-    Let \( \Ac \) and \( \Bc \) be DG-categories over \( R \).
-
-    Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the following DG-category:
-    \begin{enumerate}
-        \item{
-            Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \)
-        }
-        \item{
-            % TODO: Maybe fix the wording a bit here?
-            For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let
-            \[
-                \eta^i \in \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
-            \]
-            be written as a collection of elements \( \eta_A^i \in \tuple{\Bc\tuple{F(A), G(A)}}_i \) for each \( A \in \Ac \).
-            
-            Then let
-            \[
-                \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
-                \subseteq \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
-            \]
-            be the subset such that for any \( A, B \in \Ac \) and any \( f \in \Ac\tuple{A, B} \) the following diagram in \( \Bc \), where \( \eta_A^i \) and \( \eta_B^i \) are considered as homogeneous elements of degree \( i \), commutes
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        F(A) \& G(A) \\
-                        F(B) \& G(B) \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {\eta_A^i} (m-1-2)
-                            edge node {F(f)} (m-2-1)
-                        (m-1-2) edge node {G(f)} (m-2-2)
-
-                        (m-2-1) edge node {\eta_B^i} (m-2-2);
-                \end{tikzpicture}
-            \end{center}
-            % TODO: Show this is a R-module
-
-            Then let
-            \[
-                \Fun_{\dg}(\Ac, \Bc)(F, G) := \bigoplus_{i \in \Zb} \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
-            \]
-            with the differential acting component wise for each \( i \in \Zb \) and \( A \in \Ac \) as follows
-            \[
-                d: \eta_A^i \mapsto d_{\Bc(F(A), G(A))}(\eta_A^i)
-            \]
-            % TODO: Show that this differential has correct codomain.
-        }
-        \item {
-            Let composition be defined as expected.
-            % TODO: Show that composition is wll defined.
-        }
-        TODO -- Need resources to define this
-        WIP: In notes, have tried showing that the differential is well defined.
-        % Current ideas: MS-Question
-        % End
-        % Berest--Mehrle 2017 def?
-    \end{enumerate}
-\end{definition}
-
-\begin{definition}[Opposite DG-category]
-    Let \( \Cc \) be a DG-category.
-
-    Then let \( \Cc^{op} \) be the DG-category defined as follows
+    In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) \) has the following properties:
     \begin{enumerate}
         \item {
-            \( \Obj(\Cc^{op}) := \Obj(\Cc) \)
-        }
-        \item {
-            For \( A, B \in \Cc^{op} \), let \( \Cc^{op}(A, B) := \Cc(B, A) \).
-        }
-        \item {
-            For \( A, B, C \in \Cc^{op} \), with \( f \in \Cc^{op}(B, C) \) and \( g \in \Cc^{op}(A, B) \) homogeneous elements of degree \( d_f \) and \( d_g \) respectively.
-
-            Let composition be defined as
+            The structure of \( \dgMod_{\dg}(\Cc)(F, G) \) is as a sub chain complex of
+            \[
+                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)).
+            \]
+            Which is a chain complex where in the \( j \)-th component, one has
+            \[
+                \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j = \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j
+            \]
+            where every element, \( \eta_j \), is in the form
+            \[
+                \eta_j = \bigtimes_{A \in \Cc^{\op}} \eta_{j, A}
+            \]
+            where
+            \[
+                \eta_{j, A} \in \C_{\dg}(\Mod(R))(F(A), G(A))_j = \prod_{i \in \Zb} \Mod(R)(F(A)_i, G(A_{i + j})).
+            \]
+            Let \( \widetilde{d_A} \) be the differential of \( \C_{\dg}(\Mod(R))(F(A), G(A)) \), then the differential of
+            \[
+                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))
+            \] is
             \begin{align*}
-                \circ_{\Cc^{op}}: \Cc^{op}(B, C) \otimes \Cc^{op}(A, B) &\to \Cc^{op}(A, C) \\
-                f \otimes g &\mapsto (-1)^{d_f d_g} \circ_{\Cc} (g \otimes f)
+                \prod_{A \in \Cc^{\op}} \widetilde{d_A} : \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j &\to \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_{j + 1} \\
+                \bigtimes_{A \in \Cc^{\op}} \eta_{j, A} &\mapsto \bigtimes_{A \in \Cc^{\op}} \widetilde{d_A}\tuple{\eta_{j, A}} \\
+                &= \bigtimes_{A \in \Cc^{\op}} \tuple{ d_{G(A)} \circ \eta_{j, A} - (-1)^j \eta_{j, A} d_{F(A)} }.
             \end{align*}
-            % TODO: Why can I say this? Need some statement saying all elementary tensors are a sum of homogeneous elementary tensors? As well as saying that the set of elementary tensors generate all elements in the tensor product?
-            and extended to all other elementary tensors.
         }
-    \end{enumerate}
-\end{definition}
-
-% TODO: Cite: Jasso--Muro
-% No mention of the ring in the notation? -> Implied since DG-category is over a ring!
-\begin{definition}[\( \dgMod_{\dg}(\Cc) \)]
-    Let \( \Cc \) be a DG-category over \( R \).
-
-    % TODO: Why "Right"?
-    Then define the \emph{DG-category of (right) DG \( \Cc \)-modules} as
-    \[
-        \dgMod_{\dg}(\Cc) := \Fun_{\dg}(\Cc^{op}, \C_{\dg}(\Mod(R))).
-    \]
-    Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
-
-    
-\end{definition}
+        \item {
+            In addition, \( \dgMod_{\dg}(\Cc)(F, G) \) has the property that for any \( \eta_j \in \dgMod_{\dg}(\Cc)(F, G)_j \), and any \( f \in \Cc^{\op}(A', A'')_i \), one has that
+            \[
+                G_{A', A'', i}(f) \circ \eta_{j, A'} = (-1)^{ji} \eta_{j, A''} \circ F(A', A'', i).
+            \]
+        }
+    \end{enumerate} 
+\end{remark}
 
 % TODO: Why is \Cc(-, A) a functor into \C_{\dg}(\Mod(R))?
 \begin{definition}[DG Yoneda embedding]

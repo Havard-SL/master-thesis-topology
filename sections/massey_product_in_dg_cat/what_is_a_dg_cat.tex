@@ -150,11 +150,12 @@
     \label{def:internal_hom_of_chain_complexes}
     Let \( A, B \in \C(\Cc) \) and let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) respectively.
 
-    Then define a chain complex \( \class{ A, B } \), where the \( i \)-th component is \( \coprod_{j \in \Zb} \Cc(A_j, B_{j + i}) \) and with the differentials defined as follows
+    Then define a chain complex \( \class{ A, B } \), where the \( i \)-th component is \( \prod_{j \in \Zb} \Cc(A_j, B_{j + i}) \) and with the differentials defined as follows
     \begin{align*}
-        d_i: \coprod_{j \in \Zb} \Cc(A_j, B_{j + i}) &\to \coprod_{j \in \Zb} \Cc(A_j, B_{j + i + 1}) \\
+        d_i: \prod_{j \in \Zb} \Cc(A_j, B_{j + i}) &\to \prod_{j \in \Zb} \Cc(A_j, B_{j + i + 1}) \\
         f &\mapsto d_B \circ f - (-1)^i f \circ d_A
     \end{align*}
+    This is called the \emph{internal hom of chain complexes}.
 \end{definition}
 
 % MS-Question: Do I lack data in this definition?
