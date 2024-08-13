@@ -668,11 +668,12 @@ There are multiple definitions of an algebraic triangulated category. In this th
             Let \( \widetilde{d_A} \) be the differential of \( \C_{\dg}(\Mod(R))(F(A), G(A)) \), then the differential of
             \[
                 \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))
-            \] is
+            \]
+            is
             \begin{align*}
                 \prod_{A \in \Cc^{\op}} \widetilde{d_A} : \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j &\to \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_{j + 1} \\
                 \bigtimes_{A \in \Cc^{\op}} \eta_{j, A} &\mapsto \bigtimes_{A \in \Cc^{\op}} \widetilde{d_A}\tuple{\eta_{j, A}} \\
-                &= \bigtimes_{A \in \Cc^{\op}} \tuple{ d_{G(A)} \circ \eta_{j, A} - (-1)^j \eta_{j, A} d_{F(A)} }.
+                &= \bigtimes_{A \in \Cc^{\op}} \tuple{ d_{G(A)} \circ \eta_{j, A} - (-1)^j \eta_{j, A} \circ d_{F(A)} }.
             \end{align*}
         }
         \item {
