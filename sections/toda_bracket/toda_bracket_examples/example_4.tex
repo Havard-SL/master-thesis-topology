@@ -1,0 +1,188 @@
+Want to find the Toda bracket of the following maps using the cofiber-cofiber definition:
+
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{1cm} {
+			J \& {J \oplus J} \& {J \oplus J} \& J \\
+		};
+
+		\draw[math]
+			(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+			(m-1-2) edge node {\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}} (m-1-3)
+			(m-1-3) edge node {\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} (m-1-4);
+	\end{tikzpicture}
+\end{center}
+
+First need to find the standard triangle of \( \begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}: J \to J \oplus J \):
+
+The cone is defined as the pushout of the following diagram:
+
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{1cm} {
+			J \& R \\
+			J \oplus J \\
+		};
+
+		\draw[math]
+			(m-1-1) edge[hook] node {\iota_J} (m-1-2)
+				edge[swap] node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-2-1);
+	\end{tikzpicture}
+\end{center}
+
+Where \( \iota_J \) is a monomorphism into a injective module. Here, this map is chosen to be the only monomorphism from \( J \to R \), namely \( \iota \).
+
+In the category of modules, the pushout becomes:
+
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{1cm} {
+			J \& R \\
+			J \oplus J \& \frac{J \oplus J \oplus R}{\sim} \\
+		};
+
+		\draw[math]
+			(m-1-1) edge[hook] node {\iota_J} (m-1-2)
+				edge[swap] node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-2-1)
+			(m-1-2) edge node {\gamma} (m-2-2)
+
+			(m-2-1) edge[hook] node {\rho} (m-2-2);
+	\end{tikzpicture}
+\end{center}
+
+Where \( (1 + g, 1 + g, 0) \sim (0, 0, 1 + g) \).
+
+The map \( \rho \) is given as the composition:
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{1cm} {
+			J \oplus J \& J \oplus J \oplus R \& \frac{J \oplus J \oplus R}{\sim} \\
+		};
+
+		\draw[math]
+			(m-1-1) edge[hook] node {i} (m-1-2)
+			(m-1-2) edge[two heads] node {\pi} (m-1-3);
+	\end{tikzpicture}
+\end{center}
+
+Where \( i \) is the embedding, and \( \pi \) is the quotient epimorphism.
+
+One can check that the pushout is isomorphic to \( J \oplus R \) via the map:
+
+\begin{align*}
+	\alpha: \frac{J \oplus J \oplus R}{\sim} &\to J \oplus R \\
+	(0, 0, r) &\mapsto (0, r) \\
+	(1 + g, 0, r) &\mapsto (1 + g, r) \\
+	(0, 1 + g, r) &\mapsto (1 + g, r) \\
+	(1+ + g, 1 + g, r) &\mapsto (0, r) \\
+\end{align*}
+
+Therefore, by checking the map \( \alpha \circ \rho \) one can see that it becomes the map:
+\[ 
+	(\begin{psmallmatrix}
+		1 & 1 \\
+	\end{psmallmatrix}, 0):  J \oplus J \to J \oplus R
+\]
+
+Doing a similar argument for \( \gamma \), one gets that it is simply the embedding \( \pi \).
+
+Furthermore, the map \( J \oplus R \to \Sigma(J) \cong \frac{R}{J} \) is given as the unique pushout map \( \beta \), satisfying the following commutative diagram:
+
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{2cm} {
+			J \& R \& \frac{R}{J} \\
+			J \oplus J \& J \oplus R \\
+		};
+
+		\draw[math]
+			(m-1-1) edge[hook] node {\iota_J} (m-1-2)
+				edge[swap] node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-2-1)
+			(m-1-2) edge[two heads] node {\pi_J} (m-1-3)
+				edge node {\pi} (m-2-2)
+
+			(m-2-1) edge[hook] node {(\begin{psmallmatrix} 1 & 1 \\ \end{psmallmatrix}, 0)} (m-2-2)
+				edge[curve={height=60pt}] node {0} (m-1-3)
+			(m-2-2) edge node {\beta} (m-1-3);
+	\end{tikzpicture}
+\end{center}
+
+One can check that a candidate for the map \( \beta \) is \( (0, \pi) \). And since \( \beta \) is unique, this is the only map making the diagram commute.
+
+Therefore the standard triangle becomes:
+
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{2cm} {
+			J \& J \oplus J \& J \oplus R \& \frac{R}{J} \\
+		};
+
+		\draw[math]
+			(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+			(m-1-2) edge node {(\begin{psmallmatrix} 1 & 1 \\ \end{psmallmatrix}, 0)} (m-1-3)
+			(m-1-3) edge node {(0, \pi)} (m-1-4);
+	\end{tikzpicture}
+\end{center}
+
+However, since the objects and morphisms are in \( \StMod(R) \), one has that \( R \cong 0 \), and by using the isomorphism \( \frac{R}{J} \cong J \), it becomes:
+
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{1cm} {
+			J \& J \oplus J \& J \& J \\
+		};
+
+		\draw[math]
+			(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+			(m-1-2) edge node {\begin{psmallmatrix} 1 & 1 \\ \end{psmallmatrix}} (m-1-3)
+			(m-1-3) edge node {0} (m-1-4);
+	\end{tikzpicture}
+\end{center}
+
+Using the cofiber-cofiber definition, one gets the following commutative diagram:
+
+\begin{center}
+	\begin{tikzpicture}
+		\diagram{m}{1cm}{1cm} {
+			J \& {J \oplus J} \& J \& J \\
+			J \& {J \oplus J} \& {J \oplus J} \& J \\
+		};
+
+		\draw[math]
+			(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+				edge[equal] (m-2-1)
+			(m-1-2) edge node {{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}} (m-1-3)
+				edge[equal] (m-2-2)
+			(m-1-3) edge node {0} (m-1-4)
+				edge node {\phi} (m-2-3)
+			(m-1-4) edge node {\psi} (m-2-4)
+
+			(m-2-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-2-2)
+			(m-2-2) edge node {\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}} (m-2-3)
+			(m-2-3) edge node {\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} (m-2-4);
+	\end{tikzpicture}
+\end{center}
+
+Where the top row is distinguished.
+
+Firstly, using the fact that \( \begin{psmallmatrix}
+		1 & 1 \\
+	\end{psmallmatrix}: J \oplus J \to J \) is an epimorphism, one gets that \( \phi \circ \begin{psmallmatrix}
+		1 & 1 \\
+	\end{psmallmatrix} = \begin{psmallmatrix}
+		1 \\ 1 \\
+	\end{psmallmatrix} \begin{psmallmatrix}
+		1 & 1 \\
+	\end{psmallmatrix} \implies \phi = \begin{psmallmatrix}
+		1 \\ 1 \\
+	\end{psmallmatrix} \) by the epimorphism property.
+
+And secondly one has that \( \begin{psmallmatrix}
+		1 & 1 \\
+	\end{psmallmatrix} \circ \phi = \begin{psmallmatrix}
+		1 & 1 \\
+	\end{psmallmatrix} \circ \begin{psmallmatrix}
+		1 \\ 1 \\
+	\end{psmallmatrix} = 0 \), so the Toda-bracket is non-empty.
+
+Finally one can see that for any \( \psi: J \to J \), the right square will commute, and so the toda bracket becomes \( \StMod(R)(J, J) \).
