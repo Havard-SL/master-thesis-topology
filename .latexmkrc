@@ -59,8 +59,8 @@ print "============= I am memoize's latexmkrc.  John Collins 2024-03-29\n";
 
 # Which program and extra options to use for memoize-extract and memoize-clean.
 # Note that these are arrays, not simple strings.
-our @memoize_extract = ( '/home/haavard/texmf/scripts/memoize/memoize-extract.pl' );
-our @memoize_clean = ( '/home/haavard/texmf/scripts/memoize/memoize-clean.pl' );
+our @memoize_extract = ( 'memoize-extract.pl' );
+our @memoize_clean = ( 'memoize-clean.pl' );
 
 # Specification of the basic memoize files to delete in a clean-up
 # operation. The generated .memo and .pdf files have more specifications,
