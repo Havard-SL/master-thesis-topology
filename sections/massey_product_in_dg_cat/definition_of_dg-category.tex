@@ -1,3 +1,5 @@
+In this thesis the definition of a DG-Category is based on enriched category theory, as it is a modern approach, and by the opinion of the author it is also the most elegeant approach.
+
 \begin{notation}
     Let \( \Cc \) be any additive category.
     
@@ -9,10 +11,8 @@
     \]
 \end{notation}
 
-% TODO: Prove that the resulting chain complex is a chain complex? At least add a refrence.
-% TODO: Need to show that the structure of coproduct makes it possible to define differential this way.
-\begin{definition}
-    \label{def:massey_product_in_dg_cat/what_is_a_dg_cat/tensor_product_of_chain_complexes}
+\begin{definition}[Tensor product of chain complexes over \( \Mod(R) \)]
+    \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
     Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in \C \tuple{\Mod(R)} \).
 
     Then define the modules
@@ -48,7 +48,7 @@
     \]
     be the canonical split-monomorphism. Furthermore let \( a \otimes b \in A_i \otimes B_j \) be an elementary tensor.
 
-    Then the differential is defined as follows
+    Then the differential is uniquely defined as follows
     \[
         d_n(\iota_{i, j}(a \otimes b)) := \iota_{i + 1, j}\tuple{d_{A, i}(a) \otimes b} + (-1)^{i} \iota_{i, j + 1}\tuple{a \otimes d_{B, j}(b)}.
     \]
@@ -56,114 +56,82 @@
     This is called the \emph{tensor product of chain complexes over \( \Mod(R) \)}.
 \end{definition}
 
-% I have found three different definitions of a DG-category:
+\begin{remark}
+    The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well defined and unique by the following argument.
 
-% \begin{definition}[DG-category, Bondal--Kapranov 1991]
-%     \label{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_bondal--kapranov_1991}
-%     A \emph{DG-category} \( \Cc \) is a category satisfying the following criteria:
-%     \begin{enumerate}
-%         \item \( \Cc \) is pre-additive.
-%         \item The hom-sets of \( \Cc \) are objects in \( \C \tuple{Ab} \).
-%         \item{
-%             Composition is done with the tensor product, and should be a \( \C \tuple{\Ab} \)-morphism.
+    Look at the following diagram
+    \begin{equation}
+        \label{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)}
+        \begin{tikzpicture}
+            \diagram{m}{2cm}{2cm} {
+                A_i \otimes B_j \& \coprod\limits_{p + q = n} A_p \otimes B_q \\
+                A_i \times B_j \& \coprod\limits_{p' + q' = n + 1} A_{p'} \otimes B_{q'} \\
+            };
 
-%             I.e:
-%             \[
-%                 \circ_{A,B,\C}: \Cc \tuple{B, \C} \otimes \Cc \tuple{A, B} \to \Cc \tuple{A, \C}
-%             \]
-%             should be a \( \C \tuple{\Ab} \)-morphism.
-%         }
-%         \item For all \( A \in \Cc \), \( d(\Id_A) = 0 \).
-%     \end{enumerate}
-% \end{definition}
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_{i, j}} (m-1-2)
+                    edge[dashed] node {\alpha_{i, j}} (m-2-2)
+                (m-1-2) edge[dashed] node {\beta} (m-2-2)
 
-% \begin{definition}[DG-category, Keller 1994]
-%     \label{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_keller_1994}
-%     Let \( R \) be a commutative ring.
+                (m-2-1) edge node {f} (m-2-2)
+                    edge node {\otimes} (m-1-1);
+        \end{tikzpicture}
+    \end{equation}
+    Let \( f \) be the map defined element-wise as follows
+    \[
+        a \times b \mapsto \iota_{i + 1, j}\tuple{d_{A, i}(a) \otimes b} + (-1)^{i} \iota_{i, j + 1}\tuple{a \otimes d_{B, j}(b)}
+    \]
+    One can check that this map is \( R \)-balanced, and therefore a morphism. In addition, by the universal property of tensor product in \( \Mod(R) \), \( f \) induces a unique morphism, \( \alpha_{i, j} \), which is induced from the elementary tensors as follows
+    \[
+        a \otimes b \mapsto \iota_{i + 1, j}\tuple{d_{A, i}(a) \otimes b} + (-1)^{i} \iota_{i, j + 1}\tuple{a \otimes d_{B, j}(b)}.
+    \]
+    Since this works for any \( i, j \) as long as \( i + j = n \), one can construct \( \alpha_{i, j} \) for every valid \( i, j \) pair.
 
-%     A \emph{DG-category} \( \Cc \) is a category satisfying the following criteria:
-%     \begin{enumerate}
-%         \item The hom-sets of \( \Cc \) are objects in \( \C \tuple{\Mod \tuple{R} } \).
-%         \item{
-%             Composition is done with the tensor product, and should be a \( \C \tuple{\Mod \tuple{R} } \)-morphism.
+    Then by using the universal property of the coproduct one gets the unique map \( \beta \) which is by \autoref{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)} uniquely determined by it's actions on elementary tensors in \( A_i \otimes B_j \) in the following way
+    \[
+        \iota_{i, j}(a \otimes b) \mapsto \iota_{i + 1, j}\tuple{d_{A, i}(a) \otimes b} + (-1)^{i} \iota_{i, j + 1}\tuple{a \otimes d_{B, j}(b)}.
+    \]
+    Which is exactly equal to \( d_n \).
 
-%             I.e:
-%             \[
-%                 \circ_{A, B, C}: \Cc \tuple{B, C} \otimes \Cc \tuple{A, B} \to \tuple{A, C}
-%             \]
-%             should be a \( \C \tuple{\Mod \tuple{R} } \)-morphism.
-%         }
-%         \item {
-%             For \( f \in \Cc \tuple{A, B} \) any element, and \( g \in \Cc \tuple{B, C} \) a homogenous element, then
+    By a similar argument as above, it follows that since \( d_{n + 1} \circ d_n \) sends every \( \iota_{i, j}(a \otimes b) \) to \( 0 \), then it has to be the zero map, and \( d_n \) is therefore a differential.
+\end{remark}
 
-%             \[
-%                 d(g \circ f) = d(g) \circ f + (-1)^{|g|} g \circ d(f).
-%             \]
-%         }
-%     \end{enumerate}
-% \end{definition}
+\begin{definition}[Internal hom of chain complexes over \( \Mod(R) \)]
+    \label{def:internal_hom_of_chain_complexes_over_Mod(R)}
+    Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in \C \tuple{\Mod(R)} \).
 
-% \begin{definition}[DG-category, Berest--Mehrle 2017 (Lecture notes)]
-%     \label{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_berest--mehrle_2017}
-%     Let \( R \) be a commutative ring.
+    Then define the modules
+    \[
+        \class{A, B}_n := \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + n})
+    \]
+    which are a part of the chain complex
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \class{A, B}: \\
+            };
+        \end{tikzpicture}
+        %
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& \class{A, B}_{-1} \& \class{A, B}_0 \& \class{A, B}_1 \& \cdots \\
+            };
 
-%     A \emph{DG-category} \( \Cc \) is a small category enriched in the category \( \C \tuple{\Mod(R)} \).
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {d_{-1}} (m-1-3)
+                (m-1-3) edge node {d_0} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
 
-%     This is excplicitly that \( \Cc \) consists of the following data:
-%     \begin{enumerate}
-%         \item A set of objects \( Ob(\Cc) \).
-%         \item Every pair of objects \( A, B \in \Cc \) correspond to an object in \( \C \tuple{\Mod(R)} \).
-%         \item{
-%             For every triple \( A, B, C \in \Cc \) there is a \( \C \tuple{\Mod(R)} \) homomorphism \( \circ_{A,B,C} \):
-%             \[
-%                 \circ_{A, B, C}: \Cc(B, C) \otimes \Cc(A, B) \to \Cc(A, C)
-%             \]
-%         }
-%         \item For all \( A \in \Cc \) there is an identity morphism \( \Id_A \in \Cc(A, A) \) with the expected properties.
-%     \end{enumerate}
-% \end{definition}
-
-% TODO: Fix this remark since it doesn't make a lot of sense since the Leibniz rule hasn't been established as a correct rule yet.
-% \begin{remark}
-%     \label{rem:massey_product_in_dg_cat/what_is_a_dg_cat/d_of_id_is_zero}
-%     If one has that \( \Id_A \) is the identity element in the chain complex \( \Cc\tuple{A, A} \). Then \( \abs{\Id_A} = 0 \) and it follows that
-%     \[
-%         d(\Id_A) = d(\Id_A \circ \Id_A) = d(\Id_A) \circ \Id_A + (-1)^0 \Id_A \circ d(\Id_A) = 2d(\Id_A)
-%     \]
-%     which implies that \( d(\Id_A) = 0 \).
-% \end{remark}
-
-% TODO: Remove or fix this remark.
-% \begin{remark}
-%     Every definition of a DG-category given above seem to be very similar in many aspects.
-
-%     In particular, \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_bondal--kapranov_1991} is a special case of \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_keller_1994}, where \( R = \Zb \).
-
-%     Also, \emph{I think} many of the points of the definitions are redundant. The supsecting redudnat points are as follows:
-%     \begin{itemize}
-%         \item {
-%             In \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_bondal--kapranov_1991} both point 1 and point 4 are redundant. Since objects in \( \C \tuple{\Ab} \) are abelian groups, the category is already pre-additive.
-            
-%             And by sign conventions (TODO: Ref/explain/find out/understand/help!), point 2 and 3 imply a leibniz-like rule as in \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_keller_1994} point 3, which by \autoref{rem:massey_product_in_dg_cat/what_is_a_dg_cat/d_of_id_is_zero} implies point 4.
-%         }
-%         \item {
-%             In \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_keller_1994} point 3 seems to follow from sign conventions (TODO: Ref/explain/find out/understand/help!).
-%         }
-%     \end{itemize}
-
-%     In view of the above redundant points, \emph{I believe} that \autoref{def:massey_product_in_dg_cat/what_is_a_dg_cat/dg_cat_berest--mehrle_2017} implies the other definitions.
-% \end{remark}
-
-\begin{definition}[Internal hom of chain complexes]
-    \label{def:internal_hom_of_chain_complexes}
-    Let \( A, B \in \C(\Cc) \) and let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) respectively.
-
-    Then define a chain complex \( \class{ A, B } \), where the \( i \)-th component is \( \prod_{j \in \Zb} \Cc(A_j, B_{j + i}) \) and with the differentials defined as follows
+    Where the differentials, \( d_n \), are defined as follows:
+    WIP
     \begin{align*}
-        d_i: \prod_{j \in \Zb} \Cc(A_j, B_{j + i}) &\to \prod_{j \in \Zb} \Cc(A_j, B_{j + i + 1}) \\
+        d_i: \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i}) &\to \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i + 1}) \\
         f &\mapsto d_B \circ f - (-1)^i f \circ d_A
     \end{align*}
-    This is called the \emph{internal hom of chain complexes}.
+    This is called the \emph{internal hom of chain complexes over \( \Mod(R) \)}.
 \end{definition}
 
 % MS-Question: Do I lack data in this definition?
@@ -183,63 +151,3 @@
 \end{definition}
 This definition also appear in Jasso--Muro p. 29. (TODO: Ref), except they define it for a field and not a commutative ring with identity.
 
-% https://mathoverflow.net/questions/17951/what-tensor-product-of-chain-complexes-satisfies-the-usual-universal-property
-% \begin{remark}
-%     TODO: Connection between cartesian product and tensor product.
-
-%     Let
-%     \[
-%         \phi: A \oplus B \to C.
-%     \]
-%     For any element \( a \in A \), one can look at the morphism resulting from fixing one of the factors of \( \phi \). Denote this by
-%     \[
-%         \phi_a: B \to C
-%     \]
-%     where \( \phi_a(b) = \phi(a, b) \).
-    
-%     This gives a morphism
-%     \[
-%         \psi: A \to \Hom(B, C).
-%     \]
-
-%     However, by tensor left-adjunction, this \( \phi \) corresponds to a morphism
-%     \[
-%         \tilde{\psi}: A \otimes B \to C.
-%     \]
-% \end{remark}
-
-% \begin{definition}
-%     Let \( A \) be an associative algebra with identity over a commutative ring with identity \( R \). Furthermore, let \( A \) have a graded ring structure. Let \( R \cdot 1_A \subseteq A_0 \).
-
-%     Then \( A \) is called a \emph{graded algebra over \( R \)}.
-% \end{definition}
-
-% \begin{definition}
-%     Let \( A \) be a graded algebra over \( R \).
-
-%     If there is a 'graded algebra over \( R \)' -endomorphism of degree \( 1 \), denoted \( d_A \), (i.e. for any \( i \in \Zb \), \( d_A |_{A_i}: A_i \to A_{i + 1} \))
-%     with the following properties:
-%     \begin{enumerate}
-%         \item One has that \( d \circ d = 0 \).
-%         \item {
-%             For \( a, b \in A \) with \( a \) homogenous, one has that
-%             \[
-%                 d\tuple{a \cdot b}
-%                 =
-%                 d\tuple{a} \cdot b + \tuple{-1}^{\abs{a}}a \cdot d\tuple{b}.
-%             \]
-%             }
-%     \end{enumerate}
-
-%     Then \( A \) is called a \emph{differentially graded algebra over \( R \)}.
-% \end{definition}
-
-% \begin{theorem}
-%     Let \( \Cc \) be a DG-category over \( R \).
-
-%     Then for any \( A \in \Cc \) one has that \( \Cc \tuple{A, A} \) is a differentially graded algebra over \( R \).
-% \end{theorem}
-
-% \begin{proof}
-%     TODO
-% \end{proof}
