@@ -1,21 +1,10 @@
 In this thesis the definition of a DG-Category is based on enriched category theory, as it is a modern approach, and by the opinion of the author it is also the most elegeant approach.
 
-\begin{notation}
-    Let \( \Cc \) be any additive category.
-    
-    Then let \( \C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
-
-    Furthermore let the differential in these chain complexes have \emph{ascending} order. I.e. for \( M_i, M_{i+1} \in \Cc \) which are adjacent objects in a chain complex \( M \in \C \tuple{\Cc} \), the differential would be
-    \[
-        d_i : M_i \to M_{i + 1}.
-    \]
-\end{notation}
-
 \begin{definition}[Tensor product of chain complexes over \( \Mod(R) \)]
     \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
     Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in \C \tuple{\Mod(R)} \).
 
-    Then define the modules
+    Then, for any  \( n \in \Zb \) define the modules
     \[
         (A \otimes B)_n := \coprod_{p + q = n} A_p \otimes B_q
     \]
@@ -100,9 +89,9 @@ In this thesis the definition of a DG-Category is based on enriched category the
     \label{def:internal_hom_of_chain_complexes_over_Mod(R)}
     Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in \C \tuple{\Mod(R)} \).
 
-    Then define the modules
+    Then, for any \( n \in \Ab \) define the modules
     \[
-        \class{A, B}_n := \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + n})
+        \class{A, B}_n := \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n})
     \]
     which are a part of the chain complex
     \begin{center}
@@ -126,25 +115,155 @@ In this thesis the definition of a DG-Category is based on enriched category the
     \end{center}
 
     Where the differentials, \( d_n \), are defined as follows:
-    WIP
+    
+    For any \( i \in \Zb \), let \( \partial_{n, i} \) be the follwing morphishm
     \begin{align*}
-        d_i: \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i}) &\to \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i + 1}) \\
-        f &\mapsto d_B \circ f - (-1)^i f \circ d_A
+        \partial_{n, i} : \Mod(R)(A_i, B_{i + n}) &\to \Mod(R)(A_i, B_{i + n + 1}) \\
+        f &\mapsto d_B \circ f - (-1)^n f \circ d_A.
+    \end{align*}
+    Then
+    \begin{align*}
+        d_n := \prod_{i \in \Zb} \partial_{n, i}: \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n}) &\to \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n + 1}) \\
+        \bigtimes_{i \in \Zb} f_i &\mapsto \bigtimes_{i \in \Zb} d_B \circ f_i - (-1)^n f_i \circ d_A.
     \end{align*}
     This is called the \emph{internal hom of chain complexes over \( \Mod(R) \)}.
 \end{definition}
 
-% MS-Question: Do I lack data in this definition?
+% SRC: Remarkable
+\begin{remark}[Tensor product and internal hom adjunction in \( \C(\Mod(R)) \)]
+    Let \( A, B, C \) be chain complexes in \( \C(\Mod(R)) \) for some commutative ring \( R \).
+
+    Let \( f \in \C(\Mod(R))\tuple{A \otimes B, C} \). Want to find out what the adjoint of \( f \) is.
+
+    Let \( f = \set{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple{ \tuple{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
+
+    Then, unwrapping the definitions, one has that \( f \) looks like the following diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& \coprod\limits_{i \in \Zb} A_i \otimes B_{-1 - i} \& \coprod\limits_{i \in \Zb} A_i \otimes B_{-i} \& \coprod\limits_{i \in \Zb} A_i \otimes B_{1 - i} \& \cdots \\
+                \cdots \& C_{-1} \& C_0 \& C_1 \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                    edge (m-2-1)
+                (m-1-2) edge node {d_{-1}} (m-1-3)
+                    edge node {f_{-1}} (m-2-2)
+                (m-1-3) edge node {d_0} (m-1-4)
+                    edge node {f_0} (m-2-3)
+                (m-1-4) edge (m-1-5)
+                    edge node {f_1} (m-2-4)
+                (m-1-5) edge (m-2-5)
+
+                (m-2-1) edge (m-2-2)
+                (m-2-2) edge node {d_{-1}} (m-2-3)
+                (m-2-3) edge node {d_0} (m-2-4)
+                (m-2-4) edge (m-2-5);
+        \end{tikzpicture}
+    \end{center}
+    Likewise, the adjoint has to look like the following diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{0.75cm} {
+                \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
+                \cdots \& \prod\limits_{i \in \Zb} \Mod(R)(B_i, C_{i - 1}) \& \prod\limits_{i \in \Zb} \Mod(R)(B_i, C_i) \& \prod\limits_{i \in \Zb} \Mod(R)(B_i, C_{i + 1}) \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                    edge (m-2-1)
+                (m-1-2) edge node {d_{-1}} (m-1-3)
+                    edge node {?_{-1}} (m-2-2)
+                (m-1-3) edge node {d_0} (m-1-4)
+                    edge node {?_0} (m-2-3)
+                (m-1-4) edge (m-1-5)
+                    edge node {?_1} (m-2-4)
+                (m-1-5) edge (m-2-5)
+
+                (m-2-1) edge (m-2-2)
+                (m-2-2) edge node {d_{-1}} (m-2-3)
+                (m-2-3) edge node {d_0} (m-2-4)
+                (m-2-4) edge (m-2-5);
+        \end{tikzpicture}
+    \end{center}
+
+    For any \( k, j \in \Zb \) let
+    \[
+        \iota_{k, j}: A_j \otimes B_{k - j} \hookrightarrow \coprod_{i \in \Zb} A_i \otimes B_{k - i}
+    \]
+    be the canonical \( j \)-th split monomorphism by the definintion of the coproduct \( \coprod_{i \in \Zb} A_i \otimes B_{k - i} \).
+
+    Then take the hom-tensor adjoint in \( \Mod(R) \) of the morphism
+    \[
+        f_k \circ \iota_{k, j}: A_j \otimes B_{k - j} \to C_k.
+    \]
+    This yields a morphism
+    \begin{align*}
+        \phi_{f, j, k}: A_j &\to \Mod(R)(B_{k - j}, C_k) \\
+        a &\mapsto f_k \circ \iota_{k, j}(a \otimes ?).
+    \end{align*}
+    Then, since the choic of \( k \) is independent of the domain, by the universal property of the product there is some morphism
+    % TODO: What to do about the change in degrees on rhs. There must be some isomorphism there. How to show this isomorphism for myself?
+    \[
+        \phi_{f, j} := \prod_{k \in \Zb} \phi_{f, j, k}: A_j \to \prod_{k \in \Zb} \Mod(R)\tuple{B_k, C_{k + j}}.
+    \]
+    Then the claim is that the adjoint is exactly
+    \[
+        \phi_f := \set{\phi_{f, j}}_{j \in \Zb}.
+    \]
+    In order to show that this is the proper adjoint definition, one need to show the following properties
+    \begin{enumerate}
+        \item {
+            That \( \phi_f \) is a chain morphism.
+        }
+        \item {
+            That the assignment \( f \mapsto \phi_f \) is an isomorphism of groups.
+        }
+        \item {
+            That there is a natural transformation
+            \[
+                \C(\Mod(R))(?_1 \otimes ?_2, ?_3) \cong \C(\Mod(R))(?_1, \left[ ?_2, ?_3 \right])
+            \]
+            where the natural isomorphisms are \( f \mapsto \phi_f \).
+        }
+    \end{enumerate}
+    % TODO: Possibly expand this proof? or TODO: SRC
+    In this thesis I will only prove the first statement.
+
+    1) Want to show that \( \phi_f \) is a chain morphism.
+
+    Need to check that for any \( n \in \Zb \) that the following diagram commutes
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A_n \& A_{n + 1} \\
+                \class{B, C}_n \& \class{B, C}_{n + 1} \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {d_n} (m-1-2)
+                    edge node {\phi_{f, n}} (m-2-1)
+                (m-1-2) edge node {\phi_{f, n + 1}} (m-2-2)
+
+                (m-2-1) edge node {d_n} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    Pick an arbitrary \( a \in A_n \), look at the following equation. WIP
+    \begin{align*}
+        \phi_{f, n + 1} \circ d_n(a) - d_n \circ \phi_{f, n}(a) &= \phi_{f, n + 1} \circ d_n(a) - 
+    \end{align*}
+\end{remark}
+
+% TODO: SRC
 % https://ncatlab.org/nlab/show/category+of+chain+complexes
-\begin{fact}[nlab]
-    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \tuple{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( \C \tuple{\Mod(R)} \) consisting solely of \( 0 \)-objects in non-zero degrees, and the \( R \)-module \( R \) in degree 0. 
+\begin{fact}[\( \C(\Mod(R)) \) is symmetric monoidal]
+    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \tuple{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( \C \tuple{\Mod(R)} \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
 
     Then \( \tuple{\C \tuple{\Mod(R)}, \otimes, I} \) is a symmetric closed monoidal category.
 \end{fact}
 
-% This thesis will be using the following definition, which is similar to the one given by Berest--Mehrle, but not restricted to small categories.
-% TODO: Cite
-\begin{definition}% [DG-category]
+\begin{definition}[DG-category]
     Let \( R \) be a commutative ring with identity.
 
     Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( \C \tuple{\Mod(R)} \).
