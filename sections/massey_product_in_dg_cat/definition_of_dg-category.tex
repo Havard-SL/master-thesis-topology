@@ -254,9 +254,11 @@ In this thesis the definition of a DG-Category is based on enriched category the
         \end{tikzpicture}
     \end{center}
     Pick an arbitrary \( a \in A_n \), look at the following equation. WIP
-    \begin{align*}
-        \phi_{f, n + 1} \circ d_n(a) - d_n \circ \phi_{f, n}(a) &= \phi_{f, n + 1} \circ d_n(a) - 
-    \end{align*}
+    \begin{multline*}
+        s_{n + 1} \circ \phi_{f, n + 1} \circ d_n(a) - d_n \circ s_n \circ \phi_{f, n}(a) \\
+        = \bigtimes_{k \in \Zb} \tuple{ f_{k + n + 1} \circ \iota_{k + n + 1, n + 1} (d_n(a) \otimes ?) } - d_n \tuple{ \bigtimes_{k \in \Zb} f_{k + n} \circ \iota_{k + n, n} (a \otimes ?) } \\
+        = \bigtimes_{k \in \Zb} \tuple{ f_{k + n + 1} \circ \iota_{k + n + 1, n + 1} (d_n(a) \otimes ?) } - d_n \tuple{ \bigtimes_{k \in \Zb} f_{k + n} \circ \iota_{k + n, n} (a \otimes ?) }
+    \end{multline*}
 \end{remark}
 
 % TODO: SRC
