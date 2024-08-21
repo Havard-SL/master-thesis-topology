@@ -206,11 +206,15 @@ In this thesis the definition of a DG-Category is based on enriched category the
     Then, since the choic of \( k \) is independent of the domain, by the universal property of the product there is some morphism
     % TODO: What to do about the change in degrees on rhs. There must be some isomorphism there. How to show this isomorphism for myself?
     \[
-        \phi_{f, j} := \prod_{k \in \Zb} \phi_{f, j, k}: A_j \to \prod_{k \in \Zb} \Mod(R)\tuple{B_k, C_{k + j}}.
+        \phi_{f, j} := \prod_{k \in \Zb} \phi_{f, j, k}: A_j \to \prod_{k \in \Zb} \Mod(R)\tuple{B_{k - j}, C_k}.
     \]
-    Then the claim is that the adjoint is exactly
+    Composing these maps with the canonical isomorphisms
     \[
-        \phi_f := \set{\phi_{f, j}}_{j \in \Zb}.
+        s_j: \prod_{k \in \Zb} \Mod(R)\tuple{B_{k - j}, C_k} \to \prod_{k \in \Zb} \Mod(R)\tuple{B_k, C_{k + j}}.
+    \]
+    Yields the following morphism, which I claim to be the adjoint of \( f \), namely 
+    \[
+        \phi_f := \set{s_j \circ \phi_{f, j}}_{j \in \Zb}.
     \]
     In order to show that this is the proper adjoint definition, one need to show the following properties
     \begin{enumerate}
@@ -243,8 +247,8 @@ In this thesis the definition of a DG-Category is based on enriched category the
 
             \draw[math]
                 (m-1-1) edge node {d_n} (m-1-2)
-                    edge node {\phi_{f, n}} (m-2-1)
-                (m-1-2) edge node {\phi_{f, n + 1}} (m-2-2)
+                    edge node {s_n \circ \phi_{f, n}} (m-2-1)
+                (m-1-2) edge node {s_{n + 1} \circ \phi_{f, n + 1}} (m-2-2)
 
                 (m-2-1) edge node {d_n} (m-2-2);
         \end{tikzpicture}
