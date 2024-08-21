@@ -45,6 +45,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
     This is called the \emph{tensor product of chain complexes over \( \Mod(R) \)}.
 \end{definition}
 
+% TODO: Generalize to a lemma and show the two special cases?
 \begin{remark}
     The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well defined and unique by the following argument.
 
@@ -115,6 +116,8 @@ In this thesis the definition of a DG-Category is based on enriched category the
     \end{center}
 
     Where the differentials, \( d_n \), are defined as follows:
+
+    WIP: FEIL HER!
     
     For any \( i \in \Zb \), let \( \partial_{n, i} \) be the follwing morphishm
     \begin{align*}
@@ -204,7 +207,6 @@ In this thesis the definition of a DG-Category is based on enriched category the
         a &\mapsto f_k \circ \iota_{k, j}(a \otimes ?).
     \end{align*}
     Then, since the choic of \( k \) is independent of the domain, by the universal property of the product there is some morphism
-    % TODO: What to do about the change in degrees on rhs. There must be some isomorphism there. How to show this isomorphism for myself?
     \[
         \phi_{f, j} := \prod_{k \in \Zb} \phi_{f, j, k}: A_j \to \prod_{k \in \Zb} \Mod(R)\tuple{B_{k - j}, C_k}.
     \]
@@ -257,7 +259,8 @@ In this thesis the definition of a DG-Category is based on enriched category the
     \begin{multline*}
         s_{n + 1} \circ \phi_{f, n + 1} \circ d_n(a) - d_n \circ s_n \circ \phi_{f, n}(a) \\
         = \bigtimes_{k \in \Zb} \tuple{ f_{k + n + 1} \circ \iota_{k + n + 1, n + 1} (d_n(a) \otimes ?) } - d_n \tuple{ \bigtimes_{k \in \Zb} f_{k + n} \circ \iota_{k + n, n} (a \otimes ?) } \\
-        = \bigtimes_{k \in \Zb} \tuple{ f_{k + n + 1} \circ \iota_{k + n + 1, n + 1} (d_n(a) \otimes ?) } - d_n \tuple{ \bigtimes_{k \in \Zb} f_{k + n} \circ \iota_{k + n, n} (a \otimes ?) }
+        = \bigtimes_{k \in \Zb} \tuple{ f_{k + n + 1} \circ \iota_{k + n + 1, n + 1} (d_n(a) \otimes ?) - d_{k + n} \circ f_{k + n} \circ \iota_{k + n, n} (a \otimes ?) + (-1)^n f_{k + n} \circ \iota_{k + n, n} (a \otimes d_n(?)) } \\
+        = \bigtimes_{k \in \Zb} \tuple{ WIP }
     \end{multline*}
 \end{remark}
 
