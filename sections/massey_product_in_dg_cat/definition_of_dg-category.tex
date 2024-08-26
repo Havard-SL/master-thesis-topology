@@ -46,6 +46,50 @@ In this thesis the definition of a DG-Category is based on enriched category the
 \end{definition}
 
 % TODO: Generalize to a lemma and show the two special cases?
+\begin{lemma}
+    Let \( A, B \in \C(\Mod(R)) \) and let \( C \in \Mod(R) \). Furthermore let \( i, j \in \Zb \) with \( i + j = n \). And let
+    \[
+        \iota_{i, j}: A_i \otimes B_j \to (A \otimes B)_n := \coprod_{p + q = n} A_p \otimes B_q
+    \]
+    be the canocial split monomorphisms.
+
+    Then for any
+    \[
+        f: (A \otimes B)_n \to C
+    \]
+    where for any \( a \in A_i, b \in B_j \) one has
+    \[
+        f_n(\iota_{i, j}(a \otimes b)) = g_{i, j}(a, b)
+    \]
+    for some \( R \)-bilinear morphisms
+    \[
+        g_{i, j}: A_i \times B_j \to C.
+    \]
+
+    Then \( f_n \) is uniquely defined by the \( g_{i, j} \)-s.
+\end{lemma}
+\begin{proof}
+    Look at the following diagram
+    \begin{equation}
+        \label{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)}
+        \begin{tikzpicture}
+            \diagram{m}{2cm}{2cm} {
+                A_i \otimes B_j \& \coprod\limits_{p + q = n} A_p \otimes B_q \\
+                A_i \times B_j \& C \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_{i, j}} (m-1-2)
+                    edge[dashed] node {\alpha_{i, j}} (m-2-2)
+                (m-1-2) edge[dashed] node {\beta} (m-2-2)
+
+                (m-2-1) edge node {g_{i, j}} (m-2-2)
+                    edge node {\otimes} (m-1-1);
+        \end{tikzpicture}
+    \end{equation}
+
+    Where the \( g_{i, j} \)-s are \( R \)-bilienar.
+\end{proof}
 \begin{remark}
     The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well defined and unique by the following argument.
 

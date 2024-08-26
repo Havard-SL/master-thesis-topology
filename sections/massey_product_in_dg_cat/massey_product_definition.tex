@@ -5,34 +5,34 @@
     \[
         H^\bullet: \C\tuple{\Mod(R)} \to \C(\Mod(R))
     \]
-    be the cohomology functor.
+    be the cohomology functor, with the differentials on the right hand side all being \( 0 \).
 \end{notation}
 
 % SRC Künneth: https://ncatlab.org/nlab/show/K%C3%BCnneth+theorem
-\begin{fact}
-    \label{fact:massey_product_in_dg_cat/massey_product_definition/algebraic_kunneth_isomorphism}
-    Considering objects of \( \Mod_{\bullet}(R) \) as chain complexes with a zero-differential, one can define a tensor product using \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)}.
+% \begin{fact}
+%     \label{fact:massey_product_in_dg_cat/massey_product_definition/algebraic_kunneth_isomorphism}
+%     Considering objects of \( \Mod_{\bullet}(R) \) as chain complexes with a zero-differential, one can define a tensor product using \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)}.
 
-    Let \( A, B \in \C\tuple{\Mod(R)} \).
+%     Let \( A, B \in \C\tuple{\Mod(R)} \).
 
-    By the algebraic Künneth theorem when \( R \) is a field, there is an isomorphism
-    \[
-        \phi: H^\bullet(A) \otimes H^\bullet(B) \stackrel{\sim}{\to} H^\bullet(A \otimes B)
-    \]
-    TODO
-\end{fact}
+%     By the algebraic Künneth theorem when \( R \) is a field, there is an isomorphism
+%     \[
+%         \phi: H^\bullet(A) \otimes H^\bullet(B) \stackrel{\sim}{\to} H^\bullet(A \otimes B)
+%     \]
+%     TODO
+% \end{fact}
 
-\begin{lemma}
-    \label{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}
-    Let \( \Cc \) be a differentially graded category over \( R \), and let \( A, B \in H^\bullet(\Cc) \). Let \( f \in H^\bullet(\Cc)(A, B) \).
+% \begin{lemma}
+%     \label{lem:cohomology_representative}
+%     Let \( \Cc \) be a differentially graded category over \( R \), and let \( f \in H^\bullet(\Cc(A, B)) \).
 
-    Then there is a cocycle representative \( g \in \Cc(A, B) \) such that \( [g] = f \).
+%     Then there is a cocycle representative \( g \in \Cc(A, B) \) such that \( [g] = f \).
 
-    Furthermore, if \( f \) is homogeneous of degree \( d \), then there exist an \( g \) that is also homogeneous of degree \( d \).
-\end{lemma}
-\begin{proof}
-    TODO: Prove
-\end{proof}
+%     Furthermore, if \( f \) is homogeneous of degree \( d \), then there exist an \( g \) that is also homogeneous of degree \( d \).
+% \end{lemma}
+% \begin{proof}
+%     TODO: Prove
+% \end{proof}
 
 % MS-Question: Does the composition definition work? Also TODO below.
 % TODO: Find definition of composition that does not rely on kunneth isomorphism, but only the existance of a morphism. Ask MS!
@@ -44,19 +44,24 @@
         \item Let \( \Obj(H^\bullet(\Cc)) := \Obj(\Cc) \).
         \item For any \( A, B \in \Obj(H^\bullet(\Cc)) \), let \( H^\bullet(\Cc)(A, B) := H^\bullet \tuple{\Cc(A, B)} \).
         \item {
-            % TODO: Need proof of the following statement
-            % TODO: Change wording
-            For any \( A, B, C \in \Obj(H^\bullet(\Cc)) \) and for any \( f_1 \in H^\bullet(\Cc)(A, B) \) and \( f_2 \in H^\bullet(\Cc)(B, C) \), let \( g_1 \in \Cc(A, B) \) and \( g_2 \in \Cc(B, C) \) be representatives of \( f_1 \) and \( f_2 \), respectively from \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}.
+            % % TODO: Need proof of the following statement
+            % % TODO: Change wording
+            % For any \( A, B, C \in \Obj(H^\bullet(\Cc)) \) and for any \( f_1 \in H^\bullet(\Cc)(A, B) \) and \( f_2 \in H^\bullet(\Cc)(B, C) \), let \( g_1 \in \Cc(A, B) \) and \( g_2 \in \Cc(B, C) \) be representatives of \( f_1 \) and \( f_2 \), respectively from \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}.
 
-            % TODO: Slight abuse of notation taking a "class" of an element of a chain complex.
-            % TODO: Need to check if this is well defined, as in not dependant on choice of representative as well as that \circ_{\Cc}(g_1 \otimes g_2) is a cocycle.
-            Let composition in \( H^\bullet(\Cc) \) be defined on elementary tensors as follows
+            % % TODO: Slight abuse of notation taking a "class" of an element of a chain complex.
+            % % TODO: Need to check if this is well defined, as in not dependant on choice of representative as well as that \circ_{\Cc}(g_1 \otimes g_2) is a cocycle.
+            % Let composition in \( H^\bullet(\Cc) \) be defined on elementary tensors as follows
+            % \begin{align*}
+            %     \circ_{H^\bullet(\Cc)}: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C) \\
+            %     f_1 \otimes f_2 &\mapsto \class{ \circ_{\Cc}(g_1 \otimes g_2) }
+            % \end{align*}
+            % % Connection to [f] \otimes [g] \mapsto [f \otimes g] \mapsto [\circ(f \otimes g)]?? TODO
+            % % Is this even well defined/allowed? Need to check if every element in tensor product is a (finite?) sum of elementary tensors. TODO
+
+            For any \( A, B, C \in H^\bullet(\Cc) \), let
             \begin{align*}
-                \circ_{H^\bullet(\Cc)}: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C) \\
-                f_1 \otimes f_2 &\mapsto \class{ \circ_{\Cc}(g_1 \otimes g_2) }
+                \circ: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C)
             \end{align*}
-            % Connection to [f] \otimes [g] \mapsto [f \otimes g] \mapsto [\circ(f \otimes g)]?? TODO
-            % Is this even well defined/allowed? Need to check if every element in tensor product is a (finite?) sum of elementary tensors. TODO
         }
     \end{enumerate}
 \end{definition}
