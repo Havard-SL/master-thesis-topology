@@ -8,35 +8,8 @@
     be the cohomology functor, with the differentials on the right hand side all being \( 0 \).
 \end{notation}
 
-% SRC Künneth: https://ncatlab.org/nlab/show/K%C3%BCnneth+theorem
-% \begin{fact}
-%     \label{fact:massey_product_in_dg_cat/massey_product_definition/algebraic_kunneth_isomorphism}
-%     Considering objects of \( \Mod_{\bullet}(R) \) as chain complexes with a zero-differential, one can define a tensor product using \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)}.
-
-%     Let \( A, B \in \C\tuple{\Mod(R)} \).
-
-%     By the algebraic Künneth theorem when \( R \) is a field, there is an isomorphism
-%     \[
-%         \phi: H^\bullet(A) \otimes H^\bullet(B) \stackrel{\sim}{\to} H^\bullet(A \otimes B)
-%     \]
-%     TODO
-% \end{fact}
-
-% \begin{lemma}
-%     \label{lem:cohomology_representative}
-%     Let \( \Cc \) be a differentially graded category over \( R \), and let \( f \in H^\bullet(\Cc(A, B)) \).
-
-%     Then there is a cocycle representative \( g \in \Cc(A, B) \) such that \( [g] = f \).
-
-%     Furthermore, if \( f \) is homogeneous of degree \( d \), then there exist an \( g \) that is also homogeneous of degree \( d \).
-% \end{lemma}
-% \begin{proof}
-%     TODO: Prove
-% \end{proof}
-
-% MS-Question: Does the composition definition work? Also TODO below.
-% TODO: Find definition of composition that does not rely on kunneth isomorphism, but only the existance of a morphism. Ask MS!
 \begin{definition}
+    \label{def:H_bullet_dg_category}
     Let \( \Cc \) be a differentially graded category over  \( R \).
 
     Let \( H^\bullet(\Cc) \) be the following (enriched over \( C\tuple{\Mod(R)} \)) category:
@@ -44,56 +17,67 @@
         \item Let \( \Obj(H^\bullet(\Cc)) := \Obj(\Cc) \).
         \item For any \( A, B \in \Obj(H^\bullet(\Cc)) \), let \( H^\bullet(\Cc)(A, B) := H^\bullet \tuple{\Cc(A, B)} \).
         \item {
-            % % TODO: Need proof of the following statement
-            % % TODO: Change wording
-            % For any \( A, B, C \in \Obj(H^\bullet(\Cc)) \) and for any \( f_1 \in H^\bullet(\Cc)(A, B) \) and \( f_2 \in H^\bullet(\Cc)(B, C) \), let \( g_1 \in \Cc(A, B) \) and \( g_2 \in \Cc(B, C) \) be representatives of \( f_1 \) and \( f_2 \), respectively from \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}.
-
-            % % TODO: Slight abuse of notation taking a "class" of an element of a chain complex.
-            % % TODO: Need to check if this is well defined, as in not dependant on choice of representative as well as that \circ_{\Cc}(g_1 \otimes g_2) is a cocycle.
-            % Let composition in \( H^\bullet(\Cc) \) be defined on elementary tensors as follows
-            % \begin{align*}
-            %     \circ_{H^\bullet(\Cc)}: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C) \\
-            %     f_1 \otimes f_2 &\mapsto \class{ \circ_{\Cc}(g_1 \otimes g_2) }
-            % \end{align*}
-            % % Connection to [f] \otimes [g] \mapsto [f \otimes g] \mapsto [\circ(f \otimes g)]?? TODO
-            % % Is this even well defined/allowed? Need to check if every element in tensor product is a (finite?) sum of elementary tensors. TODO
-
-            For any \( A, B, C \in H^\bullet(\Cc) \), let
+            For any \( A, B, C \in H^\bullet(\Cc) \), define the composition morphism
             \begin{align*}
-                \circ: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C)
+                c_{H^\bullet(\Cc)}: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C)
             \end{align*}
+            to be the chain morphism with the \( n \)-th component being
+            \begin{align*}
+                c_n: (H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B))_n &\to H^n(A, C) \\
+                \iota_{i, j}([g_i] \otimes [f_j]) &\mapsto \class{c_{\Cc,n}\tuple{\iota_{i, j}(g_i \otimes f_j)}}
+            \end{align*}
+            for any \( i, j \in \Zb \) with \( i + j = n \) and \( [g_i] \in H^i(\Cc)(B, C) \) and \( [f_j] \in H^j(\Cc)(A, B) \).
         }
     \end{enumerate}
 \end{definition}
-
 \begin{remark}
-    Connection to Kunneth? TODO
+    \label{rem:H_bullet_composition_alpha}
+    The composition definition in \autoref{def:H_bullet_dg_category} is actually the composition of two different morphisms.
 
-    % Let \( \phi \) be as in \autoref{fact:massey_product_in_dg_cat/massey_product_definition/algebraic_kunneth_isomorphism}.
+    Look at the maps
+    \begin{align*}
+        \alpha_{i, j}: H^i(\Cc(B, C)) \times H^j(\Cc(A, B)) &\to H^n(\Cc(B, C) \otimes \Cc(A, B)) \\
+        ([g_i], [f_j]) &\mapsto \class{\iota_{i, j}(g_i \otimes f_j)}.
+    \end{align*}
+    Assuming these are well defined \( R \)-bilinear morphisms, denote the unique morphism they define by \autoref{lem:map_out_of_tensor_unique} by \( \alpha_n \), and the entire chain morphism by \( \alpha := \set{\alpha_i}_{i \in \Zb} \).
+    
+    Then one can see that
+    \[
+        c_{H^\bullet(\Cc)} := H^\bullet(c_{\Cc}) \circ \alpha.
+    \] 
+\end{remark}
+The map \( \alpha \) mentioned in the previous remark is interesting, and will be discussed a little later. But more importantly is the question of why composition in \autoref{def:H_bullet_dg_category} is well defined.
+\begin{remark}
+    The composition definition in \autoref{def:H_bullet_dg_category} is well defined and unique by the following argument.
 
-    % For any \( A, B, C \in \Obj(\Kc) \), for any \( f \in \Kc(A, B) \) and \( g \in \Kc(B, C) \)
+    By \autoref{rem:H_bullet_composition_alpha} it is sufficient to only have to verify that \( \alpha \) is well defined and unique in order to show that \( c_{H^\bullet(\Cc)} \) is well defined and unique. By \autoref{lem:map_out_of_tensor_unique} this boils down to showing that the \( \alpha_{i, j} \)-s are well defined \( R \)-bilinear morphisms.
 
-    %         Let composition in \( \Kc \) be defined as follows
-    %         \[
-    %             \circ_{\Kc}: \Kc(B, C) \otimes \Kc(A, B) \to \Kc(A, C)
-    %         \]
-    %         where \( \circ_{\Kc} \) is the composition
-    %         \begin{center}
-    %             \begin{tikzpicture}
-    %                 \diagram{m}{1cm}{1.3cm} {
-    %                     \Kc(B, C) \otimes \Kc(A, B) \& \& \Kc(A, C) \\
-    %                     H^\bullet\tuple{\Cc(B, C)} \otimes H^\bullet\tuple{\Cc(A, B)} \& H^\bullet\tuple{\Cc(B, C) \otimes \Cc(A, B)} \& H^\bullet\tuple{\Cc(A, C)} \\
-    %                 };
+    One can check that the maps are \( R \)-balanced, but one still needs to check if the maps are well defined, which is a bit more difficult. There are two points that need to be shown:
+    \begin{enumerate}
+        \item {
+            Firstly, is
+            \[
+                \iota_{i, j}(g_i \otimes f_j) \in H^n(\Cc(B, C) \otimes \Cc(A, B))?
+            \]
+            To show this, one has to verify that
+            \[
+                \iota_{i, j}(g_i \otimes f_j) \in \ker(d_{\Cc(B, C) \otimes \Cc(A, B), n}).
+            \]
+            This is true because by assumption, both \( g_i \) and \( f_j \) are cycles, and by definition of the differential of the tensor product
+            \[
+                d_{\Cc(B, C) \otimes \Cc(A, B), n}(\iota_{i, j}(g_i \otimes f_j)) = 0.
+            \]
+        }
+        \item {
+            Secondly, are the values of the \( \alpha_{i, j} \)-s independent of the choice of representative?
 
-    %                 \draw[math]
-    %                     (m-1-1) edge[dashed] node {\circ_{\Kc}} (m-1-3)
-    %                         edge[equal] (m-2-1)
-    %                     (m-1-3) edge[equal] (m-2-3)
-                        
-    %                     (m-2-1) edge node {\phi} node[swap] {\sim} (m-2-2)
-    %                     (m-2-2) edge node {H^\bullet(\circ_{\Cc})} (m-2-3); 
-    %             \end{tikzpicture}
-    %         \end{center}
+            Let \( b_g \) be a boundary in \( \Cc(B, C)_i \), and let \( b_f \) be a boundary in \( \Cc(A, B)_j \).
+            \[
+                \alpha_{i, j}([g_i + b_g], [f_j + b_f]) = [\iota_{i, j}((g_i + b_g) \otimes (f_j + b_f))] WIP
+            \]
+        }
+    \end{enumerate}
+    
 \end{remark}
 
 % TODO: Why is degrees preserved when choosing representatives?
