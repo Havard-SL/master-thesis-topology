@@ -39,18 +39,19 @@
         \alpha_{i, j}: H^i(\Cc(B, C)) \times H^j(\Cc(A, B)) &\to H^n(\Cc(B, C) \otimes \Cc(A, B)) \\
         ([g_i], [f_j]) &\mapsto \class{\iota_{i, j}(g_i \otimes f_j)}.
     \end{align*}
-    Assuming these are well defined \( R \)-bilinear morphisms, denote the unique morphism they define by \autoref{lem:map_out_of_tensor_unique} by \( \alpha_n \), and the entire chain morphism by \( \alpha := \set{\alpha_i}_{i \in \Zb} \).
+    Assuming these are well defined \( R \)-bilinear morphisms, denote the unique morphism they define by \autoref{lem:map_out_of_tensor_unique} by \( \alpha_n \), and the entire chain morphism by \( \alpha := \set{\alpha_i}_{i \in \Zb} \). \footnote{
+        The map \( \alpha \) is know at the cross product morphism, as explained in \cite[p. 273]{Hatcher}. In addition for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher}.
+    }
     
     Then one can see that
     \[
         c_{H^\bullet(\Cc)} := H^\bullet(c_{\Cc}) \circ \alpha.
     \] 
 \end{remark}
-The map \( \alpha \) mentioned in the previous remark is interesting, and will be discussed a little later. But more importantly is the question of why composition in \autoref{def:H_bullet_dg_category} is well defined.
 \begin{remark}
     The composition definition in \autoref{def:H_bullet_dg_category} is well defined and unique by the following argument.
 
-    By \autoref{rem:H_bullet_composition_alpha} it is sufficient to only have to verify that \( \alpha \) is well defined and unique in order to show that \( c_{H^\bullet(\Cc)} \) is well defined and unique. By \autoref{lem:map_out_of_tensor_unique} this boils down to showing that the \( \alpha_{i, j} \)-s are well defined \( R \)-bilinear morphisms.
+    By \autoref{rem:H_bullet_composition_alpha} it is sufficient to only have to verify that the \( \alpha_{i, j} \)-s are well defined and \( R \)-balanced in order to show that \( c_{H^\bullet(\Cc)} \) is well defined and unique.
 
     One can check that the maps are \( R \)-balanced, but one still needs to check if the maps are well defined, which is a bit more difficult. There are two points that need to be shown:
     \begin{enumerate}
@@ -72,12 +73,31 @@ The map \( \alpha \) mentioned in the previous remark is interesting, and will b
             Secondly, are the values of the \( \alpha_{i, j} \)-s independent of the choice of representative?
 
             Let \( b_g \) be a boundary in \( \Cc(B, C)_i \), and let \( b_f \) be a boundary in \( \Cc(A, B)_j \).
+            \begin{align*}
+                \alpha_{i, j}([g_i + b_g], [f_j + b_f]) &= [\iota_{i, j}((g_i + b_g) \otimes (f_j + b_f))] \\
+                &= [\iota_{i, j}(g_i \otimes f_j + g_i \otimes b_f + b_g \otimes f_j + b_g \otimes b_f)] \\
+                &= [\iota_{i, j}(g_i \otimes f_j) + \iota_{i, j}(g_i \otimes b_f) + \iota_{i, j}(b_g \otimes f_j) + \iota_ {i, j}(b_g \otimes b_f)]
+            \end{align*}
+            By the definition of the differential of the tensor product, one has that \( \iota_{i, j} \) of the tensor product betweeen a boundary and a cycle, a cycle and a boundary, and a boundary and a boundary are all boundaries in the tensor product.
+
+            As an example, let's take the case above of \( \iota_{i, j}(g_i \otimes b_f) \). Since \( b_f \) is a boundary in \( \Cc(A, B)_j \), there is some \( b_f' \in \Cc(A, B)_{j - 1} \) such that \( d_{\Cc(A, B), j - 1}(b_f') = b_f \).
+
+            Then look at the following equation
+            \begin{align*}
+                d_{\Cc(B, C) \otimes \Cc(A, B)}(&(-1)^i \iota_{i, j - 1}(g_i, b_f')) \\
+                &= (-1)^i \iota_{i + 1, j - 1}(d_{\Cc(B, C), i}(g_i) \otimes b_f') + (-1)^i(-1)^i\iota_{i, j}(g_i \otimes d_{\Cc(A, B), j - 1}(b_f')) \\
+                &= (-1)^i \iota_{i + 1, j}(0 \otimes b_f') + \iota_{i, j}(g_i \otimes b_f) \\
+                &= \iota_{i, j}(g_i \otimes b_f).
+            \end{align*}
+            A similar argument can be made for the other cases.
+
+            Therefore is follows that
             \[
-                \alpha_{i, j}([g_i + b_g], [f_j + b_f]) = [\iota_{i, j}((g_i + b_g) \otimes (f_j + b_f))] WIP
+                \alpha_{i, j}([g_i + b_g], [f_j + b_f]) = [\iota_{i, j}(g_i \otimes f_j) + \iota_{i, j}(g_i \otimes b_f) + \iota_{i, j}(b_g \otimes f_j) + \iota_ {i, j}(b_g \otimes b_f)] = [\iota_{i, j}(g_i \otimes f_j)]
             \]
+            And \( \alpha_{i, j} \) is therefore well-defined.
         }
     \end{enumerate}
-    
 \end{remark}
 
 % TODO: Why is degrees preserved when choosing representatives?
