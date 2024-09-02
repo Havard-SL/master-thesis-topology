@@ -99,15 +99,60 @@
         }
     \end{enumerate}
 \end{remark}
+\begin{remark}
+    \label{rem:diagram_dg-category}
+    Now there is an issue with usual category theory notation of a ``diagram'' for DG-categories. Because a DG-category doesn't have the notion of a morphism because there is no element of a chain complex, there can't be a diagram since the arrows would correspond to morphisms. However, a notion of a diagram in a DG-category make certain future results easier to both state and understand, at the cost of some difficulty in the proofs. And that is why the following notation convention will be used:
+\end{remark}
+% TODO: Maybe move this notation above the definition of H-bullet of a DG category as it is used in the definition.
+% TODO: Remove all mentions of iota_i, j-s in every massety section. They are implied.
+% TODO: Maybe a separate notation for composition of morphisms, since morphisms are not always a apart of a dg-diagram.
+\begin{notation}
+    By the discussion from \autoref{rem:diagram_dg-category}, it is prudent to properly define what a ``diagram'' in a DG-category is.
 
-% TODO: Why is degrees preserved when choosing representatives?
-% SRC: Wikipedia https://en.wikipedia.org/wiki/Massey_product and TODO:guessing
+    Let \( \Cc \) be a DG-category. A \emph{diagram in a DG-category} (or a \emph{DG-diagram}) is a quiver \( \Gamma = \tuple{V, E, s, t} \) where every vertex in \( V \) corresponds to an object in \( \Cc \), and every edge in \( e \in E \) corresponds to an element in \( \Cc\tuple{s(e), t(e)}_n \) for some \( n \in \Zb \). These edges are called \emph{morphisms} and \( n \) is called the \emph{degree} of \( e \), and is also denoted as \( |e| \).
+
+    For two morphisms \( f, g \in E \) with \( s(g) = t(f) \), they are denoted as \emph{composable}. And their composition, denoted \( g \circ f \), is the morphism
+    \[
+        g \circ f := c_{\Cc, |g| + |f|}(\iota_{|g|, |f|}(g \otimes f)) \in \Cc\tuple{s(f), t(g)}_{|g| + |f|}
+    \]
+    where
+    \[
+        \iota_{|g|, |f|}: \Cc\tuple{s(g), t(g)}_{|g|} \otimes \Cc\tuple{s(f), t(f)}_{|f|} \hookrightarrow \tuple{ \Cc\tuple{s(g), t(g)} \otimes \Cc\tuple{s(f), t(f)} }_{|g| + |f|}
+    \]
+    is the canocial split monomorphism, and
+    \[
+        c_{\Cc} := \set{c_{\Cc, i}}_{i \in \Zb} \text{ with } c_{\Cc, i}: \tuple{ \Cc\tuple{s(g), t(g)} \otimes \Cc\tuple{s(f), t(f)} }_i \to \Cc\tuple{s(f), t(g)}_i
+    \]
+    being the composition chain morphism for \( \Cc \).
+\end{notation}
+\begin{lemma}[Associativity of composition in a DG-diagram]
+    Let the following be a diagram in a DG-category \( \Cc \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& B \& C \& D. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f} (m-1-2)
+                (m-1-2) edge node {g} (m-1-3)
+                (m-1-3) edge node {h} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+
+    Then \( h \circ (g \circ f) = (h \circ g) \circ f \).
+\end{lemma}
+\begin{proof}
+    WIP
+\end{proof}
+
+% SRC: Jasso-Muro
 % TODO: Show that definition is well defined as in massey product makes cocycles and can therefore take representatives.
 \begin{definition}
-    \label{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat}
-    Let \( \Cc \) be a differentially graded category over \( R \).
+    \label{def:massey_product_dg_cat}
+    Let \( \Cc \) be a differentially graded category over a commutative ring with identity \( R \).
 
-    Let the following be a diagram in \( H^\bullet(\Cc) \)
+    Let the following be a DG-diagram in \( H^\bullet(\Cc) \)
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -121,34 +166,73 @@
         \end{tikzpicture}
     \end{center}
 
-    Where \( f_1, f_2 \) and \( f_3 \) are homogenous elements with degree \( d_1, d_2 \) and \( d_3 \) respectively.
+    Then let \( g_1, g_2 \) and \( g_3 \) be a choice of cocycle representatives of \( f_1, f_2 \) and \( f_3 \), which would correspond to the following DG-diagram in \( \Cc \)
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_1 \& X_2 \& X_3 \& X_4 \\
+            };
 
-    Then let \( g_1, g_2 \) and \( g_3 \) be the homogeneous cocycle representatives of \( f_1, f_2 \) and \( f_3 \) respectively from \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}. Be the same lemma, these will also have degree \( d_1, d_2 \) and \( d_3 \) respectively.
+            \draw[math]
+                (m-1-1) edge node {g_1} (m-1-2)
+                (m-1-2) edge node {g_2} (m-1-3)
+                (m-1-3) edge node {g_3} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    where \( |g_i| = |f_i| \) by definition.
 
-    Furthermore for a homogeneous element, \( h \in \C(\Mod(R)) \) with degree \( d_h \), let \( \bar{h} := (-1)^{d_h + 1}h \).
+    Furthermore for an element, \( h \in \C(\Mod(R))_{|h|} \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{|h| + 1}h \).
 
-    Then let:
+    Then let
     \[
         \set{
             \class{
                 \bar{s} \circ g_1 + \bar{g_3} \circ t
             }
             \mid
-            d(s) = \bar{g_3} \circ g_2, \quad
-            d(t) = \bar{g_2} \circ g_1
-        }
+            d_{\Cc, |g_3| + |g_2| - 1}(s) = \bar{g_3} \circ g_2, \quad
+            d_{\Cc, |g_2| + |g_1| - 1}(t) = \bar{g_2} \circ g_1
+        }.
     \]
-    This is a subset of \( H^\bullet \tuple{\Cc \tuple{X_1, X_4}} \) and therefore also a subset of \( H^\bullet(\Cc)(X_1, X_4) \), called the \emph{Massey product of \( f_3, f_2 \) and \( f_1 \)}, and is denoted as \( \massey{f_3, f_2, f_1 } \).
+    This is a subset of
+    \[
+        H^{|f_1| + |f_2| + |f_3| - 1}\tuple{\Cc}\tuple{X_1, X_4}
+    \]
+    and is called the \emph{Massey product of \( f_3, f_2 \) and \( f_1 \)}. It is denoted as \( \massey{f_3, f_2, f_1 } \).
 \end{definition}
 
-\begin{theorem}
-    The Massey product definition in \autoref{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat} is well-defined.
-\end{theorem}
-\begin{proof}
-    Want to show that for different choices of representatives, that the definition returns the same subset. As well as that the massey product creates cocycles.
+\begin{remark}
+    The definition of Massey product in \autoref{def:massey_product_dg_cat} is well defined by the following two arguments:
 
-    TODO
-\end{proof}
+    \begin{enumerate}
+        \item {
+            Firstly, want to show that \( \bar{s} \circ g_1 + \bar{g_3} \circ t \) is a cocyle in \( \Cc(X_1, X_4)_{|g_1| + |g_2| + |g_3| - 1} \).
+            
+            Look at the following equation (with the degrees of the differentials omitted)
+            \begin{align*}
+                d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 &+ \bar{g_3} \circ t) = d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
+                \intertext{then by the definition of composition of morphisms in a dg-diagram}
+                &= d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
+                &\hspace{0.4cm} + d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g_3} \otimes t))) \\
+                \intertext{then by the fact that composition is a chain morphism}
+                &= c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
+                &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g}_3 \otimes t)))
+                \intertext{then by the definition of the differential of the tensor products}
+                &= c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1)) \\
+                &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1))) \\
+                \intertext{then by pulling out every sign}
+                &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((g_3 \circ g_2) \otimes g_1)) \\
+                &\hspace{0.4cm} + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}(g_3 \otimes (g_2 \circ g_1))) \\
+                &= (-1)^{|g_2| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}(c_{\Cc, |g_2| + |g_3|}(\iota_{|g_3|, |g_2|}(g_3 \otimes g_2)) \otimes g_1)) \\
+                &\hspace{0.4cm} + (-1)^{|g_2|}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}(g_3 \otimes c_{\Cc, |g_1| + |g_2|}(\iota_{|g_2|, |g_1|}(g_2 \otimes g_1)))) \\
+                &WIP BRUK LEMMA
+            \end{align*}
+        }
+        \item {
+            Secondly, what to show that the massey product is independent of the choice of cocyle-representatives.
+        }
+    \end{enumerate}
+\end{remark}
 
 % TODO: Add comment about composition in DG-category adding the degrees of homogeneous elements.
 \begin{remark}
