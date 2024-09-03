@@ -126,7 +126,8 @@
     being the composition chain morphism for \( \Cc \).
 \end{notation}
 \begin{lemma}[Associativity of composition in a DG-diagram]
-    Let the following be a diagram in a DG-category \( \Cc \)
+    \label{lem:dg-composition_associative}
+    Let the following be a DG-diagram in a DG-category \( \Cc \)
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -143,7 +144,53 @@
     Then \( h \circ (g \circ f) = (h \circ g) \circ f \).
 \end{lemma}
 \begin{proof}
-    WIP
+    Expanding the definitions, it is necessary to show that the following equation holds (the category and degree of the composition chain morphisms are omitted for readability)
+    \begin{equation}
+        \label{eq:dg-composition_associative}
+        c(\iota_{|h|, |g| + |f|}(h \otimes (c(\iota_{|g|, |f|}(g \otimes f))))) = c(\iota_{|h| + |g|, |f|}((c(\iota_{|h|, |g|}(h \otimes g))) \otimes f)).
+    \end{equation}
+    % TODO: This needs a proof. In RM: "Associativity of dg composition" p. 2, there is a diagram of how the diagram could exist. Would need to show that the stated composition of (natural?) isomorphisms are in fact exactly the associativity map.
+    I state without proof that the following diagram commutes
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{0.89cm} {
+                \Cc(C, D)_{|h|} \otimes ( \Cc(B, C)_{|g|} \otimes \Cc(A, B)_{|f|} ) \& ( \Cc(C, D)_{|h|} \otimes \Cc(B, C)_{|g|} ) \otimes \Cc(A, B)_{|f|} \\
+                \Cc(C, D)_{|h|} \otimes ( \Cc(B, C) \otimes \Cc(A, B) )_{|g| + |f|} \& ( \Cc(C, D) \otimes \Cc(B, C) )_{|h| + |g|} \otimes \Cc(A, B)_{|f|} \\
+                ( \Cc(C, D) \otimes ( \Cc(B, C) \otimes \Cc(A, B) ) )_{|h| + |g| + |f|} \& ( ( \Cc(C, D) \otimes \Cc(B, C) ) \otimes \Cc(A, B) )_{|h| + |g| + |f|}. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\sim} (m-1-2)
+                    edge node {\Id \otimes \iota_{|g|, |f|}} (m-2-1)
+                (m-1-2) edge node {\iota_{|h|, |g|} \otimes \Id} (m-2-2)
+
+                (m-2-1) edge node {\iota_{|h|, |g| + |f|}} (m-3-1)
+                (m-2-2) edge node {\iota_{|h| + |g|, |f|}} (m-3-2)
+
+                (m-3-1) edge node {\sim} node[swap] {a} (m-3-2);
+        \end{tikzpicture}
+    \end{center}
+    Where the top horizontal morphism is the usual associativity morphism of the tensor product of \( R \)-modules, and \( a \) is the associativity morphism for the tensor product of chain complexes (in degree \( |h| + |g| + |f| \) ).
+
+    And by \cite[Definition 6.2.1]{Borceux_1994} the following diagram of chain morphisms commute
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \Cc(C, D) \otimes ( \Cc(B, C) \otimes \Cc(A, B) ) \& \& ( \Cc(C, D) \otimes \Cc(B, C) ) \otimes \Cc(A, B) \\
+                \Cc(C, D) \otimes \Cc(A, C) \& \& \Cc(B, D) \otimes \Cc(A, B) \\
+                \& \Cc(A, D). \\
+            };
+            
+            \draw[math]
+                (m-1-1) edge node {\sim} node[swap] {a} (m-1-3)
+                    edge node {\Id \otimes c} (m-2-1)
+                (m-1-3) edge node {c \otimes \Id} (m-2-3)
+
+                (m-2-1) edge node {c} (m-3-2)
+                (m-2-3) edge node[swap] {c} (m-3-2);
+        \end{tikzpicture}
+    \end{center}
+    Gluing together the top diagram with the bottom diagram restricted to degree \( |h| + |g| + |f| \), and looking at where the element \( h \otimes (g \otimes f) \) is sent, yields exactly \autoref{eq:dg-composition_associative}.
 \end{proof}
 
 % SRC: Jasso-Muro
@@ -223,13 +270,25 @@
                 \intertext{then by pulling out every sign}
                 &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((g_3 \circ g_2) \otimes g_1)) \\
                 &\hspace{0.4cm} + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}(g_3 \otimes (g_2 \circ g_1))) \\
-                &= (-1)^{|g_2| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}(c_{\Cc, |g_2| + |g_3|}(\iota_{|g_3|, |g_2|}(g_3 \otimes g_2)) \otimes g_1)) \\
-                &\hspace{0.4cm} + (-1)^{|g_2|}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}(g_3 \otimes c_{\Cc, |g_1| + |g_2|}(\iota_{|g_2|, |g_1|}(g_2 \otimes g_1)))) \\
-                &WIP BRUK LEMMA
+                \intertext{then by the definition of composition of morphisms in a dg-diagram}
+                &= (-1)^{|g_2| + 2|g_3| - 1}(g_3 \circ g_2) \circ g_1 + (-1)^{|g_2| + 2|g_3| - 2}g_3 \circ (g_2 \circ g_1) \\
+                \intertext{then by simplifying signs}
+                &= (-1)^{|g_2|}\tuple{ g_3 \circ (g_2 \circ g_1) - (g_3 \circ g_2) \circ g_1 } \\
+                \intertext{then by \autoref{lem:dg-composition_associative} it follows that}
+                &= 0.
             \end{align*}
         }
         \item {
             Secondly, what to show that the massey product is independent of the choice of cocyle-representatives.
+
+            Let \( b_i \in \Cc(X_i, X_{i + 1}) \) for \( i = 1, 2 \) and \( 3 \) be boundaries.
+
+            Then look at
+            \[
+                \set{ \class{ \overline{s} \circ (g_1 + b_1) + (\overline{g_3 + b_3}) \circ t } \mid d(s) = \overline{g_3 + b_3} \circ (g_2 + b_2), \quad d(t) = \overline{g_2 + b_2} \circ (g_1 + b_1) }.
+            \]
+            WIP
+
         }
     \end{enumerate}
 \end{remark}
