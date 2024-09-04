@@ -1,7 +1,10 @@
 There are multiple definitions of an algebraic triangulated category. In this thesis, the definition of an algebraic triangulated category will be the existence of a DG-enhancement as defined in \cite[Definition 3.1.3]{Jasso-Muro_2023}. This section goes through this definition in detail.
 
 % TODO Cite: Jasso--Muro
+% TODO: Not define based on g_i,j-s?
+% TODO: Verify definition with borceux definition of composition p. 295
 \begin{definition}[\( \C_{\dg}(\Mod(R)) \)]
+    \label{def:c_dg_mod_r}
     Let \( R \) be a commutative ring with identity.
 
     Then let \emph{\( \C_{\dg}(\Mod(R)) \)} be a DG-category defined as follows
@@ -10,30 +13,46 @@ There are multiple definitions of an algebraic triangulated category. In this th
             \( \Obj(\C_{\dg}(\Mod(R))) := \Obj(\C(\Mod(R))) \).
         }
         \item {
-            Let \( A, B \in \C_{\dg}(\Mod(R)) \). Then let \( \class{A, B} \) denote the internal hom (\autoref{def:internal_hom_of_chain_complexes_over_Mod(R)}) of \( \C(\Mod(R)) \) with respect to \( A, B \) as objects from \( \C(\Mod(R)) \).
+            Let \( A, B \in \C_{\dg}(\Mod(R)) \). Let \( \class{A, B} \) denote the internal hom of \( \C(\Mod(R)) \) (\autoref{def:internal_hom_of_chain_complexes_over_Mod(R)}) with respect to \( A, B \) as objects from \( \C(\Mod(R)) \).
 
             Then let \( \C_{\dg}(\Mod(R))(A, B) := \class{A, B} \).
-            % \[ 
-            %     \tuple{\C_{\dg}(\Mod(R))(A, B)}_i := \coprod_{j \in \Zb} \Mod(R)(A_j, B_{j + i}).
-            % \]
-            % Let \( d_A \) and \( d_B \) be the differential of \( A \) and \( B \) as objects of \( \C(\Mod(R)) \), respectively.
-
-            % Then define a chain complex \( \C_{\dg}(\Mod(R))(A, B) \), where the \( i \)-th component is \( \tuple{\C_{\dg}(\Mod(R))(A, B)}_i \) and with the differentials defined as follows
-            % \begin{align*}
-            %     d_i: \tuple{\C_{\dg}(\Mod(R))(A, B)}_i &\to \tuple{\C_{\dg}(\Mod(R))(A, B)}_{i + 1} \\
-            %     f &\mapsto d_B \circ f - (-1)^i f \circ d_A
-            % \end{align*}
         }
         \item {
             For \( A, B, C \in \C_{\dg}(\Mod(R)) \), let
             \[
-                \circ_{\C_{\dg}(\Mod(R))}: \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) \to \C_{\dg}(\Mod(R))(A, C)
+                c_{\C_{\dg}(\Mod(R))}: \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) \to \C_{\dg}(\Mod(R))(A, C)
             \]
-            % TODO: Explain more?
-            be defined as expected.
+            be defined as the chain morphism where \( c_{\C_{\dg}(\Mod(R)), n} \) is uniquely defined on
+            \[
+                \bigtimes_{p \in \Zb} g_p \in [B, C]_i = \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \text{ and } \bigtimes_{p \in \Zb} f_p \in [A, B]_j = \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j})
+            \]
+            as follows
+            \begin{align*}
+                c_{\C_{\dg}(\Mod(R)), n}: \tuple{ \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) }_n &\to \C_{\dg}(\Mod(R))(A, C)_n \\
+                \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{p \in \Zb} f_p } } &\mapsto \bigtimes_{p \in \Zb} g_{p + j} \circ f_p
+            \end{align*}
+            where \( \iota_{i, j} \) is the canonical split monomorphism into the coproduct.
         }
     \end{enumerate}
 \end{definition}
+
+\begin{remark}
+    The composition definition in \autoref{def:c_dg_mod_r} is well defined by the following two arguments:
+
+    \begin{enumerate}
+        \item {
+            Firstly, the morphisms \( c_{\C_{\dg}(\Mod(R)), n} \) are uniqely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)-s are as follows
+            \begin{align*}
+                g_{i, j}: \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \times \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j}) &\to \prod_{p \in \Zb} \Mod(R)(A_p, C_{p + i + j}) \\
+                \tuple{ \bigtimes_{p \in \Zb} g_p } \times \tuple{ \bigtimes_{p \in \Zb} f_p } &\mapsto \bigtimes_{p \in \Zb} g_{p + j} \circ f_p.
+            \end{align*}
+            And these can be checked to be \( R \)-bilinear.
+        }
+        \item {
+            Secondly, need to check that the \( c_{\C_{\dg}(\Mod(R)), n} \)-s form a chain morphism.
+        }
+    \end{enumerate}
+\end{remark}
 
 % SRC: JAsso--Muro 2023, p. 29
 \begin{definition}[\( \Sigma_{\C_{\dg}(Mod(R))} \)]

@@ -40,7 +40,7 @@
         ([g_i], [f_j]) &\mapsto \class{\iota_{i, j}(g_i \otimes f_j)}.
     \end{align*}
     Assuming these are well defined \( R \)-bilinear morphisms, denote the unique morphism they define by \autoref{lem:map_out_of_tensor_unique} by \( \alpha_n \), and the entire chain morphism by \( \alpha := \set{\alpha_i}_{i \in \Zb} \). \footnote{
-        The map \( \alpha \) is know at the cross product morphism, as explained in \cite[p. 273]{Hatcher}. In addition for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher}.
+        The map \( \alpha \) is know at the cross product morphism, as explained in \cite[p. 273]{Hatcher_2002}. In addition for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher_2002}.
     }
     
     Then one can see that
@@ -49,6 +49,7 @@
     \] 
 \end{remark}
 \begin{remark}
+    \label{rem:composition_in_H_bullet_is_well_defined}
     The composition definition in \autoref{def:H_bullet_dg_category} is well defined and unique by the following argument.
 
     By \autoref{rem:H_bullet_composition_alpha} it is sufficient to only have to verify that the \( \alpha_{i, j} \)-s are well defined and \( R \)-balanced in order to show that \( c_{H^\bullet(\Cc)} \) is well defined and unique.
@@ -98,6 +99,7 @@
             And \( \alpha_{i, j} \) is therefore well-defined.
         }
     \end{enumerate}
+    There is no need to verify if composition is a chain morphism, since the differential is zero by definition.
 \end{remark}
 \begin{remark}
     \label{rem:diagram_dg-category}
@@ -125,6 +127,12 @@
     \]
     being the composition chain morphism for \( \Cc \).
 \end{notation}
+
+% TODO: Obvious?
+\begin{remark}
+    Composition in a DG-diagram is essentially usual composition in the DG-category, but restricted to just one component of the coproduct.
+\end{remark}
+
 \begin{lemma}[Associativity of composition in a DG-diagram]
     \label{lem:dg-composition_associative}
     Let the following be a DG-diagram in a DG-category \( \Cc \)
@@ -150,7 +158,7 @@
         c(\iota_{|h|, |g| + |f|}(h \otimes (c(\iota_{|g|, |f|}(g \otimes f))))) = c(\iota_{|h| + |g|, |f|}((c(\iota_{|h|, |g|}(h \otimes g))) \otimes f)).
     \end{equation}
     % TODO: This needs a proof. In RM: "Associativity of dg composition" p. 2, there is a diagram of how the diagram could exist. Would need to show that the stated composition of (natural?) isomorphisms are in fact exactly the associativity map.
-    I state without proof that the following diagram commutes
+    I state without proof that the following diagram in \( \Mod(R) \) commutes
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{0.89cm} {
@@ -193,8 +201,16 @@
     Gluing together the top diagram with the bottom diagram restricted to degree \( |h| + |g| + |f| \), and looking at where the element \( h \otimes (g \otimes f) \) is sent, yields exactly \autoref{eq:dg-composition_associative}.
 \end{proof}
 
+\begin{lemma}
+    Composition in a dg-diagram is a morphism in \( \Mod(R) \), in particular, it is \( R \)-linear in both components.
+\end{lemma}
+\begin{proof}
+    By definition, composition in a dg-diagram is the composition of two \( \Mod(R) \) morphisms, and so it is a \( \Mod(R) \) morphism.
+\end{proof}
+
 % SRC: Jasso-Muro
-% TODO: Show that definition is well defined as in massey product makes cocycles and can therefore take representatives.
+% TODO: What is the relation between different reprersentatives and different choices of s & t? Does it matter, and how does it matter?
+% TODO: Write definition clearer? A lot of implied domains and codomains.
 \begin{definition}
     \label{def:massey_product_dg_cat}
     Let \( \Cc \) be a differentially graded category over a commutative ring with identity \( R \).
@@ -213,95 +229,108 @@
         \end{tikzpicture}
     \end{center}
 
-    Then let \( g_1, g_2 \) and \( g_3 \) be a choice of cocycle representatives of \( f_1, f_2 \) and \( f_3 \), which would correspond to the following DG-diagram in \( \Cc \)
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                X_1 \& X_2 \& X_3 \& X_4 \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {g_1} (m-1-2)
-                (m-1-2) edge node {g_2} (m-1-3)
-                (m-1-3) edge node {g_3} (m-1-4);
-        \end{tikzpicture}
-    \end{center}
-    where \( |g_i| = |f_i| \) by definition.
-
     Furthermore for an element, \( h \in \C(\Mod(R))_{|h|} \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{|h| + 1}h \).
 
+    % Then for any choice of cocycle representatives of \( f_1, f_2 \) and \( f_3 \), denoted \( g_1, g_2 \) and \( g_3 \) which would correspond to the following DG-diagram in \( \Cc \)
+    % \begin{center}
+    %     \begin{tikzpicture}
+    %         \diagram{m}{1cm}{1cm} {
+    %             X_1 \& X_2 \& X_3 \& X_4 \\
+    %         };
+
+    %         \draw[math]
+    %             (m-1-1) edge node {g_1} (m-1-2)
+    %             (m-1-2) edge node {g_2} (m-1-3)
+    %             (m-1-3) edge node {g_3} (m-1-4);
+    %     \end{tikzpicture}
+    % \end{center}
+    % where \( |g_i| = |f_i| \) by definition.
     Then let
-    \[
-        \set{
+    \begin{multline*}
+        \massey{f_3, f_2, f_1 } :=
+        \{
             \class{
                 \bar{s} \circ g_1 + \bar{g_3} \circ t
             }
+            \mid \\
+            d_{\Cc, |f_3| + |f_2| - 1}(s) = \bar{g_3} \circ g_2, \quad
+            d_{\Cc, |f_2| + |f_1| - 1}(t) = \bar{g_2} \circ g_1
             \mid
-            d_{\Cc, |g_3| + |g_2| - 1}(s) = \bar{g_3} \circ g_2, \quad
-            d_{\Cc, |g_2| + |g_1| - 1}(t) = \bar{g_2} \circ g_1
-        }.
-    \]
+            [g_i] = f_i, i = 1,2,3
+        \}.
+    \end{multline*}
+
     This is a subset of
     \[
         H^{|f_1| + |f_2| + |f_3| - 1}\tuple{\Cc}\tuple{X_1, X_4}
     \]
-    and is called the \emph{Massey product of \( f_3, f_2 \) and \( f_1 \)}. It is denoted as \( \massey{f_3, f_2, f_1 } \).
+    and is called the \emph{Massey product of \( f_3, f_2 \) and \( f_1 \)}.
 \end{definition}
 
 \begin{remark}
-    The definition of Massey product in \autoref{def:massey_product_dg_cat} is well defined by the following two arguments:
+    The definition of Massey product in \autoref{def:massey_product_dg_cat} is well defined by the following argument:
 
-    \begin{enumerate}
-        \item {
-            Firstly, want to show that \( \bar{s} \circ g_1 + \bar{g_3} \circ t \) is a cocyle in \( \Cc(X_1, X_4)_{|g_1| + |g_2| + |g_3| - 1} \).
-            
-            Look at the following equation (with the degrees of the differentials omitted)
-            \begin{align*}
-                d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 &+ \bar{g_3} \circ t) = d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
-                \intertext{then by the definition of composition of morphisms in a dg-diagram}
-                &= d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
-                &\hspace{0.4cm} + d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g_3} \otimes t))) \\
-                \intertext{then by the fact that composition is a chain morphism}
-                &= c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
-                &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g}_3 \otimes t)))
-                \intertext{then by the definition of the differential of the tensor products}
-                &= c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1)) \\
-                &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1))) \\
-                \intertext{then by pulling out every sign}
-                &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((g_3 \circ g_2) \otimes g_1)) \\
-                &\hspace{0.4cm} + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}(g_3 \otimes (g_2 \circ g_1))) \\
-                \intertext{then by the definition of composition of morphisms in a dg-diagram}
-                &= (-1)^{|g_2| + 2|g_3| - 1}(g_3 \circ g_2) \circ g_1 + (-1)^{|g_2| + 2|g_3| - 2}g_3 \circ (g_2 \circ g_1) \\
-                \intertext{then by simplifying signs}
-                &= (-1)^{|g_2|}\tuple{ g_3 \circ (g_2 \circ g_1) - (g_3 \circ g_2) \circ g_1 } \\
-                \intertext{then by \autoref{lem:dg-composition_associative} it follows that}
-                &= 0.
-            \end{align*}
-        }
-        \item {
-            Secondly, what to show that the massey product is independent of the choice of cocyle-representatives.
+    Want to show that \( \bar{s} \circ g_1 + \bar{g_3} \circ t \) is a cocyle in \( \Cc(X_1, X_4)_{|g_1| + |g_2| + |g_3| - 1} \).
+    
+    Look at the following equation (with the degrees of the differentials omitted)
+    \begin{align*}
+        d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 &+ \bar{g_3} \circ t) = d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
+        \intertext{then by the definition of composition of morphisms in a dg-diagram}
+        &= d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
+        &\hspace{0.4cm} + d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g_3} \otimes t))) \\
+        \intertext{then by the fact that composition is a chain morphism}
+        &= c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
+        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g}_3 \otimes t)))
+        \intertext{then by the definition of the differential of the tensor products}
+        &= c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1)) \\
+        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1))) \\
+        \intertext{then by pulling out every sign}
+        &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((g_3 \circ g_2) \otimes g_1)) \\
+        &\hspace{0.4cm} + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}(g_3 \otimes (g_2 \circ g_1))) \\
+        \intertext{then by the definition of composition of morphisms in a dg-diagram}
+        &= (-1)^{|g_2| + 2|g_3| - 1}(g_3 \circ g_2) \circ g_1 + (-1)^{|g_2| + 2|g_3| - 2}g_3 \circ (g_2 \circ g_1) \\
+        \intertext{then by simplifying signs}
+        &= (-1)^{|g_2|}\tuple{ g_3 \circ (g_2 \circ g_1) - (g_3 \circ g_2) \circ g_1 } \\
+        \intertext{then by \autoref{lem:dg-composition_associative} it follows that}
+        &= 0.
+    \end{align*}
+    % Secondly, what to show that the massey product is independent of the choice of cocyle-representatives.
 
-            Let \( b_i \in \Cc(X_i, X_{i + 1}) \) for \( i = 1, 2 \) and \( 3 \) be boundaries.
+    % Let \( b_i \in \Cc(X_i, X_{i + 1}) \) for \( i = 1, 2 \) and \( 3 \) be boundaries.
 
-            Then look at
-            \[
-                \set{ \class{ \overline{s} \circ (g_1 + b_1) + (\overline{g_3 + b_3}) \circ t } \mid d(s) = \overline{g_3 + b_3} \circ (g_2 + b_2), \quad d(t) = \overline{g_2 + b_2} \circ (g_1 + b_1) }.
-            \]
-            WIP
+    % Then look at
+    % \[
+    %     \set{ \class{ \overline{s} \circ (g_1 + b_1) + (\overline{g_3 + b_3}) \circ t } \mid d(s) = (\overline{g_3 + b_3}) \circ (g_2 + b_2), \quad d(t) = (\overline{g_2 + b_2}) \circ (g_1 + b_1) }.
+    % \]
+    
+    % By linearity, the first part can be written as 
+    % \[
+    %     [\overline{s} \circ g_1 + \overline{s} \circ b_1 + g_3 \circ t + b_3 \circ t].
+    % \]
+    % But since \( b_1 \) is a boundary, by a similar argument as in \autoref{rem:composition_in_H_bullet_is_well_defined} item 2, one has that
+    % \[
+    %     \overline{s} \circ b_1 = c_{|g_1| + |g_2| + |g_3| - 1}( \iota_{|g_2| + |g_3| - 1, |g_1|} ( \overline{s} \otimes b_1 ) )
+    % \]
+    % is in fact
+    % \[
+    %     \overline{s} \circ b_1 = c_{|g_1| + |g_2| + |g_3| - 1}( d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2), |g_1| + |g_2| + |g_3| - 2} (\tilde{g}) )
+    % \]
+    % for some \( \tilde{g} \in (\Cc(X_2, X_4) \otimes \Cc(X_1, X_2))_{|g_1| + |g_2| + |g_3| - 2} \).
 
-        }
-    \end{enumerate}
-\end{remark}
+    % And since \( c \) is a chain morphism, it follows that
+    % \[
+    %     \overline{s} \circ b_1 = d_{\Cc(X_1, X_4), |g_1| + |g_2| + |g_3| - 2}(c_{|g_1| + |g_2| + |g_3| - 2}(\tilde{g}))
+    % \]
+    % and so \( \overline{s} \circ b_1 \) is a boundary, and a similar argument can be made of \( b_3 \circ t \).
 
-% TODO: Add comment about composition in DG-category adding the degrees of homogeneous elements.
-\begin{remark}
-    \label{rem:massey_product_in_dg_cat/massey_product_definition/massey_product_sum_of_degrees}
-    In particular, considering the degrees of \( f_1, f_2 \) and \( f_3 \), one can see that the only non-zero degree of \( \massey{f_3, f_2, f_1 } \subseteq H^\bullet \tuple{\Cc \tuple{X_1, X_4}} \) is in \( H^{d_3 + d_2 + d_1 - 1} \tuple{\Cc \tuple{X_1, X_4}} \).
+    % It remains to show that
+    % \[
+    %     \set{ \class{ \overline{s} \circ g_1 + \overline{g_3} \circ t } \mid d(s) = (\overline{g_3 + b_3}) \circ (g_2 + b_2), \quad d(t) = (\overline{g_2 + b_2}) \circ (g_1 + b_1) }.
+    % \]
+    % is independent of the \( b_i \)-s.
 \end{remark}
 
 % SRC: Computations done on ReMarkable Massey Product/Definition Massey prod p2
 \begin{remark}
-    Comparing \autoref{def:massey_product_in_dg_cat/massey_product_definition/massey_product_dg_cat} and the definition for massey product in a DG category given by Jasso--Muro 2023 (TODO: Ref) in ``Definition 4.2.1'' with \( d = 1 \) we can see that both definitions agree.
+    Comparing \autoref{def:massey_product_dg_cat} and the definition for massey product in a DG category given by \cite[Definition 4.2.1]{Jasso-Muro_2023} with \( d = 1 \) we can see that both definitions agree.
 \end{remark}
-
-% TODO: Add definition for non-homogenous. Is there even a definition for non-homogenous?
