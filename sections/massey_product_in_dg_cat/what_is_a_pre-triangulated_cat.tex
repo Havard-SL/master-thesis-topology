@@ -1,7 +1,7 @@
 There are multiple definitions of an algebraic triangulated category. In this thesis, the definition of an algebraic triangulated category will be the existence of a DG-enhancement as defined in \cite[Definition 3.1.3]{Jasso-Muro_2023}. This section goes through this definition in detail.
 
 % TODO Cite: Jasso--Muro
-% TODO: Not define based on g_i,j-s?
+% TODO: Not define based on g_i,j's?
 % TODO: Verify definition with borceux definition of composition p. 295
 \begin{definition}[\( \C_{\dg}(\Mod(R)) \)]
     \label{def:c_dg_mod_r}
@@ -41,7 +41,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
 
     \begin{enumerate}
         \item {
-            Firstly, the morphisms \( c_{\C_{\dg}(\Mod(R)), n} \) are uniqely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)-s are as follows
+            Firstly, the morphisms \( c_{\C_{\dg}(\Mod(R)), n} \) are uniqely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)'s are as follows
             \begin{align*}
                 g_{i, j}: \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \times \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j}) &\to \prod_{p \in \Zb} \Mod(R)(A_p, C_{p + i + j}) \\
                 \tuple{ \bigtimes_{p \in \Zb} g_p } \times \tuple{ \bigtimes_{p \in \Zb} f_p } &\mapsto \bigtimes_{p \in \Zb} g_{p + j} \circ f_p.
@@ -49,7 +49,15 @@ There are multiple definitions of an algebraic triangulated category. In this th
             And these can be checked to be \( R \)-bilinear.
         }
         \item {
-            Secondly, need to check that the \( c_{\C_{\dg}(\Mod(R)), n} \)-s form a chain morphism.
+            Secondly, need to check that the \( c_{\C_{\dg}(\Mod(R)), n} \)'s form a chain morphism.
+
+            Look at the following equation (with shortened notation for brevity) 
+            \begin{align*}
+                &( d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} )\tuple{ \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{p \in \Zb} f_p } } } \\
+                &= d_{(A, C), n}\tuple{c_n \tuple{ \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{p \in \Zb} f_p } } }} - c_{n + 1} \tuple{ d_{(B, C) \otimes (A, B), n}\tuple{ \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{p \in \Zb} f_p } } } } \\
+                &= d_{(A, C), n}\tuple{ \bigtimes_{p \in \Zb} g_{p + j} \circ f_p } - c_{n + 1} \tuple{ d_{(B, C) \otimes (A, B), n}\tuple{ \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{p \in \Zb} f_p } } } } \\
+                WIP
+            \end{align*}
         }
     \end{enumerate}
 \end{remark}
