@@ -3,7 +3,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
 % TODO Cite: Jasso--Muro
 % TODO: Not define based on g_i,j's?
 % TODO: Verify definition with borceux definition of composition p. 295
-% TODO: Specify unit morphism? Whya re they needed???
+% TODO: Specify unit morphism? Why are they needed???
 \begin{definition}[\( \C_{\dg}(\Mod(R)) \)]
     \label{def:c_dg_mod_r}
     Let \( R \) be a commutative ring with identity.
@@ -132,6 +132,53 @@ There are multiple definitions of an algebraic triangulated category. In this th
     \end{enumerate}
 \end{remark}
 
+% TODO: Unit morphism?
+\begin{definition}[Opposite DG-category]
+    \label{def:opposite_dg_category}
+    Let \( \Cc \) be a DG-category.
+
+    Then let \( \Cc^{op} \) be the DG-category defined as follows
+    \begin{enumerate}
+        \item {
+            \( \Obj(\Cc^{op}) := \Obj(\Cc) \)
+        }
+        \item {
+            For \( A, B \in \Cc^{op} \), let \( \Cc^{op}(A, B) := \Cc(B, A) \).
+        }
+        \item {
+            For \( A, B, C \in \Cc^{op} \), let composition be the chain morphism
+            \[
+                c_{\Cc^{\op}}: \Cc^{\op} (B, C) \otimes \Cc^{\op} (A, B) \to \Cc^{\op} (A, C)
+            \]
+            where in degree \( n \) there is the following morphism that is uniquely defined by the following assignments for any \( i, j \in \Zb \) with \( i + j = n \) and any \( a \in \Cc^{\op} (B, C)_i, b \in \Cc^{\op} (A, B)_j \)
+            \begin{align*}
+                c_{\Cc^{\op}, n}: \tuple{ \Cc^{\op} (B, C) \otimes \Cc^{\op} (A, B) }_n &\to \Cc^{\op} (A, C)_n \\
+                \iota_{i, j}\tuple{ a \otimes b } &\mapsto (-1)^{ij} c_\Cc \tuple{ b \otimes a }
+            \end{align*}
+        }
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+    In order to show that the opposite DG-category defined in \autoref{def:opposite_dg_category} is a well defined DG-category, need to show the following
+    \begin{enumerate}
+        \item  {
+            The composition morphism is uniquely defined as stated.
+
+            WIP
+        }
+        \item {
+            The composition morphism is a chain morphism.
+
+            WIP
+        }
+    \end{enumerate}
+\end{remark}
+
+% TODO Cite: Jasso--Muro, Borceux
+\begin{definition}[DG-functor]
+    An enriched functor between two DG-categories is called a \emph{DG-functor}.
+\end{definition}
+
 \begin{definition}[\( \Sigma_{\C_{\dg}(\Mod(R))} \)]
     \label{def:sigma_c_dg}
     Let the DG-functor \( \Sigma_{\C_{\dg}(\Mod(R))} \) be defined as follows
@@ -180,199 +227,6 @@ There are multiple definitions of an algebraic triangulated category. In this th
     \end{enumerate}
 \end{remark}
 
-\begin{remark}
-    Consider the following homogeneous of degree \( -1 \) map for \( A \in \C_{\dg}(\Mod(R)) \)
-    \begin{center}
-        \newcommand{\height}{2cm}
-        %
-        \mmznext{meaning to context=\height}
-        \begin{tikzpicture}
-            \diagram{m}{\height}{1cm} {
-                A: \\
-                \Sigma(A): \\
-            };
-            
-            \draw[math]
-                (m-1-1) edge node {\sigma_A} (m-2-1);
-        \end{tikzpicture}
-        %
-        \mmznext{meaning to context=\height}
-        \begin{tikzpicture}
-            \diagramorigin{m}{\height}{3cm} {
-                \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
-                \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
-            };
-
-            \draw[math]
-                (m-1-1) edge (m-1-2)
-                (m-1-2) edge (m-1-3)
-                    edge node {\Id} (m-2-1)
-                (m-1-3) edge (m-1-4)
-                    edge node {\Id} (m-2-2)
-                (m-1-4) edge (m-1-5)
-                    edge node {\Id} (m-2-3)
-                (m-1-5) edge node {\Id} (m-2-4)
-                
-                (m-2-1) edge (m-2-2)
-                (m-2-2) edge (m-2-3)
-                (m-2-3) edge (m-2-4)
-                (m-2-4) edge (m-2-5);
-        \end{tikzpicture}
-    \end{center}
-
-    Consider this (suggestively named) homogeneous of degree \( 1 \) morphism
-    \begin{center}
-        \newcommand{\height}{2cm}
-        %
-        \mmznext{meaning to context=\height}
-        \begin{tikzpicture}
-            \diagram{m}{\height}{1cm} {
-                \Sigma(A): \\
-                A: \\
-            };
-            
-            \draw[math]
-                (m-1-1) edge node {\sigma_A^{-1}} (m-2-1);
-        \end{tikzpicture}
-        %
-        \mmznext{meaning to context=\height}
-        \begin{tikzpicture}
-            \diagramorigin{m}{\height}{3cm} {
-                \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
-                \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
-            };
-
-            \draw[math]
-                (m-1-1) edge (m-1-2)
-                    edge node {\Id} (m-2-2)
-                (m-1-2) edge (m-1-3)
-                    edge node {\Id} (m-2-3)
-                (m-1-3) edge (m-1-4)
-                    edge node {\Id} (m-2-4)
-                (m-1-4) edge (m-1-5)
-                    edge node {\Id} (m-2-5)
-                
-                (m-2-1) edge (m-2-2)
-                (m-2-2) edge (m-2-3)
-                (m-2-3) edge (m-2-4)
-                (m-2-4) edge (m-2-5);
-        \end{tikzpicture}
-    \end{center}
-
-    One can see that
-    \[
-        \sigma_A \circ \sigma_A^{-1} = \Id_{\Sigma(A)}
-    \]
-    and
-    \[
-        \sigma_A^{-1} \circ \sigma_A = \Id_A.
-    \]
-    Therefore, \( \sigma_A^{-1} \) is the inverse of \( \sigma_A \) in \( \C_{\dg}(\Mod(R)) \).
-
-    Furthermore, for \( f \in \C_{\dg}(\Mod(R))(A, B) \), homogeneous of degree \( i \), consider the morphism
-    \[
-        \sigma_B \circ f \circ \sigma_A^{-1}.
-    \]
-    Looking at what the morphism is doing
-    \begin{center}
-        \newcommand{\height}{3cm}
-        %
-        \mmznext{meaning to context=\height}
-        \begin{tikzpicture}
-            \diagram{m}{\height}{1cm} {
-                \Sigma(A): \\
-                A: \\
-                B: \\
-                \Sigma(B): \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {\sigma_A^{-1}} (m-2-1)
-
-                (m-2-1) edge node {f} (m-3-1)
-
-                (m-3-1) edge node {\sigma_B} (m-4-1);
-        \end{tikzpicture}
-        %
-        \mmznext{meaning to context=\height}
-        \begin{tikzpicture}
-            \diagramorigin{m}{\height}{3cm} {
-                \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
-                \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
-                \cdots \& B_{i-1} \& B_i \& B_{i + 1} \& \cdots \\
-                \cdots \& B_i \& B_{i + 1} \& B_{i + 2} \& \cdots \\
-            };
-
-            \draw[math]
-                (m-1-1) edge (m-1-2)
-                    edge node {\Id} (m-2-2)
-                (m-1-2) edge (m-1-3)
-                    edge node {\Id} (m-2-3)
-                (m-1-3) edge (m-1-4)
-                    edge node {\Id} (m-2-4)
-                (m-1-4) edge (m-1-5)
-                    edge node {\Id} (m-2-5)
-
-                (m-2-1) edge (m-2-2)
-                (m-2-2) edge (m-2-3)
-                    edge node {f_{-1}} (m-3-2)
-                (m-2-3) edge (m-2-4)
-                    edge node {f_0} (m-3-3)
-                (m-2-4) edge (m-2-5)
-                    edge node {f_1} (m-3-4)
-
-                (m-3-1) edge (m-3-2)
-                (m-3-2) edge (m-3-3)
-                    edge node {\Id} (m-4-1)
-                (m-3-3) edge (m-3-4)
-                    edge node {\Id} (m-4-2)
-                (m-3-4) edge (m-3-5)
-                    edge node {\Id} (m-4-3)
-                (m-3-5) edge node {\Id} (m-4-4)
-
-                (m-4-1) edge (m-4-2)
-                (m-4-2) edge (m-4-3)
-                (m-4-3) edge (m-4-4)
-                (m-4-4) edge (m-4-5);
-        \end{tikzpicture}
-    \end{center}
-    % TODO: Impliserar dette at det er naturleg iso?
-    one can see that it is exacly equal to \( (-1)^i\Sigma(f) \).
-\end{remark}
-
-% TODO Cite: Jasso--Muro
-% TODO: Elaborate on enriched functor?
-\begin{definition}[DG-functor]
-    An enriched functor between two DG-categories is called a \emph{DG-functor}.
-\end{definition}
-
-% MS-question: Remark below. -> Probably OK.
-\begin{remark}
-    % Bondal--Kapranov has as definition
-    Enriched functor between DG-categories implies it preserves differentials and grading? TODO
-\end{remark}
-
-% SRC: Berest--Mehrle 2017 LN
-% \begin{definition}[DG-natural transformation]
-%     Let \( F, G: \Ac \to \Bc \) be two DG-functors.
-
-%     Then a collection of morphisms
-%     \[
-%         \alpha = \set{ \alpha_A \in \Bc(F(A), G(A)) \mid A \in \Ac }
-%     \]
-
-%     TODO: Find secondary source, can't see the connection to nlab
-% \end{definition}
-
-% TODO: Need to show that it's a category?
-% MS-Question: Correct? Berest--Mehrle (LN) has another def. -> Subscript dg betyr enriched.
-% \begin{definition}[\( \Fun(\Ac, \Bc) \)]
-%     Let \( \Ac, \Bc \) be two DG-categories over the same commutative ring \( R \).
-    
-%     Then let \( \Fun(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \), with morphisms being DG-natural transformations.
-% TODO: Can't use this unless I have a definition of "DG-natural transformations".
-% \end{definition}
-
 % SRC: Berest--Mehrle 2017 LN
 % TODO: Must \Ac be small in order to be well defined??
 \begin{definition}[\( \Fun_{\dg}(\Ac, \Bc) \)]
@@ -385,46 +239,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
             Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \)
         }
         \item{
-            For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in TODO: SRC Borceux.
-            % % TODO: Maybe fix the wording a bit here?
-            % For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let
-            % \[
-            %     \eta^i \in \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
-            % \]
-            % be written as a collection of elements \( \eta_A^i \in \tuple{\Bc\tuple{F(A), G(A)}}_i \) for each \( A \in \Ac \).
-            
-            % Then let
-            % \[
-            %     \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
-            %     \subseteq \prod_{A \in \Ac} \tuple{\Bc\tuple{F(A), G(A)}}_i
-            % \]
-            % be the subset such that for any \( A, B \in \Ac \) and any \( f \in \Ac\tuple{A, B} \) the following diagram in \( \Bc \), where \( \eta_A^i \) and \( \eta_B^i \) are considered as homogeneous elements of degree \( i \), commutes
-            % \begin{center}
-            %     \begin{tikzpicture}
-            %         \diagram{m}{1cm}{1cm} {
-            %             F(A) \& G(A) \\
-            %             F(B) \& G(B) \\
-            %         };
-
-            %         \draw[math]
-            %             (m-1-1) edge node {\eta_A^i} (m-1-2)
-            %                 edge node {F(f)} (m-2-1)
-            %             (m-1-2) edge node {G(f)} (m-2-2)
-
-            %             (m-2-1) edge node {\eta_B^i} (m-2-2);
-            %     \end{tikzpicture}
-            % \end{center}
-            % % TODO: Show this is a R-module
-
-            % Then let
-            % \[
-            %     \Fun_{\dg}(\Ac, \Bc)(F, G) := \bigoplus_{i \in \Zb} \tuple{\Fun_{\dg}(\Ac, \Bc)(F, G)}_i
-            % \]
-            % with the differential acting component wise for each \( i \in \Zb \) and \( A \in \Ac \) as follows
-            % \[
-            %     d: \eta_A^i \mapsto d_{\Bc(F(A), G(A))}(\eta_A^i)
-            % \]
-            % % TODO: Show that this differential has correct codomain.
+            For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in \cite[Proposition 6.3.1]{Borceux_1994}.
         }
         \item {
             Let composition be defined as expected.
@@ -435,31 +250,6 @@ There are multiple definitions of an algebraic triangulated category. In this th
         % Current ideas: MS-Question
         % End
         % Berest--Mehrle 2017 def?
-    \end{enumerate}
-\end{definition}
-
-\begin{definition}[Opposite DG-category]
-    Let \( \Cc \) be a DG-category.
-
-    Then let \( \Cc^{op} \) be the DG-category defined as follows
-    \begin{enumerate}
-        \item {
-            \( \Obj(\Cc^{op}) := \Obj(\Cc) \)
-        }
-        \item {
-            For \( A, B \in \Cc^{op} \), let \( \Cc^{op}(A, B) := \Cc(B, A) \).
-        }
-        \item {
-            For \( A, B, C \in \Cc^{op} \), with \( f \in \Cc^{op}(B, C) \) and \( g \in \Cc^{op}(A, B) \) homogeneous elements of degree \( d_f \) and \( d_g \) respectively.
-
-            Let composition be defined as
-            \begin{align*}
-                \circ_{\Cc^{op}}: \Cc^{op}(B, C) \otimes \Cc^{op}(A, B) &\to \Cc^{op}(A, C) \\
-                f \otimes g &\mapsto (-1)^{d_f d_g} \circ_{\Cc} (g \otimes f)
-            \end{align*}
-            % TODO: Why can I say this? Need some statement saying all elementary tensors are a sum of homogeneous elementary tensors? As well as saying that the set of elementary tensors generate all elements in the tensor product?
-            and extended to all other elementary tensors.
-        }
     \end{enumerate}
 \end{definition}
 
@@ -891,3 +681,193 @@ There are multiple definitions of an algebraic triangulated category. In this th
 
     Then \( \Tc \) is called an \emph{algebraic triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), such that \( H^0(\Cc) \) is equivalent to \( \Tc \).
 \end{definition}
+
+
+% DUMP
+
+% \begin{remark}
+%     Consider the following homogeneous of degree \( -1 \) map for \( A \in \C_{\dg}(\Mod(R)) \)
+%     \begin{center}
+%         \newcommand{\height}{2cm}
+%         %
+%         \mmznext{meaning to context=\height}
+%         \begin{tikzpicture}
+%             \diagram{m}{\height}{1cm} {
+%                 A: \\
+%                 \Sigma(A): \\
+%             };
+            
+%             \draw[math]
+%                 (m-1-1) edge node {\sigma_A} (m-2-1);
+%         \end{tikzpicture}
+%         %
+%         \mmznext{meaning to context=\height}
+%         \begin{tikzpicture}
+%             \diagramorigin{m}{\height}{3cm} {
+%                 \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
+%                 \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
+%             };
+
+%             \draw[math]
+%                 (m-1-1) edge (m-1-2)
+%                 (m-1-2) edge (m-1-3)
+%                     edge node {\Id} (m-2-1)
+%                 (m-1-3) edge (m-1-4)
+%                     edge node {\Id} (m-2-2)
+%                 (m-1-4) edge (m-1-5)
+%                     edge node {\Id} (m-2-3)
+%                 (m-1-5) edge node {\Id} (m-2-4)
+                
+%                 (m-2-1) edge (m-2-2)
+%                 (m-2-2) edge (m-2-3)
+%                 (m-2-3) edge (m-2-4)
+%                 (m-2-4) edge (m-2-5);
+%         \end{tikzpicture}
+%     \end{center}
+
+%     Consider this (suggestively named) homogeneous of degree \( 1 \) morphism
+%     \begin{center}
+%         \newcommand{\height}{2cm}
+%         %
+%         \mmznext{meaning to context=\height}
+%         \begin{tikzpicture}
+%             \diagram{m}{\height}{1cm} {
+%                 \Sigma(A): \\
+%                 A: \\
+%             };
+            
+%             \draw[math]
+%                 (m-1-1) edge node {\sigma_A^{-1}} (m-2-1);
+%         \end{tikzpicture}
+%         %
+%         \mmznext{meaning to context=\height}
+%         \begin{tikzpicture}
+%             \diagramorigin{m}{\height}{3cm} {
+%                 \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
+%                 \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
+%             };
+
+%             \draw[math]
+%                 (m-1-1) edge (m-1-2)
+%                     edge node {\Id} (m-2-2)
+%                 (m-1-2) edge (m-1-3)
+%                     edge node {\Id} (m-2-3)
+%                 (m-1-3) edge (m-1-4)
+%                     edge node {\Id} (m-2-4)
+%                 (m-1-4) edge (m-1-5)
+%                     edge node {\Id} (m-2-5)
+                
+%                 (m-2-1) edge (m-2-2)
+%                 (m-2-2) edge (m-2-3)
+%                 (m-2-3) edge (m-2-4)
+%                 (m-2-4) edge (m-2-5);
+%         \end{tikzpicture}
+%     \end{center}
+
+%     One can see that
+%     \[
+%         \sigma_A \circ \sigma_A^{-1} = \Id_{\Sigma(A)}
+%     \]
+%     and
+%     \[
+%         \sigma_A^{-1} \circ \sigma_A = \Id_A.
+%     \]
+%     Therefore, \( \sigma_A^{-1} \) is the inverse of \( \sigma_A \) in \( \C_{\dg}(\Mod(R)) \).
+
+%     Furthermore, for \( f \in \C_{\dg}(\Mod(R))(A, B) \), homogeneous of degree \( i \), consider the morphism
+%     \[
+%         \sigma_B \circ f \circ \sigma_A^{-1}.
+%     \]
+%     Looking at what the morphism is doing
+%     \begin{center}
+%         \newcommand{\height}{3cm}
+%         %
+%         \mmznext{meaning to context=\height}
+%         \begin{tikzpicture}
+%             \diagram{m}{\height}{1cm} {
+%                 \Sigma(A): \\
+%                 A: \\
+%                 B: \\
+%                 \Sigma(B): \\
+%             };
+
+%             \draw[math]
+%                 (m-1-1) edge node {\sigma_A^{-1}} (m-2-1)
+
+%                 (m-2-1) edge node {f} (m-3-1)
+
+%                 (m-3-1) edge node {\sigma_B} (m-4-1);
+%         \end{tikzpicture}
+%         %
+%         \mmznext{meaning to context=\height}
+%         \begin{tikzpicture}
+%             \diagramorigin{m}{\height}{3cm} {
+%                 \cdots \& A_0 \& A_1 \& A_2 \& \cdots \\
+%                 \cdots \& A_{-1} \& A_0 \& A_1 \& \cdots \\
+%                 \cdots \& B_{i-1} \& B_i \& B_{i + 1} \& \cdots \\
+%                 \cdots \& B_i \& B_{i + 1} \& B_{i + 2} \& \cdots \\
+%             };
+
+%             \draw[math]
+%                 (m-1-1) edge (m-1-2)
+%                     edge node {\Id} (m-2-2)
+%                 (m-1-2) edge (m-1-3)
+%                     edge node {\Id} (m-2-3)
+%                 (m-1-3) edge (m-1-4)
+%                     edge node {\Id} (m-2-4)
+%                 (m-1-4) edge (m-1-5)
+%                     edge node {\Id} (m-2-5)
+
+%                 (m-2-1) edge (m-2-2)
+%                 (m-2-2) edge (m-2-3)
+%                     edge node {f_{-1}} (m-3-2)
+%                 (m-2-3) edge (m-2-4)
+%                     edge node {f_0} (m-3-3)
+%                 (m-2-4) edge (m-2-5)
+%                     edge node {f_1} (m-3-4)
+
+%                 (m-3-1) edge (m-3-2)
+%                 (m-3-2) edge (m-3-3)
+%                     edge node {\Id} (m-4-1)
+%                 (m-3-3) edge (m-3-4)
+%                     edge node {\Id} (m-4-2)
+%                 (m-3-4) edge (m-3-5)
+%                     edge node {\Id} (m-4-3)
+%                 (m-3-5) edge node {\Id} (m-4-4)
+
+%                 (m-4-1) edge (m-4-2)
+%                 (m-4-2) edge (m-4-3)
+%                 (m-4-3) edge (m-4-4)
+%                 (m-4-4) edge (m-4-5);
+%         \end{tikzpicture}
+%     \end{center}
+%     % TODO: Impliserar dette at det er naturleg iso?
+%     one can see that it is exacly equal to \( (-1)^i\Sigma(f) \).
+% \end{remark}
+
+% % MS-question: Remark below. -> Probably OK.
+% \begin{remark}
+%     % Bondal--Kapranov has as definition
+%     Enriched functor between DG-categories implies it preserves differentials and grading? TODO
+% \end{remark}
+
+% SRC: Berest--Mehrle 2017 LN
+% \begin{definition}[DG-natural transformation]
+%     Let \( F, G: \Ac \to \Bc \) be two DG-functors.
+
+%     Then a collection of morphisms
+%     \[
+%         \alpha = \set{ \alpha_A \in \Bc(F(A), G(A)) \mid A \in \Ac }
+%     \]
+
+%     TODO: Find secondary source, can't see the connection to nlab
+% \end{definition}
+
+% TODO: Need to show that it's a category?
+% MS-Question: Correct? Berest--Mehrle (LN) has another def. -> Subscript dg betyr enriched.
+% \begin{definition}[\( \Fun(\Ac, \Bc) \)]
+%     Let \( \Ac, \Bc \) be two DG-categories over the same commutative ring \( R \).
+    
+%     Then let \( \Fun(\Ac, \Bc) \) denote the category of all DG-functors from \( \Ac \) to \( \Bc \), with morphisms being DG-natural transformations.
+% TODO: Can't use this unless I have a definition of "DG-natural transformations".
+% \end{definition}
