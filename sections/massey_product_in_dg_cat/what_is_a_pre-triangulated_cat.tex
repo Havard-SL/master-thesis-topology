@@ -231,27 +231,25 @@ There are multiple definitions of an algebraic triangulated category. In this th
 % TODO: Must \Ac be small in order to be well defined??
 \begin{definition}[\( \Fun_{\dg}(\Ac, \Bc) \)]
     \label{def:dg_functor_category}
-    Let \( \Ac \) and \( \Bc \) be DG-categories over \( R \).
+    Let \( \Ac \) and \( \Bc \) be DG-categories over a commutative ring with identity, \( R \). In addition, let \( \Ac \) be small.
 
     Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the following DG-category:
     \begin{enumerate}
         \item{
-            Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \)
+            Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \).
         }
         \item{
             For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in \cite[Proposition 6.3.1]{Borceux_1994}.
         }
         \item {
-            Let composition be defined as expected.
-            % TODO: Show that composition is wll defined.
+            Let composition be defined as in \cite[p. 295]{Borceux_1994}.
         }
-        TODO -- Need resources to define this
-        WIP: In notes, have tried showing that the differential is well defined.
-        % Current ideas: MS-Question
-        % End
-        % Berest--Mehrle 2017 def?
     \end{enumerate}
 \end{definition}
+
+\begin{remark}
+    The term \emph{DG-natural transformation} is often used for ``elements'' in the morphism spaces defined in \autoref{def:dg_functor_category}, but the term is also used for elements in \( Z^0(\Fun_{\dg}(\Ac, \Bc)(F, G)) \). As an example, in \cite[Definition 6.2.4, Definition 6.3.1]{Borceux_1994} the same term is used in both contexts.
+\end{remark}
 
 % TODO: Cite: Jasso--Muro
 % No mention of the ring in the notation? -> Implied since DG-category is over a ring!
