@@ -242,7 +242,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
             For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in \cite[Proposition 6.3.1]{Borceux_1994}.
         }
         \item {
-            Let composition be defined as in \cite[p. 295]{Borceux_1994}.
+            Let composition be defined as WIP.
         }
     \end{enumerate}
 \end{definition}
@@ -264,11 +264,10 @@ There are multiple definitions of an algebraic triangulated category. In this th
     Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
 \end{definition}
 
-% TODO-Q: Does symmetry isomorphism commute with morphisms? I would guess so....
-% TODO-Q: The fact that \sum_{i \in \Zb} \sum_{j \in \Zb} G(f)_j \otimes \eta_{A, i} = G(f) \otimes \eta_A may only be true if chain complexes are viewed as coproducts.
+% TODO: Does symmetry isomorphism commute with morphisms? I would guess so....
 % TODO-Q: Need to show that any element in the n-th component of tensor product of two chain complexes are a ``sum'' of elementary tensors.
 \begin{remark}[Functor category structure from Borceux]
-    Want to see what the homomorphism structure of \( \dgMod_{\dg}(\Cc) \) is, and what properties it has from the enriched category theory perspective based on Borceux TODO:SRC.
+    Want to see what the homomorphism structure of \( \dgMod_{\dg}(\Cc) \) is, and what properties it has from the enriched category theory perspective based on \cite{Borceux_1994}.
     
     Let \( F, G \in \dgMod_{\dg}(\Cc) \) and let
     \[
@@ -278,7 +277,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
     \[
         f = \set{f_n}_{n \in \Zb} \text{ where } f_i \in \Cc^{\op}(A', A'')_i.
     \]
-    Construct the following composition of morphisms
+    Construct the following composition of morphisms, where the right hand side is 
     \begin{equation}
         \label{eq:functor_category_borceux}
         \newcommand{\height}{1cm}
