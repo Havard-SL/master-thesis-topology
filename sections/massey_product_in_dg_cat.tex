@@ -3,12 +3,13 @@
     
     Then let \( \C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
 
-    Furthermore let the differential in these chain complexes have \emph{ascending} order. I.e. for \( M_i, M_{i+1} \in \Cc \) which are adjacent objects in a chain complex \( M \in \C \tuple{\Cc} \), the differential would be
+    Furthermore let the differential in these chain complexes have \emph{ascending} order, i.e., for \( M_i, M_{i+1} \in \Cc \) which are adjacent objects in a chain complex \( M \in \C \tuple{\Cc} \), the differential would be
     \[
         d_i : M_i \to M_{i + 1}.
     \]
 \end{notation}
 
+% TODO: Obvious?
 \begin{notation}
     In this section, there will be a lot of products and coproducts of modules mentioned, and so a small note on the notation of elements, and the reasoning behind the notation could be useful.
 
@@ -16,7 +17,7 @@
     \[
         \iota_i: A_i \to \coprod_{i \in \Zb} A_i
     \]
-    denote the canonical split monomorphism by the universal property of the coproduct.
+    denote the canonical split monomorphism by the universal property of the coproduct in \( \Mod(R) \).
 
     Then for any \( a_i \in A_i \), the element
     \[
@@ -27,9 +28,21 @@
         a_i \in \coprod_{i \in \Zb} A_i.
     \]
     
-    The reasoning for the above notation, is that since the coproduct in \( \Mod(R) \) is the direct sum, any element of the coproduct can be written as the sum of such \( a_i \)'s. In addition usually when defining morphisms on the coproduct, it is fully defined by the various \( a_i \)'s 
-    WIP Let me cook
+    The reasoning for the above notation is twofold. Firstly, it reduces notation while not being ambigous. Secondly, one never talks about a general element of a coproduct. Almost always when talking about what a morphism does to an element of the coproduct, it is what happens to the \( \iota_i(a_i) \)'s, which is a consequence of the universal property of the coproduct.
+
+    In addition, let 
+    \[
+        \pi_i: \prod_{i \in \Zb} A_i \to A_i
+    \]
+    be the universal split epimorphism by the universal property of the product in \( \Mod(R) \).
     
+    Then for any element \( a \in \prod_{i \in \Zb} A_i \), denote
+    \[
+        a = \tuple{a_i}_{i \in \Zb} \in \prod_{i \in \Zb} A_i
+    \]
+    where \( a_i := \pi_i(a) \in A_i \).
+    
+    The reasoning behind this notation is because the product in \( \Mod(R) \) is the direct product, and because the universal property of the product. That is because it makes it so that when talking about morphisms into the product, the morphism is fully defined by what it does to each degree in \( \prod_{i \in \Zb} A_i \), which is easily shown using the above notation.  
 \end{notation}
 
 % Section wide TODO's: Unit morphism in enriched category, notation for elements in a coproduct.
@@ -37,7 +50,7 @@
 \subsection{Definition of a DG-category}
 \input{sections/massey_product_in_dg_cat/definition_of_dg-category.tex}
 
-\subsection{What is a massey product?}
+\subsection{Definition of Massey Product in a DG-category}
 \input{sections/massey_product_in_dg_cat/massey_product_definition.tex}
 
 \subsection{What is a pre-triangulated category?}

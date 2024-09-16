@@ -2,7 +2,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
 
 \begin{definition}[Tensor product of chain complexes over \( \Mod(R) \)]
     \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
-    Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in \C \tuple{\Mod(R)} \).
+    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \tuple*{\Mod(R)} \).
 
     Then, for any  \( n \in \Zb \) define the modules
     \[
@@ -18,7 +18,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
         %
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \cdots \& (A \otimes B)_{-1} \& (A \otimes B)_0 \& (A \otimes B)_1 \& \cdots \\
+                \cdots \& \tuple*{A \otimes B}_{-1} \& \tuple*{A \otimes B}_0 \& \tuple*{A \otimes B}_1 \& \cdots \\
             };
 
             \draw[math]
@@ -31,15 +31,11 @@ In this thesis the definition of a DG-Category is based on enriched category the
 
     Where the differentials, \( d_n \), are defined as follows:
     
-    Let \( i, j \in \Zb \) with \( i + j = n \), and let
-    \[
-        \iota_{i, j}: A_i \otimes B_j \hookrightarrow \tuple{A \otimes B}_n
-    \]
-    be the canonical split-monomorphism. Furthermore let \( a \otimes b \in A_i \otimes B_j \) be an elementary tensor.
+    Let \( a \otimes b \in A_i \otimes B_j \) be an elementary tensor.
 
-    Then the differential is (uniquely) defined by the following actions
+    Then the differential is (uniquely) defined by the following assignments
     \[
-        d_n(\iota_{i, j}(a \otimes b)) := \iota_{i + 1, j}\tuple{d_{A, i}(a) \otimes b} + (-1)^{i} \iota_{i, j + 1}\tuple{a \otimes d_{B, j}(b)}.
+        d_n(a \otimes b) := d_{A, i}(a) \otimes b + (-1)^{i} a \otimes d_{B, j}(b).
     \]
 
     This is called the \emph{tensor product of chain complexes over \( \Mod(R) \)}.
@@ -48,11 +44,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
 % TODO: Generalize to a lemma and show the two special cases?
 \begin{lemma}
     \label{lem:map_out_of_tensor_unique}
-    Let \( A, B \in \C(\Mod(R)) \) and let \( C \in \Mod(R) \). Furthermore let \( i, j \in \Zb \) with \( i + j = n \). And let
-    \[
-        \iota_{i, j}: A_i \otimes B_j \to (A \otimes B)_n := \coprod_{p + q = n} A_p \otimes B_q
-    \]
-    be the canocial split monomorphisms.
+    Let \( A, B \in \C(\Mod(R)) \) and let \( C \in \Mod(R) \). Furthermore, let \( i, j \in \Zb \) with \( i + j = n \).
 
     Then for any
     \[
@@ -60,7 +52,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
     \]
     where for any \( a \in A_i, b \in B_j \) one has
     \[
-        f(\iota_{i, j}(a \otimes b)) = g_{i, j}(a, b)
+        f(a \otimes b) = g_{i, j}(a, b)
     \]
     for some \( R \)-bilinear morphisms
     \[
@@ -70,13 +62,13 @@ In this thesis the definition of a DG-Category is based on enriched category the
     Then \( f \) is uniquely defined by the \( g_{i, j} \)'s.
 \end{lemma}
 \begin{proof}
-    Look at the following diagram
+    Consider at the following diagram where \( \iota_{i, j} \) is the canocial split monomorphism by the universal property of the coproduct, and where the \( g_{i, j} \)'s are \( R \)-bilienar
     \begin{equation}
         \label{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)}
-        \begin{tikzpicture}
+        \begin{tikzpicture}[baseline=(current  bounding  box.center)]
             \diagram{m}{2cm}{2cm} {
                 A_i \otimes B_j \& \coprod\limits_{p + q = n} A_p \otimes B_q \\
-                A_i \times B_j \& C \\
+                A_i \times B_j \& C. \\
             };
 
             \draw[math]
@@ -89,8 +81,6 @@ In this thesis the definition of a DG-Category is based on enriched category the
         \end{tikzpicture}
     \end{equation}
 
-    Where the \( g_{i, j} \)'s are \( R \)-bilienar.
-
     Then by the universal property of tensor product in \( \Mod(R) \), \( g_{i, j} \) induces a unique morphism, \( \alpha_{i, j} \), which is induced from the elementary tensors as follows
     \[
         a \otimes b \mapsto g_{i, j}(a, b).
@@ -98,19 +88,20 @@ In this thesis the definition of a DG-Category is based on enriched category the
 
     Since this works for any \( i, j \) as long as \( i + j = n \), one can construct \( \alpha_{i, j} \) for every valid \( i, j \) pair.
 
-    Then by using the universal property of the coproduct one gets the unique map \( \beta \) which is by \autoref{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)} uniquely determined by it's actions on elementary tensors in \( A_i \otimes B_j \) in the following way
+    Then by using the universal property of the coproduct one gets the unique map \( \beta \) which is by \autoref{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)} uniquely determined by it's actions on elementary tensors \( a \otimes b \in A_i \otimes B_j \) in the following way
     \[
-        \beta: \iota_{i, j}(a \otimes b) \mapsto g_{i, j}.
+        \beta: a \otimes b \mapsto g_{i, j}(a, b)
     \]
-    Which is exactly equal to \( f \), and \( f \) is therefore uniquely deterined by the \( g_{i, j} \)'s.
+    which is exactly equal to \( f \), and \( f \) is therefore uniquely deterined by the \( g_{i, j} \)'s.
 \end{proof}
+
 \begin{remark}
-    The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well defined and unique by the following argument.
+    The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined and unique by the following argument.
 
     One can check that for \( i + j = n \) that
     \begin{align*}
         g_{i, j}: A_i \times B_j &\to (A \otimes B)_{n + 1} \\
-        (a, b) &\mapsto \iota_{i + 1, j}\tuple{d_{A, i}(a) \otimes b} + (-1)^{i} \iota_{i, j + 1}\tuple{a \otimes d_{B, j}(b)}
+        (a, b) &\mapsto d_{A, i}(a) \otimes b + (-1)^i a \otimes d_{B, j}(b)
     \end{align*}
     is \( R \)-bilinear.
 
@@ -118,30 +109,30 @@ In this thesis the definition of a DG-Category is based on enriched category the
 
     Similarly, by seeing that
     \[
-        d_{n + 1} \circ d_n: \iota_{i, j}(a \otimes b) \mapsto 0
+        d_{n + 1} \circ d_n: a \otimes b \mapsto 0
     \]
-    and the \( 0 \) map is \( R \)-bilinear, so \( d_{n + 1} \circ d_n \) is uniquely defined. Since the zero map would also send \( \iota_{i, j}(a \otimes b) \) to \( 0 \), then by uniquenes \( d_{n + 1} \circ d_n = 0 \).
+    and the \( 0 \) map is \( R \)-bilinear, so \( d_{n + 1} \circ d_n \) is uniquely defined. Since the zero map would also send \( a \otimes b \) to \( 0 \), then by uniquenes \( d_{n + 1} \circ d_n = 0 \).
 \end{remark}
 
 \begin{definition}[Internal hom of chain complexes over \( \Mod(R) \)]
     \label{def:internal_hom_of_chain_complexes_over_Mod(R)}
-    Let \( R \) be a commutative ring with identity. Furthermore let \( A, B \in \C \tuple{\Mod(R)} \).
+    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \tuple*{\Mod(R)} \).
 
     Then, for any \( n \in \Ab \) define the modules
     \[
-        \class{A, B}_n := \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n})
+        \class*{A, B}_n := \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n})
     \]
     which are a part of the chain complex
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \class{A, B}: \\
+                \class*{A, B}: \\
             };
         \end{tikzpicture}
         %
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \cdots \& \class{A, B}_{-1} \& \class{A, B}_0 \& \class{A, B}_1 \& \cdots \\
+                \cdots \& \class*{A, B}_{-1} \& \class*{A, B}_0 \& \class*{A, B}_1 \& \cdots \\
             };
 
             \draw[math]
@@ -152,42 +143,28 @@ In this thesis the definition of a DG-Category is based on enriched category the
         \end{tikzpicture}
     \end{center}
 
-    Where the differentials, \( d_n \), are defined as follows:
-    
-    For any \( i \in \Zb \), let \( \partial_{n, i} \) be the follwing morphism
+    where the differentials, \( d_n \), are defined as follows:
     \begin{align*}
-        \partial_{n, j} : \prod_{i \in \Zb}\Mod(R)(A_i, B_{i + n}) &\to \Mod(R)(A_j, B_{j + n + 1}) \\
-        \bigtimes_{i \in \Zb} f_i &\mapsto d_{B, j + n} \circ f_j - (-1)^n f_{j + 1} \circ d_{A, j}.
-    \end{align*}
-    Then
-    \begin{align*}
-        d_n := \prod_{i \in \Zb} \partial_{n, i}: \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n}) &\to \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n + 1}) \\
-        \bigtimes_{i \in \Zb} f_i &\mapsto \bigtimes_{i \in \Zb} d_{B, i + n} \circ f_i - (-1)^n f_{i + 1} \circ d_{A, i}.
+        d_n : \class*{A, B}_n &\to \class*{A, B}_{n + 1} \\
+        \tuple*{f_i}_{i \in \Zb} &\mapsto \tuple*{d_{B, i + n} \circ f_i - (-1)^n f_{i + 1} \circ d_{A, i}}_{i \in \Zb}.
     \end{align*}
     This is called the \emph{internal hom of chain complexes over \( \Mod(R) \)}.
 \end{definition}
 
-\begin{remark}    
-    Let \( j \in \Zb \), and let \( \pi_j \) be the canonical split epimiormphism
-    \[
-        \pi_j: \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n + 1}) \to \Mod(R)(A_j, B_{j + n + 1})
-    \]
-
-    Then one can verify that the actions \( d_n \) takes on elements defined in \autoref{def:internal_hom_of_chain_complexes_over_Mod(R)} is correct by seeing that \( \pi_j \circ d_n = \partial_{n, j} \) and so by uniqueness of the universal property of product, this must correspond to \( \prod_{i \in \Zb} \partial_{n, i} \).
-
-    To verify that \( d_{n + 1} \circ d_n = 0 \), use the element-wise definition and check that every element gets sent to \( 0 \).
+\begin{remark}
+    The definition of the differential in \autoref{def:internal_hom_of_chain_complexes_over_Mod(R)} is well-defined because the only thing that needs to be checked is if the \( d_n \)'s are differentials, which can be checked straight forwardly.
 \end{remark}
 
 % TODO: Fix the indices of the iotas to coincide with the indices in the definition of tensor product of chain complexes.
 % TODO: Prove point 2 and 3, or at least find some sources on them.
 \begin{remark}[Tensor product and internal hom adjunction in \( \C(\Mod(R)) \)]
-    Let \( A, B, C \) be chain complexes in \( \C(\Mod(R)) \) for some commutative ring \( R \).
+    Let \( A, B, C \) be chain complexes in \( \C(\Mod(R)) \) for some commutative ring \( R \), and let \( f \in \C(\Mod(R))\tuple*{A \otimes B, C} \).
+    
+    The goal of this remark is to understand what the adjoint of \( f \) is.
 
-    Let \( f \in \C(\Mod(R))\tuple{A \otimes B, C} \). Want to find out what the adjoint of \( f \) is.
+    Let \( f = \set*{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple*{ \tuple*{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
 
-    Let \( f = \set{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple{ \tuple{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
-
-    Then, unwrapping the definitions, one has that \( f \) looks like the following diagram
+    Then, unpacking the definitions, one has that \( f \) looks like the following diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -232,8 +209,8 @@ In this thesis the definition of a DG-Category is based on enriched category the
                 (m-1-5) edge (m-2-5)
 
                 (m-2-1) edge (m-2-2)
-                (m-2-2) edge node {d_{\class{B, C}, -1}} (m-2-3)
-                (m-2-3) edge node {d_{\class{B, C}, 0}} (m-2-4)
+                (m-2-2) edge node {d_{\class*{B, C}, -1}} (m-2-3)
+                (m-2-3) edge node {d_{\class*{B, C}, 0}} (m-2-4)
                 (m-2-4) edge (m-2-5);
         \end{tikzpicture}
     \end{center}
@@ -242,7 +219,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
     \[
         \iota_{i', j'}: A_{i'} \otimes B_{j'} \hookrightarrow \coprod_{i + j = n} A_i \otimes B_j
     \]
-    be the canonical \( i' \)-th split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
+    be the canonical split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
 
     Then take the hom-tensor adjoint in \( \Mod(R) \) of the morphism
     \[
@@ -251,33 +228,33 @@ In this thesis the definition of a DG-Category is based on enriched category the
     This yields a morphism
     \begin{align*}
         \phi_{f, i, j}: A_i &\to \Mod(R)(B_j, C_{j + i}) \\
-        a &\mapsto f_{i + j} \circ \iota_{i, j}(a \otimes ?).
+        a &\mapsto f_{i + j}\tuple*{ a \otimes ? }.
     \end{align*}
     Then by the universal property of the product there is some morphism
     \[
-        \phi_{f, i} := \prod_{j \in \Zb} \phi_{f, i, j}: A_i \to \prod_{j \in \Zb} \Mod(R)\tuple{B_j, C_{j + i}}.
+        \phi_{f, i} := \prod_{j \in \Zb} \phi_{f, i, j}: A_i \to \prod_{j \in \Zb} \Mod(R)\tuple*{B_j, C_{j + i}}.
     \]
     Collecting these morphisms yields a morphism, which I claim to be the adjoint of \( f \), namely 
     \[
-        \phi_f := \set{\phi_{f, i}}_{i \in \Zb}.
+        \phi_f := \set*{\phi_{f, i}}_{i \in \Zb}.
     \]
-    In order to show that this is the proper adjoint definition, one need to show the following properties
+    In order to show that this is the proper adjoint definition, one needs to show the following properties:
     \begin{enumerate}
         \item {
-            That \( \phi_f \) is a chain morphism.
+            Firstly, \( \phi_f \) is a chain morphism.
         }
         \item {
-            That the assignment \( f \mapsto \phi_f \) is an isomorphism of groups.
+            Secondly, the assignment \( f \mapsto \phi_f \) is an isomorphism of groups.
         }
         \item {
-            That there is a natural transformation
+            Thirdly, there is a natural transformation
             \[
                 \C(\Mod(R))(?_1 \otimes ?_2, ?_3) \cong \C(\Mod(R))(?_1, \left[ ?_2, ?_3 \right])
             \]
             where the natural morphisms are \( f \mapsto \phi_f \).
         }
     \end{enumerate}
-    % TODO: Possibly expand this proof? or TODO: SRC
+    % TODO: Possibly expand this proof? or TODO: SRC (Marius kommenterte dette og)
     In this thesis I will only prove the first statement.
 
     1) Want to show that \( \phi_f \) is a chain morphism.
@@ -287,7 +264,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 A_i \& A_{i + 1} \\
-                \class{B, C}_i \& \class{B, C}_{i + 1} \\
+                \class*{B, C}_i \& \class*{B, C}_{i + 1} \\
             };
 
             \draw[math]
@@ -295,26 +272,26 @@ In this thesis the definition of a DG-Category is based on enriched category the
                     edge node {\phi_{f, i}} (m-2-1)
                 (m-1-2) edge node {\phi_{f, i + 1}} (m-2-2)
 
-                (m-2-1) edge node {d_{\class{B, C}, i}} (m-2-2);
+                (m-2-1) edge node {d_{\class*{B, C}, i}} (m-2-2);
         \end{tikzpicture}
     \end{center}
-    Pick an arbitrary \( a \in A_i \), look at the following equation.
+    Pick an arbitrary \( a \in A_i \) and consider the following equation
     \begin{align*}
-        \phi_{f, i + 1} \circ d_{A, i}(a) - d_{\class{B, C}, i} \circ \phi_{f, i}(a)
-        &= \bigtimes_{j \in \Zb} \tuple{ f_{i + j + 1} \circ \iota_{i + 1, j} (d_{A, i}(a) \otimes ?) } \\
-        &\hspace{1cm}- d_{\class{B, C}, i} \tuple{ \bigtimes_{j \in \Zb} f_{i + j} \circ \iota_{i, j} (a \otimes ?) }. \\
-        \intertext{Then by expanding out the definition of \( d_{\class{B, C}, i} \) it follows that}
-        &= \bigtimes_{j \in \Zb} ( f_{i + j + 1} \circ \iota_{i + 1, j} (d_{A, i}(a) \otimes ?) \\
-        &\hspace{1cm} - d_{C, i + j} \circ f_{i + j} \circ \iota_{i, j} (a \otimes ?) \\
-        &\hspace{1cm} + (-1)^i f_{i + j + 1} \circ \iota_{i, j + 1} (a \otimes d_{B, j}(?)) ). \\
-        \intertext{Then by consolodating the two terms that post-compose by \( f_{i + j + 1} \) it follows that}
-        &= \bigtimes_{j \in \Zb} ( f_{i + j + 1} \circ ( \iota_{i + 1, j} (d_{A, i}(a) \otimes ?) \\
-        &\hspace{1cm} + (-1)^i \iota_{i, j + 1} (a \otimes d_{B, j}(?)) ) \\
-        &\hspace{1cm} - d_{C, i + j} \circ f_{i + j} \circ \iota_{i, j} (a \otimes ?) ). \\
-        \intertext{Then by the definition of the differential of \( A \otimes B \) it follows that}
-        &= \bigtimes_{j \in \Zb} ( f_{i + j + 1} \circ d_{A \otimes B, i + j} \tuple{\iota_{i, j}(a \otimes ?)} \\
-        &\hspace{1cm} - d_{C, i + j} \circ f_{i + j} ( \iota_{i, j} (a \otimes ?) ) ). \\
-        \intertext{Then by \( f \) being a chain homomorphism from \( A \otimes B \) to \( C \) it follows that}
+        \phi_{f, i + 1} \circ d_{A, i}(a) &- d_{\class*{B, C}, i} \circ \phi_{f, i}(a)
+        = \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?} }_{j \in \Zb}
+        - d_{\class*{B, C}, i} \tuple*{ \tuple*{ f_{i + j}\tuple*{a \otimes ?} }_{j \in \Zb} } \\
+        \intertext{by expanding out the definition of \( d_{\class*{B, C}, i} \) it follows that}
+        &= \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?}
+        - d_{C, i + j} \circ f_{i + j}\tuple*{a \otimes ?}
+        + (-1)^i f_{i + j + 1}\tuple*{a \otimes d_{B, j}(?)} }_{j \in \Zb} \\
+        \intertext{by consolodating the two terms that post-compose by \( f_{i + j + 1} \) it follows that}
+        &= \tuple*{ f_{i + j + 1}\bigl( \tuple*{d_{A, i}(a) \otimes ?}
+        + (-1)^i\tuple*{ a \otimes d_{B, j}(?) } \bigr)
+        - d_{C, i + j} \circ f_{i + j}\tuple*{ a \otimes ? } }_{j \in \Zb} \\
+        \intertext{by the definition of the differential of \( A \otimes B \) it follows that}
+        &= \tuple*{ f_{i + j + 1} \circ d_{A \otimes B, i + j} \tuple*{ a \otimes ? }
+        - d_{C, i + j} \circ f_{i + j} ( a \otimes ? ) }_{j \in \Zb} \\
+        \intertext{by \( f \) being a chain homomorphism from \( A \otimes B \) to \( C \) it follows that}
         &= 0.
     \end{align*}
 \end{remark}
@@ -323,14 +300,14 @@ In this thesis the definition of a DG-Category is based on enriched category the
 % TODO: Connect with the above statements.
 % https://ncatlab.org/nlab/show/category+of+chain+complexes
 \begin{fact}[\( \C(\Mod(R)) \) is symmetric monoidal]
-    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \tuple{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( \C \tuple{\Mod(R)} \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
+    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \tuple*{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( \C \tuple*{\Mod(R)} \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
 
-    Then \( \tuple{\C \tuple{\Mod(R)}, \otimes, I} \) is a symmetric closed monoidal category.
+    Then \( \tuple*{\C \tuple*{\Mod(R)}, \otimes, I} \) is a symmetric closed monoidal category.
 \end{fact}
 
 \begin{definition}[DG-category]
     Let \( R \) be a commutative ring with identity.
 
-    Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( \C \tuple{\Mod(R)} \).
+    Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( \C \tuple*{\Mod(R)} \).
 \end{definition}
 This definition also appears in \cite[p. 29]{Jasso-Muro_2023}, except they define it for a field and not a commutative ring with identity as is done in this thesis.

@@ -21,6 +21,8 @@
 \newcommand{\union}{\mathop{\cup}\limits}
 \newcommand{\directsum}{\mathop{\oplus}\limits}
 
+\newcommand{\Stmod}[1]{\stablemod\tuple{ #1 }}
+
 % Shorthands
 % \newcommand{\abs}[1]{ \lvert #1 \rvert }
 % \newcommand{\set}[1]{ \left\{ #1 \right\} }
@@ -44,11 +46,10 @@
 % \newcommand\swapifbranches[3]{#1{#3}{#2}}
 % \makeatletter
 % \MHInternalSyntaxOn
-% \patchcmd{\DeclarePairedDelimiter}{\@ifstar}{\swapifbranches\@ifstar}{}{}
+% \patchcmd{\DeclarePairedDelimiterX}{\@ifstar}{\swapifbranches\@ifstar}{}{}
 % \MHInternalSyntaxOff
 % \makeatother
 
-\newcommand{\Stmod}[1]{\stablemod\tuple{ #1 }}
 \DeclarePairedDelimiterX{\abs}[1]{\vert}{\vert}{#1}
 \DeclarePairedDelimiterX{\set}[1]{\{}{\}}{#1}
 \DeclarePairedDelimiterX{\tuple}[1]{(}{)}{#1}
