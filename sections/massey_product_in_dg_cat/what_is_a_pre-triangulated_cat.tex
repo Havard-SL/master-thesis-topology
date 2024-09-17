@@ -25,14 +25,13 @@ There are multiple definitions of an algebraic triangulated category. In this th
             \]
             be defined as the chain morphism where \( c_{\C_{\dg}(\Mod(R)), n} \) is uniquely defined on
             \[
-                \bigtimes_{p \in \Zb} g_p \in [B, C]_i = \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \text{ and } \bigtimes_{q \in \Zb} f_q \in [A, B]_j = \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j})
+                \tuple{g_p}_{p \in \Zb} \in [B, C]_i \text{ and } \tuple{f_q}_{q \in \Zb} \in [A, B]_j
             \]
             as follows
             \begin{align*}
                 c_{\C_{\dg}(\Mod(R)), n}: \tuple{ \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) }_n &\to \C_{\dg}(\Mod(R))(A, C)_n \\
-                \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{q \in \Zb} f_q } } &\mapsto \bigtimes_{p \in \Zb} g_{p + j} \circ f_p
+                \tuple{g_p}_{p \in \Zb} \otimes \tuple{f_q}_{q \in \Zb} &\mapsto \tuple{g_{p + j} \circ f_p}_{p \in \Zb}.
             \end{align*}
-            where \( \iota_{i, j} \) is the canonical split monomorphism into the coproduct.
         }
     \end{enumerate}
 \end{definition}
@@ -45,7 +44,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
             Firstly, the morphisms \( c_{\C_{\dg}(\Mod(R)), n} \) are uniqely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)'s are as follows
             \begin{align*}
                 g_{i, j}: \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \times \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j}) &\to \prod_{p \in \Zb} \Mod(R)(A_p, C_{p + i + j}) \\
-                \tuple{ \bigtimes_{p \in \Zb} g_p } \times \tuple{ \bigtimes_{q \in \Zb} f_q } &\mapsto \bigtimes_{p \in \Zb} g_{p + j} \circ f_p.
+                \tuple{ g_p }_{p \in \Zb} \times \tuple{ f_q }_{q \in \Zb} &\mapsto \tuple{ g_{p + j} \circ f_p }_{p \in \Zb}.
             \end{align*}
             And these can be checked to be \( R \)-bilinear.
         }
@@ -54,30 +53,25 @@ There are multiple definitions of an algebraic triangulated category. In this th
 
             Look at the following equation (with shortened notation for brevity) 
             \begin{align*}
-                &( d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} )\tuple{ \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{q \in \Zb} f_q } } } \\
-                &= d_{(A, C), n}\tuple{c_n \tuple{ \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{q \in \Zb} f_q } } }} - c_{n + 1} \tuple{ d_{(B, C) \otimes (A, B), n}\tuple{ \iota_{i, j} \tuple{\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{q \in \Zb} f_q } } } } \\
-                \intertext{then by definition of composition as well as differential of tensor product}
+                &( d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} )\tuple{ \tuple{ g_p }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} } \\
+                &= d_{(A, C), n} \circ c_n \tuple{ \tuple{ g_p }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} } - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}\tuple{ \tuple{ g_p }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} } \\
+                \intertext{by definition of composition as well as differential of tensor product it follows that}
                 &= d_{(A, C), n}\tuple{
-                    \bigtimes_{p \in \Zb} g_{p + j} \circ f_p 
+                    \tuple{ g_{p + j} \circ f_p }_{p \in \Zb}
                 } \\
                 &\hspace{0.4cm} - c_{n + 1} \tuple{
-                    \iota_{i + 1, j}\tuple{
-                        d_{(B, C), i}\tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \tuple{ \bigtimes_{q \in \Zb} f_q }
-                    } + (-1)^i \iota_{i, j + 1}\tuple{
-                        \tuple{ \bigtimes_{p \in \Zb} g_p } \otimes d_{(A, B), j} \tuple{ \bigtimes_{q \in \Zb} f_q }
-                    }
+                    d_{(B, C), i}\tuple{ \tuple{ g_p }_{p \in \Zb} } \otimes \tuple{ f_q }_{q \in \Zb}
+                    + (-1)^i \tuple{ g_p }_{p \in \Zb} \otimes d_{(A, B), j} \tuple{ \tuple{ f_q }_{q \in \Zb} }
                 } \\
                 \intertext{then by the definition of the differential of the internal hom}
-                &= \bigtimes_{p \in \Zb}\tuple{
-                    d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n \circ g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
-                } \\
+                &= \tuple{
+                    d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
+                }_{p \in \Zb} \\
                 &\hspace{0.4cm} - c_{n + 1} (
-                    \iota_{i + 1, j}\tuple{              
-                        \bigtimes_{p \in \Zb} \tuple{
-                            d_{C, p + i} \circ g_p - (-1)^i g_{p + 1} \circ d_{B, p}
-                        } \otimes \tuple{ \bigtimes_{q \in \Zb} f_q }
-                    } \\
-                    &\hspace{0.8cm}+ (-1)^i \iota_{i, j + 1}\tuple{
+                    \tuple{
+                        d_{C, p + i} \circ g_p - (-1)^i g_{p + 1} \circ d_{B, p}
+                    }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} \\
+                    WIP&\hspace{0.8cm}+ (-1)^i \iota_{i, j + 1}\tuple{
                         \tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \bigtimes_{q \in \Zb}\tuple{
                             d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
                         }

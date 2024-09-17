@@ -248,10 +248,9 @@
                 \bar{s} \circ g_1 + \bar{g_3} \circ t
             }
             \mid \\
-            d_{\Cc, |f_3| + |f_2| - 1}(s) = \bar{g_3} \circ g_2, \quad
+            [g_i] = f_i, \, i = 1,2,3, \quad
+            d_{\Cc, |f_3| + |f_2| - 1}(s) = \bar{g_3} \circ g_2, \,
             d_{\Cc, |f_2| + |f_1| - 1}(t) = \bar{g_2} \circ g_1
-            \mid
-            [g_i] = f_i, i = 1,2,3
         \}.
     \end{multline*}
 
@@ -267,26 +266,26 @@
 
     Want to show that \( \bar{s} \circ g_1 + \bar{g_3} \circ t \) is a cocyle in \( \Cc(X_1, X_4)_{|g_1| + |g_2| + |g_3| - 1} \).
     
-    Look at the following equation (with the degrees of the differentials omitted)
+    Look at the following equation (with the degrees of the differentials omitted for readability)
     \begin{align*}
-        d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 &+ \bar{g_3} \circ t) = d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
-        \intertext{then by the definition of composition of morphisms in a dg-diagram}
-        &= d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
-        &\hspace{0.4cm} + d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g_3} \otimes t))) \\
-        \intertext{then by the fact that composition is a chain morphism}
-        &= c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\iota_{|g_2| + |g_3| - 1, |g_1|}(\bar{s} \otimes g_1))) \\
-        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\iota_{|g_3|, |g_1| + |g_2| - 1}(\bar{g}_3 \otimes t)))
-        \intertext{then by the definition of the differential of the tensor products}
-        &= c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1)) \\
-        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1))) \\
-        \intertext{then by pulling out every sign}
-        &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_2| + |g_3|, |g_1|}((g_3 \circ g_2) \otimes g_1)) \\
-        &\hspace{0.4cm} + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, |g_1| + |g_2| + |g_3|}(\iota_{|g_3|, |g_1| + |g_2|}(g_3 \otimes (g_2 \circ g_1))) \\
-        \intertext{then by the definition of composition of morphisms in a dg-diagram}
+        d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 + \bar{g_3} \circ t) &= d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
+        \intertext{by the definition of composition of morphisms in a dg-diagram, it follows that}
+        &= d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\bar{s} \otimes g_1)) \\
+        &\hspace{0.4cm} + d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\bar{g_3} \otimes t)) \\
+        \intertext{by the fact that composition is a chain morphism, it follows that}
+        &= c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\bar{s} \otimes g_1)) \\
+        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\bar{g}_3 \otimes t))
+        \intertext{by the definition of the differential of the tensor products, it follows that}
+        &= c_{\Cc, |g_1| + |g_2| + |g_3|}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1) \\
+        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1)) \\
+        \intertext{by pulling out every sign, it follows that}
+        &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}((g_3 \circ g_2) \otimes g_1) \\
+        &\hspace{0.4cm} + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, |g_1| + |g_2| + |g_3|}(g_3 \otimes (g_2 \circ g_1)) \\
+        \intertext{by the definition of composition of morphisms in a dg-diagram, it follows that}
         &= (-1)^{|g_2| + 2|g_3| - 1}(g_3 \circ g_2) \circ g_1 + (-1)^{|g_2| + 2|g_3| - 2}g_3 \circ (g_2 \circ g_1) \\
-        \intertext{then by simplifying signs}
+        \intertext{by simplifying signs, it follows that}
         &= (-1)^{|g_2|}\tuple*{ g_3 \circ (g_2 \circ g_1) - (g_3 \circ g_2) \circ g_1 } \\
-        \intertext{then by \autoref{lem:dg-composition_associative} it follows that}
+        \intertext{by \autoref{lem:dg-composition_associative} it follows that}
         &= 0.
     \end{align*}
     % Secondly, what to show that the massey product is independent of the choice of cocyle-representatives.
