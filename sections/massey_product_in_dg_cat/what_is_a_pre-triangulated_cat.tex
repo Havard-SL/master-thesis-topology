@@ -14,9 +14,9 @@ There are multiple definitions of an algebraic triangulated category. In this th
             \( \Obj(\C_{\dg}(\Mod(R))) := \Obj(\C(\Mod(R))) \).
         }
         \item {
-            Let \( A, B \in \C_{\dg}(\Mod(R)) \). Let \( \class{A, B} \) denote the internal hom of \( \C(\Mod(R)) \) (\autoref{def:internal_hom_of_chain_complexes_over_Mod(R)}) with respect to \( A, B \) as objects from \( \C(\Mod(R)) \).
+            Let \( A, B \in \C_{\dg}(\Mod(R)) \). Let \( \class*{A, B} \) denote the internal hom of \( \C(\Mod(R)) \) (\autoref{def:internal_hom_of_chain_complexes_over_Mod(R)}) with respect to \( A, B \) as objects from \( \C(\Mod(R)) \).
 
-            Then let \( \C_{\dg}(\Mod(R))(A, B) := \class{A, B} \).
+            Then let \( \C_{\dg}(\Mod(R))(A, B) := \class*{A, B} \).
         }
         \item {
             For \( A, B, C \in \C_{\dg}(\Mod(R)) \), let
@@ -25,12 +25,12 @@ There are multiple definitions of an algebraic triangulated category. In this th
             \]
             be defined as the chain morphism where \( c_{\C_{\dg}(\Mod(R)), n} \) is uniquely defined on
             \[
-                \tuple{g_p}_{p \in \Zb} \in [B, C]_i \text{ and } \tuple{f_q}_{q \in \Zb} \in [A, B]_j
+                \tuple*{g_p}_{p \in \Zb} \in [B, C]_i \text{ and } \tuple*{f_q}_{q \in \Zb} \in [A, B]_j
             \]
             as follows
             \begin{align*}
-                c_{\C_{\dg}(\Mod(R)), n}: \tuple{ \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) }_n &\to \C_{\dg}(\Mod(R))(A, C)_n \\
-                \tuple{g_p}_{p \in \Zb} \otimes \tuple{f_q}_{q \in \Zb} &\mapsto \tuple{g_{p + j} \circ f_p}_{p \in \Zb}.
+                c_{\C_{\dg}(\Mod(R)), n}: \tuple*{ \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) }_n &\to \C_{\dg}(\Mod(R))(A, C)_n \\
+                \tuple*{g_p}_{p \in \Zb} \otimes \tuple*{f_q}_{q \in \Zb} &\mapsto \tuple*{g_{p + j} \circ f_p}_{p \in \Zb}.
             \end{align*}
         }
     \end{enumerate}
@@ -44,7 +44,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
             Firstly, the morphisms \( c_{\C_{\dg}(\Mod(R)), n} \) are uniqely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)'s are as follows
             \begin{align*}
                 g_{i, j}: \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \times \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j}) &\to \prod_{p \in \Zb} \Mod(R)(A_p, C_{p + i + j}) \\
-                \tuple{ g_p }_{p \in \Zb} \times \tuple{ f_q }_{q \in \Zb} &\mapsto \tuple{ g_{p + j} \circ f_p }_{p \in \Zb}.
+                \tuple*{ g_p }_{p \in \Zb} \times \tuple*{ f_q }_{q \in \Zb} &\mapsto \tuple*{ g_{p + j} \circ f_p }_{p \in \Zb}.
             \end{align*}
             And these can be checked to be \( R \)-bilinear.
         }
@@ -53,70 +53,64 @@ There are multiple definitions of an algebraic triangulated category. In this th
 
             Look at the following equation (with shortened notation for brevity) 
             \begin{align*}
-                &( d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} )\tuple{ \tuple{ g_p }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} } \\
-                &= d_{(A, C), n} \circ c_n \tuple{ \tuple{ g_p }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} } - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}\tuple{ \tuple{ g_p }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} } \\
+                &( d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} )\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
+                &= d_{(A, C), n} \circ c_n \tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
                 \intertext{by definition of composition as well as differential of tensor product it follows that}
-                &= d_{(A, C), n}\tuple{
-                    \tuple{ g_{p + j} \circ f_p }_{p \in \Zb}
+                &= d_{(A, C), n}\tuple*{
+                    \tuple*{ g_{p + j} \circ f_p }_{p \in \Zb}
                 } \\
-                &\hspace{0.4cm} - c_{n + 1} \tuple{
-                    d_{(B, C), i}\tuple{ \tuple{ g_p }_{p \in \Zb} } \otimes \tuple{ f_q }_{q \in \Zb}
-                    + (-1)^i \tuple{ g_p }_{p \in \Zb} \otimes d_{(A, B), j} \tuple{ \tuple{ f_q }_{q \in \Zb} }
+                &\hspace{0.4cm} - c_{n + 1} \tuple*{
+                    d_{(B, C), i}\tuple*{ \tuple*{ g_p }_{p \in \Zb} } \otimes \tuple*{ f_q }_{q \in \Zb}
+                    + (-1)^i \tuple*{ g_p }_{p \in \Zb} \otimes d_{(A, B), j} \tuple*{ \tuple*{ f_q }_{q \in \Zb} }
                 } \\
                 \intertext{then by the definition of the differential of the internal hom}
-                &= \tuple{
+                &= \tuple*{
                     d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
                 }_{p \in \Zb} \\
                 &\hspace{0.4cm} - c_{n + 1} (
-                    \tuple{
+                    \tuple*{
                         d_{C, p + i} \circ g_p - (-1)^i g_{p + 1} \circ d_{B, p}
-                    }_{p \in \Zb} \otimes \tuple{ f_q }_{q \in \Zb} \\
-                    WIP&\hspace{0.8cm}+ (-1)^i \iota_{i, j + 1}\tuple{
-                        \tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \bigtimes_{q \in \Zb}\tuple{
-                            d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
-                        }
-                    }
+                    }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} \\
+                    &\hspace{0.8cm}+ (-1)^i \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{
+                        d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
+                    }_{q \in \Zb}
                 ) \\
                 \intertext{then by the fact that composition is an \( R \)-homomorphism}
-                &= \bigtimes_{p \in \Zb}\tuple{
+                &= \tuple*{
                     d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n \circ g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
+                }_{p \in \Zb} \\
+                &\hspace{0.4cm} - c_{n + 1} \tuple*{
+                    \tuple*{
+                        d_{C, p + i} \circ g_p - (-1)^i g_{p + 1} \circ d_{B, p}
+                    }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb}
                 } \\
-                &\hspace{0.4cm} - c_{n + 1} \tuple{
-                    \iota_{i + 1, j}\tuple{              
-                        \bigtimes_{p \in \Zb} \tuple{
-                            d_{C, p + i} \circ g_p - (-1)^i g_{p + 1} \circ d_{B, p}
-                        } \otimes \tuple{ \bigtimes_{q \in \Zb} f_q }
-                    }
-                } \\
-                &\hspace{0.4cm} - (-1)^i c_{n + 1} \tuple{
-                    \iota_{i, j + 1}\tuple{
-                        \tuple{ \bigtimes_{p \in \Zb} g_p } \otimes \bigtimes_{q \in \Zb}\tuple{
-                            d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
-                        }
-                    }
+                &\hspace{0.4cm} - (-1)^i c_{n + 1} \tuple*{
+                    \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{
+                        d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
+                    }_{q \in \Zb}
                 } \\
                 \intertext{then by the definition of composition}
-                &= \bigtimes_{p \in \Zb}\tuple{
+                &= \tuple*{
                     d_{C, p + n} \circ g_{p + j} \circ f_p
-                } - (-1)^n \bigtimes_{p \in \Zb}\tuple{
-                    \circ g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
-                } \\
-                &\hspace{0.4cm} - \bigtimes_{p \in \Zb}\tuple{
-                    d_{C, p + i + j} \circ g_{p + j} \circ f_p
-                } + (-1)^i \bigtimes_{p \in \Zb}\tuple{
-                    g_{p + j + 1} \circ d_{B, p + j} \circ f_p
-                } \\
-                &\hspace{0.4cm} - (-1)^i \bigtimes_{p \in \Zb} \tuple{
-                    g_{p + j + 1} \circ d_{B, p + j} \circ f_p
-                } + (-1)^{i + j} \bigtimes_{p \in \Zb} \tuple{
+                }_{p \in \Zb} - (-1)^n \tuple*{
                     g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
-                } \\
+                }_{p \in \Zb} \\
+                &\hspace{0.4cm} - \tuple*{
+                    d_{C, p + i + j} \circ g_{p + j} \circ f_p
+                }_{p \in \Zb} + (-1)^i \tuple*{
+                    g_{p + j + 1} \circ d_{B, p + j} \circ f_p
+                }_{p \in \Zb} \\
+                &\hspace{0.4cm} - (-1)^i \tuple*{
+                    g_{p + j + 1} \circ d_{B, p + j} \circ f_p
+                }_{p \in \Zb} + (-1)^{i + j} \tuple*{
+                    g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
+                }_{p \in \Zb} \\
                 &= 0.
             \end{align*}
             By \autoref{lem:map_out_of_tensor_unique}, this shows that the morphism
             \begin{multline*}
                 d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}: \\
-                \tuple{ \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) }_n \to \C_{\dg}(\Mod(R))(A, C)_{n + 1}
+                \tuple*{ \C_{\dg}(\Mod(R))(B, C) \otimes \C_{\dg}(\Mod(R))(A, B) }_n \to \C_{\dg}(\Mod(R))(A, C)_{n + 1}
             \end{multline*}             
             corresponds to the \( g_{i,j} \)'s where \( g_{i, j} = 0 \). However, by uniqueness, this implies that
             \[
@@ -146,8 +140,8 @@ There are multiple definitions of an algebraic triangulated category. In this th
             \]
             where in degree \( n \) there is the following morphism that is uniquely defined by the following assignments for any \( i, j \in \Zb \) with \( i + j = n \) and any \( a \in \Cc^{\op} (B, C)_i, b \in \Cc^{\op} (A, B)_j \)
             \begin{align*}
-                c_{\Cc^{\op}, n}: \tuple{ \Cc^{\op} (B, C) \otimes \Cc^{\op} (A, B) }_n &\to \Cc^{\op} (A, C)_n \\
-                \iota_{i, j}\tuple{ a \otimes b } &\mapsto (-1)^{ij} c_\Cc \tuple{ b \otimes a }
+                c_{\Cc^{\op}, n}: \tuple*{ \Cc^{\op} (B, C) \otimes \Cc^{\op} (A, B) }_n &\to \Cc^{\op} (A, C)_n \\
+                a \otimes b &\mapsto (-1)^{ij} c_\Cc \tuple*{ b \otimes a }
             \end{align*}
         }
     \end{enumerate}
@@ -191,7 +185,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
             be the chain homomorphism where the \( n \)-th map is
             \begin{align*}
                 \Sigma_{\C_{\dg}(\Mod(R)), n}: \C_{\dg}(\Mod(R))(A, B)_n &\to \C_{\dg}(\Mod(R))(\Sigma(A), \Sigma(B))_n \\
-                \bigtimes_{p \in \Zb} f_p &\mapsto (-1)^n \bigtimes_{p \in \Zb} f_{p + 1}.
+                \tuple*{ f_p }_{p \in \Zb} &\mapsto (-1)^n \tuple*{ f_{p + 1} }_{p \in \Zb}.
             \end{align*}
         }
     \end{enumerate}
@@ -209,7 +203,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
             WIP
         }
         \item {
-            Secondly, need to show the functoriality of \( \Sigma_{\C_{\dg}(\Mod(R))} \).
+            Secondly, need to show the ``functoriality'' of \( \Sigma_{\C_{\dg}(\Mod(R))} \).
 
             WIP
         }
@@ -242,7 +236,11 @@ There are multiple definitions of an algebraic triangulated category. In this th
 \end{definition}
 
 \begin{remark}
-    The term \emph{DG-natural transformation} is often used for ``elements'' in the morphism spaces defined in \autoref{def:dg_functor_category}, but the term is also used for elements in \( Z^0(\Fun_{\dg}(\Ac, \Bc)(F, G)) \). As an example, in \cite[Definition 6.2.4, Definition 6.3.1]{Borceux_1994} the same term is used in both contexts.
+    The term \emph{DG-natural transformation} is often used for ``elements'' in the morphism spaces defined in \autoref{def:dg_functor_category}, but the term is also used for elements in
+    \[
+        Z^0\tuple{ \Fun_{\dg}(\Ac, \Bc)(F, G) }.
+    \]
+    As an example, in \cite[Definition 6.2.4, Definition 6.3.1]{Borceux_1994} the same term is used in both contexts.
 \end{remark}
 
 % TODO: Cite: Jasso--Muro
@@ -261,17 +259,19 @@ There are multiple definitions of an algebraic triangulated category. In this th
 % TODO: Does symmetry isomorphism commute with morphisms? I would guess so....
 % TODO-Q: Need to show that any element in the n-th component of tensor product of two chain complexes are a ``sum'' of elementary tensors.
 \begin{remark}[Functor category structure from Borceux]
-    Want to see what the homomorphism structure of \( \dgMod_{\dg}(\Cc) \) is, and what properties it has from the enriched category theory perspective based on \cite{Borceux_1994}.
+    The goal of this remark is to understand what the morphism structure of \( \dgMod_{\dg}(\Cc) \) is, and what properties it has from the enriched category theory perspective based on \cite{Borceux_1994}.
+
+    In this remark, let \( \C_{\dg} \) be shorthand for \( \C_{\dg}(\Mod(R)) \).
     
     Let \( F, G \in \dgMod_{\dg}(\Cc) \) and let
     \[
-        \eta = \set{\eta_n}_{n \in \Zb} \text{ where } \eta_n \in \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_n
+        \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_i
     \]
     and let
     \[
-        f = \set{f_n}_{n \in \Zb} \text{ where } f_i \in \Cc^{\op}(A', A'')_i.
+        f_j \in \Cc^{\op}(A', A'')_j.
     \]
-    Construct the following composition of morphisms, where the right hand side is 
+    Construct the following composition of morphisms, where the right hand side is the element-wise action on the \( n \)-th component on an arbitrary elementary tensor with \( i +j = n \) (this is enough information to deduce it's action on any element by \autoref{lem:map_out_of_tensor_unique})
     \begin{equation}
         \label{eq:functor_category_borceux}
         \newcommand{\height}{1cm}
@@ -279,9 +279,9 @@ There are multiple definitions of an algebraic triangulated category. In this th
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
-                \C_{\dg}(\Mod(R))(F(A'), G(A')) \otimes \C_{\dg}(G(A'), G(A'')) \\
-                \C_{\dg}(G(A'), G(A'')) \otimes \C_{\dg}(\Mod(R))(F(A'), G(A')) \\
+                \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
+                \C_{\dg}(F(A'), G(A')) \otimes \C_{\dg}(G(A'), G(A'')) \\
+                \C_{\dg}(G(A'), G(A'')) \otimes \C_{\dg}(F(A'), G(A')) \\
                 \C_{\dg}(F(A'), G(A'')) \\
             };
 
@@ -290,16 +290,16 @@ There are multiple definitions of an algebraic triangulated category. In this th
 
                 (m-2-1) edge node {s} (m-3-1)
 
-                (m-3-1) edge node {\circ} (m-4-1);
+                (m-3-1) edge node {c_{\C_{\dg}(\Mod(R))}} (m-4-1);
         \end{tikzpicture}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \sum_{i + j = n} \eta_i \otimes f_j  \\
-                \sum_{i + j = n} \eta_{i, A'} \otimes G(f_j) \\
-                \sum_{i + j = n} (-1)^{ij} G(f_j) \otimes \eta_{i, A'} \\
-                \sum_{i + j = n} (-1)^{ij} G(f_j) \circ \eta_{i, A'} \\
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f_j  \\
+                \eta_{i, A'} \otimes G(f_j) \\
+                (-1)^{ij} G(f_j) \otimes \eta_{i, A'} \\
+                (-1)^{ij} G(f_j) \circ \eta_{i, A'} \\
             };
 
             \path[math]
@@ -310,31 +310,24 @@ There are multiple definitions of an algebraic triangulated category. In this th
                 (m-3-1) edge[maps to] (m-4-1);
         \end{tikzpicture}
     \end{equation}
+    NOTE: The composition, \( \circ \), in bottom right of the above diagram is the composition as defined for DG-diagrams.
+
     Name the entire above composition of chain complex morphisms for \( \psi_{A', A''} \).
 
-    For any \( k, j \in \Zb \) let \( \iota_{k,j} \) denote the inclusion
-    \begin{multline*}
-        \iota_{k, j}: \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j \otimes \Cc^{\op}(A', A'')_{k - j} \\
-        \hookrightarrow \tuple{ \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') }_k
-    \end{multline*}
+    % For any \( i, j \in \Zb \) let \( \iota_{i,j} \) denote the inclusion
+    % \begin{multline*}
+    %     \iota_{i, j}: \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_i \otimes \Cc^{\op}(A', A'')_j \\
+    %     \hookrightarrow \tuple*{ \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') }_{i + j}
+    % \end{multline*}
 
-    Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism
-    \[
-        \phi_{A', A''} = \set{\phi_{A', A'', j}}_{j \in \Zb}
-    \]
-    where
-    % \begin{align*}
-    %     \phi_{A', A'', j}:  \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j &\to \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right]_j \\
-    %     \eta_j &\mapsto \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ).
-    % \end{align*}
-    % Or in the same shape as previously
+    Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism \( \phi_{A', A''} \), where
     \begin{center}
         \newcommand{\height}{1cm}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
                 \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
@@ -345,34 +338,36 @@ There are multiple definitions of an algebraic triangulated category. In this th
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta_j \\
-                \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ). \\
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \\
+                \tuple{ \psi_{A', A'', k} \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb}. \\
             };
 
             \draw[math]
                 (m-1-1) edge[maps to] (m-2-1);
         \end{tikzpicture}
     \end{center}
-    And finally take the product of this map over all \( A', A'' \in \Cc^{\op} \) to get the morphism
+    NOTE: The notation causes some ambiguity here and so it is neccesary to specify that in the bottom right of the above diagram, \( ? \in \Cc^{\op}(A', A'')_{k - j} \).
+
+    Finally take the product of this map over all \( A', A'' \in \Cc^{\op} \) to get the morphism
     \begin{center}
         \newcommand{\height}{1cm}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
-                \prod_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+                \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \prod\limits_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
             \draw[math]
-                (m-1-1) edge node {\prod_{A', A'' \in \Cc^{\op}} \phi_{A', A''}} (m-2-1);
+                (m-1-1) edge node {\prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''}} (m-2-1);
         \end{tikzpicture}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta_j \\
-                \bigtimes_{A', A'' \in \Cc^{\op}} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ). \\
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \\
+                \tuple{ \tuple{ \psi_{A', A'', k} \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}}. \\
             };
 
             \draw[math]
@@ -386,7 +381,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
+                \tuple*{ \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
                 \C_{\dg}(\Mod(R))(F(A''), G(A'')) \otimes \C_{\dg}(F(A'), F(A'')) \\
                 \C_{\dg}(F(A'), G(A'')) \\
             };
@@ -400,9 +395,9 @@ There are multiple definitions of an algebraic triangulated category. In this th
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \sum_{i + j = n} \eta_i \otimes f_j  \\
-                \sum_{i + j = n} \eta_{i, A''} \otimes F(f_j) \\
-                \sum_{i + j = n} \eta_{i, A''} \circ F(f_j) \\
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f_j  \\
+                \eta_{i, A''} \otimes F(f_j) \\
+                \eta_{i, A''} \circ F(f_j) \\
             };
 
             \draw[math]
@@ -413,23 +408,21 @@ There are multiple definitions of an algebraic triangulated category. In this th
     \end{center}
     Using this as \( \widetilde{\psi}_{A', A''} \) continue the construction as before by taking the adjoint and the product to end up with the map \( \widetilde{\phi}_{A', A''} \).
 
-    Then Borceux TODO:Cite states that \( \dgMod_{\dg}(\Cc)(F, G) \) is the equalizer of the following diagram
+    Then \cite[Proposition 6.3.1]{Borceux_1994} states that \( \dgMod_{\dg}(\Cc)(F, G) \) is the equalizer of the following diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
-                \prod_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+                \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) \\
+                \prod\limits_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
             };
 
             \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
-            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
+            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod\limits_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
         \end{tikzpicture}
     \end{center}
     Then the question remains, what properties would this equalizer have?
-
-    TODO: What is a sub chain complex? Does it make sense? 
     
-    Consider a sub chain complex
+    Consider a chain subcomplex
     \[
         H \stackrel{\iota}{\hookrightarrow} \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))
     \]
@@ -437,22 +430,21 @@ There are multiple definitions of an algebraic triangulated category. In this th
     \[
         \prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} \circ \iota = \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''} \circ \iota.
     \]
-    Then \( H \) would for any \( j \in \Zb \) contain the elements
+    Then \( H \) would for any \( i \in \Zb \) contain the elements
     \[
-        \eta_j \in \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j = \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j
+        \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_i
     \]
     such that
     \begin{align*}
-        \tuple{ \prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} }_j (\eta_j) &= \tuple{ \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''} }_j (\eta_j) \\
+        \tuple*{ \prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} }_j \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} } &= \tuple*{ \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''} }_j \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} } \\
         &\Updownarrow \\
-        \bigtimes_{A', A'' \in \Cc^{\op}} \bigtimes_{k \in \Zb} \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? ) &= \bigtimes_{A', A'' \in \Cc^{\op}} \bigtimes_{k \in \Zb} \widetilde{\psi}_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes ? )
-        \intertext{Which are equal if for any \( A', A'' \in \Cc^{\op} \) and any \( k \in \Zb \) and any \( f \in \Cc^{\op}\tuple{A', A''}_{k - j} \) one has the following}
-        \psi_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes f ) &= \widetilde{\psi}_{A', A'', k} \circ \iota_{k,j}(\eta_j \otimes f ) \\
+        \tuple{ \tuple{ \psi_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}} &= \tuple{ \tuple{ \widetilde{\psi}_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}}
+        \intertext{Which are equal if for any \( A', A'' \in \Cc^{\op} \) and any \( k \in \Zb \) and any \( f \in \Cc^{\op}\tuple*{A', A''}_{k - i} \) one has the following}
+        \psi_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f } &= \widetilde{\psi}_{A', A'', k} \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f } \\
         &\Updownarrow \\
-        (-1)^{(k - j)*j}G_{A',A'',k - j}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', k - j}(f) \\
-        % &\Updownarrow \\
-        % (-1)^{|f||\eta_j|}G_{A',A'',|f|}(f) \circ \eta_{j, A'} &= \eta_{j, A''} \circ F_{A', A'', |f|}(f). \\
-        % EXPLANATION: There is no ``homogeneous'' element in a chain complex.
+        (-1)^{(k - i)*i}G(f) \circ \eta_{i, A'} &= \eta_{i, A''} \circ F(f) \\
+        &\Updownarrow \\
+        (-1)^{|f||\tuple{ \eta_{i, A} }_{A \in \Cc^{\op}}|}G(f) \circ \eta_{i, A'} &= \eta_{i, A''} \circ F(f). \\
     \end{align*}
 
     In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) \) has the following properties:
@@ -462,18 +454,12 @@ There are multiple definitions of an algebraic triangulated category. In this th
             \[
                 \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)).
             \]
-            Which is a chain complex where in the \( j \)-th component, one has
+            Which is a chain complex where in the \( i \)-th component, one has
             \[
-                \tuple{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_j = \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j
+                \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A)) }_i = \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_i
             \]
-            where every element, \( \eta_j \), is in the form
-            \[
-                \eta_j = \bigtimes_{A \in \Cc^{\op}} \eta_{j, A}
-            \]
-            where
-            \[
-                \eta_{j, A} \in \C_{\dg}(\Mod(R))(F(A), G(A))_j = \prod_{i \in \Zb} \Mod(R)(F(A)_i, G(A_{i + j})).
-            \]
+            where every element is denoted as \( \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \).
+
             Let \( \widetilde{d_A} \) be the differential of \( \C_{\dg}(\Mod(R))(F(A), G(A)) \), then the differential of
             \[
                 \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))
@@ -481,17 +467,23 @@ There are multiple definitions of an algebraic triangulated category. In this th
             is
             \begin{align*}
                 \prod_{A \in \Cc^{\op}} \widetilde{d_A} : \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_j &\to \prod_{A \in \Cc^{\op}} \C_{\dg}(\Mod(R))(F(A), G(A))_{j + 1} \\
-                \bigtimes_{A \in \Cc^{\op}} \eta_{j, A} &\mapsto \bigtimes_{A \in \Cc^{\op}} \widetilde{d_A}\tuple{\eta_{j, A}} \\
-                &= \bigtimes_{A \in \Cc^{\op}} \tuple{ d_{G(A)} \circ \eta_{j, A} - (-1)^j \eta_{j, A} \circ d_{F(A)} }.
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} &\mapsto \tuple{ \widetilde{d_A}\tuple{ \eta_{i, A} } }_{A \in \Cc^{\op}} \\
+                &= \tuple*{ d_{G(A)} \circ \eta_{j, A} - (-1)^j \eta_{j, A} \circ d_{F(A)} }_{A \in \Cc^{\op}}.
             \end{align*}
         }
         \item {
-            In addition, \( \dgMod_{\dg}(\Cc)(F, G) \) has the property that for any \( \eta_j \in \dgMod_{\dg}(\Cc)(F, G)_j \), and any \( f \in \Cc^{\op}(A', A'')_i \), one has that
+            In addition, \( \dgMod_{\dg}(\Cc)(F, G) \) has the property that for any
             \[
-                G_{A', A'', i}(f) \circ \eta_{j, A'} = (-1)^{ji} \eta_{j, A''} \circ F_{A', A'', i}(f).
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \dgMod_{\dg}(\Cc)(F, G)_i,
+            \]
+            and any \( f \in \Cc^{\op}(A', A'')_j \), one has that
+            \[
+                G_{A', A'', j}(f) \circ \eta_{i, A'} = (-1)^{ij} \eta_{i, A''} \circ F_{A', A'', j}(f).
             \]
         }
-    \end{enumerate} 
+    \end{enumerate}
+
+    However, it still remains to show that \( H \) is the equalizer. WIP
 \end{remark}
 
 % TODO: Why is \Cc(-, A) a functor into \C_{\dg}(\Mod(R))?
@@ -499,7 +491,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
     \label{def:DG_Yoneda_embedding}
     Let \( \Cc \) be a DG-category over \( R \).
     
-    Then let \( \mathbf{h} \) be the functor defined as follows
+    Then let \( \mathbf{h} \) be the DG-functor defined as follows
     \begin{align*}
         \mathbf{h}: \Cc &\to \dgMod_{\dg}(\Cc) \\
         A &\mapsto \Cc(-, A)
@@ -527,14 +519,14 @@ There are multiple definitions of an algebraic triangulated category. In this th
         \item {
             Let \( A, B, C \in H^0(\Cc) \) with \( f_1 \in H^0(A, B) \) and \( f_2 \in H^0(B, C) \).
 
-            Then by \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}, there exists \( g_1 \in \Cc(A, B) \), and \( g_2 \in \Cc(B, C) \) such that \( \class{g_1} = f_1 \) and \( \class{g_2} = f_2 \).
+            Then by \autoref{lem:massey_product_in_dg_cat/massey_product_definition/exist_lifting_h_star}, there exists \( g_1 \in \Cc(A, B) \), and \( g_2 \in \Cc(B, C) \) such that \( \class*{g_1} = f_1 \) and \( \class*{g_2} = f_2 \).
 
             % TODO: Slight abuse of notation taking a "class" of an element of a chain complex.
             % TODO: Need to show that this is well defined?
             Then let composition be defined on elementary tensors as follows
             \begin{align*}
                 \circ_{H^0(\Cc)}: H^0(\Cc)(B, C) \otimes H^0(\Cc)(A, B) &\to H^0(\Cc)(A, C) \\
-                f_2 \otimes f_1 &\mapsto \class{ \circ_{\Cc}(g_2 \otimes g_1) }
+                f_2 \otimes f_1 &\mapsto \class*{ \circ_{\Cc}(g_2 \otimes g_1) }
             \end{align*}
         }
     \end{enumerate}
@@ -848,7 +840,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
 
 %     Then a collection of morphisms
 %     \[
-%         \alpha = \set{ \alpha_A \in \Bc(F(A), G(A)) \mid A \in \Ac }
+%         \alpha = \set*{ \alpha_A \in \Bc(F(A), G(A)) \mid A \in \Ac }
 %     \]
 
 %     TODO: Find secondary source, can't see the connection to nlab
