@@ -141,7 +141,7 @@ There are multiple definitions of an algebraic triangulated category. In this th
             where in degree \( n \) there is the following morphism that is uniquely defined by the following assignments for any \( i, j \in \Zb \) with \( i + j = n \) and any \( a \in \Cc^{\op} (B, C)_i, b \in \Cc^{\op} (A, B)_j \)
             \begin{align*}
                 c_{\Cc^{\op}, n}: \tuple*{ \Cc^{\op} (B, C) \otimes \Cc^{\op} (A, B) }_n &\to \Cc^{\op} (A, C)_n \\
-                a \otimes b &\mapsto (-1)^{ij} c_\Cc \tuple*{ b \otimes a }
+                a \otimes b &\mapsto (-1)^{ij} c_{\Cc, n} \tuple*{ b \otimes a }
             \end{align*}
         }
     \end{enumerate}
@@ -150,14 +150,43 @@ There are multiple definitions of an algebraic triangulated category. In this th
     In order to show that the opposite DG-category defined in \autoref{def:opposite_dg_category} is a well defined DG-category, need to show the following
     \begin{enumerate}
         \item  {
-            The composition morphism is uniquely defined as stated.
-
-            WIP
+            The composition morphism is uniquely defined by \autoref{lem:map_out_of_tensor_unique}.
         }
         \item {
             The composition morphism is a chain morphism.
 
-            WIP
+            For any \( n \) want to show that the following diagram commutes
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \tuple*{ \Cc^{\op} (B, C) \otimes \Cc^{\op} (A, B) }_n \& \Cc^{\op} (A, C)_n \\
+                        \tuple*{ \Cc^{\op} (B, C) \otimes \Cc^{\op} (A, B) }_{n + 1} \& \Cc^{\op} (A, C)_{n + 1}. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {c_{\Cc^{\op}, n}} (m-1-2)
+                            edge node {d_n} (m-2-1)
+                        (m-1-2) edge node {d_n} (m-2-2)
+
+                        (m-2-1) edge node {c_{\Cc^{\op}, n + 1}} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+
+            For \( i, j \in \Zb \) with \( i + j = n \), let \( a \in \Cc^{\op}(B, C)_i \) and \( b \in \Cc^{\op}(A, B)_j \).
+
+            Consider the following equation
+            \begin{align*}
+                &d_n \circ c_{\Cc^{\op}, n} (a \otimes b) - c_{\Cc^{\op}, n + 1} \circ d_n (a \otimes b) \\
+                &= (-1)^{ij} d_n \circ c_{\Cc, n}(b \otimes a) - c_{\Cc^{\op}, n + 1}\tuple{ d_{\Cc^{\op} (B, C), i}(a) \otimes b + (-1)^i a \otimes d_{\Cc^{\op} (A, B), j}(b) } \\
+                &= (-1)^{ij} d_n \circ c_{\Cc, n}(b \otimes a) - (-1)^{(i + 1)j} c_{\Cc, n + 1}\tuple{ b \otimes d_{\Cc^{\op} (B, C), i}(a) } \\
+                &\hspace{0.4cm} - (-1)^{i(j + 1)} c_{\Cc, n + 1}\tuple{ d_{\Cc^{\op} (A, B), j}(b) \otimes a } \\
+                &= (-1)^{ij} c_{\Cc, n + 1} \circ d_n\tuple{ b \otimes a } - (-1)^{(i + 1)j} c_{\Cc, n + 1}\tuple{ b \otimes d_{\Cc^{\op} (B, C), i}(a) } \\
+                &\hspace{0.4cm} - (-1)^{i(j + 1)} c_{\Cc, n + 1}\tuple{ d_{\Cc^{\op} (A, B), j}(b) \otimes a } \\
+                &= (-1)^{ij} c_{\Cc, n + 1}\tuple{ d_{\Cc^{\op} (A, B), j}(b) \otimes a + (-1)^j b \otimes d_{\Cc^{\op} (B, C), j}(a) } \\
+                &\hspace{0.4cm} - (-1)^{(i + 1)j} c_{\Cc, n + 1}\tuple{ b \otimes d_{\Cc^{\op} (B, C), i}(a) } - (-1)^{i(j + 1)} c_{\Cc, n + 1}\tuple{ d_{\Cc^{\op} (A, B), j}(b) \otimes a } \\
+                &= (-1)^{ij} c_{\Cc, n + 1}\tuple{ d_{\Cc^{\op} (A, B), j}(b) \otimes a } + (-1)^{(i + 1)j} c_{\Cc, n + 1}\tuple{ b \otimes d_{\Cc^{\op} (B, C), j}(a) } \\
+                &\hspace{0.4cm} - (-1)^{(i + 1)j} c_{\Cc, n + 1}\tuple{ b \otimes d_{\Cc^{\op} (B, C), i}(a) } - (-1)^{i(j + 1)} c_{\Cc, n + 1}\tuple{ d_{\Cc^{\op} (A, B), j}(b) \otimes a } \\
+            \end{align*}
         }
     \end{enumerate}
 \end{remark}
