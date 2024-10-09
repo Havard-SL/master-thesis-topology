@@ -1,21 +1,20 @@
 The following three definitions are all based on \cite[Definition 3.1]{Christensen-Frankland_2017}.
 
-Given a triangulated category \( \Tc \), given the following diagram in \( \Tc \):
+Let \( \Tc \) be a triangulated category, given the following diagram in \( \Tc \):
+\begin{center}
+    \begin{tikzpicture}
+        \diagram{m}{1cm}{1cm} {
+            {X_0} \& {X_1} \& {X_2} \& {X_3} \\
+        };
 
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                {X_0} \& {X_1} \& {X_2} \& {X_3} \\
-            };
+        \draw[math]
+            (m-1-1) edge node {f_1} (m-1-2)
+            (m-1-2) edge node {f_2} (m-1-3)
+            (m-1-3) edge node {f_3} (m-1-4);
+    \end{tikzpicture}
+\end{center}
 
-            \draw[math]
-                (m-1-1) edge node {f_1} (m-1-2)
-                (m-1-2) edge node {f_2} (m-1-3)
-                (m-1-3) edge node {f_3} (m-1-4);
-        \end{tikzpicture}
-    \end{center}
-
-    one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in three different (but actually identical, see \autoref{prop:toda-bracket-definitions-coincide}) ways:
+one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in three different (but actually identical, see \autoref{prop:toda-bracket-definitions-coincide}) ways:
 
 \begin{definition}[Iterated cofiber Toda bracket]
     \label{def:iterated-cofiber-toda-bracket}
@@ -99,6 +98,8 @@ Given a triangulated category \( \Tc \), given the following diagram in \( \Tc \
     where the bottom row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\ff} \). This is called the \emph{three-fold iterated fiber Toda Bracket of \( f_3, f_2, f_1 \)}.
 \end{definition}
 
+As is alluded by the name, as well as mentioned above, these are in fact equivalent ways to describe the same subset of \( \Tc(\Sigma(X_0), X_3) \) which is clear by the following proposition.
+
 \begin{proposition}
     \label{prop:toda-bracket-definitions-coincide}
     All three of the toda brackets definitions above (\autoref{def:iterated-cofiber-toda-bracket}, \autoref{def:fiber-cofiber-toda-bracket}, \autoref{def:iterated-fiber-toda-bracket}) are equal.
@@ -108,13 +109,17 @@ Given a triangulated category \( \Tc \), given the following diagram in \( \Tc \
         \toda{f_3, f_2, f_1}_{\cc} = \toda{f_3, f_2, f_1}_{\fc} = \toda{f_3, f_2, f_1}_{\ff}.
     \]
 \end{proposition}
-\begin{proof}
-    TODO: check  \( \subseteq \) of the proof in \cite[Proposition 3.3]{Christensen-Frankland_2017}
-\end{proof}
+
+For a proof of \autoref{prop:toda-bracket-definitions-coincide}, see \cite[Proposition 3.3]{Christensen-Frankland_2017}. Note that in the beforementioned proof, that the final centered equation shold say ``\( f_3 - \beta q_2 = \theta q \)'' instead of `` \( f_3 - \beta q_2 = \theta \iota \) ''.
+% TODO: Check "Dual" statement. MS-Question: Is it even a dual statement?
+
+As a consequence of \autoref{prop:toda-bracket-definitions-coincide}, one can define just a \emph{Toda bracket} in the following manner.
 
 \begin{definition}
     As a consequence of \autoref{prop:toda-bracket-definitions-coincide} one can uniquely define the \emph{Toda bracket of \( f_3, f_2, f_1 \)} as either \( \toda{f_3, f_2, f_1}_{\cc} \), \( \toda{f_3, f_2, f_1}_{\fc} \), or \( \toda{f_3, f_2, f_1}_{\ff} \), and it is denoted simply as \emph{\( \toda{f_3, f_2, f_1} \)}.
 \end{definition}
+
+% TODO: Indeterminancy?
 
 % TODO: Cut?
 % \begin{remark}

@@ -1,9 +1,12 @@
-Let \( R = \Fb_2C_2 \), with \( g \in C_2 \) being the generator.
+To get a better understanding of how to compute Toda brackets, as well as illustrate some properties they have, I have calculated the four simple examples, which will serve as a warm-up for the future more complicated examples.
+
+First, here are some preliminary information relevant to this subsection:
+
+Let \( R = \Fb_2C_2 \), with \( g \in C_2 \) being the generator. Then \( \Stmod(R) \) is a triangulated category.
 
 Then \( J = \tuple{1 + g} \) is the only ideal of \( R \).
 
-First note that \( J \) is not projective, since the short exact sequence:
-
+First note that \( J \) is not projective, since the short exact sequence
 \begin{center}
 	\begin{tikzpicture}
 		\diagram{m}{1cm}{1cm}{
@@ -15,27 +18,28 @@ First note that \( J \) is not projective, since the short exact sequence:
 			(m-1-2) edge[two heads] node {\phi} (m-1-3);
 	\end{tikzpicture}
 \end{center}
-
-Where, \( \iota \) is the inclusion, and \( \phi \) is the map:
-
+where \( \iota \) is the inclusion and \( \phi \) is the morphism
 \begin{align*}
     \phi: R &\to J \\
     0, 1 + g &\mapsto 0 \\
     1, g &\mapsto 1 + g
 \end{align*}
+is not split.
 
-But \( \phi \) does not split, since \( \iota \) is the only monomorphism of \( J \) into \( R \), but composes to \( 0 \) with \( \phi \). Therefore \( J \) cannot be projective, since every epimorphism into a projective module splits.
+This is because \( \iota \) is the only monomorphism of \( J \) into \( R \), but composes to \( 0 \) with \( \phi \). Therefore \( J \) cannot be projective, since every epimorphism into a projective module splits.
 
 Furthermore, since \( \phi \) is an epimorphism with kernel \( J \), one gets from the third isomorphism theorem that \( \frac{R}{J} \cong J \).
 
-\subsubsection{Example 1}
+The supension of \( J \) is the cokernel of \( \iota_J \). In \( \Mod(R) \), this is isomorphic to \( \frac{R}{J} \).
+
+A sanity check:
+
+The cone of \( \Id_J \) is the pushout of \( (\Id_J, \iota_J) \), where \( \iota_J \) is a monomorphism into the injective/projective module \( R \). By construction the pushout is \( \frac{R \oplus J}{\sim} \), where \( (0, 1+g) \sim (1+g, 0) \). One can see that this is isomorphic to \( R \). And, since \( R \) is projective, one has that \( R \cong 0 \) in \( \Stmod(R) \). Which is what is expected by a triangulated category.
+
 \input{sections/toda_bracket/toda_bracket_examples/example_1.tex}
 
-\subsubsection{Example 2}
 \input{sections/toda_bracket/toda_bracket_examples/example_2.tex}
 
-\subsubsection{Example 3}
 \input{sections/toda_bracket/toda_bracket_examples/example_3.tex}
 
-\subsubsection{Example 4}
 \input{sections/toda_bracket/toda_bracket_examples/example_4.tex}
