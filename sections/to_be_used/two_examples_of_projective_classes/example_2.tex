@@ -288,7 +288,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        M \& M \& 0 \& \Sigma(M) \\
+                        M \& M \& 0 \& \Sigma M \\
                     };
 
                     \draw[math]
@@ -302,7 +302,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        M^k \& M^k \& 0 \& \Sigma(M)^k \\
+                        M^k \& M^k \& 0 \& (\Sigma M)^k \\
                     };
 
                     \draw[math]
@@ -316,7 +316,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        S \& M \& S \& \Sigma(S) \\
+                        S \& M \& S \& \Sigma S \\
                     };
 
                     \draw[math]
@@ -330,7 +330,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        \Sigma^{-1}(S) \& S \& M \& S \\
+                        \Sigma^{-1} S \& S \& M \& S \\
                     };
 
                     \draw[math]
@@ -340,11 +340,11 @@
                 \end{tikzpicture}
             \end{center}
 
-            Taking the direct summand of this distinguished triangle with itself \( j \) times, as well as using \autoref{lem:sigma_switch_s_m} by identifying \( \Sigma^{-1}\tuple{S} \cong M \) and \( S \cong \Sigma\tuple{M} \), yields the following distinguished triangle
+            Taking the direct summand of this distinguished triangle with itself \( j \) times, as well as using \autoref{lem:sigma_switch_s_m} by identifying \( \Sigma^{-1} S \cong M \) and \( S \cong \Sigma M \), yields the following distinguished triangle
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        M^j \& S^j \& M^j \& \Sigma(M)^j \\
+                        M^j \& S^j \& M^j \& (\Sigma M)^j \\
                     };
 
                     \draw[math]
@@ -359,7 +359,7 @@
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{2cm} {
-                        M^{j + k} \& S^j \oplus M^k \& M^j \& \Sigma(M)^{j + k} \\
+                        M^{j + k} \& S^j \oplus M^k \& M^j \& (\Sigma M)^{j + k} \\
                     };
 
                     \draw[math]

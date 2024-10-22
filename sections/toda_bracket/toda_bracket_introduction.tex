@@ -18,11 +18,11 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
 
 \begin{definition}[Iterated cofiber Toda bracket]
     \label{def:iterated-cofiber-toda-bracket}
-    Let the set of every possible \( \psi \in \Tc(\Sigma(X_0), X_3) \) that makes the following diagram commute
+    Let the set of every possible \( \psi \in \Tc(\Sigma X_0, X_3) \) that makes the following diagram commute
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                {X_0} \& {X_1} \& {Y} \& {\Sigma(X_0)} \\
+                {X_0} \& {X_1} \& {Y} \& {\Sigma X_0} \\
                 {X_0} \& {X_1} \& {X_2} \& {X_3} \\
             };
 
@@ -45,12 +45,12 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
 
 \begin{definition}[Fiber-cofiber Toda bracket]
     \label{def:fiber-cofiber-toda-bracket}
-    Let the set of every composite \( \beta \circ \Sigma(\alpha) \in \Tc(\Sigma(X_0), X_3) \) that makes the following diaram commute
+    Let the set of every composite \( \beta \circ \Sigma(\alpha) \in \Tc(\Sigma X_0, X_3) \) that makes the following diaram commute
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 {X_0} \& {X_1} \\
-                {\Sigma^{-1}(Y)} \& {X_1} \& {X_2} \& {Y} \\
+                {\Sigma^{-1} Y} \& {X_1} \& {X_2} \& {Y} \\
                 \&\& {X_2} \& {X_3} \\
             };
 
@@ -73,12 +73,12 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
 
 \begin{definition}[Iterated fiber Toda bracket]
     \label{def:iterated-fiber-toda-bracket}
-    Let the set of every morphism \( \Sigma(\delta) \in \Tc(\Sigma(X_0), X_3) \), where \( \delta \) makes the following diagram commute
+    Let the set of every morphism \( \Sigma(\delta) \in \Tc(\Sigma X_0, X_3) \), where \( \delta \) makes the following diagram commute
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 {X_0} \& {X_1} \& {X_2} \& {X_3} \\
-                {\Sigma^{-1}(X_3)} \& {Y} \& {X_2} \& {X_3} \\
+                {\Sigma^{-1} X_3} \& {Y} \& {X_2} \& {X_3} \\
             };
 
             \draw[math]
@@ -98,7 +98,7 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
     where the bottom row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\ff} \). This is called the \emph{three-fold iterated fiber Toda Bracket of \( f_3, f_2, f_1 \)}.
 \end{definition}
 
-As is alluded by the name, as well as mentioned above, these are in fact equivalent ways to describe the same subset of \( \Tc(\Sigma(X_0), X_3) \) which is clear by the following proposition.
+As is alluded by the name, as well as mentioned above, these are in fact equivalent ways to describe the same subset of \( \Tc(\Sigma X_0, X_3) \) which is clear by the following proposition.
 
 \begin{proposition}
     \label{prop:toda-bracket-definitions-coincide}

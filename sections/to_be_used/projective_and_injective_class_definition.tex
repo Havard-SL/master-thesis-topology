@@ -12,7 +12,7 @@
         
         Then \( P \in \Pc \) if and only if for all \( f \in \Tc(X, Y) \intersect \Nc \), one has that \( f_*: \Tc(P, X) \to \Tc(P, Y) \) is the zero map.}
 
-        \item {For every \( X \in \Tc \) there exists objects \( Y \in \Tc \) and \( P \in \Pc \) along with a morphism \( f \in \Tc(X, Y) \intersect \Nc \) such that there exists a distinguished triangle on the form \( P \to X \stackrel{f}{\to} Y \to \Sigma(P) \).}
+        \item {For every \( X \in \Tc \) there exists objects \( Y \in \Tc \) and \( P \in \Pc \) along with a morphism \( f \in \Tc(X, Y) \intersect \Nc \) such that there exists a distinguished triangle on the form \( P \to X \stackrel{f}{\to} Y \to \Sigma P \).}
     \end{enumerate}
 
     Then \( (\Pc, \Nc) \) is called a \emph{projective class in \( \Tc \)}, and an object \( P \in \Pc \) is called \emph{projective}. % Projective over a projective class? TODO
@@ -60,7 +60,7 @@
 \begin{definition}[Stable projective class]
     Let \( (\Pc, \Nc) \) be a projective class in \( \Tc \).
 
-    If for any \( P \in \Pc \) and \( n \in \Zb \) one has that \( \Sigma^n(P) \in \Pc \).
+    If for any \( P \in \Pc \) and \( n \in \Zb \) one has that \( \Sigma^n P \in \Pc \).
     
     Then \( (\Pc, \Nc) \) is called a \emph{stable projective class}.
 \end{definition}
@@ -101,7 +101,7 @@
 \begin{definition}[Stable injective class]
     Let \( (\Ic, \Nc) \) be an injective class in \( \Tc \).
 
-    If for any \( I \in \Ic \) and \( n \in \Zb \) one has that \( \Sigma^n(I) \in \Ic \).
+    If for any \( I \in \Ic \) and \( n \in \Zb \) one has that \( \Sigma^n I \in \Ic \).
     
     Then \( (\Ic, \Nc) \) is called a \emph{stable injective class}.
 \end{definition}
@@ -155,12 +155,12 @@
         \end{tikzpicture}
     \end{center}
 
-    Where every \( i_n \in \Nc \), and \( P_n \in \Pc \), and marked arrows denote degree shifting maps, with \( \delta_n \in \Tc(X_{n + 1}, \Sigma(P_n)) \). And where every triangle on the form:
+    Where every \( i_n \in \Nc \), and \( P_n \in \Pc \), and marked arrows denote degree shifting maps, with \( \delta_n \in \Tc(X_{n + 1}, \Sigma P_n ) \). And where every triangle on the form:
 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                P_n \& X_n \& X_{n + 1} \& \Sigma(P_n) \\
+                P_n \& X_n \& X_{n + 1} \& \Sigma P_n \\
             };
 
             \draw[math]
@@ -202,12 +202,12 @@
         \end{tikzpicture}
     \end{center}
 
-    Where every \( i_n \in \Nc \), and \( I_n \in \Ic \), and marked arrows denote degree shifting maps, with \( \delta_n \in \Tc(I_n, \Sigma(Y_{n + 1})) \). And where every triangle on the form:
+    Where every \( i_n \in \Nc \), and \( I_n \in \Ic \), and marked arrows denote degree shifting maps, with \( \delta_n \in \Tc(I_n, \Sigma Y_{n + 1}) \). And where every triangle on the form:
 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Sigma^{-1}(I_n) \& Y_{n + 1} \& Y_n \& I_n \\
+                \Sigma^{-1} I_n \& Y_{n + 1} \& Y_n \& I_n \\
             };
 
             \draw[math]
@@ -232,7 +232,7 @@
 
     Then by \autoref{def:projective_class} property 3, one has that there exists an object \( X_1 \in \Tc \) and object \( P_0 \in \Pc \), and three morphisms \( i_0, p_0, \delta_0 \), such that the following is a distinguished triangle
     \[
-        P_0 \stackrel{p_0}{\longrightarrow} X_0 \stackrel{i_0}{\longrightarrow} X_1 \stackrel{\delta_0}{\longrightarrow} \Sigma(P_0)
+        P_0 \stackrel{p_0}{\longrightarrow} X_0 \stackrel{i_0}{\longrightarrow} X_1 \stackrel{\delta_0}{\longrightarrow} \Sigma P_0
     \]
     and \( i_0 \in \Nc \).
 
@@ -257,15 +257,15 @@
 
     For any \( X \in \Tc, t \in \Zb, s \in \Nb_0 \), let:
     \[ 
-        \phi: \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s + 1})) \stackrel{\cong}{\longrightarrow} \Tc(\Sigma^{t - s - 1}(X), Y_{s + 1}) 
+        \phi: \Tc(\Sigma^{t - s} X, \Sigma Y_{s + 1}) \stackrel{\cong}{\longrightarrow} \Tc(\Sigma^{t - s - 1} X, Y_{s + 1}) 
     \]
     Denote the natural isomorphism from \( \Sigma \)'s automorphism property.
 
     Furthermore, let
     \begin{align*}
-        (i_s)_*: \Tc(\Sigma^{t - s}(X), Y_s) &\to \Tc(\Sigma^{t - s}(X), Y_{s - 1}) \\
-        (p_s)_*: \Tc(\Sigma^{t - s}(X), Y_s) &\to \Tc(\Sigma^{t - s}(X), I_s) \\
-        (\phi \circ \delta_s)_*: \Tc(\Sigma^{t - s}(X), I_s) &\to \Tc(\Sigma^{t - s - 1}(X), Y_{s + 1})
+        (i_s)_*: \Tc(\Sigma^{t - s} X, Y_s) &\to \Tc(\Sigma^{t - s} X, Y_{s - 1}) \\
+        (p_s)_*: \Tc(\Sigma^{t - s} X, Y_s) &\to \Tc(\Sigma^{t - s} X, I_s) \\
+        (\phi \circ \delta_s)_*: \Tc(\Sigma^{t - s} X, I_s) &\to \Tc(\Sigma^{t - s - 1} X, Y_{s + 1})
     \end{align*}
     be maps given by post-composition by \( i_s, p_s, \phi \circ \delta_s \) respectively.
 
@@ -274,8 +274,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{2cm}{1cm} {
-                \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) \&\& \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), Y_s) \\
-                \&  \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s}(X), I_s) \\
+                \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s} X, Y_s) \&\& \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s} X, Y_s) \\
+                \&  \directsum_{s \in \Nb_0, t \in \Zb}\Tc(\Sigma^{t - s} X, I_s) \\
             };
 
             % Very sus 0-length arrow created when using anchors.
@@ -307,7 +307,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \Sigma^{-1}(I_s) \& Y_{s+1} \& Y_s \& I_s \\
+                \Sigma^{-1} I_s \& Y_{s+1} \& Y_s \& I_s \\
             };
 
             \draw[math]
@@ -320,7 +320,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots \& \Tc(\Sigma^{t-s}(X), Y_{s+1}) \& \Tc(\Sigma^{t-s}(X), Y_s) \& \Tc(\Sigma^{t-s}(X), I_s) \& \dots \\
+                \dots \& \Tc(\Sigma^{t-s} X, Y_{s+1}) \& \Tc(\Sigma^{t-s} X, Y_s) \& \Tc(\Sigma^{t-s} X, I_s) \& \dots \\
             };
 
             \draw[math]
@@ -339,7 +339,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                Y_{s+1} \& Y_s \& I_s \& \Sigma(Y_{s+1}) \\
+                Y_{s+1} \& Y_s \& I_s \& \Sigma Y_{s+1}) \\
             };
 
             \draw[math]
@@ -354,7 +354,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots \& \Tc(\Sigma^{t-s}(X), Y_s) \& \Tc(\Sigma^{t-s}(X), I_s) \& \Tc(\Sigma^{t-s}(X), \Sigma(Y_{s + 1})) \& \dots \\
+                \dots \& \Tc(\Sigma^{t-s} X, Y_s) \& \Tc(\Sigma^{t-s} X, I_s) \& \Tc(\Sigma^{t-s} X, \Sigma Y_{s + 1}) \& \dots \\
             };
 
             \draw[math]
@@ -368,7 +368,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots \& \Tc(\Sigma^{t-s}(X), Y_s) \& \Tc(\Sigma^{t-s}(X), I_s) \& \Tc(\Sigma^{t-s-1}(X), Y_{s + 1}) \& \dots \\
+                \dots \& \Tc(\Sigma^{t-s} X, Y_s) \& \Tc(\Sigma^{t-s} X, I_s) \& \Tc(\Sigma^{t-s-1} X, Y_{s + 1}) \& \dots \\
             };
 
             \draw[math]
@@ -390,7 +390,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                I_{s - 1} \& \Sigma(Y_s) \& \Sigma(Y_{s - 1}) \& \Sigma(I_{s - 1}) \\
+                I_{s - 1} \& \Sigma Y_s \& \Sigma Y_{s - 1} \& \Sigma I_{s - 1} \\
             };
 
             \draw[math]
@@ -405,7 +405,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots \& \Tc(\Sigma^{t-s}(X), I_{s - 1}) \& \Tc(\Sigma^{t-s}(X), \Sigma(Y_s)) \& \Tc(\Sigma^{t - s}(X), \Sigma(Y_{s - 1})) \& \dots \\
+                \dots \& \Tc(\Sigma^{t-s} X, I_{s - 1}) \& \Tc(\Sigma^{t-s} X, \Sigma Y_s)) \& \Tc(\Sigma^{t - s} X, \Sigma Y_{s - 1}) \& \dots \\
             };
 
             \draw[math]
@@ -418,14 +418,14 @@
 
     Let \( \psi \) be the natural isomorphism
     \[
-        \psi: \Tc(\Sigma^{t-s}(X), \Sigma(Y_{s - 1})) \stackrel{\cong}{\longrightarrow} \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1}).
+        \psi: \Tc(\Sigma^{t-s} X, \Sigma Y_{s - 1}) \stackrel{\cong}{\longrightarrow} \Tc(\Sigma^{t - s - 1} X, Y_{s - 1}).
     \]
 
     Then by changing the maps, one gets the following sequence
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots \& \Tc(\Sigma^{t-s}(X), I_{s - 1}) \& \Tc(\Sigma^{t - s - 1}(X), Y_s) \& \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1}) \& \dots \\
+                \dots \& \Tc(\Sigma^{t-s} X, I_{s - 1}) \& \Tc(\Sigma^{t - s - 1} X, Y_s) \& \Tc(\Sigma^{t - s - 1} X, Y_{s - 1}) \& \dots \\
             };
 
             \draw[math]
@@ -450,8 +450,8 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \Sigma^{t - s}( X ) \& \Sigma( Y_s ) \& \Sigma( Y_{s - 1} ) \\
-                \Sigma^{t - s - 1}( X ) \& Y_s \& Y_{s - 1} \\
+                \Sigma^{t - s} X \& \Sigma Y_s \& \Sigma Y_{s - 1} \\
+                \Sigma^{t - s - 1} X \& Y_s \& Y_{s - 1} \\
             };
 
             \draw[math]
@@ -467,7 +467,8 @@
     \end{center}
     Where the \( \eta_j \)'s are the natural isomorphisms that define both \( \phi \) and \( \psi \).
     
-    I.e. for any \( f \in \Tc(\Sigma^{t - s - 1}(X), Y_s) \) and \( g \in \Tc(\Sigma^{t - s - 1}, Y_{s - 1}) \), one has
+    % TODO: Manglande objekt?
+    I.e. for any \( f \in \Tc(\Sigma^{t - s - 1} X, Y_s) \) and \( g \in \Tc(\Sigma^{t - s - 1}, Y_{s - 1}) \), one has
     \[
         \phi: \Sigma( f ) \mapsto f = \eta_2 \circ \Sigma( f ) \circ \eta_1^{-1}
     \]
@@ -490,7 +491,7 @@
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \dots \& \Tc(\Sigma^{t-s}(X), I_{s - 1}) \& \Tc(\Sigma^{t - s - 1}(X), Y_s) \& \Tc(\Sigma^{t - s - 1}(X), Y_{s - 1}) \& \dots \\
+                \dots \& \Tc(\Sigma^{t-s} X, I_{s - 1}) \& \Tc(\Sigma^{t - s - 1} X, Y_s) \& \Tc(\Sigma^{t - s - 1} X, Y_{s - 1}) \& \dots \\
             };
 
             \draw[math]
@@ -504,7 +505,7 @@
 
     And finally, if \( s = 0 \):
 
-    The image of \( (\phi \circ \delta_n)_* \) for any \( n \) would never have codomain \( Y_0 \), except for the zero map by the definition, and therefore there is no image onto \( \Tc(\Sigma^t( X ), Y_0) \). There is also no map \( i_n \) with domain \( \Tc(\Sigma^t( X ), Y_0) \), except for the zero map \( i_0 = 0 \). And so, it is exact by default.
+    The image of \( (\phi \circ \delta_n)_* \) for any \( n \) would never have codomain \( Y_0 \), except for the zero map by the definition, and therefore there is no image onto \( \Tc(\Sigma^t X, Y_0) \). There is also no map \( i_n \) with domain \( \Tc(\Sigma^t X , Y_0) \), except for the zero map \( i_0 = 0 \). And so, it is exact by default.
 
     Therefore one has that the top left corner is also exact for the given \( t \) and \( s \).
 
