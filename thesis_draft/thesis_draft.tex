@@ -94,15 +94,15 @@
 % \setmathfont{Fira Math}
 % \setmathfont[range=\setminus]{Asana Math}
 
-\input{latex_personal_preludes/tikz_setup.tex}
+\input{../latex_personal_preludes/tikz_setup.tex}
 
-\input{latex_personal_preludes/list_tweak.tex}
+\input{../latex_personal_preludes/list_tweak.tex}
 
-\input{latex_personal_preludes/theorem_styles.tex}
+\input{../latex_personal_preludes/theorem_styles.tex}
 
-\input{latex_personal_preludes/math_shortcuts.tex}
+\input{../latex_personal_preludes/math_shortcuts.tex}
 
-\title{Master Thesis Draft 2}
+\title{Master Thesis Draft 1}
 \author{Håvard Skjetne Lilleheie}
 
 \begin{document}
@@ -112,10 +112,22 @@
 \tableofcontents
 
 \section{Introduction}
-test123 \cite{Jasso-Muro_2023}
+\input{sections/introduction.tex}
+
+\section{Toda bracket}
+\input{sections/toda_bracket.tex}
+
+\section{Massey product in a DG-category}
+\input{sections/massey_product_in_dg_cat.tex}
+
+\section{Appendix}
+\input{sections/appendix.tex}
+
+\section{To be used}
+\input{sections/to_be_used.tex}
 
 \addcontentsline{toc}{section}{References}
-\bibliography{thesis}{}
-\bibliographystyle{utcaps}
+\bibliography{../thesis}{}
+\bibliographystyle{../utcaps}
 
 \end{document}
