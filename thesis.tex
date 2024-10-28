@@ -103,7 +103,13 @@
 \input{latex_personal_preludes/math_shortcuts.tex}
 
 \title{Master Thesis Draft 2}
-\author{Håvard Skjetne Lilleheie}
+\author{
+    \begin{tabular}{rl}
+        Author:& Håvard Skjetne Lilleheie\\
+        Supervisor:& Marius Thaule\\
+        Co-Supervisor:& Sebastian H. Martensen
+    \end{tabular}
+}
 
 \begin{document}
 
@@ -111,8 +117,29 @@
 
 \tableofcontents
 
+Test123 \cite[test]{Jasso-Muro_2023}
+
 \section{Introduction}
-test123 \cite{Jasso-Muro_2023}
+\input{sections/1_introduction.tex}
+
+\section{Triangulated categories}
+\input{sections/2_triangulated_categories.tex}
+
+\section{Toda brackets}
+\input{sections/3_toda_brackets.tex}
+
+\section{Massey products}
+\input{sections/4_massey_products.tex}
+
+\section{Toda brackets equal Massey products}
+\input{sections/5_toda_brackets_equal_massey_products.tex}
+
+\section{Applications on Adams spectral sequences}
+\input{sections/6_applications_on_adams_spectral_sequences.tex}
+
+\appendix
+\section{Appendix}
+\input{sections/A_appendix.tex}
 
 \addcontentsline{toc}{section}{References}
 \bibliography{thesis}{}
