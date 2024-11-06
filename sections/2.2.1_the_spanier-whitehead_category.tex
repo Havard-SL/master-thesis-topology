@@ -1,0 +1,59 @@
+The first example of a triangulated category is the Spanier-Whitehead category. It is one of the triangulated categories that shows up from the topological side.
+
+First, some notation.
+\begin{notation}
+    For \( X, Y \) two topological spaces.
+
+    Let \( \class{ X, Y } \) denote the homotopy class of continous functions from \( X \) to \( Y \).
+\end{notation}
+
+Now one can define the \emph{underlying} Spanier-Whitehead category. The triangulated structure will be descirbed afterwards.
+
+The Spanier-Whitehead category is motivated by the Freudental suspension theorem and historically lead to the definition of the stable homotopy category.
+
+\begin{definition}[Spanier-Whitehead category]
+    Let \( SW \) be the category with the following properties:
+    \begin{enumerate}
+        \item {
+            Objects in \( SW \) are touples of pointed CW-complexes and an integer, \( X, n \).
+        }
+        \item {
+            Let \( \Sigma \) here denote the based suspension of a topological space.
+
+            % MS-Question: Er dette riktig? Må r >= max(|n_X| + 2, |n_Y|)?
+            Morphisms in \( SW \) are the following colimits of abelian groups
+            \[
+                \Hom\tuple{ (X, n_X), (Y, n_Y) } := \colim_{q \to \infty} \class{ \Sigma^{n_X + q}(X), \Sigma^{n_Y + q}(Y) }
+            \]
+        }
+        \item {
+            % TODO lim-colim nat. iso? How to explain this?
+            Composition... TODO
+        }
+    \end{enumerate}
+\end{definition}
+
+It can be shown that the Spanier-Whietehead category is an additive category.
+
+To see the triangulated structure of the Spanier-Whitehead category it is necessary to define the shift functor and the class of distinguished triangles.
+
+\begin{definition}[Shift functor in \( SW \)]
+    Let \( \Sigma \) be the following assignment of objects and morphisms in \( SW \).
+
+    Let
+    \[
+        \Sigma(X, n) := (X, n + 1),
+    \] 
+    and for \( f: (X, n_X) \to (Y, n_Y) \), let
+    \[
+        \Sigma(f) := f.
+    \]
+
+    This can be shown to be a functor, and in fact is an automorphism.
+\end{definition}
+
+As the notation would imply, in \( SW \), one has that \( \Sigma(X, n) = (X, n + 1) \cong ( \Sigma X, n ) \).
+
+\begin{definition}[Distinguished triangles in \( SW \)]
+    WIP
+\end{definition}
