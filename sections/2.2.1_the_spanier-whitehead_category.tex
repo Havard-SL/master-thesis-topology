@@ -12,13 +12,14 @@ Now one can define the \emph{underlying} Spanier-Whitehead category. The triangu
 The Spanier-Whitehead category is motivated by the Freudental suspension theorem and historically lead to the definition of the stable homotopy category.
 
 \begin{definition}[Spanier-Whitehead category]
+    \label{def:sw-cat}
     Let \( SW \) be the category with the following properties:
     \begin{enumerate}
         \item {
             Objects in \( SW \) are touples of pointed CW-complexes and an integer, \( X, n \).
         }
         \item {
-            Let \( \Sigma \) here denote the based suspension of a topological space.
+            Let \( \Sigma \) here denote the pointed suspension of a topological space.
 
             % MS-Question: Er dette riktig? Må r >= max(|n_X| + 2, |n_Y|)?
             Morphisms in \( SW \) are the following colimits of abelian groups
@@ -28,7 +29,7 @@ The Spanier-Whitehead category is motivated by the Freudental suspension theorem
         }
         \item {
             % TODO lim-colim nat. iso? How to explain this?
-            Composition... TODO
+            The definition of composition is omitted for brevity in this thesis.
         }
     \end{enumerate}
 \end{definition}
@@ -38,6 +39,7 @@ It can be shown that the Spanier-Whietehead category is an additive category.
 To see the triangulated structure of the Spanier-Whitehead category it is necessary to define the shift functor and the class of distinguished triangles.
 
 \begin{definition}[Shift functor in \( SW \)]
+    \label{def:sw-shift}
     Let \( \Sigma \) be the following assignment of objects and morphisms in \( SW \).
 
     Let
@@ -54,6 +56,35 @@ To see the triangulated structure of the Spanier-Whitehead category it is necess
 
 As the notation would imply, in \( SW \), one has that \( \Sigma(X, n) = (X, n + 1) \cong ( \Sigma X, n ) \).
 
+The following definition of the distinguished triangles to make \( SW \) triangulated omits a lot of details as it is not necessary later in this thesis. For those who are interested, more details can be found in TODO.
+
 \begin{definition}[Distinguished triangles in \( SW \)]
-    WIP
+    \label{def:sw-dist_triangles}
+    Let \( \Delta \) be the collection of triangles in \( SW \) satisfying the following property.
+
+    A triangle
+    \[
+        (X, n_X) \to (Y, n_Y) \to (Z, n_Z) \to (X, n_X + 1)
+    \]
+    is in \( \Delta \) if and only if there is some even number \( k \), such that the following triangle in the homotopy category of pointed CW-complexes
+    \[
+        \Sigma^{n_X + k} X \to \Sigma^{n_Y + k} Y \to \Sigma^{n_Z + k} Z \to \Sigma^{n_X + k + 1} X
+    \]
+    is isomorphic as a triangle in the homotopy category of pointed CW-complexes to a triangle of the form
+    \[
+        A \stackrel{f}{\to} B \to C(f) \to \Sigma A
+    \]
+    where \( C(f) \) is the mapping cone of \( f \).
 \end{definition}
+
+Finally one can define \( SW \) as a triangulated category.
+
+\begin{example}
+    Let \( SW \) be as in \autoref{def:sw-cat}, let \( \Sigma: SW \to SW \) be as in \autoref{def:sw-shift} and let \( \Delta \) be as in \autoref{def:sw-dist_triangles}.
+
+    Then \( \tuple{SW, \Sigma, \Delta} \) is a triangulated category.
+\end{example}
+
+For a proof, see TODO.
+
+From this example of a triangulated category one can see where a lot of the notation in the definition of a triangulated category comes from. There is no coincidence that it is common to use the same symbol for both pointed suspension and for the shift functor ( \( \Sigma \) ), and the same symbol for the mapping cone as well as the cone in a triangulated category ( \( C(f) \) ).

@@ -1,0 +1,65 @@
+The chain homotopy category is on of the simplest triangulated category to define.
+
+\begin{definition}[Chain homotopy category, \( \K(\Ac) \)]
+    \label{def:chain_homotopy_cat}
+    Let \( \Ac \) be an abelian category.
+
+    Then let \( \K(\Ac) \) be the following category:
+    \begin{enumerate}
+        \item {
+            Objects in \( \K(\Ac) \) are chain complexes.
+        }
+        \item {
+            Morphisms in \( \K(\Ac) \) are equivalence classes of chain morphisms up to null-homotopic chain morphisms.
+        }
+        \item {
+            Composition in \( \K(\Ac) \) is the equivalence class of the composition of the representatives of the morphisms, i.e:
+            \[
+                [f] \circ [g] := [f \circ g].
+            \]
+        }
+    \end{enumerate}
+\end{definition}
+
+On \( \C(\Ac) \) and by extension \( \K(\Ac) \) one can define a simple automorphism of categories:
+
+\begin{definition}[Shift functor on \( \K(\Ac) \)]
+    \label{def:chain_homotopy_shift}
+    Let \( \Sigma \) be the following assignment of objects and morphisms in \( \K(\Ac) \).
+
+    Let \( A = \tuple{A_i}_{i \in \Zb} \in \K(\Ac) \) be a chain complex.
+
+    Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \).
+
+    Likewise let \( f = \tuple{f_i}_{i \in \Zb} \in \K(\Ac)(A, B) \) be a chain morphism.
+
+    Then let
+    \[
+        \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \K(\Ac)(\Sigma A, \Sigma B).
+    \]
+
+    This can be shown to be an additive automorphism on \( \K(\Ac) \).
+\end{definition}
+
+The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, T1, but ends up satisfying every axiom anyways.
+
+\begin{definition}
+    \label{def:chain_homotopy_dist}
+    Let \( \Delta \) be the collection of triangles in \( \K(\Ac) \) consisting of triangles that are isomorphic to any triangle of the form
+
+    \[
+        A \stackrel{f}{\to} B \to C(f) \to \Sigma A.
+    \]
+\end{definition}
+
+Together they give the second example of a triangulated category.
+
+\begin{example}
+    Let \( \K(\Ac) \) be as in \autoref{def:chain_homotopy_cat}, let \( \Sigma \) be as in \autoref{def:chain_homotopy_shift}, and let \( \Delta \) be as in \autoref{def:chain_homotopy_dist}.
+
+    Then \( \tuple{\K(\Ac), \Sigma, \Delta} \) is a triangulated category.
+\end{example}
+
+For a proof of this, see TODO.
+
+Similar to the Spanier-Whitehead category, the triangulated category terminoligy of a \emph{shift functor} is derived from the chain homotopy category. One can see from the definition in \autoref{def:chain_homotopy_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminoligy used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
