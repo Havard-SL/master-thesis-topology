@@ -1,8 +1,10 @@
 The stable module category is the category that is going to be used the most in this thesis, so it will be given with more details than the previous two examples.
 
+Before showing the triangulated structure, it is as usual necessary to define the underlying category first.
+
 \begin{definition}
     \label{def:stable_module_category}
-    Let \( R \) be a frobenius algebra.
+    Let \( R \) be a \emph{frobenius algebra}.
 
     Then the \emph{stable module category over \( R \)}, denoted \( \StMod(R) \) is defined in the following way:
     \begin{enumerate}
@@ -10,7 +12,211 @@ The stable module category is the category that is going to be used the most in 
             The objects are infinitely generated modules over \( R \).
         }
         \item {
-            WIP
+            For two modules \( A, B \) in \( \Mod(R) \), let \( G \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective object. By \autoref{lem:morphisms_factoring_through_projectives_r-submodule} this is a submodule of \( \Mod(R)(A, B) \).
+            
+            Then
+            \[
+                \StMod(A, B) := \Mod(R)/G
+            \]
+        }
+        \item {
+            For two morphisms \( [f] \in \StMod(B, C) \), and \( [g] \in \StMod(A, B) \), let composition be defined as follows
+            \[
+                [f] \circ [g] := [f \circ g].
+            \]
+            This is well defined by \autoref{lem:stmod_composition_well-defined}.
         }
     \end{enumerate}
+
+    This category is called the \emph{infinitely generated stable module category over \( R \)}.
 \end{definition}
+
+Here are the two lemmas used in the preceding definition. First is the result that makes morphisms in \( \StMod(R) \) well-defined.
+
+\begin{lemma}
+    \label{lem:morphisms_factoring_through_projectives_r-submodule}
+    Let \( G \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective object.
+
+    Then \( G \) is an \( R \)-submodule of \( \Mod(R)(A, B) \).
+\end{lemma}
+\begin{proof}
+    Let \( f \) and \( g \) be two maps that factor through the projectives \( P \) and \( Q \) respectively. Then we have the following diagrams.
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& P \& B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f_1} (m-1-2)
+                (m-1-2) edge node {f_2} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
+    where \( f_2 \circ f_1 = f \), and
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& Q \& B, \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {g_1} (m-1-2)
+                (m-1-2) edge node {g_2} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
+    where \( g_2 \circ g_1 = g \).
+
+    One can then construct the morphism
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& {P \oplus Q} \& B. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {
+                    \begin{psmallmatrix}
+                        f_1 \\
+                        g_1
+                    \end{psmallmatrix}
+                } (m-1-2)
+                (m-1-2) edge node {(f_2, g_2)} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
+
+    Composing these two maps, one gets the map \( f_2 \circ f_1 + g_2 \circ g_1 = f + g \). This maps factors thorugh \( P \oplus Q \), which is projective since it's a direct sum of projective modules.
+
+    Therefore, the set of homomorphisms that factor through a projective is closed under addition. And multiplying with a ring element still factors through the same projective, since every morphism is an \( R \) homomorphism. Therefore the set of maps that factor through a projective is an \( R \) submodule.
+\end{proof}
+
+Second is the result that makes composition in \( \StMod(R) \) well defined.
+
+\begin{lemma}
+    \label{lem:stmod_composition_well-defined}
+    Composition in \( \StMod(R) \) is well-defined.
+\end{lemma}
+\begin{proof}
+    Need to check that two different choices of representatives of \( [f] \) and \( [g] \) yields the same composition.
+
+    Let \( [f + \widetilde{f}] \) and \( [g + \widetilde{g}] \) be two different representatives of \( [f] \) and \( [g] \), with \( \widetilde{f} \) and \( \widetilde{g} \) factoring through some projectives.
+
+    Then it follows that
+    \[
+        [f + \widetilde{f}] \circ [g + \widetilde{g}] = [f \circ g] + [\widetilde{f} \circ g] + [f \circ \widetilde{g}] + [\widetilde{f} \circ \widetilde{g}].
+    \]
+    
+    However, every term other than \( [f \circ g] \), factors through a projective and is therefore equal to \( 0 \) in \( \StMod(R)(A, C) \).
+\end{proof}
+
+This thesis starts by defining the functor \( \Omega \), which will be shown later to be the inverse of the shift functor.
+
+\begin{definition}
+    Since \( \Mod(R) \) has enough projectives, one can choose a projecive module \( P_A \) for every \( A \) with endomorphisms \( \pi_A \) from \( P_A \) to \( A \) for every \( A \). Fix a choice of \( P_A \) and \( \pi_A \) for every \( A \).
+
+    Then define \( \Omega \) as the assignment of objects and morphisms in \( \StMod(R) \) as follows:
+    \begin{itemize}
+        \item For any object \( A \) in \( \StMod(R) \), let \( \Omega(A) := \ker(\pi_A) \).
+        \item For any \( [f] \in \StMod(A, B) \), let \( \Omega([f]) \) be as explained in \autoref{rem:stmod_omega_f}.
+    \end{itemize}
+
+    By TODO, \( \Omega \) is an endofunctor on \( \StMod(R) \).
+\end{definition}
+
+Before showing the result that shows that \( \Omega \) is a functor, it is necessary to show the slightly convoluted definition of \( \Omega \) applied to a morphism.
+
+\begin{remark}
+    \label{rem:stmod_omega_f}
+    \( \Omega([f]) \) is constructed as follows:
+
+    Look at the following commutative diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge node {\Omega'(f)} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge node {p_f} (m-2-2)
+                (m-1-3) edge node {f} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
+
+    One has that for a map \( f: A \to B \), one gets the map \( p_f \) from the lifitng property of projective modules. Please note that this map is \emph{not neccesarily} unique.
+
+    Furthermore, since \( \pi_B \circ p_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0 \), one has from the universal kernel property that there is a \emph{unique} morphism, (however it is still dependant on the choice of \( p_f \)) \( \Omega'(f) \) from \( \Omega(A) \) to \( \Omega(B) \). Taking the equivalence class of this morphism with respect to morphisms factoring through projectctives yields the morphism defined by the functor, i.e. \( \Omega([f]) := \class{\Omega'(f)} \).
+
+    It is shown in \autoref{lem:omega_f_is_well_defined} that \( \Omega([f]) \) is in fact unique and independent of the choice of representative, and \( \Omega \) is therefore a well-defined assignment of morphisms.
+\end{remark}
+
+The following is the lemma showing that \( \Omega \) is a well-defined assignment of morphisms.
+
+\begin{lemma}
+    \label{lem:omega_f_is_well_defined}
+    \( \Omega \) is a well-defined assignment of morphisms.
+\end{lemma}
+\begin{proof}
+    There are two things that need to be proven. Firstly, in the construction of \( \Omega'(f) \), one have to chose a map \( p_f \) from the projective property. Need to show that if one choses another projective map, that \( \Omega \) still yields the same map in \( \StMod(R) \). Second, one need to show that if \( f \sim g \), then \( \Omega'(f) \sim \Omega'(g) \).
+
+    To prove the first part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective maps that give the maps \( \Omega'(f) \) and \( \widetilde{\Omega'(f)} \) respectively. Then one has the following commutative diagram
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[swap] node {\Omega'(f) - \widetilde{\Omega'(f)}} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge[dashed, swap] node {\phi} (m-2-1)
+                    edge node {p_f - p'_f} (m-2-2)
+                (m-1-3) edge node {f -f = 0} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
+
+    WIP
+    Using the same argument as always, one gets that \( \Omega(f) \sim \Omega(f)' \). (I also think this follows directly from additivity.)
+
+    Secondly, need to show that if \( f \sim g \), then \( \Omega(f) \sim \Omega(g) \). Look at the following diagram:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{3cm} {
+                \Omega(A) \& P_A \& A \\
+                \&\& P \\
+                \Omega(B) \& P_B \& B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge node {0} (m-3-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge node {\theta \circ (f - g)_1 \circ \pi_A} (m-3-2)
+                (m-1-3) edge[swap] node {(f - g)_1} (m-2-3)
+                    edge[curve={height=-25pt}] node {f - g} (m-3-3)
+
+                (m-2-3) edge[swap, dashed, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-3-2)
+                    edge[swap] node {(f - g)_2} (m-3-3)
+
+                (m-3-1) edge[hook] (m-3-2)
+                (m-3-2) edge[two heads] (m-3-3);
+        \end{tikzpicture}
+    \end{center}
+
+    Let \( P \) be the projective that \( f - g \) factors through. Then from the projective propertive, one gets a map \( \theta: P \to P_B \). Then the diagram commutes. But then \( \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0 \), and so the diagram commutes with \( 0: \Omega(A) \to \Omega(B) \). But since, \( \theta \circ (f-g)_1 \circ \pi_A \) is another choice of \( p_{f - g} \), from the previous part of the proof since \( \Omega \) is independent of the choice of \( h \)-maps, one gets that \( \Omega(f - g) \sim 0 \). And from additivity, one has that \( \Omega(f - g) \sim \Omega(f) - \Omega(g) \), one then gets that \( \Omega(f) \sim \Omega(g) \).
+\end{proof}
+
+% TODO: Add remark that fixing an assigment of "projective covers" is neccessary to show that Omega is well defined.
