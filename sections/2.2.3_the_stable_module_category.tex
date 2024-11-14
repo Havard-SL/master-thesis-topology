@@ -129,7 +129,7 @@ Before showing the result that shows that \( \Omega \) is a functor, it is neces
     \label{rem:stmod_omega_f}
     \( \Omega([f]) \) is constructed as follows:
 
-    Look at the following commutative diagram
+    Look at the following diagram in \( \Mod(R) \)
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -149,9 +149,13 @@ Before showing the result that shows that \( \Omega \) is a functor, it is neces
         \end{tikzpicture}
     \end{center}
 
-    One has that for a map \( f: A \to B \), one gets the map \( p_f \) from the lifitng property of projective modules. Please note that this map is \emph{not neccesarily} unique.
+    One has that for a morphism \( f: A \to B \), there exists a morphism \( p_f \) from the lifitng property of projective modules such that the right square commutes. Please note that this morphism is \emph{not neccesarily} unique.
 
-    Furthermore, since \( \pi_B \circ p_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0 \), one has from the universal kernel property that there is a \emph{unique} morphism, (however it is still dependant on the choice of \( p_f \)) \( \Omega'(f) \) from \( \Omega(A) \) to \( \Omega(B) \). Taking the equivalence class of this morphism with respect to morphisms factoring through projectctives yields the morphism defined by the functor, i.e. \( \Omega([f]) := \class{\Omega'(f)} \).
+    Furthermore, since
+    \[
+        \pi_B \circ p_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0,
+    \]
+    one has from the universal kernel property that there exists a unique morphism, dependant on the choice of \( p_f \), denoted as \( \Omega'(f) \) from \( \Omega(A) \) to \( \Omega(B) \) such that the left square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectctives yields the morphism defined by the functor, i.e. \( \Omega([f]) := \class{\Omega'(f)} \).
 
     It is shown in \autoref{lem:omega_f_is_well_defined} that \( \Omega([f]) \) is in fact unique and independent of the choice of representative, and \( \Omega \) is therefore a well-defined assignment of morphisms.
 \end{remark}
@@ -163,10 +167,9 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
     \( \Omega \) is a well-defined assignment of morphisms.
 \end{lemma}
 \begin{proof}
-    There are two things that need to be proven. Firstly, in the construction of \( \Omega'(f) \), one have to chose a map \( p_f \) from the projective property. Need to show that if one choses another projective map, that \( \Omega \) still yields the same map in \( \StMod(R) \). Second, one need to show that if \( f \sim g \), then \( \Omega'(f) \sim \Omega'(g) \).
+    There are two things that need to be proven. Firstly, in the construction of \( \Omega'(f) \), one has to choose a morphism \( p_f \) from the projective property. Need to show that if one choses another projective morphism, that \( \Omega \) still yields the same morphism in \( \StMod(R) \). Second, one need to show that if \( f \sim g \), then \( \Omega'(f) \sim \Omega'(g) \).
 
-    To prove the first part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective maps that give the maps \( \Omega'(f) \) and \( \widetilde{\Omega'(f)} \) respectively. Then one has the following commutative diagram
-
+    To prove the first part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective morphisms that give the morphisms \( \Omega'(f) \) and \( \widetilde{\Omega'(f)} \) respectively. Then one has the following commutative diagram ewcluding the dotted arrow
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -179,7 +182,7 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
                     edge[swap] node {\Omega'(f) - \widetilde{\Omega'(f)}} (m-2-1)
                 (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
                     edge[dashed, swap] node {\phi} (m-2-1)
-                    edge node {p_f - p'_f} (m-2-2)
+                    edge node {p_f - \widetilde{p_f}} (m-2-2)
                 (m-1-3) edge node {f -f = 0} (m-2-3)
 
                 (m-2-1) edge[hook] node {\iota_B} (m-2-2)
@@ -187,36 +190,109 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
         \end{tikzpicture}
     \end{center}
 
-    WIP
-    Using the same argument as always, one gets that \( \Omega(f) \sim \Omega(f)' \). (I also think this follows directly from additivity.)
+    Since
+    \[
+        \pi_B \circ \tuple{p_f - \widetilde{p_f}} = \tuple{f - f} \circ \pi_A = 0
+    \]
+    there exists a map \( \phi \) induced by the kernel property of \( \Omega(B) \), such that the lower triangle in the diagram commutes. However, since \( \iota_B \) is a monomorphism, one also gets that the upper triangle commutes. This implies that the morphism \( \Omega'(f) - \widetilde{\Omega'(f)}' \) factors through \( P_A \), a projective module. Therefore
+    \[
+        0 = \class{\Omega'(f) - \widetilde{\Omega'(f)}} = \class{\Omega'(f)} - \class{\widetilde{\Omega'(f)}}
+    \]
+    which implies \( \Omega([f]) \) is independent of choice of \( p_f \).
 
-    Secondly, need to show that if \( f \sim g \), then \( \Omega(f) \sim \Omega(g) \). Look at the following diagram:
+    Second, need to show that if \( f \sim g \), then \( \Omega(f) \sim \Omega(g) \). Look at the following diagram
 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{3cm} {
                 \Omega(A) \& P_A \& A \\
                 \&\& P \\
-                \Omega(B) \& P_B \& B \\
+                \Omega(B) \& P_B \& B. \\
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
-                    edge node {0} (m-3-1)
-                (m-1-2) edge[two heads] (m-1-3)
-                    edge node {\theta \circ (f - g)_1 \circ \pi_A} (m-3-2)
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge node {\Omega'(f) - \Omega'(g)} (m-3-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge node {p_f - p_g} (m-3-2)
                 (m-1-3) edge[swap] node {(f - g)_1} (m-2-3)
                     edge[curve={height=-25pt}] node {f - g} (m-3-3)
 
                 (m-2-3) edge[swap, dashed, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-3-2)
                     edge[swap] node {(f - g)_2} (m-3-3)
 
-                (m-3-1) edge[hook] (m-3-2)
-                (m-3-2) edge[two heads] (m-3-3);
+                (m-3-1) edge[hook] node {\iota_B} (m-3-2)
+                (m-3-2) edge[two heads] node[swap] {\pi_B} (m-3-3);
         \end{tikzpicture}
     \end{center}
 
-    Let \( P \) be the projective that \( f - g \) factors through. Then from the projective propertive, one gets a map \( \theta: P \to P_B \). Then the diagram commutes. But then \( \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0 \), and so the diagram commutes with \( 0: \Omega(A) \to \Omega(B) \). But since, \( \theta \circ (f-g)_1 \circ \pi_A \) is another choice of \( p_{f - g} \), from the previous part of the proof since \( \Omega \) is independent of the choice of \( h \)-maps, one gets that \( \Omega(f - g) \sim 0 \). And from additivity, one has that \( \Omega(f - g) \sim \Omega(f) - \Omega(g) \), one then gets that \( \Omega(f) \sim \Omega(g) \).
+    Let \( P \) be the projective that \( f - g \) factors through. Then from the projective property, there exists a morphism \( \theta: P \to P_B \), which causes the lower triangle to commute.
+
+    Let \( p'_{f - g} := \theta \circ (f - g)_1 \circ \pi_A \). By construction, one has that both \( p_f - p_g \) and \( p'_{f - g} \) are morphisms that would make the right hand square commute.
+    
+    But since
+    \[
+        p'_{f - g} \circ \iota_A = \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0,
+    \]
+    it implies that if the leftmost morphism in the diagram was \( 0 \) and the middle morphism was \( p'_{f - g} \), it would commute. By the previous part of this proof, since the two possible middle morphisms, \( p_f - p_g \) and \( p'_{f - g} \), produce two different leftmost morphisms \( \Omega'(f) - \Omega'(g) \) and \( 0 \), one has that \( \Omega([f]) = \Omega([g]) \).
 \end{proof}
 
-% TODO: Add remark that fixing an assigment of "projective covers" is neccessary to show that Omega is well defined.
+Now that \( \Omega \) is a well defined asssignment of objects and morphisms, it only remains to prove functoriality as well as showing that the identity is mapped to the identity to show that it's a functor.
+
+\begin{lemma}
+    \( \Omega \) is an endofunctor on \( \StMod(R) \).
+\end{lemma}
+\begin{proof}
+    To show that \( \Omega \) is a functor it remains to prove functoriality as well as showing that the identity is mapped to the identity.
+
+    First want to show that \( \Omega \) is functorial. Let \( A, B, C \in \StMod(R) \). Then by the definition of \( \Omega \), one has the following commutative diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(C)} \& {P_C} \& C \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[swap] node {\Omega(f \circ g), \Omega(f) \circ \Omega(g)} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge node {p_{f \circ g} - p_f \circ p_g} (m-2-2)
+                (m-1-3) edge node {f \circ g - f \circ g = 0} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_C} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_C} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
+
+    WIP
+
+    But this implies that \( \pi_C \circ (p_{f \circ g} - p_f \circ p_g) = 0 \), which inducec a map by the kernel property \( \phi: P_A \to \Omega(C) \). Such that the lower triangle commutes. And since, \( \iota_C \) is a monomorphism, one gets that the upper triangle also commutes. And therefore \( \Omega(f \circ g) - \Omega(f) \circ \Omega(g) \) factors through a projective, and therefore \( \Omega(f \circ g) \sim \Omega(f) \circ \Omega(g) \).
+
+    Second, need to show that \( \Omega(\Id_A) = \Id_{\Omega(A)} \) in \( \Tc \).
+
+    By the same argument like above, one can see that every square and triangle in the following diagram also commutes:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(A)} \& {P_A} \& A \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge[swap] node {\Omega(Id_A) - Id_{\Omega(A)}} (m-2-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge[dashed, swap] node {\phi} (m-2-1)
+                    edge node {p_{Id_A} - Id_{P_A}} (m-2-2)
+                (m-1-3) edge node {Id_A - Id_A = 0} (m-2-3)
+
+                (m-2-1) edge[hook] (m-2-2)
+                (m-2-2) edge[two heads] (m-2-3);
+        \end{tikzpicture}
+    \end{center}
+
+    And therefore \( \Omega(\Id_A) \sim Id_{\Omega(A)} \).
+
+\end{proof}
