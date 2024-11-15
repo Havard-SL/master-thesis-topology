@@ -9,7 +9,7 @@ First, some notation.
 
 Now one can define the \emph{underlying} Spanier-Whitehead category. The triangulated structure will be descirbed afterwards.
 
-The Spanier-Whitehead category is motivated by the Freudental suspension theorem and historically lead to the definition of the stable homotopy category.
+The Spanier-Whitehead category is motivated by the Freudental suspension theorem and historically lead to the definition of the stable homotopy category. The following definition is based on TODO
 
 % CITE: Schwede 2008
 \begin{definition}[Spanier-Whitehead category]
@@ -25,7 +25,7 @@ The Spanier-Whitehead category is motivated by the Freudental suspension theorem
             % MS-Question: Er dette riktig? Må r >= max(|n_X| + 2, |n_Y|)?
             Morphisms in \( SW \) are the following colimits of abelian groups
             \[
-                \Hom\tuple{ (X, n_X), (Y, n_Y) } := \colim_{q \to \infty} \class{ \Sigma^{n_X + q}(X), \Sigma^{n_Y + q}(Y) }
+                \Hom\tuple{ (X, n_X), (Y, n_Y) } := \colim_{\stackrel{q \to \infty}{q \geq \max(|n_X| + 2, |n_Y|)}} \class{ \Sigma^{n_X + q}(X), \Sigma^{n_Y + q}(Y) }
             \]
         }
         \item {
@@ -86,7 +86,6 @@ Finally one can define \( SW \) as a triangulated category.
     Then \( \tuple{SW, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 
-For a proof, see TODO.
-% Cite: Daria bachelor.
+For a proof of the Spanier-Whitehead category being triangulated, see \cite[Theorem 5.9]{Daria_Bachelor}.
 
 From this example of a triangulated category one can see where a lot of the notation in the definition of a triangulated category comes from. There is no coincidence that it is common to use the same symbol for both pointed suspension and for the shift functor ( \( \Sigma \) ), and the same symbol for the mapping cone as well as the cone in a triangulated category ( \( C(f) \) ).

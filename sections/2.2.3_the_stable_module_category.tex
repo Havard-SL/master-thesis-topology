@@ -109,9 +109,61 @@ Second is the result that makes composition in \( \StMod(R) \) well defined.
     However, every term other than \( [f \circ g] \), factors through a projective and is therefore equal to \( 0 \) in \( \StMod(R)(A, C) \).
 \end{proof}
 
+In order to be an underlying category of a triangulated category, a categoy needs to be additive.
+
+\begin{lemma}
+    \( \StMod(R) \) is an additive category.
+\end{lemma}
+\begin{proof}
+    There are two parts to this proof. First want to show that \( \StMod(R) \) is pre-additive and then second, want to show that \( \StMod(R) \) has finite products which in addition to being pre-additive would imply that \( \StMod(R) \) is additive.
+
+    To show that \( \StMod(R) \) is pre-additive there are two properties that need to be shown
+    \begin{enumerate}
+        \item {
+            First, need to show that for any \( A, B \in \StMod(R) \) that \( \StMod(R)(A, B) \) is an abelian group.
+
+            This follows immediately, since \( \StMod(R)(A, B) \) is the quotient of an \( R \)-module, and is therefore an \( R \)-module and hence an abelian group.
+        }
+        \item {
+            Second, need to show that composition is bilinear.
+
+            Consider \( [f], [f'] \in \StMod(R)(B, C) \) and \( [g], [g'] \in \StMod(R)(A, B) \). Look at the following equation
+            \begin{align*}
+                ([f] + [f']) \circ ([g] + [g']) &= [f + f'] \circ [g + g'] \\
+                &= \class{(f + f') \circ (g + g')} \\
+                &= \class{f \circ g + f \circ g' + f' \circ g + f' \circ g'} \\
+                &= [f] \circ [g] + [f] \circ [g'] + [f'] \circ [g] + [f'] \circ [g'],
+            \end{align*}
+            which is exactly bilinearity.
+        }
+    \end{enumerate}
+
+    The claim is that the usual product in \( \Mod(R) \) is the product in \( \StMod(R) \). Let the following be the commutative diagram for the universal property of \( A \times B \) with respect to some object \( X \).
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \& X \\
+                A \& A \times B \& B \\
+            };
+
+            \draw[math]
+                (m-1-2) edge node[swap] {[f_A]} (m-2-1)
+                    edge[dashed] node {[f]} (m-2-2)
+                    edge node {[f_B]} (m-2-3)
+
+                (m-2-2) edge node[swap] {[\pi_B]} (m-2-3)
+                    edge node {[\pi_A]} (m-2-1);
+        \end{tikzpicture}
+    \end{center}
+    Let \( [g]: X \to A \times B \) be another morphism that satisfies the universal property.
+
+    WIP
+\end{proof}
+
 This thesis starts by defining the functor \( \Omega \), which will be shown later to be the inverse of the shift functor.
 
 \begin{definition}
+    \label{def:stmod_omega}
     Since \( \Mod(R) \) has enough projectives, one can choose a projecive module \( P_A \) for every \( A \) with endomorphisms \( \pi_A \) from \( P_A \) to \( A \) for every \( A \). Fix a choice of \( P_A \) and \( \pi_A \) for every \( A \).
 
     Then define \( \Omega \) as the assignment of objects and morphisms in \( \StMod(R) \) as follows:
@@ -120,7 +172,7 @@ This thesis starts by defining the functor \( \Omega \), which will be shown lat
         \item For any \( [f] \in \StMod(A, B) \), let \( \Omega([f]) \) be as explained in \autoref{rem:stmod_omega_f}.
     \end{itemize}
 
-    By TODO, \( \Omega \) is an endofunctor on \( \StMod(R) \).
+    By \autoref{lem:stmod_omega_endofunctor}, \( \Omega \) is an endofunctor on \( \StMod(R) \).
 \end{definition}
 
 Before showing the result that shows that \( \Omega \) is a functor, it is necessary to show the slightly convoluted definition of \( \Omega \) applied to a morphism.
@@ -157,13 +209,13 @@ Before showing the result that shows that \( \Omega \) is a functor, it is neces
     \]
     one has from the universal kernel property that there exists a unique morphism, dependant on the choice of \( p_f \), denoted as \( \Omega'(f) \) from \( \Omega(A) \) to \( \Omega(B) \) such that the left square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectctives yields the morphism defined by the functor, i.e. \( \Omega([f]) := \class{\Omega'(f)} \).
 
-    It is shown in \autoref{lem:omega_f_is_well_defined} that \( \Omega([f]) \) is in fact unique and independent of the choice of representative, and \( \Omega \) is therefore a well-defined assignment of morphisms.
+    It is shown in \autoref{lem:stmod_omega_f_is_well_defined} that \( \Omega([f]) \) is in fact unique and independent of the choice of representative, and \( \Omega \) is therefore a well-defined assignment of morphisms.
 \end{remark}
 
 The following is the lemma showing that \( \Omega \) is a well-defined assignment of morphisms.
 
 \begin{lemma}
-    \label{lem:omega_f_is_well_defined}
+    \label{lem:stmod_omega_f_is_well_defined}
     \( \Omega \) is a well-defined assignment of morphisms.
 \end{lemma}
 \begin{proof}
@@ -240,6 +292,7 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
 Now that \( \Omega \) is a well defined asssignment of objects and morphisms, it only remains to prove functoriality as well as showing that the identity is mapped to the identity to show that it's a functor.
 
 \begin{lemma}
+    \label{lem:stmod_omega_endofunctor}
     \( \Omega \) is an endofunctor on \( \StMod(R) \).
 \end{lemma}
 \begin{proof}
@@ -250,49 +303,123 @@ Now that \( \Omega \) is a well defined asssignment of objects and morphisms, it
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
                 {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B \\
                 {\Omega(C)} \& {P_C} \& C \\
             };
 
             \draw[math]
+                (m-1-1) edge[hook] (m-1-2)
+                    edge[curve={height=30pt}, swap, color={rgb,255:red,214;green,92;blue,92}] node {\Omega(f \circ g)} (m-3-1)
+                    edge node {\Omega(g)} (m-2-1)
+                (m-1-2) edge[two heads] (m-1-3)
+                    edge[curve={height=30pt}, swap, color={rgb,255:red,214;green,92;blue,92}] node[pos=0.3] {p_{f \circ g}} (m-3-2)
+                    edge node {p_g} (m-2-2)
+                (m-1-3) edge node {g} (m-2-3)
+                    edge[curve={height=-30pt}, color={rgb,255:red,214;green,92;blue,92}] node {f \circ g} (m-3-3)
+
+                (m-2-1) edge[hook] (m-2-2)
+                    edge node {\Omega(f)} (m-3-1)
+                (m-2-2) edge[two heads] (m-2-3)
+                    edge node {p_f} (m-3-2)
+                (m-2-3) edge node {f} (m-3-3)
+
+                (m-3-1) edge[hook] (m-3-2)
+                (m-3-2) edge[two heads] (m-3-3);
+        \end{tikzpicture}
+    \end{center}
+
+    Looking at the composition of the vertical morphisms, one neds up with the following commutative diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(C)} \& {P_C} \& C. \\
+            };
+
+            \draw[math]
                 (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge[swap] node {\Omega(f \circ g), \Omega(f) \circ \Omega(g)} (m-2-1)
+                    edge[swap] node {\Omega'(f) \circ \Omega'(g)} (m-2-1)
                 (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
-                    edge node {p_{f \circ g} - p_f \circ p_g} (m-2-2)
-                (m-1-3) edge node {f \circ g - f \circ g = 0} (m-2-3)
+                    edge node {p_f \circ p_g} (m-2-2)
+                (m-1-3) edge node {f \circ g} (m-2-3)
 
                 (m-2-1) edge[hook] node {\iota_C} (m-2-2)
                 (m-2-2) edge[two heads] node {\pi_C} (m-2-3);
         \end{tikzpicture}
     \end{center}
-
-    WIP
-
-    But this implies that \( \pi_C \circ (p_{f \circ g} - p_f \circ p_g) = 0 \), which inducec a map by the kernel property \( \phi: P_A \to \Omega(C) \). Such that the lower triangle commutes. And since, \( \iota_C \) is a monomorphism, one gets that the upper triangle also commutes. And therefore \( \Omega(f \circ g) - \Omega(f) \circ \Omega(g) \) factors through a projective, and therefore \( \Omega(f \circ g) \sim \Omega(f) \circ \Omega(g) \).
+    Since \( \Omega \) is a well-defined assignment of morphisms, this implies
+    \[
+        \Omega([f]) \circ \Omega([g]) = \class{\Omega'(f) \circ \Omega'(g)} = \Omega(\class{f \circ g}).
+    \]
 
     Second, need to show that \( \Omega(\Id_A) = \Id_{\Omega(A)} \) in \( \Tc \).
 
-    By the same argument like above, one can see that every square and triangle in the following diagram also commutes:
-
+    By a similar argument to above, one can see that every square and triangle in the following diagram commutes
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
                 {\Omega(A)} \& {P_A} \& A \\
-                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(A)} \& {P_A} \& A. \\
             };
 
             \draw[math]
                 (m-1-1) edge[hook] (m-1-2)
-                    edge[swap] node {\Omega(Id_A) - Id_{\Omega(A)}} (m-2-1)
+                    edge[swap] node {\Id_{\Omega(A)}} (m-2-1)
                 (m-1-2) edge[two heads] (m-1-3)
                     edge[dashed, swap] node {\phi} (m-2-1)
-                    edge node {p_{Id_A} - Id_{P_A}} (m-2-2)
-                (m-1-3) edge node {Id_A - Id_A = 0} (m-2-3)
+                    edge node {\Id_{P_A}} (m-2-2)
+                (m-1-3) edge node {\Id_A} (m-2-3)
 
                 (m-2-1) edge[hook] (m-2-2)
                 (m-2-2) edge[two heads] (m-2-3);
         \end{tikzpicture}
     \end{center}
+    Therefore \( \Omega(\class{\Id_A}) = \class{\Id_{\Omega(A)}} \).
+\end{proof}
 
-    And therefore \( \Omega(\Id_A) \sim Id_{\Omega(A)} \).
+An important detail in \autoref{def:stmod_omega} of \( \Omega \), is that the definition is dependent on a choice of ``projective covers'' (in quotes, since the epimorphisms doesn't have to be essential epimorphisms). This is important to note since otherwise \( \Omega \) would not be well defined.
 
+An important detail still missing to show that \( \Omega^{-1} \) could be a shift functor is showing additivity.
+
+\begin{lemma}
+    For \( f, g \in \StMod(R)(A, B) \), let WIP
+
+    Let \( A, B \in \Tc \), then for \( f, g \in \Tc(A, B) \), one has that \( \Omega(f + g) = \Omega(f) + \Omega(g) \) in \( \Tc \). I.e. \( \Omega \) is additive.
+\end{lemma}
+\begin{proof}
+    Want to show that \( \Omega(f + g) \sim \Omega(f) + \Omega(g) \).
+    
+    One has that for any morphisms \( f, g \in \Tc(A, B) \), from the definition of \( \Tc \), that \( f = g \) in \( \Tc \) if \( f - g \) factors through a projective.
+
+    With that in mind, look at the following diagram:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                {\Omega(A)} \& {P_A} \& A \\
+                {\Omega(B)} \& {P_B} \& B \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                    edge[swap] node {\Omega(f+g)-\Omega(f)-\Omega(g)} (m-2-1)
+                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                    edge[dashed, swap] node {\phi} (m-2-1)
+                    edge node {p_{f + g} - p_f - p_g} (m-2-2)
+                (m-1-3) edge node {f + g - f - g = 0} (m-2-3)
+
+                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+        \end{tikzpicture}
+    \end{center}
+
+    Starting from the leftmost side, want to show that \( \Omega(f + g) - \Omega(f) - \Omega(g) \) factors through a projective.
+
+    Firstly, one can observe that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \Omega(f + g) - \iota_B \circ \Omega(f) - \iota_B \circ \Omega(g) = p_{f + g} \circ \iota_A - p_{f} \circ \iota_A - p_{g} \circ \iota_A = (p_{f + g} - p_f - p_g) \circ \iota_A \). So the map \( p_{f + g} - p_f - p_g: P_A \to P_B \) makes the left square commute.
+    
+    Secondly, one can see that \( \pi_B \circ (p_{f + g} - p_f - p_g) = \pi_B \circ p_{f + g} - \pi_B \circ p_f - \pi_B \circ  p_g = (f + g) \circ \pi_A - f \circ \pi_A - g \circ \pi_A = (f + g - f - g) \circ \pi_A = 0 \circ \pi_A = 0 \). 
+    
+    But then from the kernel property there is an induced and unique map \( \phi: P_A \to \Omega(B) \) such that \( \iota_B \circ \phi = p_{f + g} - p_f - p_g \). But from the commutativity of the left square, one has that \( \iota_B \circ (\Omega(f+g)-\Omega(f)-\Omega(g)) = \iota_B \circ \phi \circ \iota_A \). Furthermore, since \( \iota_A \) is a monomorphism, one gets that \( \Omega(f+g)-\Omega(f)-\Omega(g) = \phi \circ \iota_A \).
+
+    But that implies that \( \Omega(f+g)-\Omega(f)-\Omega(g) \) factors thorugh a projective, and therefore \( \Omega(f + g) \sim \Omega(f) + \Omega(g) \).
 \end{proof}
