@@ -17,6 +17,7 @@
 
 % Enables memoization
 % extract=no means that latexmk need to do the extracting itself. This is controlled by the latexmkrc file.
+% Adding any option to a commutative diagram causes size to shrink.
 \usepackage[extract=no]{memoize}
 
 % Uncomment the following to recompile every tikz-diagram. NOTE: Recompile is a little borked with latexmk. TODO: Write issue to memoize.
@@ -46,6 +47,9 @@
 
 % For autoref
 \usepackage[hidelinks,colorlinks=true]{hyperref} 
+% \renewcommand*{\sectionautorefname}{Section}
+% Fixes name of sections from "section X" to "Section X" when using hyperref with babel.
+\addto\extrasenglish{\def\sectionautorefname{Section}}
 
 % For fargar på ting ein referer til i autoref
 \hypersetup{allcolors=[rgb]{0,0.31,0.62}}
@@ -125,18 +129,22 @@
 \input{sections/1_introduction.tex}
 
 \section{Triangulated categories}
+\label{section:2}
 \input{sections/2_triangulated_categories.tex}
 
 \section{Toda brackets}
 \input{sections/3_toda_brackets.tex}
 
 \section{Massey products}
+\label{section:4}
 \input{sections/4_massey_products.tex}
 
 \section{Toda brackets equal Massey products}
+\label{section:5}
 \input{sections/5_toda_brackets_equal_massey_products.tex}
 
 \section{Applications on Adams spectral sequences}
+\label{section:6}
 \input{sections/6_applications_on_adams_spectral_sequences.tex}
 
 \appendix
