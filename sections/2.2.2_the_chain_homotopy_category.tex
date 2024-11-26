@@ -1,5 +1,6 @@
-The chain homotopy category is on of the simplest triangulated category to define.
+The chain homotopy category is one of the simplest triangulated category to define, and is a good example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in TODO, and this thesis will not include or use any details on why the chain homotopy category is an algebraic triangulated category.
 
+% MS-Question: Ikkje vist at dette er ein kategori...
 \begin{definition}[Chain homotopy category, \( \K(\Ac) \)]
     \label{def:chain_homotopy_cat}
     Let \( \Ac \) be an abelian category.
@@ -15,11 +16,13 @@ The chain homotopy category is on of the simplest triangulated category to defin
         \item {
             Composition in \( \K(\Ac) \) is the equivalence class of the composition of the representatives of the morphisms, i.e:
             \[
-                [f] \circ [g] := [f \circ g].
+                [g] \circ [f] := [g \circ f ].
             \]
         }
     \end{enumerate}
 \end{definition}
+
+\( \K(\Ac) \) can be shown to be an additive category.
 
 On \( \C(\Ac) \) and by extension \( \K(\Ac) \) one can define a simple automorphism of categories:
 
@@ -37,8 +40,14 @@ On \( \C(\Ac) \) and by extension \( \K(\Ac) \) one can define a simple automorp
     \[
         \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \K(\Ac)(\Sigma A, \Sigma B).
     \]
+\end{definition}
 
-    This can be shown to be an additive automorphism on \( \K(\Ac) \).
+\( \Sigma \) can be shown to be an additive automorphism on \( \K(\Ac) \).
+
+The final piece of the puzzle is to define what the cone of a morphism in \( \K(\Ac) \) is.
+
+\begin{definition}
+    WIP
 \end{definition}
 
 The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, T1, but ends up satisfying every axiom anyways.
