@@ -1,44 +1,15 @@
 % TODO: Kan generaliserast til endeleg gen modular om R er noetherske. Og det verkar som frobenius ringar er noetherske. https://en.wikipedia.org/wiki/Quasi-Frobenius_ring Zimmermann: Prop. 5.1.4
 
-The stable module category is the category that is going to be used the most in this thesis, so it will be given with more details than the previous two examples.
+A triangulated ctageory that will be central in this thesis is the stable module category. Therefore the definition will be given in more details than the previous two examples of triangulated categories.
 
-Before showing the triangulated structure, it is as usual necessary to define the underlying category first.
+Before showing the triangulated structure, it is as usual necessary to define the underlying category first. However, the underlying category require some lemmas to be well defined.
 
-\begin{definition}
-    \label{def:stable_module_category}
-    Let \( R \) be a \emph{frobenius algebra}.
-
-    Then the \emph{stable module category over \( R \)}, denoted \( \StMod(R) \) is defined in the following way:
-    \begin{enumerate}
-        \item {
-            The objects are infinitely generated modules over \( R \).
-        }
-        \item {
-            For two modules \( A, B \) in \( \Mod(R) \), let \( G \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective object. By \autoref{lem:morphisms_factoring_through_projectives_r-submodule} this is a submodule of \( \Mod(R)(A, B) \).
-            
-            Then
-            \[
-                \StMod(A, B) := \Mod(R)/G
-            \]
-        }
-        \item {
-            For two morphisms \( [f] \in \StMod(B, C) \), and \( [g] \in \StMod(A, B) \), let composition be defined as follows
-            \[
-                [f] \circ [g] := [f \circ g].
-            \]
-            This is well defined by \autoref{lem:stmod_composition_well-defined}.
-        }
-    \end{enumerate}
-
-    This category is called the \emph{infinitely generated stable module category over \( R \)}.
-\end{definition}
-
-In the usual definition of the infinitely generated stable module category, it is not usually required that the ring be a frobenius algebra. However, as will become apparent later in this subsection is that it is a requirement to having a triangulated structure defined on it. Since this thesis will only be considering the stable module category as a triangulated category, this assumption is made from the beginning.
-
-Here are the two lemmas used in the preceding definition. First is the result that makes morphisms in \( \StMod(R) \) well-defined.
+First, a small lemma that will be used to define the morphisms in the stable module category.
 
 \begin{lemma}
     \label{lem:morphisms_factoring_through_projectives_r-submodule}
+    Let \( R \) be a commutative ring with identity.
+
     Let \( G \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective object.
 
     Then \( G \) is an \( R \)-submodule of \( \Mod(R)(A, B) \).
@@ -94,14 +65,24 @@ Here are the two lemmas used in the preceding definition. First is the result th
     Therefore, the set of homomorphisms that factor through a projective is closed under addition. And multiplying with a ring element still factors through the same projective, since every morphism is an \( R \) homomorphism. Therefore the set of morphisms that factor through a projective is an \( R \) submodule.
 \end{proof}
 
-Second is the result that makes composition in \( \StMod(R) \) well defined.
+Second is the result that makes composition in the stable module category well defined.
 
 \begin{lemma}
     \label{lem:stmod_composition_well-defined}
-    Composition in \( \StMod(R) \) is well-defined.
+    Let \( R \) be a commutative ring with identity.
+
+    For two modules \( A, B \) in \( \Mod(R) \), let \( G_{A, B} \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective object. By \autoref{lem:morphisms_factoring_through_projectives_r-submodule} \( G_{A, B} \) is a submodule of \( \Mod(R)(A, B) \).
+
+    Define the binary operation \( c \) as follows
+    \begin{align*}
+        c: \Mod(R)(B, C)/G_{B,C} \times \Mod(R)(A, B)/G_{A,B} &\to \Mod(R)(A, C)/G_{A,C} \\
+        [g] \times [f] &\mapsto [g \circ f]
+    \end{align*}
+
+    Then \( c \) is well defined.
 \end{lemma}
 \begin{proof}
-    Need to check that two different choices of representatives of \( [f] \) and \( [g] \) yields the same composition.
+    Need to check that two different choices of representatives of \( [f] \) and \( [g] \) yields the same value.
 
     Let \( [f + \widetilde{f}] \) and \( [g + \widetilde{g}] \) be two different representatives of \( [f] \) and \( [g] \), with \( \widetilde{f} \) and \( \widetilde{g} \) factoring through some projectives.
 
@@ -110,8 +91,43 @@ Second is the result that makes composition in \( \StMod(R) \) well defined.
         [f + \widetilde{f}] \circ [g + \widetilde{g}] = [f \circ g] + [\widetilde{f} \circ g] + [f \circ \widetilde{g}] + [\widetilde{f} \circ \widetilde{g}].
     \]
     
-    However, every term other than \( [f \circ g] \), factors through a projective and is therefore equal to \( 0 \) in \( \StMod(R)(A, C) \).
+    Every term other than \( [f \circ g] \) factors through a projective and is therefore equal to \( 0 \) in \( \Mod(R)(A, C)/G_{A,C} \).
 \end{proof}
+
+Finally one can define the underlying stable module category.
+
+% TODO: Frobenius algebra for sterk antaking?
+\begin{definition}
+    \label{def:stable_module_category}
+    Let \( R \) be a \emph{frobenius algebra}.
+
+    Then the \emph{stable module category over \( R \)}, denoted \( \StMod(R) \) is defined in the following way:
+    \begin{enumerate}
+        \item {
+            The objects are infinitely generated modules over \( R \).
+        }
+        \item {
+            For two modules \( A, B \) in \( \Mod(R) \), let \( G \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective object. By \autoref{lem:morphisms_factoring_through_projectives_r-submodule} \( G \) is a submodule of \( \Mod(R)(A, B) \).
+            
+            Then
+            \[
+                \StMod(A, B) := \Mod(R)(A, B)/G
+            \]
+        }
+        \item {
+            For two morphisms \( [g] \in \StMod(B, C) \), and \( [f] \in \StMod(A, B) \), let composition be defined as follows
+            \[
+                [g] \circ [f] := [g \circ f].
+            \]
+            This is well defined by \autoref{lem:stmod_composition_well-defined}.
+        }
+    \end{enumerate}
+
+    This category is called the \emph{infinitely generated stable module category over \( R \)}.
+\end{definition}
+
+In the usual definition of the infinitely generated stable module category, it is not usually required that the ring be a frobenius algebra. However, as will become apparent later in this subsection is that it is a requirement to having a triangulated structure defined on it. Since this thesis will only be considering the stable module category as a triangulated category, this assumption is made from the beginning.
+% TODO: Faktasjekk, er det verkeleg sant at Frobenius er naudsynt? Las eg ikkje ein stad at nok injektiv og projektive og dei samanfaller er godt nok?
 
 In order to be an underlying category of a triangulated category, a categoy needs to be additive.
 
@@ -195,6 +211,23 @@ In order to be an underlying category of a triangulated category, a categoy need
 \end{proof}
 
 This thesis starts by defining the functor \( \Omega \), which will be shown later to be the inverse of the shift functor.
+
+But in order to properly define \( \Omega \), a couple prerequisites are needed first.
+
+An important property of the category of modules over a commutative ring with identity is that it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \) dependent on \( A \), as well as an epimimorphism, \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and \( \pi_A \) is \emph{not necessarily unique}. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Similar to the projective case, \( I_A \) and \( \iota_A \) are \emph{not necessarily unique}.
+
+However, in defining \( \Omega \), the definition is closely tied to a choice of \( P_A \) and \( \pi_A \)-s. It is important that the definition is well defined, so a choice of projective objects and epimorphisms as well as injective objects and monomorphisms are made in advance. Also, the definition of \( \Omega \) is tied to the kernel of the choice of \( \pi_A \), and it therefore makes sense to fix a choice of kernel as well.
+
+\begin{definition}
+    \label{def:stmod_P_and_I}
+    Let \( R \) be a commutative ring with identity.
+
+    Let \( P \) be a collection of tuples of a projective module, an epimorphism, and a module, where for any module \( A \in \Mod(R) \), there is some tuple \( \tuple{P_A, \pi_A, \Omega A} \) such that \( \pi_A \) is an epimorphism from \( P_A \) to \( A \), and \( \Omega A \) is a choice of kernel of \( \pi_A \).
+
+    Similarly, let \( I \) be a collection of tuples of an injective module, a monomorphisms, and a module, where for any module \( B \in \Mod(R) \), there is some tuple \( \tuple{I_A, \iota_A, \Sigma A} \) such that \( \iota_A \) is a monomorphism from \( A \) to \( \iota_A \), and \( \Sigma A \) is a choice of cokernel of \( \iota_A \).
+\end{definition}
+
+WIP
 
 \begin{definition}
     \label{def:stmod_omega}

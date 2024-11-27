@@ -32,11 +32,9 @@ On \( \C(\Ac) \) and by extension \( \K(\Ac) \) one can define a simple automorp
 
     Let \( A = \tuple{A_i}_{i \in \Zb} \in \K(\Ac) \) be a chain complex.
 
-    Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \).
+    Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \), with \( d_n^{\Sigma A} := -d_{n + 1}^A \).
 
-    Likewise let \( f = \tuple{f_i}_{i \in \Zb} \in \K(\Ac)(A, B) \) be a chain morphism.
-
-    Then let
+    Likewise for \( f = \tuple{f_i}_{i \in \Zb} \in \K(\Ac)(A, B) \) be a chain morphism. Then let
     \[
         \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \K(\Ac)(\Sigma A, \Sigma B).
     \]
@@ -46,9 +44,37 @@ On \( \C(\Ac) \) and by extension \( \K(\Ac) \) one can define a simple automorp
 
 The final piece of the puzzle is to define what the cone of a morphism in \( \K(\Ac) \) is.
 
-\begin{definition}
-    WIP
+\begin{definition}[Cone in \( \K(\Ac) \)]
+    Let \( f \in \K(\Ac)(A, B) \).
+
+    Then \( C(f) \) is the following chain complex
+    \begin{center}
+        \mmznext{disable}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& B_{-1} \oplus A_0 \& B_0 \oplus A_1 \& B_1 \oplus A_2 \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {
+                    \begin{psmallmatrix}
+                        d_{-1}^B & f_0 \\
+                        0 & -d_0^A
+                    \end{psmallmatrix}
+                } (m-1-3)
+                (m-1-3) edge node {
+                    \begin{psmallmatrix}
+                        d_0^B & f_1 \\
+                        0 & -d_1^A
+                    \end{psmallmatrix}
+                } (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
 \end{definition}
+
+One can think of the cone as having the underlying space of \( B \oplus \Sigma A \), but with the \( f \)-morphism ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
 
 The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, T1, but ends up satisfying every axiom anyways.
 
@@ -69,6 +95,6 @@ Together they give the second example of a triangulated category.
     Then \( \tuple{\K(\Ac), \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 
-For a proof of this, see TODO.
+For a proof of \( \K(\Ac) \) being triangulated, see TODO: Cite.
 
-Similar to the Spanier--Whitehead category, the triangulated category terminoligy of a \emph{shift functor} is derived from the chain homotopy category. One can see from the definition in \autoref{def:chain_homotopy_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminoligy used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
+Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. One can see from the definition in \autoref{def:chain_homotopy_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminoligy used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
