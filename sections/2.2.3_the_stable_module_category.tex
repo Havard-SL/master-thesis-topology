@@ -239,7 +239,7 @@ However, in defining \( \Omega \), the definition is closely tied to a choice of
 
                     \draw[math]
                         (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                            edge node {\Omega' f} (m-2-1)
+                            edge node {\Omega'(f)} (m-2-1)
                         (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
                             edge node {p_f} (m-2-2)
                         (m-1-3) edge node {f} (m-2-3)
@@ -360,13 +360,13 @@ Now that \( \Omega \) is a well defined asssignment of objects and morphisms, it
             \draw[math]
                 (m-1-1) edge[hook] (m-1-2)
                     edge[curve={height=30pt}, swap, color={rgb,255:red,214;green,92;blue,92}] node {\Omega'(f \circ g)} (m-3-1)
-                    edge node {\Omega' g} (m-2-1)
+                    edge node {\Omega'(g)} (m-2-1)
                 (m-1-2) edge[two heads] (m-1-3)
                     edge node {p_g} (m-2-2)
                 (m-1-3) edge node {g} (m-2-3)
 
                 (m-2-1) edge[hook] (m-2-2)
-                    edge node {\Omega' f} (m-3-1)
+                    edge node {\Omega'(f)} (m-3-1)
                 (m-2-2) edge[two heads] (m-2-3)
                     edge node {p_f} (m-3-2)
                 (m-2-3) edge node {f} (m-3-3)
@@ -443,7 +443,7 @@ An important detail still missing to show that \( \Omega^{-1} \) could be a shif
 
             \draw[math]
                 (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge[swap] node {\Omega'(f+g)} (m-2-1)
+                    edge[swap] node {\Omega'(f + g)} (m-2-1)
                 (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
                     edge node[swap] {p_{f + g}} (m-2-2)
                 (m-1-3) edge node[swap] {f + g} (m-2-3)
@@ -579,7 +579,7 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-1-1) edge[hook] node {\iota_A} (m-1-2)
                     edge[swap] node {\Id_{\Omega A} \circ \Id_{\Omega A} - \Id_{\Omega A} = 0} (m-2-1)
                 (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
-                    edge[swap] node {i_{\phi_2} \circ i_{\phi_1} - \Id_P} (m-2-2)
+                    edge[swap] node {i_{\phi_2} \circ i_{\phi_1} - \Id_{P_A}} (m-2-2)
                 (m-1-3) edge[swap, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-2-2)
                     edge node {\phi_2 \circ \phi_1 - \Id_A} (m-2-3)
 
@@ -594,13 +594,13 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
     \]
     then from the cokernel property there exist a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. But then one has that
     \[
-        (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (p_{\theta_2} \circ p_{\theta_1} - \Id_P) = \pi_A \circ \theta \circ \pi_A,
+        (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (p_{\theta_2} \circ p_{\theta_1} - \Id_{P_A}) = \pi_A \circ \theta \circ \pi_A,
     \]
     and since \( \pi_A \) is an epimorphism, one gets that the lower triangle commutes. This implies that \( \phi_2 \circ \phi_1 \sim \Id_A \).
     
-    By a similar agument that is omitted for brevity, one can show that \( \phi_1 \circ \phi_2 \sim \Id_{\Sigma\Omega A} \), which means that \( \phi_1 \) and \( \phi_2 \) are isomorphisms from \( A \) to \( \Sigma\Omega A \).
+    By a similar agument that is omitted for brevity, one can show that \( \phi_1 \circ \phi_2 \sim \Id_{\Sigma\Omega A} \), which means that \( [\phi_1] \) and \( [\phi_2] \) are isomorphisms from \( A \) to \( \Sigma\Omega A \).
 
-    To show that these isomorphisms are natural, let \( f \in \Mod(R)(A, B) \) and consider the following two diagrams
+    To show that these isomorphisms are natural, let \( [f] \in \Mc(A, B) \) and consider the following two diagrams
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -613,14 +613,14 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-1-1) edge[hook] node {\iota_A} (m-1-2)
                     edge[equal] (m-2-1)
                 (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
-                    edge node {p_{\phi^A_1}} (m-2-2)
+                    edge node {i_{\phi^A_1}} (m-2-2)
                 (m-1-3) edge node {\phi^A_1} (m-2-3)
 
                 (m-2-1) edge[hook] node {\kappa_{\Omega A}} (m-2-2)
-                    edge node {\Omega f} (m-3-1)
+                    edge node {\Omega'(f)} (m-3-1)
                 (m-2-2) edge[two heads] node {\rho_{\Omega A}} (m-2-3)
-                    edge node {i_{\Omega f}} (m-3-2)
-                (m-2-3) edge node {\Sigma \circ \Omega f} (m-3-3)
+                    edge node {i_{\Omega'(f)}} (m-3-2)
+                (m-2-3) edge node {\Sigma' \circ \Omega'(f)} (m-3-3)
 
                 (m-3-1) edge[hook] node {\kappa_{\Omega B}} (m-3-2)
                 (m-3-2) edge[two heads] node {\rho_{\Omega B}} (m-3-3);
@@ -637,7 +637,7 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
 
             \draw[math]
                 (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge node {\Omega f} (m-2-1)
+                    edge node {\Omega'(f)} (m-2-1)
                 (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
                     edge node {p_f} (m-2-2)
                 (m-1-3) edge node {f} (m-2-3)
@@ -664,21 +664,21 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
 
             \draw[math]
                 (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge[swap] node {\Id_{\Omega B} \circ \Omega(f) - \Omega(f) \circ \Id_{\Omega A} = 0} (m-2-1)
+                    edge[swap] node {\Id_{\Omega B} \circ \Omega'(f) - \Omega'(f) \circ \Id_{\Omega A} = 0} (m-2-1)
                 (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
-                    edge[swap] node {i_{\phi_1^B} \circ p_f - i_{\Omega(f)} \circ p_{\phi_1^A}} (m-2-2)
+                    edge[swap] node {i_{\phi_1^B} \circ p_f - i_{\Omega'(f)} \circ i_{\phi_1^A}} (m-2-2)
                 (m-1-3) edge[swap, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-2-2)
-                    edge node {\phi_1^B \circ f - \Sigma\Omega(f) \circ \phi_1^A} (m-2-3)
+                    edge node {\phi_1^B \circ f - \Sigma' \circ \Omega'(f) \circ \phi_1^A} (m-2-3)
 
                 (m-2-1) edge[hook] node[swap] {\kappa_{\Omega B}} (m-2-2)
                 (m-2-2) edge[two heads] node[swap] {\rho_{\Omega B}} (m-2-3);
         \end{tikzpicture}
     \end{center}
-    where from the cokernel property of \( A \), one gets an induced morphism \( \theta \), and from the epimorphism property of \( \pi_A \), it makes the lower triangle commute, which implies
+    where from the cokernel property of \( A \), one gets an induced morphism \( \theta \), and from the epimorphism property of \( \pi_A \), it makes the lower triangle commute. And since \( R \) is assumed to be a frobenius ring, this implies that every injective module over \( R \) is projective and vice versa. This implies
     \[
         \phi_1^B \circ f \sim \Sigma\Omega(f) \circ \phi_1^A,
     \]
-    which means that \( \phi_1 \) is a natural isomorphism from \( \Id_{\Mc} \) to \( \Sigma \Omega \), with inverse \( \phi_2 \).
+    which means that \( [\phi_1] \) is a natural isomorphism from \( \Id_{\Mc} \) to \( \Sigma \Omega \), with inverse \( [\phi_2] \).
 \end{proof}
 
 WIP
