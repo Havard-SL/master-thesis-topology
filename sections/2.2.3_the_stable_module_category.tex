@@ -711,6 +711,15 @@ Before one can show the triangulation of \( \Mc \), one first needs to define th
     where \( \tuple{I_A, \kappa_A, \Sigma A} \) is as defined in \autoref{def:stmod_sigma}. Furthermore, \( \tuple{C(f), \alpha, \gamma} \) is the pushout of \( \tuple{A, f, \kappa_A} \), and \( \beta \) is the pushout universal property induced by \( \rho_A \) and \( 0 \).
 \end{definition}
 
+There are some important details following this definition that will be useful in future results.
+
+\begin{remark}
+    \label{rem:stmod_cone_pushout_properties}
+    Use the notation and morphisms from \autoref{def:stmod_cone}.
+
+    By known pushout facts, it follows that since \( \kappa_A \) is a monomorphism, then \( \alpha \) is a monomorphism since \( \ker(\alpha) = \ker(\kappa_A) = 0 \). Likewise it follows that \( \coker(\alpha) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( \beta \) is a cokernel morphism for \( \alpha \).
+\end{remark}
+
 Now, one can finally define the triangulation on \( \Mc \).
 
 \begin{definition}
@@ -805,12 +814,12 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
 
-            Keep in mind the following commutative diagram given by the definition of \( \Sigma f \)
+            Keep in mind the following commutative diagrams given by the definition of \( \Sigma f \) and the above standard triangle respectively:
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& I_A \& \Sigma A \\
-                        B \& I_B \& \Sigma B. \\
+                        B \& I_B \& \Sigma B, \\
                     };
 
                     \draw[math]
@@ -823,13 +832,30 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-1) edge[hook] node {\kappa_B} (m-2-2)
                         (m-2-2) edge[two heads] node {\rho_B} (m-2-3);
                 \end{tikzpicture}
+                and
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \\
+                        I_A \& C_f \\
+                        \& \Sigma A. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge[hook] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge node{\alpha} (m-2-2)
+
+                        (m-2-1) edge node {\gamma} (m-2-2)
+                            edge node {\rho_A} (m-3-2)
+                        (m-2-2) edge node {\beta} (m-3-2);
+                \end{tikzpicture}
             \end{center}
-            With the above morphisms in mind, consider the following commutative diagram
+            With the above diagrams in mind, consider the following commutative diagram
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& B \\
-                        I_A \& C_f \& I_B \& \Sigma B. \\
+                        I_A \& C_f \& I_B \& \Sigma B \\
                     };
 
                     \draw[math]
@@ -845,14 +871,282 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-3) edge node{\rho_B} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            Consider the following equalities that follow from the above two commutative diagrams
+            where \( \phi \) is given by the pushout universal property.
+
+            Consider the following equalities that follow from the above commutative diagrams
             \[
                 \rho_B \circ \phi \circ \alpha = \rho_B \circ \kappa_B = 0 = \Sigma'(f) \circ \beta \circ \alpha,
             \]
             and
             \[
-                WIP
+                \rho_B \circ \phi \circ \gamma = \rho_B \circ i_f = \Sigma'(f) \circ \rho_A = \Sigma'(f) \circ \beta \circ \gamma.
             \]
+            This implies that considering the following pushout diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \\
+                        I_A \& C_f \& \Sigma B \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge[hook] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge node{\alpha} (m-2-2)
+                            edge[hook] node {0} (m-2-3)
+
+                        (m-2-1) edge node {\gamma} (m-2-2)
+                            edge[curve={height=1cm}] node {\rho_B \circ i_f} (m-2-3)
+                        (m-2-2) edge[dashed] (m-2-3);
+                \end{tikzpicture}
+            \end{center}
+            would have two different morphisms, \( \rho_B \circ \phi \) and \( \Sigma'(f) \circ \beta \), that could satisfy the pushout universal property. However, by uniqueness, they therefore have to be the same morphism, i.e
+            \[
+                \rho_B \circ \phi = \Sigma'(f) \circ \beta.
+            \]
+            Finally, consider the following commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        0 \& B \& C_f \& \Sigma A \& 0 \\
+                        0 \& I_B \& I_B \oplus \Sigma A \& \Sigma A \& 0 \\
+                        \& \& \Sigma B \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge (m-1-2)
+                            edge[equal] node {\psi} (m-2-1)
+                        (m-1-2) edge node {\alpha} (m-1-3)
+                            edge node {\kappa_B} (m-2-2)
+                        (m-1-3) edge node {\beta} (m-1-4)
+                            edge node {
+                                \begin{psmallmatrix}
+                                    \phi \\
+                                    \beta
+                                \end{psmallmatrix}
+                            } (m-2-3)
+                        (m-1-4) edge (m-1-5)
+                                edge[equal] (m-2-4)
+
+                        (m-2-1) edge (m-2-2)
+                        (m-2-2) edge node {
+                            \begin{psmallmatrix}
+                                1 \\
+                                0
+                            \end{psmallmatrix}
+                        } (m-2-3)
+                            edge node {\rho_B} (m-3-3)
+                        (m-2-3) edge node {
+                            \begin{psmallmatrix}
+                                0 & 1
+                            \end{psmallmatrix}
+                        } (m-2-4)
+                            edge node {
+                                \begin{psmallmatrix}
+                                    \rho_B & -\Sigma' f
+                                \end{psmallmatrix}
+                            } (m-3-3)
+                        (m-2-4) edge (m-2-5);
+                \end{tikzpicture}
+            \end{center}
+            where the top row is exact by \autoref{rem:stmod_cone_pushout_properties}, and the second row is split-exact. Since the top right square commutes, it follows that equality is the induced cokernel morphism for \( \coker(\alpha) = \Sigma A \), and since \( \psi = 0 \) is an epimorphism, it follows that the middle square is in fact a pushout. % TODO: Cite?
+            And since
+            \[
+                \begin{psmallmatrix}
+                    \rho_B & -\Sigma' f
+                \end{psmallmatrix}
+                \begin{psmallmatrix}
+                    \phi \\
+                    \beta
+                \end{psmallmatrix}
+                =
+                \rho_B \circ \phi - \Sigma'(f) \circ \beta = 0,
+            \]
+            then this would imply that \( I_B \oplus \Sigma A \cong C_{\alpha} \), and the triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        B \& C_f \& I_B \oplus \Sigma A \& \Sigma B \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {[\alpha]} (m-1-2)
+                        (m-1-2) edge node {\class{
+                            \begin{psmallmatrix}
+                                \phi \\
+                                \beta
+                            \end{psmallmatrix}
+                        }} (m-1-3)
+                        (m-1-3) edge node {\class{
+                            \begin{psmallmatrix}
+                                \rho_B & -\Sigma' f
+                            \end{psmallmatrix}
+                        }} (m-1-4);
+                \end{tikzpicture}
+            \end{center} 
+            is (uniquely isomorphic to) the standard triangle of \( \alpha \), and therefore distinguished. % TODO: Burde visa at standardtriangelet er isomorft til dette triangelet?
+
+            Finally it remains to check if the triangle is isomorphic to the expected triangle. Consider the following diagram in \( \Mc \)
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        B \& C_f \& I_B \oplus \Sigma A \& \Sigma B \\
+                        B \& C_f \& \Sigma A \& \Sigma B. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {[\alpha]} (m-1-2)
+                            edge[equal] (m-2-1)
+                        (m-1-2) edge node {\class{
+                            \begin{psmallmatrix}
+                                \phi \\
+                                \beta
+                            \end{psmallmatrix}
+                        }} (m-1-3)
+                            edge[equal] (m-2-2)
+                        (m-1-3) edge node {\class{
+                            \begin{psmallmatrix}
+                                \rho_B & -\Sigma' f
+                            \end{psmallmatrix}
+                        }} (m-1-4)
+                            edge node {\class{
+                                \begin{psmallmatrix}
+                                    0 & 1
+                                \end{psmallmatrix}
+                            }} (m-2-3)
+                        (m-1-4) edge[equal] (m-2-4)
+
+                        (m-2-1) edge node {[\alpha]} (m-2-2)
+                        (m-2-2) edge node {[\beta]} (m-2-3)
+                        (m-2-3) edge node {[-\Sigma' f]} (m-2-4);
+                \end{tikzpicture}
+            \end{center}
+            The left and the middle square commute directly, but it remains to check if the right square commutes. In addition one needs to check that \( \class{
+                \begin{psmallmatrix}
+                    0 & 1
+                \end{psmallmatrix}
+            } \) is an isomorphism.
+
+            First, checking the commutativity. Consider the difference
+            \[
+                -\Sigma'(f) \circ
+                \begin{psmallmatrix}
+                    0 & 1
+                \end{psmallmatrix}
+                -
+                \begin{psmallmatrix}
+                    \rho_B & -\Sigma' f
+                \end{psmallmatrix}
+                =
+                \begin{psmallmatrix}
+                    0 & -\Sigma' f
+                \end{psmallmatrix}
+                -
+                \begin{psmallmatrix}
+                    \rho_B & -\Sigma' f
+                \end{psmallmatrix}
+                = 
+                \begin{psmallmatrix}
+                    \rho_B & 0
+                \end{psmallmatrix}.
+            \]
+            One can see that the diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        I_B \oplus \Sigma A \& \& \Sigma B \\
+                        \& I_B \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {
+                            \begin{psmallmatrix}
+                                \rho_B & 0
+                            \end{psmallmatrix}
+                        } (m-1-3)
+                            edge node {
+                                \begin{psmallmatrix}
+                                    1 & 0
+                                \end{psmallmatrix}
+                            } (m-2-2)
+
+                        (m-2-2) edge node {\rho_B} (m-1-3);
+                \end{tikzpicture}
+            \end{center}
+            commutes, and since every injective module is also projective by definition of frobenius ring, the right hand square above commutes.
+
+            Second, checking that \( \class{
+                \begin{psmallmatrix}
+                    0 & 1
+                \end{psmallmatrix}
+            } \) is an isomorphism.
+
+            Consider the morphism \( \class{
+                \begin{psmallmatrix}
+                    0 \\
+                    1
+                \end{psmallmatrix}
+            } \).
+            It is already known that \( \class{
+                \begin{psmallmatrix}
+                    0 & 1
+                \end{psmallmatrix}
+            } \circ \class{
+                \begin{psmallmatrix}
+                    0 \\
+                    1
+                \end{psmallmatrix}
+            } = [\Id_A] \).
+            Then it remains to check if
+            \[
+                \Id_{I_B \oplus \Sigma A} -
+                \begin{psmallmatrix}
+                    0 \\
+                    1
+                \end{psmallmatrix}
+                \begin{psmallmatrix}
+                    0 & 1
+                \end{psmallmatrix}
+                =
+                \begin{psmallmatrix}
+                    1 & 0 \\
+                    0 & 0
+                \end{psmallmatrix}
+            \]
+            factors through a projective.
+
+            Consider the following diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        I_B \oplus \Sigma A \& \& I_B \oplus \Sigma A \\
+                        \& I_B. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {
+                            \begin{psmallmatrix}
+                                1 & 0 \\
+                                0 & 0
+                            \end{psmallmatrix}
+                        } (m-1-3)
+                            edge node {
+                                \begin{psmallmatrix}
+                                    1 & 0
+                                \end{psmallmatrix}
+                            } (m-2-2)
+
+                        (m-2-2) edge node {
+                            \begin{psmallmatrix}
+                                1 \\
+                                0
+                            \end{psmallmatrix}
+                        } (m-1-3);
+                \end{tikzpicture}
+            \end{center}
+            It commutes.
+
+            WIP
         }
     \end{enumerate}
 \end{proof}
