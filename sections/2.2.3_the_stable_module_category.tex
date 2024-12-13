@@ -687,7 +687,7 @@ Before one can show the triangulation of \( \Mc \), one first needs to define th
 
 \begin{definition}
     \label{def:stmod_cone}
-    Let \( f \in \Mc(A, B) \).
+    Let \( f \in \Mod(R)(A, B) \).
     
     Then define the \emph{cone of \( f \)} to be the object \( C_f \) from the following commutative diagram in \( \Mod(R) \)
     \begin{center}
@@ -710,6 +710,13 @@ Before one can show the triangulation of \( \Mc \), one first needs to define th
     \end{center}
     where \( \tuple{I_A, \kappa_A, \Sigma A} \) is as defined in \autoref{def:stmod_sigma}. Furthermore, \( \tuple{C(f), \alpha, \gamma} \) is the pushout of \( \tuple{A, f, \kappa_A} \), and \( \beta \) is the pushout universal property induced by \( \rho_A \) and \( 0 \).
 \end{definition}
+
+WIP: Ta hensyn til forskjellige kjegler frå forskjellig val av representantar.
+
+% There is a small problem with the above definition in that the cone needs to be unique up to isomorphism in \( \Mc \). Therefore the following lemma is needed.
+% \begin{lemma}
+%     WIP: Cone is unique up to isomorphism in \( \Mc \).
+% \end{lemma}
 
 There are some important details following this definition that will be useful in future results.
 
@@ -1146,7 +1153,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center}
             It commutes.
 
-            WIP Stuck on other rotation. % TODO: Finish!!
+            WIP Stuck on other rotation.
         }
         \item {
             By a similar argument as in {\bf (TR2)}, it suffices to check that for any two standard triangles, given the following commutative diagram consisitng of the solid morphisms
