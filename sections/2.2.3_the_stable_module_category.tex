@@ -65,7 +65,7 @@ First, a small lemma that will be used to define the morphisms in the stable mod
     Therefore, the set of homomorphisms that factor through a projective is closed under addition. And multiplying with a ring element still factors through the same projective, since every morphism is an \( R \) homomorphism. Therefore the set of morphisms that factor through a projective is an \( R \) submodule.
 \end{proof}
 
-From now on, in this subsection let \( \Mod(R)(A, B)/G \), with \( R \) a commutative ring with identity, simply be denoted as \( \widetilde{\Mc}(A, B) \).
+From now on, in this subsection let \( \Mod(R)(A, B)/G \), with \( R \) a commutative ring with identity, simply be denoted as \( \Mc(A, B) \).
 
 Second is the result that makes composition in the stable module category well defined.
 
@@ -73,7 +73,7 @@ Second is the result that makes composition in the stable module category well d
     \label{lem:stmod_composition_well-defined}
     Define the binary operation \( c \) as follows
     \begin{align*}
-        c: \widetilde{\Mc}(B, C) \times \widetilde{\Mc}(A, B) &\to \widetilde{\Mc}(A, C) \\
+        c: \Mc(B, C) \times \widetilde{\Mc}(A, B) &\to \Mc(A, C) \\
         [g] \times [f] &\mapsto [g \circ f]
     \end{align*}
 
@@ -89,7 +89,7 @@ Second is the result that makes composition in the stable module category well d
         [f + \widetilde{f}] \circ [g + \widetilde{g}] = [f \circ g] + [\widetilde{f} \circ g] + [f \circ \widetilde{g}] + [\widetilde{f} \circ \widetilde{g}].
     \]
     
-    Every term other than \( [f \circ g] \) factors through a projective and is therefore equal to \( 0 \) in \( \widetilde{\Mc}(A, C) \).
+    Every term other than \( [f \circ g] \) factors through a projective and is therefore equal to \( 0 \) in \( \Mc(A, C) \).
 \end{proof}
 
 Finally one can define the underlying stable module category.
@@ -105,10 +105,7 @@ Finally one can define the underlying stable module category.
             The objects are infinitely generated modules over \( R \).
         }
         \item {
-            Then
-            \[
-                \Mc(A, B) := \widetilde{\Mc}(A, B)
-            \]
+            For any two objects \( A, B \in \Mc \), let \( \Mc(A, B) \) be defined as previously.
         }
         \item {
             For two morphisms \( [g] \in \Mc(B, C) \), and \( [f] \in \Mc(A, B) \), let composition be defined as follows
