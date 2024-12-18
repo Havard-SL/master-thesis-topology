@@ -1153,8 +1153,9 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             WIP Stuck on other rotation.
         }
         \item {
-            By a similar argument as in {\bf (TR2)}, it suffices to check that for any two standard triangles, given the following commutative diagram consisitng of the solid morphisms
-            \begin{center}
+            By considering two arbitrary distinguished triangles, any morphism between their components will induce a uniqe morphism between the component of their standard triangles they are isomorphic to, and vice versa. Therefore it suffices to only check {\bf (TR3)} for standard triangles. 
+            \begin{equation}
+                \label{eq:stablemod}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& B  \& C_f \& \Sigma A \\
@@ -1162,22 +1163,190 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {f} (m-1-2)
-                            edge node {\alpha} (m-2-1)
-                        (m-1-2) edge node {g} (m-1-3)
-                            edge node {\beta} (m-2-2)
-                        (m-1-3) edge node {h} (m-1-4)
-                            edge[dashed] node {\gamma} (m-2-3)
-                        (m-1-4) edge node {\Sigma f} (m-2-4)
+                        (m-1-1) edge node {[f]} (m-1-2)
+                            edge node {[\alpha]} (m-2-1)
+                        (m-1-2) edge node {[g]} (m-1-3)
+                            edge node {[\beta]} (m-2-2)
+                        (m-1-3) edge node {[h]} (m-1-4)
+                            edge[dashed] node {[\gamma]} (m-2-3)
+                        (m-1-4) edge node {\Sigma [\alpha]} (m-2-4)
 
-                        (m-2-1) edge node {f'} (m-2-2)
-                        (m-2-2) edge node {g'} (m-2-3)
-                        (m-2-3) edge node {h'} (m-2-4);
+                        (m-2-1) edge node {[f']} (m-2-2)
+                        (m-2-2) edge node {[g']} (m-2-3)
+                        (m-2-3) edge node {[h']} (m-2-4);
                 \end{tikzpicture}
-            \end{center}
+            \end{equation}
             there exist some \( \gamma \) in the above diagram such that the entire diagram including \( \gamma \), commutes.
 
-            WIP
+            Consider the following commutative diagrams in \( \Mod(R) \) from the definition of \( \Sigma A \) and \( \Sigma A' \),
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& I_A \& \Sigma A \\
+                        B \& C_f \& \Sigma A \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\kappa_A} (m-1-2)
+                            edge node {f} (m-2-1)
+                        (m-1-2) edge node {\rho_A} (m-1-3)
+                            edge node {\eta} (m-2-2)
+                        (m-1-3) edge[equal] (m-2-3)
+
+                        (m-2-1) edge node {g} (m-2-2)
+                        (m-2-2) edge node {h} (m-2-3);
+                \end{tikzpicture}
+                %
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A' \& I_{A'} \& \Sigma A' \\
+                        B' \& C_{f'} \& \Sigma A', \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\kappa_{A'}} (m-1-2)
+                            edge node {f'} (m-2-1)
+                        (m-1-2) edge node {\rho_{A'}} (m-1-3)
+                            edge node {\eta'} (m-2-2)
+                        (m-1-3) edge[equal] (m-2-3)
+
+                        (m-2-1) edge node {g'} (m-2-2)
+                        (m-2-2) edge node {h'} (m-2-3);
+                \end{tikzpicture}
+            \end{center}
+            then since \( [\alpha] \circ [f] = [\beta] \circ [f'] \) in \( \Mc \), one has that \( \alpha \circ f - \beta \circ f' \) factors through a projective. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( \alpha \circ f - \beta \circ f' \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to B' \) such that
+            \[
+                f' \circ \alpha - \beta \circ f = \xi \circ \kappa_A.
+            \]
+
+            And considering the following diagram by definition of \( \Sigma [\alpha] \)
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& I_A \& \Sigma A \\
+                        A' \& I_{A'} \& \Sigma A', \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[hook] node {\kappa_A} (m-1-2)
+                            edge node {\alpha} (m-2-1)
+                        (m-1-2) edge[two heads] node {\rho_A} (m-1-3)
+                            edge node {i_{\alpha}} (m-2-2)
+                        (m-1-3) edge node {\Sigma'(\alpha)} (m-2-3)
+
+                        (m-2-1) edge[hook] node {\kappa_{A'}} (m-2-2)
+                        (m-2-2) edge[two heads] node {\rho_{A'}} (m-2-3);
+                \end{tikzpicture}
+            \end{center}
+            one gets that
+            \[
+                \eta' \circ i_{\alpha} + g' \circ \xi: I_A \to C_{f'}.
+            \]
+            And since
+            \[
+                g' \circ \beta \circ f = g' \circ f' \circ \alpha + g' \circ \xi \circ \kappa_A = \eta' \circ \kappa_{A'} \circ \alpha + g' \circ \xi \circ \kappa_A = \eta' \circ i_A \circ \kappa_A + g' \circ \xi \circ \kappa_A = (\eta' \circ i_A + g' \circ \xi) \circ \kappa_A
+            \]
+            then by the pushout property of \( C_f \) it follows that there exist some unique \( \gamma \) such that the following diagram commutes
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \\
+                        I_A \& C_f \\
+                        \& \& C_{f'}. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge node {\kappa_A} (m-2-1)
+                        (m-1-2) edge node {g} (m-2-2)
+                            edge[curve={height=-25pt}] node {g' \circ \beta} (m-3-3)
+
+                        (m-2-1) edge node {\eta} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\eta' \circ i_{\alpha} + g' \circ \xi} (m-3-3)
+                        (m-2-2) edge[dashed] node {\gamma} (m-3-3);
+                \end{tikzpicture}
+            \end{center}
+            Finally, needs to check that this \( \gamma \) makes \autoref{eq:stablemod} commute.
+
+            By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check if \( [h' \circ \gamma] = [\Sigma' (\alpha) \circ h] \). Consider the following pushout diagram that commutes because \( \Sigma'(\alpha) \circ h \circ \eta \circ \kappa_A = \Sigma'(\alpha) \circ \rho_A \circ \kappa_A = 0 \),
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \\
+                        I_A \& C_f \\
+                        \& \& \Sigma A', \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge node {\kappa_A} (m-2-1)
+                        (m-1-2) edge node {g} (m-2-2)
+                            edge[curve={height=-25pt}] node {0} (m-3-3)
+
+                        (m-2-1) edge node {\eta} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\Sigma'(\alpha) \circ h \circ \eta} (m-3-3)
+                        (m-2-2) edge[dashed] (m-3-3);
+                \end{tikzpicture}
+            \end{center}
+            and the following two equations
+            \[
+                h' \circ \gamma \circ g = h' \circ g' \circ \beta = 0 = \Sigma'(\alpha) \circ h \circ g,
+            \]
+            and
+            \[
+                \Sigma'(\alpha) \circ h \circ \eta = \Sigma'(\alpha) \circ \rho_A = \rho_{A'} \circ i_A = h' \circ \eta' \circ i_A = h' \circ (\gamma \circ \eta - g' \circ \xi) = h' \circ \gamma \circ \eta
+            \]
+            implies that there are two choices of dashed line in the above diagram that would make it commute. However, by uniqueness, this implies they are equal and so
+            \[
+                \Sigma'(\alpha) \circ h = h' \circ \gamma. \qedhere
+            \]
+        }
+        \item {
+            By a similar argument as in {\bf (TR3)} it is sufficient to only check {\bf (TR4)} for standard triangles.
+
+            Let the following denote three standard triangles
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \& C_f \& \Sigma A \\
+                        B \& D \& C_n \& \Sigma B \\
+                        A \& D \& C_{n \circ f} \& \Sigma A \\
+                    };
+                \end{tikzpicture}
+            \end{center}
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \& C_f \& \Sigma A \\
+                        A \& D \& C_{n \circ f} \& \Sigma A \\
+                        \& C_n \& C_n \& \Sigma B \\
+                        \& \Sigma B \& \Sigma C_f \\
+                    };
+        
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge[equal] (m-2-1)
+                        (m-1-2) edge node {g} (m-1-3)
+                            edge node {n} (m-2-2)
+                        (m-1-3) edge node {h} (m-1-4)
+                            edge[dashed] (m-2-3)
+                        (m-1-4) edge[equal] (m-2-4)
+        
+                        (m-2-1) edge node {n \circ f} (m-2-2)
+                        (m-2-2) edge node {j} (m-2-3)
+                            edge node {m} (m-3-2)
+                        (m-2-3) edge node {l} (m-2-4)
+                            edge[dashed] (m-3-3)
+                        (m-2-4) edge node {\Sigma f} (m-3-4)
+
+                        (m-3-2) edge[equal] (m-3-3)
+                            edge node[swap] {k} (m-4-2)
+                        (m-3-3) edge node {k} (m-3-4)
+                            edge node {\Sigma(g) \circ k} (m-4-3)
+
+                        (m-4-2) edge node {\Sigma g} (m-4-3);
+                \end{tikzpicture}
+            \end{center}
         }
     \end{enumerate}
 \end{proof}
