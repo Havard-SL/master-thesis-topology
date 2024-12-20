@@ -20,27 +20,6 @@ Before defining what a triangulated category is, it can be helpful to first defi
 
     A \emph{triangle morphism} from
     \begin{center}
-    %     \begin{tikzpicture}
-    %         \diagram{m}{1cm}{1cm} {
-    %             A \& B \& C \& \Sigma A \\
-    %         };
-
-    %         \draw[math]
-    %             (m-1-1) edge node {f} (m-1-2)
-    %             (m-1-2) edge node {g} (m-1-3)
-    %             (m-1-3) edge node {h} (m-1-4);
-    %     \end{tikzpicture}
-    %     to
-    %     \begin{tikzpicture}
-    %         \diagram{m}{1cm}{1cm} {
-    %             A' \& B' \& C' \& \Sigma A', \\
-    %         };
-
-    %         \draw[math]
-    %             (m-1-1) edge node {f'} (m-1-2)
-    %             (m-1-2) edge node {g'} (m-1-3)
-    %             (m-1-3) edge node {h'} (m-1-4);
-    %     \end{tikzpicture}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 A \& B \& C \& \Sigma A \&[-0.8cm] \text{to} \&[-0.8cm]  A' \& B' \& C' \& \Sigma A', \\
@@ -129,9 +108,7 @@ There are multiple different, but equivalent, definitions of a triangulated cate
             \end{enumerate}
         }
         \item {
-            For any object \( A \in \Tc \), let \( \phi_A \) be the natural isomorphism from \( \Sigma^{-1} \Sigma A \) to \( A \).
-
-            Then for any triangle
+            Any triangle
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -144,44 +121,20 @@ There are multiple different, but equivalent, definitions of a triangulated cate
                         (m-1-3) edge node {h} (m-1-4);
                 \end{tikzpicture}
             \end{center}
-            in \( \Delta \), both the \emph{left/right shifted triangles}
+            in \( \Delta \) if and only if
             \begin{center}
-                % \begin{tikzpicture}
-                %     \diagram{m}{1cm}{1cm} {
-                %         B \& C \& \Sigma A \& \Sigma B, \\
-                %     };
-        
-                %     \draw[math]
-                %         (m-1-1) edge node {g} (m-1-2)
-                %         (m-1-2) edge node {h} (m-1-3)
-                %         (m-1-3) edge node {-\Sigma f} (m-1-4);
-                % \end{tikzpicture}
-                % and
-                % \begin{tikzpicture}
-                %     \diagram{m}{1cm}{1cm} {
-                %         \Sigma^{-1}(C) \& A \& B \& C, \\
-                %     };
-        
-                %     \draw[math]
-                %         (m-1-1) edge node {- \Sigma^{-1}(h)} (m-1-2)
-                %         (m-1-2) edge node {f} (m-1-3)
-                %         (m-1-3) edge node {g} (m-1-4);
-                % \end{tikzpicture}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        B \& C \& \Sigma A \& \Sigma B \&[-8mm] \text{and} \&[-8mm] \Sigma^{-1}(C) \& A \& B \& C \\
+                        B \& C \& \Sigma A \& \Sigma B \\
                     };
         
                     \draw[math]
                         (m-1-1) edge node {g} (m-1-2)
                         (m-1-2) edge node {h} (m-1-3)
-                        (m-1-3) edge node {-\Sigma f} (m-1-4)
-                        (m-1-6) edge node {-\phi_A \circ \Sigma^{-1} h} (m-1-7)
-                        (m-1-7) edge node {f} (m-1-8)
-                        (m-1-8) edge node {g} (m-1-9);
+                        (m-1-3) edge node {-\Sigma f} (m-1-4);
                 \end{tikzpicture}
             \end{center}
-            respectively, are also in \( \Delta \).
+            is in \( \Delta \).
         }
         \item {
             Let the solid part of the following diagram
@@ -256,90 +209,11 @@ There are multiple different, but equivalent, definitions of a triangulated cate
 
 Although the definition is axiomatic and may seem arbitrary, there are surprisingly many different categories that admit the structure of a triangulated category.
 
-Some of the axioms of a triangulated category are superflous in the fact that they are implied by the other axioms. An example of this is that given {\bf TR1}, {\bf TR3} and the left shift part of {\bf TR2}, then it implies the right shift part as well. The details are contained in the following lemma.
+Some of the axioms of a triangulated category are superflous in the fact that they are implied by the other axioms. An example of this is that given {\bf TR1}, {\bf TR3} and the \( (\Rightarrow) \) implication of {\bf TR2}, then it implies the \( (\Leftarrow) \) implication as well. The details are contained in the following lemma.
 
 \begin{lemma}
-    Let \( \tuple{ \Tc, \Sigma, \Delta } \) satisfy the axioms {\bf TR1} and {\bf TR3} from \autoref{def:triangulated_category}, as well as the left shift part of {\bf TR2}.
+    Let \( \tuple{ \Tc, \Sigma, \Delta } \) satisfy the axioms {\bf TR1} and {\bf TR3} from as the \( (\Rightarrow) \) implication of {\bf TR2}.
 
-    Then the right shift part of {\bf TR2} is also satisfied.
+    Then the \( (\Leftarrow) \) implication of {\bf TR2} is also satisfied.
 \end{lemma}
-\begin{proof}
-    As a reminder, \( \phi_A \) denotes the natural isomorphism from \( \Sigma^{-1} \Sigma A \) to \( A \).
-
-    Given a distinguished triangle
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                X \& Y \& Z \& \Sigma X, \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {f} (m-1-2)
-                (m-1-2) edge node {g} (m-1-3)
-                (m-1-3) edge node {h} (m-1-4);
-        \end{tikzpicture}
-    \end{center}
-    and the natural isomorphisms
-    \[
-        \psi_A: \Sigma \Sigma^{-1} A \to A,
-    \]
-    one gets the following isomorphism of triangles
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                X \& Y \& Z \& \Sigma X \\
-                \Sigma^{-1} \Sigma X \& Y \& \Sigma \Sigma^{-1} Z \& \Sigma \Sigma^{-1} \Sigma X \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {f} (m-1-2)
-                    edge node {\phi_X^{-1}} (m-2-1)
-                (m-1-2) edge node {g} (m-1-3)
-                    edge[equal] (m-2-2)
-                (m-1-3) edge node {h} (m-1-4)
-                    edge node {\psi_Z^{-1}} (m-2-3)
-                (m-1-4) edge node {\psi_{\Sigma X}^{-1}} (m-2-4)
-
-                (m-2-1) edge node {f \circ \phi_X} (m-2-2)
-                (m-2-2) edge node {\psi_Z^{-1} \circ g} (m-2-3)
-                (m-2-3) edge node {\Sigma \Sigma^{-1} h} (m-2-4);
-        \end{tikzpicture}
-    \end{center}
-    which implies the bottom row is a distinguished triangle.
-
-    Then by \cite[Chapter 1, Subsection 1.3, Lemma]{Happel_1988}, it follows that the top row in the following diagram is a distinguished triangle
-    % \begin{center}
-    %     \begin{tikzpicture}
-    %         \diagram{m}{1cm}{1cm} {
-    %             X \& Y \& \Sigma \Sigma^{-1} Z \& \Sigma X. \\
-    %         };
-
-    %         \draw[math]
-    %             (m-1-1) edge node {f} (m-1-2)
-    %             (m-1-2) edge node {\psi^{-1} \circ g} (m-1-3)
-    %             (m-1-3) edge node {h \circ \psi} (m-1-4);
-    %     \end{tikzpicture}
-    % \end{center}
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                \Sigma^{-1} Z \& \Sigma^{-1} \Sigma X \& Y \& \Sigma \Sigma^{-1} Z \\
-                \Sigma^{-1} Z \& X \& Y \& Z. \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {-\Sigma^{-1} h} (m-1-2)
-                    edge[equal] (m-2-1)
-                (m-1-2) edge node {f \circ \phi_X} (m-1-3)
-                    edge node {\phi_X} (m-2-2)
-                (m-1-3) edge node {\psi_Z^{-1} \circ g} (m-1-4)
-                    edge[equal] (m-2-3)
-                (m-1-4) edge node {\psi_Z} (m-2-4)
-
-                (m-2-1) edge node {-\phi_X \circ \Sigma^{-1} h} (m-2-2)
-                (m-2-2) edge node {f} (m-2-3)
-                (m-2-3) edge node {g} (m-2-4);
-        \end{tikzpicture}
-    \end{center}
-    The above diagram commutes, and every vertical arrow is an isomorphism. \emph{However, the rightmost arrow is not the supspension of the leftmost arrow, and so this is not a triangle isomorphism.} WIP
-\end{proof}
+For a proof of this see TODO: Cite MAY
