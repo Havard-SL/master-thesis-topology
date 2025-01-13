@@ -654,7 +654,7 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
     These diagrams gives rise to the following commutative diagram
     \begin{center}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{3cm} {
+            \diagram{m}{1cm}{2.7cm} {
                 \Omega A \& P \& A \\
                 \Omega B \& I \& \Sigma \Omega B, \\
             };
@@ -776,8 +776,6 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \end{center}
 
                     This is satisfied directly by the definition of \( \Delta \), with \( \iota_f := g \) and \( \pi_f := h \).
-
-                    WIP: Rewrite notation.
                 }
                 \item {
                     Need to show that the trivial triangle is distinguished.
@@ -795,10 +793,10 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                                     edge node {\kappa_A} (m-2-1)
                                 (m-1-2) edge (m-2-2)
 
-                                (m-2-1) edge node {\gamma} (m-2-2);
+                                (m-2-1) edge node {\gamma_{\Id}} (m-2-2);
                         \end{tikzpicture}
                     \end{center}
-                    However, it is a known fact the pushout of an isomorphism is an isomorphism. And so \( \gamma \) is an isomorphism, which implies \( C_{\Id} \cong 0 \) in \( \Mc \) because all injective modules are projective in \( \Mc \).
+                    However, it is a known fact the pushout of an isomorphism is an isomorphism. And so \( \gamma_{\Id} \) is an isomorphism, which implies \( C_{\Id} \cong 0 \) in \( \Mc \) because all injective modules are projective in \( \Mc \).
                 }
                 \item {
                     Need to show that \( \Delta \) is closed under isomorphisms of triangles. However this follows directly from the fact that isomorphisms of triangles is an equivalence relation.
@@ -810,6 +808,8 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
             First note that a left/right shifted distinguished triangle will be isomorphic to a left/right shifted standard triangle. Therefore it suffices to check that every left/right shifted standard triangle is distinguished.
 
+            Start på proving the left shift.
+
             Consider the following standard triangle
             \begin{center}
                 \begin{tikzpicture}
@@ -818,13 +818,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {f} (m-1-2)
-                        (m-1-2) edge node {\alpha} (m-1-3)
-                        (m-1-3) edge node {\beta} (m-1-4);
+                        (m-1-1) edge node {[f]} (m-1-2)
+                        (m-1-2) edge node {[g]} (m-1-3)
+                        (m-1-3) edge node {[h]} (m-1-4);
                 \end{tikzpicture}
             \end{center}
 
-            Keep in mind the following commutative diagrams given by the definition of \( \Sigma f \) and the above standard triangle respectively:
+            Keep in mind the following commutative diagrams given by the definition of \( \Sigma [f] \) and the above standard triangle respectively:
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -853,11 +853,11 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
                             edge[hook] node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node{\alpha} (m-2-2)
+                        (m-1-2) edge node{g} (m-2-2)
 
-                        (m-2-1) edge node {\gamma} (m-2-2)
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge node {\rho_A} (m-3-2)
-                        (m-2-2) edge node {\beta} (m-3-2);
+                        (m-2-2) edge node {h} (m-3-2);
                 \end{tikzpicture}
             \end{center}
             With the above diagrams in mind, consider the following commutative diagram
@@ -871,10 +871,10 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
                             edge[hook] node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node{\alpha} (m-2-2)
+                        (m-1-2) edge node{g} (m-2-2)
                             edge[hook] node {\kappa_B} (m-2-3)
 
-                        (m-2-1) edge node {\gamma} (m-2-2)
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge[curve={height=1cm}] node {i_f} (m-2-3)
                         (m-2-2) edge[dashed] node {\phi} (m-2-3)
 
@@ -885,11 +885,11 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
             Consider the following equalities that follow from the above commutative diagrams
             \[
-                \rho_B \circ \phi \circ \alpha = \rho_B \circ \kappa_B = 0 = \Sigma'(f) \circ \beta \circ \alpha,
+                \rho_B \circ \phi \circ g = \rho_B \circ \kappa_B = 0 = \Sigma'(f) \circ h \circ g,
             \]
             and
             \[
-                \rho_B \circ \phi \circ \gamma = \rho_B \circ i_f = \Sigma'(f) \circ \rho_A = \Sigma'(f) \circ \beta \circ \gamma.
+                \rho_B \circ \phi \circ \gamma_f = \rho_B \circ i_f = \Sigma'(f) \circ \rho_A = \Sigma'(f) \circ h \circ \gamma_f.
             \]
             This implies that considering the following pushout diagram
             \begin{center}
@@ -902,17 +902,17 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
                             edge[hook] node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node{\alpha} (m-2-2)
+                        (m-1-2) edge node{g} (m-2-2)
                             edge[hook] node {0} (m-2-3)
 
-                        (m-2-1) edge node {\gamma} (m-2-2)
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge[curve={height=1cm}] node {\rho_B \circ i_f} (m-2-3)
                         (m-2-2) edge[dashed] (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            would have two different morphisms, \( \rho_B \circ \phi \) and \( \Sigma'(f) \circ \beta \), that could satisfy the pushout universal property. However, by uniqueness, they therefore have to be the same morphism, i.e
+            would have two different morphisms, \( \rho_B \circ \phi \) and \( \Sigma'(f) \circ h \), that could satisfy the pushout universal property. However, by uniqueness, they therefore have to be the same morphism, i.e
             \[
-                \rho_B \circ \phi = \Sigma'(f) \circ \beta.
+                \rho_B \circ \phi = \Sigma'(f) \circ h.
             \]
             Finally, consider the following commutative diagram
             \begin{center}
@@ -925,14 +925,14 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge (m-1-2)
-                            edge[equal] node {\psi} (m-2-1)
-                        (m-1-2) edge node {\alpha} (m-1-3)
+                            edge[equal] node {\zeta} (m-2-1)
+                        (m-1-2) edge node {g} (m-1-3)
                             edge node {\kappa_B} (m-2-2)
-                        (m-1-3) edge node {\beta} (m-1-4)
+                        (m-1-3) edge node {h} (m-1-4)
                             edge node {
                                 \begin{psmallmatrix}
                                     \phi \\
-                                    \beta
+                                    h
                                 \end{psmallmatrix}
                             } (m-2-3)
                         (m-1-4) edge (m-1-5)
@@ -959,7 +959,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-4) edge (m-2-5);
                 \end{tikzpicture}
             \end{center}
-            where the top row is exact by \autoref{rem:stmod_cone_pushout_properties}, and the second row is split-exact. Since the top right square commutes, it follows that equality is the induced cokernel morphism for \( \coker(\alpha) = \Sigma A \), and since \( \psi = 0 \) is an epimorphism, it follows that the middle square is in fact a pushout. % TODO: Cite?
+            where the top row is exact by \autoref{rem:stmod_cone_pushout_properties}, and the second row is split-exact. Since the top right square commutes, it follows that equality is the induced cokernel morphism for \( \coker(g) = \Sigma A \), and since \( \zeta = 0 \) is an epimorphism, it follows that the middle square is in fact a pushout, which implies \( I_B \oplus \Sigma A  \) is uniquely isomorphic to \( C_g \). % TODO: Cite Notat, klassifisering av pushout og pullback i abelsk kategori.
             And since
             \[
                 \begin{psmallmatrix}
@@ -967,12 +967,12 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{psmallmatrix}
                 \begin{psmallmatrix}
                     \phi \\
-                    \beta
+                    h
                 \end{psmallmatrix}
                 =
-                \rho_B \circ \phi - \Sigma'(f) \circ \beta = 0,
+                \rho_B \circ \phi - \Sigma'(f) \circ h = 0,
             \]
-            then this would imply that \( I_B \oplus \Sigma A \cong C_{\alpha} \), and the triangle
+            then the triangle
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -980,11 +980,11 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {[\alpha]} (m-1-2)
+                        (m-1-1) edge node {[g]} (m-1-2)
                         (m-1-2) edge node {\class{
                             \begin{psmallmatrix}
                                 \phi \\
-                                \beta
+                                h
                             \end{psmallmatrix}
                         }} (m-1-3)
                         (m-1-3) edge node {\class{
@@ -994,7 +994,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         }} (m-1-4);
                 \end{tikzpicture}
             \end{center} 
-            is (uniquely isomorphic to) the standard triangle of \( \alpha \), and therefore distinguished. % TODO: Burde visa at standardtriangelet er isomorft til dette triangelet?
+            is (uniquely isomorphic to) the standard triangle of \( g \), and therefore distinguished. % TODO: Burde visa at standardtriangelet er isomorft til dette triangelet?
 
             Finally it remains to check if the triangle is isomorphic to the expected triangle. Consider the following diagram in \( \Mc \)
             \begin{center}
@@ -1005,12 +1005,12 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {[\alpha]} (m-1-2)
+                        (m-1-1) edge node {[g]} (m-1-2)
                             edge[equal] (m-2-1)
                         (m-1-2) edge node {\class{
                             \begin{psmallmatrix}
                                 \phi \\
-                                \beta
+                                h
                             \end{psmallmatrix}
                         }} (m-1-3)
                             edge[equal] (m-2-2)
@@ -1026,8 +1026,8 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                             }} (m-2-3)
                         (m-1-4) edge[equal] (m-2-4)
 
-                        (m-2-1) edge node {[\alpha]} (m-2-2)
-                        (m-2-2) edge node {[\beta]} (m-2-3)
+                        (m-2-1) edge node {[g]} (m-2-2)
+                        (m-2-2) edge node {[h]} (m-2-3)
                         (m-2-3) edge node {[-\Sigma' f]} (m-2-4);
                 \end{tikzpicture}
             \end{center}
@@ -1156,10 +1156,12 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center}
             It commutes.
 
-            By the upcoming proof of {\bf TR3} the other rotation follows by \autoref{lem:triangulated_category-TR2-only_one_rotation}.
+            By the upcoming proof of {\bf TR3} the right rotation follows by \autoref{lem:triangulated_category-TR2-only_one_rotation}. % TODO: Framoverreferanse?
         }
         \item {
-            By considering two arbitrary distinguished triangles, any morphism between their components will induce a uniqe morphism between the component of their standard triangles they are isomorphic to, and vice versa. Therefore it suffices to only check {\bf (TR3)} for standard triangles. 
+            By considering two arbitrary distinguished triangles, any morphism between their components will induce a unique morphism between the component of their standard triangles they are isomorphic to, and vice versa. Therefore it suffices to only check {\bf (TR3)} for standard triangles.
+
+            Need to show that given the following diagram where the top and botton row are standard triangles and the diagram excluding the dotted arrow commutes
             \begin{equation}
                 \label{eq:stablemod}
                 \begin{tikzpicture}
@@ -1174,7 +1176,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-1-2) edge node {[g]} (m-1-3)
                             edge node {[\beta]} (m-2-2)
                         (m-1-3) edge node {[h]} (m-1-4)
-                            edge[dashed] node {[\gamma]} (m-2-3)
+                            edge[dashed] node {[\phi]} (m-2-3)
                         (m-1-4) edge node {\Sigma [\alpha]} (m-2-4)
 
                         (m-2-1) edge node {[f']} (m-2-2)
@@ -1182,45 +1184,45 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-3) edge node {[h']} (m-2-4);
                 \end{tikzpicture}
             \end{equation}
-            there exist some \( \gamma \) in the above diagram such that the entire diagram including \( \gamma \), commutes.
+            that there exist some \( \phi: C_f \to C_{f'} \) in the above diagram such that the entire diagram including \( \phi \), commutes.
 
-            Consider the following commutative diagrams in \( \Mod(R) \) from the definition of \( \Sigma A \) and \( \Sigma A' \),
+            Consider the following commutative diagrams in \( \Mod(R) \) from the definition of the two standard triangles
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        A \& I_A \& \Sigma A \\
-                        B \& C_f \& \Sigma A \\
+                        A \& B \\
+                        I_A \& C_f \\
+                        \& \Sigma A, \\
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {\kappa_A} (m-1-2)
-                            edge node {f} (m-2-1)
-                        (m-1-2) edge node {\rho_A} (m-1-3)
-                            edge node {\eta} (m-2-2)
-                        (m-1-3) edge[equal] (m-2-3)
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge[hook] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge node{g} (m-2-2)
 
-                        (m-2-1) edge node {g} (m-2-2)
-                        (m-2-2) edge node {h} (m-2-3);
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
+                            edge node {\rho_A} (m-3-2)
+                        (m-2-2) edge node {h} (m-3-2);
                 \end{tikzpicture}
                 %
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        A' \& I_{A'} \& \Sigma A' \\
-                        B' \& C_{f'} \& \Sigma A', \\
+                        A' \& B' \\
+                        I_{A'} \& C_{f'} \\
+                        \& \Sigma A'. \\
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {\kappa_{A'}} (m-1-2)
-                            edge node {f'} (m-2-1)
-                        (m-1-2) edge node {\rho_{A'}} (m-1-3)
-                            edge node {\eta'} (m-2-2)
-                        (m-1-3) edge[equal] (m-2-3)
+                        (m-1-1) edge node {f'} (m-1-2)
+                            edge[hook] node {\kappa_{A'}} (m-2-1)
+                        (m-1-2) edge node {g'} (m-2-2)
 
-                        (m-2-1) edge node {g'} (m-2-2)
-                        (m-2-2) edge node {h'} (m-2-3);
+                        (m-2-1) edge node {\gamma_{f'}} (m-2-2)
+                            edge node {\rho_{A'}} (m-3-2)
+                        (m-2-2) edge node {h'} (m-3-2);
                 \end{tikzpicture}
             \end{center}
-            then since \( [\alpha] \circ [f] = [\beta] \circ [f'] \) in \( \Mc \), one has that \( \alpha \circ f - \beta \circ f' \) factors through a projective. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( \alpha \circ f - \beta \circ f' \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to B' \) such that
+            then since \( [f'] \circ [\alpha] = [\beta] \circ [f] \) in \( \Mc \), one has that \( f' \circ \alpha - \beta \circ f \) factors through a projective. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( f' \circ \alpha - \beta \circ f \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to B' \) such that
             \[
                 f' \circ \alpha - \beta \circ f = \xi \circ \kappa_A.
             \]
@@ -1246,13 +1248,16 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center}
             one gets that
             \[
-                \eta' \circ i_{\alpha} + g' \circ \xi: I_A \to C_{f'}.
+                \gamma_{f'} \circ i_{\alpha} + g' \circ \xi: I_A \to C_{f'}.
             \]
             And since
-            \[
-                g' \circ \beta \circ f = g' \circ f' \circ \alpha + g' \circ \xi \circ \kappa_A = \eta' \circ \kappa_{A'} \circ \alpha + g' \circ \xi \circ \kappa_A = \eta' \circ i_{\alpha} \circ \kappa_A + g' \circ \xi \circ \kappa_A = (\eta' \circ i_{\alpha} + g' \circ \xi) \circ \kappa_A
-            \]
-            then by the pushout property of \( C_f \) it follows that there exist some unique \( \gamma \) such that the following diagram commutes
+            \begin{align*}
+                g' \circ \beta \circ f &= g' \circ f' \circ \alpha + g' \circ \xi \circ \kappa_A \\
+                &= \gamma_{f'} \circ \kappa_{A'} \circ \alpha + g' \circ \xi \circ \kappa_A \\
+                &= \gamma_{f'} \circ i_{\alpha} \circ \kappa_A + g' \circ \xi \circ \kappa_A \\
+                &= (\gamma_{f'} \circ i_{\alpha} + g' \circ \xi) \circ \kappa_A
+            \end{align*}
+            then by the pushout property of \( C_f \) it follows that there exist some unique \( \phi \) such that the following diagram commutes
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1267,14 +1272,14 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-1-2) edge node {g} (m-2-2)
                             edge[curve={height=-25pt}] node {g' \circ \beta} (m-3-3)
 
-                        (m-2-1) edge node {\eta} (m-2-2)
-                            edge[curve={height=25pt}] node[swap] {\eta' \circ i_{\alpha} + g' \circ \xi} (m-3-3)
-                        (m-2-2) edge[dashed] node {\gamma} (m-3-3);
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\gamma_{f'} \circ i_{\alpha} + g' \circ \xi} (m-3-3)
+                        (m-2-2) edge[dashed] node {\phi} (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            Finally, needs to check that this \( \gamma \) makes \autoref{eq:stablemod} commute.
+            Finally, needs to check that this \( \phi \) makes \autoref{eq:stablemod} commute.
 
-            By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check if \( [h' \circ \gamma] = [\Sigma' (\alpha) \circ h] \). Consider the following pushout diagram that commutes because \( \Sigma'(\alpha) \circ h \circ \eta \circ \kappa_A = \Sigma'(\alpha) \circ \rho_A \circ \kappa_A = 0 \),
+            By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check if \( [h' \circ \phi] = [\Sigma' (\alpha) \circ h] \). Consider the following pushout diagram that commutes because \( \Sigma'(\alpha) \circ h \circ \gamma_f \circ \kappa_A = \Sigma'(\alpha) \circ \rho_A \circ \kappa_A = 0 \),
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1289,22 +1294,22 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-1-2) edge node {g} (m-2-2)
                             edge[curve={height=-25pt}] node {0} (m-3-3)
 
-                        (m-2-1) edge node {\eta} (m-2-2)
-                            edge[curve={height=25pt}] node[swap] {\Sigma'(\alpha) \circ h \circ \eta} (m-3-3)
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\Sigma'(\alpha) \circ h \circ \gamma_f} (m-3-3)
                         (m-2-2) edge[dashed] (m-3-3);
                 \end{tikzpicture}
             \end{center}
             and the following two equations
             \[
-                h' \circ \gamma \circ g = h' \circ g' \circ \beta = 0 = \Sigma'(\alpha) \circ h \circ g,
+                h' \circ \phi \circ g = h' \circ g' \circ \beta = 0 = \Sigma'(\alpha) \circ h \circ g,
             \]
             and
             \[
-                \Sigma'(\alpha) \circ h \circ \eta = \Sigma'(\alpha) \circ \rho_A = \rho_{A'} \circ i_{\alpha} = h' \circ \eta' \circ i_{\alpha} = h' \circ (\gamma \circ \eta - g' \circ \xi) = h' \circ \gamma \circ \eta
+                \Sigma'(\alpha) \circ h \circ \gamma_f = \Sigma'(\alpha) \circ \rho_A = \rho_{A'} \circ i_{\alpha} = h' \circ \gamma_{f'} \circ i_{\alpha} = h' \circ (\phi \circ \gamma_f - g' \circ \xi) = h' \circ \phi \circ \gamma_f
             \]
             implies that there are two choices of dashed line in the above diagram that would make it commute. However, by uniqueness, this implies they are equal and so
             \[
-                \Sigma'(\alpha) \circ h = h' \circ \gamma.
+                \Sigma'(\alpha) \circ h = h' \circ \phi.
             \]
         }
         \item {
@@ -1376,13 +1381,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-4-2) edge node {\Sigma' g} (m-4-3);
                 \end{tikzpicture}
             \end{equation}
-            By {\bf TR3} there exist some \( \phi: C_f \to C_{n \circ f} \) such that the diagram including \( \phi \) commutes.
+            By the \emph{construction} of \( \phi \) in {\bf TR3} there exist some \( \phi: C_f \to C_{n \circ f} \) such that the diagram including \( \phi \) commutes. However note that the \( \xi \) in the construction of \( \phi \) is simply \( 0 \) because here the diagram is in \( \Mod(R) \), and not in \( \Mc \) as is assumed in the construction in {\bf TR3}. Similarly, \( i_\alpha = i_{\Id_A} \) can be assumed to simply be \( \Id_{I_A} \). Spesifically this implies that \( \phi \circ \gamma_f = \gamma_{n \circ f} \).
 
             By \autoref{rem:stmod_cone_pushout_properties} it follows that \( g \) is a monomorphism. And since \( \kappa_{C_f} \) is also a monomorphism, it follows that
             \[
                 \kappa_{C_f} \circ g: B \to I_{C_f}
             \]
-            is also a monomorphism. Then by the injective object property of \( (\kappa_B, I_B) \) there exist some morphism \( i: I_{C_f} \to I_B \) such that the following diagram commutes
+            is also a monomorphism. Then by the injective object property of \( (\kappa_B, I_B) \) there exist some morphism \( i: I_{C_f} \to I_B \) diagram excluding the dashed arrow commutes
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1394,9 +1399,11 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-1-2) edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
                             edge node {\kappa_B} (m-2-2)
 
-                        (m-2-1) edge node {i} (m-2-2);
+                        (m-2-1) edge node {i} (m-2-2)
+                        (m-2-2) edge[dashed, curve={height=-25pt}] node {\tilde{i}} (m-2-1);
                 \end{tikzpicture}
             \end{center}
+            By the same argument, there exist some \( \tilde{i} \) such that the above diagram excluding \( i \) commutes.
             
             Consider the following pushout diagram of \( C_{n \circ f} \)
             \begin{center}
@@ -1424,7 +1431,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ g \circ f \\
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A \\
             \end{align*}
-            and therefore the dashed morphism \( \psi \) exists that makes the diagram commute.
+            and therefore the dashed morphism \( \psi \) exists that makes the pushout diagram commute.
 
             Then to show that \( \psi \) makes \autoref{eq:stmod_tr4} commute in \( \Mc \), one can see that the square to the left of \( \psi \) commutes by definition, however the square on the right is a little more tricky.
 
@@ -1497,15 +1504,119 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {[\gamma]} (m-1-2)
+                        (m-1-1) edge node {[\phi]} (m-1-2)
                         (m-1-2) edge node {[\psi]} (m-1-3)
                         (m-1-3) edge node {\Sigma([g]) \circ [k]} (m-1-4);
                 \end{tikzpicture}
             \end{center}
             is a distinguished triangle.
 
-            WIP -> Sjå i remarkable! Må visa at eit diagram er ein pushout!
+            Consider the following commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \& D \\
+                        I_A \& C_f \& C_{n \circ f}. \\
+                    };
 
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge node {\kappa_A} (m-2-1)
+                        (m-1-2) edge node {n} (m-1-3)
+                            edge node {g} (m-2-2)
+                        (m-1-3) edge node {j} (m-2-3)
+
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\gamma_{n \circ f}} (m-2-3)
+                        (m-2-2) edge node {\phi} (m-2-3);
+                \end{tikzpicture}
+            \end{center}
+            Since the left and the outer square are pushouts this implies that the right square is also a pushout.
+
+            {\bf Marius, kan du venlegst dobbeltsjekka det følgande argumentet om at ei "omrokkering" av morfiar gir ein ny pushout, eg er svært usikker på om det fungerar.}
+
+            Consider the following commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{0.5cm}{1cm} {
+                        \&[-0.5cm] B \& D \\
+                        I_{C_f} \\
+                        \& I_B \& C_n. \\
+                    };
+                    \draw[math]
+                        (m-1-2) edge node {n} (m-1-3)
+                            edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                            edge node {\kappa_B} (m-3-2)
+                        (m-1-3) edge node {m} (m-3-3)
+
+                        (m-2-1) edge node[swap] {i} (m-3-2)
+
+                        (m-3-2) edge node {\gamma_n} (m-3-3);
+                \end{tikzpicture}
+            \end{center}
+            By the definition of \( C_n \) the square is a pushout. Rearranging the morphisms a little yields the following commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{0.5cm}{1cm} {
+                        \&[-0.5cm] B \& D \\
+                        I_B \\
+                        \& I_{C_f} \& C_n. \\
+                    };
+                    \draw[math]
+                        (m-1-2) edge node {n} (m-1-3)
+                            edge node[swap] {\kappa_B} (m-2-1)
+                            edge node {\kappa_{C_f} \circ g} (m-3-2)
+                        (m-1-3) edge node {m} (m-3-3)
+
+                        (m-2-1) edge node[swap] {\tilde{i}} (m-3-2)
+
+                        (m-3-2) edge node {\gamma_n \circ i} (m-3-3);
+                \end{tikzpicture}
+            \end{center}
+            % \begin{center}
+            %     \begin{tikzpicture}
+            %         \diagram{m}{1cm}{0.5cm} {
+            %             B \& \& D \\
+            %             I_{C_f} \& \& C_n \\[-0.5cm]
+            %             \& I_B \\
+            %         };
+            %         \draw[math]
+            %             (m-1-1) edge node {n} (m-1-3)
+            %                 edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+            %             (m-1-3) edge node {m} (m-2-3)
+
+            %             (m-2-1) edge node {\gamma_n \circ i} (m-2-3)
+            %                 edge node[swap] {i} (m-3-2)
+
+            %             (m-3-2) edge node[swap] {\gamma_n} (m-2-3);
+            %     \end{tikzpicture}
+            % \end{center}
+            where the new square is somehow also a pushout? {\bf (Eg trur happel greier dette fordi han anntek at \( I_B = I_{C_f} \), som medførar at \( i = \Id \). Eg har berre fått dette argumentet til å fungera om \( \gamma_n \circ i \circ \tilde{i} = \gamma_n \), som blir rart å annta med tanke på korleis eg har definert \( \Sigma \) på)}.
+
+            WIP: Show above argument, as well as \( \psi \circ \phi = \gamma_n \circ i \circ \kappa_{C_f} \) to use the below diagram to finish the proof.
+
+            Using the new pushout above, one can construct the following commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        B \& D \\
+                        C_f \& C_{n \circ f} \\
+                        I_{C_f} \& C_n \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {n} (m-1-2)
+                            edge node {g} (m-2-1)
+                        (m-1-2) edge node {j} (m-2-2)
+                            edge[curve={height=-25pt}] node {m} (m-3-2)
+
+                        (m-2-1) edge node {\phi} (m-2-2)
+                            edge node {\kappa_{C_f}} (m-3-1)
+                        (m-2-2) edge node {\psi} (m-3-2)
+
+                        (m-3-1) edge node {\gamma_n \circ i} (m-3-2);
+                \end{tikzpicture}
+            \end{center}
         }
     \end{enumerate}
 \end{proof}
