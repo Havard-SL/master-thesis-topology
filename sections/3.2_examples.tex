@@ -16,11 +16,11 @@ The following remark contains some preliminary information that is helpful in th
             };
         
             \draw[math]
-                (m-1-1) edge[hook] node {\iota} (m-1-2)
+                (m-1-1) edge[hook] node {\kappa_J} (m-1-2)
                 (m-1-2) edge[two heads] node {\phi} (m-1-3);
         \end{tikzpicture}
     \end{center}
-    where \( \iota \) is the inclusion and \( \phi \) is the morphism
+    where \( \kappa_J \) is the inclusion and \( \phi \) is the morphism
     \begin{align*}
         \phi: R &\to J \\
         0, 1 + g &\mapsto 0 \\
@@ -28,9 +28,9 @@ The following remark contains some preliminary information that is helpful in th
     \end{align*}
     is not split.
 
-    This is because \( \iota \) is the only monomorphism of \( J \) into \( R \), but composes to \( 0 \) with \( \phi \). Therefore \( J \) cannot be projective, since every epimorphism into a projective module splits.
+    This is because \( \kappa_J \) is the only monomorphism of \( J \) into \( R \), but composes to \( 0 \) with \( \phi \). Therefore \( J \) cannot be projective, since every epimorphism into a projective module splits.
 
-    The supension \( \Sigma J \) is assumed to be the cokernel of \( \iota_J \), which by the short exact sequence above, can be assumed to be \( J \).
+    The supension \( \Sigma J \) is assumed to be the cokernel of \( \kappa_J \), which by the short exact sequence above, can be assumed to be \( J \).
 
 	% Furthermore, since \( \phi \) is an epimorphism with kernel \( J \), one gets from the third isomorphism theorem that \( \frac{R}{J} \cong J \). Let the isomorphism from \( \frac{R}{J} \) to \( J \) also be denoted as \( \phi \).
 \end{remark}
@@ -51,7 +51,7 @@ Here are the examples:
 				(m-1-3) edge node {[\Id_J]} (m-1-4);
 		\end{tikzpicture}
 	\end{center}
-	want to calculate the Toda bracket \( \toda{\Id_J, 0, \Id_J} \).
+	the goal is to calculate the Toda bracket \( \toda{\Id_J, 0, \Id_J} \).
 
 	Using the iterated cofiber definition of Toda bracket, then the first step is to calculate the standard triangle of \( \Id_J \). By the assumptions in \autoref{rem:toda_bracket_examples_properties}, the cone is isomorphic to \( 0 \) and the suspension of \( \Id_J \) is \( J \).
 
@@ -97,11 +97,11 @@ Here are the examples:
 	Therefore \( \toda{[\Id_J], [0], [\Id_J]} = \set{[0], [\Id_J]} \). 
 \end{example}
 
-One thing that was shown in this example, is that the Toda bracket is dependant on the choice of \( I \) in \autoref{def:stmod_sigma}. In the previous example, one could have assumed \( \Sigma J \) to be \( \frac{R}{J} \), which would have yielded the Toda bracket \( \toda{[\Id_J], [0], [\Id_J]} = \set{[0], [\phi]} \). Therefore, in the future, for applications of Toda brackets on stable module categories, it is important to keep in mind that the choice of \( I \) in the definition of \( \Sigma \) is consistent.
+One thing that was shown in this example, is that the Toda bracket is dependant on the choice of \( I \) in \autoref{def:stmod_sigma}. In the previous example, one could have assumed \( \Sigma J \) to be \( \frac{R}{J} \), which would have yielded the Toda bracket \( \toda{[\Id_J], [0], [\Id_J]} = \set{[0], [\phi]} \). Therefore for applications of Toda brackets on stable module categories, it is important to keep in mind that the choice of \( I \) in the definition of \( \Sigma \) is consistent.
 
 \begin{example}
 	\label{ex:toda_bracket-1}
-	Want to calculate \( \toda{\Id_J, \Id_J, \Id_J} \).
+	The goal is to calculate \( \toda{\Id_J, \Id_J, \Id_J} \).
 
 	One has the following diagram by the iterated cofiber definition of toda bracket using the assumptions made in \autoref{rem:toda_bracket_examples_properties}
 	\begin{center}
@@ -134,7 +134,7 @@ One thing that was shown in this example, is that the Toda bracket is dependant 
 The previous example shows another important property of Toda brackets, namely that it can be empty in certain circumstances. The following proposition and proof shows this property.
 
 \begin{proposition}
-	Let \( f_1, f_2, f_3 \) be three composable maps in any triangulated category, \( \Tc \),
+	Let \( f_1, f_2, f_3 \) be three composable morphisms in any triangulated category, \( \Tc \),
 	\begin{center}
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{1cm} {
@@ -152,7 +152,7 @@ The previous example shows another important property of Toda brackets, namely t
 	Then \( \toda{f_3, f_2, f_1} = \emptyset \).
 \end{proposition}
 \begin{proof}
-	Assume that \( \toda{f_3, f_2, f_1} \neq \emptyset \). Then from the iterated cofiber definition of Toda bracket there exists maps \(\alpha, \beta, \phi, \psi \) such that the following diagram commutes, and the top row is distinguished
+	Assume that \( \toda{f_3, f_2, f_1} \neq \emptyset \). Then from the iterated cofiber definition of Toda bracket there exists morphisms \( \alpha, \beta, \phi, \psi \) such that the following diagram commutes, and the top row is distinguished
 	\begin{center}
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{1cm} {
@@ -181,7 +181,7 @@ The previous example shows another important property of Toda brackets, namely t
 		\item{
 			Case 1:
 
-			Assume that \( f_2 \circ f_1 \neq 0 \). Then since \( \alpha, f_1 \) are two composable maps from the same distinguished triangle one has
+			Assume that \( f_2 \circ f_1 \neq 0 \). Then since \( \alpha, f_1 \) are two composable morphisms from the same distinguished triangle one has
 			\[
 				\phi \circ \alpha \circ f_1 = \phi \circ 0 = 0.
 			\]
@@ -210,7 +210,7 @@ The previous example shows another important property of Toda brackets, namely t
 The following example is a generalization of \autoref{ex:toda_bracket-1} on any triangulated category \( \Tc \).
 
 \begin{example}
-	Want to compute \( \toda{f, 0, \Id} \) for any triangulated category \( \Tc \) and for any \( f \in \Tc(X_2, X_3) \).
+	The goal is to compute \( \toda{f, 0, \Id} \) for any triangulated category \( \Tc \) and for any \( f \in \Tc(X_2, X_3) \).
 
 	First note that on any triangulated category, the cone of the identity morphism is isomorphic to \( 0 \). Then using the iterated cofiber definition of Toda brackets, one gets the following diagram
 	\begin{center}
@@ -240,4 +240,109 @@ The following example is a generalization of \autoref{ex:toda_bracket-1} on any 
 
 Finally, the last example will be in \( \Mc \), but a little more complicated computation.
 
-WIP.
+\begin{example}
+	The goal is to compute the Toda bracket of the following morphisms using the cofiber-cofiber definition,
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				J \& {J \oplus J} \& {J \oplus J} \& J. \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+				(m-1-2) edge node {\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}} (m-1-3)
+				(m-1-3) edge node {\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} (m-1-4);
+		\end{tikzpicture}
+	\end{center}
+
+	First find the standard triangle of \( \begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}: J \to J \oplus J \).
+
+	The cone is defined as the pushout of the following diagram,
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				J \& J \oplus J \\
+				R, \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+					edge[hook] node[swap] {\kappa_J} (m-2-1);
+		\end{tikzpicture}
+	\end{center}
+	where \( \kappa_J \) is assumed to be as in \autoref{rem:toda_bracket_examples_properties}.
+
+	In the category of \( \Mod(R) \), the pushout becomes
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				J \& J \oplus J \\
+				R \& \frac{J \oplus J \oplus R}{\sim}, \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+					edge[hook] node[swap] {\kappa_J} (m-2-1)
+				(m-1-2) edge[hook] node {\rho} (m-2-2)
+
+				(m-2-1) edge node {\gamma} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	where \( (1 + g, 1 + g, 0) \sim (0, 0, 1 + g) \).
+
+	The morphism \( \rho \) is given as the composition
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				J \oplus J \& J \oplus J \oplus R \& \frac{J \oplus J \oplus R}{\sim} \\
+			};
+
+			\draw[math]
+				(m-1-1) edge[hook] node {i} (m-1-2)
+				(m-1-2) edge[two heads] node {\pi} (m-1-3);
+		\end{tikzpicture}
+	\end{center}
+	where \( i \) is the embedding, and \( \pi \) is the quotient epimorphism.
+
+	One can check that the cone is isomorphic to \( J \oplus R \) via the morphism
+	\begin{align*}
+		\alpha: \frac{J \oplus J \oplus R}{\sim} &\to J \oplus R \\
+		(0, 0, r) &\mapsto (0, r) \\
+		(1 + g, 0, r) &\mapsto (1 + g, r + 1 + g) \\
+		(0, 1 + g, r) &\mapsto (1 + g, r) \\
+		(1 + g, 1 + g, r) &\mapsto (0, r + 1 + g). \\
+	\end{align*}
+
+	Therefore, by checking the morphism \( \alpha \circ \rho \) one can see that it becomes
+	\[
+		\begin{psmallmatrix}
+			1 & 1 \\
+			\kappa_J & 0 \\
+		\end{psmallmatrix}:  J \oplus J \to J \oplus R.
+	\]
+
+	Doing a similar argument for \( \gamma \), one gets that it is simply the embedding into \( J \oplus R \), here denoted as \( \pi_R \).
+
+	WIP: Er det ein "pushout map" når det er eit anna objekt som berre er isomorft?
+	
+	Furthermore, the map \( J \oplus R \to \Sigma J = J \) is given as the unique pushout map \( \beta \), satisfying the following commutative diagram
+
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				J \& J \oplus J \\
+				R \& J \oplus R \\
+				\& J \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}} (m-1-2)
+					edge[hook] node[swap] {\kappa_J} (m-2-1)
+				(m-1-2) edge node {\begin{psmallmatrix} 1 & 1 \\ \kappa_J & 0 \\ \end{psmallmatrix}} (m-2-2)
+
+				(m-2-1) edge[hook] node {\pi_R} (m-2-2)
+					edge node {\rho_J} (m-3-2)
+				(m-2-2) edge node {\beta} (m-3-2);
+		\end{tikzpicture}
+	\end{center}
+\end{example}
