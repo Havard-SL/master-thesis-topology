@@ -1,20 +1,20 @@
-The first example of a triangulated category is the Spanier--Whitehead category. It is an example of a \emph{topological triangulated category}. A definition of the topological triangulated categories as given by Schwede in 2010 is ``... any triangulated category which is equivalent to a full triangulated subcategory of the homotopy category of a stable model category.'' \cite[At the top of p. 6 in the standalone article]{Schwede_2010}. In the same paragraph as the above quote, Schwede also explains why the Spanier--Whitehead category is topological. This thesis won't go into further detail on why the Spanier--Whitehead category is a topological triangulated category.
+The first example of a triangulated category is the Spanier--Whitehead category. It is an example of a \emph{topological triangulated category}. A definition of the topological triangulated categories as given by \cite[At the top of p. 6 in the standalone article]{Schwede_2010} is ``... any triangulated category which is equivalent to a full triangulated subcategory of the homotopy category of a stable model category.''. In the same paragraph as the above quote, Schwede also explains why the Spanier--Whitehead category is topological. This thesis won't go into further detail on why the Spanier--Whitehead category is a topological triangulated category.
 % Schwede says "For us" før sitatet. Betyr det at det ikkje er ein definitsjon, men blir implisert av definisjonen? Er homotopikategori av ein cofibration category betre def?
 
 First, some notation.
 \begin{notation}
-    For \( X, Y \) two pointed topological spaces.
+    For \( X \) and \( Y \) two pointed topological spaces.
 
     Let \( \class{ X, Y } \) denote the basepoint-preserving homotopy class of continous basepoint-preserving functions from \( X \) to \( Y \).
 \end{notation}
 
 Now one can define the \emph{underlying} Spanier--Whitehead category. The triangulated structure will be descirbed afterwards.
 
-The Spanier--Whitehead category is motivated by the Freudental suspension theorem and historically lead to the definition of the stable homotopy category. The reason the the Freudental suspension theorem is so central to the Spanier--Whitehead is the following corollary, whose proof can be found in \cite[Remark 5.2]{Daria_Bachelor}.
+The Spanier--Whitehead category is motivated by the Freudental suspension theorem and historically lead to the definition of the stable homotopy category. The reason why the Freudental suspension theorem is so central to the Spanier--Whitehead is the following corollary, whose proof can be found in \cite[Remark 5.2]{Daria_Bachelor}.
 
 \begin{corollary}
     \label{cor:sw_freudenthal_suspension}
-    Let \( X, Y \) be pointed and finite CW-complexes, let \( n, m \in \Nb \) and let \( \Sigma \) denote the pointed suspension of a topological space.
+    Let \( X \) and \( Y \) be pointed and finite CW-complexes, let \( n, m \in \Nb \) and let \( \Sigma \) denote the reduced suspension of a topological space.
     
     Then the colimit
     \[
@@ -33,7 +33,7 @@ The above corollary is crucial to understanding why the Spanier--Whitehead categ
             Objects in \( SW \) are tuples of a pointed CW-complexes and an integer, \( \tuple{X, n} \).
         }
         \item {
-            Let \( \Sigma \) denote the pointed suspension of a topological space.
+            Let \( \Sigma \) denote the reduced suspension of a topological space.
 
             Morphisms in \( SW \) are the following colimits of abelian groups
             \[
@@ -44,7 +44,11 @@ The above corollary is crucial to understanding why the Spanier--Whitehead categ
             Composition is defined by the usual composition, but for a high enough \( q \) such that by \autoref{cor:sw_freudenthal_suspension} the colimit is attained for both morphisms. Then the resulting composed morphism is embedded into the colimit by taking repeated suspensions if necessary.
         }
     \end{enumerate}
+
+    Then \( SW \) is called the \emph{Spanier--Whitehead category}.
 \end{definition}
+
+The reason for limiting the \( q \) in the colimit in item 2, is to make sure that the colimit is well-defined and taken over abelian groups. This is because \( \class{\Sigma^n X, Y} \) is only an abelian group if \( n \geq 2 \).
 
 It can be shown that the Spanier--Whitehead category is an additive category \cite[Proposition 5.7]{Daria_Bachelor}.
 
@@ -63,7 +67,7 @@ To see the triangulated structure of the Spanier--Whitehead category it is neces
         \Sigma f := f: (X, n + 1) \to (Y, m + 1).
     \]
 
-    This can be shown to be a functor, and an automorphism. % MS-Question: Ok å inkludera dette i def. her?
+    This can be shown to be a functor, and an automorphism.
 \end{definition}
 
 As the notation would imply, in \( SW \), one has that \( \Sigma(X, n) = (X, n + 1) \cong ( \Sigma X, n ) \).
@@ -76,17 +80,17 @@ The following definition of the distinguished triangles to make \( SW \) triangu
 
     A triangle
     \[
-        (X, n_X) \to (Y, n_Y) \to (Z, n_Z) \to (X, n_X + 1)
+        (X, n) \to (Y, m) \to (Z, l) \to (X, n + 1)
     \]
     is in \( \Delta \) if and only if there is some even number \( k \), such that the following triangle in the homotopy category of pointed CW-complexes
     \[
-        \Sigma^{n_X + k} X \to \Sigma^{n_Y + k} Y \to \Sigma^{n_Z + k} Z \to \Sigma^{n_X + k + 1} X
+        \Sigma^{n + k} X \to \Sigma^{m + k} Y \to \Sigma^{l + k} Z \to \Sigma^{n + k + 1} X
     \]
     is isomorphic as a triangle in the homotopy category of pointed CW-complexes to a triangle of the form
     \[
-        A \stackrel{f}{\to} B \to C(f) \to \Sigma A
+        A \stackrel{f}{\to} B \to C_f \to \Sigma A
     \]
-    where \( C(f) \) is the mapping cone of \( f \).
+    where \( C_f \) is the mapping cone of \( f \).
 \end{definition}
 
 Finally one can define \( SW \) as a triangulated category.
@@ -99,4 +103,4 @@ Finally one can define \( SW \) as a triangulated category.
 
 For a proof of the Spanier--Whitehead category being triangulated, see \cite[Theorem 5.9]{Daria_Bachelor}.
 
-From this example of a triangulated category one can see where a lot of the notation in the definition of a triangulated category comes from. There is no coincidence that it is common to use the same symbol for both pointed suspension and for the shift functor (\( \Sigma \)), and the same symbol for the mapping cone as well as the cone in a triangulated category (\( C(f) \)).
+From this example of a triangulated category one can see where a lot of the notation in the definition of a triangulated category comes from. There is no coincidence that it is common to use the same symbol for both reduced suspension and for the shift functor (\( \Sigma \)), and the same symbol for the mapping cone as well as the cone in a triangulated category (\( C_f \)).

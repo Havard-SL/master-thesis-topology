@@ -2,7 +2,7 @@ Before defining what a triangulated category is, it can be helpful to first defi
 
 \begin{definition}[Triangles]
     \label{def:triangles}
-    Let \( \Tc \) be an additive category, and let \( \Sigma: \Tc \to \Tc \) be an additive autoequivalence.
+    Let \( \Tc \) be an additive category, and let \( \Sigma: \Tc \to \Tc \) be an additive auto-equivalence.
 
     A \emph{triangle in \( \Tc \)}, is a diagram in \( \Tc \) on the form
     \begin{center}
@@ -59,11 +59,11 @@ Before defining what a triangulated category is, it can be helpful to first defi
     Furthermore if \( a, b, \) and \( c \) are isomorphisms, then \( (a, b, c) \) is called an \emph{isomorphism of triangles} and the two triangles are said to be \emph{isomorphic}.
 \end{definition}
 
-There are multiple different, but equivalent, definitions of a triangulated category with different axioms TODO: UTFYLL, CITE. This thesis will use the following definition.
+This thesis will use the following definition of a triangulated category.
 
 \begin{definition}[Triangulated category]
     \label{def:triangulated_category}
-    Let \( \Tc \) be an additive category, let \( \Sigma: \Tc \to \Tc \) be an additive autoequivalence, and let \( \Delta \) be a class of triangles (\autoref{def:triangles}) in \( \Tc \).
+    Let \( \Tc \) be an additive category, let \( \Sigma: \Tc \to \Tc \) be an additive auto-equivalence, and let \( \Delta \) be a class of triangles (\autoref{def:triangles}) in \( \Tc \).
 
     Furthermore, let \( \Tc \), \( \Sigma \) and \( \Delta \) satisfy the following four axioms:
     \begin{enumerate}[label={(\bfseries TR\arabic*)}]
@@ -108,33 +108,39 @@ There are multiple different, but equivalent, definitions of a triangulated cate
             \end{enumerate}
         }
         \item {
-            Any triangle is
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        A \& B \& C \& \Sigma A \\
-                    };
-        
-                    \draw[math]
-                        (m-1-1) edge node {f} (m-1-2)
-                        (m-1-2) edge node {g} (m-1-3)
-                        (m-1-3) edge node {h} (m-1-4);
-                \end{tikzpicture}
-            \end{center}
-            in \( \Delta \) if and only if
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        B \& C \& \Sigma A \& \Sigma B \\
-                    };
-        
-                    \draw[math]
-                        (m-1-1) edge node {g} (m-1-2)
-                        (m-1-2) edge node {h} (m-1-3)
-                        (m-1-3) edge node {-\Sigma f} (m-1-4);
-                \end{tikzpicture}
-            \end{center}
-            is in \( \Delta \).
+            Any triangle
+            \begin{equation}
+                \label{eq:tri_cat_def_right_rotation}
+                \begin{aligned}
+                    \begin{tikzpicture}
+                        \diagram{m}{1cm}{1cm} {
+                            A \& B \& C \& \Sigma A \\
+                        };
+            
+                        \draw[math]
+                            (m-1-1) edge node {f} (m-1-2)
+                            (m-1-2) edge node {g} (m-1-3)
+                            (m-1-3) edge node {h} (m-1-4);
+                    \end{tikzpicture}
+                \end{aligned}
+            \end{equation}
+            is in \( \Delta \) if and only if
+            \begin{equation}
+                \label{eq:tri_cat_def_left_rotation}
+                \begin{aligned}
+                    \begin{tikzpicture}
+                        \diagram{m}{1cm}{1cm} {
+                            B \& C \& \Sigma A \& \Sigma B \\
+                        };
+            
+                        \draw[math]
+                            (m-1-1) edge node {g} (m-1-2)
+                            (m-1-2) edge node {h} (m-1-3)
+                            (m-1-3) edge node {-\Sigma f} (m-1-4);
+                    \end{tikzpicture}
+                \end{aligned}
+            \end{equation}
+            is in \( \Delta \). The triangle \autoref{eq:tri_cat_def_left_rotation} is called the \emph{left rotation} of \autoref{eq:tri_cat_def_right_rotation}, and \autoref{eq:tri_cat_def_right_rotation} is called the \emph{right rotation} of \autoref{eq:tri_cat_def_left_rotation}.
         }
         \item {
             Let the solid part of the following diagram
@@ -178,22 +184,22 @@ There are multiple different, but equivalent, definitions of a triangulated cate
                         (m-1-1) edge node {f} (m-1-2)
                             edge[equal] (m-2-1)
                         (m-1-2) edge node {g} (m-1-3)
-                            edge (m-2-2)
-                        (m-1-3) edge (m-1-4)
-                            edge[dashed] (m-2-3)
+                            edge node {n} (m-2-2)
+                        (m-1-3) edge node {h} (m-1-4)
+                            edge[dashed] node {\phi} (m-2-3)
                         (m-1-4) edge[equal] (m-2-4)
         
-                        (m-2-1) edge (m-2-2)
-                        (m-2-2) edge (m-2-3)
-                            edge (m-3-2)
-                        (m-2-3) edge (m-2-4)
-                            edge[dashed] (m-3-3)
+                        (m-2-1) edge node {n \circ f} (m-2-2)
+                        (m-2-2) edge node {j} (m-2-3)
+                            edge node {m} (m-3-2)
+                        (m-2-3) edge node {l} (m-2-4)
+                            edge[dashed] node {\psi} (m-3-3)
                         (m-2-4) edge node {\Sigma f} (m-3-4)
 
                         (m-3-2) edge[equal] (m-3-3)
-                            edge node[swap] {h} (m-4-2)
-                        (m-3-3) edge node {h} (m-3-4)
-                            edge node {\Sigma(g) \circ h} (m-4-3)
+                            edge node[swap] {k} (m-4-2)
+                        (m-3-3) edge node {k} (m-3-4)
+                            edge node {\Sigma(g) \circ k} (m-4-3)
 
                         (m-4-2) edge node {\Sigma g} (m-4-3);
                 \end{tikzpicture}
@@ -204,12 +210,14 @@ There are multiple different, but equivalent, definitions of a triangulated cate
         }
     \end{enumerate}
 
-    Then \( \tuple{ \Tc, \Sigma, \Delta } \), or shortened to just \( \Tc \), is called an \emph{triangulated category}, \( \Sigma \) is called the \emph{shift functor of \( \Tc \)} (or sometimes in other litterature, the \emph{suspension functor of \( \Tc \)}), and every triangle in \( \Delta \) is called a \emph{distinguished triangle in \( \Tc \)} (or sometimes in other litterature, \emph{exact triangle in \( \Tc \)}).
+    Then \( \tuple{ \Tc, \Sigma, \Delta } \), or shortened to just \( \Tc \), is called an \emph{triangulated category}, \( \Sigma \) is called the \emph{shift functor} of \( \Tc \) (or the \emph{suspension functor} of \( \Tc \)), and every triangle in \( \Delta \) is called a \emph{distinguished triangle} in \( \Tc \) (or an \emph{exact triangle} in \( \Tc \)).
 \end{definition}
 
 Although the definition is axiomatic and may seem arbitrary, there are surprisingly many different categories that admit the structure of a triangulated category.
 
-Some of the axioms of a triangulated category are superflous in the fact that they are implied by the other axioms. An example of this is that given {\bf TR1}, {\bf TR3} and the \( (\Rightarrow) \) implication of {\bf TR2}, then it implies the \( (\Leftarrow) \) implication as well. The details are contained in the following lemma.
+There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what this thesis calls {\bf TR4}, he instead uses another axiom, closer to Verdier's original definition.
+
+Some of the axioms of a triangulated category are superflous in the fact that they are implied by the other axioms. An example is that {\bf TR3} is wholly contained in the definition of {\bf TR4} (TODO: May sin TR4 er ansleis frå den eg brukar.). Another example of this is that given {\bf TR1}, {\bf TR3} and the \( (\Rightarrow) \) implication of {\bf TR2}, then it implies the \( (\Leftarrow) \) implication as well. The details are contained in the following lemma.
 
 \begin{lemma}
     \label{lem:triangulated_category-TR2-only_one_rotation}
@@ -217,4 +225,5 @@ Some of the axioms of a triangulated category are superflous in the fact that th
 
     Then the \( (\Leftarrow) \) implication of {\bf TR2} is also satisfied.
 \end{lemma}
-For a proof of this see TODO: Cite MAY
+For a proof of this see \cite[Lemma 2.4]{May_2001}.
+

@@ -14,12 +14,14 @@ The chain homotopy category is one of the simplest triangulated category to defi
             Morphisms in \( \K(\Ac) \) are equivalence classes of chain morphisms up to null-homotopic chain morphisms.
         }
         \item {
-            Composition in \( \K(\Ac) \) is the equivalence class of the composition of the representatives of the morphisms, i.e:
+            Composition in \( \K(\Ac) \) is the equivalence class of the composition of the representatives of the morphisms, i.e,
             \[
                 [g] \circ [f] := [g \circ f ].
             \]
         }
     \end{enumerate}
+
+    Then \( \K(\Ac) \) is called the \emph{chain homotopy category} over \( \Ac \).
 \end{definition}
 
 \( \K(\Ac) \) can be shown to be an additive category.
@@ -30,7 +32,7 @@ On \( \C(\Ac) \) and by extension \( \K(\Ac) \) one can define a simple automorp
     \label{def:chain_homotopy_shift}
     Let \( \Sigma \) be the following assignment of objects and morphisms in \( \K(\Ac) \).
 
-    Let \( A = \tuple{A_i}_{i \in \Zb} \in \K(\Ac) \) be a chain complex.
+    Let \( A = \tuple{A_i}_{i \in \Zb} \in \K(\Ac) \) be a chain complex, and let \( d_n^A: A_n \to A_{n + 1} \) denote the \( n \)-th differential.
 
     Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \), with \( d_n^{\Sigma A} := -d_{n + 1}^A \).
 
@@ -42,14 +44,14 @@ On \( \C(\Ac) \) and by extension \( \K(\Ac) \) one can define a simple automorp
 
 \( \Sigma \) can be shown to be an additive automorphism on \( \K(\Ac) \).
 
-In addition, as one can see from the definition of \( \Sigma \), it can be defined directly onto \( \C(\Ac) \). In this way, one can think of the \( \Sigma \) automorphism on \( \K(\Ac) \) as ``induced'' in some sense, from the functor defined on \( \C(\Ac) \).
+In addition, as one can see from the definition of \( \Sigma \) that it could have been defined directly on \( \C(\Ac) \), instead of \( \K(\Ac) \). In this way, one can think of the \( \Sigma \) defined on \( \K(\Ac) \) as ``induced'' from the functor defined on \( \C(\Ac) \).
 
 The final piece of the puzzle is to define what the cone of a morphism in \( \K(\Ac) \) is.
 
 \begin{definition}[Cone in \( \K(\Ac) \)]
     Let \( f \in \K(\Ac)(A, B) \).
 
-    Then \( C(f) \) is the following chain complex
+    Then \( C_f \) is the following chain complex
     \begin{center}
         \mmznext{disable}
         \begin{tikzpicture}
@@ -74,29 +76,30 @@ The final piece of the puzzle is to define what the cone of a morphism in \( \K(
                 (m-1-4) edge (m-1-5);
         \end{tikzpicture}
     \end{center}
+
+    This is the \emph{cone of \( f \)} in \( \K(\Ac) \).
 \end{definition}
 
-One can think of the cone as having the underlying space of \( B \oplus \Sigma A \), but with the \( f \)-morphism ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
+One can think of the cone as having the underlying space of \( B \oplus \Sigma A \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
 
-The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, T1, but ends up satisfying every axiom anyways.
+The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, {\bf TR1}, but ends up satisfying every axiom anyways.
 
 \begin{definition}
     \label{def:chain_homotopy_dist}
     Let \( \Delta \) be the collection of triangles in \( \K(\Ac) \) consisting of triangles that are isomorphic to any triangle of the form
 
     \[
-        A \stackrel{f}{\to} B \to C(f) \to \Sigma A.
+        A \stackrel{f}{\to} B \to C_f \to \Sigma A.
     \]
 \end{definition}
 
-Together they give the second example of a triangulated category.
+Together, \( \K(\Ac), \Sigma, \) and \( \Delta \) give the second example of a triangulated category.
 
 \begin{example}
     Let \( \K(\Ac) \) be as in \autoref{def:chain_homotopy_cat}, let \( \Sigma \) be as in \autoref{def:chain_homotopy_shift}, and let \( \Delta \) be as in \autoref{def:chain_homotopy_dist}.
 
     Then \( \tuple{\K(\Ac), \Sigma, \Delta} \) is a triangulated category.
 \end{example}
+For a proof of \( \K(\Ac) \) being triangulated \cite[Proposition 3.5.25]{Zimmermann_2014}.
 
-For a proof of \( \K(\Ac) \) being triangulated, see TODO: Cite Weibel.
-
-Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. One can see from the definition in \autoref{def:chain_homotopy_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminoligy used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
+Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. One can see from \autoref{def:chain_homotopy_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
