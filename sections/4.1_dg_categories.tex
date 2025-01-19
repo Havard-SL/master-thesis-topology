@@ -1,0 +1,341 @@
+In this thesis the definition of a DG-category is based on enriched category theory, as it is a modern approach, and by the opinion of the author it is also the most elegeant approach.
+
+First, it can be helpful to define some notation.
+\begin{notation}
+    Let \( R \) be a commutative ring with identity in this section.
+
+    Let \( d_{A, n} \) denote the \( n \)-th differential of a chain complex \( A \).
+\end{notation}
+
+The first definition necessary to understanding DG-categories, is the tensor product of chain complexes.
+
+\begin{definition}[Tensor product of \( \C(\Mod(R)) \)]
+    \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
+    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \tuple*{\Mod(R)} \).
+
+    Then, for any  \( n \in \Zb \) define the modules
+    \[
+        (A \otimes B)_n := \coprod_{p + q = n} A_p \otimes B_q
+    \]
+    which are a part of the chain complex
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \otimes B: \\
+            };
+        \end{tikzpicture}
+        %
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& \tuple*{A \otimes B}_{-1} \& \tuple*{A \otimes B}_0 \& \tuple*{A \otimes B}_1 \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {d_{-1}} (m-1-3)
+                (m-1-3) edge node {d_0} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
+
+    Where the differentials, \( d_n \), are defined as follows:
+    
+    Let \( i + j = n \) and \( a \otimes b \in A_i \otimes B_j \) be an elementary tensor.
+
+    Then the differential is (uniquely) defined by the following assignments
+    \[
+        d_n(a \otimes b) := d_{A, i}(a) \otimes b + (-1)^{i} a \otimes d_{B, j}(b).
+    \]
+
+    This is called the \emph{tensor product of \( \C(\Mod(R)) \)}.
+\end{definition}
+
+In order to see that the above definition of the differential on the chain complex is well defined, one needs the following lemma, which will be useful later as well.
+
+\begin{lemma}
+    \label{lem:map_out_of_tensor_unique}
+    Let \( A, B \in \C(\Mod(R)) \) and let \( C \in \Mod(R) \). Furthermore, let \( i, j \in \Zb \) with \( i + j = n \).
+
+    Then for any
+    \[
+        f: (A \otimes B)_n \to C
+    \]
+    where for any \( a \in A_i, b \in B_j \) one has
+    \[
+        f(a \otimes b) = g_{i, j}(a, b)
+    \]
+    for some \( R \)-bilinear morphisms
+    \[
+        g_{i, j}: A_i \times B_j \to C.
+    \]
+
+    Then \( f \) is uniquely defined by the \( g_{i, j} \)'s.
+\end{lemma}
+\begin{proof}
+    Consider at the following diagram where \( \iota_{i, j} \) is the canocial split monomorphism by the universal property of the coproduct, and where the \( g_{i, j} \)'s are \( R \)-bilienar
+    \begin{equation}
+        \label{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \diagram{m}{2cm}{2cm} {
+                A_i \otimes B_j \& \coprod\limits_{p + q = n} A_p \otimes B_q \\
+                A_i \times B_j \& C. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[hook] node {\iota_{i, j}} (m-1-2)
+                    edge[dashed] node {\alpha_{i, j}} (m-2-2)
+                (m-1-2) edge[dashed] node {\beta} (m-2-2)
+
+                (m-2-1) edge node {g_{i, j}} (m-2-2)
+                    edge node {\otimes} (m-1-1);
+        \end{tikzpicture}
+    \end{equation}
+
+    Then by the universal property of tensor product in \( \Mod(R) \), \( g_{i, j} \) induces a unique morphism, \( \alpha_{i, j} \), which is induced from the elementary tensors as follows
+    \[
+        a \otimes b \mapsto g_{i, j}(a, b).
+    \]
+
+    Since this works for any \( i, j \) as long as \( i + j = n \), one can construct \( \alpha_{i, j} \) for every valid \( i, j \) pair.
+
+    Then by using the universal property of the coproduct one gets the unique map \( \beta \) which is by \autoref{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)} uniquely determined by it's actions on elementary tensors \( a \otimes b \in A_i \otimes B_j \) in the following way
+    \[
+        \beta: a \otimes b \mapsto g_{i, j}(a, b)
+    \]
+    which is exactly equal to \( f \), and \( f \) is therefore uniquely deterined by the \( g_{i, j} \)'s.
+\end{proof}
+
+The following remark shows that \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined.
+
+\begin{remark}
+    The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined and unique by the following argument.
+
+    One can check that for \( i + j = n \) that
+    \begin{align*}
+        g_{i, j}: A_i \times B_j &\to (A \otimes B)_{n + 1} \\
+        (a, b) &\mapsto d_{A, i}(a) \otimes b + (-1)^i a \otimes d_{B, j}(b)
+    \end{align*}
+    is \( R \)-bilinear.
+
+    Then by \autoref{lem:map_out_of_tensor_unique} it follows that \( d_n \) is uniquely defined.
+
+    Similarly, by seeing that
+    \[
+        d_{n + 1} \circ d_n: a \otimes b \mapsto 0
+    \]
+    and the \( 0 \) map is \( R \)-bilinear, so \( d_{n + 1} \circ d_n \) is uniquely defined. Since the zero map would also send \( a \otimes b \) to \( 0 \), then by uniquenes \( d_{n + 1} \circ d_n = 0 \).
+\end{remark}
+
+An important property of the tensor product of chain complexes is symmetry. This is shown in the following remark.
+
+\begin{remark}[Symmetry of tensor product in \( \C(\Mod(R)) \)]
+    For two \( A, B \in \C(\Mod(R)) \), there exist an isomorphism
+    \[
+        s = \tuple{s_n}_{n \in \Zb}: A \otimes B \to B \otimes A
+    \]
+    that for any \( n \) and \( i + j = n \) with \( a \in A_i \) and \( b \in B_j \) is defined on the \( n \)-th component as follows,
+    \[
+        s_n: a \otimes b \mapsto (-1)^{ij} b \otimes a.
+    \]
+
+    By \autoref{lem:map_out_of_tensor_unique} every \( s_n \) is well-defined. It is also clear that every \( s_n \) is an isomorphism. It only remains to verify that \( s = \tuple{s_n}_{n \in \Zb} \) is a chain morphism.
+
+    Consider the following difference
+    \begin{align*}
+        &s_{n + 1} \circ d_n(a \otimes b) - d_n \circ s_n (a \otimes b) = s_{n + 1} \tuple{d_{A, i}(a) \otimes b + (-1)^i a \otimes d_{B, j}(b)} - d_n \tuple{ (-1)^{ij} b \otimes a } \\
+        &= (-1)^{(i + 1)j} b \otimes d_{A, i}(a) + (-1)^{i + i(j + 1)} d_{B, j}(b) \otimes a - (-1)^{ij} d_{B, i}(b) \otimes a - (-1)^{j + ij} b \otimes d_{A, j}(a) \\
+        &= WIP
+    \end{align*}
+\end{remark}
+
+Another definition closely linked to the tensor product in \( \C(\Mod(R)) \) is the internal hom.
+
+\begin{definition}[Internal hom of \( \C(\Mod(R)) \)]
+    \label{def:internal_hom_of_chain_complexes_over_Mod(R)}
+    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \tuple*{\Mod(R)} \).
+
+    Then, for any \( n \in \Ab \) define the modules
+    \[
+        \class*{A, B}_n := \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n})
+    \]
+    which are a part of the chain complex
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \class*{A, B}: \\
+            };
+        \end{tikzpicture}
+        %
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& \class*{A, B}_{-1} \& \class*{A, B}_0 \& \class*{A, B}_1 \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {d_{-1}} (m-1-3)
+                (m-1-3) edge node {d_0} (m-1-4)
+                (m-1-4) edge (m-1-5);
+        \end{tikzpicture}
+    \end{center}
+
+    where the differentials, \( d_n \), are defined as follows:
+    \begin{align*}
+        d_n : \class*{A, B}_n &\to \class*{A, B}_{n + 1} \\
+        \tuple*{f_i}_{i \in \Zb} &\mapsto \tuple*{d_{B, i + n} \circ f_i - (-1)^n f_{i + 1} \circ d_{A, i}}_{i \in \Zb}.
+    \end{align*}
+    This is called the \emph{internal hom of chain complexes over \( \Mod(R) \)}.
+\end{definition}
+
+The following remark explains why the differentials in the previous definition is well-defined.
+
+\begin{remark}
+    The definition of the differential in \autoref{def:internal_hom_of_chain_complexes_over_Mod(R)} is well-defined because the only thing that needs to be checked is if the \( d_n \)'s are differentials, which can be checked straight forwardly.
+\end{remark}
+
+As the names would imply, the tensor product and internal hom of chain complexes over modules are adjoint in the usual sense. This is shown in the following remark.
+
+\begin{remark}[Tensor product and internal hom adjunction in \( \C(\Mod(R)) \)]
+    Let \( A, B, C \) be chain complexes in \( \C(\Mod(R)) \) for some commutative ring \( R \), and let \( f \in \C(\Mod(R))\tuple*{A \otimes B, C} \).
+    
+    The goal of this remark is to understand what the adjoint of \( f \) is.
+
+    Let \( f = \set*{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple*{ \tuple*{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
+
+    Then, unpacking the definitions, one has that \( f \) looks like the following diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& \coprod\limits_{i + j = -1} A_i \otimes B_j \& \coprod\limits_{i + j = 0} A_i \otimes B_j \& \coprod\limits_{i + j = 1} A_i \otimes B_j \& \cdots \\
+                \cdots \& C_{-1} \& C_0 \& C_1 \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                    edge (m-2-1)
+                (m-1-2) edge node {d_{A \otimes B, -1}} (m-1-3)
+                    edge node {f_{-1}} (m-2-2)
+                (m-1-3) edge node {d_{A \otimes B, 0}} (m-1-4)
+                    edge node {f_0} (m-2-3)
+                (m-1-4) edge (m-1-5)
+                    edge node {f_1} (m-2-4)
+                (m-1-5) edge (m-2-5)
+
+                (m-2-1) edge (m-2-2)
+                (m-2-2) edge node {d_{C, -1}} (m-2-3)
+                (m-2-3) edge node {d_{C, 0}} (m-2-4)
+                (m-2-4) edge (m-2-5);
+        \end{tikzpicture}
+    \end{center}
+    Likewise, the adjoint has to look like the following diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{0.70cm} {
+                \cdots \&[-0.5cm] A_{-1} \& A_0 \& A_1 \&[-0.5cm] \cdots \\
+                \cdots \& \prod\limits_{j \in \Zb} \Mod(R)(B_j, C_{j - 1}) \& \prod\limits_{j \in \Zb} \Mod(R)(B_j, C_j) \& \prod\limits_{j \in \Zb} \Mod(R)(B_j, C_{j + 1}) \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {d_{A, -1}} (m-1-3)
+                    edge node {?_{-1}} (m-2-2)
+                (m-1-3) edge node {d_{A, 0}} (m-1-4)
+                    edge node {?_0} (m-2-3)
+                (m-1-4) edge (m-1-5)
+                    edge node {?_1} (m-2-4)
+
+                (m-2-1) edge (m-2-2)
+                (m-2-2) edge node {d_{\class*{B, C}, -1}} (m-2-3)
+                (m-2-3) edge node {d_{\class*{B, C}, 0}} (m-2-4)
+                (m-2-4) edge (m-2-5);
+        \end{tikzpicture}
+    \end{center}
+
+    For any \( n \in \Zb \), let \( i', j' \in \Zb \) with \( i' + j' = n \) let
+    \[
+        \iota_{i', j'}: A_{i'} \otimes B_{j'} \hookrightarrow \coprod_{i + j = n} A_i \otimes B_j
+    \]
+    be the canonical split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
+
+    Then take the hom-tensor adjoint in \( \Mod(R) \) of the morphism
+    \[
+        f_{i + j} \circ \iota_{i, j}: A_i \otimes B_j \to C_{i + j}.
+    \]
+    This yields a morphism
+    \begin{align*}
+        \phi_{f, i, j}: A_i &\to \Mod(R)(B_j, C_{j + i}) \\
+        a &\mapsto f_{i + j}\tuple*{ a \otimes ? }.
+    \end{align*}
+    Then by the universal property of the product there is some morphism
+    \[
+        \phi_{f, i} := \prod_{j \in \Zb} \phi_{f, i, j}: A_i \to \prod_{j \in \Zb} \Mod(R)\tuple*{B_j, C_{j + i}}.
+    \]
+    Collecting these morphisms yields a morphism, which is a candidate for the adjoint of \( f \), namely
+    \[
+        \phi_f := \set*{\phi_{f, i}}_{i \in \Zb}.
+    \]
+    In order to show that this is the proper adjoint definition, one needs to show the following properties:
+    \begin{enumerate}
+        \item {
+            Firstly, \( \phi_f \) is a chain morphism.
+        }
+        \item {
+            Secondly, the assignment \( f \mapsto \phi_f \) is an isomorphism of groups.
+        }
+        \item {
+            Thirdly, there is a natural transformation
+            \[
+                \C(\Mod(R))(?_1 \otimes ?_2, ?_3) \cong \C(\Mod(R))(?_1, \left[ ?_2, ?_3 \right])
+            \]
+            where the natural morphisms are \( f \mapsto \phi_f \).
+        }
+    \end{enumerate}
+    % TODO: Possibly expand this proof? or TODO: SRC (Marius kommenterte dette og)
+    In this thesis only the first statement will be proven.
+
+    1) Want to show that \( \phi_f \) is a chain morphism.
+
+    Need to check that for any \( i \in \Zb \) that the following diagram commutes
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A_i \& A_{i + 1} \\
+                \class*{B, C}_i \& \class*{B, C}_{i + 1} \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {d_{A, i}} (m-1-2)
+                    edge node {\phi_{f, i}} (m-2-1)
+                (m-1-2) edge node {\phi_{f, i + 1}} (m-2-2)
+
+                (m-2-1) edge node {d_{\class*{B, C}, i}} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    Pick an arbitrary \( a \in A_i \) and consider the following equation
+    \begin{align*}
+        \phi_{f, i + 1} \circ d_{A, i}(a) &- d_{\class*{B, C}, i} \circ \phi_{f, i}(a)
+        = \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?} }_{j \in \Zb}
+        - d_{\class*{B, C}, i} \tuple*{ \tuple*{ f_{i + j}\tuple*{a \otimes ?} }_{j \in \Zb} } \\
+        \intertext{by expanding out the definition of \( d_{\class*{B, C}, i} \) it follows that}
+        &= \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?}
+        - d_{C, i + j} \circ f_{i + j}\tuple*{a \otimes ?}
+        + (-1)^i f_{i + j + 1}\tuple*{a \otimes d_{B, j}(?)} }_{j \in \Zb} \\
+        \intertext{by consolodating the two terms that post-compose by \( f_{i + j + 1} \) it follows that}
+        &= \tuple*{ f_{i + j + 1}\bigl( \tuple*{d_{A, i}(a) \otimes ?}
+        + (-1)^i\tuple*{ a \otimes d_{B, j}(?) } \bigr)
+        - d_{C, i + j} \circ f_{i + j}\tuple*{ a \otimes ? } }_{j \in \Zb} \\
+        \intertext{by the definition of the differential of \( A \otimes B \) it follows that}
+        &= \tuple*{ f_{i + j + 1} \circ d_{A \otimes B, i + j} \tuple*{ a \otimes ? }
+        - d_{C, i + j} \circ f_{i + j} ( a \otimes ? ) }_{j \in \Zb} \\
+        \intertext{by \( f \) being a chain homomorphism from \( A \otimes B \) to \( C \) it follows that}
+        &= 0.
+    \end{align*}
+\end{remark}
+
+Together the above definitions and remarks gives the structure of a symmetric monoidal category.
+
+\begin{fact}[\( \C(\Mod(R)) \) is symmetric monoidal]
+    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \tuple*{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( \C \tuple*{\Mod(R)} \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
+
+    Then \( \tuple*{\C \tuple*{\Mod(R)}, \otimes, I} \) is a symmetric closed monoidal category.
+\end{fact}
