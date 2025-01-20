@@ -1,5 +1,44 @@
 In this thesis, the focus is solely on the definition of Massey products on a triangulated category with the final goal of connecting Massey products and toda brackets in the next section.
 
+Before starting this section, some notation needs to be established first. First, this section is going to contain a lot of chain complexes, the notation of which is explained in \autoref{not:chain_complex}.
+
+Second, this section is going to contain a lot of products and coproducts, which would benefit a lot from simplified notation, and the reasoning behind the notation.
+
+\begin{notation}
+    Let \( R \) be a commutative ring with identity. Let \( A_i \in \Mod(R) \) and let
+    \[
+        \iota_i: A_i \to \coprod_{i \in \Zb} A_i
+    \]
+    denote the canonical split monomorphism by the universal property of the coproduct in \( \Mod(R) \).
+
+    Then for any \( a_i \in A_i \), the element
+    \[
+        \iota_i(a_i) \in \coprod_{i \in \Zb} A_i
+    \]
+    is just denoted as
+    \[
+        a_i \in \coprod_{i \in \Zb} A_i.
+    \]
+    
+    The reasoning for the above notation is twofold. Firstly, it reduces notation while not being ambigous. Secondly, one never talks about a general element of a coproduct. Almost always when talking about what a morphism does to an element of the coproduct, it is what happens to the \( \iota_i(a_i) \)'s, which is a consequence of the universal property of the coproduct.
+
+    In addition, let 
+    \[
+        \pi_i: \prod_{i \in \Zb} A_i \to A_i
+    \]
+    be the universal split epimorphism by the universal property of the product in \( \Mod(R) \).
+    
+    Then for any element \( a \in \prod_{i \in \Zb} A_i \), denote
+    \[
+        a = \tuple{a_i}_{i \in \Zb} \in \prod_{i \in \Zb} A_i
+    \]
+    where \( a_i := \pi_i(a) \in A_i \).
+    
+    The reasoning behind this notation is because the product in \( \Mod(R) \) is the direct product, and because the universal property of the product. That is because it makes it so that when talking about morphisms into the product, the morphism is fully defined by what it does to each degree in \( \prod_{i \in \Zb} A_i \), which is easily shown using the above notation.
+\end{notation}
+
+Before defining Massey products, one first has to define what a DG-category is.
+
 \subsection{DG-categories}
 \input{sections/4.1_dg_categories.tex}
 

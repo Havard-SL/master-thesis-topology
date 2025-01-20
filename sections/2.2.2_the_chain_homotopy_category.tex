@@ -1,5 +1,21 @@
 The chain homotopy category is one of the simplest triangulated category to define, and is a good example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in TODO, and this thesis will not include or use any details on why the chain homotopy category is an algebraic triangulated category.
 
+First, some notation on chain complexes.
+
+\begin{notation}
+    \label{not:chain_complex}
+    Let \( \Cc \) be any additive category.
+    
+    Then let \( \C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
+
+    Furthermore let the differential in these chain complexes have \emph{ascending} order, i.e., for \( M_i, M_{i+1} \in \Cc \) which are adjacent objects in a chain complex \( M \in \C \tuple{\Cc} \), the differential would be
+    \[
+        d_i : M_i \to M_{i + 1}.
+    \]
+\end{notation}
+
+Start off by defining the underlying category, that will turn out to be triangulated.
+
 % MS-Question: Ikkje vist at dette er ein kategori...
 \begin{definition}[Chain homotopy category, \( \K(\Ac) \)]
     \label{def:chain_homotopy_cat}
