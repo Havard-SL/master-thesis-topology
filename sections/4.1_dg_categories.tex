@@ -2,9 +2,9 @@ In this thesis the definition of a DG-category is based on enriched category the
 
 The first definition necessary to understanding DG-categories, is the tensor product of chain complexes.
 
-\begin{definition}[Tensor product of \( \C(\Mod(R)) \)]
+\begin{definition}[Tensor product of \( \C \)]
     \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
-    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \tuple*{\Mod(R)} \).
+    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \).
 
     Then, for any  \( n \in \Zb \) define the modules
     \[
@@ -40,14 +40,14 @@ The first definition necessary to understanding DG-categories, is the tensor pro
         d_n(a \otimes b) := d_{A, i}(a) \otimes b + (-1)^{i} a \otimes d_{B, j}(b).
     \]
 
-    This is called the \emph{tensor product of \( \C(\Mod(R)) \)}.
+    This is called the \emph{tensor product of \( \C \)}.
 \end{definition}
 
 In order to see that the above definition of the differential on the chain complex is well defined, one needs the following lemma, which will be useful later as well.
 
 \begin{lemma}
     \label{lem:map_out_of_tensor_unique}
-    Let \( A, B \in \C(\Mod(R)) \) and let \( C \in \Mod(R) \). Furthermore, let \( i, j \in \Zb \) with \( i + j = n \).
+    Let \( A, B \in \C \) and let \( C \in \Mod(R) \). Furthermore, let \( i, j \in \Zb \) with \( i + j = n \).
 
     Then for any
     \[
@@ -121,8 +121,9 @@ The following remark shows that \autoref{def:tensor_product_of_chain_complexes_o
 
 An important property of the tensor product of chain complexes is symmetry. This is shown in the following remark.
 
-\begin{remark}[Symmetry of tensor product in \( \C(\Mod(R)) \)]
-    For two \( A, B \in \C(\Mod(R)) \), there exist an isomorphism
+\begin{remark}[Symmetry of tensor product in \( \C \)]
+    \label{rem:symmetry_tensor_product_of_chain_complex}
+    For two \( A, B \in \C \), there exist an isomorphism
     \[
         s = \tuple{s_n}_{n \in \Zb}: A \otimes B \to B \otimes A
     \]
@@ -143,11 +144,11 @@ An important property of the tensor product of chain complexes is symmetry. This
     which implies that the morphism \( s_{n + 1} \circ d_n - d_n \circ s_n \) sends every elementary tensor to \( 0 \), which again implies that the morphism is equal to \( 0 \).
 \end{remark}
 
-Another definition closely linked to the tensor product in \( \C(\Mod(R)) \) is the internal hom.
+Another definition closely linked to the tensor product in \( \C \) is the internal hom.
 
-\begin{definition}[Internal hom of \( \C(\Mod(R)) \)]
+\begin{definition}[Internal hom of \( \C \)]
     \label{def:internal_hom_of_chain_complexes_over_Mod(R)}
-    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \tuple*{\Mod(R)} \).
+    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \).
 
     Then, for any \( n \in \Zb \) define the modules
     \[
@@ -184,10 +185,10 @@ The following remark explains why the differentials in the previous definition i
 
 As the names would imply, the tensor product and internal hom of chain complexes over modules are adjoint in the usual sense. This is shown in the following remark.
 
-\begin{remark}[Tensor product and internal hom adjunction in \( \C(\Mod(R)) \)]
-    Let \( A, B, C \) be chain complexes in \( \C(\Mod(R)) \) for some commutative ring \( R \), and let
+\begin{remark}[Tensor product and internal hom adjunction in \( \C \)]
+    Let \( A, B, C \) be chain complexes in \( \C \) for some commutative ring \( R \), and let
     \[
-        f \in \C(\Mod(R))\tuple*{A \otimes B, C}.
+        f \in \C\tuple*{A \otimes B, C}.
     \]
     
     The goal of this remark is to understand what the adjoint of \( f \) is.
@@ -275,7 +276,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
         \item {
             Third, there is a natural transformation
             \[
-                \C(\Mod(R))(?_1 \otimes ?_2, ?_3) \cong \C(\Mod(R))(?_1, \left[ ?_2, ?_3 \right])
+                \C(?_1 \otimes ?_2, ?_3) \cong \C(?_1, \left[ ?_2, ?_3 \right])
             \]
             where the natural morphisms are \( f \mapsto \phi_f \).
         }
@@ -324,10 +325,10 @@ As the names would imply, the tensor product and internal hom of chain complexes
 
 Together the above definitions and remarks gives the structure of a symmetric monoidal category, which will not be shown in this thesis. For a definition of symmetric monoidal categories, see TODO: CITE: Appendix.
 
-\begin{fact}[\( \C(\Mod(R)) \) is symmetric monoidal]
-    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \tuple*{\Mod(R)} \). Furthermore let \( I \) be the chain complex in \( \C \tuple*{\Mod(R)} \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
+\begin{fact}[\( \C \) is symmetric monoidal]
+    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \). Furthermore let \( I \) be the chain complex in \( \C \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
 
-    Then \( \tuple*{\C \tuple*{\Mod(R)}, \otimes, I} \) is a symmetric closed monoidal category.
+    Then \( \tuple*{\C, \otimes, I} \) is a symmetric closed monoidal category.
 \end{fact}
 
 Finally one can define what a DG-category is.
@@ -335,7 +336,7 @@ Finally one can define what a DG-category is.
 \begin{definition}[DG-category]
     Let \( R \) be a commutative ring with identity.
 
-    Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( \C \tuple*{\Mod(R)} \).
+    Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( \C \).
 \end{definition}
 
 This definition also appears in \cite[p. 29]{Jasso-Muro_2023}, except they define it for a field and not a commutative ring with identity as is done in this thesis.

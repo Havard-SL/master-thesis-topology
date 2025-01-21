@@ -7,7 +7,7 @@ Start off with defining the notation that will be used for the cohomology functo
 
     Then let
     \[
-        H^\bullet: \C\tuple*{\Mod(R)} \to \C(\Mod(R))
+        H^\bullet: \C \to \C
     \]
     be the cohomology functor, with the differentials on the right hand side all being \( 0 \).
 \end{notation}
@@ -226,7 +226,9 @@ Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defin
     There is no need to verify if the composition is a chain morphism, since the differential of \( H^\bullet(\Cc)(A, C) \) is zero by definition.
 \end{remark}
 
-This thesis will refrain from proving that \autoref{def:H_bullet_dg_category} is a DG-category, since a lot of the calculations involved in showing that \( H^\bullet(\Cc) \) satisfies \cite[Diagram 6.9, Diagram 6.10]{Borceux_1994} is similar to the proof of \autoref{lem:dg-composition_associative}, and would also require defining the associativity morphism (properly), as well as the left and right tensor unit. Defining the latter morphisms is straight-forward, but would require a lot of boilerplate for something that, in the end, is not necessary for the goal of this thesis.
+This thesis will refrain from proving that the above definition of \( H^\bullet(\Cc) \) and any future alleged DG-category actually satisfy the associativity axiom and the unit axiom as defined by \cite[Definition 6.2.1]{Borceux_1994}. This is because doing so would require defining the associativity morphism (properly), as well as the left and right tensor unit, only to do proofs that are straight forward to prove using the lemmas already defined. Defining the morphisms and doing the proofs would require a lot of boilerplate for something that, in the end, is not necessary for the goal of this thesis.
+
+Therefore in this thesis, both the associativity axiom and the unit axiom is assumed to be true for every defined DG-category.
 
 The following is the definition of the Massey product on the cohomology category of any DG-category. The definition is the 3-fold variant of \cite[Definition 4.2.1]{Jasso-Muro_2023}.
 
@@ -251,20 +253,20 @@ The following is the definition of the Massey product on the cohomology category
         \end{tikzpicture}
     \end{center}
 
-    Furthermore for an element, \( h \in \C(\Mod(R))_{|h|} \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{|h| + 1}h \).
+    Furthermore for an element, \( h \in \C_{|h|} \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{|h| + 1}h \).
 
     Then let
-    \[
+    \begin{multline*}
         \massey{[f_3], [f_2], [f_1]} :=
         \{
             \class*{
-                \bar{s} \circ f_1 + \bar{f_3} \circ t
+                \bar{s} \circ g_1 + \bar{g_3} \circ t
             }
-            \mid \\
-            d_{\Cc, |f_3| + |f_2| - 1}(s) = \bar{f_3} \circ f_2, \,
-            d_{\Cc, |f_2| + |f_1| - 1}(t) = \bar{f_2} \circ f_1
+            \mid g_i \sim f_i, i = 1, 2, 3 \quad \\
+            d_{\Cc, |f_3| + |f_2| - 1}(s) = \bar{g_3} \circ g_2, \,
+            d_{\Cc, |f_2| + |f_1| - 1}(t) = \bar{g_2} \circ g_1
         \}.
-    \]
+    \end{multline*}
 
     This is a subset of
     \[
@@ -275,28 +277,22 @@ The following is the definition of the Massey product on the cohomology category
 
 The following remark shows that \autoref{def:massey_product_dg_cat} is well-defined.
 
-WIP
-
 \begin{remark}
     The definition of Massey product in \autoref{def:massey_product_dg_cat} is well-defined by the following argument:
 
     Want to show that \( \bar{s} \circ g_1 + \bar{g_3} \circ t \) is a cocyle in \( \Cc(X_1, X_4)_{|g_1| + |g_2| + |g_3| - 1} \).
-    
-    Look at the following equation (with the degrees of the differentials omitted for readability)
+
+    Let \( n := |g_1| + |g_2| + |g_3| \), and omit the degrees of the differentials for readability. Consider the following equation
     \begin{align*}
-        d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 + \bar{g_3} \circ t) &= d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
+        d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 &+ \bar{g_3} \circ t) = d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
         \intertext{by the definition of composition of morphisms in a dg-diagram, it follows that}
-        &= d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\bar{s} \otimes g_1)) \\
-        &\hspace{0.4cm} + d_{\Cc(X_1, X_4)}(c_{\Cc, |g_1| + |g_2| + |g_3| - 1}(\bar{g_3} \otimes t)) \\
+        &= d_{\Cc(X_1, X_4)}(c_{\Cc, n - 1}(\bar{s} \otimes g_1)) + d_{\Cc(X_1, X_4)}(c_{\Cc, n - 1}(\bar{g_3} \otimes t)) \\
         \intertext{by the fact that composition is a chain morphism, it follows that}
-        &= c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\bar{s} \otimes g_1)) \\
-        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\bar{g}_3 \otimes t))
+        &= c_{\Cc, n}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\bar{s} \otimes g_1)) + c_{\Cc, n}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\bar{g}_3 \otimes t))
         \intertext{by the definition of the differential of the tensor products, it follows that}
-        &= c_{\Cc, |g_1| + |g_2| + |g_3|}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1) \\
-        &\hspace{0.4cm} + c_{\Cc, |g_1| + |g_2| + |g_3|}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1)) \\
+        &= c_{\Cc, n}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1) + c_{\Cc, n}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1)) \\
         \intertext{by pulling out every sign, it follows that}
-        &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, |g_1| + |g_2| + |g_3|}((g_3 \circ g_2) \otimes g_1) \\
-        &\hspace{0.4cm} + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, |g_1| + |g_2| + |g_3|}(g_3 \otimes (g_2 \circ g_1)) \\
+        &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, n}((g_3 \circ g_2) \otimes g_1) + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, n}(g_3 \otimes (g_2 \circ g_1)) \\
         \intertext{by the definition of composition of morphisms in a dg-diagram, it follows that}
         &= (-1)^{|g_2| + 2|g_3| - 1}(g_3 \circ g_2) \circ g_1 + (-1)^{|g_2| + 2|g_3| - 2}g_3 \circ (g_2 \circ g_1) \\
         \intertext{by simplifying signs, it follows that}
@@ -339,3 +335,5 @@ WIP
     % \]
     % is independent of the \( b_i \)'s.
 \end{remark}
+
+Astute readers may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. Which is necessary in order to compare Massey products to Toda brackets. And even if it were triangulated, the scope of categories that could be equivalent to a category consisiting of chain complexes with zero differential is very small, which would make applicability an issue. Luckily, in TODO:REF, Massey products can be defined in a smaller category, namely the ``\( 0 \)th cohomology category'' denoted as \( H^0(\Cc) \), which is much more applicable due to the abundance of ``algebraic triangulated categories'', which will also be defined properly in TODO:REF.
