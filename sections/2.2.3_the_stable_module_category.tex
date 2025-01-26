@@ -685,7 +685,7 @@ Before one can show the triangulation of \( \Mc \), one first needs to define th
     \label{def:stmod_cone}
     Let \( f \in \Mod(R)(A, B) \).
     
-    Then define the \emph{cone of \( f \)} to be the object \( C_f \) from the following commutative diagram in \( \Mod(R) \)
+    Then define a \emph{cone of \( f \)} to be an object \( C_f \) from the following commutative diagram in \( \Mod(R) \)
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -705,7 +705,7 @@ Before one can show the triangulation of \( \Mc \), one first needs to define th
                 (m-2-2) edge node {h} (m-3-2);
         \end{tikzpicture}
     \end{center}
-    where \( \tuple{I_A, \kappa_A, \Sigma A} \) is as defined in \autoref{def:stmod_sigma}. Furthermore, \( \tuple{C(f), g, \gamma_f} \) is the pushout of \( \tuple{A, f, \kappa_A} \), and \( h \) is the pushout universal property induced by \( \rho_A \) and \( 0 \).
+    where \( \tuple{I_A, \kappa_A, \Sigma A} \) is as defined in \autoref{def:stmod_sigma}. Furthermore, \( \tuple{C_f, g, \gamma_f} \) is the pushout of \( \tuple{A, f, \kappa_A} \), and \( h \) is the pushout universal property induced by \( \rho_A \) and \( 0 \).
 \end{definition}
 
 There are some important details following this definition that will be useful in future results.
@@ -758,9 +758,9 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a di
                 \draw[math]
                     (m-1-1) edge node {f} (m-1-2)
                         edge node {g} (m-2-1)
-                    (m-1-2) edge (m-2-2)
+                    (m-1-2) edge node {g'} (m-2-2)
     
-                    (m-2-1) edge (m-2-2);
+                    (m-2-1) edge node {\gamma} (m-2-2);
             \end{tikzpicture}
         \end{aligned}
         \text{ and }
@@ -774,15 +774,15 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a di
                 \draw[math]
                     (m-1-1) edge node {f} (m-1-2)
                         edge node {h} (m-2-1)
-                    (m-1-2) edge (m-2-2)
+                    (m-1-2) edge node {h'} (m-2-2)
     
-                    (m-2-1) edge (m-2-2);
+                    (m-2-1) edge node {\gamma'} (m-2-2);
             \end{tikzpicture}
         \end{aligned}
     \]
     be two pushout squares in \( \Mod(R) \), with \( g \) and \( h \) monomorphisms into injective objects \( I \) and \( I' \).
 
-    Then \( C \cong C' \).
+    Then \( C \cong C' \) in \( \Mc \).
 \end{lemma}
 \begin{proof}
     Since both \( I \) and \( I' \) are injective objects and \( g \) and \( h \) monomorphisms, then there exists maps \( i \) and \( i' \) such that the following two diagrams commute
@@ -817,20 +817,112 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a di
             \end{tikzpicture}
         \end{aligned}
     \]
-    Using those morphisms, one can create the following diagram
+    Using those morphisms, one can create the following commutative diagram, where \( \alpha \) and \( \beta \) are the induced morphisms from the pushout property of \( C \) and \( C' \) respectively, 
     \begin{center}
         \begin{tikzpicture}
-            \diagramorigin{m}{1cm}{1cm} {
+            \diagramorigin{m}{1cm}{1.5cm} {
                 A \& B \\
                 I \& C \\
                 I' \& \& C' \\
-                I \& \& \& C \\
+                I \& \& \& C. \\
             };
 
             \draw[math]
-                (m-1-1) edge node {f} (m-1-2); % WIP
+                (m-1-1) edge node {f} (m-1-2)
+                    edge[curve={height=50pt}] node {g} (m-4-1)
+                    edge[curve={height=25pt}] node {h} (m-3-1)
+                    edge node {g} (m-2-1)
+                (m-1-2) edge node {g'} (m-2-2)
+                    edge[curve={height=-25pt}] node {h'} (m-3-3)
+                    edge[curve={height=-50pt}] node {g'} (m-4-4)
+
+                (m-2-1) edge node {\gamma} (m-2-2)
+                    edge node {i} (m-3-1)
+                (m-2-2) edge[dashed] node {\alpha} (m-3-3)
+
+                (m-3-1) edge node {\gamma'} (m-3-3)
+                    edge node {i'} (m-4-1)
+                (m-3-3) edge[dashed] node {\beta} (m-4-4)
+
+                (m-4-1) edge node {\gamma} (m-4-4);
         \end{tikzpicture}
     \end{center}
+    The goal is to show that \( \beta \circ \alpha \sim \Id_C \).
+
+    By definition of a pushout, the following squence is exact
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& B \oplus I \& C. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {
+                    \begin{psmallmatrix}
+                        f \\
+                        g
+                    \end{psmallmatrix}
+                } (m-1-2)
+                (m-1-2) edge node {
+                    \begin{psmallmatrix}
+                        g' & \gamma
+                    \end{psmallmatrix}
+                } (m-1-3);
+        \end{tikzpicture}
+    \end{center}
+    Consider the following commutative diagram excluding the dashed arrow
+    \begin{equation}
+        \label{diag:C-iso}
+        \begin{aligned}
+            \begin{tikzpicture}
+                \diagram{m}{1cm}{1cm} {
+                    A \& B \oplus I \& C \\
+                    \& I \& C, \\
+                };
+
+                \draw[math]
+                    (m-1-1) edge node {
+                        \begin{psmallmatrix}
+                            f \\
+                            g
+                        \end{psmallmatrix}
+                    } (m-1-2)
+                    (m-1-2) edge node {
+                        \begin{psmallmatrix}
+                            g' & \gamma
+                        \end{psmallmatrix}
+                    } (m-1-3)
+                    (m-1-2) edge node[swap] {
+                        \begin{psmallmatrix}
+                            0 & i' \circ i - \Id_I
+                        \end{psmallmatrix}
+                    } (m-2-2)
+                    (m-1-3) edge[dashed] node[swap] {\delta} (m-2-2)
+                        edge node {\beta \circ \alpha - \Id_C} (m-2-3)
+
+                    (m-2-2) edge node {\gamma} (m-2-3);
+            \end{tikzpicture}
+        \end{aligned}
+    \end{equation}
+    since
+    \[
+        \begin{psmallmatrix}
+            0 & i' \circ i - \Id_I
+        \end{psmallmatrix}
+        \circ
+        \begin{psmallmatrix}
+            f \\
+            g
+        \end{psmallmatrix}
+        = 0
+    \]
+    then by the cokernel property of \( C \) there exist a morphism \( \delta \) such that the top triangle in \autoref{diag:C-iso} commutes. However, since \( 
+        \begin{psmallmatrix}
+            g' & \gamma
+        \end{psmallmatrix}
+    \) is an epimorphism by definition, it follows that the bottom triangle also commutes.
+
+    One can prove that \( \alpha \circ \beta \sim \Id_{C'} \) in a similar way.
 \end{proof}
 
 Then finally comes the full triangulation result, the proof of which is heavily inspired by \cite[First theorem in Chapter 1, Subsection 2.6]{Happel_1988}.
@@ -1373,8 +1465,6 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             Finally, check that this \( \phi \) makes \autoref{eq:stablemod} commute.
             % TODO: Lag eige environment og counter for diagram, sånn at det fungerar med autorref. Sjå aliascnt i hyperref dokumentasjon s. 26--27.
 
-            WIP: Marius tilbakemelding.
-
             By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check if \( [h' \circ \phi] = [\Sigma' (\alpha) \circ h] \). Consider the following pushout diagram that commutes because \( \Sigma'(\alpha) \circ h \circ \gamma_f \circ \kappa_A = \Sigma'(\alpha) \circ \rho_A \circ \kappa_A = 0 \),
             \begin{center}
                 \begin{tikzpicture}
@@ -1479,6 +1569,8 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \end{tikzpicture}
                 \end{aligned}
             \end{equation}
+            The goal is to find appropriate \( \phi \) and \( \psi \) as well as to slightly change the above diagram to one that would commute in \( \Mc \). 
+
             By the \emph{construction} of \( \phi \) in {\bf (TR3)} there exists some \( \phi: C_f \to C_{n \circ f} \) such that the diagram including \( \phi \) commutes. However note that the \( \xi \) in the construction of \( \phi \) is simply \( 0 \) because here the diagram is in \( \Mod(R) \), and not in \( \Mc \) as is assumed in the construction in {\bf (TR3)}. Similarly, \( i_\alpha = i_{\Id_A} \) can be assumed to simply be \( \Id_{I_A} \). Specifically this implies that \( \phi \circ \gamma_f = \gamma_{n \circ f} \).
 
             By \autoref{rem:stmod_cone_pushout_properties} it follows that \( g \) is a monomorphism. And since \( \kappa_{C_f} \) is also a monomorphism, it follows that
@@ -1529,7 +1621,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ g \circ f \\
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A. \\
             \end{align*}
-            Thus there exists a morphism \( \phi: C_{n \circ f} \to C_n \) such that the pushout diagram commutes .
+            Thus there exists a morphism \( \psi: C_{n \circ f} \to C_n \) such that the pushout diagram commutes.
 
             To show that \( \psi \) makes \autoref{eq:stmod_tr4} commute in \( \Mc \), one can see that the square to the left of \( \psi \) commutes by definition, however the square on the right is a little more tricky.
 
@@ -1630,6 +1722,8 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
             Since the left and the outer square are pushouts this implies that the right square is also a pushout.
+
+            WIP: Fullfør TR4!
 
             {\bf Marius, kan du venlegst dobbeltsjekka det følgande argumentet om at ei "omrokkering" av morfiar gir ein ny pushout, eg er svært usikker på om det fungerar.}
 
