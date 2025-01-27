@@ -737,15 +737,11 @@ Now, one can finally define the triangulation on \( \Mc \).
     where \( C_f \), \( g \), and \( h \) are defined as in \autoref{def:stmod_cone}.
 \end{definition}
 
-A small detail that is important to consider, but which will turn out to be a non-issue is the following.
-\begin{remark}
-    Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, the definition of the cone of a morphism in \( \Mc \), is not well defined, since every morphism could have multiple cones depending on the choice of representatives. This is not a problem in this thesis, since by the formulation of \( \Delta \), any standard triangle arising from any representation of \( [f] \) is included in \( \Delta \), and so there are multiple ``standard triangles'' for every morphism in \( \Mc \).
-
-    However, for brevity, the thesis will still refer to ``the'' standard triangle for a morphism in \( \Mc \), which will be any triangle as defined in \autoref{def:stmod_delta}.
-\end{remark}
+Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, the definition of the cone of a morphism in \( \Mc \), is not well defined, since every morphism could have multiple cones depending on the choice of representatives. This is not a problem in this thesis, since by the formulation of \( \Delta \), any standard triangle arising from any representation of \( [f] \) is included in \( \Delta \), and so there are multiple ``standard triangles'' for every morphism in \( \Mc \).
 
 The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a direct corollary that one could have chosen \( \Delta \) differently.
 \begin{lemma}
+    \label{lem:stmod_pushout_different_injectives_isomorphic}
     Let
     \[
         \begin{aligned}
@@ -782,7 +778,9 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a di
     \]
     be two pushout squares in \( \Mod(R) \), with \( g \) and \( h \) monomorphisms into injective objects \( I \) and \( I' \).
 
-    Then \( C \cong C' \) in \( \Mc \).
+    Then there exists an isomorphism \( [\alpha]: C \to C' \) in \( \Mc \).
+    
+    In addition, \( \alpha \) has the property that \( \alpha \circ g' = h' \) and \( \alpha \circ \gamma = \gamma' \circ i \), where \( i \) is defined in the beginning of the proof.
 \end{lemma}
 \begin{proof}
     Since both \( I \) and \( I' \) are injective objects and \( g \) and \( h \) monomorphisms, then there exists maps \( i \) and \( i' \) such that the following two diagrams commute
@@ -1176,7 +1174,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         }} (m-1-4);
                 \end{tikzpicture}
             \end{center} 
-            is (uniquely isomorphic to) the standard triangle of \( g \), and therefore distinguished.
+            is (uniquely isomorphic to) a standard triangle of \( g \), and therefore distinguished.
 
             Finally it remains to check if the triangle is isomorphic to the expected triangle. Consider the following diagram in \( \Mc \)
             \begin{center}
@@ -1569,7 +1567,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \end{tikzpicture}
                 \end{aligned}
             \end{equation}
-            The goal is to find appropriate \( \phi \) and \( \psi \) as well as to slightly change the above diagram to one that would commute in \( \Mc \). 
+            The goal is to find appropriate \( \phi \) and \( \psi \) as well as appropriate choices of \( \Sigma' f \) and \( \Sigma' g \) such that the diagram commutes. 
 
             By the \emph{construction} of \( \phi \) in {\bf (TR3)} there exists some \( \phi: C_f \to C_{n \circ f} \) such that the diagram including \( \phi \) commutes. However note that the \( \xi \) in the construction of \( \phi \) is simply \( 0 \) because here the diagram is in \( \Mod(R) \), and not in \( \Mc \) as is assumed in the construction in {\bf (TR3)}. Similarly, \( i_\alpha = i_{\Id_A} \) can be assumed to simply be \( \Id_{I_A} \). Specifically this implies that \( \phi \circ \gamma_f = \gamma_{n \circ f} \).
 
@@ -1616,40 +1614,64 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
             and note that the outer ``square'' commutes as
-            \begin{align*}
-                m \circ n \circ f &= \gamma_n \circ \kappa_B \circ f \\
-                &= \gamma_n \circ i \circ \kappa_{C_f} \circ g \circ f \\
-                &= \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A. \\
-            \end{align*}
+            \begin{equation}
+                \label{eq:stmod_tr4_m_n_f_equal_something_else}
+                \begin{aligned}
+                    m \circ n \circ f &= \gamma_n \circ \kappa_B \circ f \\
+                    &= \gamma_n \circ i \circ \kappa_{C_f} \circ g \circ f \\
+                    &= \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A.
+                \end{aligned}
+            \end{equation}
             Thus there exists a morphism \( \psi: C_{n \circ f} \to C_n \) such that the pushout diagram commutes.
 
-            To show that \( \psi \) makes \autoref{eq:stmod_tr4} commute in \( \Mc \), one can see that the square to the left of \( \psi \) commutes by definition, however the square on the right is a little more tricky.
+            To show that \( \psi \) makes \autoref{eq:stmod_tr4} commute in \( \Mc \), one can see that the square to the left of \( \psi \) commutes by definition.
 
-            Consider the following commutative diagram
+            In order to make the square to the right of \( \psi \) commute, consider the following diagram which yields a choice of \( \Sigma' f \),
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        A \& \& \& B \\
-                        I_A \& C_f \& I_{C_f} \& I_B \\
-                        \Sigma A \& \& \& \Sigma B \\
+                        A \& I_A \& \Sigma A \\
+                        \& C_f \\
+                        \& I_{C_f} \\
+                        B \& I_B \& \Sigma B, \\
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {f} (m-1-4)
-                            edge node {\kappa_A} (m-2-1)
-                        (m-1-4) edge node {\kappa_B} (m-2-4)
-                            edge node[swap] {g} (m-2-2)
+                        (m-1-1) edge node {\kappa_A} (m-1-2)
+                            edge node[swap] {f} (m-4-1)
+                        (m-1-2) edge node {\rho_A} (m-1-3)
+                            edge node {\gamma_f} (m-2-2)
+                        (m-1-3) edge node {\Sigma' f} (m-4-3)
 
-                        (m-2-1) edge node {\gamma_f} (m-2-2)
-                            edge node {\rho_A} (m-3-1)
-                        (m-2-2) edge node[swap] {\kappa_{C_f}} (m-2-3)
-                        (m-2-3) edge node {i} (m-2-4)
-                        (m-2-4) edge node {\rho_B} (m-3-4)
+                        (m-2-2) edge node {\kappa_{C_f}} (m-3-2)
 
-                        (m-3-1) edge node {\widetilde{\Sigma' f}} (m-3-4);
+                        (m-3-2) edge node {i} (m-4-2)
+
+                        (m-4-1) edge node {\kappa_B} (m-4-2)
+                            edge node {g} (m-2-2)
+                        (m-4-2) edge node {\rho_B} (m-4-3);
+                    % \diagram{m}{1cm}{1cm} {
+                    %     A \& \& \& B \\
+                    %     I_A \& C_f \& I_{C_f} \& I_B \\
+                    %     \Sigma A \& \& \& \Sigma B \\
+                    % };
+                    %
+                    % \draw[math]
+                    %     (m-1-1) edge node {f} (m-1-4)
+                    %         edge node {\kappa_A} (m-2-1)
+                    %     (m-1-4) edge node {\kappa_B} (m-2-4)
+                    %         edge node[swap] {g} (m-2-2)
+                    %
+                    %     (m-2-1) edge node {\gamma_f} (m-2-2)
+                    %         edge node {\rho_A} (m-3-1)
+                    %     (m-2-2) edge node[swap] {\kappa_{C_f}} (m-2-3)
+                    %     (m-2-3) edge node {i} (m-2-4)
+                    %     (m-2-4) edge node {\rho_B} (m-3-4)
+                    %
+                    %     (m-3-1) edge node {\widetilde{\Sigma' f}} (m-3-4);
                 \end{tikzpicture}
             \end{center}
-            where the top square commutes because the top left and top right ``triangles'' of the diagram commute, and \( \widetilde{\Sigma' f} \) is given by the cokernel property of \( \Sigma A \). Then by \autoref{lem:stmod_sigma_well-defined_additive_endofunctor} it follows that \( \widetilde{\Sigma' f} \sim \Sigma' f \).
+            where the left ``square'' commutes because the top left and bottom left ``triangles'' of the diagram commute, and \( \Sigma' f \) is given by the cokernel property of \( \Sigma A \).
 
             Then consider the following diagram in \( \Mod(R) \)
             \begin{center}
@@ -1671,20 +1693,20 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-2) edge[dashed] (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            where one can check that
+            where
             \[
-                \widetilde{\Sigma'(f)} \circ l \circ j = \widetilde{\Sigma'(f)} \circ 0 = 0 = k \circ m = k \circ \psi \circ j
+                \Sigma'(f) \circ l \circ j = \Sigma'(f) \circ 0 = 0 = k \circ m = k \circ \psi \circ j
             \]
-            and so
+            and
             \begin{align*}
                 k \circ \psi \circ \gamma_{n \circ f} &= k \circ \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f \\
                 &= \rho_B \circ i \circ \kappa_{C_f} \circ \gamma_f \\
-                &= \widetilde{\Sigma'(f)} \circ \rho_A \\
-                &= \widetilde{\Sigma'(f)} \circ l \circ \gamma_{n \circ f}.
+                &= \Sigma'(f) \circ \rho_A \\
+                &= \Sigma'(f) \circ l \circ \gamma_{n \circ f}.
             \end{align*}
-            By uniqueness of the pushout property and definition of \( \widetilde{\Sigma'(f)} \), one has that \( k \circ \psi = \widetilde{\Sigma'(f)} \circ l \sim \Sigma'(f) \circ l \).
+            By uniqueness of the pushout property it follows that \( k \circ \psi = \Sigma'(f) \circ l \).
                 
-            Therefore the square to the right of \( \psi \) commutes in \( \Mc \), but not in \( \Mod(R) \).
+            Therefore the square to the right of \( \psi \) commutes.
 
             Finally, it remains to check that
             \begin{center}
@@ -1723,92 +1745,136 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center}
             Since the left and the outer square are pushouts this implies that the right square is also a pushout.
 
-            WIP: Fullfør TR4!
-
-            {\bf Marius, kan du venlegst dobbeltsjekka det følgande argumentet om at ei "omrokkering" av morfiar gir ein ny pushout, eg er svært usikker på om det fungerar.}
-
-            Consider the following commutative diagram
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{0.5cm}{1cm} {
-                        \&[-0.5cm] B \& D \\
-                        I_{C_f} \\
-                        \& I_B \& C_n. \\
-                    };
-                    \draw[math]
-                        (m-1-2) edge node {n} (m-1-3)
-                            edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-                            edge node {\kappa_B} (m-3-2)
-                        (m-1-3) edge node {m} (m-3-3)
-
-                        (m-2-1) edge node[swap] {i} (m-3-2)
-
-                        (m-3-2) edge node {\gamma_n} (m-3-3);
-                \end{tikzpicture}
-            \end{center}
-            By the definition of \( C_n \) the square is a pushout. Rearranging the morphisms a little yields the following commutative diagram
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{0.5cm}{1cm} {
-                        \&[-0.5cm] B \& D \\
-                        I_B \\
-                        \& I_{C_f} \& C_n. \\
-                    };
-                    \draw[math]
-                        (m-1-2) edge node {n} (m-1-3)
-                            edge node[swap] {\kappa_B} (m-2-1)
-                            edge node {\kappa_{C_f} \circ g} (m-3-2)
-                        (m-1-3) edge node {m} (m-3-3)
-
-                        (m-2-1) edge node[swap] {\tilde{i}} (m-3-2)
-
-                        (m-3-2) edge node {\gamma_n \circ i} (m-3-3);
-                \end{tikzpicture}
-            \end{center}
-            % \begin{center}
-            %     \begin{tikzpicture}
-            %         \diagram{m}{1cm}{0.5cm} {
-            %             B \& \& D \\
-            %             I_{C_f} \& \& C_n \\[-0.5cm]
-            %             \& I_B \\
-            %         };
-            %         \draw[math]
-            %             (m-1-1) edge node {n} (m-1-3)
-            %                 edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-            %             (m-1-3) edge node {m} (m-2-3)
-
-            %             (m-2-1) edge node {\gamma_n \circ i} (m-2-3)
-            %                 edge node[swap] {i} (m-3-2)
-
-            %             (m-3-2) edge node[swap] {\gamma_n} (m-2-3);
-            %     \end{tikzpicture}
-            % \end{center}
-            where the new square is somehow also a pushout? {\bf (Eg trur happel greier dette fordi han anntek at \( I_B = I_{C_f} \), som medførar at \( i = \Id \). Eg har berre fått dette argumentet til å fungera om \( \gamma_n \circ i \circ \tilde{i} = \gamma_n \), som blir rart å annta med tanke på korleis eg har definert \( \Sigma \) på)}.
-
-            WIP: Show above argument, as well as \( \psi \circ \phi = \gamma_n \circ i \circ \kappa_{C_f} \) to use the below diagram to finish the proof.
-
-            Using the new pushout above, one can construct the following commutative diagram
+            Consider the following pushout diagram
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         B \& D \\
-                        C_f \& C_{n \circ f} \\
-                        I_{C_f} \& C_n \\
+                        I_{C_f} \& C, \\
                     };
 
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node {g} (m-2-1)
-                        (m-1-2) edge node {j} (m-2-2)
-                            edge[curve={height=-25pt}] node {m} (m-3-2)
+                            edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                        (m-1-2) edge node {\delta} (m-2-2)
 
-                        (m-2-1) edge node {\phi} (m-2-2)
-                            edge node {\kappa_{C_f}} (m-3-1)
-                        (m-2-2) edge node {\psi} (m-3-2)
-
-                        (m-3-1) edge node {\gamma_n \circ i} (m-3-2);
+                        (m-2-1) edge node {\gamma} (m-2-2);
                 \end{tikzpicture}
             \end{center}
+            by \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that \( m \circ \alpha^{-1} = \delta \) as well as \( \alpha^{-1} \circ \gamma \circ i = \gamma \).
+            
+            Consider the following diagram
+            \begin{equation}
+                \label{diag:stmod_tr4_show_psi_phi_equal_something_else}
+                \begin{aligned}
+                    \begin{tikzpicture}
+                        \diagram{m}{1cm}{1cm} {
+                            B \& D \\
+                            C_f \& C_{n \circ f} \\
+                            I_{C_f} \& C \\
+                        };
+                        
+                        \draw[math]
+                            (m-1-1) edge node {n} (m-1-2)
+                                edge node[swap] {g} (m-2-1)
+                            (m-1-2) edge node[swap] {j} (m-2-2)
+                                edge[curve={height=-25pt}] node {\delta} (m-3-2)
+    
+                            (m-2-1) edge node {\phi} (m-2-2)
+                                edge node[swap] {\kappa_{C_f}} (m-3-1)
+                            (m-2-2) edge node[swap] {\alpha^{-1} \circ \psi} (m-3-2)
+    
+                            (m-3-1) edge node {\gamma} (m-3-2);
+                    \end{tikzpicture}
+                \end{aligned}
+            \end{equation}
+            the top square already commutes, and the ``bump'' on the right commutes because \( \psi \circ j = m \). It remains to show that the bottom square commutes as well.
+
+            In order to do that, consider the following diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \\
+                        I_A \& C_f \\
+                        \& \& C_n, \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge node[swap] {\kappa_A} (m-2-1)
+                        (m-1-2) edge node {g} (m-2-2)
+                            edge[curve={height=-25pt}] node {m \circ n} (m-3-3)
+
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f} (m-3-3)
+                        (m-2-2) edge[dashed] (m-3-3);
+                \end{tikzpicture}
+            \end{center}
+            where the inner square is a pushout and the outer ``square'' commutes by \autoref{eq:stmod_tr4_m_n_f_equal_something_else}.
+
+            Note the following equalities,
+            \begin{align*}
+                \psi \circ \phi \circ g &= \psi \circ j \circ n \\
+                &= m \circ n \\
+                &= \gamma_n \circ \kappa_B \\
+                &= \gamma_n \circ i \circ \kappa_{C_f} \circ g,
+            \end{align*}
+            and
+            \begin{align*}
+                \psi \circ \phi \circ \gamma_f &= \psi \circ \gamma_{n \circ f} \\
+                &= \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f,
+            \end{align*}
+            which implies by the uniqueness of the pushout morphism that
+            \[
+                \psi \circ \phi = \gamma_n \circ i \circ \kappa_{C_f}.
+            \]
+            The above equality implies that \autoref{diag:stmod_tr4_show_psi_phi_equal_something_else} commutes, and since the outer rectangle and upper squares are pushouts, then the lower square of \autoref{diag:stmod_tr4_show_psi_phi_equal_something_else} is also a pushout. This implies that there exists a morphism \( p \) such that the commutative diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        C_f \& C_{n \circ f} \\
+                        I_{C_f} \& C \\
+                        \& \Sigma C_f, \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\phi} (m-1-2)
+                            edge node[swap] {\kappa_{C_f}} (m-2-1)
+                        (m-1-2) edge node {\alpha^{-1} \circ \psi} (m-2-2)
+
+                        (m-2-1) edge node {\gamma} (m-2-2)
+                            edge node {\rho_{C_f}} (m-3-2)
+                        (m-2-2) edge node {p} (m-3-2);
+                \end{tikzpicture}
+            \end{center}
+            denotes a standard triangle of \( \phi \), and is therefore distinguished.
+
+            The final step is then to show that the following diagram is an isomorphism of triangles
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        C_f \& C_{n \circ f} \& C \& \Sigma C_f \\
+                        C_f \& C_{n \circ f} \& C_n \& \Sigma C_f. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {[\phi]} (m-1-2)
+                            edge[equal] (m-2-1)
+                        (m-1-2) edge node {[\alpha^{-1} \circ \psi]} (m-1-3)
+                            edge[equal] (m-2-2)
+                        (m-1-3) edge node {[p]} (m-1-4)
+                            edge node[swap] {[\alpha]} (m-2-3)
+                        (m-1-4) edge[equal] (m-2-4)
+
+                        (m-2-1) edge node {[\phi]} (m-2-2)
+                        (m-2-2) edge node {[\psi]} (m-2-3)
+                        (m-2-3) edge node {[\Sigma'(g) \circ k]} (m-2-4);
+                \end{tikzpicture}
+            \end{center}
+
+            The leftmost square commutes, and the middle square commutes since \( [\alpha \circ \alpha^{-1}] = [\Id_C] \). It remains to show that the rightmost square commutes.
+
+            WIP
         }
     \end{enumerate}
 \end{proof}
