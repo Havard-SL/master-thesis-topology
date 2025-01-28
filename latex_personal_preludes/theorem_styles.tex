@@ -15,6 +15,22 @@
 \newtheorem{fact}[theorem]{Fact}
 \newtheorem{question}[theorem]{Question}
 
+\newcounter{diagram}
+\newtagform{Diagram}[\renewcommand{\theequation}{\arabic{diagram}}]{Diagram }{}
+\newenvironment{diagramlabel}[1][]
+    {%
+        \refstepcounter{diagram}
+        #1
+        \usetagform{Diagram}
+        \begin{equation}%
+    }%
+    {%
+        \end{equation}%
+        \addtocounter{equation}{-1}
+        \usetagform{default}%
+    }
+\providecommand*{\diagramautorefname}{Diagram}
+
 % Fancy box engine?
 % \newcommand{\createbox}[1]{
 %     \tcolorboxenvironment{#1}{

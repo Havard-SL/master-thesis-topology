@@ -109,8 +109,7 @@ This thesis will use the following definition of a triangulated category.
         }
         \item {
             Any triangle
-            \begin{equation}
-                \label{eq:tri_cat_def_right_rotation}
+            \begin{diagramlabel}[\label{eq:tri_cat_def_right_rotation}]
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
@@ -123,10 +122,9 @@ This thesis will use the following definition of a triangulated category.
                             (m-1-3) edge node {h} (m-1-4);
                     \end{tikzpicture}
                 \end{aligned}
-            \end{equation}
+            \end{diagramlabel}
             is in \( \Delta \) if and only if
-            \begin{equation}
-                \label{eq:tri_cat_def_left_rotation}
+            \begin{diagramlabel}[\label{eq:tri_cat_def_left_rotation}]
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
@@ -139,7 +137,7 @@ This thesis will use the following definition of a triangulated category.
                             (m-1-3) edge node {-\Sigma f} (m-1-4);
                     \end{tikzpicture}
                 \end{aligned}
-            \end{equation}
+            \end{diagramlabel}
             is in \( \Delta \). The triangle \autoref{eq:tri_cat_def_left_rotation} is called the \emph{left rotation} of \autoref{eq:tri_cat_def_right_rotation}, and \autoref{eq:tri_cat_def_right_rotation} is called the \emph{right rotation} of \autoref{eq:tri_cat_def_left_rotation}.
         }
         \item {

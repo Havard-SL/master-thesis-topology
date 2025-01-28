@@ -869,8 +869,7 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a di
         \end{tikzpicture}
     \end{center}
     Consider the following commutative diagram excluding the dashed arrow
-    \begin{equation}
-        \label{diag:C-iso}
+    \begin{diagramlabel}[\label{diag:C-iso}]
         \begin{aligned}
             \begin{tikzpicture}
                 \diagram{m}{1cm}{1cm} {
@@ -901,7 +900,7 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a di
                     (m-2-2) edge node {\gamma} (m-2-3);
             \end{tikzpicture}
         \end{aligned}
-    \end{equation}
+    \end{diagramlabel}
     since
     \[
         \begin{psmallmatrix}
@@ -1340,8 +1339,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             By considering two arbitrary distinguished triangles, any morphism between their components will induce a unique morphism between the component of their standard triangles they are isomorphic to, and vice versa. Therefore it suffices to only check {\bf (TR3)} for standard triangles.
 
             Need to show that given the following diagram where the top and botton row are standard triangles and the diagram excluding the dotted arrow commutes
-            \begin{equation}
-                \label{eq:stablemod}
+            \begin{diagramlabel}[\label{eq:stablemod}]
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
@@ -1363,7 +1361,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                             (m-2-3) edge node {[h']} (m-2-4);
                     \end{tikzpicture}
                 \end{aligned}
-            \end{equation}
+            \end{diagramlabel}
             that there exists some \( \phi: C_f \to C_{f'} \) in the above diagram such that the entire diagram including \( \phi \), commutes.
 
             Consider the following commutative diagrams in \( \Mod(R) \) from the definition of the two standard triangles
@@ -1531,8 +1529,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
             which fit into the following commutative diagram in \( \Mod(R) \) excluding the dashed arrows
-            \begin{equation}
-                \label{eq:stmod_tr4}
+            \begin{diagramlabel}[\label{eq:stmod_tr4}]
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
@@ -1566,7 +1563,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                             (m-4-2) edge node {\Sigma' g} (m-4-3);
                     \end{tikzpicture}
                 \end{aligned}
-            \end{equation}
+            \end{diagramlabel}
             The goal is to find appropriate \( \phi \) and \( \psi \) as well as appropriate choices of \( \Sigma' f \) and \( \Sigma' g \) such that the diagram commutes. 
 
             By the \emph{construction} of \( \phi \) in {\bf (TR3)} there exists some \( \phi: C_f \to C_{n \circ f} \) such that the diagram including \( \phi \) commutes. However note that the \( \xi \) in the construction of \( \phi \) is simply \( 0 \) because here the diagram is in \( \Mod(R) \), and not in \( \Mc \) as is assumed in the construction in {\bf (TR3)}. Similarly, \( i_\alpha = i_{\Id_A} \) can be assumed to simply be \( \Id_{I_A} \). Specifically this implies that \( \phi \circ \gamma_f = \gamma_{n \circ f} \).
@@ -1761,11 +1758,10 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-1) edge node {\gamma} (m-2-2);
                 \end{tikzpicture}
             \end{center}
-            by \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that \( m \circ \alpha^{-1} = \delta \) as well as \( \alpha^{-1} \circ \gamma \circ i = \gamma \).
+            by \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that \( m \circ \alpha^{-1} = \delta \) as well as \( \alpha^{-1} \circ \gamma_n \circ i = \gamma \).
             
             Consider the following diagram
-            \begin{equation}
-                \label{diag:stmod_tr4_show_psi_phi_equal_something_else}
+            \begin{diagramlabel}[\label{diag:stmod_tr4_show_psi_phi_equal_something_else}]
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
@@ -1787,7 +1783,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                             (m-3-1) edge node {\gamma} (m-3-2);
                     \end{tikzpicture}
                 \end{aligned}
-            \end{equation}
+            \end{diagramlabel}
             the top square already commutes, and the ``bump'' on the right commutes because \( \psi \circ j = m \). It remains to show that the bottom square commutes as well.
 
             In order to do that, consider the following diagram
@@ -1872,7 +1868,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
 
-            The leftmost square commutes, and the middle square commutes since \( [\alpha \circ \alpha^{-1}] = [\Id_C] \). It remains to show that the rightmost square commutes.
+            The leftmost and the middle square commutes. It remains to show that the rightmost square commutes.
 
             WIP
         }
