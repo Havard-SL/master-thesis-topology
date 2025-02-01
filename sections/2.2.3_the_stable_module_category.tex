@@ -778,9 +778,16 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it has as a di
     \]
     be two pushout squares in \( \Mod(R) \), with \( g \) and \( h \) monomorphisms into injective objects \( I \) and \( I' \).
 
-    Then there exists an isomorphism \( [\alpha]: C \to C' \) in \( \Mc \).
+    Then there exists an isomorphism \( [\alpha]: C \to C' \) in \( \Mc \), with inverse \( [\alpha^{-1}] \).
     
-    In addition, \( \alpha \) has the property that \( \alpha \circ g' = h' \) and \( \alpha \circ \gamma = \gamma' \circ i \), where \( i \) is defined in the beginning of the proof.
+    In addition, \( \alpha \) and \( \alpha^{-1} \) have the following properties:
+    \begin{itemize}
+        \item \( \alpha \circ g' = h' \)
+        \item \( \alpha \circ \gamma = \gamma' \circ i \)
+        \item \( g' = \alpha^{-1} \circ h' \)
+        \item \( \gamma = \alpha^{-1} \circ \gamma' \circ i \)
+    \end{itemize}
+    where \( i \) is defined in the beginning of the proof.
 \end{lemma}
 \begin{proof}
     Since both \( I \) and \( I' \) are injective objects and \( g \) and \( h \) monomorphisms, then there exists maps \( i \) and \( i' \) such that the following two diagrams commute
@@ -1844,6 +1851,48 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
             denotes a standard triangle of \( \phi \), and is therefore distinguished.
+
+            % Before the final step, we need to define two morphisms in order to finish the final step.
+            
+            % Let \( \Sigma' g \) be defined by the cokernel property in the following diagram
+            % \begin{center}
+            %     \begin{tikzpicture}
+            %         \diagram{m}{1cm}{1cm} {
+            %             B \& I_B \& \Sigma B \\
+            %             C_f \& I_{C_f} \& \Sigma C_f. \\
+            %         };
+
+            %         \draw[math]
+            %             (m-1-1) edge node {\kappa_B} (m-1-2)
+            %                 edge node {g} (m-2-1)
+            %             (m-1-2) edge node {\rho_B} (m-1-3)
+            %                 edge node {\tilde{i}} (m-2-2)
+            %             (m-1-3) edge node {\Sigma' g} (m-2-3)
+
+            %             (m-2-1) edge node {\kappa_{C_f}} (m-2-2)
+            %             (m-2-2) edge node {\rho_{C_f}} (m-2-3);
+            %     \end{tikzpicture}
+            % \end{center}
+            % And let \( \epsilon \) be the morphism that is induced by the cokernel property of \( \Sigma C_f \) in the following diagram
+            % \begin{center}
+            %     \begin{tikzpicture}
+            %         \diagram{m}{1cm}{1cm} {
+            %             C_f \& I_C{_f} \& \Sigma C_f \\
+            %             C_f \& I_{C_f} \& \Sigma C_f, \\
+            %         };
+
+            %         \draw[math]
+            %             (m-1-1) edge node {\kappa_{C_f}} (m-1-2)
+            %                 edge[equal] (m-2-1)
+            %             (m-1-2) edge node {\rho_{C_f}} (m-1-3)
+            %                 edge node {\tilde{i} \circ i} (m-2-2)
+            %             (m-1-3) edge node {\epsilon} (m-2-3)
+
+            %             (m-2-1) edge node {\kappa_{C_f}} (m-2-2)
+            %             (m-2-2) edge node {\rho_{C_f}} (m-2-3);
+            %     \end{tikzpicture}
+            % \end{center}
+            % which by \autoref{lem:stmod_sigma_well-defined_additive_endofunctor} implies that \( \epsilon \sim \Id_{C_f} \).
 
             The final step is then to show that the following diagram is an isomorphism of triangles
             \begin{center}
