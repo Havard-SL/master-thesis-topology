@@ -782,10 +782,10 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints 
     
     In addition, \( \alpha \) and \( \alpha^{-1} \) have the following properties:
     \begin{itemize}
-        \item \( \alpha \circ g' = h' \)
-        \item \( \alpha \circ \gamma = \gamma' \circ i \)
-        \item \( g' = \alpha^{-1} \circ h' \)
-        \item \( \gamma = \alpha^{-1} \circ \gamma' \circ i \)
+        \item \( \alpha \circ g' = h' \),
+        \item \( \alpha \circ \gamma = \gamma' \circ i \),
+        \item \( g' = \alpha^{-1} \circ h' \), and
+        \item \( \gamma = \alpha^{-1} \circ \gamma' \circ i \),
     \end{itemize}
     where \( i \) is defined in the beginning of the proof.
 \end{lemma}
@@ -927,6 +927,8 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints 
     \) is an epimorphism by definition, it follows that the bottom triangle also commutes.
 
     One can prove that \( \alpha \circ \beta \sim \Id_{C'} \) in a similar way.
+
+    Let \( \alpha^{-1} := \beta \) to get the statement of the lemma.
 \end{proof}
 
 Then finally comes the full triangulation result, the proof of which is heavily inspired by \cite[First theorem in Chapter 1, Subsection 2.6]{Happel_1988}, with additional inspiration for proving {\bf (TR4)} from \cite[Theorem 4.18]{Johan_Bachelor}.
@@ -936,7 +938,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 \begin{example}
     The tuple \( \tuple{\Mc, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
-\begin{proof}
+\begin{proof} % TODO: Skriv om bevisa, standariser notasjon, kanskje inkluder lemmaet over inn i TR4? Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
     Need to prove {\bf (TR1)} to {\bf (TR4)} from \autoref{def:triangulated_category}.
 
     \begin{enumerate}[label={(\bfseries TR\arabic*)}]
@@ -1466,7 +1468,6 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center}
 
             Finally, check that this \( \phi \) makes \autoref{eq:stablemod} commute.
-            % TODO: Lag eige environment og counter for diagram, sånn at det fungerar med autorref. Sjå aliascnt i hyperref dokumentasjon s. 26--27.
 
             By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check if \( [h' \circ \phi] = [\Sigma' (\alpha) \circ h] \). Consider the following pushout diagram that commutes because \( \Sigma'(\alpha) \circ h \circ \gamma_f \circ \kappa_A = \Sigma'(\alpha) \circ \rho_A \circ \kappa_A = 0 \),
             \begin{center}
@@ -1767,7 +1768,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \end{tikzpicture}
                 \end{aligned}
             \end{diagramlabel}
-            by \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that \( m \circ \alpha^{-1} = \delta \) as well as \( \alpha^{-1} \circ \gamma_n \circ i = \gamma \).
+            by \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that the following equalities hold:
+            \begin{itemize}
+                \item \( \alpha \circ \delta = m \),
+                \item \( \alpha \circ \gamma = \gamma_n \circ i \),
+                \item \( m = \alpha^{-1} \circ \delta \), and
+                \item \( \gamma = \alpha^{-1} \circ \gamma' \circ i \).
+            \end{itemize}
             
             Consider the following diagram
             \begin{diagramlabel}[\label{diag:stmod_tr4_show_psi_phi_equal_something_else}]
