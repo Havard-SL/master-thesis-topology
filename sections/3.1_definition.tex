@@ -11,11 +11,13 @@ Let \( \Tc \) be a triangulated category. Given the following diagram in \( \Tc 
             (m-1-3) edge node {f_3} (m-1-4);
     \end{tikzpicture}
 \end{center}
-one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in three different (but actually identical, see \autoref{prop:toda-bracket-definitions-coincide}) ways:
+one can define the \emph{three-fold Toda bracket of \( f_1, f_2, f_3 \)} in three different (but actually identical, see \autoref{prop:toda-bracket-definitions-coincide}) ways:
 
 % MS-Question: Problem med at venstre rotasjon ikkje blir skriven på den måten?
-\begin{definition}
+\begin{definition}[Toda bracket]
     \label{def:toda_bracket}
+    \phantom{hei}
+
     \begin{enumerate}
         \item {
             Let the set of every possible \( \psi \in \Tc(\Sigma X_0, X_3) \) that makes the following diagram commute
@@ -40,7 +42,7 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
                         (m-2-3) edge node {f_3} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            where the top row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\cc} \). This is called the \emph{three-fold iterated cofiber Toda Bracket of \( f_3, f_2, f_1 \)}.
+            where the top row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\cc} \). This is called the \emph{three-fold iterated cofiber Toda Bracket of \( f_1, f_2, f_3 \)}.
         }
         \item {
             Let the set of every composite \( \beta \circ \Sigma(\alpha) \in \Tc(\Sigma X_0, X_3) \) that makes the following diaram commute
@@ -48,7 +50,7 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         {X_0} \& {X_1} \\
-                        {\Sigma^{-1} Y} \& {X_1} \& {X_2} \& {Y} \\
+                        {\Sigma^{-1} Y} \& {X_1} \& {X_2} \& \Sigma \Sigma^{-1} Y \\
                         \&\& {X_2} \& {X_3} \\
                     };
 
@@ -66,15 +68,17 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
                         (m-3-3) edge node {f_3} (m-3-4);
                 \end{tikzpicture}
             \end{center}
-            where the middle row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\fc} \). This is called the \emph{three-fold fiber-cofiber Toda Bracket of \( f_3, f_2, f_1 \)}.
+            where the middle row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\fc} \). This is called the \emph{three-fold fiber-cofiber Toda Bracket of \( f_1, f_2, f_3 \)}.
         }
         \item {
-            Let the set of every morphism \( \Sigma(\delta) \in \Tc(\Sigma X_0, X_3) \), where \( \delta \) makes the following diagram commute
+            Let \( \phi = \set{\phi_A}_{A \in \Tc} \) denote the natural transformation from \( \Sigma \Sigma^{-1} \) to \( \Id_{\Tc} \).
+
+            Let the set of every morphism \( \phi_{X_3} \circ \Sigma(\delta) \in \Tc(\Sigma X_0, X_3) \), where \( \delta \) makes the following diagram commute
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         {X_0} \& {X_1} \& {X_2} \& {X_3} \\
-                        {\Sigma^{-1} X_3} \& {Y} \& {X_2} \& {X_3} \\
+                        {\Sigma^{-1} X_3} \& {Y} \& {X_2} \& \Sigma \Sigma^{-1} X_3 \\
                     };
 
                     \draw[math]
@@ -84,14 +88,14 @@ one can define the \emph{three-fold Toda bracket of \( f_3, f_2, f_1 \)} in thre
                             edge (m-2-2)
                         (m-1-3) edge node {f_3} (m-1-4)
                             edge[equal] (m-2-3)
-                        (m-1-4) edge[equal] (m-2-4)
+                        (m-1-4) edge node {\phi_{X_3}^{-1}} (m-2-4)
 
                         (m-2-1) edge (m-2-2)
                         (m-2-2) edge (m-2-3)
-                        (m-2-3) edge node {f_3} (m-2-4);
+                        (m-2-3) edge node {\phi_{X_3}^{-1} \circ f_3} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            where the bottom row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\ff} \). This is called the \emph{three-fold iterated fiber Toda Bracket of \( f_3, f_2, f_1 \)}.
+            where the bottom row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\ff} \). This is called the \emph{three-fold iterated fiber Toda Bracket of \( f_1, f_2, f_3 \)}.
         }
     \end{enumerate}
 \end{definition}
@@ -103,10 +107,10 @@ As is alluded by the name, as well as mentioned above, these are in fact equival
     All three of the toda brackets definitions in \autoref{def:toda_bracket} are equal.
 \end{proposition}
 
-For a proof of \autoref{prop:toda-bracket-definitions-coincide}, see \cite[Proposition 3.3]{Christensen-Frankland_2017}.
+For a proof of \autoref{prop:toda-bracket-definitions-coincide}, see \cite[Proposition 3.3]{Christensen-Frankland_2017}. Note that they specify the natural transformations between \( \Sigma \Sigma^{-1} \) and \( \Id_{\Tc} \), however, they use them implicit when it fits as mentioned in \cite[Start of Section 2]{Christensen-Frankland_2017}.
 % Note that in the beforementioned proof, that the final centered equation shold say ``\( f_3 - \beta q_2 = \theta q \)'' instead of `` \( f_3 - \beta q_2 = \theta \iota \) ''.
 % TODO: Check "Dual" statement. MS-Question: Is it even a dual statement?
 
-As a consequence of \autoref{prop:toda-bracket-definitions-coincide} one can uniquely define the \emph{Toda bracket of \( f_3, f_2, f_1 \)} as either \( \toda{f_3, f_2, f_1}_{\cc} \), \( \toda{f_3, f_2, f_1}_{\fc} \), or \( \toda{f_3, f_2, f_1}_{\ff} \), and it is denoted simply as \emph{\( \toda{f_3, f_2, f_1} \)}.
+As a consequence of \autoref{prop:toda-bracket-definitions-coincide} one can uniquely define the \emph{Toda bracket of \( f_1, f_2, f_3 \)} as either \( \toda{f_3, f_2, f_1}_{\cc} \), \( \toda{f_3, f_2, f_1}_{\fc} \), or \( \toda{f_3, f_2, f_1}_{\ff} \), and it is denoted simply as \emph{\( \toda{f_3, f_2, f_1} \)}.
 
 % TODO: Indeterminancy?
