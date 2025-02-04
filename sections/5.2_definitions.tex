@@ -1,0 +1,150 @@
+In this subsection the goal is to define what an algebraic triangulated category is.
+
+We start off by defining the DG-Yoneda embedding from \cite[Corollary 6.3.6]{Borceux_1994}.
+
+% TODO: Why is \Cc(-, A) a functor into \C_{\dg}(\Mod(R))?
+\begin{definition}[DG-Yoneda embedding]
+    \label{def:DG_Yoneda_embedding}
+    Let \( \Cc \) be a DG-category over \( R \).
+    
+    Then let \( \mathbf{h} \) be the DG-functor defined as follows
+    \begin{align*}
+        \mathbf{h}: \Cc &\to \dgMod_{\dg}(\Cc) \\
+        A &\mapsto \Cc(-, A)
+    \end{align*}
+
+    This DG-functor is called the \emph{DG-Yoneda embedding of \( \Cc \)}.
+\end{definition}
+
+The DG-Yoneda embedding is staded without proof because it is too technical to include in this thesis. For a proof of it's well-definedness see \cite[Corollary 6.3.6]{Borceux_1994}. We will only be using it in the defintion of an algebraic triangulated category in this thesis.
+
+% TODO: Add Yoneda embedding identifies \Cc with a full subcategory of \dgMod_dg(\Cc)? <- Fekk dette utsagnet frå thesis_draft. Hugsar ikkje kor eg las det.
+
+The following definition is very similar to \autoref{def:H_bullet_dg_category}. However unlike the cohomology category, this category is not enriched over \( C \).
+
+\begin{definition}[0th cohomology category of a DG-category]
+    Let \( \Cc \) be a DG-category over \( R \).
+
+    Then let \( H^0(\Cc) \) be the following category defined as follows
+    \begin{enumerate}
+        \item {
+            Let \( \Obj(H^0(\Cc)) := \Obj(\Cc) \).
+        }
+        \item {
+            Let \( H^0(\Cc)(A, B) := H^0(\Cc(A, B)) \).
+        }
+        \item {
+            Let \( A, B, C \in H^0(\Cc) \) with \( [f] \in H^0(A, B) \) and \( [g] \in H^0(B, C) \).
+
+            Then let composition be as follows
+            \begin{align*}
+                \circ_{H^0(\Cc)}: H^0(\Cc)(B, C) \times H^0(\Cc)(A, B) &\to H^0(\Cc)(A, C) \\
+                [g] \times [f] &\mapsto \class*{ \circ_{\Cc}(g \otimes f) }
+            \end{align*}
+        }
+    \end{enumerate}
+\end{definition}
+
+The goal is to show that \( H^0\tuple*{\dgMod_{\dg}(\Cc)} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles. The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgMod_{\dg}(\Cc) \).
+
+\begin{definition}[\( \Sigma_{\C_{\dg}} \)]
+    \label{def:sigma_c_dg}
+    Let the DG-functor \( \Sigma_{\C_{\dg}} \) be defined as follows:
+    \begin{enumerate}
+        \item {
+            For \( A \in \C_{\dg} \), and \( \Sigma \) the ordinary shift functor on \( \C \), let
+            \[
+                \Sigma_{\C_{\dg}}(A) := \Sigma A
+            \]
+        }
+        \item {
+            For any \( A, B \in \C_{\dg} \), let
+            \begin{align*}
+                \Sigma_{\C_{\dg}}: \C_{\dg}(A, B) \to \C_{\dg}(\Sigma_{\C_{\dg}}(A), \Sigma_{\C_{\dg}}(B))
+            \end{align*}
+            be the chain homomorphism where the \( n \)-th map is
+            \begin{align*}
+                \Sigma_{\C_{\dg}, n}: \C_{\dg}(A, B)_n &\to \C_{\dg}(\Sigma A, \Sigma B)_n \\
+                \tuple*{ f_p }_{p \in \Zb} &\mapsto (-1)^n \tuple*{ f_{p + 1} }_{p \in \Zb}.
+            \end{align*}
+        }
+    \end{enumerate}
+\end{definition}
+
+The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following remark. 
+
+\begin{remark}
+    In order to show that \( \Sigma_{\C_{\dg}} \) from \autoref{def:sigma_c_dg} is a DG-functor, need to show the following three properties:
+    \begin{enumerate}
+        \item {
+            Firstly, need to show that
+            \[
+                \Sigma_{\C_{\dg}, A, B}: \C_{\dg}(A, B) \to \C_{\dg}(\Sigma_{\C_{\dg}} A, \Sigma_{\C_{\dg}} B)
+            \]
+            is a chain morphism by checking if it commutes with the differential.
+
+            WIP
+        }
+        \item {
+            Secondly, need to show the ``functoriality'' of \( \Sigma_{\C_{\dg}} \).
+
+            WIP
+        }
+        \item {
+            Thirdly, need to show that the unit morphism commutes with \( \Sigma_{\C_{\dg}} \).
+
+            WIP
+        }
+    \end{enumerate}
+\end{remark}
+
+We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgMod_{\dg}(\Cc) \) in the following way.
+
+\begin{definition}
+    \label{def:sigma_dgmod}
+    Let the DG-functor \( \Sigma_{\dgMod_{\dg}(\Cc)} \) be defined as follows:
+    \begin{enumerate}
+        \item {
+            For any \( F \in \dgMod_{\dg}(\Cc) \), let
+            \[
+                \Sigma_{\dgMod_{\dg}(\Cc)} F := \Sigma_{\C_{\dg}} \circ F.
+            \]
+        }
+        \item {
+            For any \( F, G \in \dgMod_{\dg}(\Cc) \), and
+            \[
+                \tuple{\eta_{n, A}}_{A \in \Cc^{\op}} \in \dgMod_{\dg}(\Cc)(F, G)_n,
+            \]
+            let \( \Sigma_{\dgMod_{\dg}(\Cc), F, G} \) be defined as follows
+            \begin{align*}
+                \Sigma_{\dgMod_{\dg}(\Cc), F, G}: \dgMod_{\dg}(\Cc)(F, G) &\to \dgMod_{\dg}(\Cc)(\Sigma_{\dgMod_{\dg}(\Cc)} F, \Sigma_{\dgMod_{\dg}(\Cc)} G) \\
+                \tuple{\eta_{n, A}}_{A \in \Cc^{\op}} &\mapsto WIP
+            \end{align*}
+        }
+    \end{enumerate}
+\end{definition}
+
+By the following remark, \( \Sigma_{\dgMod_{\dg}(\Cc)} \) is a DG-functor.
+
+\begin{remark}
+    TODO
+\end{remark}
+
+For a triangulated category, one also need to define the triangulation. The triangulation of \( H^0(\dgMod_{\dg}(\Cc)) \) is as follows.
+\begin{definition}
+    \label{def:delta_H_0_dgmod}
+    The triangulation of \( H^0(\dgMod_{\dg}(\Cc)) \) is ... TODO
+\end{definition}
+
+% TODO: What are the triangles? Is the shift functor correct on maps?
+% TODO: Incorrect/abuse of notation, how does the shift work on maps?
+\begin{theorem}
+    Let \( \Cc \) be a DG-category over \( R \). Let \( \Sigma_{\C_{\dg}} \) be the shift functor as defined in \autoref{def:sigma_dgmod}, and let \( \Delta \) be as defined in \autoref{def:delta_H_0_dgmod}.
+
+    Then \( \tuple*{H^0(\dgMod_{\dg}(\Cc)), \Sigma_{\C_{\dg}}, \Delta} \) is a triangulated category.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+WIP

@@ -16,16 +16,18 @@
 \newtheorem{question}[theorem]{Question}
 
 \newcounter{diagram}
-\newtagform{Diagram}[\renewcommand{\theequation}{\arabic{diagram}}]{Diagram }{}
+\newtagform{Diagram}[\renewcommand{\theequation}{\arabic{diagram}}]{D}{}
 \newenvironment{diagramlabel}[1][]
     {%
         \refstepcounter{diagram}
         #1
         \usetagform{Diagram}
-        \begin{equation}%
+        \begin{equation}
+        \begin{aligned}
     }%
     {%
-        \end{equation}%
+        \end{aligned}
+        \end{equation}
         \addtocounter{equation}{-1}
         \usetagform{default}%
     }

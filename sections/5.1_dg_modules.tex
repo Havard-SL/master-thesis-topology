@@ -170,7 +170,7 @@ Another piece of the definition of a DG-module is to define what a functor betwe
     An enriched functor between two DG-categories as defined in \cite[Definition 6.2.3]{Borceux_1994} is called a \emph{DG-functor}.
 \end{definition}
 
-An example of a DG-functor is the ``shift functor'' on DG-modules. It is defined in TODO:Ref.
+An example of a DG-functor is the shift functor on \( \C_{\dg} \), which is defined in \autoref{def:sigma_c_dg}.
 
 Finally one can define the DG-functor category, which is the final piece in defining DG-modules.
 
@@ -187,58 +187,253 @@ Finally one can define the DG-functor category, which is the final piece in defi
             For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in \cite[Proposition 6.3.1]{Borceux_1994}.
         }
         \item {
-            Let composition be defined as WIP.
+            Let composition be defined as WIP: Har Idé i RM, men den er basert på synsing. Eg fann ingenting i Borceux.
+        }
+        \item {
+            Let unit morphisms be defined as WIP: Kan ikkje sei før komposisjon er definert.
         }
     \end{enumerate}
     This is called the \emph{DG-functor category from \( \Ac \) to \( \Bc \)}.
 \end{definition}
 
-% TODO: ADD THINGS BELOW THIS LINE WHERE THEY FIT
+In this thesis, given some \( n \), elements in \( \Fun_{\dg}(\Ac, \Bc)_n \) are denoted as \emph{DG-natural transformations}. In other litterature, this name is often associated with another type of natural transformation between DG-functors that is not a part of a chain complex. Borceux talks about these kinds of ``DG-natural transformations'' in \cite[Definition 6.2.4]{Borceux_1994}. That is not relevant for this thesis, and therefore we stick to our definition.
 
-% \begin{definition}[\( \Sigma_{\C_{\dg}(\Mod(R))} \)]
-%     \label{def:sigma_c_dg}
-%     Let the DG-functor \( \Sigma_{\C_{\dg}(\Mod(R))} \) be defined as follows
-%     \begin{enumerate}
-%         \item {
-%             For \( A \in \C_{\dg}(\Mod(R)) \), let
-%             \[
-%                 \Sigma_{\C_{\dg}(\Mod(R))}(A) := \Sigma_{\C(\Mod(R))}(A)
-%             \]
-%         }
-%         \item {
-%             For any \( A, B \in \C_{\dg}(\Mod(R)) \), let
-%             \begin{align*}
-%                 \Sigma_{\C_{\dg}(\Mod(R))}: \C_{\dg}(\Mod(R))(A, B) \to \C_{\dg}(\Mod(R))(\Sigma_{\C_{\dg}(\Mod(R))}(A), \Sigma_{\C_{\dg}(\Mod(R))}(B))
-%             \end{align*}
-%             be the chain homomorphism where the \( n \)-th map is
-%             \begin{align*}
-%                 \Sigma_{\C_{\dg}(\Mod(R)), n}: \C_{\dg}(\Mod(R))(A, B)_n &\to \C_{\dg}(\Mod(R))(\Sigma A, \Sigma B)_n \\
-%                 \tuple*{ f_p }_{p \in \Zb} &\mapsto (-1)^n \tuple*{ f_{p + 1} }_{p \in \Zb}.
-%             \end{align*}
-%         }
-%     \end{enumerate}
-% \end{definition}
-% \begin{remark}
-%     In order to show that \( \Sigma_{\C_{\dg}(\Mod(R))} \) from \autoref{def:sigma_c_dg} is a DG-functor, need to show the following three properties:
-%     \begin{enumerate}
-%         \item {
-%             Firstly, need to show that
-%             \[
-%                 \Sigma_{\C_{\dg}(\Mod(R))}: \C_{\dg}(\Mod(R))(A, B) \to \C_{\dg}(\Mod(R))(\Sigma_{\C_{\dg}(\Mod(R))}(A), \Sigma_{\C_{\dg}(\Mod(R))}(B))
-%             \]
-%             is a chain morphism by checking if it commutes with the differential.
+The definition of (right) DG-modules is the following.
 
-%             WIP
-%         }
-%         \item {
-%             Secondly, need to show the ``functoriality'' of \( \Sigma_{\C_{\dg}(\Mod(R))} \).
+\begin{definition}[DG-modules, \( \dgMod_{\dg}(\Cc) \)]
+    Let \( \Cc \) be a small DG-category over \( R \).
 
-%             WIP
-%         }
-%         \item {
-%             Thirdly, need to show that the unit morphism commutes with \( \Sigma_{\C_{\dg}(\Mod(R))} \).
+    % TODO: Why "Right"?
+    Then define the \emph{DG-category of (right) DG-\( \Cc \)-modules} as
+    \[
+        \dgMod_{\dg}(\Cc) := \Fun_{\dg}(\Cc^{op}, \C_{\dg}).
+    \]
+    Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
+\end{definition}
 
-%             WIP
-%         }
-%     \end{enumerate}
-% \end{remark}
+Bofore moving on, it is helpful to try and properly understand the structure of a DG-module. The definition in \autoref{def:dg_functor_category} is abstract and hard to understand exactly how the morphisms, i.e., the ``DG-natural transformations'', look like and what properties they have. The following remark goes through the calculations laid forth by Borceux for DG-modules.
+
+\begin{remark}[Functor category structure from Borceux]
+    The goal of this remark is to understand what the morphism structure of \( \dgMod_{\dg}(\Cc) \) is, and what properties it has from the enriched category theory perspective based on \cite{Borceux_1994}.
+    
+    Let \( F, G \in \dgMod_{\dg}(\Cc) \) and let
+    \[
+        \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) }_i
+    \]
+    and let
+    \[
+        f_j \in \Cc^{\op}(A', A'')_j.
+    \]
+    Construct the following composition of morphisms, where the right hand side is the element-wise action on the \( n \)-th component on an arbitrary elementary tensor with \( i +j = n \) (this is enough information to deduce it's action on any element by \autoref{lem:map_out_of_tensor_unique})
+    \begin{diagramlabel}[\label{eq:functor_category_borceux}]
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
+                \C_{\dg}(F(A'), G(A')) \otimes \C_{\dg}(G(A'), G(A'')) \\
+                \C_{\dg}(G(A'), G(A'')) \otimes \C_{\dg}(F(A'), G(A')) \\
+                \C_{\dg}(F(A'), G(A'')) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\pi_{A'} \otimes G_{A', A''}} (m-2-1)
+
+                (m-2-1) edge node {s} (m-3-1)
+
+                (m-3-1) edge node {c_{\C_{\dg}}} (m-4-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f_j  \\
+                \eta_{i, A'} \otimes G(f_j) \\
+                (-1)^{ij} G(f_j) \otimes \eta_{i, A'} \\
+                (-1)^{ij} G(f_j) \circ \eta_{i, A'} \\
+            };
+
+            \path[math]
+                ([yshift=-2.5mm]m-1-1.south) edge[maps to] (m-2-1)
+
+                (m-2-1) edge[maps to] (m-3-1)
+
+                (m-3-1) edge[maps to] (m-4-1);
+        \end{tikzpicture}
+    \end{diagramlabel}
+    NOTE: The composition, \( \circ \), in bottom right of the above diagram is the composition as defined for DG-diagrams.
+
+    Name the entire above composition of chain complex morphisms for \( \psi_{A', A''} \).
+
+    % For any \( i, j \in \Zb \) let \( \iota_{i,j} \) denote the inclusion
+    % \begin{multline*}
+    %     \iota_{i, j}: \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) }_i \otimes \Cc^{\op}(A', A'')_j \\
+    %     \hookrightarrow \tuple*{ \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') }_{i + j}
+    % \end{multline*}
+
+    Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism \( \phi_{A', A''} \), where
+    \begin{center}
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) \\
+                \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\phi_{A', A''}} (m-2-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \\
+                \tuple{ \psi_{A', A'', k} \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb}. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[maps to] (m-2-1);
+        \end{tikzpicture}
+    \end{center}
+    NOTE: The notation causes some ambiguity here and so it is neccesary to specify that in the bottom right of the above diagram, \( ? \in \Cc^{\op}(A', A'')_{k - i} \).
+
+    Finally take the product of this map over all \( A', A'' \in \Cc^{\op} \) to get the morphism
+    \begin{center}
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) \\
+                \prod\limits_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''}} (m-2-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \\
+                \tuple{ \tuple{ \psi_{A', A'', k} \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}}. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[maps to] (m-2-1);
+        \end{tikzpicture}
+    \end{center}
+    Doing a similar construction as in \autoref{eq:functor_category_borceux} look at the composition
+    \begin{center}
+        \newcommand{\height}{1cm}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \tuple*{ \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
+                \C_{\dg}(F(A''), G(A'')) \otimes \C_{\dg}(F(A'), F(A'')) \\
+                \C_{\dg}(F(A'), G(A'')) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\pi_{A''} \otimes F_{A', A''}} (m-2-1)
+
+                (m-2-1) edge node {\circ} (m-3-1);
+        \end{tikzpicture}
+        %
+        \mmznext{meaning to context=\height}
+        \begin{tikzpicture}
+            \diagram{m}{\height}{1cm} {
+                \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f_j  \\
+                \eta_{i, A''} \otimes F(f_j) \\
+                \eta_{i, A''} \circ F(f_j) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[maps to] (m-2-1)
+
+                (m-2-1) edge[maps to] (m-3-1);
+        \end{tikzpicture}
+    \end{center}
+    Using this as \( \widetilde{\psi}_{A', A''} \) continue the construction as before by taking the adjoint and the product to end up with the map \( \widetilde{\phi}_{A', A''} \).
+
+    Then \cite[Proposition 6.3.1]{Borceux_1994} states that \( \dgMod_{\dg}(\Cc)(F, G) \) is the equalizer of the following diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \prod\limits_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) \\
+                \prod\limits_{A', A'' \in \Cc^{\op}} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+            };
+
+            \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
+            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod\limits_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
+        \end{tikzpicture}
+    \end{center}
+    Then the question remains, what properties would this equalizer have?
+    
+    Consider the chain subcomplex
+    \[
+        H \stackrel{\iota}{\hookrightarrow} \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))
+    \]
+    where
+    \[
+        H := \ker\tuple*{\prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} - \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''}}.
+    \]
+    This is the equalizer by the kernel property.
+
+    Then \( H \) would for any \( i \in \Zb \) contain the elements
+    \[
+        \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) }_i
+    \]
+    such that
+    \begin{align*}
+        \tuple*{ \prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} }_j \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} } &= \tuple*{ \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''} }_j \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} } \\
+        &\Updownarrow \\
+        \tuple{ \tuple{ \psi_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}} &= \tuple{ \tuple{ \widetilde{\psi}_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}}
+        \intertext{Which are equal if for any \( A', A'' \in \Cc^{\op} \) and any \( k \in \Zb \) and any \( f \in \Cc^{\op}\tuple*{A', A''}_{k - i} \) one has the following}
+        \psi_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f } &= \widetilde{\psi}_{A', A'', k} \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f } \\
+        &\Updownarrow \\
+        (-1)^{(k - i)*i}G(f) \circ \eta_{i, A'} &= \eta_{i, A''} \circ F(f) \\
+    \end{align*}
+\end{remark}
+
+In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) \) has the following properties:
+\begin{enumerate}
+    \item {
+        The structure of \( \dgMod_{\dg}(\Cc)(F, G) \) is as a sub chain complex of
+        \[
+            \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)).
+        \]
+        Which is a chain complex where in the \( i \)-th component, one has
+        \[
+            \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_i
+        \]
+        where every element is denoted as \( \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \).
+
+        Let \( \widetilde{d_A} \) be the differential of \( \C_{\dg}(F(A), G(A)) \), then the differential of
+        \[
+            \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))
+        \]
+        is
+        \begin{align*}
+            \prod_{A \in \Cc^{\op}} \widetilde{d_A} : \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_j &\to \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_{j + 1} \\
+            \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} &\mapsto \tuple{ \widetilde{d_A}\tuple{ \eta_{i, A} } }_{A \in \Cc^{\op}} \\
+            &= \tuple*{ d_{G(A)} \circ \eta_{j, A} - (-1)^j \eta_{j, A} \circ d_{F(A)} }_{A \in \Cc^{\op}}.
+        \end{align*}
+    }
+    \item {
+        In addition, \( \dgMod_{\dg}(\Cc)(F, G) \) has the property that for any
+        \[
+            \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \dgMod_{\dg}(\Cc)(F, G)_i,
+        \]
+        and any \( f \in \Cc^{\op}(A', A'')_j \), one has that
+        \[
+            G_{A', A'', j}(f) \circ \eta_{i, A'} = (-1)^{ij} \eta_{i, A''} \circ F_{A', A'', j}(f).
+        \]
+    }
+\end{enumerate}
+
+% TODO: Skriv noko om at litteraturen er ueinig om definisjonen av DG-nat-trans.
