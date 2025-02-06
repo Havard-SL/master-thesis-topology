@@ -1,24 +1,4 @@
-In this subsection the goal is to define what an algebraic triangulated category is.
-
-We start off by defining the DG-Yoneda embedding from \cite[Corollary 6.3.6]{Borceux_1994}.
-
-% TODO: Why is \Cc(-, A) a functor into \C_{\dg}(\Mod(R))?
-\begin{definition}[DG-Yoneda embedding]
-    \label{def:DG_Yoneda_embedding}
-    Let \( \Cc \) be a DG-category over \( R \).
-    
-    Then let \( \mathbf{h} \) be the DG-functor defined as follows
-    \begin{align*}
-        \mathbf{h}: \Cc &\to \dgMod_{\dg}(\Cc) \\
-        A &\mapsto \Cc(-, A)
-    \end{align*}
-
-    This DG-functor is called the \emph{DG-Yoneda embedding of \( \Cc \)}.
-\end{definition}
-
-The DG-Yoneda embedding is staded without proof because it is too technical to include in this thesis. For a proof of it's well-definedness see \cite[Corollary 6.3.6]{Borceux_1994}. We will only be using it in the defintion of an algebraic triangulated category in this thesis.
-
-% TODO: Add Yoneda embedding identifies \Cc with a full subcategory of \dgMod_dg(\Cc)? <- Fekk dette utsagnet frå thesis_draft. Hugsar ikkje kor eg las det.
+In this subsection the goal is to define what an algebraic triangulated category is by first defining what \( H^0(\dgMod_{\dg}(\Cc)) \) is, and then defining the DG-Yoneda embedding, and how any DG-category can be seen as a subcategory of the category of DG-modules.
 
 The following definition is very similar to \autoref{def:H_bullet_dg_category}. However unlike the cohomology category, this category is not enriched over \( C \).
 
@@ -130,21 +110,153 @@ By the following remark, \( \Sigma_{\dgMod_{\dg}(\Cc)} \) is a DG-functor.
     TODO
 \end{remark}
 
+In order to get the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \), we have to take the \( 0 \)th cohomology of this functor. It is defined as follows.
+
+\begin{definition}[\( H^0 \)-induced functor]
+    \label{def:H^0-induced_functor}
+    Let \( \Ac \) and \( \Bc \) be two DG-categories, and let \( F: \Ac \to \Bc \) be a DG-functor between them.
+
+    Then define the functor \( H^0(F) \) as follows.
+    \begin{align*}
+        H^0(F): H^0(\Ac) &\to H^0(\Bc) \\
+        A &\mapsto F(A)
+    \end{align*}
+    where for any \( f \in H^0(\Ac)(A, B) \)
+    \begin{align*}
+        H^0(F)_{A, B}: H^0(\Ac)(A, B) &\to H^0(\Bc)(F(A), F(B)) \\
+        [f] &\mapsto [F(f)]
+    \end{align*}
+
+    This is called the \emph{\( H^0 \)-induced functor of \( F \)}.
+\end{definition}
+
+Which leads us to the definition of the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \).
+
+\begin{definition}[\( \Sigma \) on \( H^0(\dgMod_{\dg}(\Cc)) \)]
+    \label{def:sigma_h_0_dgmod}
+    Let \( \Cc \) be a small DG-category, and let \( \Sigma_{\dgMod_{\dg}(\Cc)} \) be as defined in \autoref{def:sigma_dgmod}.
+
+    Then the functor
+    \[
+        \Sigma := H^0(\Sigma_{\dgMod_{\dg}(\Cc)}): H^0(\dgMod_{\dg}(\Cc)) \to H^0(\dgMod_{\dg}(\Cc))
+    \]
+    is denoted as the shift functor of \( H^0(\dgMod_{\dg}(\Cc)) \).
+\end{definition}
+
+There is a slight abuse of notation since this shift functor is denoted in the same way as the shift functor on chain complexes. This will not be a problem, however, since it is often clear from the context what category the shift is taken in.
+
 For a triangulated category, one also need to define the triangulation. The triangulation of \( H^0(\dgMod_{\dg}(\Cc)) \) is as follows.
 \begin{definition}
     \label{def:delta_H_0_dgmod}
     The triangulation of \( H^0(\dgMod_{\dg}(\Cc)) \) is ... TODO
 \end{definition}
 
-% TODO: What are the triangles? Is the shift functor correct on maps?
-% TODO: Incorrect/abuse of notation, how does the shift work on maps?
+All in all this implies that \( H^0(\dgMod_{\dg}(\Cc)) \) is triangulated. The proof for this statment can be found in TODO:CITE.
 \begin{theorem}
-    Let \( \Cc \) be a DG-category over \( R \). Let \( \Sigma_{\C_{\dg}} \) be the shift functor as defined in \autoref{def:sigma_dgmod}, and let \( \Delta \) be as defined in \autoref{def:delta_H_0_dgmod}.
+    Let \( \Sigma_{\C_{\dg}} \) be the shift functor as defined in \autoref{def:sigma_dgmod}, and let \( \Delta \) be as defined in \autoref{def:delta_H_0_dgmod}.
 
     Then \( \tuple*{H^0(\dgMod_{\dg}(\Cc)), \Sigma_{\C_{\dg}}, \Delta} \) is a triangulated category.
 \end{theorem}
-\begin{proof}
-    TODO
-\end{proof}
 
-WIP
+USIKKER START
+
+\begin{definition}[Acyclic DG-module]
+    Let \( A \in \dgMod_{\dg}(\Cc) \).
+
+    Then \( A \) is called \emph{acyclic} if for any \( X \in \Cc^{\op} \), one has that \( A(X) \in \C_{\dg} \) is acyclic, i.e. \( H^*(A(X)) = 0 \).
+\end{definition}
+
+\begin{definition}[DG-projective module]
+    Let \( P \in \dgMod_{\dg}(\Cc) \) be a DG-module.
+
+    Then \( P \) is called a \emph{DG-projective module over \( \Cc \)} if:
+    
+    For any DG-module \( A \in \dgMod_{\dg}(\Cc) \) and any epimorphism \( f \in \dgMod_{dg}(\Cc)(A, P) \) where \( \ker(f) \in \dgMod_{\dg}(\Cc) \) is acyclic. Then \( f \) is split.
+\end{definition}
+
+% TODO: Various definitions and idiosyncracies. Which is correct?
+    % Acyclic kernel? Projective objects? Spanned?
+    % Krause 07 -> Compact objects, maybe more.
+    % Keller 94 -> Another definition of derived DG category.
+% TODO: Following def from Krause 07, but not explicitly written down. Is it correct?
+\begin{definition}[Derived DG-category]
+    Let \( \Cc \) be a DG-category.
+
+    Then the \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \) spanned by the objects of \( \dgMod_{\dg}(\Cc) \) that are DG-projective.
+\end{definition}
+
+% MS-Question: What is coproduct for the derived category?
+% Cite: Jasso--Muro p.31, only a statement, no proof
+\begin{proposition}
+    \( \D(\Cc) \) is closed under arbitrary coproduct.
+\end{proposition}
+
+% Cite: Krause 07 p. 29
+\begin{definition}[Compact objects of a category]
+    Let \( \Tc \) be a triangulated category with arbitrary coproduct. Let \( X \in \Tc \).
+    
+    If for any index set \( I \) and any morphism \( f: X \to \coprod_{i \in I} Y_i \), there is a finite index set \( J \subseteq I \) such that \( f \) factors through \( \coprod_{j \in J} Y_j \).
+    
+    Then define \( X \) as a \emph{compact object in \( \Cc \)}.
+\end{definition}
+
+\begin{definition}[Perfect derived DG-category \( \D^c(\Cc) \)]
+    Let \( \D(\Cc) \) be the derived DG-category of \( \Cc \).
+
+    Then define \( \D^c(\Cc) \) to be the full subcategory of \( \D(\Cc) \) consisting of all compact objects in \( \D(\Cc) \). This is called the \emph{perfect derived DG-category of \( \Cc \)}.
+\end{definition}
+
+\begin{proposition}
+    \( \D^c(\Cc) \) is a triangulated sub category of \( H^0(\dgMod_{\dg}(\Cc)) \).
+\end{proposition}
+
+USIKKER SLUTT
+
+The next step is to define what an algebraic triangulated category is by relating triangulated categories to \( H^0(\dgMod_{\dg}(\Cc)) \). We will accomplis this by using the DG-Yoneda embedding from \cite[Corollary 6.3.6]{Borceux_1994}, which is defined as follows.
+\begin{definition}[DG-Yoneda embedding]
+    \label{def:DG_Yoneda_embedding}
+    Let \( \Cc \) be a small DG-category.
+    
+    Then let \( \mathbf{h} \) be the DG-functor defined as follows
+    \begin{align*}
+        \mathbf{h}: \Cc &\to \dgMod_{\dg}(\Cc) \\
+        A &\mapsto \Cc(-, A)
+    \end{align*}
+
+    This DG-functor is called the \emph{DG-Yoneda embedding of \( \Cc \)}.
+\end{definition}
+
+The DG-Yoneda embedding is staded without proof because it is too technical to include in this thesis. For a proof of it's well-definedness see \cite[Corollary 6.3.6]{Borceux_1994}. We will only be using it in the defintion of an algebraic triangulated category in this thesis.
+
+The DG-Yoneda embedding shows that any DG-category can be seen as a full subcategory of the category of DG-modules. In fact, this embedding can be extended to also work on \( H^0(\Cc) \), where it turns out to be exact.
+
+Then the following theorem shows that taking \( H^0(\mathbf{h}) \) yields a fully faithful exact functor from \( H^0(\Cc) \) to \( \D^c(\Cc) \).
+
+\begin{theorem}
+    Let \( \Cc \) be a small DG-category, and let \( \mathbf{h} \) be as in \autoref{def:DG_Yoneda_embedding}.
+
+    Then the functor
+    \[
+        H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc)
+    \]
+    is full, faithful, and exact.
+\end{theorem}
+The proof of the above statement can be found in TODO.
+
+Then we can define what a pre-triangulated DG-category is, which is the final important piece in this definition of algebraic triangulated categories.
+\begin{definition}[pre-triangulated DG-category]
+    Let \( \Cc \) be a small DG-category.
+
+    Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if the image of the (fully faithful and exact) functor \( H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc) \) is a triangulated subcategory of \( \D^c(\Cc) \).
+\end{definition}
+
+Finally we can define what an algebraic triangulated category is.
+\begin{definition}[Algebraic triangulated category]
+    Let \( \Tc \) be a triangulated category.
+
+    Then \( \Tc \) is called an \emph{algebraic triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), called a \emph{DG-enhancement of \( \Tc \)}, such that \( H^0(\Cc) \) is equivalent as triangulated categories to \( \Tc \).
+\end{definition}
+
+There are many different and equivalent definitions of algebraic triangulated categories. The reason we use the above definition is because it closely ties the algebraic triangulated category to the category of DG-modules. This in turn allows us to use properties of DG-modules in order to make it possible for Toda brackets to equal Massey products.
+
+% MS-Question: Er definisjonen av algebraisk for spesifikk? Eg trur ikkje er treng at alg.tri.kat. er full underkategori av D^c(\Cc).
