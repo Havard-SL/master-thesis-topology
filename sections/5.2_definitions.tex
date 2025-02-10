@@ -27,7 +27,7 @@ The following definition is very similar to \autoref{def:H_bullet_dg_category}. 
 
 The goal is to show that \( H^0\tuple*{\dgMod_{\dg}(\Cc)} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles. The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgMod_{\dg}(\Cc) \).
 
-\begin{definition}[\( \Sigma_{\C_{\dg}} \)]
+\begin{definition}[Shift in \( \C_{\dg} \)]
     \label{def:sigma_c_dg}
     Let the DG-functor \( \Sigma_{\C_{\dg}} \) be defined as follows:
     \begin{enumerate}
@@ -49,29 +49,30 @@ The goal is to show that \( H^0\tuple*{\dgMod_{\dg}(\Cc)} \) is triangulated. To
             \end{align*}
         }
     \end{enumerate}
+    Then \( \Sigma_{\C_{\dg}} \) is called the \emph{shift functor of \( \C_{\dg} \)}. When the context is uncertain, we will denote it as \( \Sigma_{\C_{\dg}} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
 The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following remark. 
 
 \begin{remark}
-    In order to show that \( \Sigma_{\C_{\dg}} \) from \autoref{def:sigma_c_dg} is a DG-functor, need to show the following three properties:
+    In order to show that \( \Sigma \) from \autoref{def:sigma_c_dg} is a DG-functor, need to show the following three properties:
     \begin{enumerate}
         \item {
             Firstly, need to show that
             \[
-                \Sigma_{\C_{\dg}, A, B}: \C_{\dg}(A, B) \to \C_{\dg}(\Sigma_{\C_{\dg}} A, \Sigma_{\C_{\dg}} B)
+                \Sigma_{A, B}: \C_{\dg}(A, B) \to \C_{\dg}(\Sigma A, \Sigma B)
             \]
             is a chain morphism by checking if it commutes with the differential.
 
             WIP
         }
         \item {
-            Secondly, need to show the ``functoriality'' of \( \Sigma_{\C_{\dg}} \).
+            Secondly, need to show the ``functoriality'' of \( \Sigma \).
 
             WIP
         }
         \item {
-            Thirdly, need to show that the unit morphism commutes with \( \Sigma_{\C_{\dg}} \).
+            Thirdly, need to show that the unit morphism commutes with \( \Sigma \).
 
             WIP
         }
@@ -102,6 +103,7 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgMod_{\dg}(\Cc) \) in the follow
             \end{align*}
         }
     \end{enumerate}
+    Then \( \Sigma_{\dgMod_{\dg}(\Cc)} \) is called the \emph{shift functor of \( \dgMod_{\dg}(\Cc) \)}. When the context is uncertain, we will denote it as \( \Sigma_{\dgMod_{\dg}(\Cc)} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
 By the following remark, \( \Sigma_{\dgMod_{\dg}(\Cc)} \) is a DG-functor.
@@ -134,16 +136,22 @@ Which leads us to the definition of the shift functor on \( H^0(\dgMod_{\dg}(\Cc
 
 \begin{definition}[\( \Sigma \) on \( H^0(\dgMod_{\dg}(\Cc)) \)]
     \label{def:sigma_h_0_dgmod}
-    Let \( \Cc \) be a small DG-category, and let \( \Sigma_{\dgMod_{\dg}(\Cc)} \) be as defined in \autoref{def:sigma_dgmod}.
+    Let \( \Cc \) be a small DG-category, and let \( \Sigma \) be as defined in \autoref{def:sigma_dgmod}.
 
     Then the functor
     \[
-        \Sigma := H^0(\Sigma_{\dgMod_{\dg}(\Cc)}): H^0(\dgMod_{\dg}(\Cc)) \to H^0(\dgMod_{\dg}(\Cc))
+        \Sigma_{H^0(\dgMod_{\dg}(\Cc))} := H^0(\Sigma): H^0(\dgMod_{\dg}(\Cc)) \to H^0(\dgMod_{\dg}(\Cc))
     \]
-    is denoted as the shift functor of \( H^0(\dgMod_{\dg}(\Cc)) \).
+    is called the \emph{shift functor of \( H^0(\dgMod_{\dg}(\Cc)) \)}. When the context is uncertain, we will denote it as \( \Sigma_{H^0(\dgMod_{\dg}(\Cc))} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
-There is a slight abuse of notation since this shift functor is denoted in the same way as the shift functor on chain complexes. This will not be a problem, however, since it is often clear from the context what category the shift is taken in.
+The overloading of the notation \( \Sigma \) makes the notation much more concice, and in certain situations and makes equations much more clean while being correct.
+
+The following is a definition for a cone in \( H^0(\dgMod_{\dg}(\Cc)) \), which will be a part of the triangulation later.
+
+\begin{definition}[Cone in \( H^0(\dgMod_{\dg}(\Cc)) \)]
+    WIP
+\end{definition}
 
 For a triangulated category, one also need to define the triangulation. The triangulation of \( H^0(\dgMod_{\dg}(\Cc)) \) is as follows.
 \begin{definition}
@@ -153,9 +161,9 @@ For a triangulated category, one also need to define the triangulation. The tria
 
 All in all this implies that \( H^0(\dgMod_{\dg}(\Cc)) \) is triangulated. The proof for this statment can be found in TODO:CITE.
 \begin{theorem}
-    Let \( \Sigma_{\C_{\dg}} \) be the shift functor as defined in \autoref{def:sigma_dgmod}, and let \( \Delta \) be as defined in \autoref{def:delta_H_0_dgmod}.
+    Let \( \Sigma \) be the shift functor as defined in \autoref{def:sigma_dgmod}, and let \( \Delta \) be as defined in \autoref{def:delta_H_0_dgmod}.
 
-    Then \( \tuple*{H^0(\dgMod_{\dg}(\Cc)), \Sigma_{\C_{\dg}}, \Delta} \) is a triangulated category.
+    Then \( \tuple*{H^0(\dgMod_{\dg}(\Cc)), \Sigma, \Delta} \) is a triangulated category.
 \end{theorem}
 
 USIKKER START

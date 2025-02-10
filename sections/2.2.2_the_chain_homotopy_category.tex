@@ -42,23 +42,23 @@ Start off by defining the underlying category, that will turn out to be triangul
 
 \( \K(\Ac) \) can be shown to be an additive category.
 
-On \( \C(\Ac) \), and by extension \( \K(\Ac) \), one can define a simple automorphism of categories:
+On \( \C(\Ac) \), one can define a simple automorphism of categories called the shift functor.
 
-\begin{definition}[Shift functor on \( \K(\Ac) \)]
-    \label{def:chain_homotopy_shift}
-    Let \( \Sigma \) be the following assignment of objects and morphisms in \( \K(\Ac) \).
+\begin{definition}[Shift functor on \( \C(\Ac) \)]
+    \label{def:chain_complex_shift}
+    Let \( \Sigma \) be the following assignment of objects and morphisms in \( \C(\Ac) \).
 
-    Let \( A = \tuple{A_i}_{i \in \Zb} \in \K(\Ac) \) be a chain complex, and let \( d_n^A: A_n \to A_{n + 1} \) denote the \( n \)-th differential.
+    Let \( A = \tuple{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_n^A: A_n \to A_{n + 1} \) denote the \( n \)-th differential.
 
     Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \), with \( d_n^{\Sigma A} := -d_{n + 1}^A \).
 
-    Likewise for \( f = \tuple{f_i}_{i \in \Zb} \in \K(\Ac)(A, B) \) be a chain morphism. Then let
+    Likewise for \( f = \tuple{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) be a chain morphism. Then let
     \[
-        \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \K(\Ac)(\Sigma A, \Sigma B).
+        \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \C(\Ac)(\Sigma A, \Sigma B).
     \]
 \end{definition}
 
-\( \Sigma \) can be shown to be an additive automorphism on \( \K(\Ac) \).
+\( \Sigma \) can be shown to be an additive automorphism on \( \C(\Ac) \), and can be induced to an additive automorphism with the same notation and name on \( \K(\Ac) \).
 
 The final piece of the puzzle is to define what the cone of a morphism in \( \K(\Ac) \) is.
 
@@ -110,10 +110,10 @@ The distinguished triangles are the triangles which seem to satisfy just the fir
 Together, \( \K(\Ac), \Sigma, \) and \( \Delta \) give the second example of a triangulated category.
 
 \begin{example}
-    Let \( \K(\Ac) \) be as in \autoref{def:chain_homotopy_cat}, let \( \Sigma \) be as in \autoref{def:chain_homotopy_shift}, and let \( \Delta \) be as in \autoref{def:chain_homotopy_dist}.
+    Let \( \K(\Ac) \) be as in \autoref{def:chain_homotopy_cat}, let \( \Sigma \) be as in \autoref{def:chain_complex_shift}, and let \( \Delta \) be as in \autoref{def:chain_homotopy_dist}.
 
     Then \( \tuple{\K(\Ac), \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 For a proof of \( \K(\Ac) \) being triangulated \cite[Proposition 3.5.25]{Zimmermann_2014}.
 
-Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. One can see from \autoref{def:chain_homotopy_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
+Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. One can see from \autoref{def:chain_complex_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.

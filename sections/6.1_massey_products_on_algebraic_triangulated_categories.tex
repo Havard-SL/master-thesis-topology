@@ -1,23 +1,182 @@
-We start by proving a lemma which shows a property of DG-modules which makes it possible to compare Toda brackets and Massey products.
+We start by proving two lemmas which shows a property of DG-modules which makes it possible to compare Toda brackets and Massey products.
+
+The first lemma shows an interesting consequence of the definition of shift and differential in \( \C_{\dg} \), that is useful in proving the second lemma.
+\begin{lemma}
+    \label{lem:shift_one_component_inner_product_chain_complex}
+    For any \( n \in \Zb \), and for any chain complex \( K \), let \( K_{+n} \) denote the \( n \)-shifted chain complex of \( K \) but \emph{without} the \( (-1)^n \) sign in front of the differential.
+
+    Then
+    \[
+        \class{\Sigma^{-n} A, B} = \class{A, B}_{+n}.
+    \]
+    I.e.
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \class{\Sigma^{-n} A, B}: \&[-0.9cm] \cdots \& \class{\Sigma^{-n} A, B}_{-1} \& \class{\Sigma^{-n} A, B}_0 \& \class{\Sigma^{-n} A, B}_1 \& \cdots \\
+                \class{A, B}_{+n}: \& \cdots \& \class{A, B}_{n - 1} \& \class{A, B}_n \& \class{A, B}_{n + 1} \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[equal] (m-2-1)
+                (m-1-2) edge (m-1-3)
+                (m-1-3) edge node {d_{-1}} (m-1-4)
+                    edge[equal] (m-2-3)
+                (m-1-4) edge node {d_0} (m-1-5)
+                    edge[equal] (m-2-4)
+                (m-1-5) edge (m-1-6)
+                    edge[equal] (m-2-5)
+
+                (m-2-2) edge (m-2-3)
+                (m-2-3) edge node {d_{n-1}} (m-2-4)
+                (m-2-4) edge node {d_n} (m-2-5)
+                (m-2-5) edge (m-2-6);
+        \end{tikzpicture}
+    \end{center}
+\end{lemma}
+\begin{proof}
+    For any \( i \in \Zb \), there are two parts that need to be proved.
+
+    First, we need to show that \( \class{\Sigma^{-n} A, B}_i = \class{A, B}_{n + i} \), and second, need to show that \( d_{\class{\Sigma^{-n} A, B}, i} = d_{\class{A, B}, n + i} \).
+
+    We start with the first part.
+
+    Expanding the definitions, we get that
+    \begin{align*}
+        \class{\Sigma^{-n} A, B}_i &= \prod_{j \in \Zb} \Mod(R)((\Sigma^{-n} A)_j, B_{j + i}) \\
+        &= \prod_{j \in \Zb} \Mod(R)(A_{j - n}, B_{j + i}) \\
+        &= \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i + n}) \\
+        &= [A, B]_{i + n}
+    \end{align*}
+
+    And for the second part, let \( \tuple{f_j}_{j \in \Zb} \in [A, B]_{n + i} \) and consider the following equation
+    \begin{align*}
+        (d_{\class{\Sigma^{-n} A, B}, i} - d_{\class{A, B}, n + i})\tuple{f_j}_{j \in \Zb} &= \big(d_{B, n + i + j} \circ f_j - f_{j + 1} \circ d_{\Sigma^{-n} A, j + n} \\
+        &\hspace{0.4cm} - d_{B, n + i + j} \circ f_j + (-1)^n f_{j + 1} \circ d_{A, j}\big)_j \\
+        &= \tuple{(-1)^n f_{j + 1} \circ d_{A, j} - f_{j + 1} \circ d_{\Sigma^{-n} A, j + n}}_j \\
+        &= \tuple{(-1)^n f_{j + 1} \circ d_{A, j} - (-1)^n f_{j + 1} \circ d_{A, j}}_j \\
+        &= 0 \qedhere
+    \end{align*}
+\end{proof}
+
+% Ikkje sant, trur eg.
+% \begin{lemma}
+%     \label{lem:shift_one_component_inner_product_chain_complex}
+%     For any \( n \in \Zb \), and for any chain complex \( K \), let \( K_{+n} \) denote the \( n \)-shifted chain complex of \( K \) but \emph{without} the \( (-1)^n \) sign in front of the differential.
+
+%     Then
+%     \[
+%         \class{\Sigma^{-n} A, B} = \class{A, B}_{+n} = \class{A, B_{+n}}.
+%     \]
+%     I.e.
+%     \begin{center}
+%         \begin{tikzpicture}
+%             \diagram{m}{1cm}{1cm} {
+%                 \class{\Sigma^{-n} A, B}: \&[-0.9cm] \cdots \& \class{\Sigma^{-n} A, B}_{-1} \& \class{\Sigma^{-n} A, B}_0 \& \class{\Sigma^{-n} A, B}_1 \& \cdots \\
+%                 \class{A, B}_{+n}: \& \cdots \& \class{A, B}_{n - 1} \& \class{A, B}_n \& \class{A, B}_{n + 1} \& \cdots \\
+%                 \class{A, B_{+n}}: \& \cdots \& \class{A, B_{+n}}_{-1} \& \class{A, B_{+n}}_0 \& \class{A, B_{+n}}_1 \& \cdots \\
+%             };
+
+%             \draw[math]
+%                 (m-1-1) edge[equal] (m-2-1)
+%                 (m-1-2) edge (m-1-3)
+%                 (m-1-3) edge node {d_{-1}} (m-1-4)
+%                     edge[equal] (m-2-3)
+%                 (m-1-4) edge node {d_0} (m-1-5)
+%                     edge[equal] (m-2-4)
+%                 (m-1-5) edge (m-1-6)
+%                     edge[equal] (m-2-5)
+
+%                 (m-2-1) edge[equal] (m-3-1)
+%                 (m-2-2) edge (m-2-3)
+%                 (m-2-3) edge node {d_{n-1}} (m-2-4)
+%                     edge[equal] (m-3-3)
+%                 (m-2-4) edge node {d_n} (m-2-5)
+%                     edge[equal] (m-3-4)
+%                 (m-2-5) edge (m-2-6)
+%                     edge[equal] (m-3-5)
+
+%                 (m-3-2) edge (m-3-3)
+%                 (m-3-3) edge node {d_{-1}} (m-3-4)
+%                 (m-3-4) edge node {d_0} (m-3-5)
+%                 (m-3-5) edge (m-3-6);
+%         \end{tikzpicture}
+%     \end{center}
+% \end{lemma}
+% \begin{proof}
+%     For any \( i \in \Zb \), there are two parts that need to be proved.
+
+%     First, we need to show that
+%     \[
+%         \class{\Sigma^{-n} A, B}_i = \class{A, B}_{n + i} = \class{A, B_{+n}}_i,
+%     \]
+%     and second, need to show that
+%     \[
+%         d_{\class{\Sigma^{-n} A, B}, i} = d_{\class{A, B}, n + i} = d_{\class{A, B_{+n}}, i}.
+%     \]
+
+%     We start with the first part.
+
+%     Expanding the definitions, we get that
+%     \begin{align*}
+%         \class{\Sigma^{-n} A, B}_i &= \prod_{j \in \Zb} \Mod(R)((\Sigma^{-n} A)_j, B_{j + i}) \\
+%         &= \prod_{j \in \Zb} \Mod(R)(A_{j - n}, B_{j + i}) \\
+%         &= \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i + n}) = [A, B]_{i + n} \\
+%         &= \prod_{j \in \Zb} \Mod(R)(A_j, (B_{+n})_{j + i}) = \class{A, B_{+n}}_i
+%     \end{align*}
+
+%     And for the second part, let \( \tuple{f_j}_{j \in \Zb} \in [A, B]_{n + i} \) and consider the following two equations
+%     \begin{align*}
+%         (d_{\class{\Sigma^{-n} A, B}, i} - d_{\class{A, B}, n + i})\tuple{f_j}_{j \in \Zb} &= \big(d_{B, n + i + j} \circ f_j - (-1)^i f_{j + 1} \circ d_{\Sigma^{-n} A, j + n} \\
+%         &\hspace{0.4cm} - d_{B, n + i + j} \circ f_j + (-1)^{n + i} f_{j + 1} \circ d_{A, j}\big)_j \\
+%         &= \tuple{(-1)^{n + i} f_{j + 1} \circ d_{A, j} - (-1)^i f_{j + 1} \circ d_{\Sigma^{-n} A, j + n}}_j \\
+%         &= \tuple{(-1)^{n + i} f_{j + 1} \circ d_{A, j} - (-1)^{n + i} f_{j + 1} \circ d_{A, j}}_j \\
+%         &= 0,
+%     \end{align*}
+%     and
+%     \begin{align*}
+%         (d_{\class{A, B}, n + i} - d_{\class{A, B_{+n}}, i})\tuple{f_j}_{j \in \Zb} &= \tuple{d_{B, n + i + j} \circ f_j - (-1)^{n + i} f_{j + 1} \circ d_{A, j} - d_{B_{+n}, i + j} \circ f_j + (-1)^i f_{j + 1} \circ d_{A, j}}
+%     \end{align*}
+% \end{proof}
+
+The second lemma is essential in the definition of Massey products on \( H^0(\dgMod_{\dg}(\Cc)) \) and therefore any algebraic triangulated category, which will become apparent later.
 
 \begin{lemma}
     \label{lem:H^i_dgmod_cong_H^0_with_shift}
-    Let \( \Cc \) be a DG-category. Let \( \Sigma \) denote the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \). And let \( A, B \in \dgMod_{\dg}(\Cc) \).
+    Let \( \Cc \) be a DG-category. Let \( \Sigma \) denote the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \). And let \( F, G \in \dgMod_{\dg}(\Cc) \).
 
-    Then there are isomorphisms
+    Then there is an equality
     \[
-        \phi_i: H^i(\dgMod_{\dg}(\Cc)(A, B)) \stackrel{\sim}{\to} H^0(\dgMod_{\dg}(\Cc))(\Sigma^{-i} A, B).
+        H^i(\dgMod_{\dg}(\Cc)(F, G)) = H^0(\dgMod_{\dg}(\Cc))(\Sigma^{-i} F, G).
     \]
 \end{lemma}
 \begin{proof}
-    TODO
+    By the result and notation from \autoref{lem:shift_one_component_inner_product_chain_complex}, then
+    \[
+        \prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F(A), G(A)) = \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_{+i} = \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))}_{+i},
+    \]
+
+    WIP START
+
+    as well as a natural isomorphism
+    \[
+        \prod_{A', A'' \in \C^{\op}}\class{\Cc^{\op}(A', A''), \C_{\dg}(\Sigma^{-i}F(A'), G(A''))} \cong \prod_{A', A'' \in \C^{\op}}\class{\Cc^{\op}(A', A''), \C_{\dg}(\Sigma^{-i}F(A'), G(A''))}_{+n}
+    \]
+    which, by the definition of \( \dgMod_{\dg}(\Cc)(F, G) \), one can cehck that the two morphisms one takes the equalizer of, is equal to
+
+    WIP SLUTT
+
+    \[
+        \dgMod_{\dg}(\Cc)(\Sigma^{-i} F, G) = \dgMod_{\dg}(\Cc)(F, G)_{+i}.
+    \]
+    Taking \( H^0 \) on both sides implies the result.
 \end{proof}
 
 Using the above lemma, we can define how to take the Massey product in \( H^0(\dgMod_{\dg}(\Cc)) \).
 
 \begin{definition}[Massey product on \( H^0(\dgMod_{\dg}(\Cc)) \)]
     \label{def:massey_product_H^0(dgMod_dg(C))}
-    Let \( \Cc \) be a DG-category, and let \( \phi_i \) be as in \autoref{lem:H^i_dgmod_cong_H^0_with_shift}.
+    Let \( \Cc \) be a DG-category.
     
     Let the following be a diagram in \( H^0(\dgMod_{\dg}(\Cc)) \)
     \begin{center}
@@ -32,9 +191,9 @@ Using the above lemma, we can define how to take the Massey product in \( H^0(\d
                 (m-1-3) edge node {f_3} (m-1-4);
         \end{tikzpicture}
     \end{center}
-    Considering this as a DG-diagram in \( H^{\bullet}(\dgMod_{\dg}(\Cc)) \), with \( |f_i| = 0 \), let the following
+    Considering this as a DG-diagram in \( H^{\bullet}(\dgMod_{\dg}(\Cc)) \), with \( |f_i| = 0 \), and the equality from \autoref{lem:H^i_dgmod_cong_H^0_with_shift}, let the following
     \[
-        \phi_{-1}\tuple*{\massey{f_3, f_2, f_1}} \subseteq H^0(\dgMod_{\dg}(\Cc))(\Sigma A, B)
+        \massey{f_3, f_2, f_1} \subseteq H^0(\dgMod_{\dg}(\Cc))(\Sigma A, B)
     \]
     be called the \emph{Massey product of \( f_1, f_2, f_3 \) in \( H^0(\dgMod_{\dg}(\Cc)) \)}.
 \end{definition}
@@ -85,14 +244,13 @@ Using the above definition, we can define the Massey product more generally in a
     \end{center}
     Take the Massey product of the above diagram in \( H^0(\dgMod_{\dg}(\Cc)) \) to get
     \[
-        \phi_{-1}\tuple*{\massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1}} \subseteq H^0(\dgMod_{\dg}(\Cc))(\Sigma H^0(\mathbf{h}) \Phi X_0, H^0(\mathbf{h}) \Phi X_3)
+        \massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} \subseteq H^0(\dgMod_{\dg}(\Cc))(\Sigma H^0(\mathbf{h}) \Phi X_0, H^0(\mathbf{h}) \Phi X_3)
     \]
     Then apply \( \Phi^{-1} H^0(\mathbf{h})^{-1} \) to the result to get
     \[
-        \Phi^{-1} H^0(\mathbf{h})^{-1} \phi_{-1}\tuple*{\massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1}},
+        \Phi^{-1} H^0(\mathbf{h})^{-1} \massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1},
     \]
-    which, up to pre and post-composition with isomorphisms, is a subset of \( \Tc(\Sigma X_0, X_3) \).
+    which, up to pre and post-composition with the natural isomorphisms \( \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \), is a subset of \( \Tc(\Sigma X_0, X_3) \).
 
-    This subset is called the \emph{massey product of \( f_1, f_2 \) and \( f_3 \) in an algebraic triangulated category}.
+    This subset of \( \Tc(\Sigma X_0, X_3) \) is called the \emph{massey product of \( f_1, f_2 \) and \( f_3 \) in an algebraic triangulated category}.
 \end{definition}
-
