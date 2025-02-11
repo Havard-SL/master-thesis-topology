@@ -135,6 +135,28 @@ The following remark shows why the composition above is well-defined.
 
 One can also through ardous calculations using \autoref{rem:tensor_prod_internal_hom_adjoint} find that the definition of composition in \autoref{def:c_dg_mod_r} is the same as in \cite[p. 295]{Borceux_1994}.
 
+An interesting consequence of how \( \C_{\dg} \) is defined is that the differential can be treated as a DG-morphism. This is discussed in the following remark.
+\begin{remark}
+    \label{rem:c_dg_differential}
+    For any \( A \in \C_{\dg} \), consider the degree \( 1 \) DG-morphism
+    \[
+        d_A := \tuple{ d_{A, j} }_{j \in \Zb} \in \C_{\dg}(A, A)_1.
+    \]
+    Then the differential of \( f \in \C_{\dg}(A, B)_i \) could be written more simply as
+    \[
+        d_{\C_{\dg}(A, B), i}: f \mapsto d_B \circ f - (-1)^i f \circ d_A.
+    \]
+    This is because if \( f = \tuple{f_j}_{j \in \Zb} \), then
+    \[
+        d_B \circ f = \tuple{d_{B, j} }_j \circ \tuple{ f_j }_j = \tuple{ d_{B, j + i} \circ f_j }_j
+    \]
+    and likewise
+    \[
+        f \circ d_A = \tuple{f_{j + 1} \circ d_{A, j}}_j
+    \]
+    which yields exactly the differnetial stated in \autoref{def:c_dg_mod_r}.
+\end{remark}
+
 Similar to regular modules over a non-commutative ring, DG-modules can be defined as both right or left sided modules. In this thesis, only right DG-modules will be used. Because of that, the following definition is necessary.
 
 \begin{definition}[Opposite DG-category, \( \Cc^{\op} \)]
@@ -184,13 +206,28 @@ Finally one can define the DG-functor category, which is the final piece in defi
             Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \).
         }
         \item{
-            For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in \cite[Proposition 6.3.1]{Borceux_1994}.
+            For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in \cite[Proposition 6.3.1]{Borceux_1994}, in particular, \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) is a sub chain complex of \( \prod_{A \in \Ac} \Bc(FA, GA) \).
         }
         \item {
-            Let composition be defined as WIP: Har Idé i RM, men den er basert på synsing. Eg fann ingenting i Borceux.
+            For any \( i, j \in \Zb \), let
+            \[
+                \tuple{\eta_{i, A}}_A \in \tuple{\prod_{A \in \Ac} \Bc(FA, GA)}_i
+            \]
+            and
+            \[
+                \tuple{\mu_{j, A}}_A \in \tuple{\prod_{A \in \Ac} \Bc(GA, HA)}_j.
+            \]
+
+            Then define composition element-wise as follows
+            \[
+                c_{i + j}: \tuple{\mu_{j, A}}_A \otimes \tuple{\eta_{i, A}}_A \mapsto \tuple{\mu_{j, A} \circ \eta_{i, A}}_A.
+            \]
+            Since \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) is a sub chain complex of \( \prod_{A \in \Ac} \Bc(FA, GA) \), composition can be restricted to \( \Fun_{\dg}(\Ac, \Bc)(F, G) \).
+
+            TODO: Er det veldefinert?
         }
         \item {
-            Let unit morphisms be defined as WIP: Kan ikkje sei før komposisjon er definert.
+            Let unit morphisms be defined as WIP.
         }
     \end{enumerate}
     This is called the \emph{DG-functor category from \( \Ac \) to \( \Bc \)}.
@@ -420,7 +457,7 @@ In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) 
         is
         \begin{align*}
             \prod_{A \in \Cc^{\op}} \widetilde{d_A} : \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_j &\to \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_{j + 1} \\
-            \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} &\mapsto \tuple{ \widetilde{d_A}\tuple{ \eta_{i, A} } }_{A \in \Cc^{\op}} \\
+            \tuple{ \eta_{j, A} }_{A \in \Cc^{\op}} &\mapsto \tuple{ \widetilde{d_A}\tuple{ \eta_{j, A} } }_{A \in \Cc^{\op}} \\
             &= \tuple*{ d_{G(A)} \circ \eta_{j, A} - (-1)^j \eta_{j, A} \circ d_{F(A)} }_{A \in \Cc^{\op}}.
         \end{align*}
     }
@@ -435,5 +472,31 @@ In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) 
         \]
     }
 \end{enumerate}
+
+Similar to how we could simplify the notation for the differential of \( \C_{\dg} \) in \autoref{rem:c_dg_differential}, we can similarly simplify the differential of \( \dgMod_{\dg}(\Cc) \), as is discussed in the following remark.
+
+\begin{remark}
+    For any \( A \in \C_{\dg} \), let \( d_A \) be as in \autoref{rem:c_dg_differential}.
+
+    Then for any \( F \in \dgMod_{\dg}(\Cc) \) consider the degree \( 1 \) DG-morphism
+    \[
+        d_F := \tuple{d_{FA}}_A \in \prod_{A \in \Cc} \C_{\dg}(FA, FA).
+    \]
+
+    It follows that for any \( \eta_i = \tuple{\eta_{i, A}}_A \in \dgMod_{\dg}(\Cc)(F, G) \) we have
+    \[
+        d_{\dgMod_{\dg}(\Cc)(F, G), i}(\eta_i) = d_G \circ \eta_i - (-1)^i \eta_i \circ d_F
+    \]
+    because
+    \[
+        d_G \circ \eta_i = \tuple{d_{G A}}_A \circ \tuple{\eta_{i, A}}_A = \tuple{d_{G A} \circ \eta_{i, A}}_A
+    \]
+    and similarly
+    \[
+        \eta_i \circ d_F = \tuple{\eta_{i, A} \circ d_{F A}}_A.
+    \]
+
+    TODO: Er \( d_F \) i \( \dgMod \)?
+\end{remark}
 
 % TODO: Skriv noko om at litteraturen er ueinig om definisjonen av DG-nat-trans.
