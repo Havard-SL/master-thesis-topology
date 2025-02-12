@@ -72,7 +72,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_{i, j}} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_{i, j}} (m-1-2)
                     edge[dashed] node {\alpha_{i, j}} (m-2-2)
                 (m-1-2) edge[dashed] node {\beta} (m-2-2)
 
@@ -219,7 +219,7 @@ In this thesis the definition of a DG-Category is based on enriched category the
 
     For any \( n \in \Zb \), let \( i', j' \in \Zb \) with \( i' + j' = n \) let
     \[
-        \iota_{i', j'}: A_{i'} \otimes B_{j'} \hookrightarrow \coprod_{i + j = n} A_i \otimes B_j
+        \iota_{i', j'}: A_{i'} \otimes B_{j'} \rightarrowtail \coprod_{i + j = n} A_i \otimes B_j
     \]
     be the canonical split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
 

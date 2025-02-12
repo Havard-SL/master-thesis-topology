@@ -85,14 +85,14 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge node {\Omega(f)} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {p_f} (m-2-2)
                 (m-1-3) edge node {f} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -120,23 +120,23 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
+                (m-1-1) edge[tailed] (m-1-2)
                     edge[curve={height=30pt}, swap, color={rgb,255:red,214;green,92;blue,92}] node {\Omega(f \circ g)} (m-3-1)
                     edge node {\Omega(g)} (m-2-1)
-                (m-1-2) edge[two heads] (m-1-3)
+                (m-1-2) edge[two headed] (m-1-3)
                     edge[curve={height=30pt}, swap, color={rgb,255:red,214;green,92;blue,92}] node[pos=0.3] {p_{f \circ g}} (m-3-2)
                     edge node {p_g} (m-2-2)
                 (m-1-3) edge node {g} (m-2-3)
                     edge[curve={height=-30pt}, color={rgb,255:red,214;green,92;blue,92}] node {f \circ g} (m-3-3)
 
-                (m-2-1) edge[hook] (m-2-2)
+                (m-2-1) edge[tailed] (m-2-2)
                     edge node {\Omega(f)} (m-3-1)
-                (m-2-2) edge[two heads] (m-2-3)
+                (m-2-2) edge[two headed] (m-2-3)
                     edge node {p_f} (m-3-2)
                 (m-2-3) edge node {f} (m-3-3)
 
-                (m-3-1) edge[hook] (m-3-2)
-                (m-3-2) edge[two heads] (m-3-3);
+                (m-3-1) edge[tailed] (m-3-2)
+                (m-3-2) edge[two headed] (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -150,15 +150,15 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
+                (m-1-1) edge[tailed] (m-1-2)
                     edge[swap] node {\Omega(f \circ g) - \Omega(f) \circ \Omega(g)} (m-2-1)
-                (m-1-2) edge[two heads] (m-1-3)
+                (m-1-2) edge[two headed] (m-1-3)
                     edge[dashed, swap] node {\phi} (m-2-1)
                     edge node {p_{f \circ g} - p_f \circ p_g} (m-2-2)
                 (m-1-3) edge node {f \circ g - f \circ g = 0} (m-2-3)
 
-                (m-2-1) edge[hook] (m-2-2)
-                (m-2-2) edge[two heads] (m-2-3);
+                (m-2-1) edge[tailed] (m-2-2)
+                (m-2-2) edge[two headed] (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -176,15 +176,15 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
+                (m-1-1) edge[tailed] (m-1-2)
                     edge[swap] node {\Omega(Id_A) - Id_{\Omega(A)}} (m-2-1)
-                (m-1-2) edge[two heads] (m-1-3)
+                (m-1-2) edge[two headed] (m-1-3)
                     edge[dashed, swap] node {\phi} (m-2-1)
                     edge node {p_{Id_A} - Id_{P_A}} (m-2-2)
                 (m-1-3) edge node {Id_A - Id_A = 0} (m-2-3)
 
-                (m-2-1) edge[hook] (m-2-2)
-                (m-2-2) edge[two heads] (m-2-3);
+                (m-2-1) edge[tailed] (m-2-2)
+                (m-2-2) edge[two headed] (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -210,15 +210,15 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Omega(f+g)-\Omega(f)-\Omega(g)} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge[dashed, swap] node {\phi} (m-2-1)
                     edge node {p_{f + g} - p_f - p_g} (m-2-2)
                 (m-1-3) edge node {f + g - f - g = 0} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -249,15 +249,15 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Omega(f) - \Omega(f)'} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge[dashed, swap] node {\phi} (m-2-1)
                     edge node {p_f - p'_f} (m-2-2)
                 (m-1-3) edge node {f -f = 0} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -274,9 +274,9 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
+                (m-1-1) edge[tailed] (m-1-2)
                     edge node {0} (m-3-1)
-                (m-1-2) edge[two heads] (m-1-3)
+                (m-1-2) edge[two headed] (m-1-3)
                     edge node {\theta \circ (f - g)_1 \circ \pi_A} (m-3-2)
                 (m-1-3) edge[swap] node {(f - g)_1} (m-2-3)
                     edge[curve={height=-25pt}] node {f - g} (m-3-3)
@@ -284,8 +284,8 @@
                 (m-2-3) edge[swap, dashed, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-3-2)
                     edge[swap] node {(f - g)_2} (m-3-3)
 
-                (m-3-1) edge[hook] (m-3-2)
-                (m-3-2) edge[two heads] (m-3-3);
+                (m-3-1) edge[tailed] (m-3-2)
+                (m-3-2) edge[two headed] (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -335,20 +335,20 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge[equal] (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
+                    edge[equality] (m-2-1)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {i_{\phi_1}} (m-2-2)
                 (m-1-3) edge node {\phi_1} (m-2-3)
 
-                (m-2-1) edge[hook] node {\kappa_{\Omega(A)}} (m-2-2)
-                    edge[equal] (m-3-1)
-                (m-2-2) edge[two heads] node {\rho_{\Omega(A)}} (m-2-3)
+                (m-2-1) edge[tailed] node {\kappa_{\Omega(A)}} (m-2-2)
+                    edge[equality] (m-3-1)
+                (m-2-2) edge[two headed] node {\rho_{\Omega(A)}} (m-2-3)
                     edge node {i_{\phi_2}} (m-3-2)
                 (m-2-3) edge node {\phi_2} (m-3-3)
 
-                (m-3-1) edge[hook] node {\iota_A} (m-3-2)
-                (m-3-2) edge[two heads] node {\pi_A} (m-3-3);
+                (m-3-1) edge[tailed] node {\iota_A} (m-3-2)
+                (m-3-2) edge[two headed] node {\pi_A} (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -364,15 +364,15 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Id_{\Omega(A)} \circ \Id_{\Omega(A)} - \Id_{\Omega(A)} = 0} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge[swap] node {p_{\phi_2} \circ p_{\phi_1} - \Id_P} (m-2-2)
                 (m-1-3) edge[swap, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-2-2)
                     edge node {\phi_2 \circ \phi_1 - \Id_A} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_A} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_A} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_A} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_A} (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -393,20 +393,20 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge[equal] (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
+                    edge[equality] (m-2-1)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {p_{\phi^A_1}} (m-2-2)
                 (m-1-3) edge node {\phi^A_1} (m-2-3)
 
-                (m-2-1) edge[hook] node {\kappa_{\Omega(A)}} (m-2-2)
+                (m-2-1) edge[tailed] node {\kappa_{\Omega(A)}} (m-2-2)
                     edge node {\Omega(f)} (m-3-1)
-                (m-2-2) edge[two heads] node {\rho_{\Omega(A)}} (m-2-3)
+                (m-2-2) edge[two headed] node {\rho_{\Omega(A)}} (m-2-3)
                     edge node {i_{\Omega(f)}} (m-3-2)
                 (m-2-3) edge node {\Sigma \circ \Omega(f)} (m-3-3)
 
-                (m-3-1) edge[hook] node {\kappa_{\Omega(B)}} (m-3-2)
-                (m-3-2) edge[two heads] node {\rho_{\Omega(B)}} (m-3-3);
+                (m-3-1) edge[tailed] node {\kappa_{\Omega(B)}} (m-3-2)
+                (m-3-2) edge[two headed] node {\rho_{\Omega(B)}} (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -421,20 +421,20 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge node {\Omega(f)} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {p_f} (m-2-2)
                 (m-1-3) edge node {f} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                    edge[equal] (m-3-1)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3)
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                    edge[equality] (m-3-1)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3)
                     edge node {i_{\phi_1^B}} (m-3-2)
                 (m-2-3) edge node {\phi_1^B} (m-3-3)
 
-                (m-3-1) edge[hook] node {\kappa_{\Omega(B)}} (m-3-2)
-                (m-3-2) edge[two heads] node {\rho_{\Omega(B)}} (m-3-3);
+                (m-3-1) edge[tailed] node {\kappa_{\Omega(B)}} (m-3-2)
+                (m-3-2) edge[two headed] node {\rho_{\Omega(B)}} (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -450,15 +450,15 @@
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
+                (m-1-1) edge[tailed] (m-1-2)
                     edge[swap] node {\Id_{\Omega(B)} \circ \Omega(f) - \Omega(f) \circ \Id_{\Omega(A)} = 0} (m-2-1)
-                (m-1-2) edge[two heads] (m-1-3)
+                (m-1-2) edge[two headed] (m-1-3)
                     edge[swap] node {i_{\phi_1^B} \circ p_f - i_{\Omega(f)} \circ p_{\phi_1^A}} (m-2-2)
                 (m-1-3) edge[swap, color={rgb,255:red,214;green,92;blue,92}] node {\theta} (m-2-2)
                     edge node {\phi_1^B \circ f - \Sigma\Omega(f) \circ \phi_1^A} (m-2-3)
 
-                (m-2-1) edge[hook] (m-2-2)
-                (m-2-2) edge[two heads] (m-2-3);
+                (m-2-1) edge[tailed] (m-2-2)
+                (m-2-2) edge[two headed] (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -480,14 +480,14 @@ I found two different definitions of distinguished triangles in \( \StMod(R) \) 
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\alpha} (m-1-2)
-                    edge[equal] (m-2-1)
-                (m-1-2) edge[two heads] node {\beta} (m-1-3)
+                (m-1-1) edge[tailed] node {\alpha} (m-1-2)
+                    edge[equality] (m-2-1)
+                (m-1-2) edge[two headed] node {\beta} (m-1-3)
                     edge[swap] node {\iota} (m-2-2)
                 (m-1-3) edge node {\gamma} (m-1-4)
 
-                (m-2-1) edge[hook] (m-2-2)
-                (m-2-2) edge[two heads] (m-1-4);
+                (m-2-1) edge[tailed] (m-2-2)
+                (m-2-2) edge[two headed] (m-1-4);
         \end{tikzpicture}
     \end{center}
 

@@ -1,20 +1,19 @@
-The chain homotopy category is one of the simplest triangulated category to define, and is a good example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in TODO, and this thesis will not include or use any details on why the chain homotopy category is an algebraic triangulated category.
+The chain homotopy category is one of the simplest triangulated category to define, and is a good example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in \autoref{def:alg_tri_cat}. It will become clear from the definition of the chain homotopy category that it is an algebra inspired triangulated category, and so it fits (morally), as an algebraic triangulated category.
+
+% TODO: Skal eg vsa at kjedhomotopikategorien ar alg. tri. kat?
 
 First, some notation on chain complexes.
 
-\begin{notation}
-    \label{not:chain_complex}
+\begin{definition}[Chain complex, \( \C(\Cc) \)]
+    \label{def:chain_complex}
     Let \( \Cc \) be any additive category.
     
     Then let \( \C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
 
-    Furthermore let the differential in these chain complexes have \emph{ascending} order, i.e., for \( M_i, M_{i+1} \in \Cc \) which are adjacent objects in a chain complex \( M \in \C \tuple{\Cc} \), the differential would be
-    \[
-        d_i : M_i \to M_{i + 1}.
-    \]
-\end{notation}
+    As mentioned in \autoref{not:chain_complex}, the chain complexes have \emph{ascending} order, and differentials are indexed according to the order of their \emph{domain}.
+\end{definition}
 
-Start off by defining the underlying category, that will turn out to be triangulated.
+We start off by defining the underlying category, that will turn out to be triangulated.
 
 % MS-Question: Ikkje vist at dette er ein kategori...
 \begin{definition}[Chain homotopy category, \( \K(\Ac) \)]
@@ -48,11 +47,13 @@ On \( \C(\Ac) \), one can define a simple automorphism of categories called the 
     \label{def:chain_complex_shift}
     Let \( \Sigma \) be the following assignment of objects and morphisms in \( \C(\Ac) \).
 
-    Let \( A = \tuple{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_n^A: A_n \to A_{n + 1} \) denote the \( n \)-th differential.
+    Let \( A = \tuple{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_{A, n}: A_n \to A_{n + 1} \) denote the \( n \)-th differential of \( A \).
 
-    Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \), with \( d_n^{\Sigma A} := -d_{n + 1}^A \).
+    Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \), with \( d_{\Sigma A, n} := -d_{A, n + 1} \).
 
-    Likewise for \( f = \tuple{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) be a chain morphism. Then let
+    In addition, let \( f = \tuple{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) be a chain morphism.
+    
+    Then let
     \[
         \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \C(\Ac)(\Sigma A, \Sigma B).
     \]
@@ -60,10 +61,10 @@ On \( \C(\Ac) \), one can define a simple automorphism of categories called the 
 
 \( \Sigma \) can be shown to be an additive automorphism on \( \C(\Ac) \), and can be induced to an additive automorphism with the same notation and name on \( \K(\Ac) \).
 
-The final piece of the puzzle is to define what the cone of a morphism in \( \K(\Ac) \) is.
+The final piece of the puzzle is to define what the cone of a morphism in \( \K(\Ac) \) is. This turns out to also be inherited from \( \C(\Ac) \).
 
-\begin{definition}[Cone in \( \K(\Ac) \)]
-    Let \( f \in \K(\Ac)(A, B) \).
+\begin{definition}[Cone in \( \C(\Ac) \)]
+    Let \( f \in \C(\Ac)(A, B) \).
 
     Then \( C_f \) is the following chain complex
     \begin{center}
@@ -91,7 +92,7 @@ The final piece of the puzzle is to define what the cone of a morphism in \( \K(
         \end{tikzpicture}
     \end{center}
 
-    This is the \emph{cone of \( f \)} in \( \K(\Ac) \).
+    This is the \emph{cone of \( f \)} in \( \C(\Ac) \).
 \end{definition}
 
 One can think of the cone as having the underlying space of \( B \oplus \Sigma A \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.

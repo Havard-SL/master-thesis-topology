@@ -306,7 +306,7 @@ Bofore moving on, it is helpful to try and properly understand the structure of 
     % For any \( i, j \in \Zb \) let \( \iota_{i,j} \) denote the inclusion
     % \begin{multline*}
     %     \iota_{i, j}: \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) }_i \otimes \Cc^{\op}(A', A'')_j \\
-    %     \hookrightarrow \tuple*{ \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') }_{i + j}
+    %     \rightarrowtail \tuple*{ \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') }_{i + j}
     % \end{multline*}
 
     Take the adjoint of \autoref{eq:functor_category_borceux} morphism gives the chain complex morphism \( \phi_{A', A''} \), where
@@ -413,7 +413,7 @@ Bofore moving on, it is helpful to try and properly understand the structure of 
     
     Consider the chain subcomplex
     \[
-        H \stackrel{\iota}{\hookrightarrow} \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))
+        H \stackrel{\iota}{\rightarrowtail} \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))
     \]
     where
     \[

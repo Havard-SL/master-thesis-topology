@@ -3,6 +3,7 @@ In this subsection the goal is to define what an algebraic triangulated category
 The following definition is very similar to \autoref{def:H_bullet_dg_category}. However unlike the cohomology category, this category is not enriched over \( C \).
 
 \begin{definition}[0th cohomology category of a DG-category]
+    \label{def:0_th_cohomology_of_dg_cat}
     Let \( \Cc \) be a DG-category over \( R \).
 
     Then let \( H^0(\Cc) \) be the following category defined as follows
@@ -24,6 +25,8 @@ The following definition is very similar to \autoref{def:H_bullet_dg_category}. 
         }
     \end{enumerate}
 \end{definition}
+
+An interesting consequence of \autoref{def:0_th_cohomology_of_dg_cat}, is that we can write the chain homotopy category, \( \K(\Mod(R)) \), defined in \autoref{def:chain_homotopy_cat}, as simply \( H^0(\C_{\dg}) \). Unwinding the definitions, \( H^0([A, B]) \) is exactly every chain homotopy class from \( A \) to \( B \).
 
 The goal is to show that \( H^0\tuple*{\dgMod_{\dg}(\Cc)} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles. The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgMod_{\dg}(\Cc) \).
 
@@ -260,6 +263,7 @@ Then we can define what a pre-triangulated DG-category is, which is the final im
 
 Finally we can define what an algebraic triangulated category is.
 \begin{definition}[Algebraic triangulated category]
+    \label{def:alg_tri_cat}
     Let \( \Tc \) be a triangulated category.
 
     Then \( \Tc \) is called an \emph{algebraic triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), called a \emph{DG-enhancement of \( \Tc \)}, such that \( H^0(\Cc) \) is equivalent as triangulated categories to \( \Tc \).

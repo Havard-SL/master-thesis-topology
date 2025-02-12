@@ -1,6 +1,6 @@
 In this thesis the definition of a DG-category is based on enriched category theory, as it is a modern approach, and by the opinion of the author it is also the most elegeant approach. The enriched category theory that this thesis is based on, is \cite[Section 6.2]{Borceux_1994}.
 
-The first definition necessary to understanding DG-categories, is the tensor product of chain complexes.
+The first definition necessary to understanding DG-categories, is the tensor product of chain complexes over modules.
 
 \begin{definition}[Tensor product of \( \C \)]
     \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
@@ -66,23 +66,22 @@ In order to see that the above definition of the differential on the chain compl
 \end{lemma}
 \begin{proof}
     Consider at the following diagram where \( \iota_{i, j} \) is the canocial split monomorphism by the universal property of the coproduct, and where the \( g_{i, j} \)'s are \( R \)-bilienar
-    \begin{equation}
-        \label{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)}
-        \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \begin{diagramlabel}[\label{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)}]
+        \begin{tikzpicture}
             \diagram{m}{2cm}{2cm} {
                 A_i \otimes B_j \& \coprod\limits_{p + q = n} A_p \otimes B_q \\
                 A_i \times B_j \& C. \\
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_{i, j}} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_{i, j}} (m-1-2)
                     edge[dashed] node {\alpha_{i, j}} (m-2-2)
                 (m-1-2) edge[dashed] node {\beta} (m-2-2)
 
                 (m-2-1) edge node {g_{i, j}} (m-2-2)
                     edge node {\otimes} (m-1-1);
         \end{tikzpicture}
-    \end{equation}
+    \end{diagramlabel}
 
     Then by the universal property of tensor product in \( \Mod(R) \), \( g_{i, j} \) induces a unique morphism, \( \alpha_{i, j} \), which is induced from the elementary tensors as follows
     \[
@@ -169,7 +168,7 @@ Another definition closely linked to the tensor product in \( \C \) is the inter
         \end{tikzpicture}
     \end{center}
 
-    where the differentials, \( d_n \), are defined as follows:
+    where the differentials, \( d_n \), are defined as follows,
     \begin{align*}
         d_n : \class*{A, B}_n &\to \class*{A, B}_{n + 1} \\
         \tuple*{f_i}_{i \in \Zb} &\mapsto \tuple*{d_{B, i + n} \circ f_i - (-1)^n f_{i + 1} \circ d_{A, i}}_{i \in \Zb}.
@@ -194,7 +193,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
     
     The goal of this remark is to understand what the adjoint of \( f \) is.
 
-    Let \( f = \set*{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple*{ \tuple*{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
+    Let \( f = \tuple*{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple*{ \tuple*{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
 
     Then, unpacking the definitions, one has that \( f \) looks like the following diagram
     \begin{center}
@@ -243,11 +242,12 @@ As the names would imply, the tensor product and internal hom of chain complexes
         \end{tikzpicture}
     \end{center}
 
-    For any \( n \in \Zb \), let \( i', j' \in \Zb \) with \( i' + j' = n \) let
-    \[
-        \iota_{i', j'}: A_{i'} \otimes B_{j'} \hookrightarrow \coprod_{i + j = n} A_i \otimes B_j
-    \]
-    be the canonical split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
+    % For any \( n \in \Zb \), let \( i', j' \in \Zb \) with \( i' + j' = n \) let
+    % \[
+    %     \iota_{i', j'}: A_{i'} \otimes B_{j'} \rightarrowtail \coprod_{i + j = n} A_i \otimes B_j
+    % \]
+    % be the canonical split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
+    Let \( \iota_{i, j} \) be as defined in \autoref{not:coprod_prod_forvirring}.
 
     Then take the hom-tensor adjoint in \( \Mod(R) \) of the morphism
     \[
@@ -264,7 +264,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
     \]
     Collecting these morphisms yields a morphism, which is a candidate for the adjoint of \( f \), namely
     \[
-        \phi_f := \set*{\phi_{f, i}}_{i \in \Zb}.
+        \phi_f := \tuple*{\phi_{f, i}}_{i \in \Zb}.
     \]
     In order to show that this is the proper adjoint definition, one needs to show the following properties:
     \begin{enumerate}
@@ -335,6 +335,7 @@ Together the above definitions and remarks gives the structure of a symmetric mo
 Finally one can define what a DG-category is.
 
 \begin{definition}[DG-category]
+    \label{def:dg_cat}
     Let \( R \) be a commutative ring with identity.
 
     Then \( \Cc \) is a \emph{DG-category over \( R \)} if it is a category enriched over \( \C \).

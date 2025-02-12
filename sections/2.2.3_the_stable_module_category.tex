@@ -235,14 +235,14 @@ However, in defining \( \Omega \), the definition is closely tied to a choice of
                     };
 
                     \draw[math]
-                        (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                        (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                             edge node {\Omega'(f)} (m-2-1)
-                        (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                        (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                             edge node {p_f} (m-2-2)
                         (m-1-3) edge node {f} (m-2-3)
 
-                        (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                        (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+                        (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                        (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
                 \end{tikzpicture}
             \end{center}
 
@@ -277,15 +277,15 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Omega'(f) - \widetilde{\Omega'(f)}} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge[dashed, swap] node {\phi} (m-2-1)
                     edge node {p_f - \widetilde{p_f}} (m-2-2)
                 (m-1-3) edge node {f -f = 0} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -309,9 +309,9 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge node {\Omega'(f) - \Omega'(g)} (m-3-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {p_f - p_g} (m-3-2)
                 (m-1-3) edge[swap] node {(f - g)_1} (m-2-3)
                     edge[curve={height=-25pt}] node {f - g} (m-3-3)
@@ -319,8 +319,8 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
                 (m-2-3) edge[swap, dashed] node {\theta} (m-3-2)
                     edge[swap] node {(f - g)_2} (m-3-3)
 
-                (m-3-1) edge[hook] node {\iota_B} (m-3-2)
-                (m-3-2) edge[two heads] node[swap] {\pi_B} (m-3-3);
+                (m-3-1) edge[tailed] node {\iota_B} (m-3-2)
+                (m-3-2) edge[two headed] node[swap] {\pi_B} (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -354,21 +354,21 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
+                (m-1-1) edge[tailed] (m-1-2)
                     edge[curve={height=30pt}, swap] node {\Omega'(g \circ f)} (m-3-1)
                     edge node {\Omega'(f)} (m-2-1)
-                (m-1-2) edge[two heads] (m-1-3)
+                (m-1-2) edge[two headed] (m-1-3)
                     edge node {p_f} (m-2-2)
                 (m-1-3) edge node {f} (m-2-3)
 
-                (m-2-1) edge[hook] (m-2-2)
+                (m-2-1) edge[tailed] (m-2-2)
                     edge node {\Omega'(g)} (m-3-1)
-                (m-2-2) edge[two heads] (m-2-3)
+                (m-2-2) edge[two headed] (m-2-3)
                     edge node {p_g} (m-3-2)
                 (m-2-3) edge node {g} (m-3-3)
 
-                (m-3-1) edge[hook] (m-3-2)
-                (m-3-2) edge[two heads] (m-3-3);
+                (m-3-1) edge[tailed] (m-3-2)
+                (m-3-2) edge[two headed] (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -381,14 +381,14 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Omega'(g) \circ \Omega'(f)} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {p_g \circ p_f} (m-2-2)
                 (m-1-3) edge node {g \circ f} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_C} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_C} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_C} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_C} (m-2-3);
         \end{tikzpicture}
     \end{center}
     Since \( \Omega \) is a well-defined assignment of morphisms, this implies
@@ -407,14 +407,14 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
             };
 
             \draw[math]
-                (m-1-1) edge[hook] (m-1-2)
+                (m-1-1) edge[tailed] (m-1-2)
                     edge[swap] node {\Id_{\Omega A}} (m-2-1)
-                (m-1-2) edge[two heads] (m-1-3)
+                (m-1-2) edge[two headed] (m-1-3)
                     edge node {\Id_{P_A}} (m-2-2)
                 (m-1-3) edge node {\Id_A} (m-2-3)
 
-                (m-2-1) edge[hook] (m-2-2)
-                (m-2-2) edge[two heads] (m-2-3);
+                (m-2-1) edge[tailed] (m-2-2)
+                (m-2-2) edge[two headed] (m-2-3);
         \end{tikzpicture}
     \end{center}
     Therefore \( \Omega \class{\Id_A} = \class{\Id_{\Omega A}} \).
@@ -438,14 +438,14 @@ An important detail still missing to show that \( \Omega^{-1} \) could be a shif
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Omega'(f + g)} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node[swap] {p_{f + g}} (m-2-2)
                 (m-1-3) edge node[swap] {f + g} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -454,14 +454,14 @@ An important detail still missing to show that \( \Omega^{-1} \) could be a shif
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Omega'(f)+\Omega'(g)} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node[swap] {p_f + p_g} (m-2-2)
                 (m-1-3) edge node[swap] {f + g} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -491,14 +491,14 @@ One can define another functor, \( \Sigma \), which will turn out to be the inve
                     };
 
                     \draw[math]
-                        (m-1-1) edge[hook] node {\kappa_A} (m-1-2)
+                        (m-1-1) edge[tailed] node {\kappa_A} (m-1-2)
                             edge node {f} (m-2-1)
-                        (m-1-2) edge[two heads] node {\rho_A} (m-1-3)
+                        (m-1-2) edge[two headed] node {\rho_A} (m-1-3)
                             edge node {i_f} (m-2-2)
                         (m-1-3) edge node {\Sigma'(f)} (m-2-3)
 
-                        (m-2-1) edge[hook] node {\kappa_B} (m-2-2)
-                        (m-2-2) edge[two heads] node {\rho_B} (m-2-3);
+                        (m-2-1) edge[tailed] node {\kappa_B} (m-2-2)
+                        (m-2-2) edge[two headed] node {\rho_B} (m-2-3);
                 \end{tikzpicture}
             \end{center}
 
@@ -541,20 +541,20 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge[equal] (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
+                    edge[equality] (m-2-1)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge[dashed] node {i_{\phi_1}} (m-2-2)
                 (m-1-3) edge[dashed] node {\phi_1} (m-2-3)
 
-                (m-2-1) edge[hook] node {\kappa_{\Omega A}} (m-2-2)
-                    edge[equal] (m-3-1)
-                (m-2-2) edge[two heads] node {\rho_{\Omega A}} (m-2-3)
+                (m-2-1) edge[tailed] node {\kappa_{\Omega A}} (m-2-2)
+                    edge[equality] (m-3-1)
+                (m-2-2) edge[two headed] node {\rho_{\Omega A}} (m-2-3)
                     edge[dashed] node {i_{\phi_2}} (m-3-2)
                 (m-2-3) edge[dashed] node {\phi_2} (m-3-3)
 
-                (m-3-1) edge[hook] node {\iota_A} (m-3-2)
-                (m-3-2) edge[two heads] node {\pi_A} (m-3-3);
+                (m-3-1) edge[tailed] node {\iota_A} (m-3-2)
+                (m-3-2) edge[two headed] node {\pi_A} (m-3-3);
         \end{tikzpicture}
     \end{center}
     then there exists \( i_{\phi_1} \) from the injective property morphism induced from \( \iota_A \). Then since \( \Mod(R) \) is an abelian category, \( A \) is a cokernel of \( \iota_A \), and by
@@ -572,15 +572,15 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Id_{\Omega A} \circ \Id_{\Omega A} - \Id_{\Omega A} = 0} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge[swap] node {i_{\phi_2} \circ i_{\phi_1} - \Id_{P_A}} (m-2-2)
                 (m-1-3) edge[swap, dashed] node {\theta} (m-2-2)
                     edge node {\phi_2 \circ \phi_1 - \Id_A} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_A} (m-2-2)
-                (m-2-2) edge[two heads] node {\pi_A} (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_A} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_A} (m-2-3);
         \end{tikzpicture}
     \end{center}
 
@@ -606,20 +606,20 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
-                    edge[equal] (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
+                    edge[equality] (m-2-1)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {i_{\phi^A_1}} (m-2-2)
                 (m-1-3) edge node {\phi^A_1} (m-2-3)
 
-                (m-2-1) edge[hook] node {\kappa_{\Omega A}} (m-2-2)
+                (m-2-1) edge[tailed] node {\kappa_{\Omega A}} (m-2-2)
                     edge node {\Omega'(f)} (m-3-1)
-                (m-2-2) edge[two heads] node {\rho_{\Omega A}} (m-2-3)
+                (m-2-2) edge[two headed] node {\rho_{\Omega A}} (m-2-3)
                     edge node {i_{\Omega'(f)}} (m-3-2)
                 (m-2-3) edge node {\Sigma' \circ \Omega'(f)} (m-3-3)
 
-                (m-3-1) edge[hook] node {\kappa_{\Omega B}} (m-3-2)
-                (m-3-2) edge[two heads] node {\rho_{\Omega B}} (m-3-3);
+                (m-3-1) edge[tailed] node {\kappa_{\Omega B}} (m-3-2)
+                (m-3-2) edge[two headed] node {\rho_{\Omega B}} (m-3-3);
         \end{tikzpicture}
     \end{center}
     and
@@ -632,20 +632,20 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge node {\Omega'(f)} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {p_f} (m-2-2)
                 (m-1-3) edge node {f} (m-2-3)
 
-                (m-2-1) edge[hook] node {\iota_B} (m-2-2)
-                    edge[equal] (m-3-1)
-                (m-2-2) edge[two heads] node {\pi_B} (m-2-3)
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                    edge[equality] (m-3-1)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3)
                     edge node {i_{\phi_1^B}} (m-3-2)
                 (m-2-3) edge node {\phi_1^B} (m-3-3)
 
-                (m-3-1) edge[hook] node {\kappa_{\Omega B}} (m-3-2)
-                (m-3-2) edge[two heads] node {\rho_{\Omega B}} (m-3-3);
+                (m-3-1) edge[tailed] node {\kappa_{\Omega B}} (m-3-2)
+                (m-3-2) edge[two headed] node {\rho_{\Omega B}} (m-3-3);
         \end{tikzpicture}
     \end{center}
     where every small square, and therefore rectangle, commutes.
@@ -659,15 +659,15 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
             };
 
             \draw[math]
-                (m-1-1) edge[hook] node {\iota_A} (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Id_{\Omega B} \circ \Omega'(f) - \Omega'(f) \circ \Id_{\Omega A} = 0} (m-2-1)
-                (m-1-2) edge[two heads] node {\pi_A} (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge[swap] node {i_{\phi_1^B} \circ p_f - i_{\Omega'(f)} \circ i_{\phi_1^A}} (m-2-2)
                 (m-1-3) edge[swap, dashed] node {\theta} (m-2-2)
                     edge node {\phi_1^B \circ f - \Sigma' \circ \Omega'(f) \circ \phi_1^A} (m-2-3)
 
-                (m-2-1) edge[hook] node[swap] {\kappa_{\Omega B}} (m-2-2)
-                (m-2-2) edge[two heads] node[swap] {\rho_{\Omega B}} (m-2-3);
+                (m-2-1) edge[tailed] node[swap] {\kappa_{\Omega B}} (m-2-2)
+                (m-2-2) edge[two headed] node[swap] {\rho_{\Omega B}} (m-2-3);
         \end{tikzpicture}
     \end{center}
     where from the cokernel property of \( A \), one gets an induced morphism \( \theta \), and from the epimorphism property of \( \pi_A \), it makes the lower triangle commute. And since \( R \) is assumed to be a Frobenius ring, this implies that every injective module over \( R \) is projective and vice versa. This implies
@@ -934,6 +934,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 % TODO: Kommenter at den nøyaktige triangulerte strukturen ikkje blir brukt seinare i oppgåva. Etterpå vert berre eksistensen av ein triangulering brukt.
 
 \begin{example}
+    \label{example:stable_module_category_triangulated}
     The tuple \( \tuple{\Mc, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 \begin{proof} % TODO: Skriv om bevisa, standariser notasjon, kanskje inkluder lemmaet over inn i TR4? Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
@@ -1016,14 +1017,14 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         };
 
                         \draw[math]
-                            (m-1-1) edge[hook] node {\kappa_A} (m-1-2)
+                            (m-1-1) edge[tailed] node {\kappa_A} (m-1-2)
                                 edge node {f} (m-2-1)
-                            (m-1-2) edge[two heads] node {\rho_A} (m-1-3)
+                            (m-1-2) edge[two headed] node {\rho_A} (m-1-3)
                                 edge node {i_f} (m-2-2)
                             (m-1-3) edge node {\Sigma' f} (m-2-3)
 
-                            (m-2-1) edge[hook] node {\kappa_B} (m-2-2)
-                            (m-2-2) edge[two heads] node {\rho_B} (m-2-3);
+                            (m-2-1) edge[tailed] node {\kappa_B} (m-2-2)
+                            (m-2-2) edge[two headed] node {\rho_B} (m-2-3);
                     \end{tikzpicture}
                 \end{aligned}
                 \quad \text{and} \quad
@@ -1037,7 +1038,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                         \draw[math]
                             (m-1-1) edge node {f} (m-1-2)
-                                edge[hook] node {\kappa_A} (m-2-1)
+                                edge[tailed] node {\kappa_A} (m-2-1)
                             (m-1-2) edge node{g} (m-2-2)
 
                             (m-2-1) edge node {\gamma_f} (m-2-2)
@@ -1056,9 +1057,9 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge[hook] node {\kappa_A} (m-2-1)
+                            edge[tailed] node {\kappa_A} (m-2-1)
                         (m-1-2) edge node{g} (m-2-2)
-                            edge[hook] node {\kappa_B} (m-2-3)
+                            edge[tailed] node {\kappa_B} (m-2-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge[curve={height=1cm}] node {i_f} (m-2-3)
@@ -1087,9 +1088,9 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge[hook] node {\kappa_A} (m-2-1)
+                            edge[tailed] node {\kappa_A} (m-2-1)
                         (m-1-2) edge node{g} (m-2-2)
-                            edge[hook] node {0} (m-2-3)
+                            edge[tailed] node {0} (m-2-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge[curve={height=1cm}] node {\rho_B \circ i_f} (m-2-3)
@@ -1111,7 +1112,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge (m-1-2)
-                            edge[equal] node {\zeta} (m-2-1)
+                            edge[equality] node {\zeta} (m-2-1)
                         (m-1-2) edge node {g} (m-1-3)
                             edge node {\kappa_B} (m-2-2)
                         (m-1-3) edge node {h} (m-1-4)
@@ -1122,7 +1123,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                                 \end{psmallmatrix}
                             } (m-2-3)
                         (m-1-4) edge (m-1-5)
-                                edge[equal] (m-2-4)
+                                edge[equality] (m-2-4)
 
                         (m-2-1) edge (m-2-2)
                         (m-2-2) edge node {
@@ -1192,14 +1193,14 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {[g]} (m-1-2)
-                            edge[equal] (m-2-1)
+                            edge[equality] (m-2-1)
                         (m-1-2) edge node {\class{
                             \begin{psmallmatrix}
                                 \phi \\
                                 h
                             \end{psmallmatrix}
                         }} (m-1-3)
-                            edge[equal] (m-2-2)
+                            edge[equality] (m-2-2)
                         (m-1-3) edge node {\class{
                             \begin{psmallmatrix}
                                 \rho_B & -\Sigma' f
@@ -1210,7 +1211,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                                     0 & 1
                                 \end{psmallmatrix}
                             }} (m-2-3)
-                        (m-1-4) edge[equal] (m-2-4)
+                        (m-1-4) edge[equality] (m-2-4)
 
                         (m-2-1) edge node {[g]} (m-2-2)
                         (m-2-2) edge node {[h]} (m-2-3)
@@ -1380,7 +1381,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge[hook] node {\kappa_A} (m-2-1)
+                            edge[tailed] node {\kappa_A} (m-2-1)
                         (m-1-2) edge node{g} (m-2-2)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
@@ -1397,7 +1398,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {f'} (m-1-2)
-                            edge[hook] node {\kappa_{A'}} (m-2-1)
+                            edge[tailed] node {\kappa_{A'}} (m-2-1)
                         (m-1-2) edge node {g'} (m-2-2)
 
                         (m-2-1) edge node {\gamma_{f'}} (m-2-2)
@@ -1420,14 +1421,14 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     };
 
                     \draw[math]
-                        (m-1-1) edge[hook] node {\kappa_A} (m-1-2)
+                        (m-1-1) edge[tailed] node {\kappa_A} (m-1-2)
                             edge node {\alpha} (m-2-1)
-                        (m-1-2) edge[two heads] node {\rho_A} (m-1-3)
+                        (m-1-2) edge[two headed] node {\rho_A} (m-1-3)
                             edge node {i_{\alpha}} (m-2-2)
                         (m-1-3) edge node {\Sigma'(\alpha)} (m-2-3)
 
-                        (m-2-1) edge[hook] node {\kappa_{A'}} (m-2-2)
-                        (m-2-2) edge[two heads] node {\rho_{A'}} (m-2-3);
+                        (m-2-1) edge[tailed] node {\kappa_{A'}} (m-2-2)
+                        (m-2-2) edge[two headed] node {\rho_{A'}} (m-2-3);
                 \end{tikzpicture}
             \end{center}
             then one can construct the following sum which will be used below
@@ -1544,12 +1545,12 @@ Then finally comes the full triangulation result, the proof of which is heavily 
         
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge[equal] (m-2-1)
+                            edge[equality] (m-2-1)
                         (m-1-2) edge node {g} (m-1-3)
                             edge node {n} (m-2-2)
                         (m-1-3) edge node {h} (m-1-4)
                             edge[dashed] node {\phi} (m-2-3)
-                        (m-1-4) edge[equal] (m-2-4)
+                        (m-1-4) edge[equality] (m-2-4)
         
                         (m-2-1) edge node {n \circ f} (m-2-2)
                         (m-2-2) edge node {j} (m-2-3)
@@ -1558,7 +1559,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                             edge[dashed] node {\psi} (m-3-3)
                         (m-2-4) edge node {\Sigma' f} (m-3-4)
 
-                        (m-3-2) edge[equal] (m-3-3)
+                        (m-3-2) edge[equality] (m-3-3)
                             edge node[swap] {k} (m-4-2)
                         (m-3-3) edge node {k} (m-3-4)
                             edge node {\Sigma'(g) \circ k} (m-4-3)
@@ -1863,12 +1864,12 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {[\phi]} (m-1-2)
-                            edge[equal] (m-2-1)
+                            edge[equality] (m-2-1)
                         (m-1-2) edge node {[\alpha^{-1} \circ \psi]} (m-1-3)
-                            edge[equal] (m-2-2)
+                            edge[equality] (m-2-2)
                         (m-1-3) edge node {[p]} (m-1-4)
                             edge node[swap] {[\alpha]} (m-2-3)
-                        (m-1-4) edge[equal] (m-2-4)
+                        (m-1-4) edge[equality] (m-2-4)
 
                         (m-2-1) edge node {[\phi]} (m-2-2)
                         (m-2-2) edge node {[\psi]} (m-2-3)
@@ -1891,13 +1892,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {\kappa_B} (m-1-2)
-                            edge[equal] (m-2-1)
+                            edge[equality] (m-2-1)
                         (m-1-2) edge node {\rho_B} (m-1-3)
                             edge node {\tilde{i}} (m-2-2)
                         (m-1-3) edge[dashed] node {e^{-1}} (m-2-3)
 
                         (m-2-1) edge node {\kappa_{C_f} \circ g} (m-2-2)
-                            edge[equal] (m-3-1)
+                            edge[equality] (m-3-1)
                         (m-2-2) edge node {c} (m-2-3)
                             edge node {i} (m-3-2)
                         (m-2-3) edge[dashed] node {e} (m-3-3)
@@ -1928,7 +1929,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                             edge node {c} (m-3-1)
                         (m-2-2) edge node {d} (m-3-2)
 
-                        (m-3-1) edge[equal] (m-3-2)
+                        (m-3-1) edge[equality] (m-3-2)
                         (m-3-2) edge node {e} (m-4-2);
                 \end{tikzpicture}
             \end{center}
@@ -1944,7 +1945,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                     \draw[math]
                         (m-1-1) edge node {\kappa_B} (m-1-2)
-                            edge[equal] (m-2-1)
+                            edge[equality] (m-2-1)
                         (m-1-2) edge node {\rho_B} (m-1-3)
                             edge node {\tilde{i}} (m-2-2)
                         (m-1-3) edge node[swap] {e^{-1}} (m-2-3)
@@ -1953,7 +1954,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-1) edge node {\kappa_{C_f} \circ g} (m-2-2)
                             edge node {g} (m-3-1)
                         (m-2-2) edge node {c} (m-2-3)
-                            edge[equal] (m-3-2)
+                            edge[equality] (m-3-2)
                         (m-2-3) edge[dashed] node[swap] {\mu} (m-3-3)
 
                         (m-3-1) edge node {\kappa_{C_f}} (m-3-2)

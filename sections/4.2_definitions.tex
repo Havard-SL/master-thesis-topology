@@ -20,11 +20,11 @@ Now there is an issue with usual category theory notation of a ``diagram'' for D
 \begin{notation}
     It is prudent to properly define what a ``diagram'' in a DG-category is by the discussion above.
 
-    Let \( \Cc \) be a DG-category. A \emph{diagram in a DG-category} (or a \emph{DG-diagram}) is a quiver \( \Gamma = \tuple*{V, E, s, t} \) where every vertex in \( V \) corresponds to an object in \( \Cc \), and every edge in \( e \in E \) corresponds to an element in \( \Cc\tuple*{s(e), t(e)}_n \) for some \( n \in \Zb \). These edges are called \emph{DG-morphisms} and \( n \) is called the \emph{degree} of \( e \), and is also denoted as \( |e| \).
+    Let \( \Cc \) be a DG-category. A \emph{diagram in a DG-category} (or a \emph{DG-diagram}) is a quiver \( \Gamma = \tuple*{V, E, s, t} \) where every vertex in \( V \) corresponds to an object in \( \Cc \), and every edge \( e \in E \) corresponds to an element in \( \Cc\tuple*{s(e), t(e)}_n \) for some \( n \in \Zb \). These edges are called \emph{DG-morphisms} and \( n \) is called the \emph{degree} of \( e \), and is also denoted as \( |e| \).
 
     For two morphisms \( f, g \in E \) with \( s(g) = t(f) \), they are denoted as \emph{composable}. And their composition, denoted \( g \circ f \), is the morphism
     \[
-        g \circ f := c_{\Cc, |g| + |f|}(g \otimes f) \in \Cc\tuple*{s(f), t(g)}_{|g| + |f|}
+        g \circ f := c_{\Cc, |g| + |f|}(g \otimes f) \in \Cc\tuple*{s(f), t(g)}_{|g| + |f|},
     \]
     where
     \[
@@ -108,10 +108,10 @@ In order to justify using this notation, there are som properties that are helpf
 In addition to being associative, it would also be nice to prove that composition is \( R \)-bilinear, which is proven in the following lemma.
 
 \begin{lemma}
-    Composition in a dg-diagram is a morphism in \( \Mod(R) \), in particular, it is \( R \)-linear in both components.
+    Composition in a DG-diagram is a morphism in \( \Mod(R) \), in particular, it is \( R \)-linear in both components.
 \end{lemma}
 \begin{proof}
-    By definition, composition in a dg-diagram is the composition of two \( \Mod(R) \) morphisms, \( \iota_{i, j} \) and \( c_{\Cc, i + j} \), and so it is a \( \Mod(R) \) morphism.
+    By definition, composition in a DG-diagram is the composition of two \( \Mod(R) \) morphisms, \( \iota_{i, j} \) and \( c_{\Cc, i + j} \), and so it is a \( \Mod(R) \) morphism.
 \end{proof}
 
 Now the notation should be sufficient for working with DG-categories.
@@ -285,7 +285,7 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
     Let \( n := |g_1| + |g_2| + |g_3| \), and omit the degrees of the differentials for readability. Consider the following equation
     \begin{align*}
         d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 &+ \bar{g_3} \circ t) = d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
-        \intertext{by the definition of composition of morphisms in a dg-diagram, it follows that}
+        \intertext{by the definition of composition of morphisms in a DG-diagram, it follows that}
         &= d_{\Cc(X_1, X_4)}(c_{\Cc, n - 1}(\bar{s} \otimes g_1)) + d_{\Cc(X_1, X_4)}(c_{\Cc, n - 1}(\bar{g_3} \otimes t)) \\
         \intertext{by the fact that composition is a chain morphism, it follows that}
         &= c_{\Cc, n}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\bar{s} \otimes g_1)) + c_{\Cc, n}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\bar{g}_3 \otimes t))
@@ -293,7 +293,7 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
         &= c_{\Cc, n}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1) + c_{\Cc, n}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1)) \\
         \intertext{by pulling out every sign, it follows that}
         &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, n}((g_3 \circ g_2) \otimes g_1) + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, n}(g_3 \otimes (g_2 \circ g_1)) \\
-        \intertext{by the definition of composition of morphisms in a dg-diagram, it follows that}
+        \intertext{by the definition of composition of morphisms in a DG-diagram, it follows that}
         &= (-1)^{|g_2| + 2|g_3| - 1}(g_3 \circ g_2) \circ g_1 + (-1)^{|g_2| + 2|g_3| - 2}g_3 \circ (g_2 \circ g_1) \\
         \intertext{by simplifying signs, it follows that}
         &= (-1)^{|g_2|}\tuple*{ g_3 \circ (g_2 \circ g_1) - (g_3 \circ g_2) \circ g_1 } \\
@@ -336,4 +336,4 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
     % is independent of the \( b_i \)'s.
 \end{remark}
 
-Astute readers may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. Which is necessary in order to compare Massey products to Toda brackets. And even if it were triangulated, the scope of categories that could be equivalent to a category consisiting of chain complexes with zero differential is very small, which would make applicability an issue. Luckily, in TODO:REF, Massey products can be defined in a smaller category, namely the ``\( 0 \)th cohomology category'' denoted as \( H^0(\Cc) \), which is much more applicable due to the abundance of ``algebraic triangulated categories'', which will also be defined properly in TODO:REF.
+Astute readers may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. Which is necessary in order to compare Massey products to Toda brackets. And even if it were triangulated, the scope of categories that could be equivalent to a category consisiting of chain complexes with zero differential is very small, which would make applicability an issue. However, by moving over to the category of ``DG-modules'' which will be defined in the next section, we can define the Massey product on a big class of triangulated categories, namely the ``algebraic triangulated categories''.
