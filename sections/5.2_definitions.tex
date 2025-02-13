@@ -1,4 +1,4 @@
-In this subsection the goal is to define what an algebraic triangulated category is by first defining what \( H^0(\dgMod_{\dg}(\Cc)) \) is, and then defining the DG-Yoneda embedding, and how any DG-category can be seen as a subcategory of the category of DG-modules.
+In this subsection the goal is to define what an algebraic triangulated category is by first defining what \( H^0(\dgM) \) is, and then defining the DG-Yoneda embedding, and how any DG-category can be seen as a subcategory of the category of DG-modules.
 
 The following definition is very similar to \autoref{def:H_bullet_dg_category}. However unlike the cohomology category, this category is not enriched over \( C \).
 
@@ -28,7 +28,7 @@ The following definition is very similar to \autoref{def:H_bullet_dg_category}. 
 
 An interesting consequence of \autoref{def:0_th_cohomology_of_dg_cat}, is that we can write the chain homotopy category, \( \K(\Mod(R)) \), defined in \autoref{def:chain_homotopy_cat}, as simply \( H^0(\C_{\dg}) \). Unwinding the definitions, \( H^0([A, B]) \) is exactly every chain homotopy class from \( A \) to \( B \).
 
-The goal is to show that \( H^0\tuple*{\dgMod_{\dg}(\Cc)} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles. The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgMod_{\dg}(\Cc) \).
+The goal is to show that \( H^0\tuple*{\dgM} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles. The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgM \).
 
 \begin{definition}[Shift in \( \C_{\dg} \)]
     \label{def:sigma_c_dg}
@@ -82,40 +82,40 @@ The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following rem
     \end{enumerate}
 \end{remark}
 
-We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgMod_{\dg}(\Cc) \) in the following way.
+We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
 
 \begin{definition}
     \label{def:sigma_dgmod}
-    Let the DG-functor \( \Sigma_{\dgMod_{\dg}(\Cc)} \) be defined as follows:
+    Let the DG-functor \( \Sigma_{\dgM} \) be defined as follows:
     \begin{enumerate}
         \item {
-            For any \( F \in \dgMod_{\dg}(\Cc) \), let
+            For any \( F \in \dgM \), let
             \[
-                \Sigma_{\dgMod_{\dg}(\Cc)} F := \Sigma_{\C_{\dg}} \circ F.
+                \Sigma_{\dgM} F := \Sigma_{\C_{\dg}} \circ F.
             \]
         }
         \item {
-            For any \( F, G \in \dgMod_{\dg}(\Cc) \), and
+            For any \( F, G \in \dgM \), and
             \[
-                \tuple{\eta_{n, A}}_{A \in \Cc^{\op}} \in \dgMod_{\dg}(\Cc)(F, G)_n,
+                \tuple{\eta_{n, A}}_{A \in \Cc^{\op}} \in \dgM(F, G)_n,
             \]
-            let \( \Sigma_{\dgMod_{\dg}(\Cc), F, G} \) be defined as follows
+            let \( \Sigma_{\dgM, F, G} \) be defined as follows
             \begin{align*}
-                \Sigma_{\dgMod_{\dg}(\Cc), F, G}: \dgMod_{\dg}(\Cc)(F, G) &\to \dgMod_{\dg}(\Cc)(\Sigma_{\dgMod_{\dg}(\Cc)} F, \Sigma_{\dgMod_{\dg}(\Cc)} G) \\
+                \Sigma_{\dgM, F, G}: \dgM(F, G) &\to \dgM(\Sigma_{\dgM} F, \Sigma_{\dgM} G) \\
                 \tuple{\eta_{n, A}}_{A \in \Cc^{\op}} &\mapsto WIP
             \end{align*}
         }
     \end{enumerate}
-    Then \( \Sigma_{\dgMod_{\dg}(\Cc)} \) is called the \emph{shift functor of \( \dgMod_{\dg}(\Cc) \)}. When the context is uncertain, we will denote it as \( \Sigma_{\dgMod_{\dg}(\Cc)} \), and when the context is certain we will use \( \Sigma \).
+    Then \( \Sigma_{\dgM} \) is called the \emph{shift functor of \( \dgM \)}. When the context is uncertain, we will denote it as \( \Sigma_{\dgM} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
-By the following remark, \( \Sigma_{\dgMod_{\dg}(\Cc)} \) is a DG-functor.
+By the following remark, \( \Sigma_{\dgM} \) is a DG-functor.
 
 \begin{remark}
     TODO
 \end{remark}
 
-In order to get the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \), we have to take the \( 0 \)th cohomology of this functor. It is defined as follows.
+In order to get the shift functor on \( H^0(\dgM) \), we have to take the \( 0 \)th cohomology of this functor. It is defined as follows.
 
 \begin{definition}[\( H^0 \)-induced functor]
     \label{def:H^0-induced_functor}
@@ -135,54 +135,54 @@ In order to get the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \), we have to ta
     This is called the \emph{\( H^0 \)-induced functor of \( F \)}.
 \end{definition}
 
-Which leads us to the definition of the shift functor on \( H^0(\dgMod_{\dg}(\Cc)) \).
+Which leads us to the definition of the shift functor on \( H^0(\dgM) \).
 
-\begin{definition}[\( \Sigma \) on \( H^0(\dgMod_{\dg}(\Cc)) \)]
+\begin{definition}[\( \Sigma \) on \( H^0(\dgM) \)]
     \label{def:sigma_h_0_dgmod}
     Let \( \Cc \) be a small DG-category, and let \( \Sigma \) be as defined in \autoref{def:sigma_dgmod}.
 
     Then the functor
     \[
-        \Sigma_{H^0(\dgMod_{\dg}(\Cc))} := H^0(\Sigma): H^0(\dgMod_{\dg}(\Cc)) \to H^0(\dgMod_{\dg}(\Cc))
+        \Sigma_{H^0(\dgM)} := H^0(\Sigma): H^0(\dgM) \to H^0(\dgM)
     \]
-    is called the \emph{shift functor of \( H^0(\dgMod_{\dg}(\Cc)) \)}. When the context is uncertain, we will denote it as \( \Sigma_{H^0(\dgMod_{\dg}(\Cc))} \), and when the context is certain we will use \( \Sigma \).
+    is called the \emph{shift functor of \( H^0(\dgM) \)}. When the context is uncertain, we will denote it as \( \Sigma_{H^0(\dgM)} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
 The overloading of the notation \( \Sigma \) makes the notation much more concice, and in certain situations and makes equations much more clean while being correct.
 
-The following is a definition for a cone in \( H^0(\dgMod_{\dg}(\Cc)) \), which will be a part of the triangulation later.
+The following is a definition for a cone in \( H^0(\dgM) \), which will be a part of the triangulation later.
 
-\begin{definition}[Cone in \( H^0(\dgMod_{\dg}(\Cc)) \)]
+\begin{definition}[Cone in \( H^0(\dgM) \)]
     WIP
 \end{definition}
 
-For a triangulated category, one also need to define the triangulation. The triangulation of \( H^0(\dgMod_{\dg}(\Cc)) \) is as follows.
+For a triangulated category, one also need to define the triangulation. The triangulation of \( H^0(\dgM) \) is as follows.
 \begin{definition}
     \label{def:delta_H_0_dgmod}
-    The triangulation of \( H^0(\dgMod_{\dg}(\Cc)) \) is ... TODO
+    The triangulation of \( H^0(\dgM) \) is ... TODO
 \end{definition}
 
-All in all this implies that \( H^0(\dgMod_{\dg}(\Cc)) \) is triangulated. The proof for this statment can be found in TODO:CITE.
+All in all this implies that \( H^0(\dgM) \) is triangulated. The proof for this statment can be found in TODO:CITE.
 \begin{theorem}
     Let \( \Sigma \) be the shift functor as defined in \autoref{def:sigma_dgmod}, and let \( \Delta \) be as defined in \autoref{def:delta_H_0_dgmod}.
 
-    Then \( \tuple*{H^0(\dgMod_{\dg}(\Cc)), \Sigma, \Delta} \) is a triangulated category.
+    Then \( \tuple*{H^0(\dgM), \Sigma, \Delta} \) is a triangulated category.
 \end{theorem}
 
 USIKKER START
 
 \begin{definition}[Acyclic DG-module]
-    Let \( A \in \dgMod_{\dg}(\Cc) \).
+    Let \( A \in \dgM \).
 
     Then \( A \) is called \emph{acyclic} if for any \( X \in \Cc^{\op} \), one has that \( A(X) \in \C_{\dg} \) is acyclic, i.e. \( H^*(A(X)) = 0 \).
 \end{definition}
 
 \begin{definition}[DG-projective module]
-    Let \( P \in \dgMod_{\dg}(\Cc) \) be a DG-module.
+    Let \( P \in \dgM \) be a DG-module.
 
     Then \( P \) is called a \emph{DG-projective module over \( \Cc \)} if:
     
-    For any DG-module \( A \in \dgMod_{\dg}(\Cc) \) and any epimorphism \( f \in \dgMod_{dg}(\Cc)(A, P) \) where \( \ker(f) \in \dgMod_{\dg}(\Cc) \) is acyclic. Then \( f \) is split.
+    For any DG-module \( A \in \dgM \) and any epimorphism \( f \in \dgM(A, P) \) where \( \ker(f) \in \dgM \) is acyclic. Then \( f \) is split.
 \end{definition}
 
 % TODO: Various definitions and idiosyncracies. Which is correct?
@@ -193,7 +193,7 @@ USIKKER START
 \begin{definition}[Derived DG-category]
     Let \( \Cc \) be a DG-category.
 
-    Then the \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgMod_{\dg}(\Cc)) \) spanned by the objects of \( \dgMod_{\dg}(\Cc) \) that are DG-projective.
+    Then the \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgM) \) spanned by the objects of \( \dgM \) that are DG-projective.
 \end{definition}
 
 % MS-Question: What is coproduct for the derived category?
@@ -218,19 +218,19 @@ USIKKER START
 \end{definition}
 
 \begin{proposition}
-    \( \D^c(\Cc) \) is a triangulated sub category of \( H^0(\dgMod_{\dg}(\Cc)) \).
+    \( \D^c(\Cc) \) is a triangulated sub category of \( H^0(\dgM) \).
 \end{proposition}
 
 USIKKER SLUTT
 
-The next step is to define what an algebraic triangulated category is by relating triangulated categories to \( H^0(\dgMod_{\dg}(\Cc)) \). We will accomplis this by using the DG-Yoneda embedding from \cite[Corollary 6.3.6]{Borceux_1994}, which is defined as follows.
+The next step is to define what an algebraic triangulated category is by relating triangulated categories to \( H^0(\dgM) \). We will accomplis this by using the DG-Yoneda embedding from \cite[Corollary 6.3.6]{Borceux_1994}, which is defined as follows.
 \begin{definition}[DG-Yoneda embedding]
     \label{def:DG_Yoneda_embedding}
     Let \( \Cc \) be a small DG-category.
     
     Then let \( \mathbf{h} \) be the DG-functor defined as follows
     \begin{align*}
-        \mathbf{h}: \Cc &\to \dgMod_{\dg}(\Cc) \\
+        \mathbf{h}: \Cc &\to \dgM \\
         A &\mapsto \Cc(-, A)
     \end{align*}
 

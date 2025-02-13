@@ -246,14 +246,16 @@ The definition of (right) DG-modules is the following.
         \dgMod_{\dg}(\Cc) := \Fun_{\dg}(\Cc^{op}, \C_{\dg}).
     \]
     Objects in \( \dgMod_{\dg}(\Cc) \) are called \emph{DG-modules over \( \Cc \)}.
+
+    From now on, we will use the shorthand \( \dgM \) for \( \dgMod_{\dg}(\Cc) \).
 \end{definition}
 
 Bofore moving on, it is helpful to try and properly understand the structure of a DG-module. The definition in \autoref{def:dg_functor_category} is abstract and hard to understand exactly how the morphisms, i.e., the ``DG-natural transformations'', look like and what properties they have. The following remark goes through the calculations laid forth by Borceux for DG-modules.
 
 \begin{remark}[Functor category structure from Borceux]
-    The goal of this remark is to understand what the morphism structure of \( \dgMod_{\dg}(\Cc) \) is, and what properties it has from the enriched category theory perspective based on \cite{Borceux_1994}.
+    The goal of this remark is to understand what the morphism structure of \( \dgM \) is, and what properties it has from the enriched category theory perspective based on \cite{Borceux_1994}.
     
-    Let \( F, G \in \dgMod_{\dg}(\Cc) \) and let
+    Let \( F, G \in \dgM \) and let
     \[
         \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) }_i
     \]
@@ -397,7 +399,7 @@ Bofore moving on, it is helpful to try and properly understand the structure of 
     \end{center}
     Using this as \( \widetilde{\psi}_{A', A''} \) continue the construction as before by taking the adjoint and the product to end up with the map \( \widetilde{\phi}_{A', A''} \).
 
-    Then \cite[Proposition 6.3.1]{Borceux_1994} states that \( \dgMod_{\dg}(\Cc)(F, G) \) is the equalizer of the following diagram
+    Then \cite[Proposition 6.3.1]{Borceux_1994} states that \( \dgM(F, G) \) is the equalizer of the following diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -437,10 +439,10 @@ Bofore moving on, it is helpful to try and properly understand the structure of 
     \end{align*}
 \end{remark}
 
-In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) \) has the following properties:
+In plain english, this means that the morphism space \( \dgM(F, G) \) has the following properties:
 \begin{enumerate}
     \item {
-        The structure of \( \dgMod_{\dg}(\Cc)(F, G) \) is as a sub chain complex of
+        The structure of \( \dgM(F, G) \) is as a sub chain complex of
         \[
             \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)).
         \]
@@ -462,9 +464,9 @@ In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) 
         \end{align*}
     }
     \item {
-        In addition, \( \dgMod_{\dg}(\Cc)(F, G) \) has the property that for any
+        In addition, \( \dgM(F, G) \) has the property that for any
         \[
-            \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \dgMod_{\dg}(\Cc)(F, G)_i,
+            \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \dgM(F, G)_i,
         \]
         and any \( f \in \Cc^{\op}(A', A'')_j \), one has that
         \[
@@ -473,19 +475,19 @@ In plain english, this means that the morphism space \( \dgMod_{\dg}(\Cc)(F, G) 
     }
 \end{enumerate}
 
-Similar to how we could simplify the notation for the differential of \( \C_{\dg} \) in \autoref{rem:c_dg_differential}, we can similarly simplify the differential of \( \dgMod_{\dg}(\Cc) \), as is discussed in the following remark.
+Similar to how we could simplify the notation for the differential of \( \C_{\dg} \) in \autoref{rem:c_dg_differential}, we can similarly simplify the differential of \( \dgM \), as is discussed in the following remark.
 
 \begin{remark}
     For any \( A \in \C_{\dg} \), let \( d_A \) be as in \autoref{rem:c_dg_differential}.
 
-    Then for any \( F \in \dgMod_{\dg}(\Cc) \) consider the degree \( 1 \) DG-morphism
+    Then for any \( F \in \dgM \) consider the degree \( 1 \) DG-morphism
     \[
         d_F := \tuple{d_{FA}}_A \in \prod_{A \in \Cc} \C_{\dg}(FA, FA).
     \]
 
-    It follows that for any \( \eta_i = \tuple{\eta_{i, A}}_A \in \dgMod_{\dg}(\Cc)(F, G) \) we have
+    It follows that for any \( \eta_i = \tuple{\eta_{i, A}}_A \in \dgM(F, G) \) we have
     \[
-        d_{\dgMod_{\dg}(\Cc)(F, G), i}(\eta_i) = d_G \circ \eta_i - (-1)^i \eta_i \circ d_F
+        d_{\dgM(F, G), i}(\eta_i) = d_G \circ \eta_i - (-1)^i \eta_i \circ d_F
     \]
     because
     \[
