@@ -1,4 +1,4 @@
-The chain homotopy category is one of the simplest triangulated category to define, and is a good example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in \autoref{def:alg_tri_cat}. It will become clear from the definition of the chain homotopy category that it is an algebra inspired triangulated category, and so it fits (morally), as an algebraic triangulated category.
+The chain homotopy category is one of the simplest triangulated categories to define, and is a good example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in \autoref{def:alg_tri_cat}. It will become clear from the definition of the chain homotopy category that it is an algebra inspired triangulated category, and so it fits (morally), as an algebraic triangulated category.
 
 % TODO: Skal eg vsa at kjedhomotopikategorien ar alg. tri. kat?
 
@@ -13,7 +13,7 @@ First, some notation on chain complexes.
     As mentioned in \autoref{not:chain_complex}, the chain complexes have \emph{ascending} order, and differentials are indexed according to the order of their \emph{domain}.
 \end{definition}
 
-We start off by defining the underlying category, that will turn out to be triangulated.
+We start off by defining the category, and will later define the triangulation.
 
 % MS-Question: Ikkje vist at dette er ein kategori...
 \begin{definition}[Chain homotopy category, \( \K(\Ac) \)]
@@ -26,10 +26,10 @@ We start off by defining the underlying category, that will turn out to be trian
             Objects in \( \K(\Ac) \) are chain complexes.
         }
         \item {
-            Morphisms in \( \K(\Ac) \) are equivalence classes of chain morphisms up to null-homotopic chain morphisms.
+            Morphisms in \( \K(\Ac) \) are equivalence classes of chain morphisms up to chain homotopy.
         }
         \item {
-            Composition in \( \K(\Ac) \) is the equivalence class of the composition of the representatives of the morphisms, i.e,
+            Composition in \( \K(\Ac) \) is the equivalence class of the composition of the representatives of the morphisms, i.e.,
             \[
                 [g] \circ [f] := [g \circ f ].
             \]
@@ -41,7 +41,7 @@ We start off by defining the underlying category, that will turn out to be trian
 
 \( \K(\Ac) \) can be shown to be an additive category.
 
-On \( \C(\Ac) \), one can define a simple automorphism of categories called the shift functor.
+On \( \C(\Ac) \), we can define a simple automorphism of categories called the shift functor.
 
 \begin{definition}[Shift functor on \( \C(\Ac) \)]
     \label{def:chain_complex_shift}
@@ -53,7 +53,7 @@ On \( \C(\Ac) \), one can define a simple automorphism of categories called the 
 
     In addition, let \( f = \tuple{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) be a chain morphism.
     
-    Then let
+    Then
     \[
         \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \C(\Ac)(\Sigma A, \Sigma B).
     \]
@@ -95,7 +95,7 @@ The final piece of the puzzle is to define what the cone of a morphism in \( \K(
     This is the \emph{cone of \( f \)} in \( \C(\Ac) \).
 \end{definition}
 
-One can think of the cone as having the underlying space of \( B \oplus \Sigma A \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
+We can think of the cone as having the underlying space of \( B \oplus \Sigma A \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
 
 The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, {\bf (TR1)}, but ends up satisfying every axiom anyways.
 
@@ -115,6 +115,6 @@ Together, \( \K(\Ac), \Sigma, \) and \( \Delta \) give the second example of a t
 
     Then \( \tuple{\K(\Ac), \Sigma, \Delta} \) is a triangulated category.
 \end{example}
-For a proof of \( \K(\Ac) \) being triangulated \cite[Proposition 3.5.25]{Zimmermann_2014}.
+For a proof of \( \K(\Ac) \) being triangulated, see \cite[Proposition 3.5.25]{Zimmermann_2014}.
 
-Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. One can see from \autoref{def:chain_complex_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
+Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. We can see from \autoref{def:chain_complex_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.

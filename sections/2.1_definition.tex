@@ -1,4 +1,4 @@
-A triangulated category is closely linked to some objects and morphisms making a ``triangle'', and showing that there are some ``triangles'' that have some useful properties. We start by defining what a triangle in an additive category is.
+A triangulated category is closely linked to some objects and morphisms making ``triangles'' and showing that there exist some class of triangles that satisfy certain properties. We start by defining what a triangle in an additive category is, as well as what a morphism between triangles is.
 
 \begin{definition}[Triangles]
     \label{def:triangles}
@@ -71,7 +71,7 @@ This thesis will use the following definition of a triangulated category.
             The following three points must be satisfied:
             \begin{enumerate}
                 \item {
-                    For any \( f: X \to Y \) in \( \Tc \), there is some object \( C_f \in \Tc \), called a \emph{cone of \( f \)} along with morphisms \( \iota_f \) and \( \pi_f \), such that there is a triangle, called the \emph{standard triangle of \( f \)},
+                    For any \( f: X \to Y \) in \( \Tc \), there exist some object \( C_f \in \Tc \), called a \emph{cone of \( f \)} along with morphisms \( \iota_f \) and \( \pi_f \), such that there is a triangle,
                     \begin{center}
                         \begin{tikzpicture}
                             \diagram{m}{1cm}{1cm} {
@@ -85,6 +85,8 @@ This thesis will use the following definition of a triangulated category.
                         \end{tikzpicture}
                     \end{center}
                     in \( \Delta \).
+
+                    Any triangle of the above form is called a \emph{standard triangle of \( f \)}.
                 }
                 \item {
                     For any \( X \in \Tc \), the \emph{trivial triangle of \( X \)}, which is the following triangle
@@ -161,17 +163,17 @@ This thesis will use the following definition of a triangulated category.
             \end{center}
             commute, and let both of the rows be triangles in \( \Delta \).
             
-            Then there exists a morphism \( c: C \to C' \) such that the above diagram including \( c \) commutes, i.e. \( (a, b, c) \) becomes a morphism of triangles.
+            Then there exists a morphism \( c: C \to C' \) such that \( (a, b, c) \) becomes a morphism of triangles.
         }
         \item {
-            Let the solid part of the following diagram
+            Let the solid part of the following diagram commute,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& B \& C \& \Sigma A \\
                         A \& D \& E \& \Sigma A \\
                         \& F \& F \& \Sigma B \\
-                        \& \Sigma B \& \Sigma C \\
+                        \& \Sigma B \& \Sigma C, \\
                     };
         
                     \draw[math]
@@ -198,13 +200,13 @@ This thesis will use the following definition of a triangulated category.
                         (m-4-2) edge node {\Sigma g} (m-4-3);
                 \end{tikzpicture}
             \end{center}
-            commute, and let the top two rows and the leftmost column that is four tall be three triangles in \( \Delta \).
+            and let \( \tuple{f, g, h} \), \( \tuple{n, m, k} \), and \( \tuple{n \circ f, j, l} \) be three triangles in \( \Delta \).
 
-            Then there exist some morphisms where there are dashed arrows such that the rightmost four tall column is a triangle in \( \Delta \) and the entire diagram, including the dashed arrows, commute.
+            Then there exist some morphisms, \( \phi \) and \( \psi \), such that \( \tuple{\phi, \psi, (\Sigma g) \circ k} \) is a triangle in \( \Delta \) and the entire diagram, including the dashed arrows, commute.
         }
     \end{enumerate}
 
-    Then \( \tuple{ \Tc, \Sigma, \Delta } \), or shortened to just \( \Tc \), is called an \emph{triangulated category}, \( \Sigma \) is called the \emph{shift functor} of \( \Tc \) (or the \emph{suspension functor} of \( \Tc \)), and every triangle in \( \Delta \) is called a \emph{distinguished triangle} in \( \Tc \) (or an \emph{exact triangle} in \( \Tc \)).
+    Then \( \tuple{ \Tc, \Sigma, \Delta } \), or shortened to just \( \Tc \), is called a \emph{triangulated category}, or a \emph{triangulation} of \( \Tc \). The functor \( \Sigma \) is called the \emph{shift} (or \emph{suspension}) \emph{functor} of \( \Tc \), and every triangle in \( \Delta \) is called a \emph{distinguished} (or \emph{exact}) \emph{triangle} in \( \Tc \). 
 \end{definition}
 
 Although the definition is axiomatic and may seem arbitrary, there are surprisingly many different categories that admit the structure of a triangulated category.

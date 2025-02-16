@@ -133,7 +133,7 @@ The following remark shows why the composition above is well-defined.
     \end{enumerate}
 \end{remark}
 
-One can also through ardous calculations using \autoref{rem:tensor_prod_internal_hom_adjoint} find that the definition of composition in \autoref{def:c_dg_mod_r} is the same as in \cite[p. 295]{Borceux_1994}.
+We can also through ardous calculations using \autoref{rem:tensor_prod_internal_hom_adjoint} find that the definition of composition in \autoref{def:c_dg_mod_r} is the same as in \cite[p. 295]{Borceux_1994}.
 
 An interesting consequence of how \( \C_{\dg} \) is defined is that the differential can be treated as a DG-morphism. This is discussed in the following remark.
 \begin{remark}
@@ -194,7 +194,7 @@ Another piece of the definition of a DG-module is to define what a functor betwe
 
 An example of a DG-functor is the shift functor on \( \C_{\dg} \), which is defined in \autoref{def:sigma_c_dg}.
 
-Finally one can define the DG-functor category, which is the final piece in defining DG-modules.
+Finally we can define the DG-functor category, which is the final piece in defining DG-modules.
 
 \begin{definition}[DG-functor category, \( \Fun_{\dg}(\Ac, \Bc) \)]
     \label{def:dg_functor_category}
@@ -432,7 +432,7 @@ Bofore moving on, it is helpful to try and properly understand the structure of 
         \tuple*{ \prod\limits_{A', A'' \in \Cc^{\op}} \phi_{A', A''} }_j \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} } &= \tuple*{ \prod_{A', A'' \in \Cc^{\op}} \widetilde{\phi}_{A', A''} }_j \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} } \\
         &\Updownarrow \\
         \tuple{ \tuple{ \psi_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}} &= \tuple{ \tuple{ \widetilde{\psi}_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc^{\op}}
-        \intertext{Which are equal if for any \( A', A'' \in \Cc^{\op} \) and any \( k \in \Zb \) and any \( f \in \Cc^{\op}\tuple*{A', A''}_{k - i} \) one has the following}
+        \intertext{Which are equal if for any \( A', A'' \in \Cc^{\op} \) and any \( k \in \Zb \) and any \( f \in \Cc^{\op}\tuple*{A', A''}_{k - i} \) we have the following}
         \psi_{A', A'', k}\tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f } &= \widetilde{\psi}_{A', A'', k} \tuple{ \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \otimes f } \\
         &\Updownarrow \\
         (-1)^{(k - i)*i}G(f) \circ \eta_{i, A'} &= \eta_{i, A''} \circ F(f) \\
@@ -446,7 +446,7 @@ In plain english, this means that the morphism space \( \dgM(F, G) \) has the fo
         \[
             \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)).
         \]
-        Which is a chain complex where in the \( i \)-th component, one has
+        Which is a chain complex where in the \( i \)-th component, we have
         \[
             \tuple*{ \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_i
         \]
@@ -468,7 +468,7 @@ In plain english, this means that the morphism space \( \dgM(F, G) \) has the fo
         \[
             \tuple{ \eta_{i, A} }_{A \in \Cc^{\op}} \in \dgM(F, G)_i,
         \]
-        and any \( f \in \Cc^{\op}(A', A'')_j \), one has that
+        and any \( f \in \Cc^{\op}(A', A'')_j \), we have that
         \[
             G_{A', A'', j}(f) \circ \eta_{i, A'} = (-1)^{ij} \eta_{i, A''} \circ F_{A', A'', j}(f).
         \]

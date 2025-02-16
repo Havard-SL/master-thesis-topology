@@ -2,10 +2,7 @@
 
 A triangulated category that will be central in this thesis is the stable module category. Therefore the definition will be given in more details than the previous two examples of triangulated categories.
 
-Before showing the triangulated structure, it is as usual necessary to define the underlying category first. However, the underlying category require some lemmas to be well-defined.
-
-First, a lemma that will be used to define the morphisms in the stable module category.
-
+Before defining the stable module category, we prove a lemma that will be used to define the morphisms.
 \begin{lemma}
     \label{lem:morphisms_factoring_through_projectives_r-submodule}
     Let \( R \) be a commutative ring with identity.
@@ -24,7 +21,7 @@ First, a lemma that will be used to define the morphisms in the stable module ca
 
             \draw[math]
                 (m-1-1) edge node {f_1} (m-1-2)
-                    edge[curve={height=-25pt}] node {f} (m-1-3)
+                    edge[curve={height=25pt}] node[swap] {f} (m-1-3)
                 (m-1-2) edge node {f_2} (m-1-3);
         \end{tikzpicture}
         and
@@ -35,12 +32,12 @@ First, a lemma that will be used to define the morphisms in the stable module ca
 
             \draw[math]
                 (m-1-1) edge node {g_1} (m-1-2)
-                    edge[curve={height=-25pt}] node {g} (m-1-3)
+                    edge[curve={height=25pt}] node[swap] {g} (m-1-3)
                 (m-1-2) edge node {g_2} (m-1-3);
         \end{tikzpicture}
     \end{center}
 
-    One can then construct the morphism
+    We can then construct the morphism
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -58,29 +55,64 @@ First, a lemma that will be used to define the morphisms in the stable module ca
         \end{tikzpicture}
     \end{center}
 
-    Composing these two morphisms, one gets the morphism \( f_2 \circ f_1 + g_2 \circ g_1 = f + g \). This morphisms factors thorugh \( P \oplus Q \), which is projective since it is a direct sum of projective modules.
+    Composing these two morphisms, we get the morphism \( f_2 \circ f_1 + g_2 \circ g_1 = f + g \). This morphism factors through \( P \oplus Q \), which is projective since it is a direct sum of projective modules. This implies that \( G \) is closed under addition.
+    
+    Let \( r \in R \). Then the following diagram commutes,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& P \& B, \\
+            };
 
-    Therefore, the set of homomorphisms that factor through a projective is closed under addition. Multiplying with a ring element still factors through the same projective, since every morphism is an \( R \) homomorphism. Therefore the set of morphisms that factor through a projective is an \( R \)-submodule.
+            \draw[math]
+                (m-1-1) edge node {rf_1} (m-1-2)
+                    edge[curve={height=25pt}] node[swap] {rf} (m-1-3)
+                (m-1-2) edge node {f_2} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
+    which implies that \( G \) is also closed under \( R \) multiplication.
 \end{proof}
 
-From now on, in this subsection let \( \Mod(R)(A, B)/G \), with \( R \) a commutative ring with identity, simply be denoted as \( \Mc(A, B) \).
+The following is the definition of the stable module category.
+% TODO: Frobenius algebra for sterk antaking?
+\begin{definition}
+    \label{def:stable_module_category}
+    Let \( R \) be a \emph{Frobenius ring}.
 
-Second is the result that makes composition in the stable module category well-defined.
+    Then the \emph{stable module category over \( R \)}, denoted \( \Mc \) in this thesis, is defined in the following way:
+    \begin{enumerate}
+        \item {
+            The objects are modules over \( R \).
+        }
+        \item {
+            For \( A, B \in \Mc \), let \( G \) be the \( R \)-submodule from \autoref{lem:morphisms_factoring_through_projectives_r-submodule}.
+        
+            Then let
+            \[
+                \Mc(A, B) := \Mod(R)(A, B)/G.
+            \]
+        }
+        \item {
+            For \( [g] \in \Mc(B, C) \), and \( [f] \in \Mc(A, B) \), let composition be defined as follows
+            \[
+                [g] \circ [f] := [g \circ f].
+            \]
+        }
+    \end{enumerate}
+    This category is called the \emph{stable module category over \( R \)}.
+\end{definition}
 
-\begin{lemma}
-    \label{lem:stmod_composition_well-defined}
-    Define the binary operation \( c \) as follows
-    \begin{align*}
-        c: \Mc(B, C) \times \Mc(A, B) &\to \Mc(A, C) \\
-        [g] \times [f] &\mapsto [g \circ f].
-    \end{align*}
+Other authors typically use the notation \( \StMod(R) \) or \( \underline{\Mod}(R) \) for the stable module category. However, for the sake of brevity this is reduced to simply \( \Mc \) in this thesis.
 
-    Then \( c \) is well-defined.
-\end{lemma}
+By the following remark, composition in \autoref{def:stable_module_category} is well-defined.
+\begin{remark}
+    \label{rem:stmod_composition_well-defined}
+    Composition in \autoref{def:stable_module_category} is well-defined.
+\end{remark}
 \begin{proof}
-    Need to check that two different choices of representatives of \( [f] \) and \( [g] \) yields the same value.
+    We need to check that two different choices of representatives of \( [f] \) and \( [g] \) yields the same value.
 
-    Let \( [f + \widetilde{f}] \) and \( [g + \widetilde{g}] \) be two different representatives of \( [f] \) and \( [g] \), with \( \widetilde{f} \) and \( \widetilde{g} \) factoring through some projectives.
+    Let \( f + \widetilde{f} \) and \( g + \widetilde{g} \) be two different representatives of \( [f] \) and \( [g] \), with \( \widetilde{f} \) and \( \widetilde{g} \) factoring through some projectives.
 
     Then it follows that
     \[
@@ -90,40 +122,13 @@ Second is the result that makes composition in the stable module category well-d
     Every term other than \( [g \circ f] \) factors through a projective and is therefore equal to \( 0 \) in \( \Mc(A, C) \).
 \end{proof}
 
-Finally one can define the underlying stable module category.
-
-% TODO: Frobenius algebra for sterk antaking?
-\begin{definition}
-    \label{def:stable_module_category}
-    Let \( R \) be a \emph{Frobenius ring}.
-
-    Then the \emph{stable module category over \( R \)}, denoted \( \Mc \) in this thesis, is defined in the following way:
-    \begin{enumerate}
-        \item {
-            The objects are infinitely generated modules over \( R \).
-        }
-        \item {
-            For \( A, B \in \Mc \), let \( \Mc(A, B) \) be defined as previously.
-        }
-        \item {
-            For \( [g] \in \Mc(B, C) \), and \( [f] \in \Mc(A, B) \), let composition be defined as follows
-            \[
-                [g] \circ [f] := [g \circ f].
-            \]
-        }
-    \end{enumerate}
-
-    This category is called the \emph{infinitely generated stable module category over \( R \)}.
-\end{definition}
-
-Other authors typically use the notation \( \StMod(R) \) or \( \underline{\Mod}(R) \) for the infinitely generated stable module category. However, for the sake of brevity this is reduced to simply \( \Mc \) in this thesis.
-
-In the general definition of the infinitely generated stable module category, it is not required that the ring is a Frobenius ring. However, as will become apparent later in this subsection is that it is a requirement to having a triangulated structure defined on it. Since this thesis will only be considering the stable module category as a triangulated category, this assumption is made from the beginning.
+In the general definition of the stable module category, it is not required that the ring is a Frobenius ring. However, as will become apparent later in this subsection, this is a requirement to having a triangulated structure. Since this thesis will only be considering stable module categories which are triangulated, this assumption is made from the beginning.
 % TODO: Faktasjekk, er det verkeleg sant at Frobenius er naudsynt? Las eg ikkje ein stad at nok injektiv og projektive og dei samanfaller er godt nok?
 
-In order to be an underlying category of a triangulated category, a category needs to be additive.
+In order to admit a triangulation, we need to prove that the stable module category is additive.
 
-% MS-Question: Er det lov å skriva First/Second, show .... Eller er det ein ufulstendig setning igjen.
+WIP
+
 \begin{lemma}
     \( \Mc \) is an additive category.
 \end{lemma}
@@ -190,7 +195,7 @@ In order to be an underlying category of a triangulated category, a category nee
     \end{center}
     commutes.
 
-    Let \( \iota_A, \iota_B \) denote the canonical split monomorphisms from the universal property of the coproduct. Since \( A \oplus B \) is a biproduct in \( \Mod(R) \) one has
+    Let \( \iota_A, \iota_B \) denote the canonical split monomorphisms from the universal property of the coproduct. Since \( A \oplus B \) is a biproduct in \( \Mod(R) \), we have
     \[
         \Id_{A \oplus B} = \iota_A \circ \pi_A + \iota_B \circ \pi_B.
     \]
@@ -246,13 +251,13 @@ However, in defining \( \Omega \), the definition is closely tied to a choice of
                 \end{tikzpicture}
             \end{center}
 
-            One has that for a morphism \( f: A \to B \), there exists a morphism \( p_f \) from the lifitng property of projective modules such that the right square commutes. Note that the choice of \( p_f \) is \emph{not neccesarily unique}.
+            We have that for a morphism \( f: A \to B \), there exists a morphism \( p_f \) from the lifitng property of projective modules such that the right square commutes. Note that the choice of \( p_f \) is \emph{not neccesarily unique}.
 
             Furthermore, since
             \[
                 \pi_B \circ p_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0,
             \]
-            one has from the universal kernel property that there exists a unique morphism, dependent on the choice of \( p_f \), denoted as \( \Omega'(f) \) from \( \Omega A \) to \( \Omega B \) such that the left square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectctives yields the morphism defined by the assignment, i.e., \( \Omega [f] := \class{\Omega'(f)} \).
+            we have from the universal kernel property that there exists a unique morphism, dependent on the choice of \( p_f \), denoted as \( \Omega'(f) \) from \( \Omega A \) to \( \Omega B \) such that the left square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectctives yields the morphism defined by the assignment, i.e., \( \Omega [f] := \class{\Omega'(f)} \).
         }
     \end{itemize}
 \end{definition}
@@ -266,9 +271,9 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
     \( \Omega \) is a well-defined assignment of morphisms.
 \end{lemma}
 \begin{proof}
-    There are two things that need to be proven. First, in the construction of \( \Omega'(f) \), one has to choose a morphism \( p_f \) from the projective property. Needs to show that if one choses another projective morphism, that \( \Omega \) still yields the same morphism in \( \Mc \). Second, one need to show that if \( f \sim g \), then \( \Omega'(f) \sim \Omega'(g) \).
+    There are two things that need to be proven. First, in the construction of \( \Omega'(f) \), we have to choose a morphism \( p_f \) from the projective property. Needs to show that if we choose another projective morphism, that \( \Omega \) still yields the same morphism in \( \Mc \). Second, we need to show that if \( f \sim g \), then \( \Omega'(f) \sim \Omega'(g) \).
 
-    To prove the first part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective morphisms that give the morphisms \( \Omega'(f) \) and \( \widetilde{\Omega'(f)} \), respectively. Then one has the following commutative diagram excluding the dotted arrow
+    To prove the first part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective morphisms that give the morphisms \( \Omega'(f) \) and \( \widetilde{\Omega'(f)} \), respectively. Then we have the following commutative diagram excluding the dotted arrow
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -293,13 +298,13 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
     \[
         \pi_B \circ \tuple{p_f - \widetilde{p_f}} = \tuple{f - f} \circ \pi_A = 0
     \]
-    there exists a morphism \( \phi \) induced by the kernel property of \( \Omega B \), such that the lower triangle in the diagram commutes. However, since \( \iota_B \) is a monomorphism, one also gets that the upper triangle commutes. This implies that the morphism \( \Omega'(f) - \widetilde{\Omega'(f)} \) factors through \( P_A \), a projective module. Therefore
+    there exists a morphism \( \phi \) induced by the kernel property of \( \Omega B \), such that the lower triangle in the diagram commutes. However, since \( \iota_B \) is a monomorphism, we also get that the upper triangle commutes. This implies that the morphism \( \Omega'(f) - \widetilde{\Omega'(f)} \) factors through \( P_A \), a projective module. Therefore
     \[
         0 = \class{\Omega'(f) - \widetilde{\Omega'(f)}} = \class{\Omega'(f)} - \class{\widetilde{\Omega'(f)}}
     \]
     which implies that \( \Omega [f] \) is independent of the choice of \( p_f \).
 
-    Second, one needs to show that if \( f \sim g \), then \( \Omega f \sim \Omega g \). Consider the following commutative diagram excluding the dashed arrow,
+    Second, we need to show that if \( f \sim g \), then \( \Omega f \sim \Omega g \). Consider the following commutative diagram excluding the dashed arrow,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{3cm} {
@@ -326,13 +331,13 @@ The following is the lemma showing that \( \Omega \) is a well-defined assignmen
 
     Let \( P \) be the projective that \( f - g \) factors through. Then from the projective property, there exists a morphism \( \theta: P \to P_B \), which causes the lower triangle to commute.
 
-    Let \( p'_{f - g} := \theta \circ (f - g)_1 \circ \pi_A \). By construction, one has that both \( p_f - p_g \) and \( p'_{f - g} \) are morphisms that would make the right hand square commute.
+    Let \( p'_{f - g} := \theta \circ (f - g)_1 \circ \pi_A \). By construction, we have that both \( p_f - p_g \) and \( p'_{f - g} \) are morphisms that would make the right hand square commute.
     
     But since
     \[
         p'_{f - g} \circ \iota_A = \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0,
     \]
-    it implies that if the leftmost morphism in the diagram was \( 0 \) and the middle morphism was \( p'_{f - g} \), it would commute. By the previous part of this proof, since the two possible middle morphisms, \( p_f - p_g \) and \( p'_{f - g} \), produce two different leftmost morphisms \( \Omega'(f) - \Omega'(g) \) and \( 0 \), one has that \( \Omega [f] = \Omega [g] \).
+    it implies that if the leftmost morphism in the diagram was \( 0 \) and the middle morphism was \( p'_{f - g} \), it would commute. By the previous part of this proof, since the two possible middle morphisms, \( p_f - p_g \) and \( p'_{f - g} \), produce two different leftmost morphisms \( \Omega'(f) - \Omega'(g) \) and \( 0 \), we have that \( \Omega [f] = \Omega [g] \).
 \end{proof}
 
 Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it only remains to prove functoriality as well as showing that the identity is mapped to the identity to show that it is a functor.
@@ -344,7 +349,7 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
 \begin{proof}
     To show that \( \Omega \) is a functor it remains to prove functoriality as well as showing that the identity is mapped to the identity.
 
-    First want to show that \( \Omega \) is functorial. Let \( A, B, C \in \Mc \). Then by the definition of \( \Omega \), one has the following commutative diagram
+    First want to show that \( \Omega \) is functorial. Let \( A, B, C \in \Mc \). Then by the definition of \( \Omega \), we have the following commutative diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -372,7 +377,7 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
         \end{tikzpicture}
     \end{center}
 
-    Considering the composition of the vertical morphisms, one ends up with the following commutative diagram
+    Considering the composition of the vertical morphisms, we end up with the following commutative diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -398,7 +403,7 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
 
     Second, need to show that \( \Omega \Id_A = \Id_{\Omega A} \) in \( \Mc \).
 
-    By a similar argument to above, one can see that every square and triangle in the following diagram commutes
+    By a similar argument to above, we can see that every square and triangle in the following diagram commutes
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -468,7 +473,7 @@ An important detail still missing to show that \( \Omega^{-1} \) could be a shif
     Since \( \Omega [f + g] \) is well-defined, this implies \( \Omega [f + g] = \Omega([f]) + \Omega([g]) \).
 \end{proof}
 
-One can define another functor, \( \Sigma \), which will turn out to be the inverse of \( \Omega \) and the future shift functor in making \( \Mc \) a triangulated category.
+We can define another functor, \( \Sigma \), which will turn out to be the inverse of \( \Omega \) and the future shift functor in making \( \Mc \) a triangulated category.
 
 \begin{definition}[The functor \( \Sigma \)]
     \label{def:stmod_sigma}
@@ -502,13 +507,13 @@ One can define another functor, \( \Sigma \), which will turn out to be the inve
                 \end{tikzpicture}
             \end{center}
 
-            One has that for a morphism \( f: A \to B \), there exists a morphism \( i_f \) from the universal property of injective objects such that the left square commutes. Please note that this morphism is \emph{not neccesarily} unique.
+            We have that for a morphism \( f: A \to B \), there exists a morphism \( i_f \) from the universal property of injective objects such that the left square commutes. Please note that this morphism is \emph{not neccesarily} unique.
 
             Furthermore, since
             \[
                 \kappa_B \circ i_f \circ \rho_A = \kappa_B \circ \rho_B \circ f = 0,
             \]
-            one has from the universal cokernel property that there exists a unique morphism, dependant on the choice of \( i_f \), denoted as \( \Sigma'(f) \) from \( \Sigma A \) to \( \Sigma B \) such that the right square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectives yields the morphism defined by the functor, i.e., \( \Sigma [f] := \class{\Sigma'(f)} \).
+            we have from the universal cokernel property that there exists a unique morphism, dependant on the choice of \( i_f \), denoted as \( \Sigma'(f) \) from \( \Sigma A \) to \( \Sigma B \) such that the right square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectives yields the morphism defined by the functor, i.e., \( \Sigma [f] := \class{\Sigma'(f)} \).
         }
     \end{itemize}
 \end{definition}
@@ -523,7 +528,7 @@ Now it remains to show every desired property of \( \Omega \), like being a well
     The proofs of the various statements are entirely dual to the proofs of \autoref{lem:stmod_omega_f_is_well_defined}, \autoref{lem:stmod_omega_endofunctor} and \autoref{lem:stmod_omega_additive_functor}.
 \end{proof}
 
-Now one can finally show that \( \Sigma = \Omega^{-1} \).
+Now we can finally show that \( \Sigma = \Omega^{-1} \).
 
 \begin{theorem}
     \( \Omega \) is an auto-equivalence with inverse \( \Sigma \).
@@ -561,7 +566,7 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
     \[
         \rho_{\Omega A} \circ i_{\phi_1} \circ \iota_A = \rho_{\Omega A} \circ \kappa_{\Omega A} = 0,
     \]
-    one gets from the cokernel property that there is a uniquely induced morphism \( \phi_1: A \to \Sigma\Omega A \). Then doing the same for the lower rectangle of the diagram, using the fact that every projective is also injective, then one gets the morphisms \( i_{\phi_2} \) and \( \phi_2 \) by similar arguments, such that the diagram above including the dashed arrows commute.
+    we get from the cokernel property that there is a uniquely induced morphism \( \phi_1: A \to \Sigma\Omega A \). Then doing the same for the lower rectangle of the diagram, using the fact that every projective is also injective, then we get the morphisms \( i_{\phi_2} \) and \( \phi_2 \) by similar arguments, such that the diagram above including the dashed arrows commute.
 
     Then to show that \( \phi_1 \) and \( \phi_2 \) are isomorphisms, consider the following diagram
     \begin{center}
@@ -584,17 +589,17 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
         \end{tikzpicture}
     \end{center}
 
-    Using the previous commutative diagram, one gets that every square commutes. But since
+    Using the previous commutative diagram, we get that every square commutes. But since
     \[
         (p_{\phi_2} \circ p_{\phi_1} - \Id_{P_A}) \circ \iota_A = \iota_A \circ 0 = 0,
     \]
-    then from the cokernel property there exist a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. But then one has that
+    then from the cokernel property there exist a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. But then we have that
     \[
         (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (p_{\theta_2} \circ p_{\theta_1} - \Id_{P_A}) = \pi_A \circ \theta \circ \pi_A,
     \]
-    and since \( \pi_A \) is an epimorphism, one gets that the lower triangle commutes. This implies that \( \phi_2 \circ \phi_1 \sim \Id_A \).
+    and since \( \pi_A \) is an epimorphism, we get that the lower triangle commutes. This implies that \( \phi_2 \circ \phi_1 \sim \Id_A \).
     
-    By a similar agument that is omitted for brevity, one can show that \( \phi_1 \circ \phi_2 \sim \Id_{\Sigma\Omega A} \), which means that \( [\phi_1] \) and \( [\phi_2] \) are isomorphisms from \( A \) to \( \Sigma\Omega A \).
+    By a similar agument that is omitted for brevity, we can show that \( \phi_1 \circ \phi_2 \sim \Id_{\Sigma\Omega A} \), which means that \( [\phi_1] \) and \( [\phi_2] \) are isomorphisms from \( A \) to \( \Sigma\Omega A \).
 
     To show that these isomorphisms are natural, let \( [f] \in \Mc(A, B) \) and consider the following two diagrams
     \begin{center}
@@ -670,16 +675,16 @@ Now one can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-2-2) edge[two headed] node[swap] {\rho_{\Omega B}} (m-2-3);
         \end{tikzpicture}
     \end{center}
-    where from the cokernel property of \( A \), one gets an induced morphism \( \theta \), and from the epimorphism property of \( \pi_A \), it makes the lower triangle commute. And since \( R \) is assumed to be a Frobenius ring, this implies that every injective module over \( R \) is projective and vice versa. This implies
+    where from the cokernel property of \( A \), we get an induced morphism \( \theta \), and from the epimorphism property of \( \pi_A \), it makes the lower triangle commute. And since \( R \) is assumed to be a Frobenius ring, this implies that every injective module over \( R \) is projective and vice versa. This implies
     \[
         \phi_1^B \circ f \sim \Sigma' \circ \Omega'(f) \circ \phi_1^A,
     \]
     which means that \( [\phi_1] \) is a natural isomorphism from \( \Id_{\Mc} \) to \( \Sigma \Omega \), with inverse \( [\phi_2] \).
 \end{proof}
 
-An interesting consequence of how \( \Omega \) and \( \Sigma \) are defined is that if one were to chose a different \( P \) or \( I \) in their definitions, then it would yield different, but naturally isomorphic functors. A proof of this statement for \( \Sigma \) can be found in \cite[Remark on p. 13]{Happel_1988}, with the proof for \( \Omega \) being dual.
+An interesting consequence of how \( \Omega \) and \( \Sigma \) are defined is that if we were to chose a different \( P \) or \( I \) in their definitions, then it would yield different, but naturally isomorphic functors. A proof of this statement for \( \Sigma \) can be found in \cite[Remark on p. 13]{Happel_1988}, with the proof for \( \Omega \) being dual.
 
-Before one can show the triangulation of \( \Mc \), one first needs to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Chapter 1, Subsection 2.5]{Happel_1988}.
+Before we can show the triangulation of \( \Mc \), we first needs to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Chapter 1, Subsection 2.5]{Happel_1988}.
 
 \begin{definition}
     \label{def:stmod_cone}
@@ -717,7 +722,7 @@ There are some important details following this definition that will be useful i
     By known pushout facts, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism for \( \alpha \).
 \end{remark}
 
-Now, one can finally define the triangulation on \( \Mc \).
+Now, we can finally define the triangulation on \( \Mc \).
 
 \begin{definition}
     \label{def:stmod_delta}
@@ -822,7 +827,7 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints 
             \end{tikzpicture}
         \end{aligned}
     \]
-    Using those morphisms, one can create the following commutative diagram, where \( \alpha \) and \( \beta \) are the induced morphisms from the pushout property of \( C \) and \( C' \) respectively, 
+    Using those morphisms, we can create the following commutative diagram, where \( \alpha \) and \( \beta \) are the induced morphisms from the pushout property of \( C \) and \( C' \) respectively, 
     \begin{center}
         \begin{tikzpicture}
             \diagramorigin{m}{1cm}{1.5cm} {
@@ -924,7 +929,7 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints 
         \end{psmallmatrix}
     \) is an epimorphism by definition, it follows that the bottom triangle also commutes.
 
-    One can prove that \( \alpha \circ \beta \sim \Id_{C'} \) in a similar way.
+    We can prove that \( \alpha \circ \beta \sim \Id_{C'} \) in a similar way.
 
     Let \( \alpha^{-1} := \beta \) to get the statement of the lemma.
 \end{proof}
@@ -963,7 +968,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \item {
                     Need to show that the trivial triangle is distinguished.
 
-                    Calculating \( C_{\Id} \) one gets the pushout
+                    Calculating \( C_{\Id} \) we get the pushout
                     \begin{center}
                         \begin{tikzpicture}
                             \diagram{m}{1cm}{1cm} {
@@ -1218,7 +1223,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-3) edge node {[-\Sigma' f]} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            The left and the middle square commute directly, but it remains to check if the right square commutes. In addition one needs to check that \( \class{
+            The left and the middle square commute directly, but it remains to check if the right square commutes. In addition we need to check that \( \class{
                 \begin{psmallmatrix}
                     0 & 1
                 \end{psmallmatrix}
@@ -1247,7 +1252,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \rho_B & 0
                 \end{psmallmatrix}.
             \]
-            One can see that the diagram
+            We can see that the diagram
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1406,7 +1411,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-2) edge node {h'} (m-3-2);
                 \end{tikzpicture}
             \end{center}
-            then since \( [f'] \circ [\alpha] = [\beta] \circ [f] \) in \( \Mc \), one has that \( f' \circ \alpha - \beta \circ f \) factors through a projective. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( f' \circ \alpha - \beta \circ f \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to B' \) such that
+            then since \( [f'] \circ [\alpha] = [\beta] \circ [f] \) in \( \Mc \), we have that \( f' \circ \alpha - \beta \circ f \) factors through a projective. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( f' \circ \alpha - \beta \circ f \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to B' \) such that
             \[
                 f' \circ \alpha - \beta \circ f = \xi \circ \kappa_A.
             \]
@@ -1431,7 +1436,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-2) edge[two headed] node {\rho_{A'}} (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            then one can construct the following sum which will be used below
+            then we can construct the following sum which will be used below
             \[
                 \gamma_{f'} \circ i_{\alpha} + g' \circ \xi: I_A \to C_{f'}.
             \]
@@ -1624,7 +1629,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{equation}
             Thus there exists a morphism \( \psi: C_{n \circ f} \to C_n \) such that the pushout diagram commutes.
 
-            To show that \( \psi \) makes \autoref{eq:stmod_tr4} commute in \( \Mc \), one can see that the square to the left of \( \psi \) commutes by definition.
+            To show that \( \psi \) makes \autoref{eq:stmod_tr4} commute in \( \Mc \), we can see that the square to the left of \( \psi \) commutes by definition.
 
             In order to make the square to the right of \( \psi \) commute, consider the following diagram which yields a choice of \( \Sigma' f \),
             \begin{center}
@@ -2029,7 +2034,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \]
             Therefore by the uniqueness of the universal property of the pushout, \( p = \mu \circ d \).
 
-            Combining everything, one gets the following equation
+            Combining everything, we get the following equation
             \[
                 [\Sigma' (g) \circ k \circ \alpha] = [\Sigma' (g) \circ e \circ d] =[\mu \circ e^{-1} \circ e \circ d] = [\mu \circ d] = [p],
             \]
@@ -2038,4 +2043,4 @@ Then finally comes the full triangulation result, the proof of which is heavily 
     \end{enumerate}
 \end{proof}
 
-By \cite[Lemma, Subsection 7.5]{Krause_2007} it follows that \( \Mc \) is in fact what one calls a \emph{algebraic triangulated category}. This will be touched on later in the thesis. % TODO: Specify where it will be touched on and the connection between Krause and Jasso-Muro's definition.
+By \cite[Lemma, Subsection 7.5]{Krause_2007} it follows that \( \Mc \) is in fact what we call an \emph{algebraic triangulated category}. This will be touched on later in the thesis. % TODO: Specify where it will be touched on and the connection between Krause and Jasso-Muro's definition.

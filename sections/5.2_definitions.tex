@@ -189,7 +189,7 @@ The following is a definition for a cone in \( \dgM \), which will be a part of 
     \end{itemize}
 \end{definition}
 
-For a triangulated category, one also need to define the triangulation. The triangulation of \( H^0(\dgM) \) is as follows.
+For a triangulated category, we also need to define the triangulation. The triangulation of \( H^0(\dgM) \) is as follows.
 \begin{definition}
     \label{def:delta_H_0_dgmod}
     Let \( \Delta \) be the class of triangles isomorphic to any triangle in \( H^0(\dgM) \) on the form
@@ -215,59 +215,59 @@ All in all this implies that \( H^0(\dgM) \) is triangulated. The proof for this
     Then \( \tuple*{H^0(\dgM), \Sigma, \Delta} \) is a triangulated category.
 \end{theorem}
 
-USIKKER START
+% USIKKER START
 
-\begin{definition}[Acyclic DG-module]
-    Let \( A \in \dgM \).
+% \begin{definition}[Acyclic DG-module]
+%     Let \( A \in \dgM \).
 
-    Then \( A \) is called \emph{acyclic} if for any \( X \in \Cc^{\op} \), one has that \( A(X) \in \C_{\dg} \) is acyclic, i.e. \( H^*(A(X)) = 0 \).
-\end{definition}
+%     Then \( A \) is called \emph{acyclic} if for any \( X \in \Cc^{\op} \), we have that \( A(X) \in \C_{\dg} \) is acyclic, i.e. \( H^*(A(X)) = 0 \).
+% \end{definition}
 
-\begin{definition}[DG-projective module]
-    Let \( P \in \dgM \) be a DG-module.
+% \begin{definition}[DG-projective module]
+%     Let \( P \in \dgM \) be a DG-module.
 
-    Then \( P \) is called a \emph{DG-projective module over \( \Cc \)} if:
+%     Then \( P \) is called a \emph{DG-projective module over \( \Cc \)} if:
     
-    For any DG-module \( A \in \dgM \) and any epimorphism \( f \in \dgM(A, P) \) where \( \ker(f) \in \dgM \) is acyclic. Then \( f \) is split.
-\end{definition}
+%     For any DG-module \( A \in \dgM \) and any epimorphism \( f \in \dgM(A, P) \) where \( \ker(f) \in \dgM \) is acyclic. Then \( f \) is split.
+% \end{definition}
 
-% TODO: Various definitions and idiosyncracies. Which is correct?
-    % Acyclic kernel? Projective objects? Spanned?
-    % Krause 07 -> Compact objects, maybe more.
-    % Keller 94 -> Another definition of derived DG category.
-% TODO: Following def from Krause 07, but not explicitly written down. Is it correct?
-\begin{definition}[Derived DG-category]
-    Let \( \Cc \) be a DG-category.
+% % TODO: Various definitions and idiosyncracies. Which is correct?
+%     % Acyclic kernel? Projective objects? Spanned?
+%     % Krause 07 -> Compact objects, maybe more.
+%     % Keller 94 -> Another definition of derived DG category.
+% % TODO: Following def from Krause 07, but not explicitly written down. Is it correct?
+% \begin{definition}[Derived DG-category]
+%     Let \( \Cc \) be a DG-category.
 
-    Then the \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgM) \) spanned by the objects of \( \dgM \) that are DG-projective.
-\end{definition}
+%     Then the \emph{derived DG-category} of \( \Cc \), denoted \( \D(\Cc) \), is defined as the full subcategory of \( H^0(\dgM) \) spanned by the objects of \( \dgM \) that are DG-projective.
+% \end{definition}
 
-% MS-Question: What is coproduct for the derived category?
-% Cite: Jasso--Muro p.31, only a statement, no proof
-\begin{proposition}
-    \( \D(\Cc) \) is closed under arbitrary coproduct.
-\end{proposition}
+% % MS-Question: What is coproduct for the derived category?
+% % Cite: Jasso--Muro p.31, only a statement, no proof
+% \begin{proposition}
+%     \( \D(\Cc) \) is closed under arbitrary coproduct.
+% \end{proposition}
 
-% Cite: Krause 07 p. 29
-\begin{definition}[Compact objects of a category]
-    Let \( \Tc \) be a triangulated category with arbitrary coproduct. Let \( X \in \Tc \).
+% % Cite: Krause 07 p. 29
+% \begin{definition}[Compact objects of a category]
+%     Let \( \Tc \) be a triangulated category with arbitrary coproduct. Let \( X \in \Tc \).
     
-    If for any index set \( I \) and any morphism \( f: X \to \coprod_{i \in I} Y_i \), there is a finite index set \( J \subseteq I \) such that \( f \) factors through \( \coprod_{j \in J} Y_j \).
+%     If for any index set \( I \) and any morphism \( f: X \to \coprod_{i \in I} Y_i \), there is a finite index set \( J \subseteq I \) such that \( f \) factors through \( \coprod_{j \in J} Y_j \).
     
-    Then define \( X \) as a \emph{compact object in \( \Cc \)}.
-\end{definition}
+%     Then define \( X \) as a \emph{compact object in \( \Cc \)}.
+% \end{definition}
 
-\begin{definition}[Perfect derived DG-category \( \D^c(\Cc) \)]
-    Let \( \D(\Cc) \) be the derived DG-category of \( \Cc \).
+% \begin{definition}[Perfect derived DG-category \( \D^c(\Cc) \)]
+%     Let \( \D(\Cc) \) be the derived DG-category of \( \Cc \).
 
-    Then define \( \D^c(\Cc) \) to be the full subcategory of \( \D(\Cc) \) consisting of all compact objects in \( \D(\Cc) \). This is called the \emph{perfect derived DG-category of \( \Cc \)}.
-\end{definition}
+%     Then define \( \D^c(\Cc) \) to be the full subcategory of \( \D(\Cc) \) consisting of all compact objects in \( \D(\Cc) \). This is called the \emph{perfect derived DG-category of \( \Cc \)}.
+% \end{definition}
 
-\begin{proposition}
-    \( \D^c(\Cc) \) is a triangulated sub category of \( H^0(\dgM) \).
-\end{proposition}
+% \begin{proposition}
+%     \( \D^c(\Cc) \) is a triangulated sub category of \( H^0(\dgM) \).
+% \end{proposition}
 
-USIKKER SLUTT
+% USIKKER SLUTT
 
 The next step is to define what an algebraic triangulated category is by relating triangulated categories to \( H^0(\dgM) \). We will accomplis this by using the DG-Yoneda embedding from \cite[Corollary 6.3.6]{Borceux_1994}, which is defined as follows.
 \begin{definition}[DG-Yoneda embedding]
@@ -294,17 +294,17 @@ Then the following theorem shows that taking \( H^0(\mathbf{h}) \) yields a full
 
     Then the functor
     \[
-        H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc)
+        H^0(\mathbf{h}): H^0(\Cc) \to H^0(\dgM)
     \]
     is full, faithful, and exact.
 \end{theorem}
 The proof of the above statement can be found in TODO.
 
-Then we can define what a pre-triangulated DG-category is, which is the final important piece in this definition of algebraic triangulated categories.
+Then we can define what a ``pre-triangulated DG-category'' is, which is the final important piece in this definition of algebraic triangulated categories. It must not be confused with a pre-triangulated (non-DG) category which is a category that satisfies the triangulated axioms {\bf (TR1)}, {\bf (TR2)}, and {\bf (TR3)}, but not {\bf (TR4)}.
 \begin{definition}[pre-triangulated DG-category]
     Let \( \Cc \) be a small DG-category.
 
-    Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if the image of the (fully faithful and exact) functor \( H^0(\mathbf{h}): H^0(\Cc) \to \D^c(\Cc) \) is a triangulated subcategory of \( \D^c(\Cc) \).
+    Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if the image of the (fully faithful and exact) functor \( H^0(\mathbf{h}): H^0(\Cc) \to H^0(\dgM) \) is a triangulated subcategory of \( H^0(\dgM) \).
 \end{definition}
 
 Finally we can define what an algebraic triangulated category is.

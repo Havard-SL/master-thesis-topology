@@ -43,7 +43,7 @@ The first definition necessary to understanding DG-categories, is the tensor pro
     This is called the \emph{tensor product of \( \C \)}.
 \end{definition}
 
-In order to see that the above definition of the differential on the chain complex is well defined, one needs the following lemma, which will be useful later as well.
+In order to see that the above definition of the differential on the chain complex is well defined, we need the following lemma, which will be useful later as well.
 
 \begin{lemma}
     \label{lem:map_out_of_tensor_unique}
@@ -53,7 +53,7 @@ In order to see that the above definition of the differential on the chain compl
     \[
         f: (A \otimes B)_n \to C
     \]
-    where for any \( a \in A_i, b \in B_j \) one has
+    where for any \( a \in A_i, b \in B_j \) we have
     \[
         f(a \otimes b) = g_{i, j}(a, b)
     \]
@@ -88,9 +88,9 @@ In order to see that the above definition of the differential on the chain compl
         a \otimes b \mapsto g_{i, j}(a, b).
     \]
 
-    Since this works for any \( i, j \) as long as \( i + j = n \), one can construct \( \alpha_{i, j} \) for every valid \( i, j \) pair.
+    Since this works for any \( i, j \) as long as \( i + j = n \), we can construct \( \alpha_{i, j} \) for every valid \( i, j \) pair.
 
-    Then by using the universal property of the coproduct one gets the unique map \( \beta \) which is by \autoref{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)} uniquely determined by it's actions on elementary tensors \( a \otimes b \in A_i \otimes B_j \) in the following way
+    Then by using the universal property of the coproduct we get the unique map \( \beta \) which is by \autoref{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)} uniquely determined by it's actions on elementary tensors \( a \otimes b \in A_i \otimes B_j \) in the following way
     \[
         \beta: a \otimes b \mapsto g_{i, j}(a, b)
     \]
@@ -102,7 +102,7 @@ The following remark shows that \autoref{def:tensor_product_of_chain_complexes_o
 \begin{remark}
     The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined and unique by the following argument.
 
-    One can check that for \( i + j = n \) that
+    We can check that for \( i + j = n \) that
     \begin{align*}
         g_{i, j}: A_i \times B_j &\to (A \otimes B)_{n + 1} \\
         (a, b) &\mapsto d_{A, i}(a) \otimes b + (-1)^i a \otimes d_{B, j}(b)
@@ -195,7 +195,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
 
     Let \( f = \tuple*{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple*{ \tuple*{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
 
-    Then, unpacking the definitions, one has that \( f \) looks like the following diagram
+    Then, unpacking the definitions, we have that \( f \) looks like the following diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -266,7 +266,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
     \[
         \phi_f := \tuple*{\phi_{f, i}}_{i \in \Zb}.
     \]
-    In order to show that this is the proper adjoint definition, one needs to show the following properties:
+    In order to show that this is the proper adjoint definition, we need to show the following properties:
     \begin{enumerate}
         \item {
             First, \( \phi_f \) is a chain morphism.
@@ -332,7 +332,7 @@ Together the above definitions and remarks gives the structure of a symmetric mo
     Then \( \tuple*{\C, \otimes, I} \) is a symmetric closed monoidal category.
 \end{fact}
 
-Finally one can define what a DG-category is.
+Finally we can define what a DG-category is.
 
 \begin{definition}[DG-category]
     \label{def:dg_cat}

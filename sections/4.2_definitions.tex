@@ -116,7 +116,7 @@ In addition to being associative, it would also be nice to prove that compositio
 
 Now the notation should be sufficient for working with DG-categories.
 
-Before defining the Massey product, one first has to define the category the product is taken in. That is the following category, the cohomology category of any DG-category.
+Before defining the Massey product, we first have to define the category the product is taken in. That is the following category, the cohomology category of any DG-category.
 
 \begin{definition}[Cohomology category, \( H^\bullet(\Cc) \)]
     \label{def:H_bullet_dg_category}
@@ -166,7 +166,7 @@ In order to show that composition is well-defined the following remark can make 
         The map \( \alpha \) is know at the cross product morphism, as explained in \cite[p. 273]{Hatcher_2002}. In addition for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher_2002}.
     }
     
-    Then one can see that
+    Then we can see that
     \[
         c_{H^\bullet(\Cc)} := H^\bullet(c_{\Cc}) \circ \alpha.
     \] 
@@ -180,14 +180,14 @@ Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defin
 
     By \autoref{rem:H_bullet_composition_alpha} it is sufficient to only have to verify that the \( \alpha_{i, j} \)'s are well-defined and \( R \)-balanced in order to show that \( c_{H^\bullet(\Cc)} \) is well-defined and unique.
 
-    One can check that the maps are \( R \)-balanced, but one still needs to check if the maps are well-defined, which is a bit more difficult. There are two points that need to be shown:
+    We can check that the maps are \( R \)-balanced, but we still need to check if the maps are well-defined, which is a bit more difficult. There are two points that need to be shown:
     \begin{enumerate}
         \item {
             Firstly, is
             \[
                 g_i \otimes f_j \in H^n(\Cc(B, C) \otimes \Cc(A, B))?
             \]
-            To show this, one has to verify that
+            To show this, we have to verify that
             \[
                 g_i \otimes f_j \in \ker(d_{\Cc(B, C) \otimes \Cc(A, B), n}).
             \]
@@ -205,7 +205,7 @@ Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defin
                 &= [g_i \otimes f_j + g_i \otimes b_f + b_g \otimes f_j + b_g \otimes b_f] \\
                 &= [g_i \otimes f_j + g_i \otimes b_f + b_g \otimes f_j + b_g \otimes b_f]
             \end{align*}
-            By the definition of the differential of the tensor product, one has that the tensor product betweeen a boundary and a cycle, a cycle and a boundary, and a boundary and a boundary are all boundaries in the tensor product.
+            By the definition of the differential of the tensor product, we have that the tensor product betweeen a boundary and a cycle, a cycle and a boundary, and a boundary and a boundary are all boundaries in the tensor product.
 
             As an example, let's take the case above of \( g_i \otimes b_f \). Since \( b_f \) is a boundary in \( \Cc(A, B)_j \), there is some \( b_f' \in \Cc(A, B)_{j - 1} \) such that \( d_{\Cc(A, B), j - 1}(b_f') = b_f \). Consider the following equation
             \begin{align*}
@@ -313,7 +313,7 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
     % \[
     %     [\overline{s} \circ g_1 + \overline{s} \circ b_1 + g_3 \circ t + b_3 \circ t].
     % \]
-    % But since \( b_1 \) is a boundary, by a similar argument as in \autoref{rem:composition_in_H_bullet_is_well_defined} item 2, one has that
+    % But since \( b_1 \) is a boundary, by a similar argument as in \autoref{rem:composition_in_H_bullet_is_well_defined} item 2, we have that
     % \[
     %     \overline{s} \circ b_1 = c_{|g_1| + |g_2| + |g_3| - 1}( \iota_{|g_2| + |g_3| - 1, |g_1|} ( \overline{s} \otimes b_1 ) )
     % \]

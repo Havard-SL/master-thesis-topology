@@ -1,24 +1,26 @@
 This thesis will assume that the reader is already familiar with basic homological algebra as well as some module theory.
 
-A goal of this thesis is to let the theorems and definitions contain all the neccesary assumptions, but in a concise manner. Some assumptions will be implied by definitions and not be explicitly stated in theorems. Therefore if, for example, the properties of a ring is not explicitly stated, then it is implied by some definition used. Despite that, there are some conventions that are used throughout this thesis that could be nice to mention at the very start.
+Some assumptions in results will be implied by definitions and not be explicitly stated in theorems. Despite that, there are some conventions that are used throughout this thesis.
 
+First is the properties of the ring.
 \begin{notation}
     \( R \) will \emph{always} denote a commutative ring with identity.
 \end{notation}
 
+Second, the following is the chain complex convention.
 \begin{notation}
     \label{not:chain_complex}
     Every chain complex will have \emph{ascending} order. This is sometimes called a \emph{cochain complex} in other litterature.
 
-    Differentials are indexed according to the order of their domain.
+    Differentials are indexed according to the order of their domain. I.e. for a chain complex \( A = \tuple{A_i}_{i \in \Zb} \), the \( n \)-th differential has the same index as its domain, \( d_n: A_n \to A_{n + 1} \).
 \end{notation}
 
+Third, the module notation is as follows.
 \begin{notation}
-    \( \Mod(R) \) will refer to \emph{infinitely generated} \( R \)-modules.
-
-    Similarly, \( \mod(R) \) will refer to \emph{finitely generated} \( R \)-modules.
+    \( \Mod(R) \) will refer to \( R \)-modules, and \( \mod(R) \) will refer to \emph{finitely generated} \( R \)-modules.
 \end{notation}
 
+Fourth,the following arrow conventions will be used.
 \begin{notation}
     Tailed arrows \( (\rightarrowtail) \) represent monomorphisms, and double-headed arrows \( (\twoheadrightarrow) \) represent epimorphisms.
 \end{notation}
