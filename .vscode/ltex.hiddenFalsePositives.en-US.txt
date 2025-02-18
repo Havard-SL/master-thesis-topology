@@ -1,0 +1,5 @@
+{"rule":"ADVERB_OR_HYPHENATED_ADJECTIVE","sentence":"^\\QIt is a topological triangulated category.\\E$"}
+{"rule":"WHITESPACE_RULE","sentence":"^\\Q[1]  #1 [1]  #1 [1]( ) #1 [1]  #1 [1][ ] #1 [1]   #1\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q[1]  #1 [1]  #1 [1]( ) #1 [1]  #1 [1][ ] #1 [1]   #1\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QBy \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q, g̣g̣g̣ \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qas well as a natural isomorphism g̣g̣ \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q which, by the definition of \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q, we can cehck that the two morphisms we take the equalizer of, is equal to\\E$"}

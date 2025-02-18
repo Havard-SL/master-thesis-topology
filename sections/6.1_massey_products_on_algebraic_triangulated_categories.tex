@@ -1,15 +1,24 @@
 We start by proving two lemmas which shows a property of DG-modules which makes it possible to compare Toda brackets and Massey products.
 
 The first lemma shows an interesting consequence of the definition of shift and differential in \( \C_{\dg} \), that is useful in proving the second lemma.
+
+WIP START
+
+\begin{notation}
+    Let \( n \in \Zb \), and \( A \) a chain complex.
+    
+    Then let \( A_{+n} \) denote the \( n \)-shifted chain complex of \( A \) but \emph{without} the \( (-1)^n \) sign in front of the differential.
+\end{notation}
+
 \begin{lemma}
     \label{lem:shift_one_component_inner_product_chain_complex}
-    For any \( n \in \Zb \), and for any chain complex \( K \), let \( K_{+n} \) denote the \( n \)-shifted chain complex of \( K \) but \emph{without} the \( (-1)^n \) sign in front of the differential.
+    Let \( A, B \in \C \).
 
     Then
     \[
         \class{\Sigma^{-n} A, B} = \class{A, B}_{+n}.
     \]
-    I.e.
+    I.e.,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -57,6 +66,32 @@ The first lemma shows an interesting consequence of the definition of shift and 
         &= \tuple{(-1)^n f_{j + 1} \circ d_{A, j} - (-1)^n f_{j + 1} \circ d_{A, j}}_j \\
         &= 0 \qedhere
     \end{align*}
+\end{proof}
+
+\begin{lemma}
+    \label{lem:dgmod_shift_eq_plus}
+    Let \( F, G \in \dgM \).
+
+    Then
+    \[
+        \dgM(\Sigma^{-i} F, G) = \dgM(F, G)_{+1}.
+    \]
+\end{lemma}
+\begin{proof}
+    By \autoref{lem:shift_one_component_inner_product_chain_complex},
+    \[
+        \prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F A, G A) = \prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)_{+i} = \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)}_{+i}.
+    \]
+    It remains to show that for any \( n \in \Zb \),
+    \[
+        \eta \in \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F A, G A)}_n
+    \]
+    satisfies the properties of \( \dgM(\Sigma^{-i} F, G)_n \) if and only if it satisfies the properties of \( \dgM(F, G)_{n + i} \).
+
+    This follows because for any \( f \in \Cc^{\op}(A', A'') \) we have the following equality
+    \[
+        (-1)^{nj} \eta_{A''} \circ (\Sigma^{-i} F f) = (-1)^{nj} \eta_{A''} \circ ((-1)^{ji}F f) = (-1)^{(n + i)j}\eta_{A''} \circ (F f).
+    \]
 \end{proof}
 
 % Ikkje sant, trur eg.
@@ -138,41 +173,22 @@ The first lemma shows an interesting consequence of the definition of shift and 
 %         (d_{\class{A, B}, n + i} - d_{\class{A, B_{+n}}, i})\tuple{f_j}_{j \in \Zb} &= \tuple{d_{B, n + i + j} \circ f_j - (-1)^{n + i} f_{j + 1} \circ d_{A, j} - d_{B_{+n}, i + j} \circ f_j + (-1)^i f_{j + 1} \circ d_{A, j}}
 %     \end{align*}
 % \end{proof}
-
-The second lemma is essential in the definition of Massey products on \( H^0(\dgM) \) and therefore any algebraic triangulated category, which will become apparent later.
+The following corollary from \autoref{lem:dgmod_shift_eq_plus}, is essential in the definition of Massey products on \( H^0(\dgM) \) and therefore any algebraic triangulated category, which will become apparent later.
 
 \begin{lemma}
     \label{lem:H^i_dgmod_cong_H^0_with_shift}
-    Let \( \Cc \) be a DG-category. Let \( \Sigma \) denote the shift functor on \( H^0(\dgM) \). And let \( F, G \in \dgM \).
+    Let \( F, G \in \dgM \).
 
-    Then there is an equality
+    Then
     \[
         H^i(\dgM(F, G)) = H^0(\dgM)(\Sigma^{-i} F, G).
     \]
 \end{lemma}
 \begin{proof}
-    By the result and notation from \autoref{lem:shift_one_component_inner_product_chain_complex}, then
-    \[
-        \prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F(A), G(A)) = \prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))_{+i} = \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(F(A), G(A))}_{+i},
-    \]
-
-    WIP START
-
-    as well as a natural isomorphism
-    \[
-        \prod_{A', A'' \in \C^{\op}}\class{\Cc^{\op}(A', A''), \C_{\dg}(\Sigma^{-i}F(A'), G(A''))} \cong \prod_{A', A'' \in \C^{\op}}\class{\Cc^{\op}(A', A''), \C_{\dg}(\Sigma^{-i}F(A'), G(A''))}_{+n}
-    \]
-    which, by the definition of \( \dgM(F, G) \), we can cehck that the two morphisms we take the equalizer of, is equal to
-
-    WIP SLUTT
-
-    \[
-        \dgM(\Sigma^{-i} F, G) = \dgM(F, G)_{+i}.
-    \]
-    Taking \( H^0 \) on both sides implies the result.
+    Take \( H^0 \) on both sides of \autoref{lem:dgmod_shift_eq_plus}.
 \end{proof}
 
-Using the above lemma, we can define how to take the Massey product in \( H^0(\dgM) \).
+Using the above corollary, we can define how to take the Massey product in \( H^0(\dgM) \).
 
 \begin{definition}[Massey product on \( H^0(\dgM) \)]
     \label{def:massey_product_H^0(dgMod_dg(C))}

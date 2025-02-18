@@ -41,14 +41,12 @@ The goal is to show that \( H^0\tuple*{\dgM} \) is triangulated. To do that we n
             \]
         }
         \item {
-            For any \( A, B \in \C_{\dg} \), let
-            \begin{align*}
-                \Sigma_{\C_{\dg}}: \C_{\dg}(A, B) \to \C_{\dg}(\Sigma_{\C_{\dg}}(A), \Sigma_{\C_{\dg}}(B))
-            \end{align*}
-            be the chain homomorphism where the \( n \)-th map is
+            Let \( A, B \in \C_{\dg} \) and \( n \in \Zb \).
+
+            Then define \( \Sigma_{\C_{\dg}, n} \) as follows
             \begin{align*}
                 \Sigma_{\C_{\dg}, n}: \C_{\dg}(A, B)_n &\to \C_{\dg}(\Sigma A, \Sigma B)_n \\
-                \tuple*{ f_p }_{p \in \Zb} &\mapsto (-1)^n \tuple*{ f_{p + 1} }_{p \in \Zb}.
+                f &\mapsto (-1)^n f.
             \end{align*}
         }
     \end{enumerate}
@@ -95,14 +93,12 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
             \]
         }
         \item {
-            For any \( F, G \in \dgM \), and
-            \[
-                \tuple{\eta_{n, A}}_{A \in \Cc^{\op}} \in \dgM(F, G)_n,
-            \]
-            let \( \Sigma_{\dgM, F, G} \) be defined as follows
+            Let \( F, G \in \dgM \), and \( n \in \Zb \).
+            
+            Then define \( \Sigma_{\dgM, n} \) as follows
             \begin{align*}
-                \Sigma_{\dgM, F, G}: \dgM(F, G) &\to \dgM(\Sigma_{\dgM} F, \Sigma_{\dgM} G) \\
-                \tuple{\eta_{n, A}}_{A \in \Cc^{\op}} &\mapsto WIP
+                \Sigma_{\dgM, n}: \dgM(F, G)_n &\to \dgM(\Sigma F, \Sigma G)_n \\
+                \eta &\mapsto (-1)^n \eta.
             \end{align*}
         }
     \end{enumerate}
@@ -110,11 +106,11 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
 \end{definition}
 
 \begin{remark}
-    Due to our notation of product not having a order, as talked about in \autoref{not:coprod_prod_forvirring}, it follows that \( d_{\Sigma F} = -d_F \) for any DG-module \( F \).
+    Due to our notation of product not having a order, as talked about in \autoref{not:coprod_prod_forvirring}, it follows that \( d_{\Sigma F} = -d_F = \Sigma d_F\) for any DG-module \( F \).
 
     This is because
     \[
-        d_{\Sigma F} = \tuple{d_{\Sigma F A}}_A = \tuple{d_{\Sigma F A, i}}_{A, i} = \tuple{-d_{F A, i + 1}}_{A, i} = \tuple{-d_{F A, i}}_{A, i} = -d_F.
+        d_{\Sigma F} = \tuple{d_{\Sigma F A, i}}_{A, i} = \tuple{-d_{F A, i + 1}}_{A, i} = \tuple{-d_{F A, i}}_{A, i} = -d_F = \Sigma d_F.
     \]
 \end{remark}
 

@@ -34,12 +34,12 @@ A triangulated category is closely linked to some objects and morphisms making `
                 (m-1-8) edge node {h'} (m-1-9);
         \end{tikzpicture}
     \end{center}
-    is a touple of three morphisms \( (a, b, c) \) in \( \Tc \) such that the following diagram commutes
+    is a tuple of three morphisms \( (a, b, c) \) in \( \Tc \) such that the following diagram,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 A \& B \& C \& \Sigma A \\
-                A' \& B' \& C' \& \Sigma A'. \\
+                A' \& B' \& C' \& \Sigma A', \\
             };
 
             \draw[math]
@@ -56,7 +56,8 @@ A triangulated category is closely linked to some objects and morphisms making `
                 (m-2-3) edge node {h'} (m-2-4);
         \end{tikzpicture}
     \end{center}
-    Furthermore if \( a, b, \) and \( c \) are isomorphisms, then \( (a, b, c) \) is called an \emph{isomorphism of triangles} and the two triangles are said to be \emph{isomorphic}.
+    commutes.
+    Furthermore, if \( a, b, \) and \( c \) are isomorphisms, then \( (a, b, c) \) is called an \emph{isomorphism of triangles} and the two triangles are said to be \emph{isomorphic}.
 \end{definition}
 
 This thesis will use the following definition of a triangulated category.
@@ -209,11 +210,12 @@ This thesis will use the following definition of a triangulated category.
     Then \( \tuple{ \Tc, \Sigma, \Delta } \), or shortened to just \( \Tc \), is called a \emph{triangulated category}, or a \emph{triangulation} of \( \Tc \). The functor \( \Sigma \) is called the \emph{shift} (or \emph{suspension}) \emph{functor} of \( \Tc \), and every triangle in \( \Delta \) is called a \emph{distinguished} (or \emph{exact}) \emph{triangle} in \( \Tc \). 
 \end{definition}
 
-Although the definition is axiomatic and may seem arbitrary, there are surprisingly many different categories that admit the structure of a triangulated category.
+Although the definition is axiomatic and may seem arbitrary, there are surprisingly many categories that admit the structure of a triangulated category.
 
 There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what this thesis calls {\bf (TR4)}, he instead uses another axiom, closer to Verdier's original definition.
 
-Some of the axioms of a triangulated category are superflous in the fact that they are implied by the other axioms. An example is that {\bf (TR3)} is wholly contained in the definition of {\bf (TR4)} (TODO: May sin TR4 er ansleis frå den eg brukar.). Another example of this is that given {\bf (TR1)}, {\bf (TR3)} and the \( (\Rightarrow) \) implication of {\bf (TR2)}, then it implies the \( (\Leftarrow) \) implication as well. The details are contained in the following lemma.
+% MS: May sin TR4 er ansleis frå den eg brukar.
+Some axioms of a triangulated category are superfluous in the fact that they are implied by the other axioms. An example is that {\bf (TR3)} is wholly contained in the definition of {\bf (TR4)}. Another example of this is that given {\bf (TR1)}, {\bf (TR3)} and the \( (\Rightarrow) \) implication of {\bf (TR2)}, then it implies the \( (\Leftarrow) \) implication as well. The details are contained in the following lemma.
 
 \begin{lemma}
     \label{lem:triangulated_category-TR2-only_one_rotation}
