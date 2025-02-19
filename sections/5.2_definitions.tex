@@ -158,16 +158,22 @@ The overloading of the notation \( \Sigma \) makes the notation much more concic
 The following is a definition for a cone in \( \dgM \), which will be a part of the triangulation of \( H^0(\dgM) \) afterwards.
 
 \begin{definition}[Cone in \( \dgM \)]
+    \label{def:dgm_cone}
     Let \( F, G \in \dgM \), and let \( \eta \in Z^0(\dgM(F, G)) \). Then we can define the following DG-functor, denoted \( C_{\eta} \) as follows
     \begin{itemize}
         \item {
-            For any \( A \in \Cc^{\op} \), define \( C_{\eta}(A) \) to be the chain complex with the underlying \( R \)-modules \( (GA)_i \oplus (FA)_{i + 1} \), but with the \( i \)-th differential defined as
+            For any \( A \in \Cc^{\op} \), define \( C_{\eta}(A) \) to be the chain complex with the underlying \( R \)-modules of \( (\Sigma F A) \oplus (G A) \), but with the differential defined as
             \[
-                d_i :=
+                d_{C_{\eta}A} :=
                 \begin{pmatrix}
-                    -d_{FA, i + 1} & 0 \\
-                    \eta_{A, i + 1} & d_{GA, i}
-                \end{pmatrix}.
+                    d_{\Sigma F A} & 0 \\
+                    \eta_A & d_{GA}
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    -d_{F A} & 0 \\
+                    \eta_A & d_{GA}
+                \end{pmatrix}
             \]
 
             This can also be stated as
@@ -180,10 +186,72 @@ The following is a definition for a cone in \( \dgM \), which will be a part of 
             \]
         }
         \item {
-            For any \( f \in \Cc^{\op}(A, B) \) let WIP
+            For any \( f \in \Cc^{\op}(A, B)_n \) let
+            \begin{align*}
+                C_{\eta, A, B, n}: \Cc^{\op}(A, B)_n &\to \C_{\dg}(C_{\eta} A, C_{\eta} B)_n = \C_{\dg}((\Sigma F A) \oplus (G A), (\Sigma F B) \oplus (G B))_n \\
+                f &\mapsto (\Sigma F f) \oplus (G f) =
+                \begin{pmatrix}
+                    \Sigma F f & 0 \\
+                    0 & G f
+                \end{pmatrix}.
+            \end{align*}
         }
     \end{itemize}
 \end{definition}
+
+The above definition is well-defined by the following remark.
+\begin{remark}
+    In order to check if \( C_{\eta} \) in \autoref{def:dgm_cone} is a DG-functor, we have to check that for any \( A, B \in \Cc \),
+    \[
+        C_{\eta, A, B}: \Cc^{\op}(A, B) \to \C_{\dg}(C_{\eta} A, C_{\eta} B)
+    \]
+    is a chain morphism, i.e., we want to show that
+    \[
+        d_{\C_{\dg}(C_{\eta} A, C_{\eta} B)}(C_{\eta} f) = C_{\eta} d_{\Cc^{\op}(A, B)}(f).
+    \]
+
+    Consider the following equation
+    \begin{align*}
+        d_{\C_{\dg}(C_{\eta} A, C_{\eta} B)}&(C_{\eta} f) = d_{C_{\eta} B} \circ
+        \begin{pmatrix}
+            \Sigma F f & 0 \\
+            0 & G f
+        \end{pmatrix}
+        - (-1)^n
+        \begin{pmatrix}
+            \Sigma F f & 0 \\
+            0 & G f
+        \end{pmatrix}
+        \circ d_{C_{\eta} A} \\
+        &=
+        \begin{pmatrix}
+            -(-1)^n d_{F B} \circ F f & 0 \\
+            (-1)^n \eta_B \circ F f & d_{G B} \circ G f
+        \end{pmatrix} \\
+        &\hspace{0.4cm} - (-1)^n
+        \begin{pmatrix}
+            -(-1)^n (F f) \circ d_{F A} & 0 \\
+            (G f) \circ \eta_A & (G f) \circ d_{G A}
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            (-1)^{n + 1}\tuple*{d_{F B} \circ F f - (-1)^n (F f) \circ d_{F A}} & 0 \\
+            (-1)^n\tuple*{\eta_B \circ F f - (G f) \circ \eta_A} & d_{G B} \circ G f - (-1)^n (G f) \circ d_{G A}
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            \Sigma d_{\C_{\dg}(F A, F B)}(F f) & 0 \\
+            (-1)^{n + 1} 0 & d_{\C_{\dg}(G A, G B)}(G f)
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            \Sigma F d_{\Cc^{\op}(A, B)}(f) & 0 \\
+            0 & G d_{\Cc^{\op}(A, B)}(f)
+        \end{pmatrix} \\
+        &= \C_{\eta} d_{\Cc^{\op}(A, B)}(f).
+    \end{align*}
+    % TODO: Unit diagram og functorial diagram?
+\end{remark}
 
 For a triangulated category, we also need to define the triangulation. The triangulation of \( H^0(\dgM) \) is as follows.
 \begin{definition}

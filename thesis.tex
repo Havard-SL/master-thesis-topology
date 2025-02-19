@@ -88,10 +88,15 @@
 % TikZ!
 \usepackage{tikz}
 
+% TODO: Fiks bold C, og mattefont (Eg har prøvd men da funke ikkje!!).
+
+% For tjukke mattesymbol.
+\usepackage{bm}
+
 % Set fontar som blir brukt
 \setmainfont{Latin Modern Roman}
 \setmathfont{Latin Modern Math} % Dette er standardfonten
-\setmathfont[range={\setminus}]{Asana Math} % Somehow setting this changes tikz-cd arrow style
+\setmathfont[range=bfup/Latin]{XITS Math} % Somehow setting this changes tikz-cd arrow style
 % \setmainfont{Atkinson Hyperlegible}
 % \setmainfont{GFS Neohellenic Math}
 % \setmainfont{Fira Sans}

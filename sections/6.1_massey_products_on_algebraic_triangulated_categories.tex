@@ -74,7 +74,7 @@ WIP START
 
     Then
     \[
-        \dgM(\Sigma^{-i} F, G) = \dgM(F, G)_{+1}.
+        \dgM(\Sigma^{-i} F, G) = \dgM(F, G)_{+i}.
     \]
 \end{lemma}
 \begin{proof}
@@ -90,7 +90,11 @@ WIP START
 
     This follows because for any \( f \in \Cc^{\op}(A', A'') \) we have the following equality
     \[
-        (-1)^{nj} \eta_{A''} \circ (\Sigma^{-i} F f) = (-1)^{nj} \eta_{A''} \circ ((-1)^{ji}F f) = (-1)^{(n + i)j}\eta_{A''} \circ (F f).
+        (-1)^{nj} \eta_{A''} \circ (\Sigma^{-i} F f) = (-1)^{nj} \eta_{A''} \circ ((-1)^{ji}F f) = (-1)^{(n + i)j}\eta_{A''} \circ (F f),
+    \]
+    and therefore
+    \[
+        (G f) \circ \eta_{A'} = (-1)^{nj} \eta_{A''} \circ (\Sigma^{-i} F f) = (-1)^{(n + i)j}\eta_{A''} \circ (F f).
     \]
 \end{proof}
 
