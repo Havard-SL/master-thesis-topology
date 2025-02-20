@@ -73,8 +73,12 @@ Before defining the stable module category, we prove a lemma that will be used t
     which implies that \( G \) is also closed under \( R \) multiplication.
 \end{proof}
 
+In order to get a triangulated category, we have to use a specific type of ring, as defined below.
+\begin{definition}
+    A commutative ring with identity is called a \emph{Frobenius ring}, if every injective module is projective, and vice versa.
+\end{definition}
+
 The following is the definition of the stable module category.
-% TODO: Frobenius algebra for sterk antaking?
 \begin{definition}
     \label{def:stable_module_category}
     Let \( R \) be a \emph{Frobenius ring}.
@@ -248,7 +252,7 @@ The definition of the syzygy functor is closely tied to a choice of \( P_A \)s a
                 \end{tikzpicture}
             \end{center}
 
-            We have that for a morphism \( f: A \to B \), there exists a morphism \( p_f \) from the lifting property of projective modules such that the right square commutes. Note that the choice of \( p_f \) is \emph{not neccesarily unique}.
+            We have that for a morphism \( f: A \to B \), there exists a morphism \( p_f \) from the lifting property of projective modules such that the right square commutes. Note that the choice of \( p_f \) is not neccesarily unique.
 
             Furthermore, since
             \[
@@ -494,7 +498,7 @@ An important detail still missing to show that \( \Omega^{-1} \) could be a shif
 
 We can define another functor, \( \Sigma \), which will turn out to be the inverse of \( \Omega \) and the future shift functor in making \( \Mc \) a triangulated category.
 
-% TODO: Kopling med cosyzygy.
+% TODO: Kopling med cosyzygy?
 \begin{definition}[The functor \( \Sigma \)]
     \label{def:stmod_sigma}
     Since \( \Mod(R) \) has enough projectives, let \( I \) be a collection of tuples for every object \( A \), on the form \( I = \set{\tuple{I_A, \kappa_A, \Omega A}}_{A \in \Mod(R)} \), consisting of an injective module \( I_A \), a morphism \( \kappa_A \), and a module \( \Sigma A \), where \( \kappa_A \) is a monomorphism from \( A \) to \( P_A \), and \( \Sigma A \) is a cokernel of \( \kappa_A \).
@@ -507,9 +511,7 @@ We can define another functor, \( \Sigma \), which will turn out to be the inver
         \item {
             For \( [f] \in \Mc(A, B) \), let \( \Sigma [f] \) be constructed as follows.
 
-            % WIP: Sebastian tilbakemeldingar.
-
-            Consider the following diagram in \( \Mod(R) \) excluding the dashed arrows,
+            Consider the following diagram in \( \Mod(R) \), with the relevant objects and non-dashed morphisms from \( I \),
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -529,7 +531,7 @@ We can define another functor, \( \Sigma \), which will turn out to be the inver
                 \end{tikzpicture}
             \end{center}
 
-            We have that for a morphism \( f: A \to B \), there exists a morphism \( i_f \) from the universal property of injective objects such that the left square commutes. Please note that this morphism is \emph{not neccesarily} unique.
+            We have that for a morphism \( f: A \to B \), there exists a morphism \( i_f \) from the universal property of injective objects such that the left square commutes. Note that this morphism is not neccesarily unique.
 
             Furthermore, since
             \[
@@ -545,7 +547,7 @@ Similar to \( \Omega \), we have the following notation.
     For \( f \in \Mod(R)(A, B) \), let \( \Sigma f \) refer to a morphism which fits the diagram in \autoref{def:stmod_sigma}. Note that this is not a well-defined assignment, as multiple morphisms in \( \Mod(R)(\Sigma A, \Sigma B) \) could be labeled as \( \Sigma f \).
 \end{notation}
 
-Now it remains to show every desired property of \( \Omega \), like being a well-defined, an endofunctor, and additive. However, that is a lot of work, that can luckily be skipped because of the previous legwork on proving the respective properties for \( \Omega \).
+Now it remains to show every desired property of \( \Sigma \), like being well-defined, an endofunctor, and additive.
 \begin{lemma}
     \label{lem:stmod_sigma_well-defined_additive_endofunctor}
     \( \Sigma \) is a well-defined and additive endofunctor on \( \Mc \).
@@ -560,9 +562,9 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
     \( \Omega \) is an auto-equivalence with inverse \( \Sigma \).
 \end{theorem}
 \begin{proof}
-    This thesis will only show that \( \Id_{\Mc} \) is naturally isomorphic to \( \Sigma\Omega \). The omitted part that \( \Id_{\Mc} \) is naturally isomorphic to \( \Omega\Sigma \) is very similar, and uses many dual properties.
+    We will only show that \( \Id_{\Mc} \) is naturally isomorphic to \( \Sigma \Omega \). The omitted part that \( \Id_{\Mc} \) is naturally isomorphic to \( \Omega \Sigma \) is very similar, and uses many dual properties.
 
-    First show that for any \( A \in \Mc \), there exists an isomorphism \( A \to \Sigma\Omega A \). Consider the following commutative diagram excluding the dashed arrows
+    First show that for any \( A \in \Mc \), there exists an isomorphism \( A \to \Sigma \Omega A \). Consider the following commutative diagram excluding the dashed arrows,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -588,7 +590,7 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-3-2) edge[two headed] node {\pi_A} (m-3-3);
         \end{tikzpicture}
     \end{center}
-    then there exists \( i_{\phi_1} \) from the injective property morphism induced from \( \iota_A \). Then since \( \Mod(R) \) is an abelian category, \( A \) is a cokernel of \( \iota_A \), and by
+    then there exists \( i_{\phi_1} \) from the injective property of \( I_{\Omega A} \), induced by \( \iota_A \). In addition, since \( \Mod(R) \) is an abelian category, \( A \) is a cokernel of \( \iota_A \), and by
     \[
         \rho_{\Omega A} \circ i_{\phi_1} \circ \iota_A = \rho_{\Omega A} \circ \kappa_{\Omega A} = 0,
     \]
@@ -617,13 +619,13 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
 
     Using the previous commutative diagram, we get that every square commutes. But since
     \[
-        (p_{\phi_2} \circ p_{\phi_1} - \Id_{P_A}) \circ \iota_A = \iota_A \circ 0 = 0,
+        (i_{\phi_2} \circ i_{\phi_1} - \Id_{P_A}) \circ \iota_A = \iota_A \circ 0 = 0,
     \]
     then from the cokernel property there exist a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. But then we have that
     \[
-        (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (p_{\theta_2} \circ p_{\theta_1} - \Id_{P_A}) = \pi_A \circ \theta \circ \pi_A,
+        (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (i_{\theta_2} \circ i_{\theta_1} - \Id_{P_A}) = \pi_A \circ \theta \circ \pi_A,
     \]
-    and since \( \pi_A \) is an epimorphism, we get that the lower triangle commutes. This implies that \( [\phi_2 \circ \phi_1] = [\Id_A] \).
+    and since \( \pi_A \) is an epimorphism, we get that the lower triangle commutes. This implies that \( [\phi_2 \circ \phi_1 - \Id_A] = [0] \), which implies \( [\phi_2 \circ \phi_1] = [\Id_A] \).
     
     By a similar agument that is omitted for brevity, we can show that \( [\phi_1 \circ \phi_2] = [\Id_{\Sigma\Omega A}] \), which means that \( [\phi_1] \) and \( [\phi_2] \) are isomorphisms from \( A \) to \( \Sigma\Omega A \).
 
@@ -681,7 +683,7 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
     \end{center}
     where every small square, and therefore rectangle, commutes.
 
-    These diagrams gives rise to the following commutative diagram
+    These diagrams gives rise to the following commutative diagram, excluding the dashed arrow,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2.7cm} {
@@ -701,28 +703,71 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-2-2) edge[two headed] node[swap] {\rho_{\Omega B}} (m-2-3);
         \end{tikzpicture}
     \end{center}
-    where from the cokernel property of \( A \), we get an induced morphism \( \theta \), and from the epimorphism property of \( \pi_A \), it makes the lower triangle commute. And since \( R \) is assumed to be a Frobenius ring, this implies that every injective module over \( R \) is projective and vice versa. This implies
+    % TODO: Sebastian synast eg skal fordjupa her, men det er eit veldig likt argument som det eg har gjort ovanfor fleire gangar. Usikker på kva eg skal gjere her.
+    where from the cokernel property of \( A \), we get an induced morphism \( \theta \). Furthermore, from the epimorphism property of \( \pi_A \), the lower triangle commutes. And since \( R \) is assumed to be a Frobenius ring, \( I \) is also projective. This implies
     \[
         [\phi_1^B \circ f] = [(\Sigma \Omega f) \circ \phi_1^A],
     \]
     which means that \( [\phi_1] \) is a natural isomorphism from \( \Id_{\Mc} \) to \( \Sigma \Omega \), with inverse \( [\phi_2] \).
+
+    As mentioned at the start, the proof that \( \Id_{\Mc} \) is naturally isomorphic to \( \Omega \Sigma \) is very similar to the above proof, but using dual properties.
 \end{proof}
 
 An interesting consequence of how \( \Omega \) and \( \Sigma \) are defined is that if we were to chose a different \( P \) or \( I \) in their definitions, then it would yield different, but naturally isomorphic functors. A proof of this statement for \( \Sigma \) can be found in \cite[Remark on p. 13]{Happel_1988}, with the proof for \( \Omega \) being dual.
 
 Before we can show the triangulation of \( \Mc \), we first needs to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Chapter 1, Subsection 2.5]{Happel_1988}.
 
+% TODO: Slå i saman denne definisjonen og remarket nedanfor?
 \begin{definition}
     \label{def:stmod_cone}
     Let \( f \in \Mod(R)(A, B) \).
     
-    Then define a \emph{cone of \( f \)} to be an object \( C_f \) from the following commutative diagram in \( \Mod(R) \)
+    Then define a \emph{cone of \( f \)} to be a pushout object of the following diagram
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& B \\
+                I_A, \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f} (m-1-2)
+                    edge node[swap] {\kappa_A} (m-2-1);
+        \end{tikzpicture}
+    \end{center}
+    and is labeled as \( C_f \).
+
+    This pushout also defines two morphisms \( g \) and \( \gamma_f \) which fit into the following pushout square,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& B \\
+                I_A \& C_f. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f} (m-1-2)
+                    edge node[swap] {\kappa_A} (m-2-1)
+                (m-1-2) edge node {g} (m-2-2)
+
+                (m-2-1) edge node {\gamma_f} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+\end{definition}
+
+Following the definition of a cone, we can define the standard triangles of \( \Mc \) as induced from some triangles in \( \Mod(R) \). The following remark walks through the construction, which will be very useful in proofs.
+
+\begin{remark}
+    \label{rem:stmod_cone}
+    Let \( f \in \Mod(R)(A, B) \), and let \( C_f, g \) and \( \gamma_f \) be as in \autoref{def:stmod_cone}.
+    
+    Consider the following commutative diagram excluding the dashed arrows,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 A \& B \\
                 I_A \& C_f \\
-                \& \Sigma A \\
+                \& \Sigma A. \\
             };
 
             \draw[math]
@@ -733,19 +778,12 @@ Before we can show the triangulation of \( \Mc \), we first needs to define the 
 
                 (m-2-1) edge node {\gamma_f} (m-2-2)
                     edge node {\rho_A} (m-3-2)
-                (m-2-2) edge node {h} (m-3-2);
+                (m-2-2) edge[dashed] node {h} (m-3-2);
         \end{tikzpicture}
     \end{center}
-    where \( \tuple{I_A, \kappa_A, \Sigma A} \) is as defined in \autoref{def:stmod_sigma}. Furthermore, \( \tuple{C_f, g, \gamma_f} \) is the pushout of \( \tuple{A, f, \kappa_A} \), and \( h \) is the pushout universal property induced by \( \rho_A \) and \( 0 \).
-\end{definition}
+    Then there exist some morphism \( h: C_f \to \Sigma A \) from the pushout property of \( C_f \).
 
-There are some important details following this definition that will be useful in future results.
-
-\begin{remark}
-    \label{rem:stmod_cone_pushout_properties}
-    Use the notation and morphisms from \autoref{def:stmod_cone}.
-
-    By known pushout facts, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism for \( \alpha \).
+    This diagram will form the backbone of the distinguished triangles in \( \Mc \).
 \end{remark}
 
 Now, we can finally define the triangulation on \( \Mc \).
@@ -765,8 +803,20 @@ Now, we can finally define the triangulation on \( \Mc \).
                 (m-1-3) edge node {[h]} (m-1-4);
         \end{tikzpicture}
     \end{center}
-    where \( C_f \), \( g \), and \( h \) are defined as in \autoref{def:stmod_cone}.
+    for any \( f \in \Mod(R)(A, B) \), and where \( C_f \), \( g \), and \( h \) are defined as in \autoref{rem:stmod_cone}.
 \end{definition}
+
+There are some important details from the definition of standard triangles that will be important in proving that \( \Mc \) has a triangulation.
+
+% TODO: Sebastian vil at eg skal sløyfa "Consider the objects and ..." setningen. Skal eg?
+\begin{remark}
+    \label{rem:stmod_cone_pushout_properties}
+    Consider the objects and morphisms of \autoref{rem:stmod_cone}.
+
+    Since \( \Mod(R) \) is an abelian category, then by known pushout properties, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
+\end{remark}
+
+% WIP: Sebastian tilbakemeldingar.
 
 Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, the definition of the cone of a morphism in \( \Mc \), is not well defined, since every morphism could have multiple cones depending on the choice of representatives. This is not a problem in this thesis, since by the formulation of \( \Delta \), any standard triangle arising from any representation of \( [f] \) is included in \( \Delta \), and so there are multiple ``standard triangles'' for every morphism in \( \Mc \).
 
