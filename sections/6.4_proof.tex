@@ -1,5 +1,7 @@
 We start by proving some lemmas and giving some definitions that are required for the proof.
 
+% TODO: Burde klarifisera likhet vs isomorfi. Kvifor er Sigma^i for morfiar i degree partal likheit?
+
 \begin{corollary}
     \label{cor:dgm_i_eq_dgm_0_shifted_codomain}
     \[
@@ -15,7 +17,14 @@ We start by proving some lemmas and giving some definitions that are required fo
 \end{proof}
 
 \begin{remark}
-    An interesting consequence of the definition of \( \dgM \) is that since \( (\Sigma F) \oplus G \) and \( C_{\eta} \) WIP Skriv at dei er like i grad n sjølv om dei ikkje sender same differentsial.
+    \label{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms}
+    An interesting consequence of the definition of \( \dgM \) is that since \( (\Sigma F) \oplus G \) and \( C_{\eta} \) has the property that for every \( A \in \Cc \), and every \( n \in \Zb \),
+    \[
+        ((\Sigma F) \oplus G)(A)_n = (\Sigma F A)_n \oplus (G A)_n = C_{\eta}(A)_n,
+    \]
+    then for any \( H \in \dgM \) and any \( i \in \Zb \), \( \dgM(H, (\Sigma F) \oplus G)_i = \dgM(H, C_{\eta})_i \) as well as \( \dgM((\Sigma F) \oplus G, H)_i = \dgM(C_{\eta}, H)_i \).
+
+    In other words, the differentials of the \( ((\Sigma F) \oplus G) A \)s and \( C_{\eta} A \)s only affect the differentials of the morphism spaces in \( \dgM \), but not the modules in each degree.
 \end{remark}
 
 The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \) and is the reason we can compare Toda brackets and Massey products in algebraic triangulated categories.
@@ -63,7 +72,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
 
     % WIP: Kvifor kan eg laga matrise av dgmod morfiar og få ein dgmod morfi?
     %   Kvifor kan alpha gå inn i cone?
-    By \autoref{cor:dgm_i_eq_dgm_0_shifted_codomain}, consider \( t \) as an element of \( \dgM(X_1, \Sigma^{-i} X_3)_0 \). Then we can construct the following morphism.
+    By \autoref{cor:dgm_i_eq_dgm_0_shifted_codomain}, consider \( t \) as an element of \( \dgM(X_1, \Sigma^{-1} X_3)_0 \). Then we can construct the following morphism.
     \[
         \alpha =
         \begin{pmatrix}
@@ -72,7 +81,19 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
         \end{pmatrix}
         \in \dgM(X_1, X_2 \oplus \Sigma^{-1} X_3)_0.
     \]
-    Since \( (X_2 \oplus \Sigma^{-1} X_3)_0 \)
+    By \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms}, we can consider \( \alpha \) as an element of \( \dgM(X_1, \Sigma^{-1} C_{\eta}) \).
+
+    Similarly, consider \( s \) as an element of \( \dgM(X_2, \Sigma^{-1} X_4)_0 \), and \( g_3 \) as a morphism in \( \dgM(\Sigma^{-1} X_3, \Sigma^{-1} X_4)_0 \). Then define
+    \[
+        \beta =
+        \begin{pmatrix}
+            s & -g_3
+        \end{pmatrix}
+        : X_2 \oplus \Sigma^{-1} X_3 \to \Sigma^{-1} X_4,
+    \]
+    which also by \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms} can be considered as a morphism in \( \dgM(\Sigma^{-1} C_{\eta}, \Sigma^{-1} X_4)_0 \).
+
+    WIP
 \end{proof}
 
 The following is the proof of \autoref{theorem:massey_equals_toda}.
