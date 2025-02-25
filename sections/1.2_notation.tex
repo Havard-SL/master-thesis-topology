@@ -1,0 +1,35 @@
+This thesis will assume that the reader is already familiar with basic homological algebra as well as some module theory.
+
+Some assumptions in results will be implied by definitions and not be explicitly stated in theorems. However, there are some conventions that are used throughout this thesis.
+
+First, the following is the chain complex convention.
+\begin{notation}
+    \label{not:chain_complex}
+    Every chain complex will have \emph{ascending} order. This is sometimes called a \emph{cochain complex} in other literature.
+
+    Differentials are indexed according to the order of their domain. I.e., for a chain complex \( A = \tuple{A_i}_{i \in \Zb} \), the \( n \)-th differential has the same index as its domain, \( d_n: A_n \to A_{n + 1} \).
+    
+    We try to keep to the same convention of indexing with respect to the domain when considering morphisms between graded objects.
+\end{notation}
+
+Second, the module notation is as follows.
+\begin{notation}
+    \( \Mod(R) \) will refer to \( R \)-modules, and \( \mod(R) \) will refer to \emph{finitely generated} \( R \)-modules.
+\end{notation}
+
+Third, the following arrow conventions will be used.
+\begin{notation}
+    Tailed arrows \( (\rightarrowtail) \) represent monomorphisms, and double-headed arrows \( (\twoheadrightarrow) \) represent epimorphisms.
+\end{notation}
+
+% TODO: Stemmer dette? Går det greit å oversjå alle kanoniske isomorfiar?
+Fourth, the term ``canonical isomorphism'' will be used a lot in this thesis.
+\begin{notation}
+    An isomorphism between two objects in the same or different categories refers to an isomorphism that is essentially an equality on the underlying definition.
+
+    For example, given a category \( \Cc \), \( \Cc(A, B) \) is \emph{canonically isomorphic} to \( \Cc^{\op}(B, A) \), since by definition \( \Cc^{\op}(B, A) \) ``is'' \( \Cc(A, B) \), but they are different objects, and so they are not ``equal''.
+
+    We will mention when there is a canonical isomorphism, but will suppress them in calculations for clarity. E.g., we will write \( f \in \Cc(A, B) \Leftrightarrow f \in \Cc^{\op}(B, A) \).
+\end{notation}
+
+% TODO: Clean up superflous notation.

@@ -2,13 +2,13 @@ A triangulated category is closely linked to some objects and morphisms making `
 
 \begin{definition}[Triangles]
     \label{def:triangles}
-    Let \( \Tc \) be an additive category, and let \( \Sigma: \Tc \to \Tc \) be an additive auto-equivalence.
+    Let \( \Tc \) be an additive category, and \( \Sigma: \Tc \to \Tc \) be an additive auto-equivalence.
 
     A \emph{triangle in \( \Tc \)}, is a diagram in \( \Tc \) on the form
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                A \& B \& C \& \Sigma A \\
+                A \& B \& C \& \Sigma A, \\
             };
 
             \draw[math]
@@ -17,6 +17,7 @@ A triangulated category is closely linked to some objects and morphisms making `
                 (m-1-3) edge node {h} (m-1-4);
         \end{tikzpicture}
     \end{center}
+    or shortened to just \( \tuple{f, g, h} \).
 
     A \emph{triangle morphism} from
     \begin{center}
@@ -60,16 +61,16 @@ A triangulated category is closely linked to some objects and morphisms making `
     Furthermore, if \( a, b, \) and \( c \) are isomorphisms, then \( (a, b, c) \) is called an \emph{isomorphism of triangles} and the two triangles are said to be \emph{isomorphic}.
 \end{definition}
 
-This thesis will use the following definition of a triangulated category.
+We will use the following definition of a triangulated category.
 
 \begin{definition}[Triangulated category]
     \label{def:triangulated_category}
-    Let \( \Tc \) be an additive category, let \( \Sigma: \Tc \to \Tc \) be an additive auto-equivalence, and let \( \Delta \) be a class of triangles (\autoref{def:triangles}) in \( \Tc \).
+    Let \( \Tc \) be an additive category, \( \Sigma: \Tc \to \Tc \) be an additive auto-equivalence, and \( \Delta \) be a class of triangles (\autoref{def:triangles}) in \( \Tc \).
 
     Furthermore, let \( \Tc \), \( \Sigma \) and \( \Delta \) satisfy the following four axioms:
     \begin{enumerate}[label={(\bfseries TR\arabic*)}]
         \item {
-            The following three points must be satisfied:
+            The following three conditions must be satisfied:
             \begin{enumerate}
                 \item {
                     For any \( f: X \to Y \) in \( \Tc \), there exist some object \( C_f \in \Tc \), called a \emph{cone of \( f \)} along with morphisms \( \iota_f \) and \( \pi_f \), such that there is a triangle,
@@ -203,16 +204,18 @@ This thesis will use the following definition of a triangulated category.
             \end{center}
             and let \( \tuple{f, g, h} \), \( \tuple{n, m, k} \), and \( \tuple{n \circ f, j, l} \) be three triangles in \( \Delta \).
 
-            Then there exist some morphisms, \( \phi \) and \( \psi \), such that \( \tuple{\phi, \psi, (\Sigma g) \circ k} \) is a triangle in \( \Delta \) and the entire diagram, including the dashed arrows, commute.
+            Then there exist some morphisms, \( \phi \) and \( \psi \), such that \( \tuple{\phi, \psi, (\Sigma g) \circ k} \) is a triangle in \( \Delta \) and the entire diagram, including \( \phi \) and \( \psi \), commute.
         }
     \end{enumerate}
 
     Then \( \tuple{ \Tc, \Sigma, \Delta } \), or shortened to just \( \Tc \), is called a \emph{triangulated category}, or a \emph{triangulation} of \( \Tc \). The functor \( \Sigma \) is called the \emph{shift} (or \emph{suspension}) \emph{functor} of \( \Tc \), and every triangle in \( \Delta \) is called a \emph{distinguished} (or \emph{exact}) \emph{triangle} in \( \Tc \). 
 \end{definition}
 
+% TODO: Nemn pretriangulerte kategoriar?
+
 Although the definition is axiomatic and may seem arbitrary, there are surprisingly many categories that admit the structure of a triangulated category.
 
-There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what this thesis calls {\bf (TR4)}, he instead uses another axiom, closer to Verdier's original definition, which upon close inspection is equivalent (Assuming {\bf (TR1)}) to our {\bf (TR4)}.
+There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what we call {\bf (TR4)}, he instead uses another axiom, closer to Verdier's original definition, which upon close inspection is equivalent (Assuming {\bf (TR1)}) to our {\bf (TR4)}.
 
 Some axioms of a triangulated category are superfluous in the fact that they are implied by the other axioms. An example is that the axiom {\bf (TR3)} can be skipped if we still assume {\bf (TR1), (TR2)} and {\bf (TR4)}, as was also shown by \cite[Lemma 2.2]{May_2001}.
 

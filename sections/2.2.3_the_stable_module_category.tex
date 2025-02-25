@@ -2,40 +2,45 @@
 
 A triangulated category that will be central in this thesis is the stable module category. Therefore, the definition will be given in more details than the previous two examples of triangulated categories.
 
+% TODO: Marius vil definera projektive objekt. Overkill?
 Before defining the stable module category, we prove a lemma that will be used to define the morphisms.
 \begin{lemma}
     \label{lem:morphisms_factoring_through_projectives_r-submodule}
     Let \( R \) be a commutative ring with identity.
 
-    Let \( G \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective object.
+    Let \( G \) be the subset of \( \Mod(R)(A, B) \) consisting of module morphisms that factor through a projective module.
 
     Then \( G \) is an \( R \)-submodule of \( \Mod(R)(A, B) \).
 \end{lemma}
 \begin{proof}
-    Let \( f \) and \( g \) be two morphisms that factor through the projective objects \( P \) and \( Q \) respectively. Then we have the following commutative diagrams
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                A \& P \& B \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {f_1} (m-1-2)
-                    edge[curve={height=25pt}] node[swap] {f} (m-1-3)
-                (m-1-2) edge node {f_2} (m-1-3);
-        \end{tikzpicture}
-        and
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                A \& Q \& B. \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {g_1} (m-1-2)
-                    edge[curve={height=25pt}] node[swap] {g} (m-1-3)
-                (m-1-2) edge node {g_2} (m-1-3);
-        \end{tikzpicture}
-    \end{center}
+    Let \( f \) and \( g \) be two morphisms that factor through the projective objects \( P \) and \( Q \), respectively. Then we have the following commutative diagrams
+    \[
+        \begin{aligned}
+            \begin{tikzpicture}
+                \diagram{m}{1cm}{1cm} {
+                    A \& P \& B \\
+                };
+    
+                \draw[math]
+                    (m-1-1) edge node {f_1} (m-1-2)
+                        edge[curve={height=25pt}] node[swap] {f} (m-1-3)
+                    (m-1-2) edge node {f_2} (m-1-3);
+            \end{tikzpicture}
+        \end{aligned}
+        \text{ and }
+        \begin{aligned}
+            \begin{tikzpicture}
+                \diagram{m}{1cm}{1cm} {
+                    A \& Q \& B. \\
+                };
+    
+                \draw[math]
+                    (m-1-1) edge node {g_1} (m-1-2)
+                        edge[curve={height=25pt}] node[swap] {g} (m-1-3)
+                    (m-1-2) edge node {g_2} (m-1-3);
+            \end{tikzpicture}
+        \end{aligned}
+    \]
 
     We can then construct the morphism
     \begin{center}
@@ -70,7 +75,7 @@ Before defining the stable module category, we prove a lemma that will be used t
                 (m-1-2) edge node {f_2} (m-1-3);
         \end{tikzpicture}
     \end{center}
-    which implies that \( G \) is also closed under \( R \) multiplication.
+    which implies that \( G \) is also closed under multiplication in \( R \).
 \end{proof}
 
 In order to get a triangulated category, we have to use a specific type of ring, as defined below.
@@ -83,7 +88,7 @@ The following is the definition of the stable module category.
     \label{def:stable_module_category}
     Let \( R \) be a \emph{Frobenius ring}.
 
-    Then the \emph{stable module category over \( R \)}, denoted \( \Mc \) in this thesis, is defined in the following way:
+    Then the \emph{stable module category over \( R \)}, denoted \( \Mc \), is defined in the following way:
     \begin{enumerate}
         \item {
             The objects are modules over \( R \).
@@ -114,9 +119,9 @@ By the following remark, composition in \autoref{def:stable_module_category} is 
     Composition in \autoref{def:stable_module_category} is well-defined.
 \end{remark}
 \begin{proof}
-    We need to check that two different choices of representatives of \( [f] \) and \( [g] \) yields the same value.
+    We need to check that two different choices of representatives of \( [f] \) and \( [g] \) yield the same value.
 
-    Let \( f + \widetilde{f} \) and \( g + \widetilde{g} \) be two different representatives of \( [f] \) and \( [g] \), with \( \widetilde{f} \) and \( \widetilde{g} \) factoring through some projectives.
+    Let \( f + \widetilde{f} \) and \( g + \widetilde{g} \) be two different representatives of \( [f] \) and \( [g] \), with \( \widetilde{f} \) and \( \widetilde{g} \) factoring through some projective modules.
 
     Then it follows that
     \[
@@ -126,27 +131,27 @@ By the following remark, composition in \autoref{def:stable_module_category} is 
     Every term other than \( [g \circ f] \) factors through a projective and is therefore equal to \( 0 \) in \( \Mc(A, C) \).
 \end{proof}
 
-In the general definition of the stable module category, it is not required that the ring is a Frobenius ring. However, as will become apparent later in this subsection, this is a requirement to having a triangulated structure. Since this thesis will only be considering stable module categories which are triangulated, this assumption is made from the beginning.
+In the general definition of the stable module category, it is not required that the ring is a Frobenius ring. However, as will become apparent later on, it is a requirement to have a triangulation. Since we will only be considering stable module categories which are triangulated, this assumption is made from the beginning.
 % TODO: Faktasjekk, er det verkeleg sant at Frobenius er naudsynt? Las eg ikkje ein stad at nok injektiv og projektive og dei samanfaller er godt nok?
 
 In order to admit a triangulation, we need to prove that the stable module category is additive.
 
+% TODO: Forenkla beviset, biprodukt argumentet spesielt. Ikkje 100% sikker på at Mac Lane seier det eg ynskjer, berre 80%ish.
 \begin{lemma}
     \( \Mc \) is an additive category.
 \end{lemma}
 \begin{proof}
-    There are two parts to this proof. First, show that \( \Mc \) is pre-additive and then second, show that \( \Mc \) has finite products which in addition to being pre-additive would imply that \( \Mc \) is additive by TODO:Cite.
-    % https://en.wikipedia.org/wiki/Additive_category
+    There are two parts to this proof. First, we show that \( \Mc \) is pre-additive and second, we show that \( \Mc \) has finite products which in addition to being pre-additive would imply that \( \Mc \) is additive by \cite[p. 251]{Mac_Lane_1995}.
 
     To show that \( \Mc \) is pre-additive there are two properties that need to be shown
     \begin{enumerate}
         \item {
-            First, show that for any \( A, B \in \Mc \) that \( \Mc(A, B) \) is an abelian group.
+            First, we show that for any \( A, B \in \Mc \) that \( \Mc(A, B) \) is an abelian group.
 
-            This follows immediately, since \( \Mc(A, B) \) is a quotient module, and is therefore an \( R \)-module and, hence, an abelian group.
+            This follows immediately from the definition, since \( \Mc(A, B) \) is a quotient module, and is therefore an \( R \)-module and, hence, an abelian group.
         }
         \item {
-            Second, show that composition is bilinear.
+            Second, we show that composition is bilinear.
 
             Consider \( [g], [g'] \in \Mc(B, C) \) and \( [f], [f'] \in \Mc(A, B) \). Consider the following equation
             \begin{align*}
@@ -199,11 +204,11 @@ In order to admit a triangulation, we need to prove that the stable module categ
     \end{center}
     commutes.
 
-    Let \( \iota_A, \iota_B \) denote the canonical split monomorphisms from the universal property of the coproduct. Since \( A \oplus B \) is a biproduct in \( \Mod(R) \), we have
+    Let \( \iota_A \), and \( \iota_B \) denote the canonical split monomorphisms from the universal property of the coproduct. Since \( A \oplus B \) is a biproduct in \( \Mod(R) \), we have
     \[
         \Id_{A \oplus B} = \iota_A \circ \pi_A + \iota_B \circ \pi_B.
     \]
-    Consider the following equation,
+    Thus,
     \begin{align*}
         [f - g] &= [\Id_{A \oplus B} \circ (f - g)] \\
         &= [\iota_A \circ \pi_A \circ (f - g) + \iota_B \circ \pi_B \circ (f - g)] \\
@@ -215,14 +220,20 @@ In order to admit a triangulation, we need to prove that the stable module categ
 
 The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is dual to the ``syzygy functor''. We start by defining what the syzygy functor is, and afterwards define the shift functor.
 
-The syzygy functor as well as the shift functor exists in the category of modules over a commutative ring with identity because it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \), as well as an epimorphism, \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and \( \pi_A \) is not necessarily unique up to isomorphism, and two different choices of \( P_A \) could be non-isomorphic. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Equal to the projective case, \( I_A \) is not neccesarily unique up to isomorphism and \( \iota_A \) is not necessarily unique.
+% MS-Question: Marius tilbakemelding i dette avsnittet er uklart.
+The syzygy functor as well as the shift functor exists in the category of modules over a commutative ring with identity (e.g., a Frobenius ring) because it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \), as well as an epimorphism \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and \( \pi_A \) is not necessarily unique up to isomorphism, and two different choices of \( P_A \) could be non-isomorphic. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Equal to the projective case, \( I_A \) is not necessarily unique up to isomorphism and \( \iota_A \) is not necessarily unique.
 
-The definition of the syzygy functor is closely tied to a choice of \( P_A \)s and \( \pi_A \)s for every object \( A \). That is why the start of the following definition is the way it is.
+The definition of the syzygy functor is closely tied to a choice of \( P_A \)'s and \( \pi_A \)'s for every object \( A \).
 
 % TODO: Kopling med syzygy?
+% TODO: Skriv betre P (og seinare I) forklaringa.
 \begin{definition}[The functor \( \Omega \)]
     \label{def:stmod_omega}
-    Since \( \Mod(R) \) has enough projectives, let \( P \) be a collection of tuples for every object \( A \), on the form \( P = \set{\tuple{P_A, \pi_A, \Omega A}}_{A \in \Mod(R)} \), consisting of a projective module \( P_A \), a morphism \( \pi_A \), and a module \( \Omega A \), where \( \pi_A \) is an epimorphism from \( P_A \) to \( A \), and \( \Omega A \) is a kernel of \( \pi_A \).
+    Let \( R \) be a Frobenius ring.
+
+    Let \( P = \set{\tuple{P_A, \pi_A, \Omega A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( P_A \) is a projective object, \( \pi_A: P_A \twoheadrightarrow A \) an epimorphism, and \( \Omega A \) is a kernel of \( \pi_A \). This exists because \( \Mod(R) \) has enough projectives.
+
+    WIP: Marius tilbakemeldingar
 
     Then define \( \Omega \) as the assignment of objects and morphisms in \( \Mc \) as follows:
     \begin{itemize}
@@ -817,7 +828,7 @@ There are some important details from the definition of standard triangles that 
     Since \( \Mod(R) \) is an abelian category, then by known pushout properties, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
 \end{remark}
 
-Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, the the cone of a morphism in \( \Mc \) is not neccesarily unique. This is not a problem in this thesis, since by the formulation of \( \Delta \), any standard triangle arising from any representation of \( [f] \) is included in \( \Delta \), and so there are multiple ``standard triangles'' for every morphism in \( \Mc \).
+Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, the the cone of a morphism in \( \Mc \) is not neccesarily unique. This is not a problem for us, since by the formulation of \( \Delta \), any standard triangle arising from any representation of \( [f] \) is included in \( \Delta \), and so there are multiple ``standard triangles'' for every morphism in \( \Mc \).
 
 The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints to the fact that we could have chosen \( \Delta \) differently, as is done in \cite[Definition 4.16]{Johan_Bachelor}.
 \begin{lemma}

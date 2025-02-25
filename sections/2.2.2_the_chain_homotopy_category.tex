@@ -1,8 +1,8 @@
-The chain homotopy category is one of the simplest triangulated categories to define, and is a good example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in \autoref{def:alg_tri_cat}. It will become clear from the definition of the chain homotopy category that it is an algebra inspired triangulated category, and so it fits (morally), as an algebraic triangulated category.
+The chain homotopy category is one of the simplest triangulated categories to define, and is a prototypical example of an algebraic triangulated category. The definition of an algebraic triangulated category will be given later in the thesis in \autoref{def:alg_tri_cat}. It will become clear from the definition of the chain homotopy category that it is an algebra inspired triangulated category, and so it fits (morally), as an algebraic triangulated category.
 
-% TODO: Skal eg vsa at kjedhomotopikategorien ar alg. tri. kat?
+% TODO: Skal eg visa at kjedhomotopikategorien ar alg. tri. kat?
 
-First, some notation on chain complexes.
+First, we define the category of chain complexes.
 
 \begin{definition}[Chain complex, \( \C(\Cc) \)]
     \label{def:chain_complex}
@@ -10,7 +10,7 @@ First, some notation on chain complexes.
     
     Then let \( \C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
 
-    As mentioned in \autoref{not:chain_complex}, the chain complexes have \emph{ascending} order, and differentials are indexed according to the order of their \emph{domain}.
+    As mentioned in \autoref{not:chain_complex}, the chain complexes have ascending order, and differentials are indexed according to the order of their domain.
 \end{definition}
 
 We start off by defining the category, and will later define the triangulation.
@@ -61,7 +61,7 @@ On \( \C(\Ac) \), we can define a simple automorphism of categories called the s
 
 \( \Sigma \) can be shown to be an additive automorphism on \( \C(\Ac) \), and can be induced to an additive automorphism with the same notation and name on \( \K(\Ac) \).
 
-The final piece of the puzzle is to define what the cone of a morphism in \( \K(\Ac) \) is. This turns out to also be inherited from \( \C(\Ac) \).
+Finally, we need to define what the cone of a morphism in \( \K(\Ac) \) is. This turns out to also be inherited from \( \C(\Ac) \).
 
 \begin{definition}[Cone in \( \C(\Ac) \)]
     Let \( f \in \C(\Ac)(A, B) \).
@@ -91,13 +91,12 @@ The final piece of the puzzle is to define what the cone of a morphism in \( \K(
                 (m-1-4) edge (m-1-5);
         \end{tikzpicture}
     \end{center}
-
-    This is the \emph{cone of \( f \)} in \( \C(\Ac) \).
+    called the \emph{cone of \( f \)} in \( \C(\Ac) \).
 \end{definition}
 
-We can think of the cone as having the underlying space of \( B \oplus \Sigma A \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
+We can think of the cone as having the underlying objects of \( B \oplus \Sigma A \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
 
-The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, {\bf (TR1)}, but ends up satisfying every axiom anyway.
+The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, {\bf (TR1)}, but ends up satisfying every axiom.
 
 \begin{definition}
     \label{def:chain_homotopy_dist}
@@ -108,7 +107,7 @@ The distinguished triangles are the triangles which seem to satisfy just the fir
     \]
 \end{definition}
 
-Together, \( \K(\Ac), \Sigma, \) and \( \Delta \) give the second example of a triangulated category.
+Combining, \( \K(\Ac), \Sigma, \) and \( \Delta \) we get our second example of a triangulated category.
 
 \begin{example}
     Let \( \K(\Ac) \) be as in \autoref{def:chain_homotopy_cat}, let \( \Sigma \) be as in \autoref{def:chain_complex_shift}, and let \( \Delta \) be as in \autoref{def:chain_homotopy_dist}.
@@ -117,4 +116,4 @@ Together, \( \K(\Ac), \Sigma, \) and \( \Delta \) give the second example of a t
 \end{example}
 For a proof of \( \K(\Ac) \) being triangulated, see \cite[Proposition 3.5.25]{Zimmermann_2014}.
 
-Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. We can see from \autoref{def:chain_complex_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointed to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.
+Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. We can see from \autoref{def:chain_complex_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointing to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.

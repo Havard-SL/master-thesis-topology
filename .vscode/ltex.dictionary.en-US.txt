@@ -23,3 +23,15 @@ Freudental
 colimit
 colimits
 functoriality
+Freudenthal
+cokernel
+Frobenius
+bilinearity
+biproduct
+biproducts
+coproduct
+syzygy
+projectives
+injectives
+epimorphism
+monomorphism

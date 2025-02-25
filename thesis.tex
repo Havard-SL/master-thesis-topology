@@ -6,10 +6,11 @@
 % Make language-specific tweaks, like changing section/theorem words or adding more hyphonation points.
 \usepackage[english]{babel}
 
-% For å kunna skriva æøå i tekstar MERK: Blir automatisk ubrukeleg med lualatex og fontspec
+% For å kunna skriva æøå i tekstar MERK: Blir automatisk ubrukeleg med lualatex og fontspec.
 % \usepackage[utf8]{inputenc}
 
-\usepackage[T1]{fontenc}
+% Veit ikkje kvifor ein brukar denne, men verkar som ein ikkje treng den om ein brukar lualatex.
+% \usepackage[T1]{fontenc}
 
 % Adds hyphenation points and aims to improve paragraph rendering.
 % Use [activate=false] to disable some features that causes issues with ragged2e. Not sure if setting this option disables every feature in the package entirely, or if it's still worth keeping then.
@@ -88,15 +89,10 @@
 % TikZ!
 \usepackage{tikz}
 
-% TODO: Fiks bold C, og mattefont (Eg har prøvd men da funke ikkje!!).
-
-% For tjukke mattesymbol.
-\usepackage{bm}
-
 % Set fontar som blir brukt
 \setmainfont{Latin Modern Roman}
 \setmathfont{Latin Modern Math} % Dette er standardfonten
-\setmathfont[range=bfup/Latin]{XITS Math} % Somehow setting this changes tikz-cd arrow style
+\setmathfont[range=bfup/Latin]{XITS Math} % Bold upright latin characters.
 % \setmainfont{Atkinson Hyperlegible}
 % \setmainfont{GFS Neohellenic Math}
 % \setmainfont{Fira Sans}
