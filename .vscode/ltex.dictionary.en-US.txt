@@ -35,3 +35,6 @@ projectives
 injectives
 epimorphism
 monomorphism
+endofunctor
+pushout
+pushouts

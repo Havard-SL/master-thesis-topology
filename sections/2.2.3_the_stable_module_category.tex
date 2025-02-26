@@ -218,7 +218,7 @@ In order to admit a triangulation, we need to prove that the stable module categ
     which implies that \( [f] = [g] \), and that \( A \oplus B \) is a product in \( \Mc \), and by the statement at the start, also a biproduct.
 \end{proof}
 
-The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is dual to the ``syzygy functor''. We start by defining what the syzygy functor is, and afterwards define the shift functor.
+The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is the inverse to the ``syzygy functor''. We start by defining what the syzygy functor is, and afterwards define the shift functor.
 
 % MS-Question: Marius tilbakemelding i dette avsnittet er uklart.
 The syzygy functor as well as the shift functor exists in the category of modules over a commutative ring with identity (e.g., a Frobenius ring) because it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \), as well as an epimorphism \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and \( \pi_A \) is not necessarily unique up to isomorphism, and two different choices of \( P_A \) could be non-isomorphic. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Equal to the projective case, \( I_A \) is not necessarily unique up to isomorphism and \( \iota_A \) is not necessarily unique.
@@ -231,19 +231,17 @@ The definition of the syzygy functor is closely tied to a choice of \( P_A \)'s 
     \label{def:stmod_omega}
     Let \( R \) be a Frobenius ring.
 
-    Let \( P = \set{\tuple{P_A, \pi_A, \Omega A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( P_A \) is a projective object, \( \pi_A: P_A \twoheadrightarrow A \) an epimorphism, and \( \Omega A \) is a kernel of \( \pi_A \). This exists because \( \Mod(R) \) has enough projectives.
-
-    WIP: Marius tilbakemeldingar
+    Let \( P = \set{\tuple{P_A, \pi_A, \Omega A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( P_A \) is a projective module, \( \pi_A: P_A \twoheadrightarrow A \) an epimorphism, and \( \Omega A \) is a kernel of \( \pi_A \). This exists because \( \Mod(R) \) has enough projectives.
 
     Then define \( \Omega \) as the assignment of objects and morphisms in \( \Mc \) as follows:
     \begin{itemize}
         \item {
-            For any object \( A \) in \( \Mc \), let \( \Omega A \) be as defined in \( P \) above.
+            For any object \( A \) in \( \Mc \), let \( \Omega A \) be as above.
         }
         \item {
             For any \( [f] \in \Mc(A, B) \), let \( \Omega [f] \) be constructed as follows:
 
-            Consider the following diagram in \( \Mod(R) \), with the relevant objects and non-dashed morphisms from \( P \),
+            Consider the following diagram in \( \Mod(R) \) excluding the dashed arrows,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -262,22 +260,12 @@ The definition of the syzygy functor is closely tied to a choice of \( P_A \)'s 
                         (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
                 \end{tikzpicture}
             \end{center}
+            Let \( \Omega f: \Omega A \to \Omega B \) be any morphism that makes the above diagram, for some \( p_f: P_A \to P_B \), commute.
 
-            We have that for a morphism \( f: A \to B \), there exists a morphism \( p_f \) from the lifting property of projective modules such that the right square commutes. Note that the choice of \( p_f \) is not neccesarily unique.
-
-            Furthermore, since
-            \[
-                \pi_B \circ p_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0,
-            \]
-            we have from the universal kernel property that there exists a unique morphism, dependent on the choice of \( p_f \), denoted as \( \Omega f \) from \( \Omega A \) to \( \Omega B \) such that the left square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectives yields the morphism defined by the assignment, i.e., \( \Omega [f] := \class{\Omega f} \).
+            Then define \( \Omega [f] := \class*{\Omega f} \).
         }
     \end{itemize}
 \end{definition}
-
-Since we are going to work a lot with the definition of \( \Omega \) we want to clarify the notation used.
-\begin{notation}
-    For \( f \in \Mod(R)(A, B) \), let \( \Omega f \) refer to a morphism which fits the diagram in \autoref{def:stmod_omega}. Note that this is not a well-defined assignment, as multiple morphisms in \( \Mod(R)(\Omega A, \Omega B) \) could be labeled as \( \Omega f \).
-\end{notation}
 
 The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor, and later showing that it is in fact an additive auto-equivalence of categories.
 
@@ -286,14 +274,22 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
     \( \Omega \) is a well-defined assignment of morphisms.
 \end{lemma}
 \begin{proof}
-    There are two things that need to be proven. First, in the construction of \( \Omega f \), we have to choose a morphism \( p_f \) from the projective property. We need to show that if we choose another projective morphism, that \( \Omega \) still yields the same morphism in \( \Mc \). Second, we need to show that if \( [f] = [g] \), then \( \Omega [f] = \Omega [g] \).
+    There are three things that need to be proven. First, the existence of an \( \Omega f \) for any \( f \). Second, we need to show that for any \( p_f \), then \( \Omega \) still yields the same morphism in \( \Mc \). Third, we need to show that if \( [f] = [g] \), then \( \Omega [f] = \Omega [g] \).
 
-    To prove the first part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective morphisms that give the morphisms \( \Omega f \) and \( \widetilde{\Omega f} \), respectively. Then we have the following commutative diagram excluding the dashed arrow
+    First, we have that for a morphism \( f: A \to B \), there exists a morphism \( p_f \) from the lifting property of projective modules such that the right square in the definition commutes.
+
+    Furthermore, since
+    \[
+        \pi_B \circ p_f \circ \iota_A = f \circ \pi_A \circ \iota_A = f \circ 0 = 0,
+    \]
+    we have from the universal kernel property that there exists a morphism, \( \Omega f \), dependent on the choice of \( p_f \), such that the left square in the definition commutes. This is therefore a valid choice of \( \Omega f \).
+
+    To prove the second part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective morphisms that yield morphisms \( \Omega f \) and \( \widetilde{\Omega f} \), respectively. Then we have the following commutative diagram excluding the dashed arrow,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega A} \& {P_A} \& A \\
-                {\Omega B} \& {P_B} \& B. \\
+                \Omega A \& P_A \& A \\
+                \Omega B \& P_B \& B. \\
             };
 
             \draw[math]
@@ -313,9 +309,9 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
     \[
         \pi_B \circ \tuple{p_f - \widetilde{p_f}} = \tuple{f - f} \circ \pi_A = 0
     \]
-    there exists a morphism \( \phi \) induced by the kernel property of \( \Omega B \), such that the lower triangle in the diagram commutes. Then because of the monomorphism property of \( \iota_B \), we also get that the upper triangle commutes. This implies that the morphism \( \Omega f - \widetilde{\Omega f} \) factors through \( P_A \), a projective module. Therefore
+    there exists a morphism \( \phi \) induced by the kernel property of \( \Omega B \), such that the lower triangle in the diagram commutes. Then because of the monomorphism property of \( \iota_B \), we also get that the upper triangle commutes. This implies that the morphism \( \Omega f - \widetilde{\Omega f} \) factors through \( P_A \), a projective module. Therefore,
     \[
-        0 = \class{\Omega f - \widetilde{\Omega f}} = \class{\Omega f} - \class{\widetilde{\Omega f}}
+        [0] = \class{\Omega f - \widetilde{\Omega f}} = \class{\Omega f} - \class{\widetilde{\Omega f}}
     \]
     which implies that \( \Omega [f] \) is independent of the choice of \( p_f \).
 
@@ -344,15 +340,15 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
         \end{tikzpicture}
     \end{center}
 
-    Let \( P \) be the projective that \( f - g \) factors through. Then from the projective property, there exists a morphism \( \theta: P \to P_B \), which causes the lower triangle to commute.
+    Let \( P \) be the projective module that \( f - g \) factors through. Then from the projective property, there exists a morphism \( \theta: P \to P_B \), which causes the lower triangle to commute.
 
-    Let \( p'_{f - g} := \theta \circ (f - g)_1 \circ \pi_A \). By construction, we have that both \( p_f - p_g \) and \( p'_{f - g} \) are morphisms that would make the right hand square commute.
+    Let \( p_{f - g} := \theta \circ (f - g)_1 \circ \pi_A \). By construction, we have that both \( p_f - p_g \) and \( p'_{f - g} \) are morphisms that would make the right hand square commute.
     
     But since
     \[
-        p'_{f - g} \circ \iota_A = \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0,
+        p_{f - g} \circ \iota_A = \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0,
     \]
-    the following diagram commutes
+    the following diagram commutes,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -364,50 +360,50 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
                 (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge node {0} (m-2-1)
                 (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
-                    edge node {p'_{f - g}} (m-2-2)
+                    edge node {p_{f - g}} (m-2-2)
                 (m-1-3) edge node {f - g} (m-2-3)
 
                 (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
                 (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
     \end{center}
-    However, by the first part of this proof, this implies that \( [\Omega f - \Omega g] = [0] \), and therefore \( \Omega [f] = \Omega [g] \).
+    However, by the second part of this proof, this implies that \( [0] = [\Omega f - \Omega g] \), and therefore \( \Omega [f] = \Omega [g] \).
 \end{proof}
 
-Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it only remains to prove functoriality.
+Now that \( \Omega \) is a well-defined assignment of objects and morphisms, it only remains to prove functoriality.
 
 \begin{lemma}
     \label{lem:stmod_omega_endofunctor}
     \( \Omega \) is an endofunctor on \( \Mc \).
 \end{lemma}
 \begin{proof}
-    To show that \( \Omega \) is a functor it remains to prove functoriality.
+    To show that \( \Omega \) is a functor we must prove functoriality.
 
-    First, we show that \( \Omega \) is preserves composition. Let \( A, B, C \in \Mc \). Then by the definition of \( \Omega \), we have the following commutative diagram
+    First, we show that \( \Omega \) is preserves composition. Let \( A, B, C \in \Mc \). Then by the definition of \( \Omega \), we have the following commutative diagram,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega A} \& {P_A} \& A \\
-                {\Omega B} \& {P_B} \& B \\
-                {\Omega C} \& {P_C} \& C \\
+                \Omega A \& P_A \& A \\
+                \Omega B \& P_B \& B \\
+                \Omega C \& P_C \& C. \\
             };
 
             \draw[math]
-                (m-1-1) edge[tailed] (m-1-2)
-                    edge[curve={height=30pt}, swap] node {\Omega (g \circ f)} (m-3-1)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
+                    % edge[curve={height=30pt}, swap] node {\Omega (g \circ f)} (m-3-1)
                     edge node {\Omega f} (m-2-1)
-                (m-1-2) edge[two headed] (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {p_f} (m-2-2)
                 (m-1-3) edge node {f} (m-2-3)
 
-                (m-2-1) edge[tailed] (m-2-2)
+                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
                     edge node {\Omega g} (m-3-1)
-                (m-2-2) edge[two headed] (m-2-3)
+                (m-2-2) edge[two headed] node {\pi_B} (m-2-3)
                     edge node {p_g} (m-3-2)
                 (m-2-3) edge node {g} (m-3-3)
 
-                (m-3-1) edge[tailed] (m-3-2)
-                (m-3-2) edge[two headed] (m-3-3);
+                (m-3-1) edge[tailed] node {\iota_A} (m-3-2)
+                (m-3-2) edge[two headed] node {\pi_B} (m-3-3);
         \end{tikzpicture}
     \end{center}
 
@@ -432,12 +428,12 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
     \end{center}
     Since \( \Omega \) is a well-defined assignment of morphisms, this implies
     \[
-        (\Omega [g]) \circ (\Omega [f]) = \class{(\Omega g) \circ (\Omega f)} = \Omega \class{g \circ f}.
+        (\Omega [g]) \circ (\Omega [f]) = \class{(\Omega g) \circ (\Omega f)} = \class*{\Omega (g \circ f)} = \Omega \class{g \circ f}.
     \]
 
-    Second, need to show that \( \Omega \Id_A = \Id_{\Omega A} \) in \( \Mc \).
+    Second, we need to show that \( \Omega [\Id_A] = [\Id_{\Omega A}] \) in \( \Mc \).
 
-    By a similar argument to above, we can see that every square and triangle in the following diagram commutes
+    By a similar argument to the one above, we can see that every square and triangle in the following diagram commutes
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -459,21 +455,21 @@ Now that \( \Omega \) is a well-defined asssignment of objects and morphisms, it
     Therefore \( \Omega \class{\Id_A} = \class{\Id_{\Omega A}} \).
 \end{proof}
 
-An important detail still missing to show that \( \Omega^{-1} \) could be a shift functor is showing that \( \Omega \) is additive.
+Finally, we need the following result to show that \( \Omega \) is additive.
 
 \begin{lemma}
     \label{lem:stmod_omega_additive_functor}
     \( \Omega \) is an additive functor.
 \end{lemma}
 \begin{proof}
-    Want to show that \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
+    We must show that \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
     
-    There are two posssible values of \( \Omega (f + g) \), namely the ones from either of the two commutative diagrams below
+    There are two possible values of \( \Omega (f + g) \), namely the ones from either of the two commutative diagrams below,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
                 {\Omega A} \& {P_A} \& A \\
-                {\Omega B} \& {P_B} \& B \\
+                {\Omega B} \& {P_B} \& B, \\
             };
 
             \draw[math]
@@ -507,22 +503,24 @@ An important detail still missing to show that \( \Omega^{-1} \) could be a shif
     Since \( \Omega [f + g] \) is well-defined, this implies \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
 \end{proof}
 
-We can define another functor, \( \Sigma \), which will turn out to be the inverse of \( \Omega \) and the future shift functor in making \( \Mc \) a triangulated category.
+We can define another functor, \( \Sigma \), which will turn out to be the inverse of \( \Omega \) and the shift functor in the triangulation of \( \Mc \).
 
 % TODO: Kopling med cosyzygy?
 \begin{definition}[The functor \( \Sigma \)]
     \label{def:stmod_sigma}
-    Since \( \Mod(R) \) has enough projectives, let \( I \) be a collection of tuples for every object \( A \), on the form \( I = \set{\tuple{I_A, \kappa_A, \Omega A}}_{A \in \Mod(R)} \), consisting of an injective module \( I_A \), a morphism \( \kappa_A \), and a module \( \Sigma A \), where \( \kappa_A \) is a monomorphism from \( A \) to \( P_A \), and \( \Sigma A \) is a cokernel of \( \kappa_A \).
+    Let \( R \) be a Frobenius ring.
+
+    Let \( I = \set{\tuple{I_A, \kappa_A, \Sigma A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( I_A \) is an injective module, \( \kappa_A: A \rightarrowtail I_A \) a monomorphism, and \( \Sigma A \) is a cokernel of \( \kappa_A \). This exists because \( \Mod(R) \) has enough injectives.
 
     Then define \( \Sigma \) as the assignment of objects and morphisms in \( \Mc \) as follows:
     \begin{itemize}
         \item {
-            For any object \( A \) in \( \Mc \), let \( \Sigma A \) be as defined in \( I \) above.
+            For any object \( A \) in \( \Mc \), let \( \Sigma A \) be as above.
         }
         \item {
-            For \( [f] \in \Mc(A, B) \), let \( \Sigma [f] \) be constructed as follows.
+            For \( [f] \in \Mc(A, B) \), let \( \Sigma [f] \) be constructed as follows:
 
-            Consider the following diagram in \( \Mod(R) \), with the relevant objects and non-dashed morphisms from \( I \),
+            Consider the following diagram in \( \Mod(R) \) excluding the dashed arrows,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -542,24 +540,14 @@ We can define another functor, \( \Sigma \), which will turn out to be the inver
                 \end{tikzpicture}
             \end{center}
 
-            We have that for a morphism \( f: A \to B \), there exists a morphism \( i_f \) from the universal property of injective objects such that the left square commutes. Note that this morphism is not neccesarily unique.
+            Let \( \Sigma f: \Sigma A \to \Sigma B \) be any morphism that makes the above diagram, for some \( i_f: I_A \to I_B \), commute.
 
-            Furthermore, since
-            \[
-                \kappa_B \circ i_f \circ \rho_A = \kappa_B \circ \rho_B \circ f = 0,
-            \]
-            we have from the universal cokernel property that there exists a unique morphism, dependant on the choice of \( i_f \), denoted as \( \Sigma f \) from \( \Sigma A \) to \( \Sigma B \) such that the right square in the above diagram commutes. Taking the equivalence class of this morphism with respect to morphisms factoring through projectives yields the morphism defined by the functor, i.e., \( \Sigma [f] := \class{\Sigma f} \).
+            Then define \( \Sigma [f] := \class*{\Sigma f} \).
         }
     \end{itemize}
 \end{definition}
 
-Similar to \( \Omega \), we have the following notation.
-\begin{notation}
-    \label{not:stmod_sigma_f}
-    For \( f \in \Mod(R)(A, B) \), let \( \Sigma f \) refer to a morphism which fits the diagram in \autoref{def:stmod_sigma}. Note that this is not a well-defined assignment, as multiple morphisms in \( \Mod(R)(\Sigma A, \Sigma B) \) could be labeled as \( \Sigma f \).
-\end{notation}
-
-Now it remains to show every desired property of \( \Sigma \), like being well-defined, an endofunctor, and additive.
+It remains to show that every desired property of \( \Sigma \), like being well-defined, an endofunctor, and additive, translates to \( \Sigma \).
 \begin{lemma}
     \label{lem:stmod_sigma_well-defined_additive_endofunctor}
     \( \Sigma \) is a well-defined and additive endofunctor on \( \Mc \).
@@ -576,7 +564,7 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
 \begin{proof}
     We will only show that \( \Id_{\Mc} \) is naturally isomorphic to \( \Sigma \Omega \). The omitted part that \( \Id_{\Mc} \) is naturally isomorphic to \( \Omega \Sigma \) is very similar, and uses many dual properties.
 
-    First show that for any \( A \in \Mc \), there exists an isomorphism \( A \to \Sigma \Omega A \). Consider the following commutative diagram excluding the dashed arrows,
+    First, we show that for any \( A \in \Mc \), there exists an isomorphism \( A \to \Sigma \Omega A \). Consider the following diagram excluding the dashed arrows,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -606,9 +594,9 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
     \[
         \rho_{\Omega A} \circ i_{\phi_1} \circ \iota_A = \rho_{\Omega A} \circ \kappa_{\Omega A} = 0,
     \]
-    we get from the cokernel property that there is a uniquely induced morphism \( \phi_1: A \to \Sigma\Omega A \). Then doing the same for the lower rectangle of the diagram, using the fact that every projective is also injective, then we get the morphisms \( i_{\phi_2} \) and \( \phi_2 \) by similar arguments, such that the diagram above including the dashed arrows commute.
+    we get from the cokernel property that there is a uniquely induced morphism \( \phi_1: A \to \Sigma\Omega A \). Then by doing the same for the lower rectangle of the diagram, using the fact that every projective module is also injective, we get the morphisms \( i_{\phi_2} \) and \( \phi_2 \) by similar arguments. This makes the above diagram including the dashed arrows commute.
 
-    Then to show that \( \phi_1 \) and \( \phi_2 \) are isomorphisms, consider the following diagram
+    To show that \( \phi_1 \) and \( \phi_2 \) are isomorphisms, consider the following commutative diagram excluding the dashed arrow,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -629,25 +617,25 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
         \end{tikzpicture}
     \end{center}
 
-    Using the previous commutative diagram, we get that every square commutes. But since
+    Since
     \[
         (i_{\phi_2} \circ i_{\phi_1} - \Id_{P_A}) \circ \iota_A = \iota_A \circ 0 = 0,
     \]
-    then from the cokernel property there exist a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. But then we have that
+    we have from the cokernel property that there exist a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. Thus,
     \[
         (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (i_{\theta_2} \circ i_{\theta_1} - \Id_{P_A}) = \pi_A \circ \theta \circ \pi_A,
     \]
     and since \( \pi_A \) is an epimorphism, we get that the lower triangle commutes. This implies that \( [\phi_2 \circ \phi_1 - \Id_A] = [0] \), which implies \( [\phi_2 \circ \phi_1] = [\Id_A] \).
     
-    By a similar agument that is omitted for brevity, we can show that \( [\phi_1 \circ \phi_2] = [\Id_{\Sigma\Omega A}] \), which means that \( [\phi_1] \) and \( [\phi_2] \) are isomorphisms from \( A \) to \( \Sigma\Omega A \).
+    By a similar argument that is omitted for brevity, we can show that \( [\phi_1 \circ \phi_2] = [\Id_{\Sigma\Omega A}] \), which means that \( [\phi_1] \) and \( [\phi_2] \) are isomorphisms from \( A \) to \( \Sigma\Omega A \).
 
-    To show that these isomorphisms are natural, let \( [f] \in \Mc(A, B) \) and consider the following two diagrams
+    Finally, to show that these isomorphisms are natural, let \( [f] \in \Mc(A, B) \) and consider the following two commutative diagrams
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Omega A \& P \& A \\
-                \Omega A \& I \& \Sigma \Omega A \\
-                \Omega B \& I \& \Sigma \Omega B, \\
+                \Omega A \& P_A \& A \\
+                \Omega A \& I_{\Omega A} \& \Sigma \Omega A \\
+                \Omega B \& I_{\Omega B} \& \Sigma \Omega B, \\
             };
 
             \draw[math]
@@ -671,9 +659,9 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                \Omega A \& P \& A \\
-                \Omega B \& P \& B \\
-                \Omega B \& I \& \Sigma \Omega B, \\
+                \Omega A \& P_A \& A \\
+                \Omega B \& P_B \& B \\
+                \Omega B \& I_{\Omega B} \& \Sigma \Omega B. \\
             };
 
             \draw[math]
@@ -693,14 +681,13 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-3-2) edge[two headed] node {\rho_{\Omega B}} (m-3-3);
         \end{tikzpicture}
     \end{center}
-    where every small square, and therefore rectangle, commutes.
 
-    These diagrams gives rise to the following commutative diagram, excluding the dashed arrow,
+    These diagrams give rise to the following commutative diagram, excluding the dashed arrow,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2.7cm} {
-                \Omega A \& P \& A \\
-                \Omega B \& I \& \Sigma \Omega B, \\
+                \Omega A \& P_A \& A \\
+                \Omega B \& I_{\Omega B} \& \Sigma \Omega B, \\
             };
 
             \draw[math]
@@ -716,7 +703,7 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
         \end{tikzpicture}
     \end{center}
     % TODO: Sebastian synast eg skal fordjupa her, men det er eit veldig likt argument som det eg har gjort ovanfor fleire gangar. Usikker på kva eg skal gjere her.
-    where from the cokernel property of \( A \), we get an induced morphism \( \theta \). Furthermore, from the epimorphism property of \( \pi_A \), the lower triangle commutes. And since \( R \) is assumed to be a Frobenius ring, \( I \) is also projective. This implies
+    where from the cokernel property of \( A \), we get an induced morphism \( \theta \). Furthermore, from the epimorphism property of \( \pi_A \), the lower triangle commutes. Since \( R \) is assumed to be a Frobenius ring, \( I_{\Omega B} \) is also projective. This implies
     \[
         [\phi_1^B \circ f] = [(\Sigma \Omega f) \circ \phi_1^A],
     \]
@@ -725,9 +712,9 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
     As mentioned at the start, the proof that \( \Id_{\Mc} \) is naturally isomorphic to \( \Omega \Sigma \) is very similar to the above proof, but using dual properties.
 \end{proof}
 
-An interesting consequence of how \( \Omega \) and \( \Sigma \) are defined is that if we were to chose a different \( P \) or \( I \) in their definitions, then it would yield different, but naturally isomorphic functors. A proof of this statement for \( \Sigma \) can be found in \cite[Remark on p. 13]{Happel_1988}, with the proof for \( \Omega \) being dual.
+An interesting consequence of how \( \Omega \) and \( \Sigma \) are defined is that if we were to choose a different \( P \) or \( I \) in their definitions, then it would yield different, but naturally isomorphic functors. A proof of this statement for \( \Sigma \) can be found in \cite[p. 13]{Happel_1988}, with the proof for \( \Omega \) being dual.
 
-Before we can show the triangulation of \( \Mc \), we first needs to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Chapter 1, Subsection 2.5]{Happel_1988}.
+Before we can show the triangulation of \( \Mc \), we first need to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Chapter 1, Subsection 2.5]{Happel_1988}.
 
 % TODO: Slå i saman denne definisjonen og remarket nedanfor?
 \begin{definition}
@@ -815,7 +802,7 @@ Now, we can finally define the triangulation on \( \Mc \).
                 (m-1-3) edge node {[h]} (m-1-4);
         \end{tikzpicture}
     \end{center}
-    for any \( f \in \Mod(R)(A, B) \), and where \( C_f \), \( g \), and \( h \) are defined as in \autoref{rem:stmod_cone}.
+    for any \( f \in \Mod(R)(A, B) \), and where \( C_f \), \( g \), and \( h \) are as defined in \autoref{rem:stmod_cone}.
 \end{definition}
 
 There are some important details from the definition of standard triangles that will be important in proving that \( \Mc \) has a triangulation.
@@ -825,12 +812,12 @@ There are some important details from the definition of standard triangles that 
     \label{rem:stmod_cone_pushout_properties}
     Consider the objects and morphisms of \autoref{rem:stmod_cone}.
 
-    Since \( \Mod(R) \) is an abelian category, then by known pushout properties, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
+    Since \( \Mod(R) \) is an abelian category, then by known facts about pushouts, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise, it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
 \end{remark}
 
-Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, the the cone of a morphism in \( \Mc \) is not neccesarily unique. This is not a problem for us, since by the formulation of \( \Delta \), any standard triangle arising from any representation of \( [f] \) is included in \( \Delta \), and so there are multiple ``standard triangles'' for every morphism in \( \Mc \).
+Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, there are multiple cones for each morphism. Each cone yields a different standard triangle, and there are therefore multiple standard triangles for each morphism. This turns out to not be a problem since it does not conflict with the definition of a triangulated category. In particular, the use of the word ``standard triangle'' and ``cone'' above, still aligns with the definitions given in the definition of a triangulated category.
 
-The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints to the fact that we could have chosen \( \Delta \) differently, as is done in \cite[Definition 4.16]{Johan_Bachelor}.
+The following lemma is needed to prove {\bf (TR4)}, however, it also hints to the fact that we could have chosen \( \Delta \) differently, as is done in \cite[Definition 4.16]{Johan_Bachelor}.
 \begin{lemma}
     \label{lem:stmod_pushout_different_injectives_isomorphic}
     Let
@@ -869,18 +856,17 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints 
     \]
     be two pushout squares in \( \Mod(R) \), with \( g \) and \( h \) monomorphisms into injective objects \( I \) and \( I' \).
 
-    Then there exists an isomorphism \( [\alpha]: C \to C' \) in \( \Mc \), with inverse \( [\alpha^{-1}] \).
+    Then there exists an isomorphism \( [\alpha]: C \to C' \) in \( \Mc \).
     
-    In addition, \( \alpha \) and \( \alpha^{-1} \) have the following properties:
+    In addition, given a morphism \( i: I \to I' \), such that \( i \circ g = h \), \( \alpha \) has the following properties:
     \begin{itemize}
-        \item \( \alpha \circ g' = h' \),
-        \item \( \alpha \circ \gamma = \gamma' \circ i \),
-        \item \( g' = \alpha^{-1} \circ h' \), and
-        \item \( \gamma = \alpha^{-1} \circ \gamma' \circ i \),
+        \item \( \alpha \circ g' = h' \), and
+        \item \( \alpha \circ \gamma = \gamma' \circ i \).
     \end{itemize}
-    where \( i \) is defined in the beginning of the proof.
 \end{lemma}
 \begin{proof}
+    WIP: Marius tilbakemelding. 
+
     Since both \( I \) and \( I' \) are injective objects and \( g \) and \( h \) monomorphisms, then there exists maps \( i \) and \( i' \) such that the following two diagrams commute
     \[
         \begin{aligned}
@@ -1016,8 +1002,6 @@ The following lemma is neccesary in proving {\bf (TR4)}, however, it also hints 
     \) is an epimorphism by definition, it follows that the bottom triangle also commutes.
 
     We can prove that \( [\alpha \circ \beta] = [\Id_{C'}] \) in a similar way.
-
-    Let \( \alpha^{-1} := \beta \) to get the statement of the lemma.
 \end{proof}
 
 Then finally comes the full triangulation result, the proof of which is heavily inspired by \cite[First theorem in Chapter 1, Subsection 2.6]{Happel_1988}, with additional inspiration for proving {\bf (TR4)} from \cite[Theorem 4.18]{Johan_Bachelor}.
@@ -1920,7 +1904,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \[
                 \rho_B \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A = \rho_B \circ \kappa_B = 0,
             \]
-            it follows by the cokernel property of \( \Sigma A \) that there exist some morphism, \( \Sigma f \), which is denoted as such because it fits \autoref{not:stmod_sigma_f}, and by \autoref{lem:stmod_sigma_well-defined_additive_endofunctor} is therefore a representative of \( \Sigma [f] \).
+            it follows by the cokernel property of \( \Sigma A \) that there exist some morphism, \( \Sigma f \), which is denoted as such because it fits \autoref{def:stmod_sigma}.
 
             Then consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
@@ -1972,6 +1956,8 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center}
             is a distinguished triangle.
 
+            We will construct a standard triangle of \( [\phi] \) and then show that this triangle is isomorphic to the above triangle.
+
             Consider the following commutative diagram
             \begin{center}
                 \begin{tikzpicture}
@@ -2010,37 +1996,35 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-1) edge node {\gamma} (m-2-2);
                 \end{tikzpicture}
             \end{diagramlabel}
-            as well as this previous pushout diagram from the definition of \( C_n \),
+
+            Then using the new pushout, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         B \& D \\
-                        I_B \& C_n. \\
+                        C_f \& C_{n \circ f} \\
+                        \& \& C. \\
                     };
 
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node[swap] {\kappa_B} (m-2-1)
-                        (m-1-2) edge node {m} (m-2-2)
+                            edge node[swap] {g} (m-2-1)
+                        (m-1-2) edge[curve={height=-25pt}] node {\delta} (m-3-3)
 
-                        (m-2-1) edge node {\gamma_n} (m-2-2);
+                        (m-2-1) edge node {\phi} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\gamma \circ \kappa_{C_f}} (m-3-3)
+                        (m-2-2) edge[dashed] node {x} (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            By \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that the following equalities hold:
-            \begin{itemize}
-                \item \( \alpha \circ \delta = m \),
-                \item \( \alpha \circ \gamma = \gamma_n \circ i \),
-                \item \( \delta = \alpha^{-1} \circ m \), and
-                \item \( \gamma = \alpha^{-1} \circ \gamma_{n} \circ i \).
-            \end{itemize}
+            By the pushout property, there exist a morphism \( x: C_{n \circ f} \to C \) such that the above diagram including \( x \) commutes.
             
-            Consider the following diagram
+            Consider the following commutative diagram,
             \begin{diagramlabel}[\label{diag:stmod_tr4_show_psi_phi_equal_something_else}]
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         B \& D \\
                         C_f \& C_{n \circ f} \\
-                        I_{C_f} \& C \\
+                        I_{C_f} \& C. \\
                     };
                     
                     \draw[math]
@@ -2051,15 +2035,115 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 
                         (m-2-1) edge node {\phi} (m-2-2)
                             edge node[swap] {\kappa_{C_f}} (m-3-1)
-                        (m-2-2) edge node[swap] {\alpha^{-1} \circ \psi} (m-3-2)
+                        (m-2-2) edge node[swap] {x} (m-3-2)
 
                         (m-3-1) edge node {\gamma} (m-3-2);
                 \end{tikzpicture}
             \end{diagramlabel}
 
-            the top square already commutes, and the ``bump'' on the right commutes because \( \psi \circ j = m \). It remains to show that the bottom square commutes as well.
+            Since the outer rectangle and upper squares of \autoref{diag:stmod_tr4_m_n_f_equal_something_else} are pushouts, then the lower square is also a pushout.
 
-            In order to do that, consider the following diagram
+            This implies that there exists a morphism \( p \) by the pushout property, such that the following diagram
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        C_f \& C_{n \circ f} \\
+                        I_{C_f} \& C \\
+                        \& \Sigma C_f, \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\phi} (m-1-2)
+                            edge node[swap] {\kappa_{C_f}} (m-2-1)
+                        (m-1-2) edge node[swap] {x} (m-2-2)
+                            edge[curve={height=-25pt}] node {0} (m-3-2)
+
+                        (m-2-1) edge node {\gamma} (m-2-2)
+                            edge node[swap] {\rho_{C_f}} (m-3-2)
+                        (m-2-2) edge node[swap] {p} (m-3-2);
+                \end{tikzpicture}
+            \end{center}
+            commutes and yields a standard triangle
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        C_f \& C_{n \circ f} \& C \& \Sigma C_f. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {[\phi]} (m-1-2)
+                        (m-1-2) edge node {[x]} (m-1-3)
+                        (m-1-3) edge node {[p]} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            
+            Consider the two pushout diagrams:
+
+            \[
+                \begin{aligned}
+                    \begin{tikzpicture}
+                        \diagram{m}{1cm}{1cm} {
+                            B \& D \\
+                            I_B \& C_n. \\
+                        };
+    
+                        \draw[math]
+                            (m-1-1) edge node {n} (m-1-2)
+                                edge node[swap] {\kappa_B} (m-2-1)
+                            (m-1-2) edge node {m} (m-2-2)
+    
+                            (m-2-1) edge node {\gamma_n} (m-2-2);
+                    \end{tikzpicture}
+                \end{aligned}
+                \text{ and }
+                \begin{aligned}
+                    \begin{tikzpicture}
+                        \diagram{m}{1cm}{1cm} {
+                            B \& D \\
+                            I_{C_f} \& C, \\
+                        };
+    
+                        \draw[math]
+                            (m-1-1) edge node {n} (m-1-2)
+                                edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                            (m-1-2) edge node {\delta} (m-2-2)
+    
+                            (m-2-1) edge node {\gamma} (m-2-2);
+                    \end{tikzpicture}
+                \end{aligned}  
+            \]
+            By \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that \( [\alpha] \) is an isomorphism in \( \Mc \), and the following equalities hold:
+            \begin{itemize}
+                \item \( \alpha \circ \delta = m \), and
+                \item \( \alpha \circ \gamma = \gamma_n \circ i \).
+            \end{itemize}
+
+            The final step is then to show that the following diagram is an isomorphism of triangles
+            \begin{diagramlabel}[\label{diag:stmod_tr4_iso}]
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        C_f \& C_{n \circ f} \& C \& \Sigma C_f \\
+                        C_f \& C_{n \circ f} \& C_n \& \Sigma C_f. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {[\phi]} (m-1-2)
+                            edge[equality] (m-2-1)
+                        (m-1-2) edge node {[x]} (m-1-3)
+                            edge[equality] (m-2-2)
+                        (m-1-3) edge node {[p]} (m-1-4)
+                            edge node[swap] {[\alpha]} (m-2-3)
+                        (m-1-4) edge[equality] (m-2-4)
+
+                        (m-2-1) edge node {[\phi]} (m-2-2)
+                        (m-2-2) edge node {[\psi]} (m-2-3)
+                        (m-2-3) edge node {[(\Sigma g) \circ k]} (m-2-4);
+                \end{tikzpicture}
+            \end{diagramlabel}
+
+            The leftmost square commutes by difficult mathematics.
+
+            In order to prove that the middle square commutes, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -2097,72 +2181,38 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \[
                 \psi \circ \phi = \gamma_n \circ i \circ \kappa_{C_f}.
             \]
-            By post-composing with \( \alpha^{-1} \), the above equation implies
-            \[
-                \alpha^{-1} \circ \psi \circ \phi = \alpha^{-1} \circ \gamma_n \circ i \circ \kappa_{C_f} = \gamma \circ \kappa_{C_f}
-            \]
-            which makes \autoref{diag:stmod_tr4_show_psi_phi_equal_something_else} commute.
-            
-            Since the outer rectangle and upper squares of \autoref{diag:stmod_tr4_m_n_f_equal_something_else} are pushouts, then the lower square is also a pushout.
-            
-            This implies that there exists a morphism \( p \) by the pushout property, such that the following diagram
+
+            With the above equality in mind, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
+                        B \& D \\
                         C_f \& C_{n \circ f} \\
-                        I_{C_f} \& C \\
-                        \& \Sigma C_f, \\
+                        \& \& C_n. \\
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {\phi} (m-1-2)
-                            edge node[swap] {\kappa_{C_f}} (m-2-1)
-                        (m-1-2) edge node[swap] {\alpha^{-1} \circ \psi} (m-2-2)
-                            edge[curve={height=-25pt}] node {0} (m-3-2)
+                        (m-1-1) edge node {n} (m-1-2)
+                            edge node[swap] {g} (m-2-1)
+                        (m-1-2) edge node {j} (m-2-2) 
+                            edge[curve={height=-25pt}] node {m} (m-3-3)
 
-                        (m-2-1) edge node {\gamma} (m-2-2)
-                            edge node[swap] {\rho_{C_f}} (m-3-2)
-                        (m-2-2) edge node[swap] {p} (m-3-2);
+                        (m-2-1) edge node {\phi} (m-2-2)
+                            edge[curve={height=25pt}] node[swap] {\alpha \circ \gamma \circ \kappa_{C_f}} (m-3-3)
+                        (m-2-2) edge[dashed] (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            commutes and yields a standard triangle
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        C_f \& C_{n \circ f} \& C \& \Sigma C_f. \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {[\phi]} (m-1-2)
-                        (m-1-2) edge node {[\alpha^{-1} \circ \psi]} (m-1-3)
-                        (m-1-3) edge node {[p]} (m-1-4);
-                \end{tikzpicture}
-            \end{center}
-
-            The final step is then to show that the following diagram is an isomorphism of triangles
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        C_f \& C_{n \circ f} \& C \& \Sigma C_f \\
-                        C_f \& C_{n \circ f} \& C_n \& \Sigma C_f. \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {[\phi]} (m-1-2)
-                            edge[equality] (m-2-1)
-                        (m-1-2) edge node {[\alpha^{-1} \circ \psi]} (m-1-3)
-                            edge[equality] (m-2-2)
-                        (m-1-3) edge node {[p]} (m-1-4)
-                            edge node[swap] {[\alpha]} (m-2-3)
-                        (m-1-4) edge[equality] (m-2-4)
-
-                        (m-2-1) edge node {[\phi]} (m-2-2)
-                        (m-2-2) edge node {[\psi]} (m-2-3)
-                        (m-2-3) edge node {[(\Sigma g) \circ k]} (m-2-4);
-                \end{tikzpicture}
-            \end{center}
-
-            The leftmost square commutes by difficult mathemathics, and the middle square commutes since \( [\alpha] \) is an isomorphism with inverse \( [\alpha^{-1}] \) by \autoref{lem:stmod_pushout_different_injectives_isomorphic}. It remains to show that the rightmost square commutes, which requires some additional tools.
+            Consider the following two equations,
+            \[
+                \alpha \circ x \circ j = \alpha \circ \delta = m = \psi \circ j,
+            \]
+            and
+            \[
+                \alpha \circ x \circ \phi = \alpha \circ \gamma \circ \kappa_{C_f} = \gamma_n \circ i \circ \kappa_{C_f} = \psi \circ \phi,
+            \]
+            it follows that by the uniqueness of the pushout that \( \alpha \circ x = \psi \), and so the middle square of \autoref{diag:stmod_tr4_iso} commutes.
+            
+            It remains to show that the rightmost square commutes, which requires some additional tools.
 
             Let \( E := \coker(\delta)\). Since \autoref{diag:stmod_tr4_C} is a pushout, we also have that \( E = \coker(\kappa_{C_f} \circ g) \). Let \( c: I_{C_f} \to E \) be the cokernel morphism of \( \kappa_{C_f} \circ g \).
 
@@ -2304,7 +2354,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
 
-            By definition, \( p \) already fits as a dashed arrow. However, \( \mu \circ d \) also fits, by the following equations:
+            We can verify that \( p \) already fits as a dashed arrow, since \( p \circ \delta = p \circ x \circ j = 0 \circ j = 0 \). However, \( \mu \circ d \) also fits, by the following equations:
             \[
                 \mu \circ d \circ \delta = \mu \circ 0 = 0
             \]
