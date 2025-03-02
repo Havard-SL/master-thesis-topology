@@ -155,7 +155,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
         \end{pmatrix} \\
         &=
         \begin{pmatrix}
-            d_{\dgM(X_2, X_4)}(s) - \bar{g_3} \circ g_2 & d_{\dgM(X_3, X_4)}(g_3)
+            d_{\dgM(X_2, X_4)}(s) - \bar{g_3} \circ g_2 & -d_{\dgM(X_3, X_4)}(g_3)
         \end{pmatrix}
         = 0.
     \end{align*}
@@ -182,7 +182,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
                 (m-2-2) edge node {[f_2]} (m-2-3)
                 (m-2-3) edge node {[\iota]} (m-2-4)
                     edge[equality] (m-3-3)
-                (m-2-4) edge node {[\beta]} (m-3-4)
+                (m-2-4) edge node {[-\beta]} (m-3-4)
 
                 (m-3-3) edge node {[f_3]} (m-3-4);
         \end{tikzpicture}
@@ -229,16 +229,46 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
     Then we want to show \( \subseteq \):
 
     % TODO: Kvifor kan me anta at Y = C_g_2?
-    Let \( f \in \toda{f_3, f_2, f_1} \). Using the fiber-cofiber definition of Toda brackets, and assuming \( Y = C_{g_2} \), we get that there exist some \( \alpha \in \dgM(X_1, \Sigma^{-1} C_{g_2}) \) and \( \beta \in \dgM(C_{g_2}, X_4) \), such that
+    Let \( f \in \toda{f_3, f_2, f_1} \). Using the fiber-cofiber definition of Toda brackets, and assuming \( Y = C_{f_2} \), we get that there exist some \( \alpha \in \dgM(X_1, \Sigma^{-1} C_{f_2})_0 \) and \( \beta \in \dgM(C_{f_2}, X_4)_0 \), such that
     \[
         f = \beta \circ (\Sigma \alpha).
     \]
 
-    We want to find \( g_1, g_3 \) and \( s, t \) such that \( f = [\class{\bar{s} \circ g_1 + \bar{g_3} \circ t}] \).
+    We want to find \( g_1 \in \dgM(X_1, X_2)_0 \), \( g_2 \in \dgM(X_2, X_3)_0 \), \( g_3 \in \dgM(X_3, X_4)_0 \), \( s \in \dgM(X_2, X_4)_{-1} \), and \( t \in \dgM(X_1, X_3)_{-1} \) with \( d(t) = - g_2 \circ g_1 \) and \( d(s) = -g_3 \circ g_2 \), such that \( f = \class{s \circ g_1 - g_3 \circ t} \).
 
-    Let \( g_1 := (-\pi) \circ \alpha \), and let \( g_3 := \beta \circ \iota \).
+    Let \( g_1 := (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha \), \( g_2 = f_2 \), and let \( g_3 := \beta \circ \iota_{X_3} \). 
 
-    WIP
+    Furthermore, consider \( \iota_{\Sigma X_2} \in \dgM(\Sigma X_2, C_{f_2})_0 \) as an element of \( \dgM(X_2, C_{f_2})_{-1} \), and let \( s := \beta \circ \iota_{\Sigma X_2} \). In addition, consider \( \Sigma^{-1} \pi_{X_3} \in \dgM(\Sigma^{-1} C_{f_2}, \Sigma^{-1} X_3)_0 \) as an element of \( \dgM(\Sigma^{-1} C_{f_2}, X_3)_{-1} \), and let \( t := (\Sigma^{-1} \pi_{X_3}) \circ \alpha \).
+
+    Then the above properties all hold by the following three equations:
+
+    Remember the equations from \autoref{rem:dgm_differentials_of_inclusions_and_projections_of_cone}.
+
+    First, \( d(s) = -g_3 \circ g_2 \): FEIL
+    \begin{align*}
+        d_{\dgM(X_2, X_4)}(s) &= d_{\dgM(X_2, X_4)}(\beta \circ \iota_{\Sigma X_2}) \\
+        &= d_{\dgM(C_{f_2}, X_4)}(\beta) \circ \iota_{\Sigma X_2} + \beta \circ d_{\dgM(X_2, C_{f_2})}(\iota_{\Sigma X_2}) \\
+        \intertext{by assumption, \( \beta \) is a cocycle}
+        &= 0 \circ \iota_{\Sigma X_2} + \beta \circ \iota_{X_3} \circ f_2 \\
+        &= \beta \circ \iota_{X_3} \circ f_2 \\
+        &= g_3 \circ g_2.
+    \end{align*}
+    Second, \( d(t) = - g_2 \circ g_1 \):
+    \begin{align*}
+         d_{\dgM(X_1, X_3)}(t) &= d_{\dgM(X_1, X_3)}((\Sigma^{-1} \pi_{X_3}) \circ \alpha) \\
+         &= d_{\dgM(\Sigma^{-1} C_{f_2}, X_3)}(\Sigma^{-1} \pi_{X_3}) \circ \alpha \\
+         &= - d_{\dgM(\Sigma^{-1} C_{f_2}, X_3)}(\pi_{X_3}) \circ \alpha \\
+         &= (\Sigma f_2) \circ \pi_{\Sigma X_3} \circ \alpha \\
+         &= - f_2 \circ (- \Sigma^{-1} \pi_{\Sigma X_3}) \circ \alpha \\
+         &= - g_2 \circ g_1.
+    \end{align*}
+    Third, \( -f = \class{s \circ g_1 - g_3 \circ t} \): TODO: Shift av morfiar forvirring.
+    \begin{align*}
+        s \circ g_1 - g_3 \circ t &= \beta \circ \iota_{\Sigma X_2} \circ (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha - \beta \circ \iota_{X_3} \circ (\Sigma^{-1} \pi_{X_3}) \circ \alpha \\
+        &= - \beta \circ \tuple*{\iota_{\Sigma X_2} \circ \pi_{\Sigma X_2} + \iota_{X_3} \circ \pi_{X_3}} \circ \alpha \\
+        &= - \beta \circ \Id_{C_{f_2}} \circ \alpha \\
+        &= - \beta \circ \alpha = - f
+    \end{align*}
 \end{proof}
 
 The following is the proof of \autoref{theorem:massey_equals_toda}.

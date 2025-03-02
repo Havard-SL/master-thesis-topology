@@ -38,3 +38,6 @@ monomorphism
 endofunctor
 pushout
 pushouts
+fiber-cofiber
+cocycle
+cocycles

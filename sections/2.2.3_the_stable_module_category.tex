@@ -220,8 +220,7 @@ In order to admit a triangulation, we need to prove that the stable module categ
 
 The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is the inverse to the ``syzygy functor''. We start by defining what the syzygy functor is, and afterwards define the shift functor.
 
-% MS-Question: Marius tilbakemelding i dette avsnittet er uklart.
-The syzygy functor as well as the shift functor exists in the category of modules over a commutative ring with identity (e.g., a Frobenius ring) because it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \), as well as an epimorphism \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and \( \pi_A \) is not necessarily unique up to isomorphism, and two different choices of \( P_A \) could be non-isomorphic. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Equal to the projective case, \( I_A \) is not necessarily unique up to isomorphism and \( \iota_A \) is not necessarily unique.
+The syzygy functor as well as the shift functor exists in the category of modules over a commutative ring with identity (e.g., a Frobenius ring) because it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \), as well as an epimorphism \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and consequently \( \pi_A \) is not necessarily unique up to isomorphism, and two different choices of \( P_A \) could be non-isomorphic. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Equal to the projective case, \( I_A \) is not necessarily unique up to isomorphism and \( \iota_A \) is not necessarily unique.
 
 The definition of the syzygy functor is closely tied to a choice of \( P_A \)'s and \( \pi_A \)'s for every object \( A \).
 
@@ -703,6 +702,7 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
         \end{tikzpicture}
     \end{center}
     % TODO: Sebastian synast eg skal fordjupa her, men det er eit veldig likt argument som det eg har gjort ovanfor fleire gangar. Usikker på kva eg skal gjere her.
+    % -> Endr formulering. Fjern "And"
     where from the cokernel property of \( A \), we get an induced morphism \( \theta \). Furthermore, from the epimorphism property of \( \pi_A \), the lower triangle commutes. Since \( R \) is assumed to be a Frobenius ring, \( I_{\Omega B} \) is also projective. This implies
     \[
         [\phi_1^B \circ f] = [(\Sigma \Omega f) \circ \phi_1^A],
@@ -808,6 +808,7 @@ Now, we can finally define the triangulation on \( \Mc \).
 There are some important details from the definition of standard triangles that will be important in proving that \( \Mc \) has a triangulation.
 
 % TODO: Sebastian vil at eg skal sløyfa "Consider the objects and ..." setningen. Skal eg?
+% -> Veldig nerme. Unngå unødvendige og nære referansar.
 \begin{remark}
     \label{rem:stmod_cone_pushout_properties}
     Consider the objects and morphisms of \autoref{rem:stmod_cone}.
@@ -1009,6 +1010,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
 % TODO: Kommenter at den nøyaktige triangulerte strukturen ikkje blir brukt seinare i oppgåva. Etterpå vert berre eksistensen av ein triangulering brukt.
 
 % TODO: Sebastian kommenterte på "... it is a known fact that the pushout of an iso is an iso ..." Med "appeal to common belief". Kva skal eg gjere med det? Burde eg ha med nokre pushout eigenskapar i forkant?
+% -> Ikkje nemn det og problemet går vekk.
 \begin{example}
     \label{example:stable_module_category_triangulated}
     The tuple \( \tuple{\Mc, \Sigma, \Delta} \) is a triangulated category.
