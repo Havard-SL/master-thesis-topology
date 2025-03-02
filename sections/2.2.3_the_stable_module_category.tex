@@ -832,8 +832,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     
                 \draw[math]
                     (m-1-1) edge node {f} (m-1-2)
-                        edge node {g} (m-2-1)
-                    (m-1-2) edge node {g'} (m-2-2)
+                        edge node[swap] {\kappa} (m-2-1)
+                    (m-1-2) edge node {g} (m-2-2)
     
                     (m-2-1) edge node {\gamma} (m-2-2);
             \end{tikzpicture}
@@ -848,27 +848,25 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     
                 \draw[math]
                     (m-1-1) edge node {f} (m-1-2)
-                        edge node {h} (m-2-1)
-                    (m-1-2) edge node {h'} (m-2-2)
+                        edge node[swap] {\kappa'} (m-2-1)
+                    (m-1-2) edge node {g'} (m-2-2)
     
                     (m-2-1) edge node {\gamma'} (m-2-2);
             \end{tikzpicture}
         \end{aligned}
     \]
-    be two pushout squares in \( \Mod(R) \), with \( g \) and \( h \) monomorphisms into injective objects \( I \) and \( I' \).
+    be two pushout squares in \( \Mod(R) \), with \( \kappa \) and \( \kappa' \) monomorphisms into injective objects \( I \) and \( I' \).
 
     Then there exists an isomorphism \( [\alpha]: C \to C' \) in \( \Mc \).
     
-    In addition, given a morphism \( i: I \to I' \), such that \( i \circ g = h \), \( \alpha \) has the following properties:
+    In addition, given a morphism \( i: I \to I' \), such that \( i \circ \kappa = \kappa' \), \( \alpha \) has the following properties:
     \begin{itemize}
-        \item \( \alpha \circ g' = h' \), and
+        \item \( \alpha \circ g = g' \), and
         \item \( \alpha \circ \gamma = \gamma' \circ i \).
     \end{itemize}
 \end{lemma}
 \begin{proof}
-    WIP: Marius tilbakemelding. 
-
-    Since both \( I \) and \( I' \) are injective objects and \( g \) and \( h \) monomorphisms, then there exists maps \( i \) and \( i' \) such that the following two diagrams commute
+    Since both \( I \) and \( I' \) are injective objects and \( \kappa \) and \( \kappa' \) are monomorphisms, there exists maps \( i \) and \( i' \) such that the following two diagrams commute
     \[
         \begin{aligned}
             \begin{tikzpicture}
@@ -878,8 +876,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 };
 
                 \draw[math]
-                    (m-1-2) edge node {g} (m-2-1)
-                        edge node {h} (m-2-3)
+                    (m-1-2) edge node[swap] {\kappa} (m-2-1)
+                        edge node {\kappa'} (m-2-3)
 
                     (m-2-1) edge node {i} (m-2-3);
             \end{tikzpicture}
@@ -893,8 +891,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 };
 
                 \draw[math]
-                    (m-1-2) edge node {g} (m-2-1)
-                        edge node {h} (m-2-3)
+                    (m-1-2) edge node[swap] {\kappa} (m-2-1)
+                        edge node {\kappa'} (m-2-3)
 
                     (m-2-3) edge node {i'} (m-2-1);
             \end{tikzpicture}
@@ -912,12 +910,12 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
 
             \draw[math]
                 (m-1-1) edge node {f} (m-1-2)
-                    edge[curve={height=50pt}] node {g} (m-4-1)
-                    edge[curve={height=25pt}] node {h} (m-3-1)
-                    edge node {g} (m-2-1)
-                (m-1-2) edge node {g'} (m-2-2)
-                    edge[curve={height=-25pt}] node {h'} (m-3-3)
-                    edge[curve={height=-50pt}] node {g'} (m-4-4)
+                    edge[curve={height=50pt}] node {\kappa} (m-4-1)
+                    edge[curve={height=25pt}] node {\kappa'} (m-3-1)
+                    edge node {\kappa} (m-2-1)
+                (m-1-2) edge node {g} (m-2-2)
+                    edge[curve={height=-25pt}] node {g'} (m-3-3)
+                    edge[curve={height=-50pt}] node {g} (m-4-4)
 
                 (m-2-1) edge node {\gamma} (m-2-2)
                     edge node {i} (m-3-1)
@@ -930,9 +928,9 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 (m-4-1) edge node {\gamma} (m-4-4);
         \end{tikzpicture}
     \end{center}
-    The goal is to show that \( [\beta \circ \alpha] = [\Id_C] \).
+    We want to show that \( [\beta \circ \alpha] = [\Id_C] \).
 
-    By definition of a pushout, the following squence is exact
+    By the definition of a pushout, the following sequence is exact
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -943,12 +941,12 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 (m-1-1) edge node {
                     \begin{psmallmatrix}
                         f \\
-                        g
+                        \kappa
                     \end{psmallmatrix}
                 } (m-1-2)
                 (m-1-2) edge node {
                     \begin{psmallmatrix}
-                        g' & \gamma
+                        g & \gamma
                     \end{psmallmatrix}
                 } (m-1-3);
         \end{tikzpicture}
@@ -965,12 +963,12 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 (m-1-1) edge node {
                     \begin{psmallmatrix}
                         f \\
-                        g
+                        \kappa
                     \end{psmallmatrix}
                 } (m-1-2)
                 (m-1-2) edge node {
                     \begin{psmallmatrix}
-                        g' & \gamma
+                        g & \gamma
                     \end{psmallmatrix}
                 } (m-1-3)
                 (m-1-2) edge node[swap] {
@@ -986,28 +984,28 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     \end{diagramlabel}
     since
     \[
-        \begin{psmallmatrix}
+        \begin{pmatrix}
             0 & i' \circ i - \Id_I
-        \end{psmallmatrix}
+        \end{pmatrix}
         \circ
-        \begin{psmallmatrix}
+        \begin{pmatrix}
             f \\
-            g
-        \end{psmallmatrix}
+            \kappa
+        \end{pmatrix}
         = 0
     \]
     then by the cokernel property of \( C \) there exist a morphism \( \delta \) such that the top triangle in \autoref{diag:C-iso} commutes. However, since \( 
         \begin{psmallmatrix}
-            g' & \gamma
+            g & \gamma
         \end{psmallmatrix}
-    \) is an epimorphism by definition, it follows that the bottom triangle also commutes.
+    \) is an epimorphism by definition, it follows that the bottom triangle also commutes, which implies \( [\beta \circ \alpha] = [\Id_C] \).
 
     We can prove that \( [\alpha \circ \beta] = [\Id_{C'}] \) in a similar way.
 \end{proof}
 
-Then finally comes the full triangulation result, the proof of which is heavily inspired by \cite[First theorem in Chapter 1, Subsection 2.6]{Happel_1988}, with additional inspiration for proving {\bf (TR4)} from \cite[Theorem 4.18]{Johan_Bachelor}.
+We can now prove that \( \tuple{\Mc, \Sigma, \Delta} \) is triangulated, where our proof is inspired by \cite[Theorem, p. 16]{Happel_1988} and \cite[Theorem 4.18]{Johan_Bachelor}.
 
-% TODO: Kommenter at den nøyaktige triangulerte strukturen ikkje blir brukt seinare i oppgåva. Etterpå vert berre eksistensen av ein triangulering brukt.
+The details of the proof will not be important for the rest of the thesis, but is included mainly because we will be using \( \Mc \) for examples later on.
 
 % TODO: Sebastian kommenterte på "... it is a known fact that the pushout of an iso is an iso ..." Med "appeal to common belief". Kva skal eg gjere med det? Burde eg ha med nokre pushout eigenskapar i forkant?
 % -> Ikkje nemn det og problemet går vekk.
@@ -1016,8 +1014,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
     The tuple \( \tuple{\Mc, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 \begin{proof} % TODO: Skriv om bevisa, standariser notasjon, kanskje inkluder lemmaet over inn i TR4? Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
-    We need to prove {\bf (TR1)} to {\bf (TR4)} from \autoref{def:triangulated_category}.
-
+    We need to prove {\bf (TR1)} -- {\bf (TR4)} from \autoref{def:triangulated_category}.
     \begin{enumerate}[label={(\bfseries TR\arabic*)}]
         \item {
             \begin{enumerate}
@@ -1041,7 +1038,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \item {
                     Let \( A \in \Mc \).
                     
-                    Calculating \( C_{\Id_A} \) we get the pushout
+                    By definition, \( C_{\Id_A} \) is the pushout
                     \begin{center}
                         \begin{tikzpicture}
                             \diagram{m}{1cm}{1cm} {
@@ -1057,10 +1054,10 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                                 (m-2-1) edge node {\gamma_{\Id}} (m-2-2);
                         \end{tikzpicture}
                     \end{center}
-                    Since the pushout of an isomorphism is an isomorphism, \( \gamma_{\Id} \) is an isomorphism, which implies \( C_{\Id} \cong 0 \) in \( \Mc \) because all injective modules are projective in \( \Mc \).
+                    Since the pushout of an isomorphism is an isomorphism, \( \gamma_{\Id} \) is an isomorphism, which implies \( C_{\Id} \cong 0 \) in \( \Mc \) because all injective modules are projective in \( \Mc \). This yields the trivial triangle.
                 }
                 \item {
-                    \( \Delta \) is closed under isomorphisms of triangles directly by the definition of \( \Delta \).
+                    \( \Delta \) is closed under isomorphisms of triangles by definition.
                 }
             \end{enumerate}
         }
@@ -1068,9 +1065,11 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             % TODO: Motiver dette beviset mykje betre.
             We need to show \( (\Leftarrow) \) and \( (\Rightarrow) \). By \autoref{lem:triangulated_category-TR2-only_one_rotation}, assuming the upcoming proof of {\bf (TR3)} as well as the previous proof of {\bf (TR1)}, then \( (\Leftarrow) \) is implied by \( (\Rightarrow) \).
             
-            Therefore it is sufficient to only prove \( (\Rightarrow) \).
+            Therefore, it is sufficient to only prove \( (\Rightarrow) \).
 
-            First note that a left shifted distinguished triangle will be isomorphic to a left shifted standard triangle. Therefore it suffices to check that every left shifted standard triangle is distinguished.
+            First note that a left rotated distinguished triangle will be isomorphic to a left rotated standard triangle. Therefore, it suffices to check that every left rotated standard triangle is distinguished.
+            
+            We will prove this by picking an arbitrary distinguished triangle, and use it to create a new distinguished triangle which is isomorphic to the left rotated standard triangle.
 
             Consider the following standard triangle
             \begin{center}
@@ -1086,7 +1085,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                 \end{tikzpicture}
             \end{center}
 
-            Keep in mind the following commutative diagrams given by the definition of \( \Sigma [f] \) (\autoref{def:stmod_sigma}) and the construction of the above standard triangle (\autoref{rem:stmod_cone}),
+            Recall the following commutative diagrams given by the definition of \( \Sigma [f] \) (\autoref{def:stmod_sigma}) and the construction of the above standard triangle (\autoref{rem:stmod_cone}),
             \[
                 \begin{aligned}
                     \begin{tikzpicture}
@@ -1126,12 +1125,12 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     \end{tikzpicture}
                 \end{aligned}
             \]
-            With the above diagrams in mind, consider the following commutative diagram excluding the dahed arrow,
+            With the above diagrams in mind, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& B \\
-                        I_A \& C_f \& I_B \& \Sigma B \\
+                        I_A \& C_f \& I_B \& \Sigma B, \\
                     };
 
                     \draw[math]
@@ -1147,9 +1146,9 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-3) edge node{\rho_B} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            where \( \phi \) is given by the pushout universal property.
+            where there exist some \( \phi \), given by the pushout universal property.
 
-            Consider the following equalities that follow from the above commutative diagrams
+            By the commutativity of the above diagrams, we have
             \[
                 \rho_B \circ \phi \circ g = \rho_B \circ \kappa_B = 0 = \Sigma f \circ h \circ g,
             \]
@@ -1157,7 +1156,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \[
                 \rho_B \circ \phi \circ \gamma_f = \rho_B \circ i_f = \Sigma f \circ \rho_A = \Sigma f \circ h \circ \gamma_f.
             \]
-            This implies that considering the following pushout diagram
+            This implies that the following pushout diagram
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1176,7 +1175,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-2) edge[dashed] (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            would have two different morphisms, \( \rho_B \circ \phi \) and \( \Sigma f \circ h \), that could satisfy the pushout universal property. By uniqueness, they therefore have to be the same morphism, i.e.,
+            has two different morphisms, \( \rho_B \circ \phi \) and \( \Sigma f \circ h \), that could satisfy the pushout universal property. By uniqueness, they have to be the same morphism, i.e.,
             \[
                 \rho_B \circ \phi = \Sigma f \circ h.
             \]
@@ -1225,9 +1224,9 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-4) edge (m-2-5);
                 \end{tikzpicture}
             \end{center}
-            where the top row is exact by \autoref{rem:stmod_cone_pushout_properties}, and the second row is split-exact. It follows that the middle square is in fact a pushout, which implies \( I_B \oplus \Sigma A  \) is uniquely isomorphic to \( C_g \). % TODO: Cite Notat, klassifisering av pushout og pullback i abelsk kategori.
+            where the top row is exact by \autoref{rem:stmod_cone_pushout_properties}, and the second row is split-exact. It follows that the middle square is in fact a pushout, which implies that \( I_B \oplus \Sigma A  \) is uniquely isomorphic to \( C_g \).
             
-            And since
+            Since
             \[
                 \begin{psmallmatrix}
                     \rho_B & -\Sigma f
@@ -1263,7 +1262,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center} 
             is a standard triangle of \( g \), and therefore distinguished.
 
-            Finally it remains to check if the triangle is isomorphic to the expected triangle. Consider the following diagram in \( \Mc \)
+            Finally, it remains to check if the triangle is isomorphic to the expected triangle. Consider the following diagram in \( \Mc \)
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1298,19 +1297,19 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-3) edge node {[-\Sigma f]} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            The left and the middle square commute directly, but it remains to check if the right square commutes. In addition we need to check that \( \class{
+            The left and the middle square commute directly, but it remains to check if the right square commutes. Additionally, we need to check that \( \class{
                 \begin{psmallmatrix}
                     0 & 1
                 \end{psmallmatrix}
             } \) is an isomorphism.
 
-            First, check the commutativity. Consider the difference
+            First, we check the commutativity. Consider the difference
             \[
                 \begin{psmallmatrix}
                     \rho_B & -\Sigma f
                 \end{psmallmatrix}
                 -
-                -(\Sigma f) \circ
+                (-\Sigma f) \circ
                 \begin{psmallmatrix}
                     0 & 1
                 \end{psmallmatrix}
@@ -1341,13 +1340,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                                 \rho_B & 0
                             \end{psmallmatrix}
                         } (m-1-3)
-                            edge node {
+                            edge node[swap] {
                                 \begin{psmallmatrix}
                                     1 & 0
                                 \end{psmallmatrix}
                             } (m-2-2)
 
-                        (m-2-2) edge node {\rho_B} (m-1-3);
+                        (m-2-2) edge node[swap] {\rho_B} (m-1-3);
                 \end{tikzpicture}
             \end{center}
             commutes, and since every injective module is also projective, \(\class{
@@ -1362,7 +1361,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         0 & 1
                     \end{psmallmatrix}
                 }
-            \)
+            \).
 
             Second, we check that \( \class{
                 \begin{psmallmatrix}
@@ -1376,7 +1375,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     1
                 \end{psmallmatrix}
             } \).
-            It is already known that \( \class{
+            Note that \( \class{
                 \begin{psmallmatrix}
                     0 & 1
                 \end{psmallmatrix}
@@ -1386,7 +1385,7 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     1
                 \end{psmallmatrix}
             } = [\Id_A] \).
-            Then it remains to check if
+            It remains to check if
             \[
                 \Id_{I_B \oplus \Sigma A} -
                 \begin{psmallmatrix}
@@ -1402,9 +1401,9 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                     0 & 0
                 \end{psmallmatrix}
             \]
-            factors through a projective.
+            factors through a projective module.
 
-            Consider the following diagram
+            This follows from the following commutative diagram,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1419,13 +1418,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                                 0 & 0
                             \end{psmallmatrix}
                         } (m-1-3)
-                            edge node {
+                            edge node[swap] {
                                 \begin{psmallmatrix}
                                     1 & 0
                                 \end{psmallmatrix}
                             } (m-2-2)
 
-                        (m-2-2) edge node {
+                        (m-2-2) edge node[swap] {
                             \begin{psmallmatrix}
                                 1 \\
                                 0
@@ -1433,14 +1432,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         } (m-1-3);
                 \end{tikzpicture}
             \end{center}
-            It commutes.
         }
         \item {
-            By considering two arbitrary distinguished triangles, any morphism between their components will induce a unique morphism between the component of their standard triangles they are isomorphic to, and vice versa. Therefore it suffices to only check {\bf (TR3)} for standard triangles.
+            By considering two arbitrary distinguished triangles, any morphism between their components will induce a unique morphism between the component of their standard triangles that they are isomorphic to, and vice versa. Therefore, it suffices to only check {\bf (TR3)} for standard triangles.
 
-            In addition, by the argument made in {\bf (TR2)}, we can not assume {\bf (TR2)} (\( \Leftarrow \)) in this proof, as that would yield a circular argument.
+            In addition, by the argument made in {\bf (TR2)}, we can not assume {\bf (TR2)} in this proof, as that would yield a circular argument.
 
-            We need to show that given the following diagram excluding the dashed arrow where the top and botton row are standard triangles,
+            We need to show that given the following commutative diagram, excluding the dashed arrow, where the top and bottom row are standard triangles,
             \begin{diagramlabel}[\label{eq:stablemod}]
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1462,56 +1460,60 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-3) edge node {[n]} (m-2-4);
                 \end{tikzpicture}
             \end{diagramlabel}
-            that there exists some \( \phi: C_f \to C_{l} \) such that the entire diagram including \( \phi \), commutes.
+            that there exists some \( \phi: C_f \to C_l \) such that the entire diagram, including \( \phi \), commutes.
 
-            Consider the following commutative diagrams in \( \Mod(R) \) from the definition of the two standard triangles
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        A \& B \\
-                        I_A \& C_f \\
-                        \& \Sigma A, \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {f} (m-1-2)
-                            edge[tailed] node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node{g} (m-2-2)
-
-                        (m-2-1) edge node {\gamma_f} (m-2-2)
-                            edge node {\rho_A} (m-3-2)
-                        (m-2-2) edge node {h} (m-3-2);
-                \end{tikzpicture}
-                %
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        D \& E \\
-                        I_{D} \& C_{l} \\
-                        \& \Sigma D, \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge node {l} (m-1-2)
-                            edge[tailed] node {\kappa_{D}} (m-2-1)
-                        (m-1-2) edge node {m} (m-2-2)
-
-                        (m-2-1) edge node {\gamma_{l}} (m-2-2)
-                            edge node {\rho_{D}} (m-3-2)
-                        (m-2-2) edge node {n} (m-3-2);
-                \end{tikzpicture}
-            \end{center}
-            then since \( [l] \circ [\alpha] = [\beta] \circ [f] \) in \( \Mc \), we have that \( l \circ \alpha - \beta \circ f \) factors through a projective. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( l \circ \alpha - \beta \circ f \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to E \) such that
+            Consider the following commutative diagrams in \( \Mod(R) \) from the definition of the two standard triangles above,
+            \[
+                \begin{aligned}
+                    \begin{tikzpicture}
+                        \diagram{m}{1cm}{1cm} {
+                            A \& B \\
+                            I_A \& C_f \\
+                            \& \Sigma A, \\
+                        };
+    
+                        \draw[math]
+                            (m-1-1) edge node {f} (m-1-2)
+                                edge[tailed] node {\kappa_A} (m-2-1)
+                            (m-1-2) edge node{g} (m-2-2)
+    
+                            (m-2-1) edge node {\gamma_f} (m-2-2)
+                                edge node {\rho_A} (m-3-2)
+                            (m-2-2) edge node {h} (m-3-2);
+                    \end{tikzpicture}
+                \end{aligned}
+                \text{ and }
+                \begin{aligned}
+                    \begin{tikzpicture}
+                        \diagram{m}{1cm}{1cm} {
+                            D \& E \\
+                            I_{D} \& C_{l} \\
+                            \& \Sigma D. \\
+                        };
+    
+                        \draw[math]
+                            (m-1-1) edge node {l} (m-1-2)
+                                edge[tailed] node {\kappa_{D}} (m-2-1)
+                            (m-1-2) edge node {m} (m-2-2)
+    
+                            (m-2-1) edge node {\gamma_{l}} (m-2-2)
+                                edge node {\rho_{D}} (m-3-2)
+                            (m-2-2) edge node {n} (m-3-2);
+                    \end{tikzpicture}
+                \end{aligned}
+            \]
+            Since \( [l] \circ [\alpha] = [\beta] \circ [f] \) in \( \Mc \), we have that \( l \circ \alpha - \beta \circ f \) factors through a projective module. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( l \circ \alpha - \beta \circ f \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to E \) such that
             \[
                 l \circ \alpha - \beta \circ f = \xi \circ \kappa_A.
             \]
 
             % TODO: Formuler dette betre. Eg trur det framleis er alt for muntleg.
-            Furthermore, consider the following diagram by definition of \( \Sigma [\alpha] \)
+            Consider the following diagram by definition of \( \Sigma [\alpha] \)
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& I_A \& \Sigma A \\
-                        D \& I_{D} \& \Sigma D, \\
+                        D \& I_{D} \& \Sigma D. \\
                     };
 
                     \draw[math]
@@ -1525,17 +1527,13 @@ Then finally comes the full triangulation result, the proof of which is heavily 
                         (m-2-2) edge[two headed] node {\rho_{D}} (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            then we can construct the morphism which will be used below
-            \[
-                \gamma_{l} \circ i_{\alpha} - m \circ \xi: I_A \to C_{l}.
-            \]
 
             Since
             \begin{align*}
                 m \circ \beta \circ f &= m \circ l \circ \alpha - m \circ \xi \circ \kappa_A \\
                 &= \gamma_{l} \circ \kappa_{D} \circ \alpha - m \circ \xi \circ \kappa_A \\
                 &= \gamma_{l} \circ i_{\alpha} \circ \kappa_A - m \circ \xi \circ \kappa_A \\
-                &= (\gamma_{l} \circ i_{\alpha} - m \circ \xi) \circ \kappa_A
+                &= (\gamma_{l} \circ i_{\alpha} - m \circ \xi) \circ \kappa_A,
             \end{align*}
             then by the pushout property of \( C_f \) it follows that there exists some unique \( \phi \) such that the following diagram commutes
             \begin{center}
@@ -1559,7 +1557,9 @@ Then finally comes the full triangulation result, the proof of which is heavily 
             \end{center}
             In particular \( \phi \circ \gamma_f = \gamma_{l} \circ i_{\alpha} - m \circ \xi \).
 
-            Finally, check that this \( \phi \) makes \autoref{eq:stablemod} commute.
+            Finally, we check that this \( \phi \) makes \autoref{eq:stablemod} commute.
+
+            WIP: Marius tilbakemelding.
 
             By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check if \( [n \circ \phi] = [(\Sigma \alpha) \circ h] \). Consider the following pushout diagram that commutes because \( (\Sigma \alpha) \circ h \circ \gamma_f \circ \kappa_A = (\Sigma \alpha) \circ \rho_A \circ \kappa_A = 0 \),
             \begin{center}
