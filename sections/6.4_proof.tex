@@ -1,32 +1,5 @@
 We start by proving some lemmas and giving some definitions that are required for the proof.
 
-% TODO: Burde klarifisera likhet vs isomorfi. Kvifor er Sigma^i for morfiar i degree partal likheit?
-
-\begin{corollary}
-    \label{cor:dgm_i_eq_dgm_0_shifted_codomain}
-    \[
-        \dgM(F, G)_i = \dgM(F, \Sigma^i G)_0
-    \]
-\end{corollary}
-\begin{proof}
-    By \autoref{lem:dgmod_shift_eq_plus},
-    \[
-        \dgM(F, G)_i = \dgM(\Sigma^{-i} F, G)_0.
-    \]
-    Then, by applying \( \Sigma^i \), we get the result.
-\end{proof}
-
-\begin{remark}
-    \label{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms}
-    An interesting consequence of the definition of \( \dgM \) is that since \( (\Sigma F) \oplus G \) and \( C_{\eta} \) has the property that for every \( A \in \Cc \), and every \( n \in \Zb \),
-    \[
-        ((\Sigma F) \oplus G)(A)_n = (\Sigma F A)_n \oplus (G A)_n = C_{\eta}(A)_n,
-    \]
-    then for any \( H \in \dgM \) and any \( i \in \Zb \), \( \dgM(H, (\Sigma F) \oplus G)_i = \dgM(H, C_{\eta})_i \) as well as \( \dgM((\Sigma F) \oplus G, H)_i = \dgM(C_{\eta}, H)_i \).
-
-    In other words, the differentials of the \( ((\Sigma F) \oplus G) A \)s and \( C_{\eta} A \)s only affect the differentials of the morphism spaces in \( \dgM \), but not the modules in each degree.
-\end{remark}
-
 The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \) and is the reason we can compare Toda brackets and Massey products in algebraic triangulated categories.
 
 \begin{lemma}
@@ -66,9 +39,9 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
     \[
         t \in \dgM(X_1, X_3)_{-1}
     \]
-    with \( d(s) = \bar{g_3} \circ g_2 \) and \( d(t) = \bar{g_2} \circ g_1 \) such that
+    with \( d(s) = - g_3 \circ g_2 \) and \( d(t) = - g_2 \circ g_1 \) such that
     \[
-        f = \class{\bar{s} \circ g_1 + \bar{g_3} \circ t}.
+        f = \class{s \circ g_1 - g_3 \circ t}.
     \]
 
     % WIP: Kvifor kan eg laga matrise av dgmod morfiar og få ein dgmod morfi?
@@ -82,7 +55,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
         \end{pmatrix}
         \in \dgM(X_1, X_2 \oplus \Sigma^{-1} X_3)_0.
     \]
-    By \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms}, we can consider \( \alpha \) as an element of \( \dgM(X_1, \Sigma^{-1} C_{g_2}) \).
+    By \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms}, we can consider \( \alpha \) as an element of \( \dgM(X_1, \Sigma^{-1} C_{g_2})_0 \).
 
     Similarly, consider \( s \) as an element of \( \dgM(\Sigma X_2, X_4)_0 \).
 
@@ -178,7 +151,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
                     edge node {[-\alpha]} (m-2-1)
                 (m-1-2) edge[equality] (m-2-2)
 
-                (m-2-1) edge node {[- \Sigma^{-1} \pi]} (m-2-2)
+                (m-2-1) edge node {[- \Sigma^{-1} \pi_{\Sigma X_2}]} (m-2-2)
                 (m-2-2) edge node {[f_2]} (m-2-3)
                 (m-2-3) edge node {[\iota]} (m-2-4)
                     edge[equality] (m-3-3)

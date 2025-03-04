@@ -65,7 +65,14 @@ The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following rem
             \]
             is a chain morphism by checking if it commutes with the differential.
 
-            WIP
+            Fix some \( n \in \Zb \), we want to show that \( \Sigma \circ d_{[A, B]} = d_{[\Sigma A, \Sigma B]} \circ \Sigma \).
+
+            Consider the following equation
+            \begin{align*}
+                \Sigma_{n + 1} \circ d_{[A, B], n} &= (-1)^{n + 1} d_{[A, B], n} \\
+                &= (-1)^n d_{[\Sigma A, \Sigma B], n} \\
+                &= d_{[\Sigma A, \Sigma B], n} \circ \Sigma_n.
+            \end{align*}
         }
         \item {
             Secondly, need to show the ``functoriality'' of \( \Sigma \).
@@ -265,30 +272,44 @@ The above definition is well-defined by the following remark.
 TODO
 
 \begin{remark}
+    \label{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms}
+    An interesting consequence of the definition of \( \dgM \) is that since \( (\Sigma F) \oplus G \) and \( C_{\eta} \) has the property that for every \( A \in \Cc \), and every \( n \in \Zb \),
+    \[
+        ((\Sigma F) \oplus G)(A)_n = (\Sigma F A)_n \oplus (G A)_n = C_{\eta}(A)_n,
+    \]
+    then for any \( H \in \dgM \) and any \( i \in \Zb \), \( \dgM(H, (\Sigma F) \oplus G)_i = \dgM(H, C_{\eta})_i \) as well as \( \dgM((\Sigma F) \oplus G, H)_i = \dgM(C_{\eta}, H)_i \).
+
+    In other words, the differentials of the \( ((\Sigma F) \oplus G) A \)s and \( C_{\eta} A \)s only affect the differentials of the morphism spaces in \( \dgM \), but not the modules in each degree.
+\end{remark}
+
+TODO
+
+% TODO: Kvifor er inklusjon og projeksjon DG-morfiar i dgM til å byrja med?
+\begin{remark}
     \label{rem:dgm_differentials_of_inclusions_and_projections_of_cone}
-    Let \( \iota_G \) be a degree \( 0 \) DG-morphism in \( \dgM \) with components
+    Let \( \iota_G \) be a degree \( 0 \) DG-morphism in \( \dgM(G, (\Sigma F) \oplus G) \) with components
     \[
         \iota_G := \tuple{ \iota_{A, i} }_{A \in \Cc, i \in \Zb},
     \]
     where
     \[
-        \iota_{G, A, i}: (G A)_i \rightarrowtail (C_{\eta} A)_i = (\Sigma F A)_i \oplus (G A)_i
+        \iota_{G, A, i}: (G A)_i \rightarrowtail = (\Sigma F A)_i \oplus (G A)_i
     \]
     are the inclusion morphisms. Similarly, let \( \iota_{\Sigma F} \) be as expected.
     
-    Let \( \pi_{\Sigma F} \) be a degree \( 0 \) DG-morphism in \( \dgM \) with components
+    Let \( \pi_{\Sigma F} \) be a degree \( 0 \) DG-morphism in \( \dgM((\Sigma F) \oplus G, \Sigma F) \) with components
     \[
         \pi_{\Sigma F} := \tuple{ \pi_{A, i} }_{A \in \Cc, i \in \Zb},
     \]
     where
     \[
-        \pi_{\Sigma F, A, i}: (C_{\eta} A)_i = (\Sigma F A)_i \oplus (G A)_i \twoheadrightarrow (\Sigma F A)_i
+        \pi_{\Sigma F, A, i}: = (\Sigma F A)_i \oplus (G A)_i \twoheadrightarrow (\Sigma F A)_i
     \]
     are the projection morphisms. Similarly, let \( \pi_G \) be as expected.
 
-    Then \( \iota_G \) and \( \pi_{\Sigma F} \) are cocycles.
+    By \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms} we can consider the above DG-morphisms as DG-morphisms to and from \( C_{\eta} \) instead of \( (\Sigma F) \oplus G \).
 
-    Consider the following equations,
+    Additionally, \( \iota_G \) and \( \pi_{\Sigma F} \) are cocycles by the following equations,
     \begin{align*}
         d_{\dgM(G, C_{\eta})}(\iota_G) &= d_{C_{\eta}} \circ \iota_G - \iota_G \circ d_G \\
         &=
@@ -344,7 +365,7 @@ TODO
         = 0.
     \end{align*}
 
-    And the differentials of \( \iota_{\Sigma F} \) and \( \pi_G \) are as follows,
+    The differentials of \( \iota_{\Sigma F} \) and \( \pi_G \) are as follows,
     \begin{align*}
         d_{\dgM(\Sigma F, C_{\eta})}(\iota_{\Sigma F}) &= d_{C_{\eta}} \circ \iota_{\Sigma F} - \iota_{\Sigma F} \circ d_{\Sigma F} \\
         &=
