@@ -29,7 +29,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
 
     Let \( f \in \massey{f_3, f_2, f_1} \). Then by definition of massey product there exists
     \[
-        g_i \in \dgM(X_i, X_{i + 1})
+        g_i \in \dgM(X_i, X_{i + 1})_0
     \]
     with \( [g_i] = f_i \) for \( i = 1, 2, 3 \), as well as
     \[
@@ -46,7 +46,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
 
     % WIP: Kvifor kan eg laga matrise av dgmod morfiar og få ein dgmod morfi?
     %   Kvifor kan alpha gå inn i cone?
-    By \autoref{lem:dgmod_shift_eq_plus}, consider \( t \) as an element of \( \dgM(\Sigma X_1, X_3)_0 \). By the definition of \( \Sigma \), \( \Sigma^{-1} t = t \). Then we can construct the following morphism.
+    By \autoref{lem:dgmod_shift_eq_plus}, consider \( t \) as an element of \( \dgM(\Sigma X_1, X_3)_0 \). Consider \( \Sigma^{-1} t = t \). Then we can construct the following morphism.
     \[
         \alpha =
         \begin{pmatrix}
@@ -193,7 +193,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
         &= \class*{g_3} = \class*{f_3}.
     \end{align*}
 
-    That means that
+    That means that: FEIL
     \[
         \class*{(-\beta) \circ (\Sigma (- \alpha))} = \class*{\beta \circ (\Sigma \alpha)} = \class*{\beta \circ \alpha} = f
     \]
@@ -235,12 +235,12 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
          &= - f_2 \circ (- \Sigma^{-1} \pi_{\Sigma X_3}) \circ \alpha \\
          &= - g_2 \circ g_1.
     \end{align*}
-    Third, \( -f = \class{s \circ g_1 - g_3 \circ t} \): TODO: Shift av morfiar forvirring.
+    Third, \( -f = \class{s \circ g_1 - g_3 \circ t} \): TODO: Shift av morfiar forvirring. FEIL
     \begin{align*}
         s \circ g_1 - g_3 \circ t &= \beta \circ \iota_{\Sigma X_2} \circ (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha - \beta \circ \iota_{X_3} \circ (\Sigma^{-1} \pi_{X_3}) \circ \alpha \\
         &= - \beta \circ \tuple*{\iota_{\Sigma X_2} \circ \pi_{\Sigma X_2} + \iota_{X_3} \circ \pi_{X_3}} \circ \alpha \\
         &= - \beta \circ \Id_{C_{f_2}} \circ \alpha \\
-        &= - \beta \circ \alpha = - f
+        &= - \beta \circ \alpha = - f.
     \end{align*}
 \end{proof}
 

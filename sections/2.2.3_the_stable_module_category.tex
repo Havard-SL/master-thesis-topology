@@ -1555,19 +1555,17 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge[dashed] node {\phi} (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            In particular \( \phi \circ \gamma_f = \gamma_{l} \circ i_{\alpha} - m \circ \xi \).
+            In particular, \( \phi \circ \gamma_f = \gamma_{l} \circ i_{\alpha} - m \circ \xi \).
 
             Finally, we check that this \( \phi \) makes \autoref{eq:stablemod} commute.
 
-            WIP: Marius tilbakemelding.
-
-            By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check if \( [n \circ \phi] = [(\Sigma \alpha) \circ h] \). Consider the following pushout diagram that commutes because \( (\Sigma \alpha) \circ h \circ \gamma_f \circ \kappa_A = (\Sigma \alpha) \circ \rho_A \circ \kappa_A = 0 \),
+            By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check \( [n \circ \phi] = [(\Sigma \alpha) \circ h] \). Consider the following diagram, excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& B \\
                         I_A \& C_f \\
-                        \& \& \Sigma D, \\
+                        \& \& \Sigma D. \\
                     };
 
                     \draw[math]
@@ -1581,15 +1579,22 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge[dashed] (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            and the following two equations
+            The above diagram commutes because \( (\Sigma \alpha) \circ h \circ \gamma_f \circ \kappa_A = (\Sigma \alpha) \circ \rho_A \circ \kappa_A = 0 \).
+
+            Consider the following equations
             \[
                 n \circ \phi \circ g = n \circ m \circ \beta = 0 = (\Sigma \alpha) \circ h \circ g,
             \]
             and
-            \[
-                (\Sigma \alpha) \circ h \circ \gamma_f = (\Sigma \alpha) \circ \rho_A = \rho_{D} \circ i_{\alpha} = n \circ \gamma_{l} \circ i_{\alpha} = n \circ (\phi \circ \gamma_f + m \circ \xi) = n \circ \phi \circ \gamma_f.
-            \]
-            These implies that there are two choices of dashed line in the above diagram that would make it commute. However, by uniqueness, this implies they are equal and therefore
+            \begin{align*}
+                (\Sigma \alpha) \circ h \circ \gamma_f &= (\Sigma \alpha) \circ \rho_A \\
+                &= \rho_{D} \circ i_{\alpha} \\
+                &= n \circ \gamma_{l} \circ i_{\alpha} \\
+                &= n \circ (\phi \circ \gamma_f + m \circ \xi) \\
+                &= n \circ \phi \circ \gamma_f.
+            \end{align*}
+                
+            These imply that there are two choices of dashed line in the above diagram that would make it commute. However, by uniqueness, this implies they are equal and therefore
             \[
                 (\Sigma \alpha) \circ h = n \circ \phi.
             \]
@@ -1601,7 +1606,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             Consider three standard triangles
             \begin{center}
                 \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
+                    \diagram{m}{0.7cm}{1cm} {
                         A \& B \& C_f \& \Sigma A, \\
                         B \& D \& C_n \& \Sigma B, \& \text{and} \\
                         A \& D \& C_{n \circ f} \& \Sigma A, \\
@@ -1621,7 +1626,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-3-3) edge node {[l]} (m-3-4);
                 \end{tikzpicture}
             \end{center}
-            which fit into the following commutative diagram excluding the dashed arrows
+            which fit into the following commutative diagram excluding the dashed arrows,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1655,7 +1660,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-4-2) edge node {\Sigma [g]} (m-4-3);
                 \end{tikzpicture}
             \end{center}
-            We need to show that there exists morphisms \( [\phi] \) and \( [\psi] \) that fit into the above diagram and commutes, such that
+            We need to show that there exists morphisms \( [\phi] \) and \( [\psi] \) that fit into the above commutative diagram, such that
             \begin{diagramlabel}[\label{tri:stmod_tr4}]
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1670,7 +1675,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{diagramlabel}
             is a distinguished triangle.
 
-            In order to construct the proper \( [\phi] \) and \( [\psi] \), we will work with the following commutative diagram, excluding the dahsed arrows, in \( \Mod(R) \)
+            In order to construct \( [\phi] \) and \( [\psi] \), we will work with the following commutative diagram, excluding the dashed arrows, in \( \Mod(R) \)
             \begin{diagramlabel}[\label{diag:stmod_tr4}]
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1750,7 +1755,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{center}
 
-            Similar, but not equal, to what was done in the proof of {\bf (TR3)}, let \( \phi \) be the (dashed) pushout morphism arising from the following commutative diagram excluding the dashed arrow
+            Similar to what was done in the proof of {\bf (TR3)}, let \( \phi \) be the (dashed) pushout morphism arising from the following commutative diagram excluding the dashed arrow
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1802,11 +1807,11 @@ The details of the proof will not be important for the rest of the thesis, but i
             \[
                 l \circ \phi = h.
             \]
-            And therefore the square to the right of \( \phi \) in \autoref{diag:stmod_tr4_C} also commutes.
+            Therefore, the square to the right of \( \phi \) in \autoref{diag:stmod_tr4} also commutes.
 
             In order to construct \( \psi \) we have to first define two morphisms which will be used in its definition.
 
-            By \autoref{rem:stmod_cone_pushout_properties} it follows that \( g \) is a monomorphism. And since \( \kappa_{C_f} \) is also a monomorphism, it follows that
+            By \autoref{rem:stmod_cone_pushout_properties}, \( g \) is a monomorphism. Since \( \kappa_{C_f} \) is also a monomorphism, it follows that
             \[
                 \kappa_{C_f} \circ g: B \to I_{C_f}
             \]
@@ -1902,7 +1907,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-4-2) edge node {\rho_B} (m-4-3);
                 \end{tikzpicture}
             \end{center}
-            which commutes because the top left and bottom left ``triangles'' of the diagram commute. Then since
+            which commutes because the top left ``trapezoid'' and the bottom left ``triangle'' in the diagram commute. Then since
             \[
                 \rho_B \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A = \rho_B \circ \kappa_B = 0,
             \]
@@ -1930,30 +1935,28 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{center}
             where
             \[
-                \Sigma f \circ l \circ j = \Sigma f \circ 0 = 0 = k \circ m = k \circ \psi \circ j
+                (\Sigma f) \circ l \circ j = (\Sigma f) \circ 0 = 0 = k \circ m = k \circ \psi \circ j
             \]
             and
             \begin{align*}
                 k \circ \psi \circ \gamma_{n \circ f} &= k \circ \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f \\
                 &= \rho_B \circ i \circ \kappa_{C_f} \circ \gamma_f \\
-                &= \Sigma f \circ \rho_A \\
-                &= \Sigma f \circ l \circ \gamma_{n \circ f}.
+                &= (\Sigma f) \circ \rho_A \\
+                &= (\Sigma f) \circ l \circ \gamma_{n \circ f}.
             \end{align*}
-            Then by uniqueness of the pushout property it follows that \( k \circ \psi = \Sigma f \circ l \).
-                
-            Therefore the square to the right of \( \psi \) in \autoref{diag:stmod_tr4} commutes.
+            Thus, by uniqueness of the pushout property it follows that \( k \circ \psi = (\Sigma f) \circ l \), and the square to the right of \( \psi \) in \autoref{diag:stmod_tr4} commutes.
 
             Finally, it remains to check that
             \begin{center}
                 \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
+                    \diagram{m}{1cm}{1.5cm} {
                         C_f \& C_{n \circ f} \& C_n \& \Sigma C_f \\
                     };
 
                     \draw[math]
                         (m-1-1) edge node {[\phi]} (m-1-2)
                         (m-1-2) edge node {[\psi]} (m-1-3)
-                        (m-1-3) edge node {\Sigma([g]) \circ [k]} (m-1-4);
+                        (m-1-3) edge node {(\Sigma[g]) \circ [k]} (m-1-4);
                 \end{tikzpicture}
             \end{center}
             is a distinguished triangle.
@@ -1980,7 +1983,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge node {\phi} (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            Since the left and the outer square are pushouts this implies that the right square is also a pushout.
+            Since the left and the outer square are pushouts this implies that the right square is also a pushout. % TODO: Marius skreiv "Hvorfor" her. Kanskje eg burde utdjupa pushout eigenskapar?
 
             Consider the following pushout diagram of \( (B, n, \kappa_{C_f} \circ g) \),
             \begin{diagramlabel}[\label{diag:stmod_tr4_C}]
@@ -1999,7 +2002,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{diagramlabel}
 
-            Then using the new pushout, consider the following commutative diagram excluding the dashed arrow,
+            Using the new pushout, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -2011,7 +2014,8 @@ The details of the proof will not be important for the rest of the thesis, but i
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
                             edge node[swap] {g} (m-2-1)
-                        (m-1-2) edge[curve={height=-25pt}] node {\delta} (m-3-3)
+                        (m-1-2) edge node {j} (m-2-2)
+                            edge[curve={height=-25pt}] node {\delta} (m-3-3)
 
                         (m-2-1) edge node {\phi} (m-2-2)
                             edge[curve={height=25pt}] node[swap] {\gamma \circ \kappa_{C_f}} (m-3-3)
@@ -2043,7 +2047,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{diagramlabel}
 
-            Since the outer rectangle and upper squares of \autoref{diag:stmod_tr4_m_n_f_equal_something_else} are pushouts, then the lower square is also a pushout.
+            Since the outer rectangle and upper square of \autoref{diag:stmod_tr4_show_psi_phi_equal_something_else} are pushouts, then the lower square is also a pushout.
 
             This implies that there exists a morphism \( p \) by the pushout property, such that the following diagram
             \begin{center}
@@ -2114,7 +2118,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                     \end{tikzpicture}
                 \end{aligned}  
             \]
-            By \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that \( [\alpha] \) is an isomorphism in \( \Mc \), and the following equalities hold:
+            By \autoref{lem:stmod_pushout_different_injectives_isomorphic} it follows that there exists some \( \alpha: C \to C_n \) such that \( [\alpha] \) is an isomorphism in \( \Mc \), and
             \begin{itemize}
                 \item \( \alpha \circ \delta = m \), and
                 \item \( \alpha \circ \gamma = \gamma_n \circ i \).
@@ -2143,7 +2147,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{diagramlabel}
 
-            The leftmost square commutes by difficult mathematics.
+            The leftmost square clearly commutes.
 
             In order to prove that the middle square commutes, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
@@ -2165,16 +2169,16 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge[dashed] (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            where the inner square is a pushout and the outer ``square'' commutes by \autoref{diag:stmod_tr4_m_n_f_equal_something_else}.
+            where the inner square is a pushout and the outer ``square'' commutes by \eqref{diag:stmod_tr4_m_n_f_equal_something_else}.
 
-            Note the following equalities,
+            Note,
             \begin{align*}
                 \psi \circ \phi \circ g &= \psi \circ j \circ n \\
                 &= m \circ n \\
                 &= \gamma_n \circ \kappa_B \\
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ g,
             \end{align*}
-            and
+            and that
             \begin{align*}
                 \psi \circ \phi \circ \gamma_f &= \psi \circ \gamma_{n \circ f} \\
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f,
@@ -2216,7 +2220,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             
             It remains to show that the rightmost square commutes, which requires some additional tools.
 
-            Let \( E := \coker(\delta)\). Since \autoref{diag:stmod_tr4_C} is a pushout, we also have that \( E = \coker(\kappa_{C_f} \circ g) \). Let \( c: I_{C_f} \to E \) be the cokernel morphism of \( \kappa_{C_f} \circ g \).
+            Let \( E := \coker(\delta)\). Since \autoref{diag:stmod_tr4_C} is a pushout, we have \( E = \coker(\kappa_{C_f} \circ g) \). Let \( c: I_{C_f} \to E \) be the cokernel morphism of \( \kappa_{C_f} \circ g \).
 
             Let \( e \) and \( e^{-1} \) be the (dashed) morphisms induced by the cokernel properties which fit in the following commutative diagram,
             \begin{center}
@@ -2245,7 +2249,30 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{center}
             
-            We can verify that \( [e \circ e^{-1}] = [\Id_B] \) by \autoref{lem:stmod_sigma_well-defined_additive_endofunctor}. Similarly we can verify that \( [e^{-1} \circ e] = [\Id_E] \).
+            % We can verify that \( [e \circ e^{-1}] = \Sigma [\Id_B] = [\Id_{\Sigma B}] \) by \autoref{lem:stmod_sigma_well-defined_additive_endofunctor}. 
+            We have \( [e^{-1} \circ e] = [\Id_E] \) by the following argument:
+            
+            Consider the following commutative diagram excluding the dashed arrow,
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{2cm} {
+                        B \& I_{C_f} \& E \\
+                        B \& I_{C_f} \& E. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {\kappa_{C_f} \circ g} (m-1-2)
+                            edge node[swap] {\Id_B - \Id_B = 0} (m-2-1)
+                        (m-1-2) edge node {\rho_B} (m-1-3)
+                            edge node[swap] {\tilde{i} \circ i - \Id_{I_{C_f}}} (m-2-2)
+                        (m-1-3) edge[dashed] (m-2-2)
+                            edge node {e^{-1} \circ e - \Id_E} (m-2-3)
+
+                        (m-2-1) edge node {\kappa_{C_f} \circ g} (m-2-2)
+                        (m-2-2) edge node {\rho_B} (m-2-3);
+                \end{tikzpicture}
+            \end{center}
+            By the cokernel property of \( E \) there exist some morphism such that the top right triangle including the dashed arrow commutes. Furthermore, since \( \rho_B \) is an epimorphism, the bottom right triangle commutes, which implies \( [e^{-1} \circ e] = [\Id_E] \), since \( I_{C_f} \) is a projective module.
 
             The above morphisms fit into the following commutative diagram, where \( d \) is the cokernel morphism of \( \delta \),
             \begin{center}
@@ -2271,13 +2298,13 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{center}
             
-            With the above morphisms in mind, let \( \mu \) be the (dashed) morphism induced by the cokernel property in the following commutative diagram, and let \( \Sigma g := \mu \circ e^{-1} \),
+            With the above morphisms in mind, let \( \mu \) be the (dashed) morphism induced by the cokernel property in the following commutative diagram, 
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         B \& I_B \& \Sigma B \\
                         B \& I_{C_f} \& E \\
-                        C_f \& I_{C_f} \& \Sigma C_f. \\
+                        C_f \& I_{C_f} \& \Sigma C_f, \\
                     };
 
                     \draw[math]
@@ -2298,16 +2325,21 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-3-2) edge node {\rho_{C_f}} (m-3-3);
                 \end{tikzpicture}
             \end{center}
+            and let \( \Sigma g := \mu \circ e^{-1} \).
 
             Before proving \( [(\Sigma g) \circ k \circ \alpha] = [p] \), we first have to prove some relations between the new morphisms and the old ones.
 
-            First note the following commutative diagram excluding the dashed arrow
+            Since
+            \[
+                \rho_B \circ i \circ \kappa_{C_f} \circ g = \rho_B \circ \kappa_B = 0,
+            \]
+            we have the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         B \& D \\
                         I_{C_f} \& C \\
-                        \& \& \Sigma B \\
+                        \& \& \Sigma B. \\
                     };
 
                     \draw[math]
@@ -2321,11 +2353,8 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge[dashed] (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            where the outer ``square'' commutes because
-            \[
-                \rho_B \circ i \circ \kappa_{C_f} \circ g = \rho_B \circ \kappa_B = 0.
-            \]
-            Both \( e \circ d \) and \( k \circ \alpha \) could fit as the dashed arrow, because
+
+            Both \( e \circ d \) and \( k \circ \alpha \) could fit as the dashed arrow, as
             \[
                 k \circ \alpha \circ \delta = k \circ m = 0 = 0 \circ \delta = e \circ d \circ \delta,
             \]
@@ -2333,9 +2362,10 @@ The details of the proof will not be important for the rest of the thesis, but i
             \[
                 k \circ \alpha \circ \gamma = k \circ \gamma_n \circ i = \rho_B \circ i = e \circ c = e \circ d \circ \gamma.
             \]
-            and therefore by uniqueness of the universal property of the pushout, \( e \circ d = k \circ \alpha \).
+            Therefore, by uniqueness of the universal property of the pushout, \( e \circ d = k \circ \alpha \).
 
-            Similarly to above, consider the following commutative diagram excluding the dashed arrow,
+            % TODO: Marius vil ikkje bruka "arrow", men heller morphism?
+            Similarly, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -2356,21 +2386,21 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{center}
 
-            We can verify that \( p \) already fits as a dashed arrow, since \( p \circ \delta = p \circ x \circ j = 0 \circ j = 0 \). However, \( \mu \circ d \) also fits, by the following equations:
+            We can verify that \( p \) already fits as a dashed arrow, since \( p \circ \delta = p \circ x \circ j = 0 \circ j = 0 \). However, \( \mu \circ d \) also fits, as
             \[
-                \mu \circ d \circ \delta = \mu \circ 0 = 0
+                \mu \circ d \circ \delta = \mu \circ 0 = 0,
             \]
             and
             \[
                \mu \circ d \circ \gamma = \mu \circ c = \rho_{C_f}.
             \]
-            Therefore by the uniqueness of the universal property of the pushout, \( p = \mu \circ d \).
+            Therefore, by the uniqueness of the universal property of the pushout, \( p = \mu \circ d \).
 
-            Combining everything, we get the following equation
+            Combining everything, we have
             \[
                 [(\Sigma g) \circ k \circ \alpha] = [(\Sigma g) \circ e \circ d] =[\mu \circ e^{-1} \circ e \circ d] = [\mu \circ d] = [p],
             \]
-            which finishes the proof, since \( [\alpha] \) is an isomorphism. \qedhere
+            which finishes the proof, as \( [\alpha] \) is an isomorphism. \qedhere
         }
     \end{enumerate}
 \end{proof}

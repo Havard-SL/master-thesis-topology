@@ -41,3 +41,5 @@ pushouts
 fiber-cofiber
 cocycle
 cocycles
+Franklands
+cofiber

@@ -2,7 +2,7 @@ Let \( \Tc \) be a triangulated category. Given the following diagram in \( \Tc 
 \begin{center}
     \begin{tikzpicture}
         \diagram{m}{1cm}{1cm} {
-            {X_0} \& {X_1} \& {X_2} \& {X_3} \\
+            X_1 \& X_2 \& X_3 \& X_4 \\
         };
 
         \draw[math]
@@ -11,7 +11,7 @@ Let \( \Tc \) be a triangulated category. Given the following diagram in \( \Tc 
             (m-1-3) edge node {f_3} (m-1-4);
     \end{tikzpicture}
 \end{center}
-we can define the \emph{three-fold Toda bracket of \( f_1, f_2, f_3 \)} in three different (but actually identical, see \autoref{prop:toda-bracket-definitions-coincide}) ways:
+we can define the \emph{three-fold Toda bracket of \( f_1, f_2, \) and \( f_3 \)} in three different (but actually identical, see \autoref{prop:toda-bracket-definitions-coincide}) ways:
 
 % MS-Question: Problem med at venstre rotasjon ikkje blir skriven på den måten?
 \begin{definition}[Toda bracket]
@@ -20,12 +20,27 @@ we can define the \emph{three-fold Toda bracket of \( f_1, f_2, f_3 \)} in three
 
     \begin{enumerate}
         \item {
-            Let the set of every possible \( \psi \in \Tc(\Sigma X_0, X_3) \) that makes the following diagram commute
+            Let
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        {X_0} \& {X_1} \& {Y} \& {\Sigma X_0} \\
-                        {X_0} \& {X_1} \& {X_2} \& {X_3} \\
+                        X_1 \& X_2 \& Y \& \Sigma X_1 \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f_1} (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            be any distinguished triangle.
+
+            The set of every possible \( \psi \in \Tc(\Sigma X_0, X_3) \) that makes the following diagram commute,
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        X_1 \& X_2 \& Y \& \Sigma X_0 \\
+                        X_1 \& X_2 \& X_3 \& X_4, \\
                     };
 
                     \draw[math]
@@ -42,16 +57,31 @@ we can define the \emph{three-fold Toda bracket of \( f_1, f_2, f_3 \)} in three
                         (m-2-3) edge node {f_3} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            where the top row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\cc} \). This is called the \emph{three-fold iterated cofiber Toda Bracket of \( f_1, f_2, f_3 \)}.
+            is denoted as \( \toda{f_3, f_2, f_1}_{\cc} \). This is called the \emph{three-fold iterated cofiber Toda Bracket of \( f_1, f_2, \) and \( f_3 \)}.
         }
         \item {
-            Let the set of every composite \( \beta \circ \Sigma(\alpha) \in \Tc(\Sigma X_0, X_3) \) that makes the following diaram commute
+            Let
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \Sigma^{-1} Y \& X_1 \& X_2 \& \Sigma \Sigma^{-1} Y \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge (m-1-2)
+                        (m-1-2) edge node {f_2} (m-1-3)
+                        (m-1-3) edge (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            be any distinguished triangle.
+
+            The set of every composite \( \beta \circ \Sigma(\alpha) \in \Tc(\Sigma X_0, X_3) \) that makes the following diagram commute,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         {X_0} \& {X_1} \\
                         {\Sigma^{-1} Y} \& {X_1} \& {X_2} \& \Sigma \Sigma^{-1} Y \\
-                        \&\& {X_2} \& {X_3} \\
+                        \&\& {X_2} \& {X_3}, \\
                     };
 
                     \draw[math]
@@ -68,17 +98,30 @@ we can define the \emph{three-fold Toda bracket of \( f_1, f_2, f_3 \)} in three
                         (m-3-3) edge node {f_3} (m-3-4);
                 \end{tikzpicture}
             \end{center}
-            where the middle row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\fc} \). This is called the \emph{three-fold fiber-cofiber Toda Bracket of \( f_1, f_2, f_3 \)}.
+            is denoted as \( \toda{f_3, f_2, f_1}_{\fc} \). This is called the \emph{three-fold fiber-cofiber Toda Bracket of \( f_1, f_2, \) and \( f_3 \)}.
         }
         \item {
-            Let \( \phi = \set{\phi_A}_{A \in \Tc} \) denote the natural transformation from \( \Sigma \Sigma^{-1} \) to \( \Id_{\Tc} \).
-
-            Let the set of every morphism \( \phi_{X_3} \circ \Sigma(\delta) \in \Tc(\Sigma X_0, X_3) \), where \( \delta \) makes the following diagram commute
+            Let \( \phi = \set{\phi_A}_{A \in \Tc} \) denote the natural transformation from \( \Sigma \Sigma^{-1} \) to \( \Id_{\Tc} \), and let
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        {X_0} \& {X_1} \& {X_2} \& {X_3} \\
-                        {\Sigma^{-1} X_3} \& {Y} \& {X_2} \& \Sigma \Sigma^{-1} X_3 \\
+                        \Sigma^{-1} X_4 \& Y \& X_3 \& \Sigma \Sigma^{-1} X_4 \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge (m-1-2)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge node {\phi_{X_3}^{-1} \circ f_3} (m-1-4);
+                \end{tikzpicture}
+            \end{center}
+            be any distinguished triangle.
+            
+            The set of every morphism \( \phi_{X_3} \circ \Sigma(\delta) \in \Tc(\Sigma X_0, X_3) \), where \( \delta \) makes the following diagram commute
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        X_1 \& X_2 \& X_3 \& X_4 \\
+                        \Sigma^{-1} X_4 \& Y \& X_3 \& \Sigma \Sigma^{-1} X_2 \\
                     };
 
                     \draw[math]
@@ -95,22 +138,24 @@ we can define the \emph{three-fold Toda bracket of \( f_1, f_2, f_3 \)} in three
                         (m-2-3) edge node {\phi_{X_3}^{-1} \circ f_3} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            where the bottom row is distinguished, be denoted as \( \toda{f_3, f_2, f_1}_{\ff} \). This is called the \emph{three-fold iterated fiber Toda Bracket of \( f_1, f_2, f_3 \)}.
+            is denoted as \( \toda{f_3, f_2, f_1}_{\ff} \). This is called the \emph{three-fold iterated fiber Toda Bracket of \( f_1, f_2, \) and \( f_3 \)}.
         }
     \end{enumerate}
 \end{definition}
 
-As is alluded by the name, as well as mentioned above, these are in fact equivalent ways to describe the same subset of \( \Tc(\Sigma X_0, X_3) \) which is clear by the following proposition.
+These are in fact equivalent ways to describe the same subset of \( \Tc(\Sigma X_0, X_3) \) which is clear by the following proposition.
 
 \begin{proposition}
     \label{prop:toda-bracket-definitions-coincide}
-    All three of the toda brackets definitions in \autoref{def:toda_bracket} are equal.
+    All three of the Toda brackets definitions in \autoref{def:toda_bracket} are equal.
 \end{proposition}
 
-For a proof of \autoref{prop:toda-bracket-definitions-coincide}, see \cite[Proposition 3.3]{Christensen-Frankland_2017}. Note that they specify the natural transformations between \( \Sigma \Sigma^{-1} \) and \( \Id_{\Tc} \), however, they use them implicit when it fits as mentioned in \cite[Start of Section 2]{Christensen-Frankland_2017}.
+For a proof of \autoref{prop:toda-bracket-definitions-coincide}, see \cite[Proposition 3.3]{Christensen-Frankland_2017}. Note that they specify the natural transformations between \( \Sigma \Sigma^{-1} \) and \( \Id_{\Tc} \), however, they use them implicit when it fits as mentioned in \cite[Section 2, p. 2690]{Christensen-Frankland_2017}.
 % Note that in the beforementioned proof, that the final centered equation shold say ``\( f_3 - \beta q_2 = \theta q \)'' instead of `` \( f_3 - \beta q_2 = \theta \iota \) ''.
 % TODO: Check "Dual" statement. MS-Question: Is it even a dual statement?
 
-As a consequence of \autoref{prop:toda-bracket-definitions-coincide} we can uniquely define the \emph{Toda bracket of \( f_1, f_2, f_3 \)} as either \( \toda{f_3, f_2, f_1}_{\cc} \), \( \toda{f_3, f_2, f_1}_{\fc} \), or \( \toda{f_3, f_2, f_1}_{\ff} \), and it is denoted simply as \emph{\( \toda{f_3, f_2, f_1} \)}.
+As a consequence of \autoref{prop:toda-bracket-definitions-coincide} we can uniquely define the \emph{Toda bracket of \( f_1, f_2, \) and \( f_3 \)} as either \( \toda{f_3, f_2, f_1}_{\cc} \), \( \toda{f_3, f_2, f_1}_{\fc} \), or \( \toda{f_3, f_2, f_1}_{\ff} \), and it is denoted simply as \emph{\( \toda{f_3, f_2, f_1} \)}.
+
+A helpful property of Toda brackets is that they are well-defined in the sense that different choices of distinguished triangles yields the same subset. We will be using a (rotated) standard triangle in our calculations.
 
 % TODO: Indeterminancy?
