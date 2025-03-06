@@ -171,6 +171,105 @@ A helpful consequence of the definition of all the \( \Sigma \)s is that they ar
 
 TODO: Kvifor har dgM bioprodukt?
 
+In order to construct the cone, which is a part of the triangulation of \( \dgM \), we need some more tools. The first is some notation that will be helpful for the results.
+
+\begin{notation}
+    Let \( n \in \Zb \), and \( A \) a chain complex.
+    
+    Then let \( A_{\bullet+n} \) denote the \( n \)-shifted chain complex of \( A \) but \emph{without} the \( (-1)^n \) sign in front of the differential.
+\end{notation}
+
+With the above notation in mind, we get an equality that is essential in creating the cone, as well as showing that Toda brackets equal Massey products.
+
+\begin{lemma}
+    \label{lem:shift_one_component_inner_product_chain_complex}
+    Let \( A, B \in \C \).
+
+    Then there is a canonical isomorphism
+    \[
+        \class{\Sigma^{-n} A, B} \cong \class{A, B}_{\bullet+n}.
+    \]
+
+    I.e.,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \class{\Sigma^{-n} A, B}: \&[-0.9cm] \cdots \& \class{\Sigma^{-n} A, B}_{-1} \& \class{\Sigma^{-n} A, B}_0 \& \class{\Sigma^{-n} A, B}_1 \& \cdots \\
+                \class{A, B}_{+n}: \& \cdots \& \class{A, B}_{n - 1} \& \class{A, B}_n \& \class{A, B}_{n + 1} \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge[equality] (m-2-1)
+                (m-1-2) edge (m-1-3)
+                (m-1-3) edge node {d_{-1}} (m-1-4)
+                    edge[equality] (m-2-3)
+                (m-1-4) edge node {d_0} (m-1-5)
+                    edge[equality] (m-2-4)
+                (m-1-5) edge (m-1-6)
+                    edge[equality] (m-2-5)
+
+                (m-2-2) edge (m-2-3)
+                (m-2-3) edge node {d_{n-1}} (m-2-4)
+                (m-2-4) edge node {d_n} (m-2-5)
+                (m-2-5) edge (m-2-6);
+        \end{tikzpicture}
+    \end{center}
+\end{lemma}
+\begin{proof}
+    For any \( i \in \Zb \), there are two parts that need to be proved.
+
+    First, we need to show that \( \class{\Sigma^{-n} A, B}_i = \class{A, B}_{n + i} \), and second, need to show that \( d_{\class{\Sigma^{-n} A, B}, i} = d_{\class{A, B}, n + i} \).
+
+    We start with the first part.
+
+    Expanding the definitions, we get that
+    \begin{align*}
+        \class{\Sigma^{-n} A, B}_i &= \prod_{j \in \Zb} \Mod(R)((\Sigma^{-n} A)_j, B_{j + i}) \\
+        &= \prod_{j \in \Zb} \Mod(R)(A_{j - n}, B_{j + i}) \\
+        &= \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i + n}) \\
+        &= [A, B]_{i + n}
+    \end{align*}
+
+    And for the second part, let \( \tuple{f_j}_{j \in \Zb} \in [A, B]_{n + i} \) and consider the following equation
+    \begin{align*}
+        d_{\class{\Sigma^{-n} A, B}, i}\tuple{f_j}_{j \in \Zb} &= \tuple*{d_{B, n + i + j} \circ f_j - (-1)^i f_{j + 1} \circ d_{\Sigma^{-n} A, j + n}}_{j \in \Zb} \\
+        &= \tuple*{d_{B, n + i + j} \circ f_j - (-1)^{n + i} f_{j + 1} \circ d_{A, j}}_{j \in \Zb} \\
+        &= d_{\class{A, B}, n + i}(f_j)_{j \in \Zb}
+    \end{align*}
+\end{proof}
+
+The above lemma gives the following result, which is the desired property. 
+
+\begin{lemma}
+    \label{lem:dgmod_shift_eq_plus}
+    Let \( F, G \in \dgM \).
+
+    Then there is a canonical isomorphism
+    \[
+        \dgM(\Sigma^{-i} F, G) \cong \dgM(F, G)_{\bullet + i}.
+    \]
+\end{lemma}
+\begin{proof}
+    By \autoref{lem:shift_one_component_inner_product_chain_complex},
+    \[
+        \prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F A, G A) = \prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)_{+i} = \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)}_{+i}.
+    \]
+    It remains to show that for any \( n \in \Zb \),
+    \[
+        \eta \in \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F A, G A)}_n
+    \]
+    satisfies the properties of \( \dgM(\Sigma^{-i} F, G)_n \) if and only if it satisfies the properties of \( \dgM(F, G)_{n + i} \).
+
+    This follows because for any \( f \in \Cc^{\op}(A', A'') \) we have the following equality
+    \[
+        (-1)^{nj} \eta_{A''} \circ (\Sigma^{-i} F f) = (-1)^{nj} \eta_{A''} \circ ((-1)^{ji}F f) = (-1)^{(n + i)j}\eta_{A''} \circ (F f),
+    \]
+    and therefore
+    \[
+        (G f) \circ \eta_{A'} = (-1)^{nj} \eta_{A''} \circ (\Sigma^{-i} F f) = (-1)^{(n + i)j}\eta_{A''} \circ (F f).
+    \]
+\end{proof}
+
 The following is a definition for a cone in \( \dgM \), which will be a part of the triangulation of \( H^0(\dgM) \) afterwards.
 
 \begin{definition}[Cone in \( \dgM \)]
@@ -178,6 +277,8 @@ The following is a definition for a cone in \( \dgM \), which will be a part of 
     Let \( F, G \in \dgM \), and let \( \eta \in Z^0(\dgM(F, G)) \). Then we can define the following DG-functor, denoted \( C_{\eta} \) as follows
     \begin{itemize}
         \item {
+            Use \autoref{lem:dgmod_shift_eq_plus} to consider \( \eta \in \dgM(F, G)_0 \) as an element of \( \dgM(\Sigma F, G)_1 \).
+
             For any \( A \in \Cc^{\op} \), define \( C_{\eta}(A) \) to be the chain complex with the underlying \( R \)-modules of \( (\Sigma F A) \oplus (G A) \), but with the differential defined as
             \[
                 d_{C_{\eta}A} :=
@@ -427,7 +528,7 @@ TODO
         \begin{pmatrix}
             \eta & 0
         \end{pmatrix}
-        = - (\Sigma \eta) \circ \pi_{\Sigma F}.
+        = - \eta \circ \pi_{\Sigma F}.
     \end{align*}
 \end{remark}
 
