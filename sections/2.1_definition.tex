@@ -229,3 +229,57 @@ Another example of this is that given {\bf (TR1)}, {\bf (TR3)} and the \( (\Righ
 \end{lemma}
 For a proof of this see \cite[Lemma 2.4]{May_2001}.
 
+There is also a special type of triangulation-preserving functor between triangulated categories.
+\begin{definition}[Triangulated functor]
+    For \( F: \Tc \to \Yc \) an additive functor between two triangulated categories.
+
+    If there is some natural transformation \( \eta: F \Sigma \to \Sigma F \) such that
+    for a distinguished triangle in \( \Tc \),
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& B \& C \& \Sigma A, \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f} (m-1-2)
+                (m-1-2) edge node {g} (m-1-3)
+                (m-1-3) edge node {h} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    the following triangle in \( \Yc \) is distinguished,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                F A \& F B \& F C \& \Sigma F A, \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {F f} (m-1-2)
+                (m-1-2) edge node {F g} (m-1-3)
+                (m-1-3) edge node {\eta \circ (F h)} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    then \( F \) is called a \emph{triangulated functor} (or \emph{exact functor}).
+
+    Furthermore, if \( F \) is an equivalence, it is called a \emph{triangulated equivalence}.
+\end{definition}
+
+In particular, as is mentioned in \cite[p.4 Lemma]{Happel_1988}, if \( F \) is a triangulated equivalence between two triangulated categories, then \( F^{-1} \) is also a triangulated functor.
+
+There is also the notion of a triangulated subcategory.
+% TODO: Forkorta aksioma? 1 implisert av 3. siste del av 2 implisert av fyrste del.
+\begin{definition}[Triangulated subcategory]
+    For \( \Yc \) an additive subcategory of a triangulated category \( \Tc \), if the following three statements are true, then \( \tuple{\Yc, \Sigma, \Delta'} \) is called a \emph{triangulated subcategory of \( \tuple{\Tc, \Sigma, \Delta} \)}:
+    \begin{itemize}
+        \item {
+            \( \Yc \) is closed under \( \Sigma \), and \( \Sigma \) is an auto-equivalence on \( \Yc \).
+        }
+        \item {
+            \( \Delta' \) is a subclass of \( \Delta \) consisting of triangles in \( \Yc \).
+        }
+        \item {
+            \( \tuple{\Yc, \Sigma, \Delta'} \) is a triangulated category.
+        }
+    \end{itemize}
+\end{definition}

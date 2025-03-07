@@ -630,9 +630,9 @@ The next step is to define what an algebraic triangulated category is by relatin
 
 The DG-Yoneda embedding is staded without proof because it is too technical to include in this thesis. For a proof of its well-definedness see \cite[Corollary 6.3.6]{Borceux_1994}. We will only be using it in the defintion of an algebraic triangulated category in this thesis.
 
-The DG-Yoneda embedding shows that any DG-category can be seen as a full subcategory of the category of DG-modules. In fact, this embedding can be extended to also work on \( H^0(\Cc) \), where it turns out to be exact.
+The DG-Yoneda embedding shows that any DG-category can be seen as a full subcategory of the category of DG-modules. In fact, this embedding can be extended to also work on \( H^0(\Cc) \).
 
-Then the following theorem shows that taking \( H^0(\mathbf{h}) \) yields a fully faithful exact functor from \( H^0(\Cc) \) to \( \D^c(\Cc) \).
+Then the following theorem shows that taking \( H^0(\mathbf{h}) \) yields a fully faithful functor from \( H^0(\Cc) \) to \( \D^c(\Cc) \).
 
 \begin{theorem}
     Let \( \Cc \) be a small DG-category, and let \( \mathbf{h} \) be as in \autoref{def:DG_Yoneda_embedding}.
@@ -641,23 +641,25 @@ Then the following theorem shows that taking \( H^0(\mathbf{h}) \) yields a full
     \[
         H^0(\mathbf{h}): H^0(\Cc) \to H^0(\dgM)
     \]
-    is full, faithful, and exact.
+    is full and faithful.
 \end{theorem}
 The proof of the above statement can be found in TODO.
 
 Then we can define what a ``pre-triangulated DG-category'' is, which is the final important piece in this definition of algebraic triangulated categories. It must not be confused with a pre-triangulated (non-DG) category which is a category that satisfies the triangulated axioms {\bf (TR1)}, {\bf (TR2)}, and {\bf (TR3)}, but not {\bf (TR4)}.
+% TODO: Sant? Må H^0(\Cc) vera triangulert?
 \begin{definition}[pre-triangulated DG-category]
     Let \( \Cc \) be a small DG-category.
 
-    Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if the image of the (fully faithful and exact) functor \( H^0(\mathbf{h}): H^0(\Cc) \to H^0(\dgM) \) is a triangulated subcategory of \( H^0(\dgM) \).
+    Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if \( H^0(\Cc) \) is triangulated, and \( H^0(\mathbf{h}): H^0(\Cc) \to H^0(\dgM) \) is a triangulated functor, such that the image of \( H^0(\mathbf{h}) \) is a triangulated subcategory of \( H^0(\dgM) \).
 \end{definition}
+In particular, if \( \Cc \) is a pre-triangulated DG-category, then due to \( H^0(\mathbf{h}) \) being fully faithful, it is a triangulated equivalence onto its image, which is a full triangulated subcategory of \( H^0(\dgM) \).
 
 Finally, we can define what an algebraic triangulated category is.
 \begin{definition}[Algebraic triangulated category]
     \label{def:alg_tri_cat}
     Let \( \Tc \) be a triangulated category.
 
-    Then \( \Tc \) is called an \emph{algebraic triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), called a \emph{DG-enhancement of \( \Tc \)}, such that \( H^0(\Cc) \) is equivalent as triangulated categories to \( \Tc \).
+    Then \( \Tc \) is called an \emph{algebraic triangulated category} if there exist a pre-triangulated DG-category, \( \Cc \), called a \emph{DG-enhancement of \( \Tc \)}, such that \( H^0(\Cc) \) is triangulated equivalent to \( \Tc \).
 \end{definition}
 
 There are many different and equivalent definitions of algebraic triangulated categories. The reason we use the above definition is because it closely ties the algebraic triangulated category to the category of DG-modules. This in turn allows us to use properties of DG-modules in order to make it possible for Toda brackets to equal Massey products.
