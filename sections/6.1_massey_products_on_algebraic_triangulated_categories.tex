@@ -45,13 +45,13 @@ Using the above definition, we can define the Massey product more generally in a
 
 \begin{definition}[Massey product in an algebraic triangulated category]
     \label{def:massey_product_alg_tri_cat}
-    Let \( \Tc \) be an algebraic triangulated category, let \( \Cc \) be the DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) the equivalence by the algebraic triangulated category property.
+    Let \( \Tc \) be an algebraic triangulated category, let \( \Cc \) be the DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) the equivalence by the algebraic triangulated category property. Let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be the natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated equivalence onto its image.
     
     Let the following be a diagram in \( \Tc \)
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                X_0 \& X_1 \& X_2 \& X_3. \\
+                X_1 \& X_2 \& X_3 \& X_4. \\
             };
 
             \draw[math]
@@ -60,24 +60,11 @@ Using the above definition, we can define the Massey product more generally in a
                 (m-1-3) edge node {f_3} (m-1-4);
         \end{tikzpicture}
     \end{center}
-    Consider the following diagram in \( H^0(\Cc) \)
+    Consider again the following diagram in \( \im(H^0(\mathbf{h}) \Phi) \),
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \Phi X_0 \& \Phi X_1 \& \Phi X_2 \& \Phi X_3. \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {\Phi f_1} (m-1-2)
-                (m-1-2) edge node {\Phi f_2} (m-1-3)
-                (m-1-3) edge node {\Phi f_3} (m-1-4);
-        \end{tikzpicture}
-    \end{center}
-    Consider again the following diagram in \( H^0(\dgM) \)
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                H^0(\mathbf{h}) \Phi X_0 \& H^0(\mathbf{h}) \Phi X_1 \& H^0(\mathbf{h}) \Phi X_2 \& H^0(\mathbf{h}) \Phi X_3. \\
+                H^0(\mathbf{h}) \Phi X_1 \& H^0(\mathbf{h}) \Phi X_2 \& H^0(\mathbf{h}) \Phi X_3 \& H^0(\mathbf{h}) \Phi X_4. \\
             };
 
             \draw[math]
@@ -88,13 +75,13 @@ Using the above definition, we can define the Massey product more generally in a
     \end{center}
     Take the Massey product of the above diagram in \( H^0(\dgM) \) to get
     \[
-        \massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} \subseteq H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_0, H^0(\mathbf{h}) \Phi X_3)
+        \massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} \subseteq H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_4)
     \]
-    Then apply \( \Phi^{-1} H^0(\mathbf{h})^{-1} \) to the result to get
+    Then pre-compose with \( \eta_{X_1} \) and apply \( \Phi^{-1} H^0(\mathbf{h})^{-1} \) to get
     \[
-        \Phi^{-1} H^0(\mathbf{h})^{-1} \massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1},
+        \Phi^{-1} H^0(\mathbf{h})^{-1} (\massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} \circ \eta_{X_1}),
     \]
-    which, up to pre and post-composition with the natural isomorphisms \( \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \), yields a subset of \( \Tc(\Sigma X_0, X_3) \).
+    which, up to pre- and post-composition with the natural isomorphism \( \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \), yields a subset of \( \Tc(\Sigma X_0, X_3) \).
 
-    This subset of \( \Tc(\Sigma X_0, X_3) \) is called the \emph{massey product of \( f_1, f_2 \) and \( f_3 \) in an algebraic triangulated category}.
+    This subset of \( \Tc(\Sigma X_0, X_3) \) is called the \emph{Massey product of \( f_1, f_2 \) and \( f_3 \) in an algebraic triangulated category}.
 \end{definition}

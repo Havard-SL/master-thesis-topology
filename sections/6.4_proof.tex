@@ -250,9 +250,9 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
 \begin{proof}[Proof of Massey products = Toda brackets]
     WIP: Detaljar.
 
-    We want to prove \( \subseteq \) and \( \supseteq \).
+    Let \( \phi: \Phi^{-1} (H^0(\mathbf{h}))^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \) be the natural isomorphism from the definition of Massey products on an algebraic triangulated category. Let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be the natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated equivalence. Let \( \psi: \Sigma \Sigma^{-1} \to \Id_{\Tc} \) be the natural isomorphism of \( \Sigma \) in \( \Tc \).
 
-    TODO: SHOW: We have \( \Phi^{-1} (H^0(\mathbf{h}))^{-1} \eta = Id \) and therefore \( \Phi^{-1} (H^0(\mathbf{h}))^{-1} \eta^{-1} = Id \).
+    We want to prove \( \subseteq \) and \( \supseteq \).
 
     We start by proving \( \subseteq \):
     
@@ -263,7 +263,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
         \begin{tikzpicture}
             \diagram{m}{1cm}{1.2cm} {
                 X_1 \& X_2 \\
-                \Sigma^{-1} Y \& X_2 \& X_3 \& Y \\
+                \Sigma^{-1} Y \& X_2 \& X_3 \& \Sigma \Sigma^{-1} Y \\
                 \& \& X_3 \& X_4. \\
             };
 
@@ -294,7 +294,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
         \begin{tikzpicture}
             \diagram{m}{1cm}{1.8cm} {
                 H^0(\mathbf{h}) \Phi X_1 \& H^0(\mathbf{h}) \Phi X_2 \\
-                H^0(\mathbf{h}) \Phi \Sigma^{-1} Y \& H^0(\mathbf{h}) \Phi X_2 \& H^0(\mathbf{h}) \Phi X_3 \& H^0(\mathbf{h}) \Phi Y \\
+                H^0(\mathbf{h}) \Phi \Sigma^{-1} Y \& H^0(\mathbf{h}) \Phi X_2 \& H^0(\mathbf{h}) \Phi X_3 \& H^0(\mathbf{h}) \Phi \Sigma \Sigma^{-1} Y \\
                 \& \& H^0(\mathbf{h}) \Phi X_3 \& H^0(\mathbf{h}) \Phi X_4, \\
             };
 
@@ -312,46 +312,59 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
                 (m-3-3) edge node {H^0(\mathbf{h}) \Phi f_3} (m-3-4);
         \end{tikzpicture}
     \end{center}
-    which can be rewritten to the following commutative diagram,
+    separating, and splitting the two squares, we can rewrite the above commutativity as the following two diagrams commuting,
     \begin{center}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{1.8cm} {
+            \diagram{m}{1cm}{3.5cm} {
                 H^0(\mathbf{h}) \Phi X_1 \& H^0(\mathbf{h}) \Phi X_2 \\
-                H^0(\mathbf{h}) \Phi \Sigma^{-1} Y \& H^0(\mathbf{h}) \Phi X_2 \& H^0(\mathbf{h}) \Phi X_3 \& \Sigma H^0(\mathbf{h}) \Phi \Sigma^{-1} Y \\
-                \& \& H^0(\mathbf{h}) \Phi X_3 \& H^0(\mathbf{h}) \Phi X_4, \\
+                H^0(\mathbf{h}) \Phi \Sigma^{-1} Y \& H^0(\mathbf{h}) \Phi X_2 \\
             };
 
             \draw[math]
                 (m-1-1) edge node {H^0(\mathbf{h}) \Phi f_1} (m-1-2)
-                    edge node {H^0(\mathbf{h}) \Phi \alpha} (m-2-1)
+                    edge node[swap] {H^0(\mathbf{h}) \Phi \alpha} (m-2-1)
                 (m-1-2) edge[equality] (m-2-2)
 
-                (m-2-1) edge node {H^0(\mathbf{h}) \Phi (-\Sigma^{-1} \pi)} (m-2-2)
-                (m-2-2) edge node {H^0(\mathbf{h}) \Phi f_2} (m-2-3)
-                (m-2-3) edge node {\eta \circ (H^0(\mathbf{h}) \Phi \iota)} (m-2-4)
-                    edge[equality] (m-3-3)
-                (m-2-4) edge node[swap] {(H^0(\mathbf{h}) \Phi \beta) \circ \eta^{-1}} (m-3-4)
+                (m-2-1) edge node {H^0(\mathbf{h}) \Phi (-\Sigma^{-1} \pi)} (m-2-2);
+        \end{tikzpicture}
 
-                (m-3-3) edge node {H^0(\mathbf{h}) \Phi f_3} (m-3-4);
+        and
+
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{3.5cm} {
+                H^0(\mathbf{h}) \Phi X_3 \& \Sigma H^0(\mathbf{h}) \Phi \Sigma^{-1} Y \\
+                H^0(\mathbf{h}) \Phi X_3 \& H^0(\mathbf{h}) \Phi X_4, \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\eta_{\Sigma^{-1} Y} \circ (H^0(\mathbf{h}) \Phi \iota)} (m-1-2)
+                    edge[equality] (m-2-1)
+                (m-1-2) edge node {(H^0(\mathbf{h}) \Phi \beta) \circ \eta^{-1}_{\Sigma^{-1} Y}} (m-2-2)
+
+                (m-2-1) edge node {H^0(\mathbf{h}) \Phi f_3} (m-2-2);
         \end{tikzpicture}
     \end{center}
-    where the middle row is a distinguished triangle.
+    where
+    \[
+        \tuple{H^0(\mathbf{h}) \Phi (-\Sigma^{-1} \pi), H^0(\mathbf{h}) \Phi f_2, (H^0(\mathbf{h}) \Phi \beta) \circ \eta^{-1}_{\Sigma^{-1} Y}}
+    \]
+    is a distinguished triangle by the triangulated functor property of \( H^0(\mathbf{h}) \Phi \).
 
     This yields an element of the Toda bracket,
     \begin{align*}
-        (H^0(\mathbf{h}) \Phi \beta) \circ \eta^{-1} \circ (\Sigma H^0(\mathbf{h}) \Phi \alpha) &= (H^0(\mathbf{h}) \Phi \beta) \circ \eta^{-1} \circ \eta \circ (H^0(\mathbf{h}) \Phi \Sigma \alpha) \circ \eta^{-1} \\
-        &= (H^0(\mathbf{h}) \Phi (\beta \circ (\Sigma \alpha))) \circ \eta^{-1} \\
-        &= (H^0(\mathbf{h}) \Phi f ) \circ \eta^{-1}. \\
+        (H^0(\mathbf{h}) \Phi \beta) \circ \eta^{-1}_{\Sigma^{-1} Y} \circ (\Sigma H^0(\mathbf{h}) \Phi &\alpha) \\
+        &= (H^0(\mathbf{h}) \Phi \beta) \circ \eta^{-1}_{\Sigma^{-1} Y} \circ \eta_{\Sigma^{-1} Y} \circ (H^0(\mathbf{h}) \Phi \Sigma \alpha) \circ \eta^{-1}_{X_1} \\
+        &= (H^0(\mathbf{h}) \Phi (\beta \circ (\Sigma \alpha))) \circ \eta^{-1}_{X_1} \\
+        &= (H^0(\mathbf{h}) \Phi f ) \circ \eta^{-1}_{X_1}. \\
     \end{align*}
     Thus, by \autoref{thm:dgm_massey_equal_toda}, we get
     \[
-        (H^0(\mathbf{h}) \Phi f ) \circ \eta^{-1} \in \toda{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} = \massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1}.
+        (H^0(\mathbf{h}) \Phi f ) \circ \eta^{-1}_{X_1} \in \toda{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} = \massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1}.
     \]
 
-    Applying \( \Phi^{-1} (H^0(\mathbf{h}))^{-1} \) as well as the natural isomorphism \( \phi \) yields
+    Pre-composing with \( \eta_{X_1} \) and applying \( \Phi^{-1} (H^0(\mathbf{h}))^{-1} \) as well as the natural isomorphism \( \phi \) yields
     \begin{align*}
-        \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} ((H^0(\mathbf{h}) \Phi f ) \circ \eta^{-1})) \circ \phi^{-1} &= \phi \circ ((\phi^{-1} \circ f \circ \phi) \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} \eta^{-1})) \circ \phi^{-1} \\
-        &= \phi \circ \phi^{-1} \circ f \circ \phi \circ \phi^{-1} = f,
+        \phi_{X_4} \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} ((H^0(\mathbf{h}) \Phi f ) \circ \eta^{-1}_{X_1} \circ \eta_{X_1})) \circ \phi^{-1}_{\Sigma X_1} &= \phi_{X_4} \circ \phi^{-1}_{X_4} \circ f \circ \phi_{\Sigma X_1} \circ \phi^{-1}_{\Sigma X_1} = f,
     \end{align*}
     and therefore \( f \in \massey{f_3, f_2, f_1} \).
 
@@ -365,7 +378,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
     \]
     such that
     \[
-        f = \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\tilde{f})) \circ \phi^{-1}.
+        f = \phi_{X_4} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} (\tilde{f} \circ \eta_{X_1})) \circ \phi^{-1}_{\Sigma X_1}.
     \]
 
     Then \( \tilde{f} = \beta \circ (\Sigma \alpha) \) where \( \alpha \) and \( \beta \) are defined as morphisms that make the following diagram, where the middle row is a distinguished triangle,
@@ -384,7 +397,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
 
                 (m-2-1) edge node {H^0(\mathbf{h}) \Phi (-\Sigma^{-1} \pi)} (m-2-2)
                 (m-2-2) edge node {H^0(\mathbf{h}) \Phi f_2} (m-2-3)
-                (m-2-3) edge node {\eta \circ (H^0(\mathbf{h}) \Phi \iota)} (m-2-4)
+                (m-2-3) edge node {\eta_{\Sigma^{-1} Y} \circ (H^0(\mathbf{h}) \Phi \iota)} (m-2-4)
                     edge[equality] (m-3-3)
                 (m-2-4) edge node[swap] {\beta} (m-3-4)
 
@@ -395,11 +408,11 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
 
     Consider
     \[
-        \tilde{\alpha} = \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\alpha)) \circ \phi^{-1}
+        \tilde{\alpha} = \phi_{\Sigma^{-1} Y} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} \alpha) \circ \phi^{-1}_{X_1}
     \]
     and
     \[
-        \tilde{\beta} = \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\beta)) \circ \phi^{-1}.
+        \tilde{\beta} = \phi_{X_4} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} (\beta \circ \eta_{\Sigma^{-1} Y})) \circ \phi^{-1}_{\Sigma \Sigma^{-1} Y}.
     \]
 
     Consider the following diagram
@@ -407,7 +420,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
         \begin{tikzpicture}
             \diagram{m}{1cm}{1.2cm} {
                 X_1 \& X_2 \\
-                \Sigma^{-1} Y \& X_2 \& X_3 \& Y \\
+                \Sigma^{-1} Y \& X_2 \& X_3 \& \Sigma \Sigma^{-1} Y \\
                 \& \& X_3 \& X_4. \\
             };
 
@@ -427,27 +440,31 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
     \end{center}
     This commutes because
     \begin{align*}
-        (- \Sigma^{-1} \pi) \circ \tilde{\alpha} &= \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} H^0(\mathbf{h}) \Phi (- \Sigma^{-1} \pi)) \circ \phi^{-1} \circ \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} \alpha) \circ \phi^{-1}\\
-        &= \phi \circ (
+        (- \Sigma^{-1} \pi) \circ \tilde{\alpha} &= \phi_{X_2} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi (- \Sigma^{-1} \pi)) \circ \phi^{-1}_{\Sigma^{-1} Y} \circ \phi_{\Sigma^{-1} Y} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} \alpha) \circ \phi^{-1}_{X_1}\\
+        &= \phi_{X_2} \circ (
             \Phi^{-1} (H^0(\mathbf{h}))^{-1} (
                 (H^0(\mathbf{h}) \Phi (- \Sigma^{-1} \pi)) \circ \alpha
                 )
-            ) \circ \phi^{-1} \\
-        &= \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (H^0(\mathbf{h}) \Phi f_1)) \circ \phi^{-1} \\
+            ) \circ \phi^{-1}_{X_1} \\
+        &= \phi_{X_2} \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (H^0(\mathbf{h}) \Phi f_1)) \circ \phi^{-1}_{X_1} \\
         &= f_1,
     \end{align*}
-    and TODO: Kor kjem eta frå?
+    and
     \begin{align*}
-        \tilde{\beta} \circ \iota &= \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\beta)) \circ \phi^{-1} \circ \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\eta \circ (H^0(\mathbf{h}) \Phi \iota))) \circ \phi^{-1} \\
-        &= \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1}(\beta \circ \eta \circ (H^0(\mathbf{h}) \Phi \iota))) \circ \phi^{-1} \\
-        &= \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} H^0(\mathbf{h}) \Phi f_3) \circ \phi^{-1} \\
+        \tilde{\beta} \circ \iota &= \phi_{X_4} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} (\beta \circ \eta_{\Sigma^{-1} Y})) \circ \phi^{-1}_{\Sigma \Sigma^{-1} Y} \circ \phi_{\Sigma \Sigma^{-1} Y} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \iota) \circ \phi^{-1}_{X_3} \\
+        &= \phi_{X_4} \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1}(\beta \circ \eta_{\Sigma^{-1} Y} \circ (H^0(\mathbf{h}) \Phi \iota))) \circ \phi^{-1}_{X_3} \\
+        &= \phi_{X_4} \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} H^0(\mathbf{h}) \Phi f_3) \circ \phi^{-1}_{X_3} \\
         &= f_3.
     \end{align*}
 
     Since
     \begin{align*}
-        \tilde{\beta} \circ (\Sigma \tilde{\alpha}) &= \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\beta)) \circ \phi^{-1} \circ (\Sigma (\phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\alpha)) \circ \phi^{-1})) \\
-        &= \phi \circ (\Phi^{-1} (H^0(\mathbf{h}))^{-1} (\beta)) \circ \phi^{-1} \circ (\Sigma \phi) \circ (\Sigma \Phi^{-1} (H^0(\mathbf{h}))^{-1} (\alpha)) \circ (\Sigma \phi^{-1}) \\
-        &= WIP
+        \tilde{\beta} \circ (\Sigma \tilde{\alpha}) &= \phi_{X_4} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} (\beta \circ \eta_{\Sigma^{-1} Y})) \circ \phi^{-1}_{\Sigma \Sigma^{-1} Y} \circ
+        (\Sigma (\phi_{\Sigma^{-1} Y} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} \alpha) \circ \phi^{-1}_{X_1})) \\
+        &= \phi_{X_4} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} (\beta \circ \eta_{\Sigma^{-1} Y})) \circ \phi^{-1}_{\Sigma \Sigma^{-1} Y} \circ
+        (\Sigma \phi_{\Sigma^{-1} Y}) \circ (\Sigma \Phi^{-1} H^0(\mathbf{h})^{-1} \alpha) \circ (\Sigma \phi^{-1}_{X_1}) \\
+        &= \phi_{X_4} \circ (\Phi^{-1} H^0(\mathbf{h})^{-1} (\beta \circ \eta_{\Sigma^{-1} Y})) \circ \phi^{-1}_{\Sigma \Sigma^{-1} Y} \circ
+        (\Sigma \phi_{\Sigma^{-1} Y}) \circ \mu_{H^0(\mathbf{h}) \Phi \Sigma^{-1} Y} \\
+        &\circ (\Phi^{-1} H^0(\mathbf{h})^{-1} \Sigma \alpha) \circ \mu^{-1}_{H^0(\mathbf{h}) \Phi X_1} \circ (\Sigma \phi^{-1}_{X_1}) WIP \\
     \end{align*}
 \end{proof}
