@@ -1,52 +1,11 @@
-In this thesis, the goal is to calculate Massey products on algebraic triangulated categories. In order to get there we need to define multiple steps. In this section we define what the usual Massey product looks like, since the definition of the Massey product on algebraic triangulated categories depends on the definition of the ordinary Massey product on DG-categories.
+The goal of this section is to calculate Massey products in algebraic triangulated categories. In order to get there, we need some preliminary definitions and results. This section defines what the usual Massey product looks like on the cohomology category of a DG-category. In subsequent sections, we will use the usual definition of Massey product to extend the definition to work on any algebraic triangulated category.
 
-Before starting this section, some notation needs to be established. First, this and future section is going to contain a lot of chain complexes. For simplicity, the following shorthand will be used.
+To keep the notation brief, we will use the following convention for the chain complex of modules.
 \begin{notation}
     Let \( R \) be a commutative ring with identity.
 
     Then denote \( \C(\Mod(R)) \) as simply \( \C \).
 \end{notation}
-
-Second, this section is going to contain a lot of products and coproducts, and in order to maintain concise definitions and results at the cost of some difficulty with proofs, the following notation will be used.
-\begin{notation}
-    \label{not:coprod_prod_forvirring}
-    Let \( R \) be a commutative ring with identity. Let \( A_i \in \Mod(R) \) and let
-    \[
-        \iota_i: A_i \rightarrowtail \coprod_{i \in \Zb} A_i
-    \]
-    denote the canonical split monomorphism by the universal property of the coproduct in \( \Mod(R) \).
-
-    Then for any \( a_i \in A_i \), the element
-    \[
-        \iota_i(a_i) \in \coprod_{i \in \Zb} A_i
-    \]
-    is just denoted as
-    \[
-        a_i \in \coprod_{i \in \Zb} A_i.
-    \]
-    
-    The reasoning for the above notation is twofold. Firstly, it reduces notation while not being ambigous. Secondly, we never use a general element of a coproduct. Almost always when considering what a morphism does to an element of the coproduct, it is what happens to the \( \iota_i(a_i) \)'s, which is a consequence of the universal property of the coproduct.
-
-    In addition, let 
-    \[
-        \pi_i: \prod_{i \in \Zb} A_i \twoheadrightarrow A_i
-    \]
-    be the universal split epimorphism by the universal property of the product in \( \Mod(R) \).
-    
-    Then for any element \( a \in \prod_{i \in \Zb} A_i \), denote
-    \[
-        a = \tuple{a_i}_{i \in \Zb} \in \prod_{i \in \Zb} A_i
-    \]
-    where \( a_i := \pi_i(a) \in A_i \).
-    
-    The reasoning behind this notation is because the product in \( \Mod(R) \) is the direct product, and because of the universal property of the product. That is because it makes it so that when talking about morphisms into the product, the morphism is fully defined by the result of each degree in \( \prod_{i \in \Zb} A_i \), which is easily shown using the above notation.
-
-    However, there is another issue with products specifically, and that is changing the base, and how it relates with equality. The convention that we will use in this thesis is best explained with an example.
-    
-    Consider two chain complexes \( A \), and \( B \), we can construct the set \( \prod_{j \in \Zb} \Mod(R)(A_{j - 5}, B_j) \). In this thesis, this set is \emph{equal} to \( \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + 5}) \) even though the \( j \)-s don't match. This is because we consider the product to have no order. This simplifies some results, but may be unintuitive when looking at what happens at specific degrees (as is common in proofs).
-\end{notation}
-
-Before defining Massey products, we first have to define what a DG-category is.
 
 \subsection{DG-categories}
 \input{sections/4.1_dg_categories.tex}

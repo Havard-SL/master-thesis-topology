@@ -250,18 +250,16 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
 \begin{proof}[Proof of Massey products = Toda brackets]
     Let \( F := H^0(\mathbf{h}) \Phi \) and \( F^{-1} := \Phi^{-1} (H^0(\mathbf{h}))^{-1} \) in this proof.
 
-    Let \( \phi: F^{-1} F \to \Id_{\Tc} \) be the natural isomorphism from the definition of Massey products on an algebraic triangulated category. Let \( \eta: F \Sigma \to \Sigma F \) be the natural isomorphism from the fact that \( F \) is a triangulated equivalence. Let \( \mu: F^{-1} \Sigma \to \Sigma F^{-1} \) be the natural isomorphism arising from the fact that \( F^{-1} \) is a triangulated equivalence by \autoref{def:tri_functor}.
+    Let \( \phi: F^{-1} F \to \Id_{\Tc} \) be the natural isomorphism from the definition of Massey products on an algebraic triangulated category. Let \( \eta: F \Sigma \to \Sigma F \) be the natural isomorphism from the fact that \( F \) is a triangulated equivalence.
 
     % TODO: Kvifor er dette naturleg? Ganske sikker, treng resultat i forkant?
-    Assume that on \( \im(F) \), \( \mu \) is defined as follows: Every object \( A' \in \im(F) \) can be written on the form \( F A \) for some \( A \in \Tc \). Therefore, the following composition defines a valid natural isomorphism,
+    Assume that on \( \im(F) \), the natural isomorphism \( \mu \) is defined as follows: Every object \( A' \in \im(F) \) can be written on the form \( F A \) for some \( A \in \Tc \). Likewise, any morphism \( f': F A \to F B \) can be written on the form \( f' = F f \) for some \( f \in \Tc(A, B) \), since \( F \) is full. Therefore, the following composition defines a valid natural isomorphism on \( \im(F) \),
     \begin{align*}
-        \mu: &F^{-1} \Sigma F \to \Sigma F^{-1} F \\
-        &= \set{ (\Sigma \phi^{-1}_A) \circ \phi_{\Sigma A} \circ (F^{-1} \eta^{-1}_A)}_{A \in \Tc}.
+        \mu: &F^{-1} \Sigma \to \Sigma F^{-1} \\
+        &= \set{ (\Sigma \phi^{-1}_A) \circ \phi_{\Sigma A} \circ (F^{-1} \eta^{-1}_A)}_{F A \in \im(F)}.
     \end{align*}
 
-    % Let \( \psi: \Sigma \Sigma^{-1} \to \Id_{\Tc} \) be the natural isomorphism of \( \Sigma \) in \( \Tc \).
-
-    We want to prove \( \subseteq \) and \( \supseteq \).
+    In order to prove the theorem, we want to prove \( \subseteq \) and \( \supseteq \).
 
     We start by proving \( \subseteq \):
     
@@ -290,14 +288,8 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
                 (m-3-3) edge node {f_3} (m-3-4);
         \end{tikzpicture}
     \end{center}
-    Consider the morphisms
-    \[
-        F \alpha
-    \]
-    and
-    \[
-        F \beta.
-    \]
+    Consider the morphisms \( F \alpha \) and \( F \beta \).
+
     They fit into the following commutative diagram,
     \begin{center}
         \begin{tikzpicture}
@@ -321,50 +313,37 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
                 (m-3-3) edge node {F f_3} (m-3-4);
         \end{tikzpicture}
     \end{center}
-    separating, and splitting the two squares, we can rewrite the above commutativity as the following two diagrams commuting,
+    which we can rewrite into the following commutative diagram,
     \begin{center}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{3.5cm} {
+            \diagram{m}{1cm}{1.8cm} {
                 F X_1 \& F X_2 \\
-                F \Sigma^{-1} Y \& F X_2 \\
+                F \Sigma^{-1} Y \& F X_2 \& F X_3 \& \Sigma F \Sigma^{-1} Y \\
+                \& \& F X_3 \& F X_4, \\
             };
 
             \draw[math]
                 (m-1-1) edge node {F f_1} (m-1-2)
-                    edge node[swap] {F \alpha} (m-2-1)
+                    edge node {F \alpha} (m-2-1)
                 (m-1-2) edge[equality] (m-2-2)
 
-                (m-2-1) edge node {F (-\Sigma^{-1} \pi)} (m-2-2);
-        \end{tikzpicture}
+                (m-2-1) edge node {F (-\Sigma^{-1} \pi)} (m-2-2)
+                (m-2-2) edge node {F f_2} (m-2-3)
+                (m-2-3) edge node {\eta_{\Sigma^{-1} Y} \circ (F \iota)} (m-2-4)
+                    edge[equality] (m-3-3)
+                (m-2-4) edge node[swap] {(F \beta) \circ \eta^{-1}_{\Sigma^{-1} Y}} (m-3-4)
 
-        and
-
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{3.5cm} {
-                F X_3 \& \Sigma F \Sigma^{-1} Y \\
-                F X_3 \& F X_4, \\
-            };
-
-            \draw[math]
-                (m-1-1) edge node {\eta_{\Sigma^{-1} Y} \circ (F \iota)} (m-1-2)
-                    edge[equality] (m-2-1)
-                (m-1-2) edge node {(F \beta) \circ \eta^{-1}_{\Sigma^{-1} Y}} (m-2-2)
-
-                (m-2-1) edge node {F f_3} (m-2-2);
+                (m-3-3) edge node {F f_3} (m-3-4);
         \end{tikzpicture}
     \end{center}
-    where
-    \[
-        \tuple{F (-\Sigma^{-1} \pi), F f_2, (F \beta) \circ \eta^{-1}_{\Sigma^{-1} Y}}
-    \]
-    is a distinguished triangle by the triangulated functor property of \( F \).
+
+    where the middle row is distinguished since \( F \) is a triangulated functor.
 
     This yields an element of the Toda bracket,
     \begin{align*}
-        (F \beta) \circ \eta^{-1}_{\Sigma^{-1} Y} \circ (\Sigma F &\alpha) \\
-        &= (F \beta) \circ \eta^{-1}_{\Sigma^{-1} Y} \circ \eta_{\Sigma^{-1} Y} \circ (F \Sigma \alpha) \circ \eta^{-1}_{X_1} \\
+        (F \beta) \circ \eta^{-1}_{\Sigma^{-1} Y} \circ (\Sigma F \alpha) &= (F \beta) \circ \eta^{-1}_{\Sigma^{-1} Y} \circ \eta_{\Sigma^{-1} Y} \circ (F \Sigma \alpha) \circ \eta^{-1}_{X_1} \\
         &= (F (\beta \circ (\Sigma \alpha))) \circ \eta^{-1}_{X_1} \\
-        &= (F f ) \circ \eta^{-1}_{X_1}. \\
+        &= (F f ) \circ \eta^{-1}_{X_1}.
     \end{align*}
     Thus, by \autoref{thm:dgm_massey_equal_toda}, we get
     \[

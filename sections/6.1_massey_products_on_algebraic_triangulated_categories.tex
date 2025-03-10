@@ -45,7 +45,7 @@ Using the above definition, we can define the Massey product more generally in a
 
 \begin{definition}[Massey product in an algebraic triangulated category]
     \label{def:massey_product_alg_tri_cat}
-    Let \( \Tc \) be an algebraic triangulated category, let \( \Cc \) be the DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) the equivalence by the algebraic triangulated category property. Let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be the natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated equivalence onto its image.
+    Let \( \Tc \) be an algebraic triangulated category, let \( \Cc \) be the DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) the equivalence by the algebraic triangulated category property. Let \( \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \) be the natural isomorphism arising from the fact that \( H^0(\mathbf{h}) \Phi \) is an equivalence. Let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be the natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated functor onto its image.
     
     Let the following be a diagram in \( \Tc \)
     \begin{center}
@@ -81,7 +81,15 @@ Using the above definition, we can define the Massey product more generally in a
     \[
         \Phi^{-1} H^0(\mathbf{h})^{-1} (\massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} \circ \eta_{X_1}),
     \]
-    which, up to pre- and post-composition with the natural isomorphism \( \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \), yields a subset of \( \Tc(\Sigma X_0, X_3) \).
+    which, up to pre- and post-composition with \( \phi \), yields
+    \[
+        \phi_{X_4} \circ \tuple*{\Phi^{-1} H^0(\mathbf{h})^{-1} (\massey{H^0(\mathbf{h}) \Phi f_3, H^0(\mathbf{h}) \Phi f_2, H^0(\mathbf{h}) \Phi f_1} \circ \eta_{X_1})} \circ \phi^{-1}_{\Sigma X_1} \subseteq \Tc(\Sigma X_1, X_4).
+    \]
 
-    This subset of \( \Tc(\Sigma X_0, X_3) \) is called the \emph{Massey product of \( f_1, f_2 \) and \( f_3 \) in an algebraic triangulated category}.
+    This subset of \( \Tc(\Sigma X_1, X_4) \) is called the \emph{Massey product of \( f_1, f_2 \) and \( f_3 \) in an algebraic triangulated category}.
 \end{definition}
+
+The above definition is well-defined since \( \im(H^0(\mathbf{h}) \Phi) \) is a full and triangulated subcategory of \( H^0(\dgM) \), and so Massey products is well-defined on \( \im(H^0(\mathbf{h}) \Phi) \) since
+\begin{align*}
+    H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_4) = \im(H^0(\mathbf{h}) \Phi)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_4).
+\end{align*}

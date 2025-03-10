@@ -1,6 +1,46 @@
-In this thesis the definition of a DG-category is based on enriched category theory, as it is a modern approach, and by the opinion of the author it is also the most elegeant approach. The enriched category theory that this thesis is based on, is \cite[Section 6.2]{Borceux_1994}.
+Before defining Massey products on the cohomology category of a DG-category, we first have to define what a DG-category is.
 
-The first definition necessary to understanding DG-categories, is the tensor product of chain complexes over modules.
+We will use the definition of DG-categories based on enriched category theory, as it is both modern, and is helpful for defining the DG-functor category in subsequent sections. The enriched category theory in this section is mainly inspired by  \cite[Section 6.2]{Borceux_1994}.
+
+The first definition necessary to understanding DG-categories, is the tensor product of chain complexes over modules. However, this definition uses coproducts, and we will use special notation for elements in the coproduct.
+
+\begin{notation}
+    % \label{not:coprod_prod_forvirring}
+    Let \( R \) be a commutative ring with identity. Let \( A_i \in \Mod(R) \) and let
+    \[
+        \iota_i: A_i \rightarrowtail \coprod_{i \in \Zb} A_i
+    \]
+    denote the canonical split monomorphism by the universal property of the coproduct in \( \Mod(R) \).
+
+    Then for any \( a_i \in A_i \), the element
+    \[
+        \iota_i(a_i) \in \coprod_{i \in \Zb} A_i
+    \]
+    is just denoted as
+    \[
+        a_i \in \coprod_{i \in \Zb} A_i.
+    \]
+    % Furthermore, let 
+    % \[
+    %     \pi_i: \prod_{i \in \Zb} A_i \twoheadrightarrow A_i
+    % \]
+    % be the universal split epimorphism by the universal property of the product in \( \Mod(R) \).
+    
+    % Then for any element \( a \in \prod_{i \in \Zb} A_i \), denote \( a \) as
+    % \[
+    %     a = \tuple{a_i}_{i \in \Zb}, \: \text{where} \: a_i := \pi_i(a) \in A_i.
+    % \]
+    
+    % The reasoning behind this notation is twofold. First, the product in \( \Mod(R) \) is the direct product, and direct products are usually denoted this way. Second, by the universal property of the product, a morphism out of \( \prod_{i \in \Zb} A_i \) is fully dependent on what the resulting value in each degree is, and the above notation captures that property.
+
+    % However, there is another issue with products specifically, and that is changing the base, and how it relates with equality. The convention that we will use in this thesis is best explained with an example.
+    
+    % Consider two chain complexes \( A \), and \( B \), we can construct the set \( \prod_{j \in \Zb} \Mod(R)(A_{j - 5}, B_j) \). In this thesis, this set is \emph{equal} to \( \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + 5}) \) even though the \( j \)-s don't match. This is because we consider the product to have no order. This simplifies some results, but may be unintuitive when looking at what happens at specific degrees (as is common in proofs).
+\end{notation}
+
+The reasoning for the above notation is twofold. First, it reduces notation while not being ambiguous. Second, we never use a general element of a coproduct. Almost always when considering what a morphism does to an element of the coproduct, it is what happens to the \( \iota_i(a_i) \)'s, which is a consequence of the universal property of the coproduct.
+
+The following is the definition of the tensor product of chain complexes.
 
 \begin{definition}[Tensor product of \( \C \)]
     \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
@@ -30,8 +70,7 @@ The first definition necessary to understanding DG-categories, is the tensor pro
                 (m-1-4) edge (m-1-5);
         \end{tikzpicture}
     \end{center}
-
-    Where the differentials, \( d_n \), are defined as follows:
+    where the differentials, \( d_n \), are defined as follows:
     
     Let \( i + j = n \) and \( a \otimes b \in A_i \otimes B_j \) be an elementary tensor.
 
@@ -43,7 +82,9 @@ The first definition necessary to understanding DG-categories, is the tensor pro
     This is called the \emph{tensor product of \( \C \)}.
 \end{definition}
 
-In order to see that the above definition of the differential on the chain complex is well defined, we need the following lemma, which will be useful later as well.
+In order to see that the above definition of the differential on the chain complex is well-defined, we need the following lemma, which will be useful later as well.
+
+WIP: Marius tilbakemelding.
 
 \begin{lemma}
     \label{lem:map_out_of_tensor_unique}
