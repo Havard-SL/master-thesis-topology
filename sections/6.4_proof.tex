@@ -28,7 +28,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
 
     Start by showing \( \supseteq \).
 
-    Let \( f \in \massey{f_3, f_2, f_1} \). Then by definition of massey product there exists
+    Let \( f \in \massey{f_3, f_2, f_1} \). Then by definition of Massey product there exists
     \[
         g_i \in \dgM(X_i, X_{i + 1})_0
     \]
@@ -70,7 +70,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
     \]
     which also by \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms} can be considered as a morphism in \( \dgM(C_{g_2}, X_4)_0 \).
 
-    Then we want to show that \( \alpha \) and \( \beta \) are cocyles:
+    Then we want to show that \( \alpha \) and \( \beta \) are cocycles:
 
     Consider the following two equations
     \begin{align*}
@@ -250,7 +250,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
 \begin{proof}[Proof of Massey products = Toda brackets]
     Let \( F := H^0(\mathbf{h}) \Phi \) and \( F^{-1} := \Phi^{-1} (H^0(\mathbf{h}))^{-1} \) in this proof.
 
-    Let \( \phi: F^{-1} F \to \Id_{\Tc} \) be the natural isomorphism from the definition of Massey products on an algebraic triangulated category. Let \( \eta: F \Sigma \to \Sigma F \) be the natural isomorphism from the fact that \( F \) is a triangulated equivalence.
+    Let \( \phi: F^{-1} F \to \Id_{\Tc} \) be the natural isomorphism from the definition of Massey products on an algebraic triangulated category and let \( \eta: F \Sigma \to \Sigma F \) be the natural isomorphism from the fact that \( F \) is a triangulated equivalence.
 
     % TODO: Kvifor er dette naturleg? Ganske sikker, treng resultat i forkant?
     Assume that on \( \im(F) \), the natural isomorphism \( \mu \) is defined as follows: Every object \( A' \in \im(F) \) can be written on the form \( F A \) for some \( A \in \Tc \). Likewise, any morphism \( f': F A \to F B \) can be written on the form \( f' = F f \) for some \( f \in \Tc(A, B) \), since \( F \) is full. Therefore, the following composition defines a valid natural isomorphism on \( \im(F) \),
