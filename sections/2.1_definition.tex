@@ -139,6 +139,8 @@ We will use the following definition of a triangulated category.
                 \end{tikzpicture}
             \end{diagramlabel}
             is in \( \Delta \). The triangle \autoref{eq:tri_cat_def_left_rotation} is called the \emph{left rotation} of \autoref{eq:tri_cat_def_right_rotation}, and \autoref{eq:tri_cat_def_right_rotation} is called the \emph{right rotation} of \autoref{eq:tri_cat_def_left_rotation}.
+            
+            Other names for this axiom include the \emph{right rotation axiom} for the \( (\Leftarrow) \) part of the axiom, and the \emph{left rotation axiom} for the \( (\Rightarrow) \) part of the axiom.
         }
         \item {
             Let the solid part of the following diagram
@@ -211,7 +213,7 @@ We will use the following definition of a triangulated category.
     Then \( \tuple{ \Tc, \Sigma, \Delta } \), or shortened to just \( \Tc \), is called a \emph{triangulated category}, or a \emph{triangulation} of \( \Tc \). The functor \( \Sigma \) is called the \emph{shift} (or \emph{suspension}) \emph{functor} of \( \Tc \), and every triangle in \( \Delta \) is called a \emph{distinguished} (or \emph{exact}) \emph{triangle} in \( \Tc \). 
 \end{definition}
 
-% TODO: Nemn pretriangulerte kategoriar?
+A tuple \( \tuple{\Tc, \Sigma, \Delta} \) satisfying {\bf (TR1)} -- {\bf (TR3)} is called a \emph{pre-triangulated} category. This must not be confused with the later definition of a ``pre-triangulated DG-category'' (\autoref{def:pre-tri_dg_cat}), which is not generally a pre-triangulated category.
 
 Although the definition is axiomatic and may seem arbitrary, there are surprisingly many categories that admit the structure of a triangulated category.
 
@@ -219,13 +221,12 @@ There are multiple different, but equivalent, definitions of a triangulated cate
 
 Some axioms of a triangulated category are superfluous in the fact that they are implied by the other axioms. An example is that the axiom {\bf (TR3)} can be skipped if we still assume {\bf (TR1), (TR2)} and {\bf (TR4)}, as was also shown by \cite[Lemma 2.2]{May_2001}.
 
-Another example of this is that given {\bf (TR1)}, {\bf (TR3)} and the \( (\Rightarrow) \) implication of {\bf (TR2)}, then it implies the \( (\Leftarrow) \) implication as well. The details are contained in the following lemma.
-
+Another example of this is the following lemma, which is useful in proving that categories are triangulated. 
 \begin{lemma}
     \label{lem:triangulated_category-TR2-only_one_rotation}
-    Let \( \tuple{ \Tc, \Sigma, \Delta } \) satisfy the axioms {\bf (TR1)} and {\bf (TR3)} from \autoref{def:triangulated_category} as well as the \( (\Rightarrow) \) implication of {\bf (TR2)}.
+    Let \( \tuple{ \Tc, \Sigma, \Delta } \) satisfy the axioms {\bf (TR1)} and {\bf (TR3)} from \autoref{def:triangulated_category} as well as the left rotation axiom of {\bf (TR2)}.
 
-    Then the \( (\Leftarrow) \) implication of {\bf (TR2)} is also satisfied.
+    Then the right rotation axiom of {\bf (TR2)} is also satisfied.
 \end{lemma}
 For a proof of this see \cite[Lemma 2.4]{May_2001}.
 
@@ -269,15 +270,14 @@ There is also a special type of triangulation-preserving functor between triangu
 In particular, as is mentioned in \cite[p.4 Lemma]{Happel_1988}, if \( F \) is a triangulated equivalence between two triangulated categories, then \( F^{-1} \) is also a triangulated functor.
 
 There is also the notion of a triangulated subcategory.
-% TODO: Forkorta aksioma? 1 implisert av 3. siste del av 2 implisert av fyrste del.
 \begin{definition}[Triangulated subcategory]
     For \( \Yc \) an additive subcategory of a triangulated category \( \Tc \), if the following three statements are true, then \( \tuple{\Yc, \Sigma, \Delta'} \) is called a \emph{triangulated subcategory of \( \tuple{\Tc, \Sigma, \Delta} \)}:
     \begin{itemize}
         \item {
-            \( \Yc \) is closed under \( \Sigma \), and \( \Sigma \) is an auto-equivalence on \( \Yc \).
+            \( \Yc \) is closed under \( \Sigma \), and \( \Sigma \) is an auto-equivalence on \( \Yc \),
         }
         \item {
-            \( \Delta' \) is a subclass of \( \Delta \) consisting of triangles in \( \Yc \).
+            \( \Delta' \) is a subclass of \( \Delta \) consisting of triangles in \( \Yc \), and
         }
         \item {
             \( \tuple{\Yc, \Sigma, \Delta'} \) is a triangulated category.

@@ -1,8 +1,5 @@
-% TODO: Kan generaliserast til endeleg gen modular om R er noetherske. Og det verkar som Frobenius ringar er noetherske. https://en.wikipedia.org/wiki/Quasi-Frobenius_ring Zimmermann: Prop. 5.1.4
-
 A triangulated category that will be central in this thesis is the stable module category. Therefore, the definition will be given in more details than the previous two examples of triangulated categories.
 
-% TODO: Marius vil definera projektive objekt. Overkill?
 Before defining the stable module category, we prove a lemma that will be used to define the morphisms.
 \begin{lemma}
     \label{lem:morphisms_factoring_through_projectives_r-submodule}
@@ -132,7 +129,6 @@ By the following remark, composition in \autoref{def:stable_module_category} is 
 \end{proof}
 
 In the general definition of the stable module category, it is not required that the ring is a Frobenius ring. However, as will become apparent later on, it is a requirement to have a triangulation. Since we will only be considering stable module categories which are triangulated, this assumption is made from the beginning.
-% TODO: Faktasjekk, er det verkeleg sant at Frobenius er naudsynt? Las eg ikkje ein stad at nok injektiv og projektive og dei samanfaller er godt nok?
 
 In order to admit a triangulation, we need to prove that the stable module category is additive.
 
@@ -224,9 +220,7 @@ The syzygy functor as well as the shift functor exists in the category of module
 
 The definition of the syzygy functor is closely tied to a choice of \( P_A \)'s and \( \pi_A \)'s for every object \( A \).
 
-% TODO: Kopling med syzygy?
-% TODO: Skriv betre P (og seinare I) forklaringa.
-\begin{definition}[The functor \( \Omega \)]
+\begin{definition}[The syzygy functor \( \Omega \)]
     \label{def:stmod_omega}
     Let \( R \) be a Frobenius ring.
 
@@ -264,6 +258,7 @@ The definition of the syzygy functor is closely tied to a choice of \( P_A \)'s 
             Then define \( \Omega [f] := \class*{\Omega f} \).
         }
     \end{itemize}
+    This is called the \emph{syzygy functor}.
 \end{definition}
 
 The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor, and later showing that it is in fact an additive auto-equivalence of categories.
@@ -502,10 +497,9 @@ Finally, we need the following result to show that \( \Omega \) is additive.
     Since \( \Omega [f + g] \) is well-defined, this implies \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
 \end{proof}
 
-We can define another functor, \( \Sigma \), which will turn out to be the inverse of \( \Omega \) and the shift functor in the triangulation of \( \Mc \).
+We can define another functor, the cosyzygy functor \( \Sigma \), which will turn out to be the inverse of the syzygy functor \( \Omega \) and the shift functor in the triangulation of \( \Mc \).
 
-% TODO: Kopling med cosyzygy?
-\begin{definition}[The functor \( \Sigma \)]
+\begin{definition}[The cosyzygy functor \( \Sigma \)]
     \label{def:stmod_sigma}
     Let \( R \) be a Frobenius ring.
 
@@ -544,6 +538,7 @@ We can define another functor, \( \Sigma \), which will turn out to be the inver
             Then define \( \Sigma [f] := \class*{\Sigma f} \).
         }
     \end{itemize}
+    This is called the \emph{cosyzygy functor.}
 \end{definition}
 
 It remains to show that every desired property of \( \Sigma \), like being well-defined, an endofunctor, and additive, translates to \( \Sigma \).
@@ -701,8 +696,6 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-2-2) edge[two headed] node[swap] {\rho_{\Omega B}} (m-2-3);
         \end{tikzpicture}
     \end{center}
-    % TODO: Sebastian synast eg skal fordjupa her, men det er eit veldig likt argument som det eg har gjort ovanfor fleire gangar. Usikker på kva eg skal gjere her.
-    % -> Endr formulering. Fjern "And"
     where from the cokernel property of \( A \), we get an induced morphism \( \theta \). Furthermore, from the epimorphism property of \( \pi_A \), the lower triangle commutes. Since \( R \) is assumed to be a Frobenius ring, \( I_{\Omega B} \) is also projective. This implies
     \[
         [\phi_1^B \circ f] = [(\Sigma \Omega f) \circ \phi_1^A],
@@ -716,7 +709,6 @@ An interesting consequence of how \( \Omega \) and \( \Sigma \) are defined is t
 
 Before we can show the triangulation of \( \Mc \), we first need to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Chapter 1, Subsection 2.5]{Happel_1988}.
 
-% TODO: Slå i saman denne definisjonen og remarket nedanfor?
 \begin{definition}
     \label{def:stmod_cone}
     Let \( f \in \Mod(R)(A, B) \).
@@ -807,11 +799,9 @@ Now, we can finally define the triangulation on \( \Mc \).
 
 There are some important details from the definition of standard triangles that will be important in proving that \( \Mc \) has a triangulation.
 
-% TODO: Sebastian vil at eg skal sløyfa "Consider the objects and ..." setningen. Skal eg?
-% -> Veldig nerme. Unngå unødvendige og nære referansar.
 \begin{remark}
     \label{rem:stmod_cone_pushout_properties}
-    Consider the objects and morphisms of \autoref{rem:stmod_cone}.
+    Consider the objects and morphisms in the above remark.
 
     Since \( \Mod(R) \) is an abelian category, then by known facts about pushouts, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise, it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
 \end{remark}
@@ -1007,13 +997,11 @@ We can now prove that \( \tuple{\Mc, \Sigma, \Delta} \) is triangulated, where o
 
 The details of the proof will not be important for the rest of the thesis, but is included mainly because we will be using \( \Mc \) for examples later on.
 
-% TODO: Sebastian kommenterte på "... it is a known fact that the pushout of an iso is an iso ..." Med "appeal to common belief". Kva skal eg gjere med det? Burde eg ha med nokre pushout eigenskapar i forkant?
-% -> Ikkje nemn det og problemet går vekk.
 \begin{example}
     \label{example:stable_module_category_triangulated}
     The tuple \( \tuple{\Mc, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
-\begin{proof} % TODO: Skriv om bevisa, standariser notasjon, kanskje inkluder lemmaet over inn i TR4? Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
+\begin{proof} % TODO: Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
     We need to prove {\bf (TR1)} -- {\bf (TR4)} from \autoref{def:triangulated_category}.
     \begin{enumerate}[label={(\bfseries TR\arabic*)}]
         \item {
@@ -1062,7 +1050,6 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{enumerate}
         }
         \item {
-            % TODO: Motiver dette beviset mykje betre.
             We need to show \( (\Leftarrow) \) and \( (\Rightarrow) \). By \autoref{lem:triangulated_category-TR2-only_one_rotation}, assuming the upcoming proof of {\bf (TR3)} as well as the previous proof of {\bf (TR1)}, then \( (\Leftarrow) \) is implied by \( (\Rightarrow) \).
             
             Therefore, it is sufficient to only prove \( (\Rightarrow) \).
@@ -1507,7 +1494,6 @@ The details of the proof will not be important for the rest of the thesis, but i
                 l \circ \alpha - \beta \circ f = \xi \circ \kappa_A.
             \]
 
-            % TODO: Formuler dette betre. Eg trur det framleis er alt for muntleg.
             Consider the following diagram by definition of \( \Sigma [\alpha] \)
             \begin{center}
                 \begin{tikzpicture}
@@ -1983,7 +1969,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge node {\phi} (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            Since the left and the outer square are pushouts this implies that the right square is also a pushout. % TODO: Marius skreiv "Hvorfor" her. Kanskje eg burde utdjupa pushout eigenskapar?
+            Since the left and the outer square are pushouts this implies that the right square is also a pushout.
 
             Consider the following pushout diagram of \( (B, n, \kappa_{C_f} \circ g) \),
             \begin{diagramlabel}[\label{diag:stmod_tr4_C}]
@@ -2364,7 +2350,6 @@ The details of the proof will not be important for the rest of the thesis, but i
             \]
             Therefore, by uniqueness of the universal property of the pushout, \( e \circ d = k \circ \alpha \).
 
-            % TODO: Marius vil ikkje bruka "arrow", men heller morphism?
             Similarly, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
@@ -2405,4 +2390,9 @@ The details of the proof will not be important for the rest of the thesis, but i
     \end{enumerate}
 \end{proof}
 
-By \cite[Lemma, Subsection 7.5]{Krause_2007} it follows that \( \Mc \) is in fact what we call an \emph{algebraic triangulated category}. This will be touched on later in the thesis. % TODO: Specify where it will be touched on and the connection between Krause and Jasso-Muro's definition.
+Thus, we have proven that the stable (infinitely generated) module category is triangulated. A natural follow-up question is therefore if there exists a stable finitely generated module category.
+\begin{remark}
+    This subsection has only mentioned (infinitely generated) modules. However, the same definitions, functors, and proofs work for the finitely generated modules, \( \mod(R) \). This is because a Frobenius ring is Noetherian, and \( \mod(R) \) is therefore an abelian category. In addition, \( \mod(R) \) also has enough projectives and injectives, and therefore no proof or definition uses any properties of \( \Mod(R) \), that \( \mod(R) \) does not have. This yields a triangulated category, \( \Stmod(R) \) which is the stable module category over \( \mod(R) \).
+\end{remark}
+
+By \cite[Lemma, Subsection 7.5]{Krause_2007} it follows that \( \StMod(R) \) and \( \Stmod(R) \) are in fact what we call an ``algebraic triangulated category''. The definition of an algebraic triangulated category is given in \autoref{section:alg_tri_cats}.

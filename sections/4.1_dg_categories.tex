@@ -1,11 +1,11 @@
 Before defining Massey products on the cohomology category of a DG-category, we first have to define what a DG-category is.
 
-We will use the definition of DG-categories based on enriched category theory, as it is both modern, and is helpful for defining the DG-functor category in subsequent sections. The enriched category theory in this section is mainly inspired by  \cite[Section 6.2]{Borceux_1994}.
+We will use the definition of DG-categories based on enriched category theory, as it is both modern, and is helpful for defining the DG-functor category in subsequent sections. The enriched category theory in this section is mainly inspired by \cite[Section 6.2]{Borceux_1994}.
 
 The first definition necessary to understanding DG-categories, is the tensor product of chain complexes over modules. However, this definition uses coproducts, and we will use special notation for elements in the coproduct.
 
 \begin{notation}
-    % \label{not:coprod_prod_forvirring}
+    \label{not:coprod}
     Let \( R \) be a commutative ring with identity. Let \( A_i \in \Mod(R) \) and let
     \[
         \iota_i: A_i \rightarrowtail \coprod_{i \in \Zb} A_i
@@ -288,7 +288,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
     %     \iota_{i', j'}: A_{i'} \otimes B_{j'} \rightarrowtail \coprod_{i + j = n} A_i \otimes B_j
     % \]
     % be the canonical split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
-    Let \( \iota_{i, j} \) be as defined in \autoref{not:coprod_prod_forvirring}.
+    Let \( \iota_{i, j} \) be as defined in \autoref{not:coprod}.
 
     Then take the hom-tensor adjoint in \( \Mod(R) \) of the morphism
     \[
@@ -323,10 +323,10 @@ As the names would imply, the tensor product and internal hom of chain complexes
             where the natural morphisms are \( f \mapsto \phi_f \).
         }
     \end{enumerate}
-    % TODO: Possibly expand this proof? or TODO: SRC (Marius kommenterte dette og)
+    % TODO: Prove or SRC.
     In this thesis only the first statement will be proven.
 
-    1) Want to show that \( \phi_f \) is a chain morphism.
+    Want to show that \( \phi_f \) is a chain morphism.
 
     Need to check that for any \( i \in \Zb \) that the following diagram commutes
     \begin{center}
@@ -365,7 +365,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
     \end{align*}
 \end{remark}
 
-Together the above definitions and remarks gives the structure of a symmetric monoidal category, which will not be shown in this thesis. For a definition of symmetric monoidal categories, see TODO: CITE: Appendix.
+Together the above definitions and remarks gives the structure of a symmetric monoidal category, which will not be shown in this thesis. For a definition of symmetric monoidal categories, see \cite[Definition 6.1.1]{Borceux_1994}.
 
 \begin{fact}[\( \C \) is symmetric monoidal]
     Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \). Furthermore let \( I \) be the chain complex in \( \C \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
