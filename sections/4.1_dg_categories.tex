@@ -20,19 +20,7 @@ The first definition necessary to understanding DG-categories, is the tensor pro
     \[
         a_i \in \coprod_{i \in \Zb} A_i.
     \]
-    % Furthermore, let 
-    % \[
-    %     \pi_i: \prod_{i \in \Zb} A_i \twoheadrightarrow A_i
-    % \]
-    % be the universal split epimorphism by the universal property of the product in \( \Mod(R) \).
     
-    % Then for any element \( a \in \prod_{i \in \Zb} A_i \), denote \( a \) as
-    % \[
-    %     a = \tuple{a_i}_{i \in \Zb}, \: \text{where} \: a_i := \pi_i(a) \in A_i.
-    % \]
-    
-    % The reasoning behind this notation is twofold. First, the product in \( \Mod(R) \) is the direct product, and direct products are usually denoted this way. Second, by the universal property of the product, a morphism out of \( \prod_{i \in \Zb} A_i \) is fully dependent on what the resulting value in each degree is, and the above notation captures that property.
-
     % However, there is another issue with products specifically, and that is changing the base, and how it relates with equality. The convention that we will use in this thesis is best explained with an example.
     
     % Consider two chain complexes \( A \), and \( B \), we can construct the set \( \prod_{j \in \Zb} \Mod(R)(A_{j - 5}, B_j) \). In this thesis, this set is \emph{equal} to \( \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + 5}) \) even though the \( j \)-s don't match. This is because we consider the product to have no order. This simplifies some results, but may be unintuitive when looking at what happens at specific degrees (as is common in proofs).
@@ -44,47 +32,76 @@ The following is the definition of the tensor product of chain complexes.
 
 \begin{definition}[Tensor product of \( \C \)]
     \label{def:tensor_product_of_chain_complexes_over_Mod(R)}
-    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \).
-
-    Then, for any  \( n \in \Zb \) define the modules
-    \[
-        (A \otimes B)_n := \coprod_{p + q = n} A_p \otimes B_q
-    \]
-    which are a part of the chain complex
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                A \otimes B: \\
-            };
-        \end{tikzpicture}
-        %
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                \cdots \& \tuple*{A \otimes B}_{-1} \& \tuple*{A \otimes B}_0 \& \tuple*{A \otimes B}_1 \& \cdots \\
-            };
-
-            \draw[math]
-                (m-1-1) edge (m-1-2)
-                (m-1-2) edge node {d_{-1}} (m-1-3)
-                (m-1-3) edge node {d_0} (m-1-4)
-                (m-1-4) edge (m-1-5);
-        \end{tikzpicture}
-    \end{center}
-    where the differentials, \( d_n \), are defined as follows:
+    Let \( R \) be a commutative ring with identity.
     
-    Let \( i + j = n \) and \( a \otimes b \in A_i \otimes B_j \) be an elementary tensor.
+    Let \( ?_1 \otimes ?_2 \) be the following assignment of objects and morphisms in \( \C \times \C \):
+    \begin{itemize}
+        \item {
+            For \( A, B \in \C \), and for any  \( n \in \Zb \) define the modules
+            \[
+                (A \otimes B)_n := \coprod_{p + q = n} A_p \otimes B_q
+            \]
+            which are a part of the chain complex
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \otimes B: \\
+                    };
+                \end{tikzpicture}
+                %
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \cdots \& \tuple*{A \otimes B}_{-1} \& \tuple*{A \otimes B}_0 \& \tuple*{A \otimes B}_1 \& \cdots \\
+                    };
 
-    Then the differential is (uniquely) defined by the following assignments
-    \[
-        d_n(a \otimes b) := d_{A, i}(a) \otimes b + (-1)^{i} a \otimes d_{B, j}(b).
-    \]
+                    \draw[math]
+                        (m-1-1) edge (m-1-2)
+                        (m-1-2) edge node {d_{-1}} (m-1-3)
+                        (m-1-3) edge node {d_0} (m-1-4)
+                        (m-1-4) edge (m-1-5);
+                \end{tikzpicture}
+            \end{center}
+            where the differentials, \( d_n \), are defined as follows:
+            
+            Let \( i + j = n \) and \( a \otimes b \in A_i \otimes B_j \) be an elementary tensor.
+
+            Then the differential is (uniquely) defined by the following assignments
+            \[
+                d_n(a \otimes b) := d_{A, i}(a) \otimes b + (-1)^{i} a \otimes d_{B, j}(b).
+            \]
+        }
+        \item {
+            For morphisms \( f: \in \C(A, A') \) and \( g \in \C(B, B') \), let \( f \otimes g \) be the following chain morphism,
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \otimes B: \&[-0.7cm] \cdots \& \tuple*{A \otimes B}_{-1} \& \tuple*{A \otimes B}_0 \& \tuple*{A \otimes B}_1 \& \cdots \\
+                        A' \otimes B': \& \cdots \& \tuple*{A' \otimes B'}_{-1} \& \tuple*{A' \otimes B'}_0 \& \tuple*{A' \otimes B'}_1 \& \cdots \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f \otimes g} (m-2-1)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge node {d_{-1}} (m-1-4)
+                            edge node {\coprod_{i + j = -1} f_i \otimes g_j} (m-2-3)
+                        (m-1-4) edge node {d_0} (m-1-5)
+                            edge node {\coprod_{i + j = 0} f_i \otimes g_j} (m-2-4)
+                        (m-1-5) edge (m-1-6)
+                            edge node {\coprod_{i + j = 1} f_i \otimes g_j} (m-2-5)
+
+                        (m-2-2) edge (m-2-3)
+                        (m-2-3) edge node {d_{-1}} (m-2-4)
+                        (m-2-4) edge node {d_0} (m-2-5)
+                        (m-2-5) edge (m-2-6);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{itemize}
 
     This is called the \emph{tensor product of \( \C \)}.
 \end{definition}
 
-In order to see that the above definition of the differential on the chain complex is well-defined, we need the following lemma, which will be useful later as well.
-
-WIP: Marius tilbakemelding. Hugs å flytta notasjonen over.
+In order to see that the above definition of the differential on \( A \otimes B \) is well-defined, we need the following lemma, which will be useful later as well.
 
 \begin{lemma}
     \label{lem:map_out_of_tensor_unique}
@@ -106,12 +123,12 @@ WIP: Marius tilbakemelding. Hugs å flytta notasjonen over.
     Then \( f \) is uniquely defined by the \( g_{i, j} \)'s.
 \end{lemma}
 \begin{proof}
-    Consider at the following diagram where \( \iota_{i, j} \) is the canocial split monomorphism by the universal property of the coproduct, and where the \( g_{i, j} \)'s are \( R \)-bilienar
+    Consider at the following diagram,
     \begin{diagramlabel}[\label{tikz:differential_of_tensor_product_of_chain_complexes_over_Mod(R)}]
         \begin{tikzpicture}
             \diagram{m}{2cm}{2cm} {
                 A_i \otimes B_j \& \coprod\limits_{p + q = n} A_p \otimes B_q \\
-                A_i \times B_j \& C. \\
+                A_i \times B_j \& C, \\
             };
 
             \draw[math]
@@ -123,6 +140,7 @@ WIP: Marius tilbakemelding. Hugs å flytta notasjonen over.
                     edge node {\otimes} (m-1-1);
         \end{tikzpicture}
     \end{diagramlabel}
+    where \( \iota_{i, j} \) is as defined in \autoref{not:coprod}, and where the \( g_{i, j} \)'s are \( R \)-bilinenar.
 
     Then by the universal property of tensor product in \( \Mod(R) \), \( g_{i, j} \) induces a unique morphism, \( \alpha_{i, j} \), which is induced from the elementary tensors as follows
     \[
@@ -135,10 +153,10 @@ WIP: Marius tilbakemelding. Hugs å flytta notasjonen over.
     \[
         \beta: a \otimes b \mapsto g_{i, j}(a, b)
     \]
-    which is exactly equal to \( f \), and \( f \) is therefore uniquely deterined by the \( g_{i, j} \)'s.
+    which is exactly equal to \( f \), and \( f \) is therefore uniquely determined by the \( g_{i, j} \)'s.
 \end{proof}
 
-The following remark shows that \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined.
+The following remark shows that the tensor product of \( \C \) in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is a well-defined bifunctor.
 
 \begin{remark}
     The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined and unique by the following argument.
@@ -156,14 +174,44 @@ The following remark shows that \autoref{def:tensor_product_of_chain_complexes_o
     \[
         d_{n + 1} \circ d_n: a \otimes b \mapsto 0
     \]
-    and the \( 0 \) map is \( R \)-bilinear, so \( d_{n + 1} \circ d_n \) is uniquely defined. Since the zero map would also send \( a \otimes b \) to \( 0 \), then by uniquenes \( d_{n + 1} \circ d_n = 0 \).
+    and the \( 0 \) map is \( R \)-bilinear, so \( d_{n + 1} \circ d_n \) is uniquely defined. Since the zero map would also send \( a \otimes b \) to \( 0 \), then by uniqueness, \( d_{n + 1} \circ d_n = 0 \).
+
+    In order to verify that the assignment of morphisms is well-defined, we have to check if \( f \otimes g \) is a chain morphism.
+    
+    Let \( i + j = n \in \Zb \), with \( a \in A_i \) and \( b \in B_j \). Consider the following equation,
+    \begin{align*}
+        d_n \circ (f \otimes g)_n (a \otimes b) &= d_n \circ (f_i(a) \otimes g_j(b)) \\
+        &= (d_{A, i} \circ f_i(a)) \otimes g_j(b) + (-1)^i f_i(a) \otimes (d_{B, j} \circ g_j(b)) \\
+        &= (f_{i + 1} \circ d_{A, i} (a)) \otimes g_j (b) + (-1)^i f_i(a) \otimes (g_{j + 1} \circ d_{B, j}(b)) \\
+        &= (f \otimes g)_{n + 1} (d_{A, i}(a) \otimes b) + (-1)^i (f \otimes g)_{n + 1} (a \otimes d_{B, j}(b)) \\
+        &= (f \otimes g)_{n + 1} (d_{A, i} (a) \otimes b + (-1)^i a \otimes d_{B, j} (b)) \\
+        &= (f \otimes g)_{n + 1} \circ d_n (a \otimes b).
+    \end{align*}
+    Then by \autoref{lem:map_out_of_tensor_unique} it follows that
+    \[
+        d_n \circ (f \otimes g)_n = (f \otimes g)_{n + 1} \circ d_n.
+    \]
+
+    All that remains is to check bifunctoriality.
+
+    First, it is easy to see that \( \Id \otimes \Id \) is the identity morphism.
+    
+    For \( f \otimes g: A \otimes B \to A' \otimes B' \), \( m \otimes n: A' \otimes B' \to A'' \otimes B'' \), and any \( n \in \Zb \) the composition becomes,
+    \begin{align*}
+        (m \otimes n)_n \circ (f \otimes g)_n &= (\coprod_{i + j = n} m_i \otimes n_j) \circ (\coprod_{i + j = n} f_i \otimes g_j) \\
+        &= \coprod_{i + j = n} (m_i \otimes n_j) \circ (f_i \otimes g_j) \\
+        &= \coprod_{i + j = n} (m_i \circ f_i) \otimes (n_j \circ g_j) \\
+        &= ((m \circ f) \otimes (n \circ g))_n.
+    \end{align*}
+
+    Thus, \( ?_1 \otimes ?_2 \) is a bifunctor.
 \end{remark}
 
 An important property of the tensor product of chain complexes is symmetry. This is shown in the following remark.
 
 \begin{remark}[Symmetry of tensor product in \( \C \)]
     \label{rem:symmetry_tensor_product_of_chain_complex}
-    For two \( A, B \in \C \), there exist an isomorphism
+    For \( A, B \in \C \), there exists an isomorphism
     \[
         s = \tuple{s_n}_{n \in \Zb}: A \otimes B \to B \otimes A
     \]
@@ -176,7 +224,8 @@ An important property of the tensor product of chain complexes is symmetry. This
 
     Consider the following difference
     \begin{align*}
-        &s_{n + 1} \circ d_n(a \otimes b) - d_n \circ s_n (a \otimes b) = s_{n + 1} \tuple{d_{A, i}(a) \otimes b + (-1)^i a \otimes d_{B, j}(b)} - d_n \tuple{ (-1)^{ij} b \otimes a } \\
+        &s_{n + 1} \circ d_n(a \otimes b) - d_n \circ s_n (a \otimes b) \\
+        &= s_{n + 1} \tuple{d_{A, i}(a) \otimes b + (-1)^i a \otimes d_{B, j}(b)} - d_n \tuple{ (-1)^{ij} b \otimes a } \\
         &= (-1)^{(i + 1)j} b \otimes d_{A, i}(a) + (-1)^{i + i(j + 1)} d_{B, j}(b) \otimes a - (-1)^{ij} d_{B, j}(b) \otimes a - (-1)^{j + ij} b \otimes d_{A, i}(a) \\
         &= (-1)^{(i + 1)j} b \otimes d_{A, i}(a) - (-1)^{(i + 1)j} b \otimes d_{A, i}(a) + (-1)^{ij} d_{B, j}(b) \otimes a - (-1)^{ij} d_{B, j}(b) \otimes a \\
         &= 0,
@@ -184,56 +233,138 @@ An important property of the tensor product of chain complexes is symmetry. This
     which implies that the morphism \( s_{n + 1} \circ d_n - d_n \circ s_n \) sends every elementary tensor to \( 0 \), which again implies that the morphism is equal to \( 0 \).
 \end{remark}
 
-Another definition closely linked to the tensor product in \( \C \) is the internal hom.
+Another definition closely linked to the tensor product in \( \C \) is the internal Hom, which is defined using products, that we also use a special notation for.
+\begin{notation}
+    \label{not:prod}
+    Let 
+    \[
+        \pi_i: \prod_{i \in \Zb} A_i \twoheadrightarrow A_i
+    \]
+    be the universal split epimorphism by the universal property of the product in \( \Mod(R) \).
+    
+    Then for any element \( a \in \prod_{i \in \Zb} A_i \), denote \( a \) as
+    \[
+        a = \tuple{a_i}_{i \in \Zb}, \: \text{where} \: a_i := \pi_i(a) \in A_i.
+    \]
+\end{notation}
 
+The reasoning behind this notation is twofold. First, the product in \( \Mod(R) \) is the direct product, and direct products are usually denoted this way. Second, by the universal property of the product, a morphism out of \( \prod_{i \in \Zb} A_i \) is fully dependent on what the resulting value in each degree is, and the above notation captures that property.
+
+As above, we also need some notation for pre- and post-composition.
+\begin{notation}
+    Let \( \Cc \) be any locally small category, and let \( f \in \Cc(A, B) \).
+
+    Then denote post-composition by \( f \) on any morphism with codomain \( A \) as \( (f)_* \).
+
+    Likewise, denote pre-composition by \( f \) on any morphism with domain \( B \) as \( (f)^* \).
+\end{notation}
+In \( \Mod(R) \), the pre- and post-composition maps are \( R \)-morphisms on the Hom modules.
+
+The following is the definition of the internal Hom of chain complexes. 
 \begin{definition}[Internal hom of \( \C \)]
     \label{def:internal_hom_of_chain_complexes_over_Mod(R)}
-    Let \( R \) be a commutative ring with identity. Furthermore, let \( A, B \in \C \).
+    Let \( R \) be a commutative ring with identity.
+    
+    Let \( [?_1, ?_2] \) be the following assignment of objects and morphisms in \( \C^{\op} \times \C \):
 
-    Then, for any \( n \in \Zb \) define the modules
-    \[
-        \class*{A, B}_n := \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n})
-    \]
-    which are a part of the chain complex
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                \class*{A, B}: \&[-0.5cm] \cdots \& \class*{A, B}_{-1} \& \class*{A, B}_0 \& \class*{A, B}_1 \& \cdots \\
-            };
+    \begin{itemize}
+        \item {
+            Let \( A, B \in \C \).
 
-            \draw[math]
-                (m-1-2) edge (m-1-3)
-                (m-1-3) edge node {d_{-1}} (m-1-4)
-                (m-1-4) edge node {d_0} (m-1-5)
-                (m-1-5) edge (m-1-6);
-        \end{tikzpicture}
-    \end{center}
+            Then, for any \( n \in \Zb \) define the modules
+            \[
+                \class*{A, B}_n := \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n})
+            \]
+            which are a part of the chain complex
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \class*{A, B}: \&[-0.7cm] \cdots \& \class*{A, B}_{-1} \& \class*{A, B}_0 \& \class*{A, B}_1 \& \cdots \\
+                    };
 
-    where the differentials, \( d_n \), are defined as follows,
-    \begin{align*}
-        d_n : \class*{A, B}_n &\to \class*{A, B}_{n + 1} \\
-        \tuple*{f_i}_{i \in \Zb} &\mapsto \tuple*{d_{B, i + n} \circ f_i - (-1)^n f_{i + 1} \circ d_{A, i}}_{i \in \Zb}.
-    \end{align*}
-    This is called the \emph{internal hom of chain complexes over \( \Mod(R) \)}.
+                    \draw[math]
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge node {d_{-1}} (m-1-4)
+                        (m-1-4) edge node {d_0} (m-1-5)
+                        (m-1-5) edge (m-1-6);
+                \end{tikzpicture}
+            \end{center}
+            where the differentials, \( d_n \), are defined as follows,
+            \begin{align*}
+                d_n : \class*{A, B}_n &\to \class*{A, B}_{n + 1} \\
+                \tuple*{f_i}_{i \in \Zb} &\mapsto \tuple*{d_{B, i + n} \circ f_i - (-1)^n f_{i + 1} \circ d_{A, i}}_{i \in \Zb}.
+            \end{align*}
+        }
+        \item {
+            For morphisms \( f: \in \C^{\op}(A, A') \) and \( g \in \C(B, B') \), let \( [f, g] \) be the following chain morphism,
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \class*{A, B}: \&[-0.7cm] \cdots \& \class*{A, B}_{-1} \& \class*{A, B}_0 \& \class*{A, B}_1 \& \cdots \\
+                        \class*{A', B'}: \& \cdots \& \class*{A', B'}_{-1} \& \class*{A', B'}_0 \& \class*{A', B'}_1 \& \cdots \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f \otimes g} (m-2-1)
+                        (m-1-2) edge (m-1-3)
+                        (m-1-3) edge node {d_{-1}} (m-1-4)
+                            edge node {\prod_{i \in \Zb} (g_{i - 1})_* \circ (f_i)^*} (m-2-3)
+                        (m-1-4) edge node {d_0} (m-1-5)
+                            edge node {\prod_{i \in \Zb} (g_i)_* \circ (f_i)^*} (m-2-4)
+                        (m-1-5) edge (m-1-6)
+                            edge node {\prod_{i \in \Zb} (g_{i + 1})_* \circ (f_i)^*} (m-2-5)
+
+                        (m-2-2) edge (m-2-3)
+                        (m-2-3) edge node {d_{-1}} (m-2-4)
+                        (m-2-4) edge node {d_0} (m-2-5)
+                        (m-2-5) edge (m-2-6);
+                \end{tikzpicture}
+            \end{center}
+        }
+    \end{itemize}
+    
+    This is called the \emph{internal Hom of \( \C \)}.
 \end{definition}
 
-The following remark explains why the differentials in the previous definition is well-defined.
-
+By the following remark, internal Hom of \( \C \) is a well-defined bifunctor.
 \begin{remark}
-    The definition of the differential in \autoref{def:internal_hom_of_chain_complexes_over_Mod(R)} is well-defined because the only thing that needs to be checked is if the \( d_n \)'s are differentials, which can be checked straight forwardly.
+    The definition of the differentials of the internal Hom are well-defined because the only thing that needs to be checked is if the \( d_n \)'s are differentials, which is easy to prove.
+
+    It remains to show that \( [f, g] \) is a chain morphism, as well as bifunctoriality.
+
+    Let \( n \in \Zb \), and \( \tuple{h_i}_{i \in \Zb} \in [A, B]_n \). Consider the equation,
+    \begin{align*}
+        d_n \circ [f, g]_n (h_i)_{i \in \Zb} &= d_n \circ \tuple*{g_{i + n} \circ h_i \circ f_i}_{i \in \Zb} \\
+        &= \tuple*{d_{B', i + n} \circ g_{i + n} \circ h_i \circ f_i - (-1)^n g_{i + n + 1} \circ h_{i + 1} \circ f_{i + 1} \circ d_{A', i}}_{i \in \Zb} \\
+        &= \tuple*{g_{i + n + 1} \circ d_{B, i + n} \circ h_i \circ f_i - (-1)^n g_{i + n + 1} \circ h_{i + 1} \circ d_{A, i} \circ g_i}_{i \in \Zb} \\
+        &= \tuple{(g_{i + n + 1})_* \circ (f_i)^* \circ \tuple*{d_{B, i + n} \circ h_i - (-1)^n h_{i + 1} \circ d_{A, i}}}_{i \in \Zb} \\
+        &= \tuple*{\prod_{i \in \Zb} (g_{i + n + 1})_* \circ (f_i)^*} \circ d_n (h_i)_{i \in \Zb} \\
+        &= [f, g]_{n + 1} \circ d_n (h_i)_{i \in \Zb}.
+    \end{align*}
+    Thus, \( [f, g] \) is a chain morphism.
+
+    It is easy to see that \( [\Id, \Id] \) is the identity morphism.
+
+    Finally, for \( [f, g]: [A, B] \to [A', B'] \), \( [v, w]: [A', B'] \to [A'', B''] \), and any \( n \in \Zb \), consider the following equation,
+    \begin{align*}
+        [f, g]_n \circ [v, w]_n &= \tuple*{\prod_{i \in \Zb} (g_{i + n})_* \circ (f_i)^*} \circ \tuple*{\prod_{i \in \Zb} (w_{i + n})_* \circ (v_i)^*} \\
+        &= \prod_{i \in \Zb} \tuple*{(g_{i + n})_* \circ (f_i)^* \circ (w_{i + n})_* \circ (v_i)^*} \\
+        &= \prod_{i \in \Zb} \tuple*{(g_{i + n} \circ w_{i + n})_* \circ(f_i \circ_{\op} v_i)^*} \\
+        &= [f \circ_{\op} v, g \circ w]_n.
+    \end{align*}
+
+    Thus, \( [?_1, ?_2] \) is a well-defined bifunctor.
 \end{remark}
 
-As the names would imply, the tensor product and internal hom of chain complexes over modules are adjoint in the usual sense. This is shown in the following remark.
+As the names would imply, the tensor product and internal Hom of chain complexes over modules are adjoint in the usual sense. This is shown in the following remark.
 
-\begin{remark}[Tensor product and internal hom adjunction in \( \C \)]
+\begin{remark}[Tensor product and internal Hom adjunction in \( \C \)]
     \label{rem:tensor_prod_internal_hom_adjoint}
-    Let \( A, B, C \) be chain complexes in \( \C \) for some commutative ring \( R \), and let
+    Let \( A, B, \) and \( C \) be chain complexes in \( \C \) for some commutative ring \( R \), and let
     \[
         f \in \C\tuple*{A \otimes B, C}.
     \]
     
-    The goal of this remark is to understand what the adjoint of \( f \) is.
-
     Let \( f = \tuple*{f_n}_{n \in \Zb} \) where \( f_n \in \Mod(R)\tuple*{ \tuple*{A \otimes B}_n, C_n} \) are the individual level-wise morphisms of the chain morphism \( f \).
 
     Then, unpacking the definitions, we have that \( f \) looks like the following diagram
@@ -283,14 +414,9 @@ As the names would imply, the tensor product and internal hom of chain complexes
         \end{tikzpicture}
     \end{center}
 
-    % For any \( n \in \Zb \), let \( i', j' \in \Zb \) with \( i' + j' = n \) let
-    % \[
-    %     \iota_{i', j'}: A_{i'} \otimes B_{j'} \rightarrowtail \coprod_{i + j = n} A_i \otimes B_j
-    % \]
-    % be the canonical split monomorphism by the definintion of the coproduct \( \coprod_{i + j = n} A_i \otimes B_j \).
     Let \( \iota_{i, j} \) be as defined in \autoref{not:coprod}.
 
-    Then take the hom-tensor adjoint in \( \Mod(R) \) of the morphism
+    Then take the Hom-tensor adjoint in \( \Mod(R) \) of the morphism
     \[
         f_{i + j} \circ \iota_{i, j}: A_i \otimes B_j \to C_{i + j}.
     \]
@@ -299,7 +425,7 @@ As the names would imply, the tensor product and internal hom of chain complexes
         \phi_{f, i, j}: A_i &\to \Mod(R)(B_j, C_{j + i}) \\
         a &\mapsto f_{i + j}\tuple*{ a \otimes ? }.
     \end{align*}
-    Then by the universal property of the product there is some morphism
+    Then by the universal property of the product there is some unique morphism
     \[
         \phi_{f, i} := \prod_{j \in \Zb} \phi_{f, i, j}: A_i \to \prod_{j \in \Zb} \Mod(R)\tuple*{B_j, C_{j + i}}.
     \]
@@ -316,24 +442,22 @@ As the names would imply, the tensor product and internal hom of chain complexes
             Second, the assignment \( f \mapsto \phi_f \) is an isomorphism of groups.
         }
         \item {
-            Third, there is a natural transformation
+            Third, there is a natural isomorphism
             \[
                 \C(?_1 \otimes ?_2, ?_3) \cong \C(?_1, \left[ ?_2, ?_3 \right])
             \]
-            where the natural morphisms are \( f \mapsto \phi_f \).
+            where the natural isomorphisms are \( f \mapsto \phi_f \).
         }
     \end{enumerate}
-    % TODO: Prove or SRC.
-    In this thesis only the first statement will be proven.
 
-    Want to show that \( \phi_f \) is a chain morphism.
+    1) We want to show that \( \phi_f \) is a chain morphism.
 
-    Need to check that for any \( i \in \Zb \) that the following diagram commutes
+    We need to check that for any \( i \in \Zb \) that the following diagram,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 A_i \& A_{i + 1} \\
-                \class*{B, C}_i \& \class*{B, C}_{i + 1} \\
+                \class*{B, C}_i \& \class*{B, C}_{i + 1}, \\
             };
 
             \draw[math]
@@ -344,16 +468,19 @@ As the names would imply, the tensor product and internal hom of chain complexes
                 (m-2-1) edge node {d_{\class*{B, C}, i}} (m-2-2);
         \end{tikzpicture}
     \end{center}
+    commutes.
+
+    % TODO: Fiks intertext?
     Pick an arbitrary \( a \in A_i \) and consider the following equation
     \begin{align*}
-        \phi_{f, i + 1} \circ d_{A, i}(a) &- d_{\class*{B, C}, i} \circ \phi_{f, i}(a)
-        = \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?} }_{j \in \Zb}
+        \phi_{f, i + 1} \circ d_{A, i}(a) &- d_{\class*{B, C}, i} \circ \phi_{f, i}(a) \\
+        &= \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?} }_{j \in \Zb}
         - d_{\class*{B, C}, i} \tuple*{ \tuple*{ f_{i + j}\tuple*{a \otimes ?} }_{j \in \Zb} } \\
         \intertext{by expanding out the definition of \( d_{\class*{B, C}, i} \) it follows that}
         &= \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?}
         - d_{C, i + j} \circ f_{i + j}\tuple*{a \otimes ?}
         + (-1)^i f_{i + j + 1}\tuple*{a \otimes d_{B, j}(?)} }_{j \in \Zb} \\
-        \intertext{by consolodating the two terms that post-compose by \( f_{i + j + 1} \) it follows that}
+        \intertext{by consolidating the two terms that post-compose by \( f_{i + j + 1} \) it follows that}
         &= \tuple*{ f_{i + j + 1}\bigl( \tuple*{d_{A, i}(a) \otimes ?}
         + (-1)^i\tuple*{ a \otimes d_{B, j}(?) } \bigr)
         - d_{C, i + j} \circ f_{i + j}\tuple*{ a \otimes ? } }_{j \in \Zb} \\
@@ -363,17 +490,108 @@ As the names would imply, the tensor product and internal hom of chain complexes
         \intertext{by \( f \) being a chain homomorphism from \( A \otimes B \) to \( C \) it follows that}
         &= 0.
     \end{align*}
+
+    2) We want to show that the assignment \( f \mapsto \phi_f \) is an isomorphism of groups.
+
+    First, notice that the construction of \( \phi_f \) is fully reversible:
+
+    From \( \phi_{f, i} \), we get \( \phi_{f, i, j} \) by post composing with the canonical projection morphisms as mentioned in \autoref{not:prod}.
+
+    Then, from \( \phi_{f_i, j} \) we get \( f_{i + j} \circ \iota_{i, j} \) by taking the inverse Hom-tensor adjunction.
+
+    From \( f_{i + j} \circ \iota_{i, j} \) we can uniquely get \( f_{i + j} \) by the universal property of coproducts.
+
+    By a similar argument, doing the reverse construction as above and going back again yields the same morphism, therefore \( f \mapsto \phi_f \) is a bijection.
+
+    Finally, notice that every step of the construction is \( R \)-linear, therefore \( f \mapsto \phi_f \) is an isomorphism of modules.
+
+    3) We want to show there is a natural isomorphism
+    \[
+        \C(?_1 \otimes ?_2, ?_3) \cong \C(?_1, \class*{?_2, ?_3}).
+    \]
+
+    Let
+    \[
+        f \times g \times h \in \C^{\op} \times \C^{\op} \times \C (A \times B \times C, A' \times B' \times C').
+    \]
+
+    We want to show that the following square commutes,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{2cm} {
+                \C(A \otimes B, C) \& \C(A' \otimes B', C') \\
+                \C(A, [B, C]) \& \C(A', [B', C']), \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\C(f \otimes g, h)} (m-1-2)
+                    edge (m-2-1)
+                (m-1-2) edge (m-2-2)
+
+                (m-2-1) edge node {\C(f, [g, h])} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    where the vertical morphisms are doing the construction above.
+
+    Consider a chain morphism \( x = \tuple{x_i}_{i \in \Zb} \in \C(A \otimes B, C) \). We want to show that
+    \[
+        \phi_{\C(f \otimes g, h) (x)} = \C(f, [g, h]) (\phi_x).
+    \]
+
+    We start by calculating \( \phi_{\C(f \otimes g, h) (x)} \).
+
+    First, note that
+    \[
+        \C(f \otimes g, h)(x) = h \circ x \circ (f \otimes g).
+    \]
+    Let \( i, j \in \Zb \), then
+    \[
+        (h \circ x \circ (f \otimes g))_{i + j} = h_{i + j} \circ x_{i + j} \circ (\coprod_{p + q = i + j} f_p \otimes g_q).
+    \]
+    Pre-composing with \( \iota_{i, j} \) yields
+    \[
+        h_{i + j} \circ x_{i + j} \circ (\coprod_{p + q = i + j} f_p \otimes g_q) \circ \iota_{i, j} = h_{i + j} \circ x_{i + j} \circ (f_i \otimes g_j).
+    \]
+    Taking the adjoint, yields the following morphism
+    \[
+        a' \mapsto h_{i + j} \circ x_{i + j} \circ (f_i \otimes g_j)(a' \otimes ?).
+    \]
+    This morphism is equal to
+    \[
+        a' \mapsto h_{i + j} \circ x_{i + j} \circ (f_i (a') \otimes g_j(?)).
+    \]
+    Which again is equal to the morphism
+    \[
+        a' \mapsto h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j} \circ f_i(a').
+    \]
+    Which we will write as follows,
+    \[
+        \phi_{\C(f \otimes g, h)(x), i, j} = h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j} \circ f_i.
+    \]
+    Taking the product over all the \( j \), yields
+    \begin{align*}
+        \phi_{\C(f \otimes g, h) (x), i} &= \prod_{j \in \Zb} h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j} \circ f_i \\
+        &= \tuple*{\prod_{j \in \Zb} h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j}} \circ f_i \\
+        &= \tuple*{\prod_{j \in \Zb} (h_{i + j})_* \circ (g_j)^*} \circ \tuple*{\prod_{j \in \Zb} \phi_{x, i, j}} \circ f_i \\
+        &= [g, h]_i \circ \phi_{x, i} \circ f_i \\
+        &= \C(f, [g, h])_i (\phi_{x, i}).
+    \end{align*}
+
+    TODO: Fullfør argumentet, korleis gir dette likheiten, eg trur det er noko openbart eg ikkje skjønar. Følg opp med å laga ein "sketch" av eit bevis for lemmaet under.
 \end{remark}
 
 Together the above definitions and remarks gives the structure of a symmetric monoidal category, which will not be shown in this thesis. For a definition of symmetric monoidal categories, see \cite[Definition 6.1.1]{Borceux_1994}.
 
-\begin{fact}[\( \C \) is symmetric monoidal]
-    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \). Furthermore let \( I \) be the chain complex in \( \C \) consisting solely of \( 0 \)-objects exept for the \( R \)-module \( R \) in index \( 0 \).
+\begin{lemma}[\( \C \) is symmetric monoidal closed]
+    Let \( R \) be a commutative ring with identity, and let \( \otimes \) denote the tensor product on \( \C \). Furthermore, let \( I \) be the chain complex in \( \C \) consisting solely of \( 0 \)-objects except for the \( R \)-module \( R \) in index \( 0 \).
 
-    Then \( \tuple*{\C, \otimes, I} \) is a symmetric closed monoidal category.
-\end{fact}
+    Then \( \tuple*{\C, \otimes, I} \) is a symmetric monoidal closed category.
+\end{lemma}
 
-Finally we can define what a DG-category is.
+% TODO prove/CITE?
+We will omit the proof of the above lemma.
+
+Finally, we can define what a DG-category is.
 
 \begin{definition}[DG-category]
     \label{def:dg_cat}

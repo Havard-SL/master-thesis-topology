@@ -47,3 +47,12 @@ coproducts
 cosyzygy
 Noetherian
 coset
+injectivity
+surjectivity
+Hom
+Hom-tensor
+monoidal
+adjunction
+bifunctor
+bifunctoriality
+codomain
