@@ -56,3 +56,5 @@ adjunction
 bifunctor
 bifunctoriality
 codomain
+Künneth
+DG-Yoneda

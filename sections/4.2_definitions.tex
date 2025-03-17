@@ -1,30 +1,23 @@
-WIP: Marius tilbakemelding. Hugs å flytta notasjonen over.
-
 In this subsection, the goal is to define what a Massey product is.
 
-Start off with defining the notation that will be used for the cohomology functor.
+We will use the following notation for the cohomology functor.
 
 \begin{notation}
     Let \( R \) be a commutative ring with identity.
 
-    Then let
+    We will write
     \[
         H^\bullet: \C \to \C
     \]
-    be the cohomology functor, with the differentials on the right hand side all being \( 0 \).
+    for the chain cohomology functor, with the image being chain complexes with \( 0 \) as the differential.
 \end{notation}
 
-Now there is an issue with usual category theory notation of a ``diagram'' for DG-categories. This is because a DG-category doesn't have the notion of a morphism since there is no element of a chain complex. Therefore there can't be a diagram since the arrows would correspond to an elements of a chain complex. However, having a notion of a diagram in a DG-category would make certain future results easier to both state and understand, at the cost of some difficulty in the proofs. And that is why the following notation convention will be used.
+There is an issue with usual category theory notation of a ``diagram'' for DG-categories. This is because a DG-category doesn't have the notion of a morphism since there is no element of a chain complex. Therefore, there can't be a diagram since the arrows would correspond to an element of a chain complex. However, having a notion of a diagram in a DG-category would make certain future results easier to both state and understand, at the cost of some difficulty in the proofs. This motivated the following notation.
 
-% TODO: Maybe move this notation above the definition of H-bullet of a DG category as it is used in the definition.
-% TODO: Remove all mentions of iota_i, j's in every massety section. They are implied.
-% TODO: Maybe a separate notation for composition of morphisms, since morphisms are not always a apart of a dg-diagram.
 \begin{notation}
-    It is prudent to properly define what a ``diagram'' in a DG-category is by the discussion above.
-
     Let \( \Cc \) be a DG-category. A \emph{diagram in a DG-category} (or a \emph{DG-diagram}) is a quiver \( \Gamma = \tuple*{V, E, s, t} \) where every vertex in \( V \) corresponds to an object in \( \Cc \), and every edge \( e \in E \) corresponds to an element in \( \Cc\tuple*{s(e), t(e)}_n \) for some \( n \in \Zb \). These edges are called \emph{DG-morphisms} and \( n \) is called the \emph{degree} of \( e \), and is also denoted as \( |e| \).
 
-    For two morphisms \( f, g \in E \) with \( s(g) = t(f) \), they are denoted as \emph{composable}. And their composition, denoted \( g \circ f \), is the morphism
+    Two morphisms \( f, g \in E \) with \( s(g) = t(f) \), are said to be \emph{composable}. Their composition, denoted \( g \circ f \), is the morphism
     \[
         g \circ f := c_{\Cc, |g| + |f|}(g \otimes f) \in \Cc\tuple*{s(f), t(g)}_{|g| + |f|},
     \]
@@ -37,7 +30,7 @@ Now there is an issue with usual category theory notation of a ``diagram'' for D
 
 Composition in a DG-diagram is essentially usual composition in the DG-category, but restricted to just one component of the coproduct.
 
-In order to justify using this notation, there are som properties that are helpful to know. First, that composition as defined above is associative.
+In order to justify using this notation, we will prove some properties that will be helpful in future proofs. One such property is associativity.
 
 \begin{lemma}[Associativity of composition in a DG-diagram]
     \label{lem:dg-composition_associative}
@@ -58,13 +51,64 @@ In order to justify using this notation, there are som properties that are helpf
     Then \( h \circ (g \circ f) = (h \circ g) \circ f \).
 \end{lemma}
 \begin{proof}
-    Expanding the definitions, it is necessary to show that the following equation holds (the category is omitted for readability)
+    In this proof, the notation will be simplified slightly for brevity.
+
+    Expanding the definitions, it is necessary to show that the following equation holds
     \begin{equation}
         \label{eq:dg-composition_associative}
         c_{|h| + |g| + |f|}\tuple*{h \otimes \tuple*{c_{|g| + |f|}(g \otimes f)}} = c_{|h| + |g| + |f|}\tuple*{\tuple*{c_{|h| + |g|}(h \otimes g)} \otimes f}.
     \end{equation}
-    % TODO: This needs a proof. In RM: "Associativity of dg composition" p. 2, there is a diagram of how the diagram could exist. Would need to show that the stated composition of (natural?) isomorphisms are in fact exactly the associativity map.
-    Assume (without proof) that the following diagram in \( \Mod(R) \), where the top horizontal morphism is the usual associativity morphism of the tensor product of \( R \)-modules, and \( a \) is the associativity morphism for the tensor product of chain complexes (in degree \( |h| + |g| + |f| \) ),
+  
+    Consider a ``column'' from the definition of the associativity chain morphism in the proof of \autoref{lem:c_sym_mon_closed} in degree \( |f| + |g| + |h| \), inverting the first and second isomorphism yields the following commutative diagram,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                ((A \otimes B) \otimes C)_{|f| + |g| + |h|} \\
+                \coprod\limits_{i + j + k = |f| + |g| + |h|} (A_i \otimes B_j) \otimes C_k \\
+                \coprod\limits_{i + j + k = |f| + |g| + |h|} A_i \otimes (B_j \otimes C_k) \\
+                (A \otimes (B \otimes C))_{|f| + |g| + |h|}. \\
+            };
+
+            \draw[math]
+                (m-2-1) edge (m-1-1)
+                    
+                (m-3-1) edge (m-4-1)
+                    edge node[swap] {\coprod a_{\Mod(R)}} (m-2-1)
+
+                (m-4-1) edge[shorten <=1cm, shorten >=1cm, curve={height=-5cm}] node[swap] {a_{\C}} (m-1-1);
+        \end{tikzpicture}
+    \end{center}
+    By the universal property of the coproduct, the following diagram commutes,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                ((A \otimes B) \otimes C)_{|f| + |g| + |h|} \& (A \otimes B)_{|g| + |h|} \otimes C_{|f|} \\
+                \coprod\limits_{i + j + k = |f| + |g| + |h|} (A_i \otimes B_j) \otimes C_k \& (A_{|h|} \otimes B_{|g|}) \otimes C_{|f|} \\
+                \coprod\limits_{i + j + k = |f| + |g| + |h|} A_i \otimes (B_j \otimes C_k) \& A_{|h|} \otimes (B_{|g|} \otimes C_{|f|}) \\
+                (A \otimes (B \otimes C))_{|f| + |g| + |h|} \& A_{|h|} \otimes (B \otimes C)_{|f| + |g|} \\
+            };
+
+            \draw[math]
+                (m-1-2) edge node[swap] {\iota_{|g| + |h|, |f|}} (m-1-1)
+
+                (m-2-1) edge[shorten >=5pt] (m-1-1)
+                    
+                (m-2-2) edge node[swap] {\iota_{|h|, |g|} \otimes \Id} (m-1-2)
+                    edge node[swap] {\hat{\iota}_{|h|, |g|, |f|}} (m-2-1)
+
+                (m-3-1) edge (m-4-1)
+                    edge node[swap] {\coprod a_{\Mod(R)}} (m-2-1)
+                (m-3-2) edge node[swap] {a_{\Mod(R)}} (m-2-2)
+                    edge node[swap] {\tilde{\iota}_{|h|, |g|, |f|}} (m-3-1)
+                    edge node {\Id \otimes \iota_{|g|, |f|}} (m-4-2)
+                
+                (m-4-1) edge[shorten <=1cm, shorten >=1cm, curve={height=-5cm}] node[swap] {a_{\C}} (m-1-1)
+                (m-4-2) edge node{\iota_{|h|, |f| + |g|}} (m-4-1);
+        \end{tikzpicture}
+    \end{center}
+    where \( \hat{\iota} \) and \( \tilde{\iota} \) are the canonical inclusions into the coproduct as expected.
+
+    Rotating and mirroring the above diagram and letting \( A = \Cc(C, D), B = \Cc(B, C), \) and \( C = \Cc(A, B) \), and only considering the border of the diagram, we get the following commutative diagram,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{0.45cm} {
@@ -74,19 +118,18 @@ In order to justify using this notation, there are som properties that are helpf
             };
 
             \draw[math]
-                (m-1-1) edge node {\sim} (m-1-2)
+                (m-1-1) edge node {a_{\Mod(R)}} (m-1-2)
                     edge node {\Id \otimes \iota_{|g|, |f|}} (m-2-1)
                 (m-1-2) edge node {\iota_{|h|, |g|} \otimes \Id} (m-2-2)
 
                 (m-2-1) edge node {\iota_{|h|, |g| + |f|}} (m-3-1)
                 (m-2-2) edge node {\iota_{|h| + |g|, |f|}} (m-3-2)
 
-                (m-3-1) edge node {\sim} node[swap] {a} (m-3-2);
+                (m-3-1) edge node {a_{\C}} (m-3-2);
         \end{tikzpicture}
     \end{center}
-    commutes.
 
-    And by \cite[Definition 6.2.1]{Borceux_1994} the following diagram of chain morphisms commute
+    By \cite[Definition 6.2.1]{Borceux_1994} the following diagram of chain morphisms,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -96,7 +139,7 @@ In order to justify using this notation, there are som properties that are helpf
             };
             
             \draw[math]
-                (m-1-1) edge node {\sim} node[swap] {a} (m-1-3)
+                (m-1-1) edge node {a} (m-1-3)
                     edge node {\Id \otimes c} (m-2-1)
                 (m-1-3) edge node {c \otimes \Id} (m-2-3)
 
@@ -104,10 +147,12 @@ In order to justify using this notation, there are som properties that are helpf
                 (m-2-3) edge node[swap] {c} (m-3-2);
         \end{tikzpicture}
     \end{center}
+    commutes.
+
     Gluing together the top diagram with the bottom diagram restricted to degree \( |h| + |g| + |f| \), and looking at where the element \( h \otimes (g \otimes f) \) is sent, yields exactly \autoref{eq:dg-composition_associative}.
 \end{proof}
 
-In addition to being associative, it would also be nice to prove that composition is \( R \)-bilinear, which is proven in the following lemma.
+In addition to being associative, composition is also \( R \)-bilinear.
 
 \begin{lemma}
     Composition in a DG-diagram is a morphism in \( \Mod(R) \), in particular, it is \( R \)-linear in both components.
@@ -116,20 +161,18 @@ In addition to being associative, it would also be nice to prove that compositio
     By definition, composition in a DG-diagram is the composition of two \( \Mod(R) \) morphisms, \( \iota_{i, j} \) and \( c_{\Cc, i + j} \), and so it is a \( \Mod(R) \) morphism.
 \end{proof}
 
-Now the notation should be sufficient for working with DG-categories.
-
-Before defining the Massey product, we first have to define the category the product is taken in. That is the following category, the cohomology category of any DG-category.
+Before defining Massey products, we first have to define the category the product is taken in.
 
 \begin{definition}[Cohomology category, \( H^\bullet(\Cc) \)]
     \label{def:H_bullet_dg_category}
-    Let \( \Cc \) be a differentially graded category over  \( R \).
+    Let \( \Cc \) be a DG-category over \( R \).
 
     Let \( H^\bullet(\Cc) \) be the following (enriched over \( C\tuple*{\Mod(R)} \)) category:
     \begin{enumerate}
         \item Let \( \Obj(H^\bullet(\Cc)) := \Obj(\Cc) \).
-        \item For any \( A, B \in H^\bullet(\Cc) \), let \( H^\bullet(\Cc)(A, B) := H^\bullet \tuple*{\Cc(A, B)} \).
+        \item For \( A, B \in H^\bullet(\Cc) \), let \( H^\bullet(\Cc)(A, B) := H^\bullet \tuple*{\Cc(A, B)} \).
         \item {
-            For any \( A, B, C \in H^\bullet(\Cc) \), define the composition morphism
+            For \( A, B, C \in H^\bullet(\Cc) \), define the composition morphism
             \begin{align*}
                 c_{H^\bullet(\Cc)}: H^\bullet(\Cc)(B, C) \otimes H^\bullet(\Cc)(A, B) &\to H^\bullet(\Cc)(A, C)
             \end{align*}
@@ -153,8 +196,9 @@ Before defining the Massey product, we first have to define the category the pro
     Then \( H^\bullet(\Cc) \) is called the \emph{cohomology category of \( \Cc \)}.
 \end{definition}
 
-In order to show that composition is well-defined the following remark can make the proof a bit simpler.
+To show that composition is well-defined we will utilize the following remark.
 
+% TODO: Marius p.\ eller p.~ kommentar?
 \begin{remark}
     \label{rem:H_bullet_composition_alpha}
     The composition definition in \autoref{def:H_bullet_dg_category} is actually the composition of two different morphisms.
@@ -164,8 +208,8 @@ In order to show that composition is well-defined the following remark can make 
         \alpha_{i, j}: H^i(\Cc(B, C)) \times H^j(\Cc(A, B)) &\to H^n(\Cc(B, C) \otimes \Cc(A, B)) \\
         ([g_i], [f_j]) &\mapsto \class*{g_i \otimes f_j}.
     \end{align*}
-    Assuming these are well-defined \( R \)-bilinear morphisms, denote the unique morphism they define by \autoref{lem:map_out_of_tensor_unique} by \( \alpha_n \), and the entire chain morphism by \( \alpha := \set*{\alpha_i}_{i \in \Zb} \). \footnote{
-        The map \( \alpha \) is know at the cross product morphism, as explained in \cite[p. 273]{Hatcher_2002}. In addition for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher_2002}.
+    Assuming these are well-defined \( R \)-bilinear morphisms, denote by \( a_n \) the unique morphism they define by \autoref{lem:map_out_of_tensor_unique}, and the entire chain morphism by \( \alpha := \set*{\alpha_i}_{i \in \Zb} \). \footnote{
+        The map \( \alpha \) is known at the cross product morphism, as explained in \cite[p. 273]{Hatcher_2002}. In addition, for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher_2002}.
     }
     
     Then we can see that
@@ -174,42 +218,42 @@ In order to show that composition is well-defined the following remark can make 
     \] 
 \end{remark}
 
-Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defined morphism, it is only neccesary to show that \( \alpha \) exists, is well-defined and is unique.
+Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defined morphism, it is only necessary to show that \( \alpha \) exists, is well-defined and is unique.
 
 \begin{remark}
     \label{rem:composition_in_H_bullet_is_well_defined}
     The composition definition in \autoref{def:H_bullet_dg_category} is well-defined and unique by the following argument.
 
-    By \autoref{rem:H_bullet_composition_alpha} it is sufficient to only have to verify that the \( \alpha_{i, j} \)'s are well-defined and \( R \)-balanced in order to show that \( c_{H^\bullet(\Cc)} \) is well-defined and unique.
+    By \autoref{rem:H_bullet_composition_alpha} it is sufficient to only have to verify that the \( \alpha_{i, j} \)'s are well-defined and \( R \)-bilinear in order to show that \( c_{H^\bullet(\Cc)} \) is well-defined and unique.
 
-    We can check that the maps are \( R \)-balanced, but we still need to check if the maps are well-defined, which is a bit more difficult. There are two points that need to be shown:
+    We can check that the maps are \( R \)-bilinear, but we still need to check if the maps are well-defined, which is a bit more difficult. There are two points that need to be shown:
     \begin{enumerate}
         \item {
-            Firstly, is
+            First, we need to show that
             \[
-                g_i \otimes f_j \in H^n(\Cc(B, C) \otimes \Cc(A, B))?
+                g_i \otimes f_j \in H^n(\Cc(B, C) \otimes \Cc(A, B)).
             \]
             To show this, we have to verify that
             \[
                 g_i \otimes f_j \in \ker(d_{\Cc(B, C) \otimes \Cc(A, B), n}).
             \]
-            This is true because by assumption, both \( g_i \) and \( f_j \) are cycles, and by definition of the differential of the tensor product
+            This is true because, by assumption, both \( g_i \) and \( f_j \) are cycles, and by definition of the differential of the tensor product
             \[
                 d_{\Cc(B, C) \otimes \Cc(A, B), n}(g_i \otimes f_j) = 0.
             \]
         }
         \item {
-            Secondly, are the values of the \( \alpha_{i, j} \)'s independent of the choice of representative?
+            Second, we need to show that the values of the \( \alpha_{i, j} \) are independent of the choice of representative.
 
-            Let \( b_g \) be a boundary in \( \Cc(B, C)_i \), and let \( b_f \) be a boundary in \( \Cc(A, B)_j \).
+            Let \( b_g \) be a boundary in \( \Cc(B, C)_i \), and let \( b_f \) be a boundary in \( \Cc(A, B)_j \). Then
             \begin{align*}
                 \alpha_{i, j}([g_i + b_g], [f_j + b_f]) &= [(g_i + b_g) \otimes (f_j + b_f)] \\
                 &= [g_i \otimes f_j + g_i \otimes b_f + b_g \otimes f_j + b_g \otimes b_f] \\
-                &= [g_i \otimes f_j + g_i \otimes b_f + b_g \otimes f_j + b_g \otimes b_f]
+                &= [g_i \otimes f_j + g_i \otimes b_f + b_g \otimes f_j + b_g \otimes b_f].
             \end{align*}
-            By the definition of the differential of the tensor product, we have that the tensor product betweeen a boundary and a cycle, a cycle and a boundary, and a boundary and a boundary are all boundaries in the tensor product.
+            By the definition of the differential of the tensor product, we have that the tensor product between a boundary and a cycle, a cycle and a boundary, and a boundary and a boundary are all boundaries in the tensor product.
 
-            As an example, let's take the case above of \( g_i \otimes b_f \). Since \( b_f \) is a boundary in \( \Cc(A, B)_j \), there is some \( b_f' \in \Cc(A, B)_{j - 1} \) such that \( d_{\Cc(A, B), j - 1}(b_f') = b_f \). Consider the following equation
+            As an example, consider the case above of \( g_i \otimes b_f \). Since \( b_f \) is a boundary in \( \Cc(A, B)_j \), there is some \( b_f' \in \Cc(A, B)_{j - 1} \) such that \( d_{\Cc(A, B), j - 1}(b_f') = b_f \). Thus,
             \begin{align*}
                 d_{\Cc(B, C) \otimes \Cc(A, B)}(&(-1)^i g_i \otimes b_f') \\
                 &= (-1)^i d_{\Cc(B, C), i}(g_i) \otimes b_f' + (-1)^i (-1)^i g_i \otimes d_{\Cc(A, B), j - 1}(b_f') \\
@@ -218,30 +262,26 @@ Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defin
             \end{align*}
             A similar argument can be made for the other cases.
 
-            Therefore is follows that
+            Hence,
             \[
                 \alpha_{i, j}([g_i + b_g], [f_j + b_f]) = [g_i \otimes f_j + g_i \otimes b_f + b_g \otimes f_j + b_g \otimes b_f] = [g_i \otimes f_j]
             \]
-            And \( \alpha_{i, j} \) is therefore well-defined.
+            and so \( \alpha_{i, j} \) is well-defined.
         }
     \end{enumerate}
     There is no need to verify if the composition is a chain morphism, since the differential of \( H^\bullet(\Cc)(A, C) \) is zero by definition.
 \end{remark}
 
-This thesis will refrain from proving that the above definition of \( H^\bullet(\Cc) \) and any future alleged DG-category actually satisfy the associativity axiom and the unit axiom as defined by \cite[Definition 6.2.1]{Borceux_1994}. This is because doing so would require defining the associativity morphism (properly), as well as the left and right tensor unit, only to do proofs that are straight forward to prove using the lemmas already defined. Defining the morphisms and doing the proofs would require a lot of boilerplate for something that, in the end, is not necessary for the goal of this thesis.
+This thesis will refrain from proving that the above definition of \( H^\bullet(\Cc) \) and any future alleged DG-category actually satisfy the associativity axiom and the unit axiom as defined by \cite[Definition 6.2.1]{Borceux_1994}. The proofs of the two axioms are often obvious, and is more of a technical detail than a necessity for our use case. The proof of these two axioms would almost certainly rely on some version of \autoref{lem:map_out_of_tensor_unique}.
+% This is because doing so would require defining the associativity morphism (properly), as well as the left and right tensor unit, only to do proofs that are straight forward to prove using the lemmas already defined. Defining the morphisms and doing the proofs would require a lot of boilerplate for something that, in the end, is not necessary for the goal of this thesis.
 
-Therefore in this thesis, both the associativity axiom and the unit axiom is assumed to be true for every defined DG-category.
+The following is the definition of the Massey product in the cohomology category of any DG-category. The definition is the 3-fold variant of \cite[Definition 4.2.1]{Jasso-Muro_2023}.
 
-The following is the definition of the Massey product on the cohomology category of any DG-category. The definition is the 3-fold variant of \cite[Definition 4.2.1]{Jasso-Muro_2023}.
-
-% SRC: Jasso-Muro
-% TODO: What is the relation between different reprersentatives and different choices of s & t? Does it matter, and how does it matter?
-% TODO: Write definition clearer? A lot of implied domains and codomains.
 \begin{definition}
     \label{def:massey_product_dg_cat}
-    Let \( \Cc \) be a differentially graded category over a commutative ring with identity \( R \).
+    Let \( \Cc \) be a DG-category over a commutative ring with identity \( R \).
 
-    Let the following be a DG-diagram in \( H^\bullet(\Cc) \)
+    Let 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -254,10 +294,11 @@ The following is the definition of the Massey product on the cohomology category
                 (m-1-3) edge node {[f_3]} (m-1-4);
         \end{tikzpicture}
     \end{center}
+    be a DG-diagram in \( H^\bullet(\Cc) \).
 
-    Furthermore for an element, \( h \in \C_{|h|} \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{|h| + 1}h \).
+    Furthermore, for \( h \in \C_{|h|} \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{|h| + 1}h \).
 
-    Then let
+    The \emph{Massey product of \( [f_3], [f_2] \) and \( [f_1] \)} is defined as
     \begin{multline*}
         \massey{[f_3], [f_2], [f_1]} :=
         \{
@@ -270,11 +311,7 @@ The following is the definition of the Massey product on the cohomology category
         \}.
     \end{multline*}
 
-    This is a subset of
-    \[
-        H^{|f_1| + |f_2| + |f_3| - 1}\tuple*{\Cc\tuple*{X_1, X_4}}
-    \]
-    and is called the \emph{Massey product of \( [f_3], [f_2] \) and \( [f_1] \)}.
+    This is a subset of \( H^{|f_1| + |f_2| + |f_3| - 1}\tuple*{\Cc\tuple*{X_1, X_4}} \).
 \end{definition}
 
 The following remark shows that \autoref{def:massey_product_dg_cat} is well-defined.
@@ -282,7 +319,7 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
 \begin{remark}
     The definition of Massey product in \autoref{def:massey_product_dg_cat} is well-defined by the following argument:
 
-    Want to show that \( \bar{s} \circ g_1 + \bar{g_3} \circ t \) is a cocyle in \( \Cc(X_1, X_4)_{|g_1| + |g_2| + |g_3| - 1} \).
+    We want to show that \( \bar{s} \circ g_1 + \bar{g_3} \circ t \) is a cocycle in \( \Cc(X_1, X_4)_{|g_1| + |g_2| + |g_3| - 1} \).
 
     Let \( n := |g_1| + |g_2| + |g_3| \), and omit the degrees of the differentials for readability. Consider the following equation
     \begin{align*}
@@ -338,4 +375,4 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
     % is independent of the \( b_i \)'s.
 \end{remark}
 
-Astute readers may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. Which is necessary in order to compare Massey products to Toda brackets. And even if it were triangulated, the scope of categories that could be equivalent to a category consisiting of chain complexes with zero differential is very small, which would make applicability an issue. However, by moving over to the category of ``DG-modules'' which will be defined in the next section, we can define the Massey product on a big class of triangulated categories, namely the ``algebraic triangulated categories''.
+The observant reader may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. Which is necessary in order to compare Massey products to Toda brackets. However, by moving over to the category of ``DG-modules'' which will be defined in the next section, we can define Massey products on a big class of triangulated categories, namely the ``algebraic triangulated categories.''

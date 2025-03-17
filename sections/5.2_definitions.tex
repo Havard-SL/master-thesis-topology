@@ -26,7 +26,13 @@ The following definition is very similar to \autoref{def:H_bullet_dg_category}. 
     \end{enumerate}
 \end{definition}
 
-An interesting consequence of \autoref{def:0_th_cohomology_of_dg_cat}, is that we can write the chain homotopy category, \( \K(\Mod(R)) \), defined in \autoref{def:chain_homotopy_cat}, as simply \( H^0(\C_{\dg}) \). Unwinding the definitions, \( H^0([A, B]) \) is exactly every chain homotopy class from \( A \) to \( B \).
+The above definition connects the theory of DG-categories to the chain homotopy category.
+
+\begin{remark}
+    A consequence of \autoref{def:0_th_cohomology_of_dg_cat}, is that we can write the chain homotopy category, \( \K(\Mod(R)) \), defined in \autoref{def:chain_homotopy_cat}, as simply \( H^0(\C_{\dg}) \).
+    
+    Unwinding the definitions, \( H^0([A, B]) \) is exactly every chain homotopy class from \( A \) to \( B \).
+\end{remark}
 
 The goal is to show that \( H^0\tuple*{\dgM} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles. The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgM \).
 
@@ -56,10 +62,10 @@ The goal is to show that \( H^0\tuple*{\dgM} \) is triangulated. To do that we n
 The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following remark. 
 
 \begin{remark}
-    In order to show that \( \Sigma \) from \autoref{def:sigma_c_dg} is a DG-functor, need to show the following three properties:
+    In order to show that \( \Sigma \) from \autoref{def:sigma_c_dg} is a DG-functor, we need to show the following three properties:
     \begin{enumerate}
         \item {
-            Firstly, need to show that
+            First, we need to show that
             \[
                 \Sigma_{A, B}: \C_{\dg}(A, B) \to \C_{\dg}(\Sigma A, \Sigma B)
             \]
@@ -76,6 +82,8 @@ The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following rem
         }
         \item {
             Secondly, need to show the ``functoriality'' of \( \Sigma \).
+
+            TODO
 
             WIP
         }

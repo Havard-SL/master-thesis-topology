@@ -1,17 +1,17 @@
-In broad terms, a DG-module is a functor from some DG category into an a specific DG-category. The following definition, which is based on \cite[p. 29]{Jasso-Muro_2023}, is the category that will be the co-domain of these DG-modules.
+In broad terms, a DG-module is a functor from some DG category into a specific DG-category. The following definition, which is based on \cite[p. 29]{Jasso-Muro_2023}, is the category that will be the codomain of these DG-modules.
 
 % TODO: Verify definition with borceux definition of composition p. 295
 \begin{definition}[\( \C_{\dg} \)]
     \label{def:c_dg_mod_r}
     Let \( R \) be a commutative ring with identity.
 
-    Then let \emph{\( \C_{\dg}(\Mod(R)) \)}, or shortened to \emph{\( \C_{\dg} \)}, be the DG-category defined as follows
+    Then let \emph{\( \C_{\dg}(\Mod(R)) \)}, abbreviated to \emph{\( \C_{\dg} \)}, be the DG-category defined as follows
     \begin{enumerate}
         \item {
             \( \Obj(\C_{\dg}) := \Obj(\C) \).
         }
         \item {
-            Let \( A, B \in \C_{\dg} \). Let \( \class*{A, B} \) denote the internal hom of \( \C \) (\autoref{def:internal_hom_of_chain_complexes_over_Mod(R)}) with respect to \( A, B \) as objects from \( \C \).
+            Let \( A, B \in \C_{\dg} \), and let \( \class*{A, B} \) denote the internal Hom of \( \C \) (\autoref{def:internal_hom_of_chain_complexes_over_Mod(R)}) with respect to \( A, B \in \C \).
 
             Then let \( \C_{\dg}(A, B) := \class*{A, B} \).
         }
@@ -50,19 +50,19 @@ In broad terms, a DG-module is a functor from some DG category into an a specifi
 The following remark shows why the composition above is well-defined.
 
 \begin{remark}
-    The composition definition in \autoref{def:c_dg_mod_r} is well defined by the following two arguments:
+    The composition definition in \autoref{def:c_dg_mod_r} is well-defined by the following two arguments:
 
     \begin{enumerate}
         \item {
-            Firstly, the morphisms \( c_{\C_{\dg}, n} \) are uniqely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)'s are as follows
+            First, the morphisms \( c_{\C_{\dg}, n} \) are uniquely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)'s are as follows
             \begin{align*}
                 g_{i, j}: \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \times \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j}) &\to \prod_{p \in \Zb} \Mod(R)(A_p, C_{p + i + j}) \\
                 \tuple*{ g_p }_{p \in \Zb} \times \tuple*{ f_q }_{q \in \Zb} &\mapsto \tuple*{ g_{p + j} \circ f_p }_{p \in \Zb}.
             \end{align*}
-            And these can be checked to be \( R \)-bilinear.
+            These can be checked to be \( R \)-bilinear.
         }
         \item {
-            Secondly, need to check that the \( c_{\C_{\dg}, n} \)'s form a chain morphism.
+            Second, we need to check that the \( c_{\C_{\dg}, n} \) form a chain morphism.
 
             Look at the following equation (with shortened notation for brevity) 
             \begin{align*}
@@ -76,7 +76,7 @@ The following remark shows why the composition above is well-defined.
                     d_{(B, C), i}\tuple*{ \tuple*{ g_p }_{p \in \Zb} } \otimes \tuple*{ f_q }_{q \in \Zb}
                     + (-1)^i \tuple*{ g_p }_{p \in \Zb} \otimes d_{(A, B), j} \tuple*{ \tuple*{ f_q }_{q \in \Zb} }
                 } \\
-                \intertext{then by the definition of the differential of the internal hom}
+                \intertext{then by the definition of the differential of the internal Hom}
                 &= \tuple*{
                     d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
                 }_{p \in \Zb} \\
@@ -133,7 +133,7 @@ The following remark shows why the composition above is well-defined.
     \end{enumerate}
 \end{remark}
 
-We can also through ardous calculations using \autoref{rem:tensor_prod_internal_hom_adjoint} find that the definition of composition in \autoref{def:c_dg_mod_r} is the same as in \cite[p. 295]{Borceux_1994}.
+We can also through arduous calculations using \autoref{rem:tensor_prod_internal_hom_adjoint} find that the definition of composition in \autoref{def:c_dg_mod_r} is the same as in \cite[p. 295]{Borceux_1994}.
 
 An interesting consequence of how \( \C_{\dg} \) is defined is that the differential can be treated as a DG-morphism. This is discussed in the following remark.
 \begin{remark}
@@ -154,10 +154,10 @@ An interesting consequence of how \( \C_{\dg} \) is defined is that the differen
     \[
         f \circ d_A = \tuple{f_{j + 1} \circ d_{A, j}}_j
     \]
-    which yields exactly the differnetial stated in \autoref{def:c_dg_mod_r}.
+    which yields exactly the differential stated in \autoref{def:c_dg_mod_r}.
 \end{remark}
 
-Similar to regular modules over a non-commutative ring, DG-modules can be defined as both right or left sided modules. In this thesis, only right DG-modules will be used. Because of that, the following definition is necessary.
+Similar to regular modules over a non-commutative ring, DG-modules can be defined as both right or left sided modules. We will consider only right DG-modules. In order to define right DG-modules, we need to define the opposite category of a DG-category.
 
 \begin{definition}[Opposite DG-category, \( \Cc^{\op} \)]
     \label{def:opposite_dg_category}
@@ -186,7 +186,7 @@ Similar to regular modules over a non-commutative ring, DG-modules can be define
     This is called the \emph{opposite DG-category of \( \Cc \)}.
 \end{definition}
 
-Another piece of the definition of a DG-module is to define what a functor between DG-categories is. That is the following definition.
+Another piece of the definition of a DG-module is to define what a functor between DG-categories is.
 
 \begin{definition}[DG-functor]
     An enriched functor between two DG-categories as defined in \cite[Definition 6.2.3]{Borceux_1994} is called a \emph{DG-functor}.
@@ -194,7 +194,9 @@ Another piece of the definition of a DG-module is to define what a functor betwe
 
 An example of a DG-functor is the shift functor on \( \C_{\dg} \), which is defined in \autoref{def:sigma_c_dg}.
 
-Finally we can define the DG-functor category, which is the final piece in defining DG-modules.
+Finally, we can define the DG-functor category, which is the final piece in defining DG-modules.
+
+TODO: First pass.
 
 \begin{definition}[DG-functor category, \( \Fun_{\dg}(\Ac, \Bc) \)]
     \label{def:dg_functor_category}
