@@ -58,3 +58,4 @@ bifunctoriality
 codomain
 Künneth
 DG-Yoneda
+Borceux
