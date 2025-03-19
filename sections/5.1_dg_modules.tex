@@ -192,7 +192,7 @@ Another piece of the definition of a DG-module is to define what a functor betwe
     An enriched functor between two DG-categories as defined in \cite[Definition 6.2.3]{Borceux_1994} is called a \emph{DG-functor}.
 \end{definition}
 
-An example of a DG-functor is the shift functor on \( \C_{\dg} \), which is defined in \autoref{def:sigma_c_dg}.
+There are multiple examples in the following subsection (\autoref{sec:alg_tri_cat_def}) of DG-functors, such as the shift functor on \( \C_{\dg} \), shift functor of the not yet defined \( \dgM \), as well as the functor that is a part of the remark proving that \( \dgM \) is additive.
 
 Finally, we can define the DG-functor category, which is the final piece in defining DG-modules.
 
@@ -524,6 +524,34 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
         &= (-1)^{|f|(|\mu| + |\eta|)} H(f) \circ (\mu \circ \eta)_{A'},
     \end{align*}
     which is exactly the property equivalent with being an element of \( \dgM(F, H)_n \).
+
+    Fourth, we need to verify that the codomain of \( u_F \) is \( \dgM(F, F) \). This is equivalent to checking if for any \( r \in R \), we have that
+    \[
+        \tuple{ \tuple{ r \Id_{A_i} }_{i \in \Zb} }_{A \in \Cc} \in \dgM(F, F)_0,
+    \]
+    and for \( n \neq 0 \),
+    \[
+        0 \in \dgM(F, F)_n.
+    \]
+
+    We can see that for any \( n, \), \( F, G \in \dgM \), and any \( f \in \Cc^{\op}(A, B)_n \), the following equyality holds
+    \[
+        (-1)^{|f|0}G(f) \circ 0 = 0 = 0 \circ F(f).
+    \]
+    Therefore, for any \( n \in \Zb \),
+    \[
+        0 \in \dgM(F, F)_n,
+    \]
+    which implied the latter property.
+
+    Finally, for any \( f \in \Cc^{\op}(A, B)_n \), consider
+    \begin{align*}
+        (F f) \circ (r \Id_{A_i})_{i \in \Zb} &= r ((F f)_i \circ \Id_{A_i})_{i \in \Zb} \\
+        &= r ((F f)_i)_{i \in \Zb} \\
+        &= r (\Id_{B_{i + n}} \circ (F f)_i)_{i \in \Zb} \\
+        &= (r \Id_{B_i})_{i \in \Zb} \circ F(f),
+    \end{align*}
+    which implies the first property.
 \end{remark}
 
 Similar to how we could simplify the notation for the differential of \( \C_{\dg} \) in \autoref{rem:c_dg_differential}, we can similarly simplify the differential of \( \dgM \).
@@ -553,4 +581,4 @@ Note that \( d_F \) is \emph{not} an element of \( \dgM(F, F)_1 \) in general, b
 \[
     d_{F A''} \circ F(f) - (-1)^{|f|} F(f) \circ d_{F A'} = d(F f) = F d(f),
 \]
-which, in order for \( d_F \) to be a DG-natural transformation, implies that \( F d(f) = 0 \) for any \( f \), which will only be true if every morphism in \( \Cc \) is a cycle.
+which, in order for \( d_F \) to be a DG-natural transformation, implies that \( F d(f) = 0 \) for any \( f \), which will only be true if every morphism in \( \Cc \) is a cycle, or if \( F \) maps boundaries to \( 0 \), both of which are not true in general.

@@ -1,6 +1,6 @@
 % WIP: First pass
 
-In this subsection the goal is to define what an algebraic triangulated category is by first defining what \( H^0(\dgM) \) is, and then defining the DG-Yoneda embedding, and how any DG-category can be seen as a subcategory of the category of DG-modules.
+In this subsection we want to define what an algebraic triangulated category is by by the way of a DG-enhancement. We will start by defining \( H^0(\dgM) \), and then using the DG-Yoneda embedding, which we will also define, we can consider any DG-category as a subcategory of the category of DG-modules.
 
 The following definition is very similar to \autoref{def:H_bullet_dg_category}. However unlike the cohomology category, this category is not enriched over \( C \).
 
@@ -28,15 +28,28 @@ The following definition is very similar to \autoref{def:H_bullet_dg_category}. 
     \end{enumerate}
 \end{definition}
 
+Composition in the above category is well-defined because it is simply \( c_0 \) from \autoref{def:H_bullet_dg_category}.
+
 The above definition connects the theory of DG-categories to the chain homotopy category.
 
 \begin{remark}
     A consequence of \autoref{def:0_th_cohomology_of_dg_cat}, is that we can write the chain homotopy category, \( \K(\Mod(R)) \), defined in \autoref{def:chain_homotopy_cat}, as simply \( H^0(\C_{\dg}) \).
     
-    Unwinding the definitions, \( H^0([A, B]) \) is exactly every chain homotopy class from \( A \) to \( B \).
+    Unwinding the definitions, \( H^0(\C_{\dg})(A, B) \) is exactly every chain homotopy class from \( A \) to \( B \).
 \end{remark}
 
-The goal is to show that \( H^0\tuple*{\dgM} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles. The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgM \).
+The goal is to show that \( H^0\tuple*{\dgM} \) is triangulated. To do that we need to define a shift functor and a class of distinguished triangles.
+
+Before we define the shift functor, we can simplify the notation further, to make the definitions more intuitive and easier to work with.
+
+\begin{notation}
+    \label{not:prod_coprod_no_order}
+    We will consider products and coproducts to have no order. To illustrate, consider the following example.
+
+    Consider two chain complexes \( A \), and \( B \), we can construct the set \( \prod_{j \in \Zb} \Mod(R)(A_{j - 5}, B_j) \). We consider this set as \emph{equal} to \( \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + 5}) \) even though the \( j \) don't match. Therefore, an element \( f \in \Mod(R)(A_{j - 5}, B_j) \) is also an element of \( \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + 5}) \).
+\end{notation}
+
+The following is a definition for a shift functor on \( \C_{\dg} \), which will later induce a shift functor on \( \dgM \).
 
 \begin{definition}[Shift in \( \C_{\dg} \)]
     \label{def:sigma_c_dg}
@@ -61,10 +74,42 @@ The goal is to show that \( H^0\tuple*{\dgM} \) is triangulated. To do that we n
     Then \( \Sigma_{\C_{\dg}} \) is called the \emph{shift functor of \( \C_{\dg} \)}. When the context is uncertain, we will denote it as \( \Sigma_{\C_{\dg}} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
+By \autoref{not:prod_coprod_no_order}, the morphism \( \Sigma_{\C_{\dg}, n} \) makes sense, because
+\[
+    \C_{\dg}(\Sigma A, \Sigma B)_n  = \prod_{i \in \Zb} \Mod(R)(A_{i + 1}, B_{i + 1 + n}) = \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n}) = \C_{\dg}(A, B)_n,
+\]
+and so \( f \in \C_{\dg}(A, B)_n \iff f \in \C_{\dg}(\Sigma A, \Sigma B)_n \).
+
+Note that even though the above statement is true, \( \C_{\dg}(A, B) \neq \C_{\dg}(\Sigma A, \Sigma B) \) in general because the differentials differ by a sign, which the following remark remarks.
+
+\begin{remark}
+    \label{rem:c_dg_sigma_d_equal_minus_d}
+    As a result of the above definition as well as \autoref{not:prod_coprod_no_order}, we get that for any \( A, B \in \C \),
+    \[
+        d_{\Sigma A} = - d_A = \Sigma d_A,
+    \]
+    and
+    \[
+        d_{[A, B]} = - d_{[\Sigma A, \Sigma B]}.
+    \]
+
+    The first equation is because \( d_A \in \C_{\dg}(A, A)_1 \), and so \( \Sigma d_A = - d_A \). In addition,
+    \[
+        d_{\Sigma A} = (d_{\Sigma A, n})_{n \in \Zb} = (- d_{A, n + 1})_{n \in \Zb} = - (d_{A, n})_{n \in \Zb} = - d_A.
+    \]
+
+    The second equation is because for \( f \in [A, B]_n \),
+    \begin{align*}
+        d_{[A, B]} (f) &= d_B \circ f - (-1)^n f \circ d_A \\
+        &= - (d_{\Sigma B} \circ f - (-1)^n f \circ d_{\Sigma A}) \\
+        &= - d_{[\Sigma A, \Sigma B]} (f).
+    \end{align*}
+\end{remark}
+
 The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following remark. 
 
 \begin{remark}
-    In order to show that \( \Sigma \) from \autoref{def:sigma_c_dg} is a DG-functor, we need to show the following three properties:
+    In order to show that \( \Sigma \) from \autoref{def:sigma_c_dg} is a DG-functor, we need to show the following three properties mentioned by \cite[Definition 6.2.3]{Borceux_1994}:
     \begin{enumerate}
         \item {
             First, we need to show that
@@ -83,16 +128,66 @@ The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following rem
             \end{align*}
         }
         \item {
-            Secondly, need to show the ``functoriality'' of \( \Sigma \).
+            Second, we need to show that the following diagram,
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \C_{\dg}(B, C) \otimes \C_{\dg}(A, B) \& \C_{\dg}(A, C) \\
+                        \C_{\dg}(\Sigma B,\Sigma C) \otimes \C_{\dg}(\Sigma A,\Sigma B) \& \C_{\dg}(\Sigma A, \Sigma C), \\
+                    };
 
-            TODO
+                    \draw[math]
+                        (m-1-1) edge node {c} (m-1-2)
+                            edge node[swap] {\Sigma_{B, C} \otimes \Sigma_{A, B}} (m-2-1)
+                        (m-1-2) edge node {\Sigma_{A, C}} (m-2-2)
 
-            WIP
+                        (m-2-1) edge node {c} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+            commutes.
+
+            Let \( n \in \Zb \), it is sufficient to show that
+            \[
+                \Sigma_{A, C, n} \circ c_n = c_n \circ (\Sigma_{B, C} \otimes \Sigma_{A, C})_n.
+            \]
+
+            Let \( i + j = n \), with \( f \in \C_{\dg}(A, B), \) and \( g \in \C_{\dg}(B, C) \). Consider the following equation,
+            \begin{align*}
+                \Sigma_{A, C, n} \circ c_n (g \otimes f) &= (-1)^n c_n (g \otimes f) \\
+                &= (-1)^i (-1)^j c_n (g \otimes f) \\
+                &= c_n\tuple*{((-1)^j g) \otimes ((-1)^i f)} \\
+                &= c_n\tuple*{(\Sigma g) \otimes (\Sigma f)} \\
+                &= c_n \circ (\Sigma \otimes \Sigma) (g \circ f).
+            \end{align*}
+            By the uniqueness of \autoref{lem:map_out_of_tensor_unique} we get that
+            \[
+                \Sigma_{A, C, n} \circ c_n = c_n \circ (\Sigma \otimes \Sigma).
+            \]
         }
         \item {
-            Thirdly, need to show that the unit morphism commutes with \( \Sigma \).
+            Third, we need to show that the following diagram, for any \( A \in \C_{\dg} \),
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        I \& \C_{\dg}(A, A) \\
+                        \& \C_{\dg}(\Sigma A, \Sigma A) \\
+                    };
 
-            WIP
+                    \draw[math]
+                        (m-1-1) edge node {u_A} (m-1-2)
+                            edge node[swap] {u_{\Sigma A}} (m-2-2)
+                        (m-1-2) edge node {\Sigma} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+            commutes.
+
+            For \( n \neq 0 \), the diagram commutes, since \( u_{A, n} = 0 \) for any \( A \).
+
+            For \( n = 0 \), and any \( r \in R \), we have the following equation
+            \[
+                \Sigma \circ u_A (r) = \Sigma (r \Id_{A_i})_{i \in \Zb} = (r \Id_{A_i})_{i \in \Zb} = u_{\Sigma A} (r),
+            \]
+            which implies the diagram commutes.
         }
     \end{enumerate}
 \end{remark}
@@ -112,9 +207,9 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
         \item {
             Let \( F, G \in \dgM \), and \( n \in \Zb \).
             
-            Then define \( \Sigma_{\dgM, n} \) as follows
+            Then define \( \Sigma_{\dgM, F, G n} \) as follows
             \begin{align*}
-                \Sigma_{\dgM, n}: \dgM(F, G)_n &\to \dgM(\Sigma F, \Sigma G)_n \\
+                \Sigma_{\dgM, F, G, n}: \dgM(F, G)_n &\to \dgM(\Sigma F, \Sigma G)_n \\
                 \eta &\mapsto (-1)^n \eta.
             \end{align*}
         }
@@ -122,19 +217,102 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
     Then \( \Sigma_{\dgM} \) is called the \emph{shift functor of \( \dgM \)}. When the context is uncertain, we will denote it as \( \Sigma_{\dgM} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
-\begin{remark}
-    Due to our notation of product not having a order, as talked about in \autoref{not:coprod_prod_forvirring}, it follows that \( d_{\Sigma F} = -d_F = \Sigma d_F\) for any DG-module \( F \).
+By a similar reason as was written for \autoref{def:sigma_c_dg}, the morphism \( \Sigma_{\dgM, n} \) make sense.
 
-    This is because
+We can also consider
+\[
+    \Sigma_{\dgM, F, G, n} = \prod_{A \in \Cc} \Sigma_{\C_{\dg}, F A, G A, n}.
+\] 
+
+Before we prove that the above definition is well defined, we have the following remark, which mirrors \autoref{rem:c_dg_sigma_d_equal_minus_d}.
+
+\begin{remark}
+    We have that for any \( F, G \in \dgM \),
     \[
-        d_{\Sigma F} = \tuple{d_{\Sigma F A, i}}_{A, i} = \tuple{-d_{F A, i + 1}}_{A, i} = \tuple{-d_{F A, i}}_{A, i} = -d_F = \Sigma d_F.
+        d_{\Sigma F} = -d_F = \Sigma d_F
+    \]
+    and
+    \[
+        d_{\dgM(\Sigma A, \Sigma B)} = - d_{\dgM(F, G)}.
+    \]
+
+    The first equality is because
+    \[
+        d_{\Sigma F} = \tuple{d_{\Sigma F A}}_{A \in \Cc} = \tuple{-d_{F A}}_{A \in \Cc} = - d_F = \Sigma d_F.
+    \]
+    The second equality is because for any \( \eta \in \dgM(F, G)_n \),
+    \[
+        d_{\dgM(\Sigma F, \Sigma G)} (\eta) = d_{\Sigma G} \circ \eta - (-1)^n \eta \circ d_{\Sigma F} = - (d_G \circ \eta - (-1)^n \eta \circ d_F) = - d_{\dgM(F, G)} (\eta).
     \]
 \end{remark}
 
-By the following remark, \( \Sigma_{\dgM} \) is a DG-functor.
+By the following remark, \( \Sigma_{\dgM} \) is a well-defined DG-functor.
 
 \begin{remark}
-    TODO
+    \( \Sigma_{\dgM} \) is well-defined by the following arguments:
+
+    First, consider the following equation for some \( n \in \Zb \),
+    \begin{align*}
+        d_{\dgM(\Sigma F, \Sigma G), n} \circ \Sigma_{F, G, n} &= (-1)^n d_{\dgM(\Sigma F, \Sigma G), n} \\
+        &= (-1)^{n + 1} d_{\dgM(F, G), n} \\
+        &= \Sigma_{F, G, n + 1} \circ d_{\dgM(F, G), n}.
+    \end{align*}
+    This implies that \( \Sigma_{F, G}: \dgM(F, G) \to \dgM(\Sigma F, \Sigma G) \) is a chain morphism.
+
+    Second, we want the following diagram,
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \dgM(G, H) \otimes \dgM(F, G) \& \dgM(F, H) \\
+                \dgM(\Sigma G,\Sigma H) \otimes \dgM(\Sigma F, \Sigma G) \& \dgM(\Sigma F, \Sigma H), \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {c} (m-1-2)
+                    edge node[swap] {\Sigma_{G, H} \otimes \Sigma_{F, G}} (m-2-1)
+                (m-1-2) edge node {\Sigma_{F, H}} (m-2-2)
+
+                (m-2-1) edge node {c} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    to commute.
+    
+    For any \( i, j \in \Zb \) with \( i + j = n \), \( \eta \in \dgM(F, G) \), and \( \mu \in \dgM(G, H) \), we have
+    \begin{align*}
+        \Sigma_{F, H, n} \circ c_n (\mu \otimes \eta) &= (-1)^n c_n (\mu \otimes \eta) \\
+        &= (-1)^i (-1)^j c_n (\mu \otimes \eta) \\
+        &= c_n ((((-1))^j \mu) \otimes ((-1)^i \eta)) \\
+        &= c_n ((\Sigma \mu) \otimes (\Sigma \eta)) \\
+        &= c_n \circ (\Sigma \otimes \Sigma) (\mu \otimes \eta).
+    \end{align*}
+    By uniqueness of \autoref{lem:map_out_of_tensor_unique}, this implies \( \Sigma_{F, H, n} \circ c_n = c_n \circ (\Sigma \otimes \Sigma) \), which implies that the diagram commutes.
+
+    Third, we want the following diagram for any \( F \in \dgM \),
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                I \& \dgM(F, F) \\
+                \& \dgM(\Sigma F, \Sigma F) \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {u_F} (m-1-2)
+                    edge node[swap] {u_{\Sigma F}} (m-2-2)
+                (m-1-2) edge node {\Sigma} (m-2-2);
+        \end{tikzpicture}
+    \end{center}
+    to commute.
+
+    For \( n \neq 0 \), the diagram commutes, since 
+    \[
+        u_{F, n} = \prod_{A \in \Cc} u_{F A, n} = 0.
+    \]
+
+    For \( n = 0 \), and any \( r \in R \), we have the following equation
+    \[
+        \Sigma \circ u_F (r) = \Sigma ((r \Id_{A_i})_{i \in \Zb})_{A \in \Cc} = ((r \Id_{A_i})_{i \in \Zb})_{A \in \Cc} = u_{\Sigma F} (r),
+    \]
+    which implies that the diagram commutes.
 \end{remark}
 
 In order to get the shift functor on \( H^0(\dgM) \), we have to take the \( 0 \)th cohomology of this functor. It is defined as follows.
@@ -157,6 +335,8 @@ In order to get the shift functor on \( H^0(\dgM) \), we have to take the \( 0 \
     This is called the \emph{\( H^0 \)-induced functor of \( F \)}.
 \end{definition}
 
+The above definition is well-defined because by definition \( F_{A, B}: \Ac(A, B) \to \Bc(F A, F B) \) is a chain morphism, and therefore maps cycles to cycles and boundaries to boundaries. In addition,functoriality is obvious.
+
 Which leads us to the definition of the shift functor on \( H^0(\dgM) \).
 
 \begin{definition}[\( \Sigma \) on \( H^0(\dgM) \)]
@@ -172,14 +352,144 @@ Which leads us to the definition of the shift functor on \( H^0(\dgM) \).
 
 The overloading of the notation \( \Sigma \) makes the notation much more concice, and in certain situations and makes equations much more clean while being correct.
 
-% TODO: Utdjup, bevis?
-A helpful consequence of the definition of all the \( \Sigma \)s is that they are all automorphisms.
+A helpful consequence of the definition of all the \( \Sigma \)s is that they are all obvious automorphisms.
 \begin{remark}
     \label{rem:dgm_sigma_automorphism}
-    The DG-endofuctors \( \Sigma_{\C_{\dg}} \) and \( \Sigma_{H^0(\dgM)} \) are automorphisms.
+    The DG-endofuctors \( \Sigma_{\C_{\dg}} \), and \( \Sigma_{\dgM} \), as well as the endofuctor \( \Sigma_{H^0(\dgM)} \) are all automorphisms.
 \end{remark}
 
-TODO: Kvifor har dgM bioprodukt?
+% TODO: Flytt?
+A prerequisite for \( H^0(\dgM) \) to have a triangulation is to be additive.
+
+\begin{lemma}
+    \( H^0(\dgM) \) is an additive category.
+\end{lemma}
+\begin{proof}
+    For any \( F, G \in \dgM \), we have that \( H^0(\dgM)(F, G) \) is an \( R \)-module, and therefore an abelian category. Since composition in \( \dgM \) is degree-wise \( R \)-bilinear, then composition in \( H^0(\dgM) \) is also bilinear. This implies \( H^0(\dgM) \) is pre-additive.
+
+    It remains to prove that \( H^0(\dgM) \) has a finite biproduct:
+
+    For \( F, G \in \dgM \), let \( F \oplus G \) be the following assignment of objects and morphisms:
+    \begin{itemize}
+        \item {
+            For \( A \in \Cc \), let
+            \[
+                (F \oplus G) A = (F A) \oplus (G A).
+            \]
+        }
+        \item {
+            For \( A, B \in \Cc \), and \( n \in \Zb \), let
+            \begin{align*}
+                (F \oplus G)_{A, B, n}: \Cc^{\op}(A, B)_n &\to \C_{\dg}((F A) \oplus (G A), (F B) \oplus (G B))_n \\
+                f &\mapsto ((F f)_i \oplus (G f)_i)_{i \in \Zb}.
+            \end{align*}
+            This makes sense because
+            \begin{align*}
+                &\C_{\dg}((F A) \oplus (G A), (F B) \oplus (G B))_n \\
+                &= [(F A) \oplus (G A), (F B) \oplus (G B)]_n \\
+                &= \prod_{i \in \Zb} \Mod(R)((F A)_i \oplus (G A)_i, (F B)_{i + n} \oplus (G B)_{i + n}),
+            \end{align*}
+            and
+            \[
+                ((F f)_i \oplus (G f)_i)_{i \in \Zb} \in \prod_{i \in \Zb} \Mod(R)((F A)_i \oplus (G A)_i, (F B)_{i + n} \oplus (G B)_{i + n}).
+            \]
+        }
+    \end{itemize}
+    \( F \oplus G \) is a DG-functor, because
+    \begin{itemize}
+        \item {
+            For \( n \in \Zb \), and \( f \in \Cc^{\op}(A, B)_n \), consider the equation
+            \begin{align*}
+                &d_n \circ (F \oplus G)_{A, B, n} (f) \\
+                &= d_n ((F f)_i \oplus (G f)_i)_{i \in \Zb} \\
+                &= d_{(F B) \oplus (G B)} \circ ((F f)_i \oplus (G f)_i)_{i \in \Zb} - (-1)^n ((F f)_i \oplus (G f)_i)_{i \in \Zb} \circ d_{(F A) \oplus (G A)} \\
+                &= \tuple{d_{(F B) \oplus (G B), i + n} \circ ((F f)_i \oplus (G f)_i) - (-1)^n ((F f)_{i + 1} \oplus (G f)_{i + 1}) \circ d_{(F A) \oplus (G A)}}_{i \in \Zb} \\
+                &= \big( (d_{F B, i + n} \circ (F f)_i) \oplus (d_{G B, i + n} \circ (G f)_i) \\
+                &\hspace{0.4cm} - (-1)^n ( ( (F f)_{i + 1} \circ d_{F A, i} ) \oplus ( (G f)_{i + 1} \circ d_{G A, i} ) ) \big)_{i \in \Zb} \\
+                &= \big( \tuple{d_{F B, i + n} \circ (F f)_i - (-1)^n (F f)_{i + 1} \circ d_{F A, i}} \\
+                &\hspace{0.4cm} \oplus \tuple{d_{G B, i + n} \circ (G f)_i - (-1)^n (G f)_{i + 1} \circ d_{G A, i}} \big)_{i \in \Zb} \\
+                &= \tuple{ \tuple{d_{[F A, F B], n} (F f)}_i \oplus \tuple{ d_{[G A, G B], n} (G f)}_i }_{i \in \Zb} \\
+                &= \tuple{ \tuple{F d_n (f)}_i \oplus \tuple{ G d_n (f)}_i }_{i \in \Zb} \\
+                &= (F \oplus G)_{A, B, n + 1} (d_n (f)) = (F \oplus G)_{A, B, n + 1} \circ d_n (f).
+            \end{align*}
+            This implies \( (F \oplus G)_{A, B} \) is a chain morphism.
+        }
+        \item {
+            Consider the following diagram of chain complexes,
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        \Cc^{\op}(B, C) \otimes \Cc^{\op}(A, B) \& \Cc^{\op} (A, C) \\
+                        \C_{\dg}((F \oplus G) B, (F \oplus G) C) \& \C_{\dg}((F \oplus G) A, (F \oplus G) C). \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {c} (m-1-2)
+                            edge node[swap] {(F \oplus G)_{B, C} \otimes (F \oplus G)_{A, B}} (m-2-1)
+                        (m-1-2) edge node {(F \oplus G)_{A, C}} (m-2-2)
+
+                        (m-2-1) edge node {c} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+
+            Let \( i, j \in \Zb, \) with \( i + j = n \), \( f \in \Cc(A, B)_i, \) and \( g \in \Cc(B, C)_j \). Consider the following equation,
+            \begin{align*}
+                &c_n \circ ((F \oplus G)_{B, C} \otimes (F \oplus G)_{A, B})_n (g \otimes f) \\
+                &= c_n ( ( (F g)_k \oplus (G g)_k )_{k \in \Zb} \otimes ( (F f)_k \oplus (G f)_k )_{k \in \Zb} ) \\
+                &= ( ( (F g)_{k + i} \oplus (G g)_{k + i} ) \circ ( (F f)_k \oplus (G f)_k ) )_{k \in \Zb} \\
+                &= ( ((F g)_{k + i} \circ (F f)_k) \oplus ( (G g)_{k + i} \circ (G f)_k ) )_{k \in \Zb} \\
+                &= ( ((F g) \circ (F f))_k \oplus ( (G g) \circ (G f) )_k )_{k \in \Zb} \\
+                &= ( (F (g \circ f) )_k \oplus ( G (g \circ f) )_k )_{k \in \Zb} \\
+                &= (F \oplus G)_{A, C, n} ( g \circ f ) \\
+                &= (F \oplus G)_{A, C, n} \circ c_n (g \otimes f),
+            \end{align*}
+            along with uniqueness from \autoref{lem:map_out_of_tensor_unique}, this implies that the diagram commutes.
+        }
+        \item {
+            Consider the following diagram for \( A \in \Cc \),
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        I \& \Cc^{\op}(A, A) \\
+                        \& \C_{\dg}((F \oplus G) A, (F \oplus G) A). \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {u_A} (m-1-2)
+                            edge node {u_{(F \oplus G) A}} (m-2-2)
+                        (m-1-2) edge node {(F \oplus G)_{A, A}} (m-2-2);
+                \end{tikzpicture}
+            \end{center}
+
+            For \( n \neq 0 \), \( u_{A, n} = 0 \) for all \( A \), and so the diagram commutes.
+
+            For \( n = 0 \), and \( r \in R \), consider the following equation
+            \begin{align*}
+                (F \oplus G) \circ u_{A, 0} (r) &= \tuple{ (F \circ u_{A, 0} (r))_i \oplus (G \circ u_{A, 0} (r))_i }_{i \in \Zb} \\
+                &= ((u_{F A, 0} (r))_i \oplus (u_{G A, 0} (r))_i)_{i \in \Zb} \\
+                &= ((r \Id_{(F A)_i})_i \oplus (r \Id_{(G A)_i})_i)_{i \in \Zb} \\
+                &= (r \Id_{(F A)_i \oplus (G A)_i})_{i \in \Zb} \\
+                &= (r \Id_{((F \oplus G ) A)_i })_{i \in \Zb} \\
+                &= u_{(F \oplus G ) A, 0} (r).
+            \end{align*}
+            This implies the diagram commutes.
+        }
+    \end{itemize}
+    
+    By \cite[p. 250]{Mac_Lane_1995}, it suffices to prove that there are morphisms,
+    \begin{align*}
+        \pi_F &\in H^0(\dgM)(F \oplus G, F) \\
+        \pi_G &\in H^0(\dgM)(F \oplus G, G) \\
+        \iota_F &\in H^0(\dgM)(F, F \oplus G) \\
+        \iota_G &\in H^0(\dgM)(G, F \oplus G), \\
+    \end{align*}
+    such that
+    \[
+        [\pi_F \circ \iota_F] = [\Id_F], \: [\pi_G \circ \iota_G] = [\Id_G], \text{ and } [\iota_F \circ \pi_F + \iota_G \circ \pi_G = \Id_{F \oplus G}].
+    \]
+
+    WIP -> Bruk resultatet som kjem seinare om at inklusjon og projeksjon er cycles.
+\end{proof}
 
 In order to construct the cone, which is a part of the triangulation of \( \dgM \), we need some more tools. The first is some notation that will be helpful for the results.
 
@@ -205,7 +515,7 @@ With the above notation in mind, we get an equality that is essential in creatin
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 \class{\Sigma^{-n} A, B}: \&[-0.9cm] \cdots \& \class{\Sigma^{-n} A, B}_{-1} \& \class{\Sigma^{-n} A, B}_0 \& \class{\Sigma^{-n} A, B}_1 \& \cdots \\
-                \class{A, B}_{+n}: \& \cdots \& \class{A, B}_{n - 1} \& \class{A, B}_n \& \class{A, B}_{n + 1} \& \cdots \\
+                \class{A, B}_{\bullet+n}: \& \cdots \& \class{A, B}_{n - 1} \& \class{A, B}_n \& \class{A, B}_{n + 1} \& \cdots \\
             };
 
             \draw[math]
@@ -262,7 +572,7 @@ The above lemma gives the following result, which is the desired property.
 \begin{proof}
     By \autoref{lem:shift_one_component_inner_product_chain_complex},
     \[
-        \prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F A, G A) = \prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)_{+i} = \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)}_{+i}.
+        \prod_{A \in \Cc^{\op}} \C_{\dg}(\Sigma^{-i} F A, G A) = \prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)_{+i} = \tuple*{\prod_{A \in \Cc^{\op}} \C_{\dg}(F A, G A)}_{\bullet+i}.
     \]
     It remains to show that for any \( n \in \Zb \),
     \[

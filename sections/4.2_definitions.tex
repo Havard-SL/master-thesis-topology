@@ -149,7 +149,7 @@ In order to justify using this notation, we will prove some properties that will
     \end{center}
     commutes.
 
-    Gluing together the top diagram with the bottom diagram restricted to degree \( |h| + |g| + |f| \), and looking at where the element \( h \otimes (g \otimes f) \) is sent, yields exactly \autoref{eq:dg-composition_associative}.
+    Gluing together the final two diagrams with the bottom diagram restricted to degree \( |h| + |g| + |f| \), and looking at where the element \( h \otimes (g \otimes f) \) is sent, yields exactly \autoref{eq:dg-composition_associative}.
 \end{proof}
 
 In addition to being associative, composition is also \( R \)-bilinear.
@@ -167,7 +167,7 @@ Before defining Massey products, we first have to define the category the produc
     \label{def:H_bullet_dg_category}
     Let \( \Cc \) be a DG-category over \( R \).
 
-    Let \( H^\bullet(\Cc) \) be the following (enriched over \( C\tuple*{\Mod(R)} \)) category:
+    Let \( H^\bullet(\Cc) \) be the following DG-category:
     \begin{enumerate}
         \item Let \( \Obj(H^\bullet(\Cc)) := \Obj(\Cc) \).
         \item For \( A, B \in H^\bullet(\Cc) \), let \( H^\bullet(\Cc)(A, B) := H^\bullet \tuple*{\Cc(A, B)} \).
