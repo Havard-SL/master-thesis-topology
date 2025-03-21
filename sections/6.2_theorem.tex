@@ -21,3 +21,44 @@ Finally we can state the theorem that shows the equality between Massey products
         \toda{f_3, f_2, f_1} = \massey{f_3, f_2, f_1}.
     \]
 \end{theorem}
+
+Some knowledgeable readers might notice that we are mising a sign that other authors have.
+
+\begin{remark}
+    In \cite[Theorem 4.2.6]{Jasso-Muro_2023} they get that
+    \[
+        \toda{f_3, f_2, f_1} = -\massey{f_3, f_2, f_1}.
+    \]
+
+    A theory for why we don't get the same result may be found in the way that \cite{Jasso-Muro_2023} compares Toda brackets and Massey products, and how it differs from what is done in this thesis.
+
+    First, while our definition of Massey product on \( H^{\bullet}(\Cc) \) (\autoref{def:massey_product_dg_cat}) is equal to \cite[Definition 4.2.1]{Jasso-Muro_2023} for \( d = 1 \), they use an isomorphism
+    \[
+        H^{-1}(\dgM(X_1, X_4)) \cong H^0(\dgM)(X_1, \Sigma^{-1} X_4)
+    \]
+    and then apply
+    \[
+        \Sigma
+    \]
+    to end up with a subset of
+    \[
+        \cong H^0(\dgM)(\Sigma X_1, X_4).
+    \]
+    With our approach, we don't have to use \( \Sigma \) at all by just using the isomorphism \autoref{cor:H^i_dgmod_cong_H^0_with_shift}, which is essentially the identity morphism, to compare Massey products with Toda brackets.
+
+    In trying to understand the isomorphism,
+    \[
+        H^{-1}(\dgM(X_1, X_4)) \cong H^0(\dgM)(X_1, \Sigma^{-1} X_4)
+    \]
+    we get an alternate version of \autoref{lem:shift_one_component_inner_product_chain_complex}, with an isomorphism
+    \[
+        \phi: [A, B]_{\bullet - 1} \to [A, \Sigma^{-1} B]
+    \]
+    where \( \phi_i \) alternates between multiplying with \( 1 \) and \( -1 \).
+
+    If we assume \( \phi_0 = -1 \), we end up with \( H^0(\phi) \) being multiplication with \( -1 \). If we assume \( \phi_0 = 1 \), we end up with \( H^0(\phi) \) being multiplication with \( 1 \). Applying \( \Sigma \) is essentially identity, because \( |\phi_0| = 0 \), and so the isomorphism \cite{Jasso-Muro_2023} use to compare Massey products and Toda brackets could be either multiplication with \( 1 \) or \( -1 \). If it is the latter, it could explain the sign difference.
+
+    However, this seems unlikely as no mathematician in their right mind would choose the latter option when faced with such a choice, and it would have been mentioned.
+
+    WIP sjekk beviset till Jasso-Muro
+\end{remark}
