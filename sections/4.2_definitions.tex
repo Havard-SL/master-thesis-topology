@@ -198,7 +198,6 @@ Before defining Massey products, we first have to define the category the produc
 
 To show that composition is well-defined we will utilize the following remark.
 
-% TODO: Marius p.\ eller p.~ kommentar?
 \begin{remark}
     \label{rem:H_bullet_composition_alpha}
     The composition definition in \autoref{def:H_bullet_dg_category} is actually the composition of two different morphisms.
@@ -209,7 +208,7 @@ To show that composition is well-defined we will utilize the following remark.
         ([g_i], [f_j]) &\mapsto \class*{g_i \otimes f_j}.
     \end{align*}
     Assuming these are well-defined \( R \)-bilinear morphisms, denote by \( a_n \) the unique morphism they define by \autoref{lem:map_out_of_tensor_unique}, and the entire chain morphism by \( \alpha := \set*{\alpha_i}_{i \in \Zb} \). \footnote{
-        The map \( \alpha \) is known at the cross product morphism, as explained in \cite[p. 273]{Hatcher_2002}. In addition, for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher_2002}.
+        The map \( \alpha \) is known at the cross product morphism, as explained in \cite[p.\ 273]{Hatcher_2002}. In addition, for \( R \) a field (as is assumed in \cite{Jasso-Muro_2023}) it is known that by the Algebraic Künneth Theorem that \( \alpha \) is an isomorphism \cite[Theorem 3B.5]{Hatcher_2002}.
     }
     
     Then we can see that
@@ -339,40 +338,8 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
         \intertext{by \autoref{lem:dg-composition_associative} it follows that}
         &= 0.
     \end{align*}
-    % Secondly, what to show that the massey product is independent of the choice of cocyle-representatives.
-
-    % Let \( b_i \in \Cc(X_i, X_{i + 1}) \) for \( i = 1, 2 \) and \( 3 \) be boundaries.
-
-    % Then look at
-    % \[
-    %     \set*{ \class*{ \overline{s} \circ (g_1 + b_1) + (\overline{g_3 + b_3}) \circ t } \mid d(s) = (\overline{g_3 + b_3}) \circ (g_2 + b_2), \quad d(t) = (\overline{g_2 + b_2}) \circ (g_1 + b_1) }.
-    % \]
-    
-    % By linearity, the first part can be written as 
-    % \[
-    %     [\overline{s} \circ g_1 + \overline{s} \circ b_1 + g_3 \circ t + b_3 \circ t].
-    % \]
-    % But since \( b_1 \) is a boundary, by a similar argument as in \autoref{rem:composition_in_H_bullet_is_well_defined} item 2, we have that
-    % \[
-    %     \overline{s} \circ b_1 = c_{|g_1| + |g_2| + |g_3| - 1}( \iota_{|g_2| + |g_3| - 1, |g_1|} ( \overline{s} \otimes b_1 ) )
-    % \]
-    % is in fact
-    % \[
-    %     \overline{s} \circ b_1 = c_{|g_1| + |g_2| + |g_3| - 1}( d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2), |g_1| + |g_2| + |g_3| - 2} (\tilde{g}) )
-    % \]
-    % for some \( \tilde{g} \in (\Cc(X_2, X_4) \otimes \Cc(X_1, X_2))_{|g_1| + |g_2| + |g_3| - 2} \).
-
-    % And since \( c \) is a chain morphism, it follows that
-    % \[
-    %     \overline{s} \circ b_1 = d_{\Cc(X_1, X_4), |g_1| + |g_2| + |g_3| - 2}(c_{|g_1| + |g_2| + |g_3| - 2}(\tilde{g}))
-    % \]
-    % and so \( \overline{s} \circ b_1 \) is a boundary, and a similar argument can be made of \( b_3 \circ t \).
-
-    % It remains to show that
-    % \[
-    %     \set*{ \class*{ \overline{s} \circ g_1 + \overline{g_3} \circ t } \mid d(s) = (\overline{g_3 + b_3}) \circ (g_2 + b_2), \quad d(t) = (\overline{g_2 + b_2}) \circ (g_1 + b_1) }.
-    % \]
-    % is independent of the \( b_i \)'s.
 \end{remark}
 
 The observant reader may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. Which is necessary in order to compare Massey products to Toda brackets. However, by moving over to the category of ``DG-modules'' which will be defined in the next section, we can define Massey products on a big class of triangulated categories, namely the ``algebraic triangulated categories.''
+
+Massey products are often associated with Borromean rings, since by \cite[p.\ 191 -- p.\ 195]{Massey_1998}, it is a known invariant that proves that the complement of the Borromean rings embedded into \( \Rb^3 \) is not homotopy equivalent to \( \Rb^3 \), and they can therefore not be pulled apart. This is done by letting \( \Cc \) be a DG-category consisting of only one object, \( * \), where \( \Cc(*, *) \) is the cochain complex of a topological space (here it is the complement of the Borromean rings embedded into \( \Rb^3 \)), with composition being the cup product of cochains. Hence, \( H^{\bullet} (\Cc) \) is exactly the graded cohomology algebra of the topological space, as well as a valid category to calculate Massey products in.

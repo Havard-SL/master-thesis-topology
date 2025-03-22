@@ -1,6 +1,5 @@
-In broad terms, a DG-module is a functor from some DG category into a specific DG-category. The following definition, which is based on \cite[p. 29]{Jasso-Muro_2023}, is the category that will be the codomain of these DG-modules.
+In broad terms, a DG-module is a functor from some DG category into a specific DG-category. The following definition, which is based on \cite[p.\ 29]{Jasso-Muro_2023}, is the category that will be the codomain of these DG-modules.
 
-% TODO: Verify definition with borceux definition of composition p. 295
 \begin{definition}[\( \C_{\dg} \)]
     \label{def:c_dg_mod_r}
     Let \( R \) be a commutative ring with identity.
@@ -133,7 +132,7 @@ The following remark shows why the composition above is well-defined.
     \end{enumerate}
 \end{remark}
 
-We can also through arduous calculations using \autoref{rem:tensor_prod_internal_hom_adjoint} find that the definition of composition in \autoref{def:c_dg_mod_r} is the same as in \cite[p. 295]{Borceux_1994}.
+We can also through arduous calculations using \autoref{rem:tensor_prod_internal_hom_adjoint} find that the definition of composition in \autoref{def:c_dg_mod_r} is the same as in \cite[p.\ 295]{Borceux_1994}.
 
 An interesting consequence of how \( \C_{\dg} \) is defined is that the differential can be treated as a DG-morphism. This is discussed in the following remark.
 \begin{remark}
@@ -192,7 +191,7 @@ Another piece of the definition of a DG-module is to define what a functor betwe
     An enriched functor between two DG-categories as defined in \cite[Definition 6.2.3]{Borceux_1994} is called a \emph{DG-functor}.
 \end{definition}
 
-There are multiple examples in the following subsection (\autoref{sec:alg_tri_cat_def}) of DG-functors, such as the shift functor on \( \C_{\dg} \), shift functor of the not yet defined \( \dgM \), as well as the functor that is a part of the remark proving that \( \dgM \) is additive.
+There are multiple examples in the following subsection (\autoref{sec:alg_tri_cat_def}) of DG-functors, such as the shift functor on \( \C_{\dg} \), shift functor of the not yet defined \( \dgM \), as well as \( F \oplus G \) for two DG-functors \( F \) and \( G \).
 
 Finally, we can define the DG-functor category, which is the final piece in defining DG-modules.
 
@@ -202,36 +201,6 @@ Finally, we can define the DG-functor category, which is the final piece in defi
 
     Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the DG-category defined in \cite[Proposition 6.3.1]{Borceux_1994}.
 
-    % Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the following DG-category:
-    % \begin{enumerate}
-    %     \item{
-    %         Let \( \Obj(\Fun_{\dg}(\Ac, \Bc)) \) be the class of every DG-functor from \( \Ac \) to \( \Bc \).
-    %     }
-    %     \item{
-    %         For \( F, G \in \Fun_{\dg}(\Ac, \Bc) \), let \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) be defined as in \cite[Proposition 6.3.1]{Borceux_1994}, in particular, \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) is a sub chain complex of \( \prod_{A \in \Ac} \Bc(FA, GA) \).
-    %     }
-    %     \item {
-    %         For any \( i, j \in \Zb \), let
-    %         \[
-    %             \tuple{\eta_{i, A}}_A \in \tuple{\prod_{A \in \Ac} \Bc(FA, GA)}_i
-    %         \]
-    %         and
-    %         \[
-    %             \tuple{\mu_{j, A}}_A \in \tuple{\prod_{A \in \Ac} \Bc(GA, HA)}_j.
-    %         \]
-
-    %         Then define composition element-wise as follows
-    %         \[
-    %             c_{i + j}: \tuple{\mu_{j, A}}_A \otimes \tuple{\eta_{i, A}}_A \mapsto \tuple{\mu_{j, A} \circ \eta_{i, A}}_A.
-    %         \]
-    %         Since \( \Fun_{\dg}(\Ac, \Bc)(F, G) \) is a sub chain complex of \( \prod_{A \in \Ac} \Bc(FA, GA) \), composition can be restricted to \( \Fun_{\dg}(\Ac, \Bc)(F, G) \).
-
-    %         TODO: Er det veldefinert?
-    %     }
-    %     \item {
-    %         Let unit morphisms be defined as WIP.
-    %     }
-    % \end{enumerate}
     This is called the \emph{DG-functor category from \( \Ac \) to \( \Bc \)}.
 \end{definition}
 
@@ -260,7 +229,7 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
     
     Let
     \[
-        \eta = \tuple{ \eta_A }_{A \in \Cc} \in \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \tuple*{ \C_{\dg}(F(A), G(A)) }_i
+        \eta = \tuple{ \eta_A }_{A \in \Cc} \in \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \tuple*{ \C_{\dg}(F(A), G(A)) }_i,
     \]
     and let
     \[
@@ -433,6 +402,7 @@ Now that we have figured out what the DG-natural transformations look like, we c
     \[
         \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_i.
     \]
+    This chain complex exists, because \( \Cc \) is assumed to be a small category, and \( \Mod(R) \) is a bicomplete category when \( R \) is commutative, which we assume.
 
     The differential, denoted \( d \), of \( \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) \) is in degree \( j \),
     \begin{align*}
@@ -494,7 +464,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
 
     Second, we check if \( c \) is a chain morphism. Let \( n \in \Zb \), \( i, j \in \Zb \), with \( i + j = n \),
     \[
-        \eta = \tuple{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i
+        \eta = \tuple{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i,
     \]
     and
     \[
@@ -534,7 +504,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
         0 \in \dgM(F, F)_n.
     \]
 
-    We can see that for any \( n, \), \( F, G \in \dgM \), and any \( f \in \Cc^{\op}(A, B)_n \), the following equality holds
+    We can see that for any \( n, \) \( F, G \in \dgM, \) and any \( f \in \Cc^{\op}(A, B)_n, \) the following equality holds
     \[
         (-1)^{|f|0}G(f) \circ 0 = 0 = 0 \circ F(f).
     \]

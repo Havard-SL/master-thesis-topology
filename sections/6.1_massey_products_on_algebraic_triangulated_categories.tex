@@ -5,12 +5,13 @@ The following lemma, is essential in the definition of Massey products on \( H^0
     Let \( F, G \in \dgM \).
 
     Then there is a canonical isomorphism
-    \[
-        H^i(\dgM(F, G)) \cong H^0(\dgM)(\Sigma^{-i} F, G).
-    \]
+    \begin{align*}
+        H^0(\phi): H^i(\dgM(F, G)) &\to H^0(\dgM)(\Sigma^{-i} F, G) \\
+        \eta &\mapsto \eta.
+    \end{align*}
 \end{lemma}
 \begin{proof}
-    Take \( H^0 \) on both sides of \autoref{lem:dgmod_shift_eq_plus}.
+    Take \( H^0 \) of \( \phi \) in \autoref{lem:dgmod_shift_eq_plus}.
 \end{proof}
 
 Using the above lemma, we define how to take the Massey product in \( H^0(\dgM) \) as follows.
@@ -43,7 +44,7 @@ Using the above definition, we can define the Massey product more generally in a
 
 \begin{definition}[Massey product in an algebraic triangulated category]
     \label{def:massey_product_alg_tri_cat}
-    Let \( \Tc \) be an algebraic triangulated category, let \( \Cc \) be the DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) the equivalence by the algebraic triangulated category property. Let \( \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \) be the natural isomorphism arising from the fact that \( H^0(\mathbf{h}) \Phi \) is an equivalence. Let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be the natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated functor onto its image.
+    Let \( \Tc \) be an algebraic triangulated category, let \( \Cc \) be the DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) the equivalence by the algebraic triangulated category property. Let \( \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \) be the natural isomorphism arising from the fact that \( H^0(\mathbf{h}) \Phi \) is an equivalence. Furthermore, let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be the natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated functor onto its image.
     
     Let the following be a diagram in \( \Tc \)
     \begin{center}

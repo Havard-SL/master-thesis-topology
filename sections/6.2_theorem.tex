@@ -1,4 +1,4 @@
-Finally we can state the theorem that shows the equality between Massey products and Toda brackets on an algebraic triangulated category.
+We can now state the theorem that shows the equality between Massey products and Toda brackets on an algebraic triangulated category.
 
 \begin{theorem}[Massey products = Toda brackets]
     \label{theorem:massey_equals_toda}
@@ -22,7 +22,7 @@ Finally we can state the theorem that shows the equality between Massey products
     \]
 \end{theorem}
 
-Some knowledgeable readers might notice that we are mising a sign that other authors have.
+Some knowledgeable readers might notice that we are missing a sign that other authors have.
 
 \begin{remark}
     In \cite[Theorem 4.2.6]{Jasso-Muro_2023} they get that
@@ -30,35 +30,49 @@ Some knowledgeable readers might notice that we are mising a sign that other aut
         \toda{f_3, f_2, f_1} = -\massey{f_3, f_2, f_1}.
     \]
 
-    A theory for why we don't get the same result may be found in the way that \cite{Jasso-Muro_2023} compares Toda brackets and Massey products, and how it differs from what is done in this thesis.
-
-    First, while our definition of Massey product on \( H^{\bullet}(\Cc) \) (\autoref{def:massey_product_dg_cat}) is equal to \cite[Definition 4.2.1]{Jasso-Muro_2023} for \( d = 1 \), they use an isomorphism
+    There are two theories for why we don't get the same result.
+    
+    The first theory relates to how \cite{Jasso-Muro_2023} compares Toda brackets and Massey products, and how it differs from what is done in this thesis. Our definition of Massey products on \( H^{\bullet}(\Cc) \) (\autoref{def:massey_product_dg_cat}) is equal to \cite[Definition 4.2.1]{Jasso-Muro_2023} for \( d = 1 \). Similarly, their definition of Toda brackets (\cite[Definition 4.1.6]{Jasso-Muro_2023}) is equal to our fiber-cofiber definition of Toda brackets (\autoref{def:toda_bracket}).
+    
+    However, when comparing the Toda brackets and Massey products in \( H^0(\dgM) \), they use an isomorphism
     \[
         H^{-1}(\dgM(X_1, X_4)) \cong H^0(\dgM)(X_1, \Sigma^{-1} X_4)
     \]
-    and then apply
+    and then apply \( \Sigma \) to end up with a subset of
     \[
-        \Sigma
-    \]
-    to end up with a subset of
-    \[
-        \cong H^0(\dgM)(\Sigma X_1, X_4).
-    \]
+        H^0(\dgM)(\Sigma X_1, X_4).
+    \] 
+
     With our approach, we don't have to use \( \Sigma \) at all by just using the isomorphism \autoref{cor:H^i_dgmod_cong_H^0_with_shift}, which is essentially the identity morphism, to compare Massey products with Toda brackets.
 
     In trying to understand the isomorphism,
     \[
         H^{-1}(\dgM(X_1, X_4)) \cong H^0(\dgM)(X_1, \Sigma^{-1} X_4)
     \]
-    we get an alternate version of \autoref{lem:shift_one_component_inner_product_chain_complex}, with an isomorphism
+    we see that it boils down to an alternate version of \autoref{lem:shift_one_component_inner_product_chain_complex}, with some isomorphism
     \[
-        \phi: [A, B]_{\bullet - 1} \to [A, \Sigma^{-1} B]
+        \phi: [A, B]_{\bullet - 1} \to [A, \Sigma^{-1} B].
     \]
-    where \( \phi_i \) alternates between multiplying with \( 1 \) and \( -1 \).
+    By calculating, we get that there is an obvious choice of \( \phi \) where \( \phi_i \) alternates between multiplying with \( 1 \) and \( -1 \).
 
     If we assume \( \phi_0 = -1 \), we end up with \( H^0(\phi) \) being multiplication with \( -1 \). If we assume \( \phi_0 = 1 \), we end up with \( H^0(\phi) \) being multiplication with \( 1 \). Applying \( \Sigma \) is essentially identity, because \( |\phi_0| = 0 \), and so the isomorphism \cite{Jasso-Muro_2023} use to compare Massey products and Toda brackets could be either multiplication with \( 1 \) or \( -1 \). If it is the latter, it could explain the sign difference.
 
     However, this seems unlikely as no mathematician in their right mind would choose the latter option when faced with such a choice, and it would have been mentioned.
 
-    WIP sjekk beviset till Jasso-Muro
+    The second, and more likely theory, is an error in our upcoming proof of \autoref{thm:dgm_massey_equal_toda}, or in \cite[Proposition 4.2.8]{Jasso-Muro_2023}. The reason for this is that, assuming they use the \( H^0(\phi) \) mentioned earlier that is multiplication with \( 1 \), the proof itself, along with every other prerequisite seem correct in the three-fold case.
+
+    In \cite[Proposition 4.2.8]{Jasso-Muro_2023}, restricted to the three-fold case and converted to our definitions, they essentially want to show that
+    \[
+        \massey{f_3, f_2, f_1} = \union_{\beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1}_{fc}}  \class{- \beta \circ (\Sigma \alpha)}.
+    \]
+    However, we can see that this does not agree with our result, since
+    \[
+        \union_{\beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1}_{fc}}  \class{- \beta \circ (\Sigma \alpha)} = -\toda{f_3, f_2, f_1}.
+    \]
+
+    Their argument starts with some \( g_1, g_2, g_3, s, \) and \( t \) from the definition of the Massey product for some element \( f \in \massey{f_3, f_2, f_1} \). Then they construct \( -\alpha \) and \( -\beta \) in the same manner as we do, and then they verify that \( (-\beta) \circ (\Sigma -\alpha) = \beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1} \), just as we do.
+
+    However, then they make what we can assume to be the error in their proof. They don't verify that \( f = \class{- \beta \circ (\Sigma \alpha)} \), which would contradict the result we get in our proof.
+
+    Then they finish up the proof by stating that by starting with some \( \beta \) and \( \Sigma \alpha \), they can construct \( g_1, g_2, g_3, s, \) and \( t \), from the definition of the Massey product for some element \( f \in \massey{f_3, f_2, f_1} \). Due to the lack of specificity in this part of their proof, we can not be sure they construct \( g_1, g_2, g_3, s, \) and \( t \) in the same manner we do, but most likely they do. However, again they do not show why \( \class{- \beta \circ (\Sigma \alpha)} = f \), which might have contradicted our result.
 \end{remark}

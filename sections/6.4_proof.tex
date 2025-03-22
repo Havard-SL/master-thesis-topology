@@ -1,7 +1,4 @@
-We start by proving some lemmas and giving some definitions that are required for the proof.
-
-The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \) and is the reason we can compare Toda brackets and Massey products in algebraic triangulated categories.
-
+We start by proving that Toda brackets and Massey products coincide in \( H^0(\dgM) \), which we will use to prove they coincide on any algebraic triangulated category.
 \begin{theorem}
     \label{thm:dgm_massey_equal_toda}
     Let \( \Cc \) be a small DG-category, and let the following be a diagram in \( H^0(\dgM) \),
@@ -45,8 +42,7 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
         f = \class{s \circ g_1 - g_3 \circ t}.
     \]
 
-    % WIP: Kvifor kan eg laga matrise av dgmod morfiar og få ein dgmod morfi?
-    %   Kvifor kan alpha gå inn i cone?
+    % WIP: Kvifor er alpha i dgM?
     By \autoref{lem:dgmod_shift_eq_plus}, consider \( t \) as an element of \( \dgM(\Sigma X_1, X_3)_0 \). Consider \( \Sigma^{-1} t = t \). Then we can construct the following morphism.
     \[
         \alpha =
@@ -241,13 +237,16 @@ The following lemma connects Toda brackets and Massey products in \( H^0(\dgM) \
         s \circ g_1 - g_3 \circ t &= - \beta \circ \iota_{\Sigma X_2} \circ (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha - \beta \circ \iota_{X_3} \circ (- \pi_{X_3}) \circ \alpha \\
         &= \beta \circ \tuple*{\iota_{\Sigma X_2} \circ \pi_{\Sigma X_2} + \iota_{X_3} \circ \pi_{X_3}} \circ \alpha \\
         &= \beta \circ \Id_{C_{f_2}} \circ \alpha \\
-        &= \beta \circ \alpha = f.
+        &= \beta \circ \alpha = f,
     \end{align*}
+    which implies \( f \in \massey{f_3, f_2, f_1} \).
 \end{proof}
 
 The following is the proof of \autoref{theorem:massey_equals_toda}.
 
-\begin{proof}[Proof of Massey products = Toda brackets]
+\begin{proof}[Proof of Massey products = Toda brackets in an algebraic triangulated category]
+    \phantom{hei}
+
     Let \( F := H^0(\mathbf{h}) \Phi \) and \( F^{-1} := \Phi^{-1} (H^0(\mathbf{h}))^{-1} \) in this proof.
 
     Let \( \phi: F^{-1} F \to \Id_{\Tc} \) be the natural isomorphism from the definition of Massey products on an algebraic triangulated category and let \( \eta: F \Sigma \to \Sigma F \) be the natural isomorphism from the fact that \( F \) is a triangulated equivalence.
