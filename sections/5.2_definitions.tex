@@ -728,7 +728,7 @@ With the above notation in mind, we get an equality that is essential in creatin
     \label{lem:shift_one_component_inner_product_chain_complex}
     Let \( A, B \in \C \).
 
-    Then there is a canonical isomorphism
+    Then there is a chain isomorphism
     \begin{align*}
         \phi: \class{\Sigma^{-n} A, B} &\to \class{A, B}_{\bullet+n} \\
         f &\mapsto f.
@@ -790,7 +790,7 @@ The above lemma gives the following result, which is what we will use in the def
     \label{lem:dgmod_shift_eq_plus}
     Let \( F, G \in \dgM \).
 
-    Then there is a canonical isomorphism
+    Then there is a chain isomorphism
     \begin{align*}
         \phi: \dgM(\Sigma^{-i} F, G) &\to \dgM(F, G)_{\bullet + i} \\
         \eta &\mapsto \eta.
@@ -820,6 +820,21 @@ The above lemma gives the following result, which is what we will use in the def
         (G f) \circ \eta_A = (-1)^{nj} \eta_B \circ (\Sigma^{-i} F f) = (-1)^{(n + i)j}\eta_B \circ (F f). \qedhere
     \]
 \end{proof}
+
+The fact that a DG-morphism in \( \C_{\dg} \) and \( \dgM \) can be considered as a DG-morphism with another domain or codomain might create ambiguity in the notation, especially when considering  composition of morphism. However, this turns out to not be a problem.
+
+% TODO: Blir ikkje eigenskapen at \phi er ein kjedeisomorfi brukt? Er ikkje det viktig?
+% TODO: Korleis gir dette meining med hensyn på ulike "eigenskapar" som DG-morfiar kan ha? Som i beviset av at toda=massey på h^0 dgM, så er d_X3 circ t + t +circ d_X1 framleis lik d_dgm(X_1, X_3)(t) sjølv om det vart gjort i dgm(X_1, X_3).
+% TODO: Sitera til denne når ein gjer "consider..." argument?
+\begin{remark}
+    For any \( i \in \Zb \), we have already shown that \( \dgM(F, G)_i = \dgM(\Sigma F, \Sigma G)_i \), and we have also shown that \( \dgM(\Sigma F, G)_i = \dgM(F, G)_{i + 1} \). Combining these two properties we get that for any \( \eta \in \dgM(F, G)_i \), and \( n, k \in \Zb \) we get that \( \eta \) can be considered as a DG-morphism in \( \dgM(\Sigma^n F, \Sigma^k G)_{k - n + i} \).
+
+    Furthermore, since composition in \( \dgM \) essentially boils down to the same degree-wise composition of morphisms in \( \Mod(R) \), two composable morphisms \( \eta \) and \( \mu \) will have the same composition regardless of ``where'' we compose them.
+
+    This makes the statement ``consider \( \mu \circ \eta \) as an element in \( \dgM(\Sigma^n F, \Sigma^k H)_{k - n + |\eta| + |\mu|} \)'' well-defined without specifying what composition morphism we use.
+
+    The same arguments are also true for \( \C_{\dg} \).
+\end{remark}
 
 The following is the definition for a cone in \( \dgM \).
 
@@ -864,8 +879,9 @@ We can write the differential of \( C_{\eta} \) as
     \begin{pmatrix}
         -d_F & 0 \\
         \eta & d_G
-    \end{pmatrix}.
+    \end{pmatrix},
 \]
+where we consider the \( \eta \) in the matrix as an element of \( \dgM(\Sigma F, G)_1 \).
 
 The definition of \( c_{\eta} \) has the following property that makes it easier to work with.
 
@@ -949,6 +965,8 @@ Another consequence of \( ((\Sigma F) \oplus G) \) and \( C_{\eta} \) being simi
 \begin{remark}
     \label{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms}
     By \autoref{rem:dgm_c_eta_similar_to_sigma_f_plus_g}, for any \( H \in \dgM \) and any \( i \in \Zb \), we have that \( \dgM(H, (\Sigma F) \oplus G)_i = \dgM(H, C_{\eta})_i \) as well as \( \dgM((\Sigma F) \oplus G, H)_i = \dgM(C_{\eta}, H)_i \), because the differential is not a part of the definition of being a DG-morphism for some \( i \).
+
+    Composition of DG-morphisms to and from \( C_{\eta} \) is also preserved.
 \end{remark}
 
 By using the above remark, we can consider the projection as well as the embedding morphisms as morphisms to or from \( C_{\eta} \) instead. We also want to verify some properties for future proofs.
