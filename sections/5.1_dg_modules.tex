@@ -53,7 +53,7 @@ The following remark shows why the composition above is well-defined.
 
     \begin{enumerate}
         \item {
-            First, the morphisms \( c_{\C_{\dg}, n} \) are uniquely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \)'s are as follows
+            First, the morphisms \( c_{\C_{\dg}, n} \) are uniquely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \) are as follows
             \begin{align*}
                 g_{i, j}: \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \times \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j}) &\to \prod_{p \in \Zb} \Mod(R)(A_p, C_{p + i + j}) \\
                 \tuple*{ g_p }_{p \in \Zb} \times \tuple*{ f_q }_{q \in \Zb} &\mapsto \tuple*{ g_{p + j} \circ f_p }_{p \in \Zb}.
@@ -124,7 +124,7 @@ The following remark shows why the composition above is well-defined.
                 d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}: \\
                 \tuple*{ \C_{\dg}(B, C) \otimes \C_{\dg}(A, B) }_n \to \C_{\dg}(A, C)_{n + 1}
             \]         
-            corresponds to the \( g_{i,j} \)'s where \( g_{i, j} = 0 \). However, by uniqueness, this implies that
+            corresponds to the \( g_{i,j} \) where \( g_{i, j} = 0 \). However, by uniqueness, this implies that
             \[
                 d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} = 0.
             \]
@@ -239,7 +239,7 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
 
     Both \( \eta \) and \( f \) will be used as arbitrary elements to see what the chain morphisms in their appropriate degree does to any element. This is usually enough information to deduce its action on any element by, e.g., \autoref{lem:map_out_of_tensor_unique}.
 
-    Consider the following composition of chain morphisms, where the right-hand side is the element-wise action on the \( i + j \)-th component on an arbitrary elementary tensor.
+    Consider the following composition of chain morphisms, where the right-hand side is the element-wise action on the \( (i + j) \)th component on an arbitrary elementary tensor.
     \begin{diagramlabel}[\label{diag:functor_category_borceux}]
         \newcommand{\height}{1cm}
         %
@@ -398,7 +398,7 @@ Now that we have figured out what the DG-natural transformations look like, we c
     \[
         \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)),
     \]
-    which is a chain complex where in the \( i \)-th component, we have
+    which is a chain complex where in the \( i \)th component, we have
     \[
         \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_i.
     \]

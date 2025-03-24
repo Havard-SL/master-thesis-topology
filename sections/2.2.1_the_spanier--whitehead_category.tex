@@ -1,15 +1,15 @@
-An example of a triangulated category is the Spanier--Whitehead category. It is a \emph{topological triangulated category}. The definition of topological triangulated categories is ``… any triangulated category which is equivalent to a full triangulated subcategory of the homotopy category of a stable model category.'' \cite[p.\ 6]{Schwede_2010}. In the same paragraph as the above quote, Schwede also explains why the Spanier--Whitehead category is topological. It will become clear that the Spanier--Whitehead category is an example of a triangulated category inspired by topology, and so the designation as a topological triangulated category fits (morally). However, the definition of a topological triangulated category is not relevant for this thesis, and so we won't go into further details. 
+An example of a triangulated category is the Spanier--Whitehead category. It is a \emph{topological triangulated category}. The definition of topological triangulated categories is ``… any triangulated category which is equivalent to a full triangulated subcategory of the homotopy category of a stable model category'' \cite[p.\ 6]{Schwede_2010}. In the same paragraph as the above quote, Schwede also explains why the Spanier--Whitehead category is topological. It will become clear that the Spanier--Whitehead category is an example of a triangulated category inspired by topology, and so the designation as a topological triangulated category fits (morally). However, the definition of a topological triangulated category is not relevant for this thesis, and so we won't go into further details. 
 % Schwede says "For us" før sitatet. Betyr det at det ikkje er ein definitsjon, men blir implisert av definisjonen? Er homotopikategori av ein cofibration category betre def?
 
 First, some notation.
 \begin{notation}
     Let \( X \) and \( Y \) be two based topological spaces, with \( x_0 \) the basepoint of \( X \).
 
-    Then let \( \class{ X, Y } \) denote the set of basepoint-preserving homotopy classes of continuous basepoint-preserving functions from \( X \) to \( Y \).
+    We write \( \class{ X, Y } \) for the set of basepoint-preserving homotopy classes of continuous basepoint-preserving functions from \( X \) to \( Y \).
 
     Let \( I \) denote the closed unit interval with basepoint \( 0 \).
 
-    Then let \( \Sigma X \) denote the reduced suspension of \( X \), i.e., the quotient space
+    We write \( \Sigma X \) for the reduced suspension of \( X \), i.e., the quotient space
     \[
         X \times I / \sim
     \]
@@ -22,13 +22,13 @@ The Spanier--Whitehead category is motivated by the Freudenthal suspension theor
 
 \begin{corollary}
     \label{cor:sw_freudenthal_suspension}
-    Let \( X \) and \( Y \) be based and finite CW-complexes, let \( n, m \in \Nb \).
+    Let \( X \) and \( Y \) be based and finite CW-complexes, and let \( n, m \in \Nb \).
     
     Then the colimit
     \[
         \colim_{q \to \infty} \class{ \Sigma^{n + q} X, \Sigma^{m + q} Y }
     \]
-    is attained after a finite \( q \in \Nb \).
+    is attained for a finite \( q \in \Nb \).
 \end{corollary}
 
 The above corollary is crucial to understanding why the Spanier--Whitehead category is defined as it is. The following definition is based on \cite[Definition 2]{Schwede_2010}.
@@ -71,9 +71,10 @@ The definition of the shift functor is dependent on the following property.
     \]
 \end{lemma}
 \begin{proof}
-    From the definition of the colimit, \( SW\tuple{ (X, n), (Y, m) } \) is a colimit for the graph of \( SW\tuple{ (X, n + 1), (Y, m + 1) } \) and vice versa.
+    From the definition of the colimit, \( SW\tuple{ (X, n), (Y, m) } \) is a colimit of the same diagram as \( SW\tuple{ (X, n + 1), (Y, m + 1) } \), and vice versa.
 \end{proof}
 
+% Marius: Her har eg fortrengt den kanoniske isomorfien.
 The following defines the shift functor.
 \begin{definition}[Shift functor in \( SW \)]
     \label{def:sw-shift}
@@ -85,38 +86,39 @@ The following defines the shift functor.
     \] 
     and for \( f \in SW((X, n), (Y, m)) \), let
     \[
-        \Sigma_{SW} f := f.
+        \Sigma_{SW} f := f,
     \]
+    where we have implicitly applied the canonical isomorphism from the previous lemma.
 \end{definition}
 
 The shift functor in \autoref{def:sw-shift} is an automorphism.
 
 As the notation would imply, in \( SW \), we have that \( \Sigma_{SW} (X, n) = (X, n + 1) \cong ( \Sigma X, n ) \).
 
-Before defining the distinguished triangles, we first define what a mapping cone is.
+Before defining the distinguished triangles, we first define what a ``mapping cone'' is.
 \begin{definition}[Mapping cone \( C_f \)]
     Let \( f: X \to Y \) be a based continuous map between based topological spaces, with \( x_0 \) being the basepoint of \( X \). Let \( I \) be the closed unit interval.
 
-    Then let the mapping cylinder \( M_f \) be the quotient space
+    Then let the \emph{mapping cylinder}, denoted \( M_f \), be the quotient space
     \[
         (X \times I) \sqcup Y / \sim
     \]
     with the relation \( (x, 0) = f(x) \) for all \( x \in X \).
 
-    In addition, let the mapping cone \( C_f \) be defined as the quotient space
+    In addition, let the \emph{mapping cone}, denoted \( C_f \), be defined as the quotient space
     \[
         M_f / \sim
     \]
     with the relation \( (x, 1) = (x', 1) \) for all \( x, x' \in X \) as well as \( (x_0, t) \sim (x_0, 0) \) for all \( t \in I \).
 \end{definition}
 
-The following definition of the distinguished triangles in \( SW \) omits a lot of details as it is not necessary for our purposes. More details can be found in \cite[Definition 5.8, and Definition 4.7]{Daria_Bachelor}.
+The following definition of the distinguished triangles in \( SW \) omits a lot of details as it is not necessary for our purposes. More details can be found in \cite[Definition 4.7 and 5.8]{Daria_Bachelor}.
 
 \begin{definition}[Distinguished triangles in \( SW \)]
     \label{def:sw-dist_triangles}
     Let \( \Delta \) be the collection of triangles in \( SW \) satisfying the following property.
 
-    Given a continuous based map \( f: X \to Y \), let \( \iota_f: Y \rightarrowtail C_f \) be the inclusion of \( Y \) into \( C_f \). In addition, let \( \pi_f: C_f \twoheadrightarrow \Sigma X \) send the subspace \( Y \) of \( C_f \) to \( x_0 \), and any point \( (x, t) \) in the \( X \times I \) subspace is mapped to \( (x, t) \in \Sigma X \).
+    For a continuous based map \( f: X \to Y \), let \( \iota_f: Y \rightarrowtail C_f \) be the inclusion of \( Y \) into \( C_f \). In addition, let \( \pi_f: C_f \twoheadrightarrow \Sigma X \) map the subspace \( Y \) of \( C_f \) to \( x_0 \), and any point \( (x, t) \) in the \( X \times I \) subspace is mapped to \( (x, t) \in \Sigma X \).
     
     Then, a triangle
     \[

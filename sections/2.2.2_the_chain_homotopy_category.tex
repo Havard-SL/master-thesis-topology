@@ -45,7 +45,7 @@ On \( \C(\Ac) \), we can define a simple automorphism of categories called the s
     \label{def:chain_complex_shift}
     Let \( \Sigma \) be the following assignment of objects and morphisms in \( \C(\Ac) \).
 
-    Let \( A = \tuple{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_{A, n}: A_n \to A_{n + 1} \) denote the \( n \)-th differential of \( A \).
+    Let \( A = \tuple{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_{A, n}: A_n \to A_{n + 1} \) denote the \( n \)th differential of \( A \).
 
     Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \), with \( d_{\Sigma A, n} := -d_{A, n + 1} \).
 
@@ -68,22 +68,22 @@ Finally, we need to define what the cone of a morphism in \( \K(\Ac) \) is. This
     \begin{center}
         \mmznext{disable}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
-                \cdots \& B_{-1} \oplus A_0 \& B_0 \oplus A_1 \& B_1 \oplus A_2 \& \cdots \\
+            \diagram{m}{1cm}{1.7cm} {
+                \cdots \&[-1cm] A_0 \oplus B_{-1} \& A_1 \oplus B_0 \& A_2 \oplus B_1 \&[-1cm] \cdots \\
             };
 
             \draw[math]
                 (m-1-1) edge (m-1-2)
                 (m-1-2) edge node {
                     \begin{psmallmatrix}
-                        d_{-1}^B & f_0 \\
-                        0 & -d_0^A
+                        -d_{A, 0} & 0 \\
+                        f_0 & d_{B, -1}
                     \end{psmallmatrix}
                 } (m-1-3)
                 (m-1-3) edge node {
                     \begin{psmallmatrix}
-                        d_0^B & f_1 \\
-                        0 & -d_1^A
+                        -d_{A, 1} & 0 \\
+                        f_1 & d_{B, 0}
                     \end{psmallmatrix}
                 } (m-1-4)
                 (m-1-4) edge (m-1-5);
@@ -92,7 +92,72 @@ Finally, we need to define what the cone of a morphism in \( \K(\Ac) \) is. This
     called the \emph{cone of \( f \)} in \( \C(\Ac) \).
 \end{definition}
 
-We can think of the cone as having the underlying objects of \( B \oplus \Sigma A \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
+It is easy to verify that \( C_f \) is a chain complex, and we can also verify that if we didn't have the sign in front of \( d_{A, i + 1} \), or  \( d_{B, i} \), then it would not be a chain complex.
+
+We can think of the cone as having the underlying objects of \( \Sigma A \oplus B \), but with \( f \) ``gluing'' the two components together such that the chain complex can't be written as a direct sum.
+
+\begin{remark}
+    Let \( \Ac \) be an abelian category.
+
+    Then the cone fits into the following level-wise short exact sequence in \( \C(\Ac) \),
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                B \& C_f \& \Sigma A. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\iota} (m-1-2)
+                (m-1-2) edge node {\pi} (m-1-3);
+        \end{tikzpicture}
+    \end{center}
+    where
+    \[
+        \iota_i := \iota_{B, i}: B_i \to (\Sigma A)_i \oplus B_i,
+    \]
+    and
+    \[
+        \pi_i := \pi_{\Sigma A, i}: (\Sigma A)_i \oplus B_i \to (\Sigma A)_i.
+    \]
+
+    These are chain morphisms because
+    \[
+        d_i \circ \iota_i =
+        \begin{pmatrix}
+            -d_{A, i + 1} & 0 \\
+            f_{i + 1} & d_{B, i}
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 \\
+            1
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0 \\
+            d_{B, i}
+        \end{pmatrix}
+        =
+        \iota_{C_f, i + 1} \circ d_{B, i}
+    \]
+    and
+    \[
+        \pi_i \circ d_i =
+        \begin{pmatrix}
+            1 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+            -d_{A, i + 1} & 0 \\
+            f_{i + 1} & d_{B, i}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            -d_{A, i + 1} & 0
+        \end{pmatrix}
+        = d_{\Sigma A, i} \circ \pi_i.
+    \]
+\end{remark}
+
+The above remark is the reason why we have a sign in front of the differential in \( \Sigma A \) compared to \( A \). If we didn't have the sign, then \( \pi \) would not be a chain morphism.
 
 The distinguished triangles are the triangles which seem to satisfy just the first triangulated axiom, {\bf (TR1)}, but ends up satisfying every axiom.
 
@@ -100,9 +165,18 @@ The distinguished triangles are the triangles which seem to satisfy just the fir
     \label{def:chain_homotopy_dist}
     Let \( \Delta \) be the collection of triangles in \( \K(\Ac) \) consisting of triangles that are isomorphic to any triangle of the form
 
-    \[
-        A \stackrel{f}{\to} B \to C_f \to \Sigma A.
-    \]
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                A \& B \& C_f \& \Sigma A. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {f} (m-1-2)
+                (m-1-2) edge node {\iota} (m-1-3)
+                (m-1-3) edge node {\pi} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
 \end{definition}
 
 Combining, \( \K(\Ac), \Sigma, \) and \( \Delta \) we get our second example of a triangulated category.
@@ -114,6 +188,6 @@ Combining, \( \K(\Ac), \Sigma, \) and \( \Delta \) we get our second example of 
 \end{example}
 For a proof of \( \K(\Ac) \) being triangulated, see \cite[Proposition 3.5.25]{Zimmermann_2014}.
 
-By \cite[Lemma, Subsection 7.5]{Krause_2007}, \( \K(\Ac) \) is an ``algebraic triangulated category'', which we will define in \autoref{section:alg_tri_cats}.
+By \cite[Subsection 7.5]{Krause_2007}, \( \K(\Ac) \) is an ``algebraic triangulated category,'' which we will define in \autoref{section:alg_tri_cats}.
 
 Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. We can see from \autoref{def:chain_complex_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointing to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.

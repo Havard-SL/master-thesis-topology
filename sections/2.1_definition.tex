@@ -1,4 +1,4 @@
-A triangulated category is closely linked to some objects and morphisms making ``triangles'' and showing that there exist some class of triangles that satisfy certain properties. We start by defining what a triangle in an additive category is, as well as what a morphism between triangles is.
+A triangulated category is closely linked to some objects and morphisms making ``triangles'' and showing that there exists a class of triangles that satisfy certain properties. We start by defining what a triangle in an additive category is, as well as what a morphism between triangles is.
 
 \begin{definition}[Triangles]
     \label{def:triangles}
@@ -217,9 +217,9 @@ A tuple \( \tuple{\Tc, \Sigma, \Delta} \) satisfying {\bf (TR1)} -- {\bf (TR3)} 
 
 Although the definition is axiomatic and may seem arbitrary, there are surprisingly many categories that admit the structure of a triangulated category.
 
-There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what we call {\bf (TR4)}, he instead uses another axiom, closer to Verdier's original definition, which upon close inspection is equivalent (Assuming {\bf (TR1)}) to our {\bf (TR4)}.
+There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what we call {\bf (TR4)}, he instead uses another axiom, closer to Verdier's original definition, which upon close inspection is equivalent (assuming {\bf (TR1)}) to our {\bf (TR4)}.
 
-Some axioms of a triangulated category are superfluous in the fact that they are implied by the other axioms. An example is that the axiom {\bf (TR3)} can be skipped if we still assume {\bf (TR1), (TR2)} and {\bf (TR4)}, as was also shown by \cite[Lemma 2.2]{May_2001}.
+Some axioms of a triangulated category are superfluous in the sense that they are implied by the other axioms. An example is that the axiom {\bf (TR3)} can be skipped if we still assume {\bf (TR1), (TR2)} and {\bf (TR4)}, as was also shown by \cite[Lemma 2.2]{May_2001}.
 
 Another example of this is the following lemma, which is useful in proving that categories are triangulated. 
 \begin{lemma}
@@ -233,7 +233,7 @@ For a proof of this see \cite[Lemma 2.4]{May_2001}.
 There is also a special type of triangulation-preserving functor between triangulated categories.
 \begin{definition}[Triangulated functor]
     \label{def:tri_functor}
-    For \( F: \Tc \to \Yc \) an additive functor between two triangulated categories.
+    Let \( F: \Tc \to \Yc \) be an additive functor between two triangulated categories.
 
     If there is some natural transformation \( \eta: F \Sigma \to \Sigma F \) such that
     for a distinguished triangle in \( \Tc \),
@@ -267,11 +267,11 @@ There is also a special type of triangulation-preserving functor between triangu
     Furthermore, if \( F \) is an equivalence, it is called a \emph{triangulated equivalence}.
 \end{definition}
 
-In particular, as is mentioned in \cite[p.4 Lemma]{Happel_1988}, if \( F \) is a triangulated equivalence between two triangulated categories, then \( F^{-1} \) is also a triangulated functor.
+In particular, as is mentioned in \cite[p.\ 4]{Happel_1988}, if \( F \) is a triangulated equivalence between two triangulated categories, then \( F^{-1} \) is also a triangulated functor.
 
 There is also the notion of a triangulated subcategory.
 \begin{definition}[Triangulated subcategory]
-    For \( \Yc \) an additive subcategory of a triangulated category \( \Tc \), if the following three statements are true, then \( \tuple{\Yc, \Sigma, \Delta'} \) is called a \emph{triangulated subcategory of \( \tuple{\Tc, \Sigma, \Delta} \)}:
+    Let \( \Yc \) be an additive subcategory of a triangulated category \( \Tc \), if the following three statements are true, then \( \tuple{\Yc, \Sigma, \Delta'} \) is called a \emph{triangulated subcategory of \( \tuple{\Tc, \Sigma, \Delta} \)}:
     \begin{itemize}
         \item {
             \( \Yc \) is closed under \( \Sigma \), and \( \Sigma \) is an auto-equivalence on \( \Yc \),

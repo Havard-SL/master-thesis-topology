@@ -10,12 +10,12 @@ Before defining the stable module category, we prove a lemma that will be used t
     Then \( G \) is an \( R \)-submodule of \( \Mod(R)(A, B) \).
 \end{lemma}
 \begin{proof}
-    Let \( f \) and \( g \) be two morphisms that factor through the projective objects \( P \) and \( Q \), respectively. Then we have the following commutative diagrams
+    Let \( f \) and \( g \) be two morphisms that factor through the projective objects \( P \) and \( Q \), respectively. Then we have the following commutative diagrams,
     \[
         \begin{aligned}
             \begin{tikzpicture}
                 \diagram{m}{1cm}{1cm} {
-                    A \& P \& B \\
+                    A \& P \& B, \\
                 };
     
                 \draw[math]
@@ -24,7 +24,9 @@ Before defining the stable module category, we prove a lemma that will be used t
                     (m-1-2) edge node {f_2} (m-1-3);
             \end{tikzpicture}
         \end{aligned}
+        \hspace{0.5cm}
         \text{ and }
+        \hspace{0.5cm}
         \begin{aligned}
             \begin{tikzpicture}
                 \diagram{m}{1cm}{1cm} {
@@ -110,11 +112,9 @@ The following is the definition of the stable module category.
 
 Other authors typically use the notation \( \StMod(R) \) or \( \underline{\Mod}(R) \) for the stable module category. However, for the sake of brevity this is reduced to simply \( \Mc \) in this thesis.
 
-By the following remark, composition in \autoref{def:stable_module_category} is well-defined.
-\begin{remark}
-    \label{rem:stmod_composition_well-defined}
+\begin{lemma}
     Composition in \autoref{def:stable_module_category} is well-defined.
-\end{remark}
+\end{lemma}
 \begin{proof}
     We need to check that two different choices of representatives of \( [f] \) and \( [g] \) yield the same value.
 
@@ -142,12 +142,12 @@ In order to admit a triangulation, we need to prove that the stable module categ
     To show that \( \Mc \) is pre-additive there are two properties that need to be shown
     \begin{enumerate}
         \item {
-            First, we show that for any \( A, B \in \Mc \) that \( \Mc(A, B) \) is an abelian group.
+            We show that for any \( A, B \in \Mc \) that \( \Mc(A, B) \) is an abelian group.
 
             This follows immediately from the definition, since \( \Mc(A, B) \) is a quotient module, and is therefore an \( R \)-module and, hence, an abelian group.
         }
         \item {
-            Second, we show that composition is bilinear.
+            We show that composition is bilinear.
 
             Consider \( [g], [g'] \in \Mc(B, C) \) and \( [f], [f'] \in \Mc(A, B) \). Consider the following equation
             \begin{align*}
@@ -214,11 +214,11 @@ In order to admit a triangulation, we need to prove that the stable module categ
     which implies that \( [f] = [g] \), and that \( A \oplus B \) is a product in \( \Mc \), and by the statement at the start, also a biproduct.
 \end{proof}
 
-The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is the inverse to the ``syzygy functor''. We start by defining what the syzygy functor is, and afterwards define the shift functor.
+The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is the inverse to the ``syzygy functor.'' We start by defining what the syzygy functor is, and afterwards define the shift functor.
 
 The syzygy functor as well as the shift functor exists in the category of modules over a commutative ring with identity (e.g., a Frobenius ring) because it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \), as well as an epimorphism \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and consequently \( \pi_A \) is not necessarily unique up to isomorphism, and two different choices of \( P_A \) could be non-isomorphic. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Equal to the projective case, \( I_A \) is not necessarily unique up to isomorphism and \( \iota_A \) is not necessarily unique.
 
-The definition of the syzygy functor is closely tied to a choice of \( P_A \)'s and \( \pi_A \)'s for every object \( A \).
+The definition of the syzygy functor is closely tied to a choice of \( P_A \) and \( \pi_A \) for every object \( A \).
 
 \begin{definition}[The syzygy functor \( \Omega \)]
     \label{def:stmod_omega}
@@ -615,7 +615,7 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
     \[
         (i_{\phi_2} \circ i_{\phi_1} - \Id_{P_A}) \circ \iota_A = \iota_A \circ 0 = 0,
     \]
-    we have from the cokernel property that there exist a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. Thus,
+    we have from the cokernel property that there exists a morphism \( \theta: A \to P_A \) such that the upper triangle commutes. Thus,
     \[
         (\phi_2 \circ \phi_1 - \Id_A) \circ \pi_A = \pi_A \circ (i_{\theta_2} \circ i_{\theta_1} - \Id_{P_A}) = \pi_A \circ \theta \circ \pi_A,
     \]
@@ -707,7 +707,7 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
 
 An interesting consequence of how \( \Omega \) and \( \Sigma \) are defined is that if we were to choose a different \( P \) or \( I \) in their definitions, then it would yield different, but naturally isomorphic functors. A proof of this statement for \( \Sigma \) can be found in \cite[p.\ 13]{Happel_1988}, with the proof for \( \Omega \) being dual.
 
-Before we can show the triangulation of \( \Mc \), we first need to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Chapter 1, Subsection 2.5]{Happel_1988}.
+Before we can show the triangulation of \( \Mc \), we first need to define the cone of a morphism. The definition of a cone, as well as the definition of the distinguished triangles leans heavily upon \cite[Section 1.2.5]{Happel_1988}.
 
 \begin{definition}
     \label{def:stmod_cone}
@@ -726,7 +726,7 @@ Before we can show the triangulation of \( \Mc \), we first need to define the c
                     edge node[swap] {\kappa_A} (m-2-1);
         \end{tikzpicture}
     \end{center}
-    and is labelled as \( C_f \).
+    and denote it by \( C_f \).
 
     This pushout also defines two morphisms \( g \) and \( \gamma_f \) which fit into the following pushout square,
     \begin{center}
@@ -772,7 +772,7 @@ Following the definition of a cone, we can define the standard triangles of \( \
                 (m-2-2) edge[dashed] node {h} (m-3-2);
         \end{tikzpicture}
     \end{center}
-    Then there exist some morphism \( h: C_f \to \Sigma A \) from the pushout property of \( C_f \).
+    Then there exists some morphism \( h: C_f \to \Sigma A \) from the pushout property of \( C_f \).
 
     This diagram will form the backbone of the distinguished triangles in \( \Mc \).
 \end{remark}
@@ -803,7 +803,7 @@ There are some important details from the definition of standard triangles that 
     \label{rem:stmod_cone_pushout_properties}
     Consider the objects and morphisms in the above remark.
 
-    Since \( \Mod(R) \) is an abelian category, then by known facts about pushouts, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism since \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise, it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
+    Since \( \Mod(R) \) is an abelian category, then by known facts about pushouts, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism as \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise, it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
 \end{remark}
 
 Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, there are multiple cones for each morphism. Each cone yields a different standard triangle, and there are therefore multiple standard triangles for each morphism. This turns out to not be a problem since it does not conflict with the definition of a triangulated category. In particular, the use of the word ``standard triangle'' and ``cone'' above, still aligns with the definitions given in the definition of a triangulated category.
@@ -828,7 +828,9 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                     (m-2-1) edge node {\gamma} (m-2-2);
             \end{tikzpicture}
         \end{aligned}
+        \hspace{0.5cm}
         \text{ and }
+        \hspace{0.5cm}
         \begin{aligned}
             \begin{tikzpicture}
                 \diagram{m}{1cm}{1cm} {
@@ -856,13 +858,13 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     \end{itemize}
 \end{lemma}
 \begin{proof}
-    Since both \( I \) and \( I' \) are injective objects and \( \kappa \) and \( \kappa' \) are monomorphisms, there exists maps \( i \) and \( i' \) such that the following two diagrams commute
+    Since both \( I \) and \( I' \) are injective objects and \( \kappa \) and \( \kappa' \) are monomorphisms, there exists morphisms \( i \) and \( i' \) such that the following two diagrams,
     \[
         \begin{aligned}
             \begin{tikzpicture}
                 \diagram{m}{1cm}{0.5cm} {
                     \& A \\
-                    I \& \& I' \\
+                    I \& \& I', \\
                 };
 
                 \draw[math]
@@ -872,12 +874,14 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                     (m-2-1) edge node {i} (m-2-3);
             \end{tikzpicture}
         \end{aligned}
+        \hspace{0.5cm}
         \text{ and }
+        \hspace{0.5cm}
         \begin{aligned}
             \begin{tikzpicture}
                 \diagram{m}{1cm}{0.5cm} {
                     \& A \\
-                    I \& \& I'. \\
+                    I \& \& I', \\
                 };
 
                 \draw[math]
@@ -888,6 +892,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
             \end{tikzpicture}
         \end{aligned}
     \]
+    commute.
+
     Using those morphisms, we can create the following commutative diagram, where \( \alpha \) and \( \beta \) are the induced morphisms from the pushout property of \( C \) and \( C' \) respectively, 
     \begin{center}
         \begin{tikzpicture}
@@ -941,12 +947,12 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 } (m-1-3);
         \end{tikzpicture}
     \end{center}
-    Consider the following commutative diagram, excluding the dashed arrow
+    Consider the following commutative diagram, excluding the dashed arrow,
     \begin{diagramlabel}[\label{diag:C-iso}]
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 A \& B \oplus I \& C \\
-                \& I \& C, \\
+                \& I \& C. \\
             };
 
             \draw[math]
@@ -972,7 +978,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 (m-2-2) edge node {\gamma} (m-2-3);
         \end{tikzpicture}
     \end{diagramlabel}
-    since
+
+    Since
     \[
         \begin{pmatrix}
             0 & i' \circ i - \Id_I
@@ -982,9 +989,9 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
             f \\
             \kappa
         \end{pmatrix}
-        = 0
+        = 0,
     \]
-    then by the cokernel property of \( C \) there exist a morphism \( \delta \) such that the top triangle in \autoref{diag:C-iso} commutes. However, since \( 
+    then by the cokernel property of \( C \) there exists a morphism \( \delta \) such that the top triangle in \autoref{diag:C-iso} commutes. However, since \( 
         \begin{psmallmatrix}
             g & \gamma
         \end{psmallmatrix}
@@ -993,7 +1000,7 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     We can prove that \( [\alpha \circ \beta] = [\Id_{C'}] \) in a similar way.
 \end{proof}
 
-We can now prove that \( \tuple{\Mc, \Sigma, \Delta} \) is triangulated, where our proof is inspired by \cite[Theorem, p.\ 16]{Happel_1988} and \cite[Theorem 4.18]{Johan_Bachelor}.
+We can now prove that \( \tuple{\Mc, \Sigma, \Delta} \) is triangulated, where our proof is inspired by \cite[p.\ 16]{Happel_1988} and \cite[Theorem 4.18]{Johan_Bachelor}.
 
 The details of the proof will not be important for the rest of the thesis, but is included mainly because we will be using \( \Mc \) for examples later on.
 
@@ -1009,11 +1016,11 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \item {
                     Let \( [f] \in \Mc(A, B) \).
                     
-                    Then by the definition of the distinguished triangles in \( \Mc \), the following triangle is distinguished.
+                    Then by the definition of the distinguished triangles in \( \Mc \), the following triangle,
                     \begin{center}
                         \begin{tikzpicture}
                             \diagram{m}{1cm}{1cm} {
-                                A \& B \& C_f \& \Sigma A. \\
+                                A \& B \& C_f \& \Sigma A, \\
                             };
 
                             \draw[math]
@@ -1022,6 +1029,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                                 (m-1-3) edge node {[h]} (m-1-4);
                         \end{tikzpicture}
                     \end{center}
+                    is distinguished.
                 }
                 \item {
                     Let \( A \in \Mc \).
@@ -1092,7 +1100,9 @@ The details of the proof will not be important for the rest of the thesis, but i
                             (m-2-2) edge[two headed] node {\rho_B} (m-2-3);
                     \end{tikzpicture}
                 \end{aligned}
-                \quad \text{and} \quad
+                \hspace{0.5cm}
+                \text{and}
+                \hspace{0.5cm}
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
@@ -1133,7 +1143,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-3) edge node{\rho_B} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            where there exist some \( \phi \), given by the pushout universal property.
+            where there exists some \( \phi \), given by the pushout universal property.
 
             By the commutativity of the above diagrams, we have
             \[
@@ -1469,7 +1479,9 @@ The details of the proof will not be important for the rest of the thesis, but i
                             (m-2-2) edge node {h} (m-3-2);
                     \end{tikzpicture}
                 \end{aligned}
+                \hspace{0.5cm}
                 \text{ and }
+                \hspace{0.5cm}
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
@@ -1594,8 +1606,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \begin{tikzpicture}
                     \diagram{m}{0.7cm}{1cm} {
                         A \& B \& C_f \& \Sigma A, \\
-                        B \& D \& C_n \& \Sigma B, \& \text{and} \\
-                        A \& D \& C_{n \circ f} \& \Sigma A, \\
+                        B \& D \& C_n \& \Sigma B, \\
                     };
 
                     \draw[math]
@@ -1605,11 +1616,20 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                         (m-2-1) edge node {[n]} (m-2-2)
                         (m-2-2) edge node {[m]} (m-2-3)
-                        (m-2-3) edge node {[k]} (m-2-4)
-
-                        (m-3-1) edge node {[n \circ f]} (m-3-2)
-                        (m-3-2) edge node {[j]} (m-3-3)
-                        (m-3-3) edge node {[l]} (m-3-4);
+                        (m-2-3) edge node {[k]} (m-2-4);
+                \end{tikzpicture}
+            \end{center}
+            and
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{0.7cm}{1cm} {
+                        A \& D \& C_{n \circ f} \& \Sigma A, \\
+                    };
+                    
+                    \draw[math]
+                        (m-1-1) edge node {[n \circ f]} (m-1-2)
+                        (m-1-2) edge node {[j]} (m-1-3)
+                        (m-1-3) edge node {[l]} (m-1-4);
                 \end{tikzpicture}
             \end{center}
             which fit into the following commutative diagram excluding the dashed arrows,
@@ -1646,7 +1666,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-4-2) edge node {\Sigma [g]} (m-4-3);
                 \end{tikzpicture}
             \end{center}
-            We need to show that there exists morphisms \( [\phi] \) and \( [\psi] \) that fit into the above commutative diagram, such that
+            We need to show that there exist morphisms \( [\phi] \) and \( [\psi] \) that fit into the above commutative diagram, such that
             \begin{diagramlabel}[\label{tri:stmod_tr4}]
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1701,9 +1721,9 @@ The details of the proof will not be important for the rest of the thesis, but i
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
-                        A \& B \&[-0.5cm] B \& D \&[-0.5cm] A \& D \\
-                        I_A \& C_f \& I_B \& C_n \& I_A \& C_{n \circ f} \\
-                        \& \Sigma A, \& \& \Sigma B, \& \& \Sigma A, \\
+                        A \& B \& B \& D \& \& A \& D \\
+                        I_A \& C_f \& I_B \& C_n \& \text{and} \& I_A \& C_{n \circ f} \\
+                        \& \Sigma A, \& \& \Sigma B, \& \& \& \Sigma A, \\
                     };
 
                     \draw[math]
@@ -1713,9 +1733,9 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-1-3) edge node {n} (m-1-4)
                             edge node {\kappa_B} (m-2-3)
                         (m-1-4) edge node {m} (m-2-4)
-                        (m-1-5) edge node {n \circ f} (m-1-6)
-                            edge node {\kappa_A} (m-2-5)
-                        (m-1-6) edge node {j} (m-2-6)
+                        (m-1-6) edge node {n \circ f} (m-1-7)
+                            edge node {\kappa_A} (m-2-6)
+                        (m-1-7) edge node {j} (m-2-7)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge node {\rho_A} (m-3-2)
@@ -1723,9 +1743,9 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-3) edge node {\gamma_n} (m-2-4)
                             edge node {\rho_B} (m-3-4)
                         (m-2-4) edge node {k} (m-3-4)
-                        (m-2-5) edge node {\gamma_{n \circ f}} (m-2-6)
-                            edge node {\rho_A} (m-3-6)
-                        (m-2-6) edge node {l} (m-3-6);
+                        (m-2-6) edge node {\gamma_{n \circ f}} (m-2-7)
+                            edge node {\rho_A} (m-3-7)
+                        (m-2-7) edge node {l} (m-3-7);
                 \end{tikzpicture}
             \end{center}
             as well as the following short exact sequence from the definition of \( \Sigma C_f \),
@@ -1801,7 +1821,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             \[
                 \kappa_{C_f} \circ g: B \to I_{C_f}
             \]
-            is also a monomorphism. Then by the injective object property of \( I_B \), there exist some morphism \( i: I_{C_f} \to I_B \) which makes the following diagram commute,
+            is also a monomorphism. Then by the injective object property of \( I_B \), there exists some morphism \( i: I_{C_f} \to I_B \) which makes the following diagram commute,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{0.5cm} {
@@ -1897,7 +1917,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             \[
                 \rho_B \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A = \rho_B \circ \kappa_B = 0,
             \]
-            it follows by the cokernel property of \( \Sigma A \) that there exist some morphism, \( \Sigma f \), which is denoted as such because it fits \autoref{def:stmod_sigma}.
+            it follows by the cokernel property of \( \Sigma A \) that there exists some morphism, \( \Sigma f \), which is denoted as such because it fits with \autoref{def:stmod_sigma}.
 
             Then consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
@@ -1976,7 +1996,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         B \& D \\
-                        I_{C_f} \& C, \\
+                        I_{C_f} \& C. \\
                     };
 
                     \draw[math]
@@ -2008,7 +2028,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge[dashed] node {x} (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            By the pushout property, there exist a morphism \( x: C_{n \circ f} \to C \) such that the above diagram including \( x \) commutes.
+            By the pushout property, there exists a morphism \( x: C_{n \circ f} \to C \) such that the above diagram including \( x \) commutes.
             
             Consider the following commutative diagram,
             \begin{diagramlabel}[\label{diag:stmod_tr4_show_psi_phi_equal_something_else}]
@@ -2070,13 +2090,12 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{center}
             
             Consider the two pushout diagrams:
-
             \[
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
                             B \& D \\
-                            I_B \& C_n. \\
+                            I_B \& C_n, \\
                         };
     
                         \draw[math]
@@ -2087,12 +2106,14 @@ The details of the proof will not be important for the rest of the thesis, but i
                             (m-2-1) edge node {\gamma_n} (m-2-2);
                     \end{tikzpicture}
                 \end{aligned}
+                \hspace{0.5cm}
                 \text{ and }
+                \hspace{0.5cm}
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
                             B \& D \\
-                            I_{C_f} \& C, \\
+                            I_{C_f} \& C. \\
                         };
     
                         \draw[math]
@@ -2258,7 +2279,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge node {\rho_B} (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            By the cokernel property of \( E \) there exist some morphism such that the top right triangle including the dashed arrow commutes. Furthermore, since \( \rho_B \) is an epimorphism, the bottom right triangle commutes, which implies \( [e^{-1} \circ e] = [\Id_E] \), since \( I_{C_f} \) is a projective module.
+            By the cokernel property of \( E \) there exists some morphism such that the top right triangle including the dashed arrow commutes. Furthermore, since \( \rho_B \) is an epimorphism, the bottom right triangle commutes, which implies \( [e^{-1} \circ e] = [\Id_E] \), since \( I_{C_f} \) is a projective module.
 
             The above morphisms fit into the following commutative diagram, where \( d \) is the cokernel morphism of \( \delta \),
             \begin{center}
@@ -2395,4 +2416,4 @@ Thus, we have proven that the stable (infinitely generated) module category is t
     This subsection has only mentioned (infinitely generated) modules. However, the same definitions, functors, and proofs work for the finitely generated modules, \( \mod(R) \). This is because a Frobenius ring is Noetherian, and \( \mod(R) \) is therefore an abelian category. In addition, \( \mod(R) \) also has enough projectives and injectives, and therefore no proof or definition uses any properties of \( \Mod(R) \), that \( \mod(R) \) does not have. This yields a triangulated category, \( \Stmod(R) \) which is the stable module category over \( \mod(R) \).
 \end{remark}
 
-By \cite[Lemma, Subsection 7.5]{Krause_2007} it follows that \( \StMod(R) \) and \( \Stmod(R) \) are in fact what we call an ``algebraic triangulated category''. The definition of an algebraic triangulated category is given in \autoref{section:alg_tri_cats}.
+By \cite[Lemma, Subsection 7.5]{Krause_2007} it follows that \( \StMod(R) \) and \( \Stmod(R) \) are in fact what we call an ``algebraic triangulated category.'' The definition of an algebraic triangulated category is given in \autoref{section:alg_tri_cats}.
