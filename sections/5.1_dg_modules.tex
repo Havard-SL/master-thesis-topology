@@ -39,7 +39,7 @@ In broad terms, a DG-module is a functor from some DG category into a specific D
             is the chain morphism where in degree \( 0 \) it is
             \begin{align*}
                 u_{A, 0} : R &\to [A, A]_0 \\
-                r &\mapsto \tuple{r\Id_{A_i}}_{i \in \Zb}
+                r &\mapsto \tuple*{r\Id_{A_i}}_{i \in \Zb}
             \end{align*}
             and \( 0 \) in every other degree.
         }
@@ -139,19 +139,19 @@ An interesting consequence of how \( \C_{\dg} \) is defined is that the differen
     \label{rem:c_dg_differential}
     For any \( A \in \C_{\dg} \), consider the degree \( 1 \) DG-morphism
     \[
-        d_A := \tuple{ d_{A, j} }_{j \in \Zb} \in \C_{\dg}(A, A)_1.
+        d_A := \tuple*{ d_{A, j} }_{j \in \Zb} \in \C_{\dg}(A, A)_1.
     \]
     Then the differential of \( f \in \C_{\dg}(A, B)_i \) could be written more simply as
     \[
         d_{\C_{\dg}(A, B), i}: f \mapsto d_B \circ f - (-1)^i f \circ d_A.
     \]
-    This is because if \( f = \tuple{f_j}_{j \in \Zb} \), then
+    This is because if \( f = \tuple*{f_j}_{j \in \Zb} \), then
     \[
-        d_B \circ f = \tuple{d_{B, j} }_j \circ \tuple{ f_j }_j = \tuple{ d_{B, j + i} \circ f_j }_j
+        d_B \circ f = \tuple*{d_{B, j} }_j \circ \tuple*{ f_j }_j = \tuple*{ d_{B, j + i} \circ f_j }_j
     \]
     and likewise
     \[
-        f \circ d_A = \tuple{f_{j + 1} \circ d_{A, j}}_j
+        f \circ d_A = \tuple*{f_{j + 1} \circ d_{A, j}}_j
     \]
     which yields exactly the differential stated in \autoref{def:c_dg_mod_r}.
 \end{remark}
@@ -229,7 +229,7 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
     
     Let
     \[
-        \eta = \tuple{ \eta_A }_{A \in \Cc} \in \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \tuple*{ \C_{\dg}(F(A), G(A)) }_i,
+        \eta = \tuple*{ \eta_A }_{A \in \Cc} \in \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \tuple*{ \C_{\dg}(F(A), G(A)) }_i,
     \]
     and let
     \[
@@ -300,7 +300,7 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \\
-                \tuple{ \psi_{A', A'', k} \tuple{ \eta \otimes ? } }_{k \in \Zb}. \\
+                \tuple*{ \psi_{A', A'', k} \tuple*{ \eta \otimes ? } }_{k \in \Zb}. \\
             };
 
             \draw[math]
@@ -328,7 +328,7 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \\
-                \tuple{ \tuple{ \psi_{A', A'', k} \tuple{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc}. \\
+                \tuple*{ \tuple*{ \psi_{A', A'', k} \tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc}. \\
             };
 
             \draw[math]
@@ -407,7 +407,7 @@ Now that we have figured out what the DG-natural transformations look like, we c
     The differential, denoted \( d \), of \( \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) \) is in degree \( j \),
     \begin{align*}
         d_j: \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_j &\to \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_{j + 1} \\
-        \eta &\mapsto \tuple{ d_{\C_{\dg}}\tuple{ \eta_A } }_{A \in \Cc} \\
+        \eta &\mapsto \tuple*{ d_{\C_{\dg}}\tuple*{ \eta_A } }_{A \in \Cc} \\
         &= \tuple*{ d_{G(A)} \circ \eta_A - (-1)^j \eta_A \circ d_{F(A)} }_{A \in \Cc}.
     \end{align*}
 
@@ -417,11 +417,11 @@ Now that we have figured out what the DG-natural transformations look like, we c
     \]
     which is equivalent to
     \[
-        \tuple{ \tuple{ \psi_{A', A'', k}\tuple{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc} = \tuple{ \tuple{ \widetilde{\psi}_{A', A'', k}\tuple{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc}.
+        \tuple*{ \tuple*{ \psi_{A', A'', k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc} = \tuple*{ \tuple*{ \widetilde{\psi}_{A', A'', k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc}.
     \]
     The above equality is equivalent to the statement: For any \( A', A'' \in \Cc \), \( k \in \Zb \) and \( f \in \Cc^{\op}(A', A'')_{k - i} \), the following equality holds
     \[
-        \psi_{A', A'', k}\tuple{ \eta \otimes f } = \widetilde{\psi}_{A', A'', k} \tuple{ \eta \otimes f },
+        \psi_{A', A'', k}\tuple*{ \eta \otimes f } = \widetilde{\psi}_{A', A'', k} \tuple*{ \eta \otimes f },
     \]
     which is exactly the following equation
     \[
@@ -438,17 +438,17 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
 \begin{remark}
     For any \( i, j \in \Zb \), let
     \[
-        \eta = \tuple{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i
+        \eta = \tuple*{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i
     \]
     and
     \[
-        \mu = \tuple{\mu_A}_{A \in \Cc} \in \dgM(G, H)_j.
+        \mu = \tuple*{\mu_A}_{A \in \Cc} \in \dgM(G, H)_j.
     \]
 
     Then define composition uniquely as follows,
     \begin{align*}
         c: \dgM(G, H) \otimes \dgM(F, G) &\to \dgM(F, H) \\
-        \mu \otimes \eta &\mapsto \tuple{\mu_A \circ \eta_A}_{A \in \Cc}.
+        \mu \otimes \eta &\mapsto \tuple*{\mu_A \circ \eta_A}_{A \in \Cc}.
     \end{align*}
 
     Likewise, define the unit morphism as follows:
@@ -464,19 +464,19 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
 
     Second, we check if \( c \) is a chain morphism. Let \( n \in \Zb \), \( i, j \in \Zb \), with \( i + j = n \),
     \[
-        \eta = \tuple{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i,
+        \eta = \tuple*{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i,
     \]
     and
     \[
-        \mu = \tuple{\mu_A}_{A \in \Cc} \in \dgM(G, H)_j.
+        \mu = \tuple*{\mu_A}_{A \in \Cc} \in \dgM(G, H)_j.
     \]
     % TODO: Kan ein forenkla med å bruka at komposisjon i C_dg er kjedemorfi? Får ein rar konsekvens, sjå Fun_dg s. 3 i RM. Stemmer beviset?
     Consider the following equation,
     \begin{align*}
         &d_n \circ c_n (\mu \otimes \eta) \\
-        &= d_n \tuple{\mu_A \circ \eta_A}_{A \in \Cc} \\
-        &= \tuple{d_{H A} \circ \mu_A \circ \eta_A - (-1)^{i + j} \mu_A \circ \eta_A \circ d_{F A}}_{A \in \Cc} \\
-        &= \tuple{d_{H A} \circ \mu_A \circ \eta_A - (-1)^i \mu_A \circ d_{G A} \circ \eta_A + (-1)^i \mu_A \circ d_{G A} \circ \eta_A - (-1)^{i + j} \mu_A \circ \eta_A \circ d_{F A}}_{A \in \Cc} \\
+        &= d_n \tuple*{\mu_A \circ \eta_A}_{A \in \Cc} \\
+        &= \tuple*{d_{H A} \circ \mu_A \circ \eta_A - (-1)^{i + j} \mu_A \circ \eta_A \circ d_{F A}}_{A \in \Cc} \\
+        &= \tuple*{d_{H A} \circ \mu_A \circ \eta_A - (-1)^i \mu_A \circ d_{G A} \circ \eta_A + (-1)^i \mu_A \circ d_{G A} \circ \eta_A - (-1)^{i + j} \mu_A \circ \eta_A \circ d_{F A}}_{A \in \Cc} \\
         &= c_{n + 1} \tuple*{ (d_{H A} \circ \mu_A - (-1)^i \mu_A \circ d_{G A})_{A \in \Cc} \otimes \eta + (-1)^i \mu \otimes (d_{G A} \circ \eta_A - (-1)^j \eta_A \circ d_{F A})_{A \in \Cc} } \\
         &= c_{n + 1} \tuple*{ d(\mu) \otimes \eta + (-1)^i \mu \otimes d(\eta) } \\
         &= c_{n + 1} \circ d_n (\mu \otimes \eta).
@@ -497,7 +497,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
 
     Fourth, we need to verify that the codomain of \( u_F \) is \( \dgM(F, F) \). This is equivalent to checking if for any \( r \in R \), we have that
     \[
-        \tuple{ \tuple{ r \Id_{A_i} }_{i \in \Zb} }_{A \in \Cc} \in \dgM(F, F)_0,
+        \tuple*{ \tuple*{ r \Id_{A_i} }_{i \in \Zb} }_{A \in \Cc} \in \dgM(F, F)_0,
     \]
     and for \( n \neq 0 \),
     \[
@@ -531,10 +531,10 @@ Similar to how we could simplify the notation for the differential of \( \C_{\dg
 
     Then for any \( F \in \dgM \) consider the degree \( 1 \) DG-morphism
     \[
-        d_F := \tuple{d_{FA}}_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}(FA, FA)_1.
+        d_F := \tuple*{d_{FA}}_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}(FA, FA)_1.
     \]
 
-    It follows that for any \( \eta = \tuple{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i \) we have
+    It follows that for any \( \eta = \tuple*{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i \) we have
     \[
         d_{\dgM(F, G)}(\eta) = d_G \circ \eta - (-1)^i \eta \circ d_F
     \]
@@ -542,7 +542,7 @@ Similar to how we could simplify the notation for the differential of \( \C_{\dg
     \begin{align*}
         d(\eta) &= \tuple*{ d_{G(A)} \circ \eta_A - (-1)^i \eta_A \circ d_{F(A)} }_{A \in \Cc} \\
         &= \tuple*{ d_{G(A)} \circ \eta_A }_{A \in \Cc} - (-1)^i \tuple*{ \eta_A \circ d_{F(A)} }_{A \in \Cc} \\
-        &= \tuple{d_{G A}}_{A \in \Cc} \circ \tuple{\eta_A}_{A \in \Cc} - (-1)^i \tuple{\eta_A}_{A \in \Cc} \circ \tuple{d_{F A}}_{A \in \Cc} \\
+        &= \tuple*{d_{G A}}_{A \in \Cc} \circ \tuple*{\eta_A}_{A \in \Cc} - (-1)^i \tuple*{\eta_A}_{A \in \Cc} \circ \tuple*{d_{F A}}_{A \in \Cc} \\
         &= d_G \circ \eta - (-1)^i \eta \circ d_F.
     \end{align*}
 \end{remark}

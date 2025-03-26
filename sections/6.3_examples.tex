@@ -1,31 +1,217 @@
-{\color{red}
-IKKJE RETT DETTE, IKKJE FERDIG
+In this section, let \( R := \Fb_2 C_2 \), and let \( \Mc := \Stmod(R) \).
 
-Let \( \Ac \) be the full DG-subcategory of \( \C_{\dg} \), where the objects are exact chain complexes consisting only of injective/projective modules.
+We want to calculate the same examples as in \autoref{subsec:toda_brackets_examples}, but with Massey products instead.
 
-Then \( \Mc \) is equivalent to \( H^0(\Ac) \) through the functor \( \Phi \), which is the following functor:
+First, we have to define the pre-triangulated category, which will turn out to be the DG-enhancement of \( \Mc \).
 
-For any \( A \in \Mc \), consider the projective and injective resolutions:
-\[
-    \cdots \to 0 \to A \to I_1 \to I_2 \to \cdots
-\]
-\[
-    \cdots \to P_2 \to P_1 \to A \to 0 \to \cdots
-\]
+\begin{definition}
+    Define \( \Ac \) as the full DG-subcategory of \( \C_{\dg} \) where the objects are exact chain complexes consisting only of the modules \( R^i \) for \( i \in \Nb \).
+\end{definition}
 
-Gluing them together yields the following exact chain complex, where \( I_1 \) is in degree \( 0 \).
-\[
-    E: \cdots \to P_2 \to P_1 \to I_1 \to I_2 \to \cdots
-\]
+This category can be shown to be small.
 
-Then define \( \Phi(A) := E \).
+The following remark yields a functor which will be the triangulated equivalence from \( \Mc \) to \( H^0(\Ac) \).
+
+\begin{remark}
+    For every \( A \in Mc \), chose a projective and an injective resolution of \( A \):
+    \[
+        \cdots \to 0 \to A \to I_1 \to I_2 \to \cdots
+    \]
+    and
+    \[
+        \cdots \to P_2 \to P_1 \to A \to 0 \to \cdots
+    \]
+
+    Gluing them together yields the following exact chain complex, which we denote as \( E \), where \( I_1 \) is in degree \( 0 \) as follows,
+    \[
+        E_A: \cdots \to P_2 \to P_1 \to I_1 \to I_2 \to \cdots
+    \]
+
+    But note that for \( \mod(\Fb_2 C_2) \), we have that the only irreducible projective module is \( R \), which implies every injective/projective module is isomorphic to an object of the form \( R^i \) for some \( i \in \Nb \).
+
+    Let \( \Phi(A) \) be the induced, exact chain complex from applying the isomorphisms mentioned above in each degree. Therefore, \( \Phi(A) \in \Ac \), and also \( \Phi(A) \in H^0(\Ac) \).
+
+    Furthermore, for \( [f] \in \Mc(A, B) \), let \( \tilde{f}: E_A \to E_B \) be as expected. Then by using the isomorphisms mentioned above, this induces a chain morphism \( \hat{f}: \Phi(A) \to \Phi(B) \), which we can take the residue class of with respect to null homotopic chain morphisms, which we will denote \( \Phi[f] \).
+
+    By \autoref{rem:c_dg_h_0_is_chain_homotopy_cat}, \( \Phi[f] \in H^0(\C_{\dg}) \), and since \( \Ac \) is a full DG-subcategory, \( \Phi[f] \in H^0(\Ac) \).
+
+    By \cite[Section 7.5]{Krause_2007}, \( \Phi \) is a well-defined, triangulated equivalence from \( \Mc \) to \( H^0(\Ac) \).
+\end{remark}
+
+Remember the details mentioned in \autoref{rem:toda_bracket_examples_properties}.
+
+This first example mirrors \autoref{ex:toda_bracket_1}, and if everything we have done is correct, then this should equal the result we got previously.
+
+\begin{example}
+    Let \( \dgM \) denote \( \dgFun_{\dg}(\Ac) \), and let the following be a diagram in \( \Mc \)
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm}{
+					J \& J \& J \& J. \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {[\Id_J]} (m-1-2)
+				(m-1-2) edge node {[0]} (m-1-3)
+				(m-1-3) edge node {[\Id_J]} (m-1-4);
+		\end{tikzpicture}
+	\end{center}
+	
+	The goal is to calculate the Massey product \( \toda{[\Id_J], [0], [\Id_J]} \).
+
+    A projective resolution for \( J \) is
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& R \& R \& R \& J \& 0 \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {\kappa_J \circ \rho_J} (m-1-3)
+                (m-1-3) edge node {\kappa_J \circ \rho_J} (m-1-4)
+                (m-1-4) edge node {\rho_J} (m-1-5)
+                (m-1-5) edge (m-1-6)
+                (m-1-6) edge (m-1-7);
+        \end{tikzpicture}
+    \end{center}
+    and an injective resolution for \( J \) is
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& 0 \& J \& R \& R \& R \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge (m-1-3)
+                (m-1-3) edge node {\kappa_J} (m-1-4)
+                (m-1-4) edge node {\kappa_J \circ \rho_J} (m-1-5)
+                (m-1-5) edge node {\kappa_J \circ \rho_J} (m-1-6)
+                (m-1-6) edge (m-1-7);
+        \end{tikzpicture}
+    \end{center}
+
+    Gluing them together yields
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                \cdots \& R \& R \& R \& R \& R \& \cdots \\
+            };
+
+            \draw[math]
+                (m-1-1) edge (m-1-2)
+                (m-1-2) edge node {\kappa_J \circ \rho_J} (m-1-3)
+                (m-1-3) edge node {\kappa_J \circ \rho_J} (m-1-4)
+                (m-1-4) edge node {\kappa_J \circ \rho_J} (m-1-5)
+                (m-1-5) edge node {\kappa_J \circ \rho_J} (m-1-6)
+                (m-1-6) edge (m-1-7);
+        \end{tikzpicture}
+    \end{center}
+    which is our \( \Phi(J) \).
+
+    By functoriality, we have \( \Phi [\Id] = [\Id] \), and \( \Phi [0] = [0] \).
+
+    Since \( \mathbf{h}: \Ac \to \dgM \) is a fully faithful DG-functor and it sends a morphisms to post-composition by that morphisms, we can in practice continue to calculate in \( H^{\bullet}(\Ac) \), until we need to reduce the degree using \autoref{cor:H^i_dgmod_cong_H^0_with_shift}, since then we need to consider the Massey product as a subset of
+    \[
+        H^{-1}(\dgM(\Ac(?, \Phi J), \Ac(?, \Phi J))).
+    \]
+
+    We get the following diagram in \( H^{\bullet}(\Ac) \)
+    \begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm}{
+					\Phi J \& \Phi J \& \Phi J \& \Phi J. \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {[\Id]} (m-1-2)
+				(m-1-2) edge node {[0]} (m-1-3)
+				(m-1-3) edge node {[\Id]} (m-1-4);
+		\end{tikzpicture}
+	\end{center}
+
+    By the definition of the Massey products in \( H^\bullet(\Ac) \),
+    \begin{multline*}
+        \massey{[\Id], [0], [\Id]} :=
+        \{
+            \class*{
+                s \circ g_1 - g_3 \circ t
+            }
+            \mid [g_1] = [\Id], [g_2] = [0], [g_3] = [\Id] \\
+            d(s) = - g_3 \circ g_2, \,
+            d(t) = - g_2 \circ g_1
+        \}.
+    \end{multline*}
+
+    Fix \( g_1 = \Id \), and \( g_3 = \Id \). Then we get the following subset
+    \[
+        \set*{ \class*{ s - t } \mid [g_2] = 0, \:  d(s) = - g_2 = d(t) }.
+    \]
+
+    We have that for any \( h \in Z^{-1}(\Ac(\Phi J, \Phi J)) \), we still get \( d(s + h) = d(s) + d(h) = d(s) = - g_2 \).
+
+    Therefore, let \( s = t + h \) for some \( h \) as above. This yields the subset of the Massey product
+    \[
+        \set*{ \class*{ h } \mid h \in Z^{-1}(\Ac(\Phi J, \Phi J)) } = H^{-1}(\Ac(\Phi J, \Phi J)).
+    \]
+
+    By ``translating'' the above calulations into \( H^{\bullet}(\dgM) \) by applying \( \mathbf{h}_{\Phi J, \Phi J, -1} \) on the underlying DG-morphisms in \( \Ac(\Phi J, \Phi J)_{-1} \), we get
+    \[
+        \set*{ [(h)_*] \mid h \in Z^{-1}(\Ac(\Phi J, \Phi J)) } = H^{-1}(\dgM(\Ac(?, \Phi J), \Ac(?, \Phi J))).
+    \]
+
+    By \autoref{cor:H^i_dgmod_cong_H^0_with_shift}, we get that
+    \[
+        H^{-1}(\dgM(\Ac(?, \Phi J), \Ac(?, \Phi J))) = H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)).
+    \]
+
+    Before we apply \( \Phi^{-1} H^0(\mathbf{h}) \), we need to pre-compose this with the natural isomorphism \( \eta: H^0(\mathbf{h}) \Phi \Sigma_{\Tc} \to \Sigma_{H^0(\dgM)} H^0(\mathbf{h}) \Phi \). In our case, computing \( \eta \) is not neccesary because \( \eta \) is an isomorphism, so
+    \[
+        (\eta_J)^* H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)) = H^0(\dgM)(\Ac(?, \Phi \Sigma J), \Ac(?, \Phi J)).
+    \]
+
+    Applying \( \Phi^{-1} H^0(\mathbf{h})^{-1} \) yields the subset
+    \[
+        \Tc(Z^0 \Phi \Sigma J, Z^0 \Phi J),
+    \]
+    which if we pre and post compose with the natural isomorphisms \( \phi \), yields the subset
+    \[
+        \Tc(\Sigma J, J),
+    \]
+    which is equal to what we got in \autoref{ex:toda_bracket_1}.
+\end{example}
+
+Here we can see that calculating the Massey product, at least in the way we are doing here, is more difficult than calculating Toda brackets in this example. In the above example we didn't need to define or use any of the natural isomorphisms which are part of the definition because we got the Massey product to be the entire group \( H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)) \).
+
+Even so, the above example illustrates a few tricks we could use when calculating Massey products moving forward. First, notice that in the definition of the Massey product, we have \( \class*{ s \circ g_1 - g_3 \circ t} \) can be simplified to \( \class*{s \circ f_1 - f_3 \circ t} \), because different choices of representatives all yield the same result in this outer sum. Second, it was also clear that calculating the Massey product does not utilize any special properties of \( \dgM \), other than \autoref{cor:H^i_dgmod_cong_H^0_with_shift}. We could do the majority of the calculations in \( H^{\bullet}(\Ac) \), which is easier to work with than \( \dgM \). Assuming \( \Tc \) is any algebraic triangulated category with a DG-enhancement \( \Ac \), if we have already calculated \( \phi, \eta \) and \( \Phi \) beforehand, then the difficulty of calculating the Massey product is only dependant on how difficult it is to work with \( \Ac \), which could potentially be easier than calculating the Toda bracket in \( \Tc \).
+
+For the sake of completeness, we will roughly calculate \( \eta \) for \( \Mc \).
+
+\begin{remark}
+    The \( \eta \) from the definition of Massey products in an algebraic triangulated category is induced by the two natural isomorphisms
+    \[
+        \tilde{\eta}: H^0(\mathbf{h}) \Sigma_{H^0(\Ac)} \to \Sigma_{H^0(\dgM)} H^0(\mathbf{h})
+    \]
+    from the fact that \( H^0(\mathbf{h}) \) is a triangulated functor, and
+    \[
+        \hat{\eta}: \Phi \Sigma_{\Mc} \to \Sigma_{H^0(\Ac)} \Phi,
+    \]
+    from the fact that \( \Phi \) is a triangulated functor.
+
+    \( \tilde{\eta} \) can be verified to be a canonical isomorphism that is essentially the identity, since \( [A, \Sigma B] \cong \Sigma [A, B] \) with the identity morphism in each degree. Therefore, there is an isomorphism \( \C_{\dg}(?, \Sigma A) \cong \Sigma \C_{\dg}(?, A) \), which induces a natural ismorphism from \( H^0(\mathbf{h}) \Sigma \) to \( \Sigma H^0(\mathbf{h}) \).
+
+    \( \hat{\eta} \) is the following natural isomorphism.
+
+    For \( A \in \Mc \), recall that \( \Sigma A \) is defined as the cokernel of \( A \rightarrowtail I_A \), for some injective module \( I_A \), since it is the cozysygy functor. When calculating the injective resolution, these naturally occur in between each module in the injective resolution.
+
+    WIP
+\end{remark}
+
+\begin{example}
+	We want to calculate \( \massey{\Id_J, \Id_J, \Id_J} \).
+
+    WIP
+\end{example}
 
 WIP
-}
-% MS-Question https://math.stackexchange.com/questions/177495/massey-products-in-the-adams-spectral-sequence#1088096
-
-% MS-Notes som er nemd i stackexchange seier massey er vanskelegare enn Toda.
-
-% Korleis får ein ein small katyegori med Krause def? -> Kanskje ikkje.
-
-% Massey er heilt forferdeleg å reikna ut. Trur eg manglar grunnleggande info.

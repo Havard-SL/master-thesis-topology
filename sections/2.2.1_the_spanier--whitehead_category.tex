@@ -5,7 +5,7 @@ First, some notation.
 \begin{notation}
     Let \( X \) and \( Y \) be two based topological spaces, with \( x_0 \) the basepoint of \( X \).
 
-    We write \( \class{ X, Y } \) for the set of basepoint-preserving homotopy classes of continuous basepoint-preserving functions from \( X \) to \( Y \).
+    We write \( \class*{ X, Y } \) for the set of basepoint-preserving homotopy classes of continuous basepoint-preserving functions from \( X \) to \( Y \).
 
     Let \( I \) denote the closed unit interval with basepoint \( 0 \).
 
@@ -26,7 +26,7 @@ The Spanier--Whitehead category is motivated by the Freudenthal suspension theor
     
     Then the colimit
     \[
-        \colim_{q \to \infty} \class{ \Sigma^{n + q} X, \Sigma^{m + q} Y }
+        \colim_{q \to \infty} \class*{ \Sigma^{n + q} X, \Sigma^{m + q} Y }
     \]
     is attained for a finite \( q \in \Nb \).
 \end{corollary}
@@ -45,7 +45,7 @@ The above corollary is crucial to understanding why the Spanier--Whitehead categ
 
             Morphisms in \( SW \) are the following colimits of abelian groups
             \[
-                SW\tuple{ (X, n), (Y, m) } := \colim_{\stackrel{q \to \infty}{q \geq \max(|n| + 2, |m|)}} \class{ \Sigma^{n + q}(X), \Sigma^{m + q}(Y) }
+                SW\tuple*{ (X, n), (Y, m) } := \colim_{\stackrel{q \to \infty}{q \geq \max(|n| + 2, |m|)}} \class*{ \Sigma^{n + q}(X), \Sigma^{m + q}(Y) }
             \]
         }
         \item {
@@ -56,7 +56,7 @@ The above corollary is crucial to understanding why the Spanier--Whitehead categ
     Then \( SW \) is called the \emph{Spanier--Whitehead category}.
 \end{definition}
 
-The reason for limiting the \( q \) in the colimit in part 2, is to make sure that the colimit is well-defined and taken over abelian groups. This is because \( \class{\Sigma^n X, Y} \) is only an abelian group if \( n \geq 2 \). Composition is well-defined by functoriality of the reduced suspension functor.
+The reason for limiting the \( q \) in the colimit in part 2, is to make sure that the colimit is well-defined and taken over abelian groups. This is because \( \class*{\Sigma^n X, Y} \) is only an abelian group if \( n \geq 2 \). Composition is well-defined by functoriality of the reduced suspension functor.
 
 It can be shown that the Spanier--Whitehead category is an additive category \cite[Proposition 5.7]{Daria_Bachelor}.
 
@@ -67,11 +67,11 @@ The definition of the shift functor is dependent on the following property.
     \label{lem:sw_colim_canonical_iso}
     There is a unique, canonical isomorphism,
     \[
-        SW\tuple{ (X, n), (Y, m) } \stackrel{\sim}{\to} SW\tuple{ (X, n + 1), (Y, m + 1) }.
+        SW\tuple*{ (X, n), (Y, m) } \stackrel{\sim}{\to} SW\tuple*{ (X, n + 1), (Y, m + 1) }.
     \]
 \end{lemma}
 \begin{proof}
-    From the definition of the colimit, \( SW\tuple{ (X, n), (Y, m) } \) is a colimit of the same diagram as \( SW\tuple{ (X, n + 1), (Y, m + 1) } \), and vice versa.
+    From the definition of the colimit, \( SW\tuple*{ (X, n), (Y, m) } \) is a colimit of the same diagram as \( SW\tuple*{ (X, n + 1), (Y, m + 1) } \), and vice versa.
 \end{proof}
 
 % Marius: Her har eg fortrengt den kanoniske isomorfien.
@@ -150,7 +150,7 @@ Finally, we can define \( SW \) as a triangulated category.
 \begin{example}
     Let \( SW \) be as in \autoref{def:sw-cat}, let \( \Sigma: SW \to SW \) be as in \autoref{def:sw-shift} and let \( \Delta \) be as in \autoref{def:sw-dist_triangles}.
 
-    Then \( \tuple{SW, \Sigma, \Delta} \) is a triangulated category.
+    Then \( \tuple*{SW, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 
 For a proof of the Spanier--Whitehead category being triangulated, see \cite[Theorem 5.9]{Daria_Bachelor}.

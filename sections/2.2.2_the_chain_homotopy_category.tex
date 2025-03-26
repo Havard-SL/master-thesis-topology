@@ -6,7 +6,7 @@ First, we define the category of chain complexes.
     \label{def:chain_complex}
     Let \( \Cc \) be any additive category.
     
-    Then let \( \C \tuple{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
+    Then let \( \C \tuple*{\Cc} \) denote the category of chain complexes of objects in \( \Cc \).
 
     As mentioned in \autoref{not:chain_complex}, the chain complexes have ascending order, and differentials are indexed according to the order of their domain.
 \end{definition}
@@ -45,15 +45,15 @@ On \( \C(\Ac) \), we can define a simple automorphism of categories called the s
     \label{def:chain_complex_shift}
     Let \( \Sigma \) be the following assignment of objects and morphisms in \( \C(\Ac) \).
 
-    Let \( A = \tuple{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_{A, n}: A_n \to A_{n + 1} \) denote the \( n \)th differential of \( A \).
+    Let \( A = \tuple*{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_{A, n}: A_n \to A_{n + 1} \) denote the \( n \)th differential of \( A \).
 
-    Then let \( \Sigma A := \tuple{A_{i + 1}}_{i \in \Zb} \), with \( d_{\Sigma A, n} := -d_{A, n + 1} \).
+    Then let \( \Sigma A := \tuple*{A_{i + 1}}_{i \in \Zb} \), with \( d_{\Sigma A, n} := -d_{A, n + 1} \).
 
-    In addition, let \( f = \tuple{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) be a chain morphism.
+    In addition, let \( f = \tuple*{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) be a chain morphism.
     
     Then
     \[
-        \Sigma(f) := \tuple{f_{i + 1}}_{i \in \Zb} \in \C(\Ac)(\Sigma A, \Sigma B).
+        \Sigma(f) := \tuple*{f_{i + 1}}_{i \in \Zb} \in \C(\Ac)(\Sigma A, \Sigma B).
     \]
 \end{definition}
 
@@ -184,10 +184,10 @@ Combining, \( \K(\Ac), \Sigma, \) and \( \Delta \) we get our second example of 
 \begin{example}
     Let \( \K(\Ac) \) be as in \autoref{def:chain_homotopy_cat}, let \( \Sigma \) be as in \autoref{def:chain_complex_shift}, and let \( \Delta \) be as in \autoref{def:chain_homotopy_dist}.
 
-    Then \( \tuple{\K(\Ac), \Sigma, \Delta} \) is a triangulated category.
+    Then \( \tuple*{\K(\Ac), \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 For a proof of \( \K(\Ac) \) being triangulated, see \cite[Proposition 3.5.25]{Zimmermann_2014}.
 
-By \cite[Subsection 7.5]{Krause_2007}, \( \K(\Ac) \) is an ``algebraic triangulated category,'' which we will define in \autoref{section:alg_tri_cats}.
+By \cite[Section 7.5]{Krause_2007}, \( \K(\Ac) \) is an ``algebraic triangulated category,'' by his definition. Note that his definition might not be equivalent to our definition of an algebraic triangulated category in general, which we will define in \autoref{section:alg_tri_cats}.
 
 Similar to the Spanier--Whitehead category, the triangulated category terminology of a \emph{shift functor} is derived from the chain homotopy category. We can see from \autoref{def:chain_complex_shift} that \( \Sigma \) takes the chain complex and shifts it to the left (given that differentials are pointing to the right). The terminology used for triangulated categories can be seen as a mixture of terms from topology and algebra, which fits well since it sits right in the intersection between the two fields.

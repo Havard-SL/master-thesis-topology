@@ -1,5 +1,4 @@
-% WIP: Marius tilbakemelding. Skal dette vre i Stmod(R) i staden for? Sjekk AR-utreikningar.
-To get a better understanding of how to compute Toda brackets, as well as illustrate some properties they have, this section contains four simple examples in the category \( \Mc := \StMod(R) \) where \( R := \Fb_2 C_2 \), which is a known Frobenius ring. These examples will serve as a warm-up for more complicated examples.
+To get a better understanding of how to compute Toda brackets, as well as illustrate some properties they have, this section contains some examples for \( \Mc := \Stmod(R) \) where \( R := \Fb_2 C_2 \), which is a known Frobenius ring.
 
 The following remark contains some preliminary information that is helpful in the following computations:
 
@@ -7,7 +6,7 @@ The following remark contains some preliminary information that is helpful in th
 	\label{rem:toda_bracket_examples_properties}
     Let \( g \) denote the generator of \( C_2 \).
 
-    The ideal \( J := \tuple{1 + g} \) is the only non-trivial ideal in \( R \) (up to isomorphism).
+    The ideal \( J := \tuple*{1 + g} \) is the only non-trivial ideal in \( R \) (up to isomorphism).
 
     The ideal \( J \) is not projective, since the short exact sequence
     \begin{center}
@@ -39,6 +38,7 @@ The following remark contains some preliminary information that is helpful in th
 The following example gives the idea of how to calculate Toda brackets in the simplest cases.
 
 \begin{example}
+	\label{ex:toda_bracket_1}
 	Let the following be a diagram in \( \Mc \)
 	\begin{center}
 		\begin{tikzpicture}
@@ -53,9 +53,9 @@ The following example gives the idea of how to calculate Toda brackets in the si
 		\end{tikzpicture}
 	\end{center}
 	
-	The goal is to calculate the Toda bracket \( \toda{\Id_J, 0, \Id_J} \).
+	The goal is to calculate the Toda bracket \( \toda{[\Id_J], [0], [\Id_J]} \).
 
-	Using the iterated cofiber definition of Toda brackets, we need to choose a distinguished triangle. We will use a standard triangle of \( \Id_J \), which is the trivial triangle,
+	Using the iterated cofiber definition of Toda brackets, we need to choose a distinguished triangle. We will use a standard triangle of \( [\Id_J] \), which is the trivial triangle,
 	\begin{center}
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{1cm} {
@@ -92,22 +92,22 @@ The following example gives the idea of how to calculate Toda brackets in the si
 		\end{tikzpicture}
 	\end{center}
 
-	Since \( [\rho] = 0 \), any endomorphism on \( J \) makes the rightmost square commute. In addition, since \( \Mod(R)(J, J) \) is simply \( \set{0, \Id_J} \), this implies that \( \Mc(J, J) = \set{[0], [\Id_J]} \).
+	Since \( [\rho] = [0] \), any endomorphism on \( J \) makes the rightmost square commute. In addition, since \( \Mod(R)(J, J) \) is simply \( \set*{[0], [\Id_J]} \), this implies that \( \Mc(J, J) = \set*{[0], [\Id_J]} \).
 
-	Therefore, \( \toda{[\Id_J], [0], [\Id_J]} = \set{[0], [\Id_J]} \).
+	Therefore, \( \toda{[\Id_J], [0], [\Id_J]} = \set*{[0], [\Id_J]} \).
 
 	Another way we could have proven this, is by calculating the indeterminacy (\autoref{lem:indeterminacy}), which would be
 	\[
-		\Id_J \circ \Mc(J, J) + \Mc(J, J) \circ \Id_J = \Mc(J, J),
+		[\Id_J] \circ \Mc(J, J) + \Mc(J, J) \circ [\Id_J] = \Mc(J, J),
 	\]
 	which only has one coset, namely \( \Mc(J, J) \).
 \end{example}
 
-The previous example demonstrates that the Toda bracket is dependent on the choice of \( I \) in \autoref{def:stmod_sigma}. In the previous example, we could have assumed \( \Sigma J \) to be \( R/J \), which would have yielded the Toda bracket \( \toda{[\Id_J], [0], [\Id_J]} = \set{[0], [\mu]} \), where \( \mu \) is the unique isomorphism \( R/J \cong J \). Therefore, for applications of Toda brackets on stable module categories, it is important to keep in mind that the choice of \( I \) in the definition of \( \Sigma \) is consistent.
+The previous example demonstrates that the Toda bracket is dependent on the choice of \( I \) in \autoref{def:stmod_sigma}. In the previous example, we could have assumed \( \Sigma J \) to be \( R/J \), which would have yielded the Toda bracket \( \toda{[\Id_J], [0], [\Id_J]} = \set*{[0], [\mu]} \), where \( \mu \) is the unique isomorphism \( R/J \cong J \). Therefore, for applications of Toda brackets on stable module categories, it is important to keep in mind that the choice of \( I \) in the definition of \( \Sigma \) is consistent.
 
 \begin{example}
-	\label{ex:toda_bracket-1}
-	We want to calculate \( \toda{\Id_J, \Id_J, \Id_J} \).
+	\label{ex:toda_bracket_2}
+	We want to calculate \( \toda{[\Id_J], [\Id_J], [\Id_J]} \).
 
 	We have the following diagram by the iterated cofiber definition of Toda brackets using the assumptions made in \autoref{rem:toda_bracket_examples_properties}
 	\begin{center}
@@ -134,13 +134,13 @@ The previous example demonstrates that the Toda bracket is dependent on the choi
 
 	Here there is an issue. There exists no \( [\rho]: 0 \to J \) such that \( [\rho] \circ [0] = [0]: J \to J \) is equal to \( [\Id_J] \). It could only be true if \( J \cong 0 \), which it is not, since \( J \) is not projective by the argument in \autoref{rem:toda_bracket_examples_properties}.
 
-	Therefore, the Toda bracket is \emph{empty}, i.e., \( \toda{\Id_J, \Id_J, \Id_J} = \emptyset \).
+	Therefore, the Toda bracket is \emph{empty}, i.e., \( \toda{[\Id_J], [\Id_J], [\Id_J]} = \emptyset \).
 \end{example}
 
 The previous example shows another property of Toda brackets, namely that it can be empty. The following proposition and proof shows this property for a general case.
 
 \begin{proposition}
-	Let \( f_1, f_2, \) and \( f_3 \) be three composable morphisms in any triangulated category, \( \Tc \),
+	Let \( f_1, f_2, \) and \( f_3 \) be three composable morphisms in any triangulated category \( \Tc \),
 	\begin{center}
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{1cm} {
@@ -212,19 +212,19 @@ The previous example shows another property of Toda brackets, namely that it can
 	Therefore, both \( f_2 \circ f_1 = 0 \) and \( f_3 \circ f_2 = 0 \) if \( \toda{f_3, f_2, f_1} \neq \emptyset \), which is contrapositive to the statement in the theorem.
 \end{proof}
 
-The following example is a generalization of \autoref{ex:toda_bracket-1} to any triangulated category \( \Tc \).
+The following example is a generalization of \autoref{ex:toda_bracket_1} to any triangulated category \( \Tc \).
 
 \begin{example}
-	We want to compute \( \toda{f, 0, \Id} \) for any triangulated category \( \Tc \) and for any \( f \in \Tc(X_2, X_3) \).
+	We want to compute \( \toda{f, 0, \Id} \) for any triangulated category \( \Tc \) and for any \( f \in \Tc(X_3, X_4) \).
 
 	We use the iterated cofiber definition of Toda brackets.
 
-	Using the trivial triangle as the distinguished triangle, get the following diagram
+	Using the trivial triangle as the distinguished triangle, we get the following diagram
 	\begin{center}
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{1cm} {
 				X_1 \& X_1 \& 0 \& \Sigma X_1 \\
-				X_1 \& X_1 \& X_2 \& X_3. \\
+				X_1 \& X_1 \& X_3 \& X_4. \\
 			};
 
 			\draw[math]
@@ -242,11 +242,11 @@ The following example is a generalization of \autoref{ex:toda_bracket-1} to any 
 		\end{tikzpicture}
 	\end{center}
 
-	Here we have that any possible \( \psi: \Sigma X_1 \to X_3 \) will make the right square commute. Therefore, \( \toda{f_3, 0, \Id} = \Tc(\Sigma X_1, X_3) \).
+	Here we have that any possible \( \psi: \Sigma X_1 \to X_4 \) will make the right square commute. Therefore, \( \toda{f_3, 0, \Id} = \Tc(\Sigma X_1, X_4) \).
 
 	Calculating the indeterminacy,
 	\[
-		f \circ \Tc(\Sigma X_1, X_2) + \Tc(\Sigma X_1, X_4) \circ \Id_{X_1} = \Tc(\Sigma X_1, X_4),
+		f \circ \Tc(\Sigma X_1, X_3) + \Tc(\Sigma X_1, X_4) \circ \Id_{\Sigma X_1} = \Tc(\Sigma X_1, X_4),
 	\]
 	yields the same result.
 \end{example}
@@ -262,13 +262,13 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 			};
 
 			\draw[math]
-				(m-1-1) edge node {\class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
-				(m-1-2) edge node {\class{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}} (m-1-3)
-				(m-1-3) edge node {\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}} (m-1-4);
+				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
+				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}} (m-1-3)
+				(m-1-3) edge node {\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}} (m-1-4);
 		\end{tikzpicture}
 	\end{center}
 
-	First, we find a standard triangle of \( \class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}: J \to J \oplus J \).
+	First, we find a standard triangle of \( \class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}: J \to J \oplus J \).
 
 	The cone is defined as the pushout of the following diagram,
 	\begin{center}
@@ -303,7 +303,7 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 	\end{center}
 	where \( (1 + g, 1 + g, 0) \sim (0, 0, 1 + g) \).
 
-	The morphism \( \rho \) is given as the composition
+	The morphism \( \rho \) is given by the composition
 	\begin{center}
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{1cm} {
@@ -342,7 +342,7 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{1cm} {
 				J \& J \oplus J \\
-				R \& J \oplus R \\
+				R \& J \oplus R. \\
 			};
 
 			\draw[math]
@@ -385,13 +385,13 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 			};
 
 			\draw[math]
-				(m-1-1) edge node {\class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
-				(m-1-2) edge node {\class{\begin{psmallmatrix} 1 & 1 \\ \kappa_J & 0 \\ \end{psmallmatrix}}} (m-1-3)
-				(m-1-3) edge node {\class{\begin{psmallmatrix} 0 & \rho_J \\ \end{psmallmatrix}}} (m-1-4);
+				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
+				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ \kappa_J & 0 \\ \end{psmallmatrix}}} (m-1-3)
+				(m-1-3) edge node {\class*{\begin{psmallmatrix} 0 & \rho_J \\ \end{psmallmatrix}}} (m-1-4);
 		\end{tikzpicture}
 	\end{center}
 
-	In \( \Mc \), \( R \cong 0 \), and the morphism \( \class{\begin{psmallmatrix} 1 & 0 \\ \end{psmallmatrix}}: J \oplus R \to J \) becomes an isomorphism which yields the following distinguished triangle
+	In \( \Mc \), \( R \cong 0 \), and the morphism \( \class*{\begin{psmallmatrix} 1 & 0 \\ \end{psmallmatrix}}: J \oplus R \to J \) becomes an isomorphism which yields the following distinguished triangle
 	\begin{center}
 		\begin{tikzpicture}
 			\diagram{m}{1cm}{2cm} {
@@ -399,9 +399,9 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 			};
 
 			\draw[math]
-				(m-1-1) edge node {\class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
-				(m-1-2) edge node {\class{\begin{psmallmatrix} 1 & 1 \\ \end{psmallmatrix}}} (m-1-3)
-				(m-1-3) edge node {\class{0}} (m-1-4);
+				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
+				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ \end{psmallmatrix}}} (m-1-3)
+				(m-1-3) edge node {\class*{0}} (m-1-4);
 		\end{tikzpicture}
 	\end{center}
 
@@ -414,17 +414,17 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 			};
 
 			\draw[math]
-				(m-1-1) edge node {\class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
+				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
 					edge[equality] (m-2-1)
-				(m-1-2) edge node {\class{\begin{psmallmatrix} 1 & 1 \\ \end{psmallmatrix}}} (m-1-3)
+				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ \end{psmallmatrix}}} (m-1-3)
 					edge[equality] (m-2-2)
 				(m-1-3) edge node {[0]} (m-1-4)
 					edge node {\phi} (m-2-3)
 				(m-1-4) edge node {\psi} (m-2-4)
 
-				(m-2-1) edge node {\class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-2-2)
-				(m-2-2) edge node {\class{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}} (m-2-3)
-				(m-2-3) edge node {\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}} (m-2-4);
+				(m-2-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-2-2)
+				(m-2-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}} (m-2-3)
+				(m-2-3) edge node {\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}} (m-2-4);
 		\end{tikzpicture}
 	\end{center}
 	where the top row is distinguished.
@@ -433,7 +433,7 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 
 	Start by assuming
 	\[ 
-		\phi = \class{
+		\phi = \class*{
 			\begin{psmallmatrix}
 				1 \\
 				1
@@ -442,40 +442,40 @@ Finally, the last example will be in \( \Mc \), but where the computations are a
 	\]
 	this makes the square to the left of \( \phi \) commute, in addition, it makes the square to the right of \( \phi \) also commute, because
 	\[
-		\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ
-		\begin{psmallmatrix}
+		\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ
+		\class*{\begin{psmallmatrix}
 			1 \\
 			1
-		\end{psmallmatrix}
+		\end{psmallmatrix}}
 		=
 		[2] = [0].
 	\]
 
 	Thus, with the assumed \( \phi \), any \( \psi \) will make the diagram commute. Therefore,
 	\[ 
-		\toda{\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}, \class{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}, \class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} = \Mc(J, J).
+		\toda{\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}, \class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}, \class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} = \Mc(J, J).
 	\]
 	
 	Then we want to try the same calculations using indeterminacy:
 	
 	Consider the subgroup
 	\[
-		\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ \Mc(J, J \oplus J) + \Mc(J \oplus J, J) \circ \tuple{\Sigma \class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}}.
+		\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ \Mc(J, J \oplus J) + \Mc(J \oplus J, J) \circ \tuple*{\Sigma \class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}}.
 	\]
 	For any \( [f] \in \Mc(J, J) \),
 	\[
-		\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ \class{\begin{psmallmatrix} f \\ 0 \end{psmallmatrix}} = [f],
+		\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ \class*{\begin{psmallmatrix} f \\ 0 \end{psmallmatrix}} = [f],
 	\]
 	we get that
 	\[
-		\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ \Mc(J, J \oplus J) = \Mc(J, J),
+		\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}} \circ \Mc(J, J \oplus J) = \Mc(J, J),
 	\]
 	and so
 	\[
-		\toda{\class{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}, \class{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}, \class{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} = \Mc(J, J).
+		\toda{\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}, \class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}, \class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} = \Mc(J, J).
 	\]
 \end{example}
 
-If, only using the Toda bracket definition, at the end of the final example we weren't so lucky and couldn't have chosen a \( \phi \), such that every \( \psi \) was expressed, the calculations would have become much more tedious. Then we would have to find every possible \( \phi \), and from every possible \( \phi \) we would then find every possible \( \psi \). In addition, working with morphisms in \( \Mc \) is not simple, and we could end up with a very complicated and annoying calculation. Combining this with the fact that simply calculating an appropriate distinguished triangle was tedious, and the calculations become even worse. Calculating the Toda bracket using the indeterminacy, at least in the above cases turned out to be much simpler.
+If, only using the Toda bracket definition, at the end of the final example we weren't so lucky and couldn't have chosen a \( \phi \), such that every \( \psi \) was expressed, the calculations would have become much more tedious. Then we would have to find every possible \( \phi \), and from every possible \( \phi \) we would then find every possible \( \psi \). In addition, working with morphisms in \( \Mc \) is not simple, and we could end up with a very complicated and annoying calculation. Combining this with the fact that simply calculating an appropriate distinguished triangle is tedious, and the calculations become even worse. Calculating the Toda bracket using the indeterminacy, at least in the above cases turned out to be much simpler.
 
 This illustrates the reason for wanting to combine Massey products and Toda brackets as mentioned in the introduction, as additional tools, such as indeterminacy, might significantly simplify the calculations in certain cases.

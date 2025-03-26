@@ -152,8 +152,8 @@ In order to admit a triangulation, we need to prove that the stable module categ
             Consider \( [g], [g'] \in \Mc(B, C) \) and \( [f], [f'] \in \Mc(A, B) \). Consider the following equation
             \begin{align*}
                 ([g] + [g']) \circ ([f] + [f']) &= [g + g'] \circ [f + f'] \\
-                &= \class{(g + g') \circ (f + f')} \\
-                &= \class{g \circ f + g \circ f' + g' \circ f + g' \circ f'} \\
+                &= \class*{(g + g') \circ (f + f')} \\
+                &= \class*{g \circ f + g \circ f' + g' \circ f + g' \circ f'} \\
                 &= [g] \circ [f] + [g] \circ [f'] + [g'] \circ [f] + [g'] \circ [f'],
             \end{align*}
             which is precisely bilinearity.
@@ -224,7 +224,7 @@ The definition of the syzygy functor is closely tied to a choice of \( P_A \) an
     \label{def:stmod_omega}
     Let \( R \) be a Frobenius ring.
 
-    Let \( P = \set{\tuple{P_A, \pi_A, \Omega A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( P_A \) is a projective module, \( \pi_A: P_A \twoheadrightarrow A \) an epimorphism, and \( \Omega A \) is a kernel of \( \pi_A \). This exists because \( \Mod(R) \) has enough projectives.
+    Let \( P = \set*{\tuple*{P_A, \pi_A, \Omega A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( P_A \) is a projective module, \( \pi_A: P_A \twoheadrightarrow A \) an epimorphism, and \( \Omega A \) is a kernel of \( \pi_A \). This exists because \( \Mod(R) \) has enough projectives.
 
     Then define \( \Omega \) as the assignment of objects and morphisms in \( \Mc \) as follows:
     \begin{itemize}
@@ -301,11 +301,11 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
 
     Since
     \[
-        \pi_B \circ \tuple{p_f - \widetilde{p_f}} = \tuple{f - f} \circ \pi_A = 0
+        \pi_B \circ \tuple*{p_f - \widetilde{p_f}} = \tuple*{f - f} \circ \pi_A = 0
     \]
     there exists a morphism \( \phi \) induced by the kernel property of \( \Omega B \), such that the lower triangle in the diagram commutes. Then because of the monomorphism property of \( \iota_B \), we also get that the upper triangle commutes. This implies that the morphism \( \Omega f - \widetilde{\Omega f} \) factors through \( P_A \), a projective module. Therefore,
     \[
-        [0] = \class{\Omega f - \widetilde{\Omega f}} = \class{\Omega f} - \class{\widetilde{\Omega f}}
+        [0] = \class*{\Omega f - \widetilde{\Omega f}} = \class*{\Omega f} - \class*{\widetilde{\Omega f}}
     \]
     which implies that \( \Omega [f] \) is independent of the choice of \( p_f \).
 
@@ -422,7 +422,7 @@ Now that \( \Omega \) is a well-defined assignment of objects and morphisms, it 
     \end{center}
     Since \( \Omega \) is a well-defined assignment of morphisms, this implies
     \[
-        (\Omega [g]) \circ (\Omega [f]) = \class{(\Omega g) \circ (\Omega f)} = \class*{\Omega (g \circ f)} = \Omega \class{g \circ f}.
+        (\Omega [g]) \circ (\Omega [f]) = \class*{(\Omega g) \circ (\Omega f)} = \class*{\Omega (g \circ f)} = \Omega \class*{g \circ f}.
     \]
 
     Second, we need to show that \( \Omega [\Id_A] = [\Id_{\Omega A}] \) in \( \Mc \).
@@ -446,7 +446,7 @@ Now that \( \Omega \) is a well-defined assignment of objects and morphisms, it 
                 (m-2-2) edge[two headed] (m-2-3);
         \end{tikzpicture}
     \end{center}
-    Therefore \( \Omega \class{\Id_A} = \class{\Id_{\Omega A}} \).
+    Therefore \( \Omega \class*{\Id_A} = \class*{\Id_{\Omega A}} \).
 \end{proof}
 
 Finally, we need the following result to show that \( \Omega \) is additive.
@@ -503,7 +503,7 @@ We can define another functor, the cosyzygy functor \( \Sigma \), which will tur
     \label{def:stmod_sigma}
     Let \( R \) be a Frobenius ring.
 
-    Let \( I = \set{\tuple{I_A, \kappa_A, \Sigma A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( I_A \) is an injective module, \( \kappa_A: A \rightarrowtail I_A \) a monomorphism, and \( \Sigma A \) is a cokernel of \( \kappa_A \). This exists because \( \Mod(R) \) has enough injectives.
+    Let \( I = \set*{\tuple*{I_A, \kappa_A, \Sigma A}}_{A \in \Mod(R)} \) be a collection of tuples for every object \( A \), where \( I_A \) is an injective module, \( \kappa_A: A \rightarrowtail I_A \) a monomorphism, and \( \Sigma A \) is a cokernel of \( \kappa_A \). This exists because \( \Mod(R) \) has enough injectives.
 
     Then define \( \Sigma \) as the assignment of objects and morphisms in \( \Mc \) as follows:
     \begin{itemize}
@@ -1000,13 +1000,13 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     We can prove that \( [\alpha \circ \beta] = [\Id_{C'}] \) in a similar way.
 \end{proof}
 
-We can now prove that \( \tuple{\Mc, \Sigma, \Delta} \) is triangulated, where our proof is inspired by \cite[p.\ 16]{Happel_1988} and \cite[Theorem 4.18]{Johan_Bachelor}.
+We can now prove that \( \tuple*{\Mc, \Sigma, \Delta} \) is triangulated, where our proof is inspired by \cite[p.\ 16]{Happel_1988} and \cite[Theorem 4.18]{Johan_Bachelor}.
 
 The details of the proof will not be important for the rest of the thesis, but is included mainly because we will be using \( \Mc \) for examples later on.
 
 \begin{example}
     \label{example:stable_module_category_triangulated}
-    The tuple \( \tuple{\Mc, \Sigma, \Delta} \) is a triangulated category.
+    The tuple \( \tuple*{\Mc, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
 \begin{proof} % TODO: Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
     We need to prove {\bf (TR1)} -- {\bf (TR4)} from \autoref{def:triangulated_category}.
@@ -1244,13 +1244,13 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {[g]} (m-1-2)
-                        (m-1-2) edge node {\class{
+                        (m-1-2) edge node {\class*{
                             \begin{psmallmatrix}
                                 \phi \\
                                 h
                             \end{psmallmatrix}
                         }} (m-1-3)
-                        (m-1-3) edge node {\class{
+                        (m-1-3) edge node {\class*{
                             \begin{psmallmatrix}
                                 \rho_B & -\Sigma f
                             \end{psmallmatrix}
@@ -1270,19 +1270,19 @@ The details of the proof will not be important for the rest of the thesis, but i
                     \draw[math]
                         (m-1-1) edge node {[g]} (m-1-2)
                             edge[equality] (m-2-1)
-                        (m-1-2) edge node {\class{
+                        (m-1-2) edge node {\class*{
                             \begin{psmallmatrix}
                                 \phi \\
                                 h
                             \end{psmallmatrix}
                         }} (m-1-3)
                             edge[equality] (m-2-2)
-                        (m-1-3) edge node {\class{
+                        (m-1-3) edge node {\class*{
                             \begin{psmallmatrix}
                                 \rho_B & -\Sigma f
                             \end{psmallmatrix}
                         }} (m-1-4)
-                            edge node {\class{
+                            edge node {\class*{
                                 \begin{psmallmatrix}
                                     0 & 1
                                 \end{psmallmatrix}
@@ -1294,7 +1294,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-3) edge node {[-\Sigma f]} (m-2-4);
                 \end{tikzpicture}
             \end{center}
-            The left and the middle square commute directly, but it remains to check if the right square commutes. Additionally, we need to check that \( \class{
+            The left and the middle square commute directly, but it remains to check if the right square commutes. Additionally, we need to check that \( \class*{
                 \begin{psmallmatrix}
                     0 & 1
                 \end{psmallmatrix}
@@ -1346,37 +1346,39 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge node[swap] {\rho_B} (m-1-3);
                 \end{tikzpicture}
             \end{center}
-            commutes, and since every injective module is also projective, \(\class{
+            commutes, and since every injective module is also projective,
+            \[
+                \class*{
                     \begin{psmallmatrix}
                         \rho_B & -\Sigma f
                     \end{psmallmatrix}
                 }
                 =
-                \class{
+                \class*{
                     -(\Sigma f) \circ
                     \begin{psmallmatrix}
                         0 & 1
                     \end{psmallmatrix}
-                }
-            \).
+                }.
+            \]
 
-            Second, we check that \( \class{
+            Second, we check that \( \class*{
                 \begin{psmallmatrix}
                     0 & 1
                 \end{psmallmatrix}
             } \) is an isomorphism.
 
-            Consider the morphism \( \class{
+            Consider the morphism \( \class*{
                 \begin{psmallmatrix}
                     0 \\
                     1
                 \end{psmallmatrix}
             } \).
-            Note that \( \class{
+            Note that \( \class*{
                 \begin{psmallmatrix}
                     0 & 1
                 \end{psmallmatrix}
-            } \circ \class{
+            } \circ \class*{
                 \begin{psmallmatrix}
                     0 \\
                     1
@@ -2416,4 +2418,4 @@ Thus, we have proven that the stable (infinitely generated) module category is t
     This subsection has only mentioned (infinitely generated) modules. However, the same definitions, functors, and proofs work for the finitely generated modules, \( \mod(R) \). This is because a Frobenius ring is Noetherian, and \( \mod(R) \) is therefore an abelian category. In addition, \( \mod(R) \) also has enough projectives and injectives, and therefore no proof or definition uses any properties of \( \Mod(R) \), that \( \mod(R) \) does not have. This yields a triangulated category, \( \Stmod(R) \) which is the stable module category over \( \mod(R) \).
 \end{remark}
 
-By \cite[Lemma, Subsection 7.5]{Krause_2007} it follows that \( \StMod(R) \) and \( \Stmod(R) \) are in fact what we call an ``algebraic triangulated category.'' The definition of an algebraic triangulated category is given in \autoref{section:alg_tri_cats}.
+By \cite[Lemma, Section 7.5]{Krause_2007} it follows that \( \StMod(R) \) and \( \Stmod(R) \) are in fact what we call an ``algebraic triangulated category.'' Note that his definition might not be equivalent to our definition of an algebraic triangulated category in general, which we will define in \autoref{section:alg_tri_cats}.

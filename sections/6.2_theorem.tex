@@ -63,16 +63,16 @@ Some knowledgeable readers might notice that we are missing a sign that other au
 
     In \cite[Proposition 4.2.8]{Jasso-Muro_2023}, restricted to the three-fold case and converted to our definitions, they essentially want to show that
     \[
-        \massey{f_3, f_2, f_1} = \union_{\beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1}_{fc}}  \class{- \beta \circ (\Sigma \alpha)}.
+        \massey{f_3, f_2, f_1} = \union_{\beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1}_{fc}}  \class*{- \beta \circ (\Sigma \alpha)}.
     \]
     However, we can see that this does not agree with our result, since
     \[
-        \union_{\beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1}_{fc}}  \class{- \beta \circ (\Sigma \alpha)} = -\toda{f_3, f_2, f_1}.
+        \union_{\beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1}_{fc}}  \class*{- \beta \circ (\Sigma \alpha)} = -\toda{f_3, f_2, f_1}.
     \]
 
     Their argument starts with some \( g_1, g_2, g_3, s, \) and \( t \) from the definition of the Massey product for some element \( f \in \massey{f_3, f_2, f_1} \). Then they construct \( -\alpha \) and \( -\beta \) in the same manner as we do, and then they verify that \( (-\beta) \circ (\Sigma -\alpha) = \beta \circ (\Sigma \alpha) \in \toda{f_3, f_2, f_1} \), just as we do.
 
-    However, then they make what we can assume to be the error in their proof. They don't verify that \( f = \class{- \beta \circ (\Sigma \alpha)} \), which would contradict the result we get in our proof.
+    However, then they make what we can assume to be the error in their proof. They don't verify that \( f = \class*{- \beta \circ (\Sigma \alpha)} \), which would contradict the result we get in our proof.
 
-    Then they finish up the proof by stating that by starting with some \( \beta \) and \( \Sigma \alpha \), they can construct \( g_1, g_2, g_3, s, \) and \( t \), from the definition of the Massey product for some element \( f \in \massey{f_3, f_2, f_1} \). Due to the lack of specificity in this part of their proof, we can not be sure they construct \( g_1, g_2, g_3, s, \) and \( t \) in the same manner we do, but most likely they do. However, again they do not show why \( \class{- \beta \circ (\Sigma \alpha)} = f \), which might have contradicted our result.
+    Then they finish up the proof by stating that by starting with some \( \beta \) and \( \Sigma \alpha \), they can construct \( g_1, g_2, g_3, s, \) and \( t \), from the definition of the Massey product for some element \( f \in \massey{f_3, f_2, f_1} \). Due to the lack of specificity in this part of their proof, we can not be sure they construct \( g_1, g_2, g_3, s, \) and \( t \) in the same manner we do, but most likely they do. However, again they do not show why \( \class*{- \beta \circ (\Sigma \alpha)} = f \), which might have contradicted our result.
 \end{remark}

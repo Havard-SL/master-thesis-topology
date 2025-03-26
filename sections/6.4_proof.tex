@@ -39,7 +39,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
     \]
     with \( d(s) = - g_3 \circ g_2 \) and \( d(t) = - g_2 \circ g_1 \) such that
     \[
-        f = \class{s \circ g_1 - g_3 \circ t}.
+        f = \class*{s \circ g_1 - g_3 \circ t}.
     \]
 
     % WIP: Kvifor er alpha i dgM?
@@ -160,7 +160,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
 
     We show that the left square commutes,
     \begin{align*}
-        \class*{- (\Sigma^{-1} \pi) \circ \alpha} &= \class{- \pi \circ \alpha} \\
+        \class*{- (\Sigma^{-1} \pi) \circ \alpha} &= \class*{- \pi \circ \alpha} \\
         &=
         \class*{
             -
@@ -205,7 +205,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
         f = \beta \circ (\Sigma \alpha).
     \]
 
-    We want to find \( g_1 \in \dgM(X_1, X_2)_0 \), \( g_2 \in \dgM(X_2, X_3)_0 \), \( g_3 \in \dgM(X_3, X_4)_0 \), \( s \in \dgM(X_2, X_4)_{-1} \), and \( t \in \dgM(X_1, X_3)_{-1} \) with \( d(t) = - g_2 \circ g_1 \) and \( d(s) = -g_3 \circ g_2 \), such that \( f = \class{s \circ g_1 - g_3 \circ t} \).
+    We want to find \( g_1 \in \dgM(X_1, X_2)_0 \), \( g_2 \in \dgM(X_2, X_3)_0 \), \( g_3 \in \dgM(X_3, X_4)_0 \), \( s \in \dgM(X_2, X_4)_{-1} \), and \( t \in \dgM(X_1, X_3)_{-1} \) with \( d(t) = - g_2 \circ g_1 \) and \( d(s) = -g_3 \circ g_2 \), such that \( f = \class*{s \circ g_1 - g_3 \circ t} \).
 
     Let \( g_1 := (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha \), \( g_2 = f_2 \), and let \( g_3 := \beta \circ \iota_{X_3} \). 
 
@@ -232,7 +232,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
          &= - f_2 \circ (- \Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha \\
          &= - g_2 \circ g_1.
     \end{align*}
-    Third, \( f = \class{s \circ g_1 - g_3 \circ t} \):
+    Third, \( f = \class*{s \circ g_1 - g_3 \circ t} \):
     \begin{align*}
         s \circ g_1 - g_3 \circ t &= - \beta \circ \iota_{\Sigma X_2} \circ (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha - \beta \circ \iota_{X_3} \circ (- \pi_{X_3}) \circ \alpha \\
         &= \beta \circ \tuple*{\iota_{\Sigma X_2} \circ \pi_{\Sigma X_2} + \iota_{X_3} \circ \pi_{X_3}} \circ \alpha \\
@@ -255,7 +255,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
     Assume that on \( \im(F) \), the natural isomorphism \( \mu \) is defined as follows: Every object \( A' \in \im(F) \) can be written on the form \( F A \) for some \( A \in \Tc \). Likewise, any morphism \( f': F A \to F B \) can be written on the form \( f' = F f \) for some \( f \in \Tc(A, B) \), since \( F \) is full. Therefore, the following composition defines a valid natural isomorphism on \( \im(F) \),
     \begin{align*}
         \mu: &F^{-1} \Sigma \to \Sigma F^{-1} \\
-        &= \set{ (\Sigma \phi^{-1}_A) \circ \phi_{\Sigma A} \circ (F^{-1} \eta^{-1}_A)}_{F A \in \im(F)}.
+        &= \set*{ (\Sigma \phi^{-1}_A) \circ \phi_{\Sigma A} \circ (F^{-1} \eta^{-1}_A)}_{F A \in \im(F)}.
     \end{align*}
 
     In order to prove the theorem, we want to prove \( \subseteq \) and \( \supseteq \).

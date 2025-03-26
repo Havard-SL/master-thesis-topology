@@ -57,6 +57,7 @@ Composition in the above category is well-defined and associative because it is 
 \autoref{def:0_th_cohomology_of_dg_cat} connects the theory of DG-categories to the chain homotopy category.
 
 \begin{remark}
+    \label{rem:c_dg_h_0_is_chain_homotopy_cat}
     A consequence of \autoref{def:0_th_cohomology_of_dg_cat}, is that we can write the chain homotopy category, \( \K(\Mod(R)) \), defined in \autoref{def:chain_homotopy_cat}, as simply \( H^0(\C_{\dg}) \).
     
     Unwinding the definitions, \( H^0(\C_{\dg})(A, B) \) is exactly every chain homotopy class from \( A \) to \( B \), and both composition and the identities all match.
@@ -262,7 +263,7 @@ Before we prove that the above definition is well-defined, we have the following
 
     The first equality is because
     \[
-        d_{\Sigma F} = \tuple{d_{\Sigma F A}}_{A \in \Cc} = \tuple{-d_{F A}}_{A \in \Cc} = - d_F = \Sigma d_F.
+        d_{\Sigma F} = \tuple*{d_{\Sigma F A}}_{A \in \Cc} = \tuple*{-d_{F A}}_{A \in \Cc} = - d_F = \Sigma d_F.
     \]
     The second equality is because for any \( \eta \in \dgM(F, G)_n \),
     \[
@@ -420,11 +421,11 @@ The above notation fits nicely with the following projection and embedding DG-mo
 \begin{definition}
     For \( A, B \in \C \), define
     \[
-        \pi_A := \tuple{\pi_{A_i}}_{i \in \Zb} \in \C_{\dg}(A \oplus B, A)_0
+        \pi_A := \tuple*{\pi_{A_i}}_{i \in \Zb} \in \C_{\dg}(A \oplus B, A)_0
     \]
     and
     \[
-        \iota_A := \tuple{\iota_{A_i}}_{i \in \Zb} \in \C_{\dg}(A, A \oplus B)_0.
+        \iota_A := \tuple*{\iota_{A_i}}_{i \in \Zb} \in \C_{\dg}(A, A \oplus B)_0.
     \]
 \end{definition}
 
@@ -463,13 +464,13 @@ Due to the properties of DG-functors, it is not obvious why the previous definit
                 &d_n \circ (F \oplus G)_{A, B, n} (f) \\
                 &= d_n ((F f)_i \oplus (G f)_i)_{i \in \Zb} \\
                 &= d_{(F B) \oplus (G B)} \circ ((F f)_i \oplus (G f)_i)_{i \in \Zb} - (-1)^n ((F f)_i \oplus (G f)_i)_{i \in \Zb} \circ d_{(F A) \oplus (G A)} \\
-                &= \tuple{d_{(F B) \oplus (G B), i + n} \circ ((F f)_i \oplus (G f)_i) - (-1)^n ((F f)_{i + 1} \oplus (G f)_{i + 1}) \circ d_{(F A) \oplus (G A)}}_{i \in \Zb} \\
+                &= \tuple*{d_{(F B) \oplus (G B), i + n} \circ ((F f)_i \oplus (G f)_i) - (-1)^n ((F f)_{i + 1} \oplus (G f)_{i + 1}) \circ d_{(F A) \oplus (G A)}}_{i \in \Zb} \\
                 &= \big( (d_{F B, i + n} \circ (F f)_i) \oplus (d_{G B, i + n} \circ (G f)_i) \\
                 &\hspace{0.4cm} - (-1)^n ( ( (F f)_{i + 1} \circ d_{F A, i} ) \oplus ( (G f)_{i + 1} \circ d_{G A, i} ) ) \big)_{i \in \Zb} \\
-                &= \big( \tuple{d_{F B, i + n} \circ (F f)_i - (-1)^n (F f)_{i + 1} \circ d_{F A, i}} \\
-                &\hspace{0.4cm} \oplus \tuple{d_{G B, i + n} \circ (G f)_i - (-1)^n (G f)_{i + 1} \circ d_{G A, i}} \big)_{i \in \Zb} \\
-                &= \tuple{ \tuple{d_{[F A, F B], n} (F f)}_i \oplus \tuple{ d_{[G A, G B], n} (G f)}_i }_{i \in \Zb} \\
-                &= \tuple{ \tuple{F d_n (f)}_i \oplus \tuple{ G d_n (f)}_i }_{i \in \Zb} \\
+                &= \big( \tuple*{d_{F B, i + n} \circ (F f)_i - (-1)^n (F f)_{i + 1} \circ d_{F A, i}} \\
+                &\hspace{0.4cm} \oplus \tuple*{d_{G B, i + n} \circ (G f)_i - (-1)^n (G f)_{i + 1} \circ d_{G A, i}} \big)_{i \in \Zb} \\
+                &= \tuple*{ \tuple*{d_{[F A, F B], n} (F f)}_i \oplus \tuple*{ d_{[G A, G B], n} (G f)}_i }_{i \in \Zb} \\
+                &= \tuple*{ \tuple*{F d_n (f)}_i \oplus \tuple*{ G d_n (f)}_i }_{i \in \Zb} \\
                 &= (F \oplus G)_{A, B, n + 1} (d_n (f)) = (F \oplus G)_{A, B, n + 1} \circ d_n (f).
             \end{align*}
             This implies \( (F \oplus G)_{A, B} \) is a chain morphism.
@@ -525,7 +526,7 @@ Due to the properties of DG-functors, it is not obvious why the previous definit
 
             For \( n = 0 \), and \( r \in R \), consider the following equation
             \begin{align*}
-                (F \oplus G) \circ u_{A, 0} (r) &= \tuple{ (F \circ u_{A, 0} (r))_i \oplus (G \circ u_{A, 0} (r))_i }_{i \in \Zb} \\
+                (F \oplus G) \circ u_{A, 0} (r) &= \tuple*{ (F \circ u_{A, 0} (r))_i \oplus (G \circ u_{A, 0} (r))_i }_{i \in \Zb} \\
                 &= ((u_{F A, 0} (r))_i \oplus (u_{G A, 0} (r))_i)_{i \in \Zb} \\
                 &= ((r \Id_{(F A)_i})_i \oplus (r \Id_{(G A)_i})_i)_{i \in \Zb} \\
                 &= (r \Id_{(F A)_i \oplus (G A)_i})_{i \in \Zb} \\
@@ -543,47 +544,47 @@ Similarly to how there is a projection and embedding DG-morphism in \( \C_{\dg} 
     \label{rem:dgm_pi_iota}
     For \( A, B \in \Mod(R) \), let \( \pi_A: A \oplus B \to A \) be the projection morphism. Then define
     \[
-        \pi_F := \tuple{ \tuple{ \pi_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}((F A) \oplus (G A), F A)_0.
+        \pi_F := \tuple*{ \tuple*{ \pi_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}((F A) \oplus (G A), F A)_0.
     \]
 
     For any \( f \in \Cc^{\op}(A, B)_n, \) consider the following equation,
     \begin{align*}
-        \tuple{ \pi_{(F B)_i} }_{i \in \Zb} \circ ((F \oplus G) f) &= \tuple{ \pi_{(F B)_i} }_{i \in \Zb} \circ ((F f)_i \oplus (G f)_i)_{i \in \Zb} \\
-        &= \tuple{ \pi_{(F B)_{i + n}} \circ ((F f)_i \oplus (G f)_i) }_{i \in \Zb} \\
-        &= \tuple{ (F f)_i \circ \pi_{(F A)_i} }_{i \in \Zb} \\
-        &= (F f) \circ \tuple{ \pi_{(F A)_i} }_{i \in \Zb} \\
-        &= (-1)^{|f| 0}(F f) \circ \tuple{ \pi_{(F A)_i} }_{i \in \Zb}, \\
+        \tuple*{ \pi_{(F B)_i} }_{i \in \Zb} \circ ((F \oplus G) f) &= \tuple*{ \pi_{(F B)_i} }_{i \in \Zb} \circ ((F f)_i \oplus (G f)_i)_{i \in \Zb} \\
+        &= \tuple*{ \pi_{(F B)_{i + n}} \circ ((F f)_i \oplus (G f)_i) }_{i \in \Zb} \\
+        &= \tuple*{ (F f)_i \circ \pi_{(F A)_i} }_{i \in \Zb} \\
+        &= (F f) \circ \tuple*{ \pi_{(F A)_i} }_{i \in \Zb} \\
+        &= (-1)^{|f| 0}(F f) \circ \tuple*{ \pi_{(F A)_i} }_{i \in \Zb}, \\
     \end{align*}
     which implies \( \pi_F \in \dgM(F \oplus G, F)_0 \), and similarly for \( \pi_G \).
 
     For \( A, B \in \Mod(R) \), let \( \iota_A: A \to A \oplus B \) be the embedding morphism. Then define
     \[
-        \iota_F := \tuple{ \tuple{ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}(F A, (F A) \oplus (G A) )_0.
+        \iota_F := \tuple*{ \tuple*{ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}(F A, (F A) \oplus (G A) )_0.
     \]
 
     For any \( f \in \Cc^{\op}(A, B)_n, \) consider the following equation,
     \begin{align*}
-        ((F \oplus G) f) \circ \tuple{ \iota_{(F A)_i} }_{i \in \Zb} &= ((F f)_i \oplus (G f)_i)_{i \in \Zb} \circ \tuple{ \iota_{(F A)_i} }_{i \in \Zb} \\
-        &= \tuple{ ((F f)_i \oplus (G f)_i) \circ \iota_{(F A)_i} }_{i \in \Zb} \\
-        &= \tuple{ \iota_{(F B)_{i + n}} \circ (F f)_i  }_{i \in \Zb} \\
-        &= \tuple{ \iota_{(F B)_{i + n}} }_{i \in \Zb} \circ (F f) \\
-        &= (-1)^{|f| 0}\tuple{ \iota_{(F B)_{i + n}} }_{i \in \Zb} \circ (F f), \\
+        ((F \oplus G) f) \circ \tuple*{ \iota_{(F A)_i} }_{i \in \Zb} &= ((F f)_i \oplus (G f)_i)_{i \in \Zb} \circ \tuple*{ \iota_{(F A)_i} }_{i \in \Zb} \\
+        &= \tuple*{ ((F f)_i \oplus (G f)_i) \circ \iota_{(F A)_i} }_{i \in \Zb} \\
+        &= \tuple*{ \iota_{(F B)_{i + n}} \circ (F f)_i  }_{i \in \Zb} \\
+        &= \tuple*{ \iota_{(F B)_{i + n}} }_{i \in \Zb} \circ (F f) \\
+        &= (-1)^{|f| 0}\tuple*{ \iota_{(F B)_{i + n}} }_{i \in \Zb} \circ (F f), \\
     \end{align*}
     which implies \( \iota_F \in \dgM(F, F \oplus G)_0 \), and similarly for \( \iota_G \).
 
     In particular, \( \pi_F \) and \( \iota_F \) also has the following two properties,
     \begin{align*}
-        \pi_F \circ \iota_F &= \tuple{ \tuple{ \pi_{(F A)_i} }_{i \in \Zb} \circ \tuple{ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple{ \tuple{ \pi_{(F A)_i} \circ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple{ \tuple{ \Id_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
+        \pi_F \circ \iota_F &= \tuple*{ \tuple*{ \pi_{(F A)_i} }_{i \in \Zb} \circ \tuple*{ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
+        &= \tuple*{ \tuple*{ \pi_{(F A)_i} \circ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
+        &= \tuple*{ \tuple*{ \Id_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
         &= u_{F, 0}(1),
     \end{align*}
     and
     \begin{align*}
-        \iota_F \circ \pi_F + \iota_G \circ \pi_G &= \tuple{ \tuple{\iota_{(F A)_i} \circ \pi_{(F A)_i} + \iota_{(G A)_i} \circ \pi_{(G A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple{ \tuple{ \Id_{(F A)_i \oplus (G A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple{ \tuple{ \Id_{((F \oplus G) A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple{ (u_{(F \oplus G) A})_0 (1)}_{A \in \Cc} \\
+        \iota_F \circ \pi_F + \iota_G \circ \pi_G &= \tuple*{ \tuple*{\iota_{(F A)_i} \circ \pi_{(F A)_i} + \iota_{(G A)_i} \circ \pi_{(G A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
+        &= \tuple*{ \tuple*{ \Id_{(F A)_i \oplus (G A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
+        &= \tuple*{ \tuple*{ \Id_{((F \oplus G) A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
+        &= \tuple*{ (u_{(F \oplus G) A})_0 (1)}_{A \in \Cc} \\
         &= u_{F \oplus G, 0} (1).
     \end{align*}
 \end{remark}
@@ -636,8 +637,8 @@ The following lemma is part of the proof of why \( H^0(\dgM) \) is additive.
     First, consider \( \pi_F \),
     \begin{align*}
         d_{\dgM(F \oplus G, F), 0} ( \pi_F ) &= d_F \circ \pi_F - \pi_F \circ d_{F \oplus G} \\
-        &= \tuple{ d_{F A, i} \circ \pi_{F A, i} - \pi_{F A, i + 1} \circ d_{(F A) \oplus (G A), i} }_{i \in \Zb, A \in \Cc} \\
-        &= \tuple{
+        &= \tuple*{ d_{F A, i} \circ \pi_{F A, i} - \pi_{F A, i + 1} \circ d_{(F A) \oplus (G A), i} }_{i \in \Zb, A \in \Cc} \\
+        &= \tuple*{
             \begin{psmallmatrix}
                 d_{F A, i} & 0
             \end{psmallmatrix}
@@ -650,7 +651,7 @@ The following lemma is part of the proof of why \( H^0(\dgM) \) is additive.
                 0 & d_{G A, i}
             \end{psmallmatrix}
         }_{i \in \Zb, A \in \Cc} \\
-        &= \tuple{
+        &= \tuple*{
             \begin{psmallmatrix}
                 d_{F A, i} & 0
             \end{psmallmatrix}
@@ -665,8 +666,8 @@ The following lemma is part of the proof of why \( H^0(\dgM) \) is additive.
     Second, consider \( \iota_F \),
     \begin{align*}
         d_{\dgM(F, F \oplus G), 0} ( \iota_F ) &= d_{F \oplus G} \circ \iota_F - \iota_F \circ d_F \\
-        &= \tuple{ d_{(F A) \oplus (G A), i} \circ \iota_{F A, i} - \iota_{F A, i + 1} \circ d_{F A, i} }_{i \in \Zb, A \in \Cc} \\
-        &= \tuple{
+        &= \tuple*{ d_{(F A) \oplus (G A), i} \circ \iota_{F A, i} - \iota_{F A, i + 1} \circ d_{F A, i} }_{i \in \Zb, A \in \Cc} \\
+        &= \tuple*{
             \begin{psmallmatrix}
                 d_{F A, i} \\
                 0
@@ -730,7 +731,7 @@ With the above notation in mind, we get an equality that is essential in creatin
 
     Then there is a chain isomorphism
     \begin{align*}
-        \phi: \class{\Sigma^{-n} A, B} &\to \class{A, B}_{\bullet+n} \\
+        \phi: \class*{\Sigma^{-n} A, B} &\to \class*{A, B}_{\bullet+n} \\
         f &\mapsto f.
     \end{align*}
 
@@ -738,8 +739,8 @@ With the above notation in mind, we get an equality that is essential in creatin
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                \class{\Sigma^{-n} A, B}: \&[-0.9cm] \cdots \& \class{\Sigma^{-n} A, B}_{-1} \& \class{\Sigma^{-n} A, B}_0 \& \class{\Sigma^{-n} A, B}_1 \& \cdots \\
-                \class{A, B}_{\bullet+n}: \& \cdots \& \class{A, B}_{n - 1} \& \class{A, B}_n \& \class{A, B}_{n + 1} \& \cdots \\
+                \class*{\Sigma^{-n} A, B}: \&[-0.9cm] \cdots \& \class*{\Sigma^{-n} A, B}_{-1} \& \class*{\Sigma^{-n} A, B}_0 \& \class*{\Sigma^{-n} A, B}_1 \& \cdots \\
+                \class*{A, B}_{\bullet+n}: \& \cdots \& \class*{A, B}_{n - 1} \& \class*{A, B}_n \& \class*{A, B}_{n + 1} \& \cdots \\
             };
 
             \draw[math]
@@ -762,26 +763,26 @@ With the above notation in mind, we get an equality that is essential in creatin
 \begin{proof}
     For any \( i \in \Zb \), there are two parts that need to be proved.
 
-    First, we need to show that \( \class{\Sigma^{-n} A, B}_i = \class{A, B}_{n + i} \), and second, need to show that \( d_{\class{\Sigma^{-n} A, B}, i} = d_{\class{A, B}, n + i} \).
+    First, we need to show that \( \class*{\Sigma^{-n} A, B}_i = \class*{A, B}_{n + i} \), and second, need to show that \( d_{\class*{\Sigma^{-n} A, B}, i} = d_{\class*{A, B}, n + i} \).
 
     We start with the first part.
 
     Expanding the definitions and using \autoref{not:prod_coprod_no_order}, we get that
     \begin{align*}
-        \class{\Sigma^{-n} A, B}_i &= \prod_{j \in \Zb} \Mod(R)((\Sigma^{-n} A)_j, B_{j + i}) \\
+        \class*{\Sigma^{-n} A, B}_i &= \prod_{j \in \Zb} \Mod(R)((\Sigma^{-n} A)_j, B_{j + i}) \\
         &= \prod_{j \in \Zb} \Mod(R)(A_{j - n}, B_{j + i}) \\
         &= \prod_{j \in \Zb} \Mod(R)(A_j, B_{j + i + n}) \\
         &= [A, B]_{i + n}
     \end{align*}
 
-    And for the second part, let \( \tuple{f_j}_{j \in \Zb} \in [A, B]_{n + i} \), where we consider \( f_j: A_j \to B_{j + n + i} \), and consider the following equation
+    And for the second part, let \( \tuple*{f_j}_{j \in \Zb} \in [A, B]_{n + i} \), where we consider \( f_j: A_j \to B_{j + n + i} \), and consider the following equation
     \begin{align*}
-        d_{\class{\Sigma^{-n} A, B}, i}\tuple{f_j}_{j \in \Zb} &= \tuple*{d_{B, n + i + j} \circ f_j - (-1)^i f_{j + 1} \circ d_{\Sigma^{-n} A, j + n}}_{j \in \Zb} \\
+        d_{\class*{\Sigma^{-n} A, B}, i}\tuple*{f_j}_{j \in \Zb} &= \tuple*{d_{B, n + i + j} \circ f_j - (-1)^i f_{j + 1} \circ d_{\Sigma^{-n} A, j + n}}_{j \in \Zb} \\
         &= \tuple*{d_{B, n + i + j} \circ f_j - (-1)^{n + i} f_{j + 1} \circ d_{A, j}}_{j \in \Zb} \\
-        &= d_{\class{A, B}, n + i}(f_j)_{j \in \Zb}.
+        &= d_{\class*{A, B}, n + i}(f_j)_{j \in \Zb}.
     \end{align*}
 
-    And therefore \( \class{\Sigma^{-n} A, B} \) is canonically isomorphic to \( \class{A, B}_{\bullet+n} \) with an ``identity'' morphism.
+    And therefore \( \class*{\Sigma^{-n} A, B} \) is canonically isomorphic to \( \class*{A, B}_{\bullet+n} \) with an ``identity'' morphism.
 \end{proof}
 
 The above lemma gives the following result, which is what we will use in the definition of Massey products on \( H^0(\dgM) \). 
