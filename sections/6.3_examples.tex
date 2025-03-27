@@ -201,12 +201,41 @@ For the sake of completeness, we will roughly calculate \( \eta \) for \( \Mc \)
 
     \( \tilde{\eta} \) can be verified to be a canonical isomorphism that is essentially the identity, since \( [A, \Sigma B] \cong \Sigma [A, B] \) with the identity morphism in each degree. Therefore, there is an isomorphism \( \C_{\dg}(?, \Sigma A) \cong \Sigma \C_{\dg}(?, A) \), which induces a natural ismorphism from \( H^0(\mathbf{h}) \Sigma \) to \( \Sigma H^0(\mathbf{h}) \).
 
-    \( \hat{\eta} \) is the following natural isomorphism.
+    \( \hat{\eta} \) is the following natural isomorphism:
 
-    For \( A \in \Mc \), recall that \( \Sigma A \) is defined as the cokernel of \( A \rightarrowtail I_A \), for some injective module \( I_A \), since it is the cozysygy functor. When calculating the injective resolution, these naturally occur in between each module in the injective resolution.
+    Notice that in the definition of \( \Phi \), we choose a projective and injective resolution for each \( A \). If we consider the first morphism and modules in the injective and projective resolutions, we have essentially chosen some injective and projective object for each \( A \) as well as a monomorphism and epimorphism into and from the modules respectively. If we then choose some objects as the kernels of the monomorphisms, and some objects as the cokernels of the epimorphisms, we have defined some \( \Omega' \) and \( \Sigma' \), but with a different \( P \) and \( I \), respectively (see \autoref{def:stmod_omega} and \autoref{def:stmod_sigma}). Label the morphisms and modules in \( P \) and \( I \) as we did for \( \Sigma \) and \( \Omega \) in \autoref{subsubsection:stable_module_cat} (this is fine since we will not reference the morphisms and modules from the definition of \( \Sigma \) ).
 
-    WIP
+    Notice that \( \Phi^{-1} \Phi \) takes some object \( A \) to \( \ker(\rho_A) = \im(i_A) \). This is naturally isomorphic to \( \Id_{\Mc} \) because it is naturally isomorphic to \( \Id_{\Mod(R)} \) in \( \Mod(R) \). Denote this natural isomorphism by \( \gamma \).
+    
+    Furthermore, notice that \( \Phi^{-1} \Sigma^{-1} \Phi \Sigma \) takes \( A \) to \( \ker(\pi_{\Sigma A}) \). This is the definition of \( \Omega' \Sigma A \). Hence,
+    \[
+        \Phi^{-1} \Sigma^{-1} \Phi \Sigma = \Omega' \Sigma A.
+    \]
+
+    By \cite[p.\ 13]{Happel_1988}, we have that \( \Omega' \) is naturally isomorphic to \( \Omega = \Sigma^{-1} \). Denote this natural isomorphism by \( \alpha \).
+
+    We also have a natural isomorphism from \( \Sigma^{-1} \Sigma \) to \( \Id_{\Mc} \) by \autoref{thm:stmod_omega_autoeq}. Denote this natural isomorphism by \( \beta \).
+
+    Then
+    \[
+       \mu := \set{ \beta_A \circ \alpha_{\Sigma A} }_{A \in \Mc} :\Phi^{-1} \Sigma^{-1} \Phi \Sigma \to \Id_{\Mc}
+    \]
+    is a natural isomorphism, and we get
+    \[
+        \hat{\eta} := \set{(\Sigma \Phi \mu_A) \circ (\Sigma \gamma^{-1}_{\Sigma^{-1} \Phi \Sigma A})}_{A \in \Mc}: \Phi \Sigma \to \Sigma \Phi,
+    \]
+    as the desired natural isomorphism.
+
+    Finally, we get
+    \[
+        \eta := \set{ \tilde{\eta}_{\Phi A} \circ (H^0(\mathbf{h}) \hat{\eta}_A) }_{A \in \Mc}: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi
+    \]
+    as the desired \( \eta \).
 \end{remark}
+
+The above remark shows us that calculating natural isomorphisms, even in a rough manner as was done above, can be difficult. However, when calculating Massey products, this only has to be done once for the particular algebraic triangulated category we are working with.
+
+The following example had empty Toda bracket, now we will calculate the Massey product and see if we get the same result.
 
 \begin{example}
 	We want to calculate \( \massey{\Id_J, \Id_J, \Id_J} \).
