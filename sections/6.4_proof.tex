@@ -19,8 +19,10 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
         \toda{f_3, f_2, f_1} = \massey{f_3, f_2, f_1}.
     \]
 \end{theorem}
-% TODO: Korleis fungerar komposisjon og "endring av grad"? F.eks s \circ g_1 i siste del av beviset er rart, kanskje ikkje veldefinert.
+% WIP: Verifiser utreikningane. Spesielt med hensyn til komposisjon-forvirringo. Kanskje utdjup eller spesifiser kor det blir brukt?
 \begin{proof}
+    Recall from \autoref{rem:dgm_c_dg_super_degree_shift} that composition of DG-morphisms in \( \prod_{A \in \Cc} \C_{\dg}(F A, G A) \) for any DG-module \( F \) and \( G \), as well as \( \dgM \), is independent of ``where'' we compose them. This property will be implicitly used a lot in this proof.
+
     We will prove this by showing the two inclusions \( \supseteq \) and \( \subseteq \).
 
     Start by showing \( \supseteq \).
@@ -42,8 +44,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
         f = \class*{s \circ g_1 - g_3 \circ t}.
     \]
 
-    % WIP: Kvifor er alpha i dgM?
-    By \autoref{lem:dgmod_shift_eq_plus}, consider \( t \) as an element of \( \dgM(\Sigma X_1, X_3)_0 \). Consider \( \Sigma^{-1} t = t \). Then we can construct the following morphism.
+    By \autoref{rem:dgm_c_dg_super_degree_shift}, consider \( t \) as an element of \( \dgM(X_1, \Sigma^{-1} X_3)_0 \). Then we can construct the following morphism
     \[
         \alpha =
         \begin{pmatrix}
@@ -132,12 +133,12 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
     
     Then we want to show that \( \alpha \) and \( \beta \) fit into the fiber-cofiber definition of Toda brackets.
 
-    Since \( \Sigma_{H^0(\dgM)} \) and is an automorphism by \autoref{rem:dgm_sigma_automorphism}, we can use a simplified version of the fiber-cofiber definition of Toda brackets without assuming a natural isomorphism from \( \Sigma \Sigma^{-1} \) to \( \Id \).
+    Since \( \Sigma_{H^0(\dgM)} \) is an automorphism by \autoref{rem:dgm_sigma_automorphism}, we can use a simplified version of the fiber-cofiber definition of Toda brackets without assuming a natural isomorphism from \( \Sigma \Sigma^{-1} \) to \( \Id \).
 
     We want the following diagram to commute, where the middle row is the right-rotated standard triangle of \( g_2 \),
     \begin{center}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
+            \diagram{m}{1cm}{2cm} {
                 X_1 \& X_2 \\
                 \Sigma^{-1} C_{g_2} \& X_2 \& X_3 \& C_{g_2} \\
                 \& \& X_3 \& X_4. \\
@@ -158,7 +159,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
         \end{tikzpicture}
     \end{center}
 
-    We show that the left square commutes,
+    The left square commutes as
     \begin{align*}
         \class*{- (\Sigma^{-1} \pi) \circ \alpha} &= \class*{- \pi \circ \alpha} \\
         &=
@@ -175,7 +176,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
         } \\
         &= \class*{g_1} = \class*{f_1}
     \end{align*}
-    and that the right square commutes,
+    and the right square commutes as
     \begin{align*}
         \class*{\beta \circ \iota} &=
         \class*{
@@ -191,7 +192,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
         &= \class*{g_3} = \class*{f_3}.
     \end{align*}
 
-    That means that:
+    Hence,
     \[
         \class*{\beta \circ (\Sigma \alpha)} = \class*{\beta \circ \alpha} = f
     \]
@@ -199,8 +200,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
 
     Then we want to show \( \subseteq \):
 
-    % TODO: Kvifor kan me anta at Y = C_g_2?
-    Let \( f \in \toda{f_3, f_2, f_1} \). Using the fiber-cofiber definition of Toda brackets, and assuming \( Y = C_{f_2} \), we get that there exist some \( \alpha \in \dgM(X_1, \Sigma^{-1} C_{f_2})_0 \) and \( \beta \in \dgM(C_{f_2}, X_4)_0 \), such that
+    Let \( f \in \toda{f_3, f_2, f_1} \). Using the fiber-cofiber definition of Toda brackets, and assuming \( Y = C_{f_2} \), there exist some \( \alpha \in \dgM(X_1, \Sigma^{-1} C_{f_2})_0 \) and \( \beta \in \dgM(C_{f_2}, X_4)_0 \), such that
     \[
         f = \beta \circ (\Sigma \alpha).
     \]
@@ -213,7 +213,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
 
     Then the above properties all hold by the following three equations:
 
-    Remember the equations from \autoref{rem:dgm_differentials_of_inclusions_and_projections_of_cone}.
+    Recall the equations from \autoref{rem:dgm_differentials_of_inclusions_and_projections_of_cone}.
 
     First, \( d(s) = -g_3 \circ g_2 \):
     \begin{align*}
@@ -236,15 +236,17 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
     \begin{align*}
         s \circ g_1 - g_3 \circ t &= - \beta \circ \iota_{\Sigma X_2} \circ (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha - \beta \circ \iota_{X_3} \circ (- \pi_{X_3}) \circ \alpha \\
         &= \beta \circ \tuple*{\iota_{\Sigma X_2} \circ \pi_{\Sigma X_2} + \iota_{X_3} \circ \pi_{X_3}} \circ \alpha \\
+        \intertext{by \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms},}
         &= \beta \circ \Id_{C_{f_2}} \circ \alpha \\
-        &= \beta \circ \alpha = f,
+        &= \beta \circ \alpha \\
+        &= \beta \circ (\Sigma \alpha) = f,
     \end{align*}
     which implies \( f \in \massey{f_3, f_2, f_1} \).
 \end{proof}
 
-The following is the proof of \autoref{theorem:massey_equals_toda}.
+We are now ready to rpove our main theorem, \autoref{theorem:massey_equals_toda}.
 
-\begin{proof}[Proof of Massey products = Toda brackets in an algebraic triangulated category]
+\begin{proof}[Proof that Massey products = Toda brackets in an algebraic triangulated category]
     \phantom{hei}
 
     Let \( F := H^0(\mathbf{h}) \Phi \) and \( F^{-1} := \Phi^{-1} (H^0(\mathbf{h}))^{-1} \) in this proof.
@@ -252,13 +254,15 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
     Let \( \phi: F^{-1} F \to \Id_{\Tc} \) be the natural isomorphism from the definition of Massey products on an algebraic triangulated category and let \( \eta: F \Sigma \to \Sigma F \) be the natural isomorphism from the fact that \( F \) is a triangulated equivalence.
 
     % TODO: Kvifor er dette naturleg? Ganske sikker, treng resultat i forkant?
-    Assume that on \( \im(F) \), the natural isomorphism \( \mu \) is defined as follows: Every object \( A' \in \im(F) \) can be written on the form \( F A \) for some \( A \in \Tc \). Likewise, any morphism \( f': F A \to F B \) can be written on the form \( f' = F f \) for some \( f \in \Tc(A, B) \), since \( F \) is full. Therefore, the following composition defines a valid natural isomorphism on \( \im(F) \),
-    \begin{align*}
-        \mu: &F^{-1} \Sigma \to \Sigma F^{-1} \\
-        &= \set*{ (\Sigma \phi^{-1}_A) \circ \phi_{\Sigma A} \circ (F^{-1} \eta^{-1}_A)}_{F A \in \im(F)}.
-    \end{align*}
+    Assume that on \( \im(F) \), the natural isomorphism \( \mu \) is defined as follows: 
+    
+    Every object \( A' \in \im(F) \) can be written on the form \( F A \) for some \( A \in \Tc \). Likewise, any morphism \( f': F A \to F B \) can be written on the form \( f' = F f \) for some \( f \in \Tc(A, B) \), since \( F \) is full. Therefore,
+    \[
+        \mu := \set*{ (\Sigma \phi^{-1}_A) \circ \phi_{\Sigma A} \circ (F^{-1} \eta^{-1}_A)}_{F A \in \im(F)}
+    \]
+    defines a valid natural isomorphism from \(  F^{-1} \Sigma \) to \( \Sigma F^{-1} \) in \( \im(F) \).
 
-    In order to prove the theorem, we want to prove \( \subseteq \) and \( \supseteq \).
+    In order to prove the theorem, we want to prove \( \toda{f_3, f_2, f_1} \subseteq \massey{f_3, f_2, f_1} \) and \( \toda{f_3, f_2, f_1} \supseteq \massey{f_3, f_2, f_1} \).
 
     We start by proving \( \subseteq \):
     
@@ -312,7 +316,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
                 (m-3-3) edge node {F f_3} (m-3-4);
         \end{tikzpicture}
     \end{center}
-    which we can rewrite into the following commutative diagram,
+    which we can rewrite as the following commutative diagram,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1.8cm} {
@@ -344,7 +348,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
         &= (F (\beta \circ (\Sigma \alpha))) \circ \eta^{-1}_{X_1} \\
         &= (F f ) \circ \eta^{-1}_{X_1}.
     \end{align*}
-    Thus, by \autoref{thm:dgm_massey_equal_toda}, we get
+    Thus, by \autoref{thm:dgm_massey_equal_toda}, we have
     \[
         (F f ) \circ \eta^{-1}_{X_1} \in \toda{F f_3, F f_2, F f_1} = \massey{F f_3, F f_2, F f_1}.
     \]
@@ -402,13 +406,13 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
         \tilde{\beta} = \phi_{X_4} \circ (F^{-1} (\beta \circ \eta_{\Sigma^{-1} Y})) \circ \phi^{-1}_{\Sigma \Sigma^{-1} Y}.
     \]
 
-    Consider the following diagram
+    The diagram
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1.2cm} {
                 X_1 \& X_2 \\
                 \Sigma^{-1} Y \& X_2 \& X_3 \& \Sigma \Sigma^{-1} Y \\
-                \& \& X_3 \& X_4. \\
+                \& \& X_3 \& X_4 \\
             };
 
             \draw[math]
@@ -425,7 +429,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
                 (m-3-3) edge node {f_3} (m-3-4);
         \end{tikzpicture}
     \end{center}
-    This commutes because
+    commutes as
     \begin{align*}
         (- \Sigma^{-1} \pi) \circ \tilde{\alpha} &= \phi_{X_2} \circ (F^{-1} F (- \Sigma^{-1} \pi)) \circ \phi^{-1}_{\Sigma^{-1} Y} \circ \phi_{\Sigma^{-1} Y} \circ (F^{-1} \alpha) \circ \phi^{-1}_{X_1}\\
         &= \phi_{X_2} \circ (
@@ -444,7 +448,7 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
         &= f_3.
     \end{align*}
 
-    Since
+    Finally, as
     \begin{align*}
         \tilde{\beta} \circ (\Sigma \tilde{\alpha}) &= \phi_{X_4} \circ (F^{-1} (\beta \circ \eta_{\Sigma^{-1} Y})) \circ \phi^{-1}_{\Sigma \Sigma^{-1} Y} \circ
         (\Sigma (\phi_{\Sigma^{-1} Y} \circ (F^{-1} \alpha) \circ \phi^{-1}_{X_1})) \\
@@ -460,5 +464,5 @@ The following is the proof of \autoref{theorem:massey_equals_toda}.
         &= \phi_{X_4} \circ (F^{-1} (\tilde{f} \circ \eta_{X_1})) \circ \phi^{-1}_{\Sigma X_1} \\
         &= f,
     \end{align*}
-    this implies that \( f \in \toda{f_3, f_2, f_1} \).
+    we have \( f \in \toda{f_3, f_2, f_1} \).
 \end{proof}

@@ -1,4 +1,4 @@
-In broad terms, a DG-module is a functor from some DG category into a specific DG-category. The following definition, which is based on \cite[p.\ 29]{Jasso-Muro_2023}, is the category that will be the codomain of these DG-modules.
+In broad terms, a DG-module is an enriched functor from some DG-category into a specific DG-category. The following definition, which is based on \cite[p.\ 29]{Jasso-Muro_2023}, is the category that will be the codomain of these DG-modules.
 
 \begin{definition}[\( \C_{\dg} \)]
     \label{def:c_dg_mod_r}
@@ -67,7 +67,7 @@ The following remark shows why the composition above is well-defined.
             \begin{align*}
                 &( d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} )\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
                 &= d_{(A, C), n} \circ c_n \tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
-                \intertext{by definition of composition as well as differential of tensor product it follows that}
+                \intertext{by definition of composition as well as differential of tensor product,}
                 &= d_{(A, C), n}\tuple*{
                     \tuple*{ g_{p + j} \circ f_p }_{p \in \Zb}
                 } \\
@@ -75,7 +75,7 @@ The following remark shows why the composition above is well-defined.
                     d_{(B, C), i}\tuple*{ \tuple*{ g_p }_{p \in \Zb} } \otimes \tuple*{ f_q }_{q \in \Zb}
                     + (-1)^i \tuple*{ g_p }_{p \in \Zb} \otimes d_{(A, B), j} \tuple*{ \tuple*{ f_q }_{q \in \Zb} }
                 } \\
-                \intertext{then by the definition of the differential of the internal Hom}
+                \intertext{by the definition of the differential of the internal Hom,}
                 &= \tuple*{
                     d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
                 }_{p \in \Zb} \\
@@ -87,7 +87,7 @@ The following remark shows why the composition above is well-defined.
                         d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
                     }_{q \in \Zb}
                 ) \\
-                \intertext{then by the fact that composition is an \( R \)-homomorphism}
+                \intertext{by composition being an \( \Mod(R) \) morphism,}
                 &= \tuple*{
                     d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n \circ g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
                 }_{p \in \Zb} \\
@@ -101,7 +101,7 @@ The following remark shows why the composition above is well-defined.
                         d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
                     }_{q \in \Zb}
                 } \\
-                \intertext{then by the definition of composition}
+                \intertext{by the definition of composition,}
                 &= \tuple*{
                     d_{C, p + n} \circ g_{p + j} \circ f_p
                 }_{p \in \Zb} - (-1)^n \tuple*{
@@ -191,7 +191,7 @@ Another piece of the definition of a DG-module is to define what a functor betwe
     An enriched functor between two DG-categories as defined in \cite[Definition 6.2.3]{Borceux_1994} is called a \emph{DG-functor}.
 \end{definition}
 
-There are multiple examples in the following subsection (\autoref{sec:alg_tri_cat_def}) of DG-functors, such as the shift functor on \( \C_{\dg} \), shift functor of the not yet defined \( \dgM \), as well as \( F \oplus G \) for two DG-functors \( F \) and \( G \).
+There are multiple examples in the following subsection (\autoref{sec:alg_tri_cat_def}) of DG-functors, such as the shift functor on \( \C_{\dg} \), the shift functor of the not yet defined \( \dgM \), as well as \( F \oplus G \) for two DG-functors \( F \) and \( G \).
 
 Finally, we can define the DG-functor category, which is the final piece in defining DG-modules.
 
@@ -206,11 +206,13 @@ Finally, we can define the DG-functor category, which is the final piece in defi
 
 In this thesis, given some \( n \), elements in \( \Fun_{\dg}(\Ac, \Bc)_n \) are denoted as \emph{DG-natural transformations}. In other literature, this name is often associated with another type of natural transformation between DG-functors that is not a part of a chain complex. Borceux talks about these kinds of ``DG-natural transformations'' in \cite[Definition 6.2.4]{Borceux_1994}.
 
-Also of note is that Borceux does not define composition or the unit morphism in the DG-functor category, and so we will define them manually for our application.
+The reason for why \( \Ac \) has to be small is because the DG-natural transformations are defined by taking a product of \( R \)-modules over every object in \( \Ac \). This is not defined if \( \Ac \) is big, and is also the reason we only define DG-categories over the infinitely generated \( R \)-modules, as \( \mod(R) \) is not a complete category, but \( \Mod(R) \) is. This will become clearer, when we explicitly calculate what the DG-natural transformations look like for right DG-modules in \autoref{rem:dgm_natural_trans_structure}.
+
+Also of note is that Borceux does not define composition or the unit morphism in the DG-functor category, and so we will define them manually for right DG-modules in \autoref{rem:dgm_composition_and_unit_morphisms}.
 
 The definition of (right) DG-modules is the following.
 
-\begin{definition}[DG-modules, \( \dgMod_{\dg}(\Cc) \)]
+\begin{definition}[DG-modules, \( \dgMod_{\dg}(\Cc) \), \( \dgM \)]
     Let \( \Cc \) be a small DG-category over \( R \).
 
     Then define the \emph{DG-category of (right) DG-\( \Cc \)-modules} as
@@ -222,18 +224,21 @@ The definition of (right) DG-modules is the following.
     From now on, we will use the shorthand \( \dgM \) for \( \dgMod_{\dg}(\Cc) \).
 \end{definition}
 
-The definition in \autoref{def:dg_functor_category} is abstract, hard to understand and doesn't define composition or the unit morphism of \( \dgM \). In order to define composition and the unit morphism, as well for help in future proofs, we use the following remark to show how the DG-natural transformations look like in \( \dgM \).
+\autoref{def:dg_functor_category} is abstract, hard to understand, and does not define composition or the unit morphism of \( \dgM \). In order to define composition and the unit morphism, and in order to make future proofs easier, we use the following remark to show how the DG-natural transformations look like in \( \dgM \).
 
 \begin{remark}[Functor category structure from Borceux]
-    Let \( F, G \in \dgM \), in order to show how \( \dgM(F, G) \) looks like, we have to first take the adjoint of the morphisms in the diagram \cite[Diagram 6.21]{Borceux_1994} with the symmetry morphism applied to one of the diagrams to make it fit. Then we have to take the product of the morphisms we get, and finally take the equalizer of the two morphisms.
+    \label{rem:dgm_natural_trans_structure}
+    Let \( F, G \in \dgM \). In order to show what \( \dgM(F, G) \) looks like, we have to first take the adjoint of the morphisms in the diagram \cite[Diagram 6.21]{Borceux_1994} with the symmetry morphism applied to one of the diagrams to make it fit. Then we have to take the product of the morphisms we get, and finally take the equalizer of the two morphisms.
     
     Let
     \[
         \eta = \tuple*{ \eta_A }_{A \in \Cc} \in \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \tuple*{ \C_{\dg}(F(A), G(A)) }_i,
     \]
-    and let
+    which exists because \( \Ac \) is assumed to be small, and because \( \Mod(R) \) is a complete category when \( R \) is commutative, which we assume.
+
+    Furthermore, let
     \[
-        f \in \Cc^{\op}(A', A'')_j
+        f \in \Cc^{\op}(B, C)_j
     \]
     for some \( i, j \in \Zb \).
 
@@ -246,14 +251,14 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
-                \C_{\dg}(F(A'), G(A')) \otimes \C_{\dg}(G(A'), G(A'')) \\
-                \C_{\dg}(G(A'), G(A'')) \otimes \C_{\dg}(F(A'), G(A')) \\
-                \C_{\dg}(F(A'), G(A'')) \\
+                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(B, C) \\
+                \C_{\dg}(F(B), G(B)) \otimes \C_{\dg}(G(B), G(C)) \\
+                \C_{\dg}(G(B), G(C)) \otimes \C_{\dg}(F(B), G(B)) \\
+                \C_{\dg}(F(B), G(C)) \\
             };
 
             \draw[math]
-                (m-1-1) edge node {\pi_{A'} \otimes G_{A', A''}} (m-2-1)
+                (m-1-1) edge node {\pi_{B} \otimes G_{B, C}} (m-2-1)
 
                 (m-2-1) edge node {s} (m-3-1)
 
@@ -264,9 +269,9 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \otimes f  \\
-                \eta_{A'} \otimes G(f) \\
-                (-1)^{ij} G(f) \otimes \eta_{A'} \\
-                (-1)^{ij} G(f) \circ \eta_{A'} \\
+                \eta_{B} \otimes G(f) \\
+                (-1)^{ij} G(f) \otimes \eta_{B} \\
+                (-1)^{ij} G(f) \circ \eta_{B} \\
             };
 
             \path[math]
@@ -277,11 +282,10 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
                 (m-3-1) edge[maps to] (m-4-1);
         \end{tikzpicture}
     \end{diagramlabel}
-    % NOTE: The composition, \( \circ \), in bottom right of the above diagram is the composition as defined for DG-diagrams.
 
-    Name the entire above composition of chain complex morphisms for \( \psi_{A', A''} \).
+    We write the entire above composition of chain complex morphisms as \( \psi_{B, C} \).
 
-    Take the adjoint of \autoref{diag:functor_category_borceux} morphism gives the chain complex morphism \( \phi_{A', A''} \), where
+    Taking the adjoint of \( \psi_{B, C} \) gives the chain complex morphism \( \phi_{B, C} \), where
     \begin{center}
         \newcommand{\height}{1cm}
         %
@@ -289,27 +293,27 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) \\
-                \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+                \left[ \Cc^{\op}(B, C), \C_{\dg}(F(B), G(C)) \right] \\
             };
 
             \draw[math]
-                (m-1-1) edge node {\phi_{A', A''}} (m-2-1);
+                (m-1-1) edge node {\phi_{B, C}} (m-2-1);
         \end{tikzpicture}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \\
-                \tuple*{ \psi_{A', A'', k} \tuple*{ \eta \otimes ? } }_{k \in \Zb}. \\
+                \tuple*{ \psi_{B, C, k} \tuple*{ \eta \otimes ? } }_{k \in \Zb}. \\
             };
 
             \draw[math]
                 (m-1-1) edge[maps to] (m-2-1);
         \end{tikzpicture}
     \end{center}
-    NOTE: In the bottom right of the above diagram, \( ? \in \Cc^{\op}(A', A'')_{k - i} \).
+    % NOTE: In the bottom right of the above diagram, \( ? \in \Cc^{\op}(B, C)_{k - i} \).
 
-    Finally, take the product of this map over all \( A', A'' \in \Cc^{\op} \) to get the morphism
+    Finally, take the product of this map over all \( B, C \in \Cc^{\op} \) to get the morphism
     \begin{center}
         \newcommand{\height}{1cm}
         %
@@ -317,18 +321,18 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) \\
-                \prod\limits_{A', A'' \in \Cc} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right] \\
+                \prod\limits_{B, C \in \Cc} \left[ \Cc^{\op}(B, C), \C_{\dg}(F(B), G(C)) \right] \\
             };
 
             \draw[math]
-                (m-1-1) edge node {\prod\limits_{A', A'' \in \Cc} \phi_{A', A''}} (m-2-1);
+                (m-1-1) edge node {\prod\limits_{B, C \in \Cc} \phi_{B, C}} (m-2-1);
         \end{tikzpicture}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \\
-                \tuple*{ \tuple*{ \psi_{A', A'', k} \tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc}. \\
+                \tuple*{ \tuple*{ \psi_{B, C, k} \tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{B, C \in \Cc}. \\
             };
 
             \draw[math]
@@ -336,20 +340,20 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \end{tikzpicture}
     \end{center}
 
-    Doing a similar construction as in \autoref{diag:functor_category_borceux}, consider the diagram,
+    By a similar construction as in \autoref{diag:functor_category_borceux}, consider the diagram,
     \begin{center}
         \newcommand{\height}{1cm}
         %
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(A', A'') \\
-                \C_{\dg}(F(A''), G(A'')) \otimes \C_{\dg}(F(A'), F(A'')) \\
-                \C_{\dg}(F(A'), G(A'')) \\
+                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(B, C) \\
+                \C_{\dg}(F(C), G(C)) \otimes \C_{\dg}(F(B), F(C)) \\
+                \C_{\dg}(F(B), G(C)) \\
             };
 
             \draw[math]
-                (m-1-1) edge node {\pi_{A''} \otimes F_{A', A''}} (m-2-1)
+                (m-1-1) edge node {\pi_{C} \otimes F_{B, C}} (m-2-1)
 
                 (m-2-1) edge node {\circ} (m-3-1);
         \end{tikzpicture}
@@ -358,8 +362,8 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \otimes f_j  \\
-                \eta_{A''} \otimes F(f) \\
-                \eta_{A''} \circ F(f). \\
+                \eta_{C} \otimes F(f) \\
+                \eta_{C} \circ F(f). \\
             };
 
             \draw[math]
@@ -368,28 +372,28 @@ The definition in \autoref{def:dg_functor_category} is abstract, hard to underst
                 (m-2-1) edge[maps to] (m-3-1);
         \end{tikzpicture}
     \end{center}
-    Define the composition of the above chain morphisms as \( \widetilde{\psi}_{A', A''} \) and continue the construction as before by taking the adjoint and the product to end up with the morphism \( \widetilde{\phi}_{A', A''} \).
+    Define the composition of the above chain morphisms as \( \widetilde{\psi}_{B, C} \) and continue the construction as before by taking the adjoint and the product to end up with the morphism \( \widetilde{\phi}_{B, C} \).
 
     Then \cite[Proposition 6.3.1]{Borceux_1994} states that \( \dgM(F, G) \) is the equalizer of the following diagram,
     \begin{center}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{1cm} {
+            \diagram{m}{1.5cm}{1cm} {
                 \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) \\
-                \prod\limits_{A', A'' \in \Cc} \left[ \Cc^{\op}(A', A''), \C_{\dg}(F(A'), G(A'')) \right]. \\
+                \prod\limits_{B, C \in \Cc} \left[ \Cc^{\op}(B, C), \C_{\dg}(F(B), G(C)) \right]. \\
             };
 
-            \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{A', A'' \in \Cc} \phi_{A', A''}} ([xshift=2.5mm]m-2-1.north);
-            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod\limits_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''}} ($(m-2-1.north) + (-0.25, 0)$);
+            \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{B, C \in \Cc} \phi_{B, C}} ([xshift=2.5mm]m-2-1.north);
+            \draw[math] ($(m-1-1.south) + (-0.25, 0)$) to node[swap] {\prod\limits_{B, C \in \Cc} \widetilde{\phi}_{B, C}} ($(m-2-1.north) + (-0.25, 0)$);
         \end{tikzpicture}
     \end{center}
 
     In an abelian category, such as \( \C \), the equalizer becomes
     \[
-        \dgM(F, G) := \ker \tuple*{\prod\limits_{A', A'' \in \Cc} \phi_{A', A''} - \prod\limits_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''}}.
+        \dgM(F, G) := \ker \tuple*{\prod\limits_{B, C \in \Cc} \phi_{B, C} - \prod\limits_{B, C \in \Cc} \widetilde{\phi}_{B, C}}.
     \]
 \end{remark}
 
-Now that we have figured out what the DG-natural transformations look like, we can consider what properties they have.
+Now that we have a notion of what the DG-natural transformations look like, we can consider what properties they have.
 
 \begin{remark}
     What properties does \( \dgM(F, G) \) have?
@@ -402,9 +406,9 @@ Now that we have figured out what the DG-natural transformations look like, we c
     \[
         \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_i.
     \]
-    This chain complex exists, because \( \Cc \) is assumed to be a small category, and \( \Mod(R) \) is a bicomplete category when \( R \) is commutative, which we assume.
+    This chain complex exists, because \( \Cc \) is assumed to be a small category, and \( \Mod(R) \) is a complete category when \( R \) is commutative, which we assume in the definition.
 
-    The differential, denoted \( d \), of \( \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) \) is in degree \( j \),
+    The differential of \( \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) \), denoted \( d \), is in degree \( j \) the morphism
     \begin{align*}
         d_j: \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_j &\to \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_{j + 1} \\
         \eta &\mapsto \tuple*{ d_{\C_{\dg}}\tuple*{ \eta_A } }_{A \in \Cc} \\
@@ -413,29 +417,30 @@ Now that we have figured out what the DG-natural transformations look like, we c
 
     Second, notice that every element \( \eta \in \dgM(F, G)_j \) satisfies the property
     \[
-        \tuple*{ \prod\limits_{A', A'' \in \Cc} \phi_{A', A''} }_j (\eta) = \tuple*{ \prod_{A', A'' \in \Cc} \widetilde{\phi}_{A', A''} }_j (\eta),
+        \tuple*{ \prod\limits_{B, C \in \Cc} \phi_{B, C} }_j (\eta) = \tuple*{ \prod_{B, C \in \Cc} \widetilde{\phi}_{B, C} }_j (\eta),
     \]
     which is equivalent to
     \[
-        \tuple*{ \tuple*{ \psi_{A', A'', k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc} = \tuple*{ \tuple*{ \widetilde{\psi}_{A', A'', k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{A', A'' \in \Cc}.
+        \tuple*{ \tuple*{ \psi_{B, C, k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{B, C \in \Cc} = \tuple*{ \tuple*{ \widetilde{\psi}_{B, C, k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{B, C \in \Cc}.
     \]
-    The above equality is equivalent to the statement: For any \( A', A'' \in \Cc \), \( k \in \Zb \) and \( f \in \Cc^{\op}(A', A'')_{k - i} \), the following equality holds
+    The above equality is equivalent to the statement: For any \( B, C \in \Cc \), \( k \in \Zb \) and \( f \in \Cc^{\op}(B, C)_{k - i} \), the following equality holds
     \[
-        \psi_{A', A'', k}\tuple*{ \eta \otimes f } = \widetilde{\psi}_{A', A'', k} \tuple*{ \eta \otimes f },
+        \psi_{B, C, k}\tuple*{ \eta \otimes f } = \widetilde{\psi}_{B, C, k} \tuple*{ \eta \otimes f },
     \]
     which is exactly the following equation
     \[
-        (-1)^{|f||\eta|}G(f) \circ \eta_{A'} = \eta_{A''} \circ F(f).
+        (-1)^{|f||\eta|}G(f) \circ \eta_{B} = \eta_{C} \circ F(f).
     \]
 \end{remark}
 
-The above remark says that in order to prove some object \( \eta \) is in \( \dgM(F, G) \), we only have to prove that for any \( A', A'' \in \Cc \) and \( f \in \Cc^{\op}(A', A'')_{|f|} \), the following equality holds
+The above remark says that in order to prove some DG-morphism \( \eta \) is in \( \dgM(F, G)_{|\eta|} \), we only have to prove that for any \( B, C \in \Cc \) and \( f \in \Cc^{\op}(B, C)_{|f|} \), the following equality holds
 \[
-        (-1)^{|f||\eta|}G(f) \circ \eta_{A'} = \eta_{A''} \circ F(f).
+        (-1)^{|f||\eta|}G(f) \circ \eta_{B} = \eta_{C} \circ F(f).
 \]
 This will be useful in defining composition and the unit morphism of \( \dgM \).
 
 \begin{remark}
+    \label{rem:dgm_composition_and_unit_morphisms}
     For any \( i, j \in \Zb \), let
     \[
         \eta = \tuple*{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i
@@ -447,7 +452,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
 
     Then define composition uniquely as follows,
     \begin{align*}
-        c: \dgM(G, H) \otimes \dgM(F, G) &\to \dgM(F, H) \\
+        c: \dgM(G, H)_j \otimes \dgM(F, G)_i &\to \dgM(F, H)_{i + j} \\
         \mu \otimes \eta &\mapsto \tuple*{\mu_A \circ \eta_A}_{A \in \Cc}.
     \end{align*}
 
@@ -471,7 +476,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
         \mu = \tuple*{\mu_A}_{A \in \Cc} \in \dgM(G, H)_j.
     \]
     % TODO: Kan ein forenkla med å bruka at komposisjon i C_dg er kjedemorfi? Får ein rar konsekvens, sjå Fun_dg s. 3 i RM. Stemmer beviset?
-    Consider the following equation,
+    We have
     \begin{align*}
         &d_n \circ c_n (\mu \otimes \eta) \\
         &= d_n \tuple*{\mu_A \circ \eta_A}_{A \in \Cc} \\
@@ -483,19 +488,18 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
     \end{align*}
     Then by uniqueness of \autoref{lem:map_out_of_tensor_unique}, it follows that \( d_n \circ c_n = c_{n + 1} \circ d_n \), and composition is therefore a chain morphism.
     
-    % TODO: Utdjup kvifor det er sufficient? Er det openbart nok?
     Third, we want to verify that the codomain of the composition is in \( \dgM \). Let \( \mu \) and \( \eta \) be as above. It is sufficient to verify that \( \mu \circ \eta \in \dgM(F, H)_n \).
 
-    Let \( f \in \Cc^{\op}(A', A'') \), and consider the following equation,
+    Let \( f \in \Cc^{\op}(B, C) \), and consider the following equation,
     \begin{align*}
-        (\mu \circ \eta)_{A''} \circ F(f) &= \mu_{A''} \circ \eta_{A''} \circ F(f) \\
-        &= \mu_{A''} \circ (-1)^{|f||\eta|} G(f) \circ \eta_{A'} \\
-        &= (-1)^{|f||\mu|}(-1)^{|f||\eta|} H(f) \circ \mu_{A'} \circ \eta_{A'} \\
-        &= (-1)^{|f|(|\mu| + |\eta|)} H(f) \circ (\mu \circ \eta)_{A'},
+        (\mu \circ \eta)_{C} \circ F(f) &= \mu_{C} \circ \eta_{C} \circ F(f) \\
+        &= \mu_{C} \circ (-1)^{|f||\eta|} G(f) \circ \eta_{B} \\
+        &= (-1)^{|f||\mu|}(-1)^{|f||\eta|} H(f) \circ \mu_{B} \circ \eta_{B} \\
+        &= (-1)^{|f|(|\mu| + |\eta|)} H(f) \circ (\mu \circ \eta)_{B},
     \end{align*}
     which is exactly the property equivalent with being an element of \( \dgM(F, H)_n \).
 
-    Fourth, we need to verify that the codomain of \( u_F \) is \( \dgM(F, F) \). This is equivalent to checking if for any \( r \in R \), we have that
+    Fourth, we need to verify that the codomain of \( u_F \) is \( \dgM(F, F) \). This is equivalent to checking if for any \( r \in R \), we have
     \[
         \tuple*{ \tuple*{ r \Id_{A_i} }_{i \in \Zb} }_{A \in \Cc} \in \dgM(F, F)_0,
     \]
@@ -538,7 +542,7 @@ Similar to how we could simplify the notation for the differential of \( \C_{\dg
     \[
         d_{\dgM(F, G)}(\eta) = d_G \circ \eta - (-1)^i \eta \circ d_F
     \]
-    because
+    as
     \begin{align*}
         d(\eta) &= \tuple*{ d_{G(A)} \circ \eta_A - (-1)^i \eta_A \circ d_{F(A)} }_{A \in \Cc} \\
         &= \tuple*{ d_{G(A)} \circ \eta_A }_{A \in \Cc} - (-1)^i \tuple*{ \eta_A \circ d_{F(A)} }_{A \in \Cc} \\
@@ -547,8 +551,8 @@ Similar to how we could simplify the notation for the differential of \( \C_{\dg
     \end{align*}
 \end{remark}
 
-Note that \( d_F \) is \emph{not} an element of \( \dgM(F, F)_1 \) in general, because for any \( f \in \Cc^{\op}(A', A'') \), we have
+Note that \( d_F \) is \emph{not} an element of \( \dgM(F, F)_1 \) in general, because for any \( f \in \Cc^{\op}(B, C) \), we have
 \[
-    d_{F A''} \circ F(f) - (-1)^{|f|} F(f) \circ d_{F A'} = d(F f) = F d(f),
+    d_{F C} \circ F(f) - (-1)^{|f|} F(f) \circ d_{F B} = d(F f) = F d(f),
 \]
 which, in order for \( d_F \) to be a DG-natural transformation, implies that \( F d(f) = 0 \) for any \( f \), which will only be true if every morphism in \( \Cc \) is a cycle, or if \( F \) maps boundaries to \( 0 \), both of which are not true in general.

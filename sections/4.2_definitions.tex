@@ -12,7 +12,7 @@ We will use the following notation for the cohomology functor.
     for the chain cohomology functor, with the image being chain complexes with \( 0 \) as the differential.
 \end{notation}
 
-There is an issue with usual category theory notation of a ``diagram'' for DG-categories. This is because a DG-category doesn't have the notion of a morphism since there is no element of a chain complex. Therefore, there can't be a diagram since the arrows would correspond to an element of a chain complex. However, having a notion of a diagram in a DG-category would make certain future results easier to both state and understand, at the cost of some difficulty in the proofs. This motivated the following notation.
+There is an issue with usual category theory notation of a ``diagram'' for DG-categories. This is because a DG-category does not have the notion of a morphism since there is no element of a chain complex. Therefore, there cannot be a diagram since the arrows would correspond to an element of a chain complex. However, having a notion of a diagram in a DG-category would make certain future results easier to both state and understand, at the cost of some difficulty in the proofs. This motivated the following notation.
 
 \begin{notation}
     Let \( \Cc \) be a DG-category. A \emph{diagram in a DG-category} (or a \emph{DG-diagram}) is a quiver \( \Gamma = \tuple*{V, E, s, t} \) where every vertex in \( V \) corresponds to an object in \( \Cc \), and every edge \( e \in E \) corresponds to an element in \( \Cc\tuple*{s(e), t(e)}_n \) for some \( n \in \Zb \). These edges are called \emph{DG-morphisms} and \( n \) is called the \emph{degree} of \( e \), and is also denoted as \( |e| \).
@@ -23,7 +23,7 @@ There is an issue with usual category theory notation of a ``diagram'' for DG-ca
     \]
     where
     \[
-        c_{\Cc} := \set*{c_{\Cc, i}}_{i \in \Zb} \text{ with } c_{\Cc, i}: \tuple*{ \Cc\tuple*{s(g), t(g)} \otimes \Cc\tuple*{s(f), t(f)} }_i \to \Cc\tuple*{s(f), t(g)}_i
+        c_{\Cc} := \set*{c_{\Cc, i}}_{i \in \Zb}, \quad \text{with} \quad c_{\Cc, i}: \tuple*{ \Cc\tuple*{s(g), t(g)} \otimes \Cc\tuple*{s(f), t(f)} }_i \to \Cc\tuple*{s(f), t(g)}_i,
     \]
     is the composition chain morphism for \( \Cc \).
 \end{notation}
@@ -114,7 +114,7 @@ In order to justify using this notation, we will prove some properties that will
             \diagram{m}{1cm}{0.45cm} {
                 \Cc(C, D)_{|h|} \otimes \tuple*{ \Cc(B, C)_{|g|} \otimes \Cc(A, B)_{|f|} } \& \tuple*{ \Cc(C, D)_{|h|} \otimes \Cc(B, C)_{|g|} } \otimes \Cc(A, B)_{|f|} \\
                 \Cc(C, D)_{|h|} \otimes \tuple*{ \Cc(B, C) \otimes \Cc(A, B) }_{|g| + |f|} \& \tuple*{ \Cc(C, D) \otimes \Cc(B, C) }_{|h| + |g|} \otimes \Cc(A, B)_{|f|} \\
-                \tuple*{ \Cc(C, D) \otimes ( \Cc(B, C) \otimes \Cc(A, B) ) }_{|h| + |g| + |f|} \& \tuple*{ ( \Cc(C, D) \otimes \Cc(B, C) ) \otimes \Cc(A, B) }_{|h| + |g| + |f|}, \\
+                \tuple*{ \Cc(C, D) \otimes ( \Cc(B, C) \otimes \Cc(A, B) ) }_{|h| + |g| + |f|} \& \tuple*{ ( \Cc(C, D) \otimes \Cc(B, C) ) \otimes \Cc(A, B) }_{|h| + |g| + |f|}. \\
             };
 
             \draw[math]
@@ -135,7 +135,7 @@ In order to justify using this notation, we will prove some properties that will
             \diagram{m}{1cm}{1cm} {
                 \Cc(C, D) \otimes \tuple*{ \Cc(B, C) \otimes \Cc(A, B) } \& \& \tuple*{ \Cc(C, D) \otimes \Cc(B, C) } \otimes \Cc(A, B) \\
                 \Cc(C, D) \otimes \Cc(A, C) \& \& \Cc(B, D) \otimes \Cc(A, B) \\
-                \& \Cc(A, D). \\
+                \& \Cc(A, D), \\
             };
             
             \draw[math]
@@ -149,7 +149,7 @@ In order to justify using this notation, we will prove some properties that will
     \end{center}
     commutes.
 
-    Gluing together the final two diagrams with the bottom diagram restricted to degree \( |h| + |g| + |f| \), and looking at where the element \( h \otimes (g \otimes f) \) is sent, yields exactly \autoref{eq:dg-composition_associative}.
+    Gluing together the final two diagrams with the bottom diagram restricted to degree \( |h| + |g| + |f| \), and looking at where the element \( h \otimes (g \otimes f) \) is sent, yields exactly \eqref{eq:dg-composition_associative}.
 \end{proof}
 
 In addition to being associative, composition is also \( R \)-bilinear.
@@ -158,7 +158,7 @@ In addition to being associative, composition is also \( R \)-bilinear.
     Composition in a DG-diagram is a morphism in \( \Mod(R) \), in particular, it is \( R \)-linear in both components.
 \end{lemma}
 \begin{proof}
-    By definition, composition in a DG-diagram is the composition of two \( \Mod(R) \) morphisms, \( \iota_{i, j} \) and \( c_{\Cc, i + j} \), and so it is a \( \Mod(R) \) morphism.
+    By definition, composition in a DG-diagram is the composition of the \( R \)-bilinear morphism that takes \( f \times g \mapsto f \otimes g \), as well as the \( \Mod(R) \) morphisms, \( \iota_{i, j} \) and \( c_{\Cc, i + j} \).
 \end{proof}
 
 Before defining Massey products, we first have to define the category the product is taken in.
@@ -228,7 +228,7 @@ Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defin
     We can check that the maps are \( R \)-bilinear, but we still need to check if the maps are well-defined, which is a bit more difficult. There are two points that need to be shown:
     \begin{enumerate}
         \item {
-            First, we need to show that
+            We need to show that
             \[
                 g_i \otimes f_j \in H^n(\Cc(B, C) \otimes \Cc(A, B)).
             \]
@@ -242,7 +242,7 @@ Using the above remark, since \( H^{\bullet}(c_{\Cc}) \) is already a well-defin
             \]
         }
         \item {
-            Second, we need to show that the values of the \( \alpha_{i, j} \) are independent of the choice of representative.
+            We need to show that the values of the \( \alpha_{i, j} \) are independent of the choice of representative.
 
             Let \( b_g \) be a boundary in \( \Cc(B, C)_i \), and let \( b_f \) be a boundary in \( \Cc(A, B)_j \). Then
             \begin{align*}
@@ -295,7 +295,7 @@ The following is the definition of the Massey product in the cohomology category
     \end{center}
     be a DG-diagram in \( H^\bullet(\Cc) \).
 
-    Furthermore, for \( h \in \C_{|h|} \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{|h| + 1}h \).
+    Furthermore, for any \( n \in \Zb \), and \( h \in \C_n \) (like a morphism in a DG-diagram), let \( \bar{h} := (-1)^{n + 1}h \).
 
     The \emph{Massey product of \( [f_3], [f_2] \) and \( [f_1] \)} is defined as
     \begin{multline*}
@@ -322,24 +322,25 @@ The following remark shows that \autoref{def:massey_product_dg_cat} is well-defi
 
     Let \( n := |g_1| + |g_2| + |g_3| \), and omit the degrees of the differentials for readability. Consider the following equation
     \begin{align*}
-        d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 &+ \bar{g_3} \circ t) = d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
-        \intertext{by the definition of composition of morphisms in a DG-diagram, it follows that}
+        &d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1 + \bar{g_3} \circ t) \\
+        &= d_{\Cc(X_1, X_4)}(\bar{s} \circ g_1) + d_{\Cc(X_1, X_4)}(\bar{g_3} \circ t) \\
+        \intertext{by the definition of composition of morphisms in a DG-diagram,}
         &= d_{\Cc(X_1, X_4)}(c_{\Cc, n - 1}(\bar{s} \otimes g_1)) + d_{\Cc(X_1, X_4)}(c_{\Cc, n - 1}(\bar{g_3} \otimes t)) \\
-        \intertext{by the fact that composition is a chain morphism, it follows that}
+        \intertext{by composition being a chain morphism,}
         &= c_{\Cc, n}(d_{\Cc(X_2, X_4) \otimes \Cc(X_1, X_2)}(\bar{s} \otimes g_1)) + c_{\Cc, n}(d_{\Cc(X_3, X_4) \otimes \Cc(X_1, X_3)}(\bar{g}_3 \otimes t))
-        \intertext{by the definition of the differential of the tensor products, it follows that}
+        \intertext{by the definition of the differential of the tensor products,}
         &= c_{\Cc, n}((-1)^{|g_2| + |g_3|}(\bar{g}_3 \circ g_2) \otimes g_1) + c_{\Cc, n}((-1)^{|g_3|}\bar{g}_3 \otimes (\bar{g}_2 \circ g_1)) \\
-        \intertext{by pulling out every sign, it follows that}
+        \intertext{pulling out every sign,}
         &= (-1)^{|g_2| + 2|g_3| - 1}c_{\Cc, n}((g_3 \circ g_2) \otimes g_1) + (-1)^{|g_2| + 2|g_3| - 2}c_{\Cc, n}(g_3 \otimes (g_2 \circ g_1)) \\
-        \intertext{by the definition of composition of morphisms in a DG-diagram, it follows that}
+        \intertext{by the definition of composition of morphisms in a DG-diagram,}
         &= (-1)^{|g_2| + 2|g_3| - 1}(g_3 \circ g_2) \circ g_1 + (-1)^{|g_2| + 2|g_3| - 2}g_3 \circ (g_2 \circ g_1) \\
-        \intertext{by simplifying signs, it follows that}
+        \intertext{simplifying the signs,}
         &= (-1)^{|g_2|}\tuple*{ g_3 \circ (g_2 \circ g_1) - (g_3 \circ g_2) \circ g_1 } \\
-        \intertext{by \autoref{lem:dg-composition_associative} it follows that}
+        \intertext{by \autoref{lem:dg-composition_associative},}
         &= 0.
     \end{align*}
 \end{remark}
 
-The observant reader may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. Which is necessary in order to compare Massey products to Toda brackets. However, by moving over to the category of ``DG-modules'' which will be defined in the next section, we can define Massey products on a big class of triangulated categories, namely the ``algebraic triangulated categories.''
+The observant reader may notice that nowhere in the definition of a Massey product does it state or imply that the cohomology category of \( \Cc \), \( H^\bullet(\Cc) \), is triangulated. This is necessary in order to compare Massey products to Toda brackets. However, by moving over to the category of ``DG-modules'' which will be defined in the next section, we can define Massey products on a big class of triangulated categories, namely the ``algebraic triangulated categories.''
 
-Massey products are often associated with Borromean rings, since by \cite[p.\ 191 -- p.\ 195]{Massey_1998}, it is a known invariant that proves that the complement of the Borromean rings embedded into \( \Rb^3 \) is not homotopy equivalent to \( \Rb^3 \), and they can therefore not be pulled apart. This is done by letting \( \Cc \) be a DG-category consisting of only one object, \( * \), where \( \Cc(*, *) \) is the cochain complex of a topological space (here it is the complement of the Borromean rings embedded into \( \Rb^3 \)), with composition being the cup product of cochains. Hence, \( H^{\bullet} (\Cc) \) is exactly the graded cohomology algebra of the topological space, as well as a valid category to calculate Massey products in.
+Massey products are often associated with Borromean rings, since by \cite[p.\ 191 -- 195]{Massey_1998}, it is a known invariant that proves that the complement of the Borromean rings embedded into \( \Rb^3 \) is not homotopy equivalent to \( \Rb^3 \), and they can therefore not be pulled apart. This is done by letting \( \Cc \) be a DG-category consisting of only one object, \( * \), where \( \Cc(*, *) \) is the cochain complex of a topological space (here it is the complement of the Borromean rings embedded into \( \Rb^3 \)), with composition being the cup product of cochains. Hence, \( H^{\bullet} (\Cc) \) is exactly the graded cohomology algebra of the topological space, as well as a valid category to calculate Massey products in.

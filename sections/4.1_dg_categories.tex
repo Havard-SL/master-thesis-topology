@@ -97,7 +97,7 @@ The following is the definition of the tensor product of chain complexes.
     This is called the \emph{tensor product of \( \C \)}.
 \end{definition}
 
-In order to see that the above definition of the differential on \( A \otimes B \) is well-defined, we need the following lemma, which will be useful later as well.
+In order to see that the differential on \( A \otimes B \) is well-defined, we need the following lemma, which will be useful later as well.
 
 \begin{lemma}
     \label{lem:map_out_of_tensor_unique}
@@ -154,11 +154,9 @@ Given some \( f \in \Mod(R)\tuple*{ (A \otimes B)_n, C } \) we have that for any
 
 The following remark shows that the tensor product of \( \C \) in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is a well-defined bifunctor.
 
-WIP
-
 \begin{remark}
     \label{rem:c_tensor_bifunctor}
-    The definition of the differentials in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined and unique by the following argument.
+    The differential in \autoref{def:tensor_product_of_chain_complexes_over_Mod(R)} is well-defined and unique by the following argument.
 
     We can check that for \( i + j = n \) that
     \begin{align*}
@@ -243,7 +241,7 @@ Another definition closely linked to the tensor product in \( \C \) is the inter
     
     Then for any element \( a \in \prod_{i \in \Zb} A_i \), denote \( a \) as
     \[
-        a = \tuple*{a_i}_{i \in \Zb}, \: \text{where} \: a_i := \pi_i(a) \in A_i.
+        a = \tuple*{a_i}_{i \in \Zb}, \quad \text{where} \quad a_i := \pi_i(a) \in A_i.
     \]
 \end{notation}
 
@@ -260,7 +258,7 @@ As above, we also need some notation for pre- and post-composition.
 In \( \Mod(R) \), the pre- and post-composition maps are \( R \)-morphisms on the Hom modules.
 
 The following is the definition of the internal Hom of chain complexes. 
-\begin{definition}[Internal hom of \( \C \)]
+\begin{definition}[Internal Hom of \( \C \)]
     \label{def:internal_hom_of_chain_complexes_over_Mod(R)}
     Let \( R \) be a commutative ring with identity.
     
@@ -295,7 +293,7 @@ The following is the definition of the internal Hom of chain complexes.
             \end{align*}
         }
         \item {
-            For morphisms \( f: \in \C^{\op}(A, A') \) and \( g \in \C(B, B') \), let \( [f, g] \) be the following chain morphism,
+            For morphisms \( f \in \C^{\op}(A, A') \) and \( g \in \C(B, B') \), let \( [f, g] \) be the following chain morphism,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -466,18 +464,18 @@ The proof that the above construction is correct is in the following.
                 &\phi_{f, i + 1} \circ d_{A, i}(a) - d_{\class*{B, C}, i} \circ \phi_{f, i}(a) \\
                 &= \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?} }_{j \in \Zb}
                 - d_{\class*{B, C}, i} \tuple*{ \tuple*{ f_{i + j}\tuple*{a \otimes ?} }_{j \in \Zb} } \\
-                \intertext{by expanding out the definition of \( d_{\class*{B, C}, i} \) it follows that}
+                \intertext{expand out the definition of \( d_{\class*{B, C}, i} \),}
                 &= \tuple*{ f_{i + j + 1}\tuple*{d_{A, i}(a) \otimes ?}
                 - d_{C, i + j} \circ f_{i + j}\tuple*{a \otimes ?}
                 + (-1)^i f_{i + j + 1}\tuple*{a \otimes d_{B, j}(?)} }_{j \in \Zb} \\
-                \intertext{by consolidating the two terms that post-compose by \( f_{i + j + 1} \) it follows that}
+                \intertext{consolidate the two terms that post-compose by \( f_{i + j + 1} \),}
                 &= \tuple*{ f_{i + j + 1}\bigl( \tuple*{d_{A, i}(a) \otimes ?}
                 + (-1)^i\tuple*{ a \otimes d_{B, j}(?) } \bigr)
                 - d_{C, i + j} \circ f_{i + j}\tuple*{ a \otimes ? } }_{j \in \Zb} \\
-                \intertext{by the definition of the differential of \( A \otimes B \) it follows that}
+                \intertext{by the definition of the differential of \( A \otimes B \),}
                 &= \tuple*{ f_{i + j + 1} \circ d_{A \otimes B, i + j} \tuple*{ a \otimes ? }
                 - d_{C, i + j} \circ f_{i + j} ( a \otimes ? ) }_{j \in \Zb} \\
-                \intertext{by \( f \) being a chain homomorphism from \( A \otimes B \) to \( C \) it follows that}
+                \intertext{by \( f \) being a chain homomorphism from \( A \otimes B \) to \( C \),}
                 &= 0.
             \end{align*}
         }
@@ -497,7 +495,7 @@ The proof that the above construction is correct is in the following.
             Finally, notice that every step of the construction is \( R \)-linear, therefore \( f \mapsto \phi_f \) is an isomorphism of modules.
         }
         \item {
-            Third, we want to show there is a natural isomorphism
+            Third, we want to show that there is a natural isomorphism
             \[
                 \C(?_1 \otimes ?_2, ?_3) \cong \C(?_1, \left[ ?_2, ?_3 \right])
             \]
@@ -524,7 +522,7 @@ The proof that the above construction is correct is in the following.
                         (m-2-1) edge node {\C(f, [g, h])} (m-2-2);
                 \end{tikzpicture}
             \end{center}
-            where the vertical morphisms are doing the construction above.
+            where the vertical morphisms are the adjunctions from \autoref{rem:tensor_prod_internal_hom_adjoint}.
 
             Consider a chain morphism \( x = \tuple*{x_i}_{i \in \Zb} \in \C(A \otimes B, C) \). We want to show that
             \[
@@ -545,23 +543,24 @@ The proof that the above construction is correct is in the following.
             \[
                 h_{i + j} \circ x_{i + j} \circ (\coprod_{p + q = i + j} f_p \otimes g_q) \circ \iota_{i, j} = h_{i + j} \circ x_{i + j} \circ (f_i \otimes g_j).
             \]
-            Taking the adjoint, yields the following morphism
+            Taking the adjoint, we get
             \[
                 a' \mapsto h_{i + j} \circ x_{i + j} \circ (f_i \otimes g_j)(a' \otimes ?).
             \]
             This morphism is equal to
             \[
-                a' \mapsto h_{i + j} \circ x_{i + j} \circ (f_i (a') \otimes g_j(?)).
+                a' \mapsto h_{i + j} \circ x_{i + j} \circ (f_i (a') \otimes g_j(?)),
             \]
-            Which again is equal to the morphism
+            which again is equal to the morphism
             \[
-                a' \mapsto h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j} \circ f_i(a').
+                a' \mapsto h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j} \circ f_i(a'),
             \]
-            Which we will write as follows,
+            which we will write as,
             \[
                 \phi_{\C(f \otimes g, h)(x), i, j} = h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j} \circ f_i.
             \]
-            Taking the product over all the \( j \), yields
+            Taking the product over all the \( j \), we get
+            % TODO: Forstår ikkje Marius sin skrift på slutten av tlb. 
             \begin{align*}
                 \phi_{\C(f \otimes g, h) (x), i} &= \prod_{j \in \Zb} h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j} \circ f_i \\
                 &= \tuple*{\prod_{j \in \Zb} h_{i + j} \circ (g_j)^* \circ \phi_{x, i, j}} \circ f_i \\
@@ -569,7 +568,7 @@ The proof that the above construction is correct is in the following.
                 &= [g, h]_i \circ \phi_{x, i} \circ f_i \\
                 &= \C(f, [g, h])_i (\phi_x).
             \end{align*}
-            Finally, combining all the degrees to create a chain morphism,
+            Finally, combining all the degrees, we get
             \[
                 \phi_{\C(f \otimes g, h) (x)} = \tuple*{\phi_{\C(f \otimes g, h) (x), i}}_{i \in \Zb} = \tuple*{\C(f, [g, h])_i (\phi_x)}_{i \in \Zb} = \C(f, [g, h]) (\phi_x). \qedhere
             \]
@@ -587,9 +586,9 @@ Together, the above definitions and remarks gives the structure of a symmetric m
 \end{lemma}
 
 % TODO: Dobbeltsjekk detaljar.
-We will omit proving the above lemma in full detail, the following is just a sketch of the proof.
+We will omit proving the above lemma in full detail, and instead provide a sketch of the proof.
 \begin{proof}[Sketch of proof]
-    First, we prove it has every property of a monoidal category, as stated in \cite[Definition 6.1.1]{Borceux_1994}.
+    First, we prove \( \tuple*{\C, \otimes, I} \) has every property of a monoidal category, as stated in \cite[Definition 6.1.1]{Borceux_1994}.
 
     We start with proving the data:
     \begin{enumerate}
@@ -660,7 +659,7 @@ We will omit proving the above lemma in full detail, the following is just a ske
 
             Let \( l_{A_i}: R \otimes A_i \to A_i \) be the left unit isomorphism in \( \Mod(R) \), and let \( r_{A_i}: A_i \otimes R \to A_i \) be the right unit isomorphism in \( \Mod(R) \).
 
-            In lieu of the differential of the above chain complex, it is obvious that the tuple \( \tuple*{l_{A_i}}_{i \in \Zb} \) constitute a chain morphism from \( I \otimes A \) to \( A \). The same argument can be made for \( \tuple*{r_{A_i}}_{i \in \Zb} \) and \( A \otimes I \).
+            In lieu of the differential of the above chain complex, it is obvious that \( \tuple*{l_{A_i}}_{i \in \Zb} \) constitutes a chain morphism from \( I \otimes A \) to \( A \). The same argument can be made for \( \tuple*{r_{A_i}}_{i \in \Zb} \) and \( A \otimes I \).
         }
     \end{enumerate}
     We now prove the data:
@@ -719,10 +718,10 @@ We will omit proving the above lemma in full detail, the following is just a ske
             \[
                 g_{i, j, k}: (a, b, c) \mapsto (-1)^{i(j + k)}b \otimes (c \otimes a),
             \]
-            then the diagram commutes by uniqueness.
+            the diagram commutes by uniqueness.
         }
         \item[3 \& 4.] {
-            Both \cite[Diagram 6.4]{Borceux_1994}, and \cite[Diagram 6.5]{Borceux_1994} commutes by uniqueness of \autoref{lem:map_out_of_tensor_unique}.
+            Both \cite[Diagram 6.4]{Borceux_1994}, and \cite[Diagram 6.5]{Borceux_1994} commute by uniqueness of \autoref{lem:map_out_of_tensor_unique}.
         }
     \end{enumerate}
 
