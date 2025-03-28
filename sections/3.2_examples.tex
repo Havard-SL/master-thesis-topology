@@ -140,6 +140,7 @@ The previous example demonstrates that the Toda bracket is dependent on the choi
 The previous example shows another property of Toda brackets, namely that it can be empty. The following proposition and proof shows this property for a general case.
 
 \begin{proposition}
+	\label{prop:toda_pairwise_non_vanishing_is_empty}
 	Let \( f_1, f_2, \) and \( f_3 \) be three composable morphisms in any triangulated category \( \Tc \),
 	\begin{center}
 		\begin{tikzpicture}
@@ -215,6 +216,7 @@ The previous example shows another property of Toda brackets, namely that it can
 The following example is a generalization of \autoref{ex:toda_bracket_1} to any triangulated category \( \Tc \).
 
 \begin{example}
+	\label{ex:toda_bracket_3}
 	We want to compute \( \toda{f, 0, \Id} \) for any triangulated category \( \Tc \) and for any \( f \in \Tc(X_3, X_4) \).
 
 	We use the iterated cofiber definition of Toda brackets.
@@ -242,7 +244,7 @@ The following example is a generalization of \autoref{ex:toda_bracket_1} to any 
 		\end{tikzpicture}
 	\end{center}
 
-	Here we have that any possible \( \psi: \Sigma X_1 \to X_4 \) will make the right square commute. Therefore, \( \toda{f_3, 0, \Id} = \Tc(\Sigma X_1, X_4) \).
+	Here we have that any possible \( \psi: \Sigma X_1 \to X_4 \) will make the right square commute. Therefore, \( \toda{f, 0, \Id} = \Tc(\Sigma X_1, X_4) \).
 
 	Calculating the indeterminacy,
 	\[
@@ -254,6 +256,7 @@ The following example is a generalization of \autoref{ex:toda_bracket_1} to any 
 Finally, the last example will be in \( \Mc \), but where the computations are a bit more complicated.
 
 \begin{example}
+	\label{ex:toda_bracket_4}
 	We want to compute the Toda bracket of the following morphisms using the iterated cofiber definition first, and then using the indeterminacy afterwards,
 	\begin{center}
 		\begin{tikzpicture}

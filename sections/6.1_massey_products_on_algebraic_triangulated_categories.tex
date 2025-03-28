@@ -44,7 +44,7 @@ Using the above definition, we can define the Massey product more generally in a
 
 \begin{definition}[Massey product in an algebraic triangulated category]
     \label{def:massey_product_alg_tri_cat}
-    Let \( \Tc \) be an algebraic triangulated category and let \( \Cc \) be the DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) the equivalence by the algebraic triangulated category property. Suppose \( \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \) be the natural isomorphism arising from the fact that \( H^0(\mathbf{h}) \Phi \) is an equivalence. Furthermore, let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be the natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated functor onto its image.
+    Let \( \Tc \) be an algebraic triangulated category and let \( \Cc \) be a DG-enhancement of \( \Tc \) with \( \Phi: \Tc \to H^0(\Cc) \) an equivalence by the algebraic triangulated category property. Suppose \( \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi \to \Id_{\Tc} \) be a natural isomorphism arising from the fact that \( H^0(\mathbf{h}) \Phi \) is an equivalence. Furthermore, let \( \eta: H^0(\mathbf{h}) \Phi \Sigma \to \Sigma H^0(\mathbf{h}) \Phi \) be a natural isomorphism from the fact that \( H^0(\mathbf{h}) \Phi \) is a triangulated functor onto its image.
     
     Let the following be a diagram in \( \Tc \)
     \begin{center}
@@ -92,3 +92,5 @@ The above definition is well-defined since \( \im(H^0(\mathbf{h}) \Phi) \) is a 
 \begin{align*}
     H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_4) \circ \eta_{X_1} = \im(H^0(\mathbf{h}) \Phi)(H^0(\mathbf{h}) \Phi \Sigma X_1, H^0(\mathbf{h}) \Phi X_4).
 \end{align*}
+
+It is not obvious why different choices of DG-enhancements would yield the same Massey product in an algebraic triangulated category. However, this turns out to not be an issue, as this follows from the proof of our main result, \autoref{theorem:massey_equals_toda}, since they would all be equal to the same Toda bracket.

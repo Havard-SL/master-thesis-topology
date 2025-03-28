@@ -1,6 +1,6 @@
 In this section, let \( R := \Fb_2 C_2 \), and let \( \Mc := \Stmod(R) \).
 
-We want to calculate the same examples as in \autoref{subsec:toda_brackets_examples}, but with Massey products instead.
+We want to calculate the same examples and results as in \autoref{subsec:toda_brackets_examples}, but with Massey products instead.
 
 First, we have to define the pre-triangulated category, which will turn out to be the DG-enhancement of \( \Mc \).
 
@@ -13,7 +13,7 @@ This category can be shown to be small.
 The following remark yields a functor which will be the triangulated equivalence from \( \Mc \) to \( H^0(\Ac) \).
 
 \begin{remark}
-    For every \( A \in Mc \), chose a projective and an injective resolution of \( A \):
+    For every \( A \in \Mc \), choose a projective and an injective resolution of \( A \):
     \[
         \cdots \to 0 \to A \to I_1 \to I_2 \to \cdots
     \]
@@ -38,26 +38,10 @@ The following remark yields a functor which will be the triangulated equivalence
     By \cite[Section 7.5]{Krause_2007}, \( \Phi \) is a well-defined, triangulated equivalence from \( \Mc \) to \( H^0(\Ac) \).
 \end{remark}
 
-Remember the details mentioned in \autoref{rem:toda_bracket_examples_properties}.
+Remember the details mentioned in \autoref{rem:toda_bracket_examples_properties}. The following remark calculates a choice of \( \Phi J \), since we are going to be using \( J \) in multiple examples.
 
-This first example mirrors \autoref{ex:toda_bracket_1}, and if everything we have done is correct, then this should equal the result we got previously.
-
-\begin{example}
-    Let \( \dgM \) denote \( \dgFun_{\dg}(\Ac) \), and let the following be a diagram in \( \Mc \)
-	\begin{center}
-		\begin{tikzpicture}
-			\diagram{m}{1cm}{1cm}{
-					J \& J \& J \& J. \\
-			};
-
-			\draw[math]
-				(m-1-1) edge node {[\Id_J]} (m-1-2)
-				(m-1-2) edge node {[0]} (m-1-3)
-				(m-1-3) edge node {[\Id_J]} (m-1-4);
-		\end{tikzpicture}
-	\end{center}
-	
-	The goal is to calculate the Massey product \( \toda{[\Id_J], [0], [\Id_J]} \).
+\begin{remark}
+    Let \( J \), \( \kappa_J \) and \( \rho_J \) be as in \autoref{rem:toda_bracket_examples_properties}.
 
     A projective resolution for \( J \) is
     \begin{center}
@@ -75,7 +59,7 @@ This first example mirrors \autoref{ex:toda_bracket_1}, and if everything we hav
                 (m-1-6) edge (m-1-7);
         \end{tikzpicture}
     \end{center}
-    and an injective resolution for \( J \) is
+    An injective resolution for \( J \) is
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -108,7 +92,28 @@ This first example mirrors \autoref{ex:toda_bracket_1}, and if everything we hav
                 (m-1-6) edge (m-1-7);
         \end{tikzpicture}
     \end{center}
-    which is our \( \Phi(J) \).
+    which is the choice of \( \Phi J \) we are going to assume for these examples.
+\end{remark}
+
+The following example mirrors \autoref{ex:toda_bracket_1}, and if everything we have done is correct, then this should equal the result we got previously.
+
+\begin{example}
+    \label{ex:massey_product_1}
+    Let \( \dgM \) denote \( \dgFun_{\dg}(\Ac) \), and let the following be a diagram in \( \Mc \)
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm}{
+					J \& J \& J \& J. \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {[\Id_J]} (m-1-2)
+				(m-1-2) edge node {[0]} (m-1-3)
+				(m-1-3) edge node {[\Id_J]} (m-1-4);
+		\end{tikzpicture}
+	\end{center}
+	
+	The goal is to calculate the Massey product \( \toda{[\Id_J], [0], [\Id_J]} \).
 
     By functoriality, we have \( \Phi [\Id] = [\Id] \), and \( \Phi [0] = [0] \).
 
@@ -182,14 +187,23 @@ This first example mirrors \autoref{ex:toda_bracket_1}, and if everything we hav
     which is equal to what we got in \autoref{ex:toda_bracket_1}.
 \end{example}
 
-Here we can see that calculating the Massey product, at least in the way we are doing here, is more difficult than calculating Toda brackets in this example. In the above example we did not need to define or use any of the natural isomorphisms which are part of the definition because we got the Massey product to be the entire group \( H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)) \).
+In the above example we did not need to define or use any of the natural isomorphisms which are part of the definition because we got the Massey product to be the entire group,
+\[
+    H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)).
+\]
 
-Even so, the above example illustrates a few tricks we could use when calculating Massey products moving forward. First, notice that in the definition of the Massey product, we have \( \class*{ s \circ g_1 - g_3 \circ t} \) can be simplified to \( \class*{s \circ f_1 - f_3 \circ t} \), because different choices of representatives all yield the same result in this outer sum. Second, it was also clear that calculating the Massey product does not utilize any special properties of \( \dgM \), other than \autoref{cor:H^i_dgmod_cong_H^0_with_shift}. We could do the majority of the calculations in \( H^{\bullet}(\Ac) \), which is easier to work with than \( \dgM \). Assuming \( \Tc \) is any algebraic triangulated category with a DG-enhancement \( \Ac \), if we have already calculated \( \phi, \eta \) and \( \Phi \) beforehand, then the difficulty of calculating the Massey product is only dependant on how difficult it is to work with \( \Ac \), which could potentially be easier than calculating the Toda bracket in \( \Tc \).
+We also managed to use the properties of Massey products to calculate without using any special properties of \( J \) or \( \Phi J \). Therefore, we can use much of the same argumentation when we are trying to prove \autoref{ex:toda_bracket_3} later on.
 
-For the sake of completeness, we will roughly calculate \( \eta \) for \( \Mc \).
+Even with our shortcuts, we can see that calculating the Massey product in this example, at least in the way we are doing here, seems more difficult than calculating the Toda bracket.
+
+The above example illustrates a few tricks we could use when calculating Massey products moving forward. First, notice that in the definition of the Massey product, we have \( \class*{ s \circ g_1 - g_3 \circ t} \) can be simplified to \( \class*{s \circ f_1 - f_3 \circ t} \), because different choices of representatives all yield the same result in this outer sum. Second, it was also clear that calculating the Massey product does not utilize any special properties of \( \dgM \), other than \autoref{cor:H^i_dgmod_cong_H^0_with_shift}. We could do the majority of the calculations in \( H^{\bullet}(\Ac) \), which is easier to work with than \( \dgM \). Assuming \( \Tc \) is any algebraic triangulated category with a DG-enhancement \( \Ac \), if we have already calculated \( \phi, \eta \) and \( \Phi \) beforehand, then the difficulty of calculating the Massey product is only dependant on how difficult it is to work with \( \Ac \), which could potentially be easier than calculating the Toda bracket in \( \Tc \).
+
+For the sake of completeness, we will roughly calculate \( \eta \) and \( \phi \) for \( \Mc \).
 
 \begin{remark}
-    The \( \eta \) from the definition of Massey products in an algebraic triangulated category is induced by the two natural isomorphisms
+    Let \( \dgM \) denote \( \dgMod_{\dg}(\Ac^{\op}, \C_{\dg}) \).
+
+    The \( \eta \) from the definition of Massey products in \( \Mc \) is induced by the two natural isomorphisms
     \[
         \tilde{\eta}: H^0(\mathbf{h}) \Sigma_{H^0(\Ac)} \to \Sigma_{H^0(\dgM)} H^0(\mathbf{h})
     \]
@@ -205,7 +219,10 @@ For the sake of completeness, we will roughly calculate \( \eta \) for \( \Mc \)
 
     Notice that in the definition of \( \Phi \), we choose a projective and injective resolution for each \( A \). If we consider the first morphism and modules in the injective and projective resolutions, we have essentially chosen some injective and projective object for each \( A \) as well as a monomorphism and epimorphism into and from the modules respectively. If we then choose some objects as the kernels of the monomorphisms, and some objects as the cokernels of the epimorphisms, we have defined some \( \Omega' \) and \( \Sigma' \), but with a different \( P \) and \( I \), respectively (see \autoref{def:stmod_omega} and \autoref{def:stmod_sigma}). Label the morphisms and modules in \( P \) and \( I \) as we did for \( \Sigma \) and \( \Omega \) in \autoref{subsubsection:stable_module_cat} (this is fine since we will not reference the morphisms and modules from the definition of \( \Sigma \) ).
 
-    Notice that \( \Phi^{-1} \Phi \) takes some object \( A \) to \( \ker(\rho_A) = \im(i_A) \). This is naturally isomorphic to \( \Id_{\Mc} \) because it is naturally isomorphic to \( \Id_{\Mod(R)} \) in \( \Mod(R) \). Denote this natural isomorphism by \( \gamma \).
+    Notice that \( \Phi^{-1} \Phi \) takes some object \( A \) to \( \ker(\rho_A) = \im(i_A) \). This is naturally isomorphic to \( \Id_{\Mc} \) because it is naturally isomorphic to \( \Id_{\Mod(R)} \) in \( \Mod(R) \). Denote this natural isomorphism by \( \phi \). Since \( H^0(\mathbf{h}) \) is an autoequivalence onto \( \im(H^0(\mathbf{h})) \), we get that \( \phi \) is the desired natural isomorphism
+    \[
+        \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi = \Phi^{-1} \Phi \to \Id_{\Mc}.
+    \]
     
     Furthermore, notice that \( \Phi^{-1} \Sigma^{-1} \Phi \Sigma \) takes \( A \) to \( \ker(\pi_{\Sigma A}) \). This is the definition of \( \Omega' \Sigma A \). Hence,
     \[
@@ -220,11 +237,11 @@ For the sake of completeness, we will roughly calculate \( \eta \) for \( \Mc \)
     \[
        \mu := \set{ \beta_A \circ \alpha_{\Sigma A} }_{A \in \Mc} :\Phi^{-1} \Sigma^{-1} \Phi \Sigma \to \Id_{\Mc}
     \]
-    is a natural isomorphism, and we get
+    is a natural isomorphism, and we get since \( \Sigma_{\C_{\dg}} \Sigma^{-1}_{\C_{\dg}} = \Id_{\C_{\dg}} \) that
     \[
-        \hat{\eta} := \set{(\Sigma \Phi \mu_A) \circ (\Sigma \gamma^{-1}_{\Sigma^{-1} \Phi \Sigma A})}_{A \in \Mc}: \Phi \Sigma \to \Sigma \Phi,
+        \hat{\eta} := \set{(\Sigma \Phi \mu_A) \circ (\Sigma \phi^{-1}_{\Sigma^{-1} \Phi \Sigma A})}_{A \in \Mc}: \Phi \Sigma \to \Sigma \Phi,
     \]
-    as the desired natural isomorphism.
+    is the desired natural isomorphism.
 
     Finally, we get
     \[
@@ -235,12 +252,207 @@ For the sake of completeness, we will roughly calculate \( \eta \) for \( \Mc \)
 
 The above remark shows us that calculating natural isomorphisms, even in a rough manner as was done above, can be difficult. However, when calculating Massey products, this only has to be done once for the particular algebraic triangulated category we are working with.
 
-The following example had empty Toda bracket, now we will calculate the Massey product and see if we get the same result.
+The following example had empty Toda bracket in \autoref{ex:toda_bracket_2}, now we will calculate the Massey product and see if we get the same result.
 
 \begin{example}
 	We want to calculate \( \massey{\Id_J, \Id_J, \Id_J} \).
 
-    WIP
+    Let \( \dgM \) denote \( \dgMod_{\dg}(\Ac^{\op}, \C_{\dg}) \).
+
+    Consider the diagram in \( H^0(\dgM) \),
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                H^0(\mathbf{h}) \Phi J \& H^0(\mathbf{h}) \Phi J \& H^0(\mathbf{h}) \Phi J \& H^0(\mathbf{h}) \Phi J. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {[\Id]} (m-1-2)
+                (m-1-2) edge node {[\Id]} (m-1-3)
+                (m-1-3) edge node {[\Id]} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+
+    Taking the Massey product yields
+    \[
+        \massey{[Id], [Id], [Id]} =
+        \set*{
+            \class*{
+                s - t
+            }
+            \mid [g_i] = [\Id], i = 1, 2, 3 \quad
+            d(s) = - g_3 \circ g_2, \,
+            d(t) = -g_2 \circ g_1
+        }.
+    \]
+    There is an issue, as if there exist any \( s \), then
+    \[
+        [d(s)] = - [g_3 \circ g_2] = - [\Id] \neq [0],
+    \]
+    but \( d(s) \) is by definition a boundary, and so \( [d(s)] = [0] \).
+
+    Therefore there exists no \( s, \) or \( t \) for any element in the Massey product of the above diagram, and it is therefore empty. This implies that the Massey product in \( \Mc \) is also empty.
 \end{example}
+
+Similar to what we did for \autoref{prop:toda_pairwise_non_vanishing_is_empty}, we will try to prove the same result for Massey products without using Toda brackets.
+
+\begin{proposition}
+    Let \( f_1, f_2, \) and \( f_3 \) be three composable morphisms in any algebraic triangulated category \( \Tc \),
+	\begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				X_1 \& X_2 \& X_3 \& X_4, \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {f_1} (m-1-2)
+				(m-1-2) edge node {f_2} (m-1-3)
+				(m-1-3) edge node {f_3} (m-1-4);
+		\end{tikzpicture}
+	\end{center}
+    such that \( f_2 \circ f_1 \neq 0 \) or \( f_3 \circ f_2 \neq 0 \).
+
+	Then \( \massey{f_3, f_2, f_1} = \emptyset \).
+\end{proposition}
+\begin{proof}
+    Let \( \Cc \) be a DG-enhancement of \( \Tc \), and let \( \Phi: \Tc \to H^0(\Cc) \) be the triangulated equivalence from the definition of DG-enhancement.
+
+    Denote the triangulated equivalence \( H^0(\mathbf{h}) \Phi \) and its inverse, as \( F \) and \( F^{-1} \) respectively.
+
+    We get the following diagram in \( \im(H^0(\mathbf{h})) \),
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                F X_1 \& F X_2 \& F X_3 \& F X_4, \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {F f_1} (m-1-2)
+                (m-1-2) edge node {F f_2} (m-1-3)
+                (m-1-3) edge node {F f_3} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    which yields the following Massey product,
+    \begin{multline*}
+        \massey{F f_3, F f_2, F f_1} =
+        \{
+            \class*{
+                s \circ g_1 - g_3 \circ t
+            }
+            \mid [g_i] = [F f_i], i = 1, 2, 3 \\
+            d(s) = - g_3 \circ g_2, \quad
+            d(t) = - g_2 \circ g_1
+        \}.
+    \end{multline*}
+
+    Consider the two cases
+    \begin{itemize}
+        \item {
+            If \( f_2 \circ f_1 \neq 0 \), then we get that
+            \[
+                [d(t)] = - [g_2 \circ g_1] = - [(F f_2) \circ (F f_1)] = - [F (f_2 \circ f_1)] \neq [0]
+            \]
+            since \( F \) is an equivalence, and therefore sends non-zero morphisms to non-zero morphisms.
+
+            However, since \( [d(t)] = [0] \), since \( d(t) \) is a boundary, this is a contradiction, and so there exists no \( t \) in the definition of the Massey product, and it has to be empty.
+        }
+        \item {
+            If \( f_3 \circ f_2 \neq 0 \), then we get that
+            \[
+                [d(s)] = - [F (f_3 \circ f_2)] \neq 0,
+            \]
+            which by the same argument as above, implies that the Massey product is empty.
+        }
+    \end{itemize}
+    Since both cases imply that the Massey product is empty, then the Massey product must be empty.
+\end{proof}
+
+The following example is a generalization of \autoref{ex:massey_product_1}, similar to what we did in \autoref{ex:toda_bracket_3}, but only for Massey products.
+
+\begin{example}
+    We want to compute \( \massey{f, 0, \Id} \) for any algebraic triangulated category \( \Tc \) and for any \( f \in \Tc(X_3, X_4) \).
+
+    Consider the following diagram in \( \Tc \),
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                X_1 \& X_1 \& X_3 \& X_4. \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {\Id} (m-1-2)
+                (m-1-2) edge node {0} (m-1-3)
+                (m-1-3) edge node {f} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+
+    Denote the triangulated equivalence \( H^0(\mathbf{h}) \Phi \) and its inverse, as \( F \) and \( F^{-1} \) respectively.
+
+    We get the following diagram in \( \im(H^0(\mathbf{h})) \),
+    \begin{center}
+        \begin{tikzpicture}
+            \diagram{m}{1cm}{1cm} {
+                F X_1 \& F X_1 \& F X_3 \& F X_4, \\
+            };
+
+            \draw[math]
+                (m-1-1) edge node {[\Id]} (m-1-2)
+                (m-1-2) edge node {[0]} (m-1-3)
+                (m-1-3) edge node {F f} (m-1-4);
+        \end{tikzpicture}
+    \end{center}
+    which yields the Massey product
+    \begin{multline*}
+        \massey{F f, [0], [\Id]} =
+        \{
+            \class*{
+                s - g_3 \circ t
+            }
+            \mid [g_1] = [\Id], [g_2] = [0], [g_3] = F f, \\
+            d(s) = - g_3 \circ g_2, \,
+            d(t) = - g_2 \circ g_1
+        \}.
+    \end{multline*}
+    Fix \( g_1 = \Id \), and consider the following equation,
+    \begin{align*}
+        d(g_3 \circ t) &= c \circ d (g_3 \otimes t) \\
+        &= c \tuple*{ d(g_3) \otimes t + g_3 \otimes d(t) } \\
+        &= - g_3 \circ g_2 \circ g_1 \\
+        &= - g_3 \circ g_2.
+    \end{align*}
+    Therefore, for any \( h \in Z^{-1}(\dgM(F X_3, F X_4)) \), let \( s = g_3 \circ t + h \).
+
+    This yields the Massey product
+    \begin{align*}
+        \massey{F f, [0], [\Id]} &= \set{\class{ h } \mid h \in Z^{-1}(\dgM(F X_1, F X_4)) } \\
+        &= H^{-1}(\dgM(F X_1, F X_4)) \cong H^0(\dgM)(\Sigma F X_1, X_4).
+    \end{align*}
+
+    Since pre and post composition with isomorphisms are isomorphisms on the Hom-modules, we get that applying the natural isomorphisms as well as \( F^{-1} \) from the definition of Massey products on algebraic triangulated categories yields the entire group \( \Tc(\Sigma X_1, X_4) \).
+\end{example}
+
+Finally, we will calculate the Massey product of the same diagram as in \autoref{ex:toda_bracket_4}.
+
+\begin{example}
+    Let \( \dgM \) denote \( \dgMod_{\dg}(\Ac^{\op}, \C_{\dg}) \).
+
+    Consider the following diagram in \( \Mc \),
+    \begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				J \& {J \oplus J} \& {J \oplus J} \& J. \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
+				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}} (m-1-3)
+				(m-1-3) edge node {\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}} (m-1-4);
+		\end{tikzpicture}
+	\end{center}
+
+    We want to calculate the Massey product of the above diagram.
+\end{example}
+
+Calculating Massey products is similar to calculating the indeterminancy. WIP
 
 WIP
