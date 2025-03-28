@@ -1,0 +1,4 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QLatin Modern Math [range=bfup/Latin]XITS Math\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QOn Toda brackets and Massey products Author: Håvard Skjetne Lilleheie Supervisor: Marius Thaule Co-Supervisor: Sebastian H. Martensen\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QToda brackets.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QToda brackets equal Massey products.\\E$"}

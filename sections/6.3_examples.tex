@@ -182,7 +182,7 @@ The following example mirrors \autoref{ex:toda_bracket_1}, and if everything we 
     \]
     which if we pre and post compose with the natural isomorphisms \( \phi \), yields the subset
     \[
-        \Tc(\Sigma J, J),
+        \Tc(\Sigma J, J) = \Tc(J, J),
     \]
     which is equal to what we got in \autoref{ex:toda_bracket_1}.
 \end{example}
@@ -275,7 +275,7 @@ The following example had empty Toda bracket in \autoref{ex:toda_bracket_2}, now
 
     Taking the Massey product yields
     \[
-        \massey{[Id], [Id], [Id]} =
+        \massey{[\Id], [\Id], [\Id]} =
         \set*{
             \class*{
                 s - t
@@ -451,8 +451,85 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
 	\end{center}
 
     We want to calculate the Massey product of the above diagram.
+
+    We will utilize the trick we noticed in \autoref{ex:massey_product_1}, namely that much of the Massey product calculation can be done in \( H^{\bullet}(\Ac) \). Consider therefore the following diagram in \( H^{\bullet}(\Ac) \),
+    \begin{center}
+		\begin{tikzpicture}
+			\diagram{m}{1cm}{1cm} {
+				\Phi J \& (\Phi J) \oplus (\Phi J) \& (\Phi J) \oplus (\Phi J) \& \Phi J. \\
+			};
+
+			\draw[math]
+				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}_{i \in \Zb}}} (m-1-2)
+				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}_{i \in \Zb}}} (m-1-3)
+				(m-1-3) edge node {\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}_{i \in \Zb}}} (m-1-4);
+		\end{tikzpicture}
+	\end{center}
+    Due to \( \Phi \) being an additive functor, we get that the above diagram can be considered as \( \Phi \) of the previous diagram. If we are being precise, then we would have to pre- and post-compose the Massey product we get with some natural isomorphisms from \( \Phi (J \oplus J) \) to \( (\Phi J) \oplus (\Phi J) \).
+
+    If we fix
+    \[
+        g_1 = \begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}_{i \in \Zb}, \quad g_2 = \begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}_{i \in \Zb}, \quad \text{and} \quad g_3 = \begin{psmallmatrix} 1 & 1 \end{psmallmatrix}_{i \in \Zb},
+    \]
+    then we get that for any \( i \in \Zb \)
+    \[
+        d(s)_i = - \begin{psmallmatrix} 1 & 1 \end{psmallmatrix} \begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix} = \begin{psmallmatrix} 0 & 0 \end{psmallmatrix},
+    \]
+    and
+    \[
+        d(t)_i = - \begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix} \begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix} = \begin{psmallmatrix} 0 \\ 0 \end{psmallmatrix}.
+    \]
+
+    Let \( t = \begin{psmallmatrix} 0 \\ 0 \end{psmallmatrix}_{i \in \Zb} \), and for any \( h \in Z^{-1}(\Ac(\Phi J, \Phi J)) \), let \( s = \begin{psmallmatrix} h & 0 \end{psmallmatrix}_{i \in \Zb} \). This choice of \( s \) is valid since
+    \begin{align*}
+        d(s) &= d( \pi_R \circ h ) \\
+        &= c \circ d (\pi_R \otimes h) \\
+        &= \pi_R \circ d(h) \\
+        &= \begin{psmallmatrix} 0 & 0 \end{psmallmatrix}.
+    \end{align*}
+    
+    Transferring this over to \( H^{\bullet}(\dgM) \) yields the Massey product,
+    \begin{align*}
+        \massey{
+            \tuple*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}_{i \in \Zb}}_*,
+            \tuple*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}_{i \in \Zb}}_*,
+            \tuple*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}_{i \in \Zb}}_*
+        }
+        &= \set{ [(h)_*] \mid (h)_* \in Z^{-1}(\dgM(H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J)) } \\
+        &= H^{-1}(\dgM(H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J)) \\
+        &\cong H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J).
+    \end{align*}
+    
+    Then, similarly to what we did previously, we can apply \( \Phi^{-1} H^0(\mathbf{h})^{-1} \) as well as the appropriate natural transformation to end up with the set \( \Tc(\Sigma J, J) = \Tc(J, J) \).
 \end{example}
 
-Calculating Massey products is similar to calculating the indeterminancy. WIP
+The above example was arguably easier to calculate than only using Toda brackets, since we did not have to calculate the standard triangle. Even so, the calculations are more complicated and is dependant on multiple natural transformations. In the end, calculating the indeterminacy of the Toda bracket is the easiest approach for every example in this thesis.
 
-WIP
+Another thing to note is that in every example, we did not use all of the properties of \( \Mc \) and by extension \( \Ac \) in our calculations. In the final example, the only special property that we used was the fact that \( 2 = 0 \) in \( R \). This is a good sign, as that implies there are more properties that could potentially be used in more complicated calculations, like the structure of \( \Phi A \), or the fact that there are only two indecomposable modules in \( \mod(R) \) up to isomorphism.
+
+Something that the above examples illustrate well is that calculating Massey products is similar to calculating the indeterminancy for normal Toda brackets. If we consider
+\[
+    H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_3) \quad \text{as} \quad \Tc(\Sigma X_1, X_3),
+\]
+and
+\[
+    H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_2, H^0(\mathbf{h}) \Phi X_4) \quad \text{as} \quad \Tc(\Sigma X_2, X_4),
+\]
+then the formula for the indeterminancy,
+\[
+    f_3 \circ \Tc(\Sigma X_1, X_3)  + \Tc(\Sigma X_2, X_4) \circ (\Sigma f_1) \subseteq \Tc(\Sigma X_1, X_4),
+\]
+becomes very similar to the formula for calculating the Massey product,
+\[
+    \set*{
+        \class*{
+            s \circ g_1 - g_3 \circ t
+        }
+        \mid [g_i] = [f_i], \: i = 1, 2, 3 \quad
+        d(s) = - g_3 \circ g_2, \quad
+        d(t) = - g_2 \circ g_1
+    },
+\]
+since \( s \in H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_2, H^0(\mathbf{h}) \Phi X_4) \) and \( t \in H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_3) \).
+
+They are not identical, since for Massey products, \( d(s) \) and \( d(t) \) are related in a way that the indeterminancy does not capture.
