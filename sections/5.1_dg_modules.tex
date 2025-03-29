@@ -19,13 +19,13 @@ In broad terms, a DG-module is an enriched functor from some DG-category into a 
             \[
                 c_{\C_{\dg}}: \C_{\dg}(B, C) \otimes \C_{\dg}(A, B) \to \C_{\dg}(A, C)
             \]
-            be defined as the chain morphism where \( c_{\C_{\dg}, n} \) is uniquely defined on
+            be defined as the chain morphism where \( c_n^{\C_{\dg}} \) is uniquely defined on
             \[
-                \tuple*{g_p}_{p \in \Zb} \in [B, C]_i \text{ and } \tuple*{f_q}_{q \in \Zb} \in [A, B]_j
+                \tuple*{g_p}_{p \in \Zb} \in [B, C]_i \quad \text{and} \quad \tuple*{f_q}_{q \in \Zb} \in [A, B]_j
             \]
             as follows
             \begin{align*}
-                c_{\C_{\dg}, n}: \tuple*{ \C_{\dg}(B, C) \otimes \C_{\dg}(A, B) }_n &\to \C_{\dg}(A, C)_n \\
+                c_n^{\C_{\dg}}: \tuple*{ \C_{\dg}(B, C) \otimes \C_{\dg}(A, B) }_n &\to \C_{\dg}(A, C)_n \\
                 \tuple*{g_p}_{p \in \Zb} \otimes \tuple*{f_q}_{q \in \Zb} &\mapsto \tuple*{g_{p + j} \circ f_p}_{p \in \Zb}.
             \end{align*}
         }
@@ -38,7 +38,7 @@ In broad terms, a DG-module is an enriched functor from some DG-category into a 
             \]
             is the chain morphism where in degree \( 0 \) it is
             \begin{align*}
-                u_{A, 0} : R &\to [A, A]_0 \\
+                u_0^A : R &\to [A, A]_0 \\
                 r &\mapsto \tuple*{r\Id_{A_i}}_{i \in \Zb}
             \end{align*}
             and \( 0 \) in every other degree.
@@ -53,7 +53,7 @@ The following remark shows why the composition above is well-defined.
 
     \begin{enumerate}
         \item {
-            First, the morphisms \( c_{\C_{\dg}, n} \) are uniquely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \) are as follows
+            First, the morphisms \( c_n^{\C_{\dg}} \) are uniquely defined by \autoref{lem:map_out_of_tensor_unique} where the \( g_{i, j} \) are as follows
             \begin{align*}
                 g_{i, j}: \prod_{p \in \Zb} \Mod(R)(B_p, C_{p + i}) \times \prod_{p \in \Zb} \Mod(R)(A_p, B_{p + j}) &\to \prod_{p \in \Zb} \Mod(R)(A_p, C_{p + i + j}) \\
                 \tuple*{ g_p }_{p \in \Zb} \times \tuple*{ f_q }_{q \in \Zb} &\mapsto \tuple*{ g_{p + j} \circ f_p }_{p \in \Zb}.
@@ -63,70 +63,68 @@ The following remark shows why the composition above is well-defined.
         \item {
             Second, we need to check that the \( c_{\C_{\dg}, n} \) form a chain morphism.
 
-            Look at the following equation (with shortened notation for brevity) 
+            Consider the following equation
             \begin{align*}
-                &( d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} )\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
-                &= d_{(A, C), n} \circ c_n \tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
+                &( d_n^{[A, C]} \circ c_n - c_{n + 1} \circ d_n^{[B, C] \otimes [A, B]} )\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
+                &= d_n^{[A, C]} \circ c_n \tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } - c_{n + 1} \circ d_n^{[B, C] \otimes [A, B]}\tuple*{ \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} } \\
                 \intertext{by definition of composition as well as differential of tensor product,}
-                &= d_{(A, C), n}\tuple*{
-                    \tuple*{ g_{p + j} \circ f_p }_{p \in \Zb}
-                } \\
+                &= d_n^{[A, C]}\tuple*{ g_{p + j} \circ f_p }_{p \in \Zb} \\
                 &\hspace{0.4cm} - c_{n + 1} \tuple*{
-                    d_{(B, C), i}\tuple*{ \tuple*{ g_p }_{p \in \Zb} } \otimes \tuple*{ f_q }_{q \in \Zb}
-                    + (-1)^i \tuple*{ g_p }_{p \in \Zb} \otimes d_{(A, B), j} \tuple*{ \tuple*{ f_q }_{q \in \Zb} }
+                    d_i^{[B, C]} \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb}
+                    + (-1)^i \tuple*{ g_p }_{p \in \Zb} \otimes d_j^{[A, B]} \tuple*{ f_q }_{q \in \Zb}
                 } \\
                 \intertext{by the definition of the differential of the internal Hom,}
                 &= \tuple*{
-                    d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
+                    d_{p + n}^C \circ g_{p + j} \circ f_p - (-1)^n g_{p + j + 1} \circ f_{p + 1} \circ d_p^A
                 }_{p \in \Zb} \\
-                &\hspace{0.4cm} - c_{n + 1} (
+                &\hspace{0.4cm} - c_{n + 1} \bigg(
                     \tuple*{
-                        d_{C, p + i} \circ g_p - (-1)^i g_{p + 1} \circ d_{B, p}
+                        d_{p + i}^C \circ g_p - (-1)^i g_{p + 1} \circ d_p^B
                     }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb} \\
                     &\hspace{0.8cm}+ (-1)^i \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{
-                        d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
+                        d_{q + j}^B \circ f_q - (-1)^j f_{q + 1} \circ d_q^A
                     }_{q \in \Zb}
-                ) \\
-                \intertext{by composition being an \( \Mod(R) \) morphism,}
+                \bigg) \\
+                \intertext{by composition being a \( \Mod(R) \) morphism,}
                 &= \tuple*{
-                    d_{C, p + n} \circ g_{p + j} \circ f_p - (-1)^n \circ g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
+                    d_{p + n}^C \circ g_{p + j} \circ f_p - (-1)^n \circ g_{p + j + 1} \circ f_{p + 1} \circ d_p^A
                 }_{p \in \Zb} \\
                 &\hspace{0.4cm} - c_{n + 1} \tuple*{
                     \tuple*{
-                        d_{C, p + i} \circ g_p - (-1)^i g_{p + 1} \circ d_{B, p}
+                        d_{p + i}^C \circ g_p - (-1)^i g_{p + 1} \circ d_p^B
                     }_{p \in \Zb} \otimes \tuple*{ f_q }_{q \in \Zb}
                 } \\
                 &\hspace{0.4cm} - (-1)^i c_{n + 1} \tuple*{
                     \tuple*{ g_p }_{p \in \Zb} \otimes \tuple*{
-                        d_{B, q + j} \circ f_q - (-1)^j f_{q + 1} \circ d_{A, q}
+                        d_{q + j}^B \circ f_q - (-1)^j f_{q + 1} \circ d_q^A
                     }_{q \in \Zb}
                 } \\
                 \intertext{by the definition of composition,}
                 &= \tuple*{
-                    d_{C, p + n} \circ g_{p + j} \circ f_p
+                    d_{p + n}^C \circ g_{p + j} \circ f_p
                 }_{p \in \Zb} - (-1)^n \tuple*{
-                    g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
+                    g_{p + j + 1} \circ f_{p + 1} \circ d_p^A
                 }_{p \in \Zb} \\
                 &\hspace{0.4cm} - \tuple*{
-                    d_{C, p + i + j} \circ g_{p + j} \circ f_p
+                    d_{p + i + j}^C \circ g_{p + j} \circ f_p
                 }_{p \in \Zb} + (-1)^i \tuple*{
-                    g_{p + j + 1} \circ d_{B, p + j} \circ f_p
+                    g_{p + j + 1} \circ d_{p + j}^B \circ f_p
                 }_{p \in \Zb} \\
                 &\hspace{0.4cm} - (-1)^i \tuple*{
-                    g_{p + j + 1} \circ d_{B, p + j} \circ f_p
+                    g_{p + j + 1} \circ d_{p + j}^B \circ f_p
                 }_{p \in \Zb} + (-1)^{i + j} \tuple*{
-                    g_{p + j + 1} \circ f_{p + 1} \circ d_{A, p}
+                    g_{p + j + 1} \circ f_{p + 1} \circ d_p^A
                 }_{p \in \Zb} \\
                 &= 0.
             \end{align*}
             By \autoref{lem:map_out_of_tensor_unique}, this shows that the morphism
             \[
-                d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n}: \\
+                d_n^{[A, C]} \circ c_n - c_{n + 1} \circ d_n^{[B, C] \otimes [A, B]}: \\
                 \tuple*{ \C_{\dg}(B, C) \otimes \C_{\dg}(A, B) }_n \to \C_{\dg}(A, C)_{n + 1}
             \]         
             corresponds to the \( g_{i,j} \) where \( g_{i, j} = 0 \). However, by uniqueness, this implies that
             \[
-                d_{(A, C), n} \circ c_n - c_{n + 1} \circ d_{(B, C) \otimes (A, B), n} = 0.
+                d_n^{[A, C]} \circ c_n - c_{n + 1} \circ d_n^{[B, C] \otimes [A, B]} = 0.
             \]
         }
     \end{enumerate}
@@ -139,24 +137,24 @@ An interesting consequence of how \( \C_{\dg} \) is defined is that the differen
     \label{rem:c_dg_differential}
     For any \( A \in \C_{\dg} \), consider the degree \( 1 \) DG-morphism
     \[
-        d_A := \tuple*{ d_{A, j} }_{j \in \Zb} \in \C_{\dg}(A, A)_1.
+        d_A := \tuple*{ d_j^A }_{j \in \Zb} \in \C_{\dg}(A, A)_1.
     \]
     Then the differential of \( f \in \C_{\dg}(A, B)_i \) could be written more simply as
     \[
-        d_{\C_{\dg}(A, B), i}: f \mapsto d_B \circ f - (-1)^i f \circ d_A.
+        d_i^{[A, B]}: f \mapsto d_B \circ f - (-1)^i f \circ d_A.
     \]
     This is because if \( f = \tuple*{f_j}_{j \in \Zb} \), then
     \[
-        d_B \circ f = \tuple*{d_{B, j} }_j \circ \tuple*{ f_j }_j = \tuple*{ d_{B, j + i} \circ f_j }_j
+        d_B \circ f = \tuple*{d_j^B }_{j \in \Zb} \circ \tuple*{ f_j }_{j \in \Zb} = \tuple*{ d_{j + i}^B \circ f_j }_{j \in \Zb}
     \]
     and likewise
     \[
-        f \circ d_A = \tuple*{f_{j + 1} \circ d_{A, j}}_j
+        f \circ d_A = \tuple*{f_{j + 1} \circ d_j^A}_{j \in \Zb}
     \]
     which yields exactly the differential stated in \autoref{def:c_dg_mod_r}.
 \end{remark}
 
-Similar to how we could define the differential as a degree \( 1 \) DG-morphism in \( \C_{\dg} \), we could define a degree \( 0 \) DG-morphism \( \Id_A = \tuple*{ \Id_{A_i} }_{i \in \Zb} = u_{A, 0}(1) \). However, this could be a source of confusion as enriched categories do not generally have identity morphisms, but only unit morphisms. Hence, we avoid denoting any DG-morphisms as \( \Id \) both now and later on.
+Similar to how we could define the differential as a degree \( 1 \) DG-morphism in \( \C_{\dg} \), we could define a degree \( 0 \) DG-morphism \( \Id_A = \tuple*{ \Id_{A_i} }_{i \in \Zb} = u_{A, 0}(1) \). However, this could be a source of confusion as while it would act like the identity when composing DG-morphisms, enriched categories do not generally have identity morphisms, they have unit morphisms which sort of work like identities, but not exactly. Hence, we avoid denoting any DG-morphisms as ``\( \Id \)'' both now and later on.
 
 Similar to regular modules over a non-commutative ring, DG-modules can be defined as both right or left sided modules. We will consider only right DG-modules. In order to define right DG-modules, we need to define the opposite category of a DG-category.
 
@@ -203,14 +201,14 @@ Finally, we can define the DG-functor category, which is the final piece in defi
 
     Then let \( \Fun_{\dg}(\Ac, \Bc) \) be the DG-category defined in \cite[Proposition 6.3.1]{Borceux_1994}.
 
-    This is called the \emph{DG-functor category from \( \Ac \) to \( \Bc \)}.
+    This is called the \emph{(enriched) DG-functor category from \( \Ac \) to \( \Bc \)}.
 \end{definition}
 
-In this thesis, given some \( n \), elements in \( \Fun_{\dg}(\Ac, \Bc)_n \) are denoted as \emph{DG-natural transformations}. In other literature, this name is often associated with another type of natural transformation between DG-functors that is not a part of a chain complex. Borceux talks about these kinds of ``DG-natural transformations'' in \cite[Definition 6.2.4]{Borceux_1994}.
+In this thesis, given some \( n \), elements in \( \Fun_{\dg}(\Ac, \Bc)_n \) are denoted as \emph{DG-natural transformations}. In other literature, this name is often associated with another type of natural transformation between DG-functors that are not part of the (enriched) DG-functor category. Borceux talks about these kinds of ``DG-natural transformations'' in \cite[Definition 6.2.4]{Borceux_1994}.
 
-The reason for why \( \Ac \) has to be small is because the DG-natural transformations are defined by taking a product of \( R \)-modules over every object in \( \Ac \). This is not defined if \( \Ac \) is big, and is also the reason we only define DG-categories over the infinitely generated \( R \)-modules, as \( \mod(R) \) is not a complete category, but \( \Mod(R) \) is. This will become clearer, when we explicitly calculate what the DG-natural transformations look like for right DG-modules in \autoref{rem:dgm_natural_trans_structure}.
+The reason for why \( \Ac \) has to be small is because the DG-natural transformations are defined by taking a product of \( R \)-modules over every object in \( \Ac \). This is not defined if \( \Ac \) is big, and is also the reason we only define DG-categories over the infinitely generated \( R \)-modules, as \( \mod(R) \) is not a complete category, but \( \Mod(R) \) is. This will become clearer, when we explicitly calculate what the DG-natural transformations look like for (right) DG-modules in \autoref{rem:dgm_natural_trans_structure}.
 
-Also of note is that Borceux does not define composition or the unit morphism in the DG-functor category, and so we will define them manually for right DG-modules in \autoref{rem:dgm_composition_and_unit_morphisms}.
+Also of note is that Borceux does not define composition or the unit morphism in the DG-functor category, and so we will define them manually for (right) DG-modules in \autoref{rem:dgm_composition_and_unit_morphisms}.
 
 The definition of (right) DG-modules is the following.
 
@@ -234,7 +232,7 @@ The definition of (right) DG-modules is the following.
     
     Let
     \[
-        \eta = \tuple*{ \eta_A }_{A \in \Cc} \in \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \tuple*{ \C_{\dg}(F(A), G(A)) }_i,
+        \eta = \tuple*{ \eta_A }_{A \in \Cc} \in \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F A, G A) }_i = \prod_{A \in \Cc} \tuple*{ \C_{\dg}(F A, G A) }_i,
     \]
     which exists because \( \Ac \) is assumed to be small, and because \( \Mod(R) \) is a complete category when \( R \) is commutative, which we assume.
 
@@ -244,7 +242,7 @@ The definition of (right) DG-modules is the following.
     \]
     for some \( i, j \in \Zb \).
 
-    Both \( \eta \) and \( f \) will be used as arbitrary elements to see what the chain morphisms in their appropriate degree does to any element. This is usually enough information to deduce its action on any element by, e.g., \autoref{lem:map_out_of_tensor_unique}.
+    Both \( \eta \) and \( f \) will be used as arbitrary elements to see what the chain morphisms in their appropriate degree does to any element. This is usually enough information to deduce its action on any element, by e.g., \autoref{lem:map_out_of_tensor_unique}.
 
     Consider the following composition of chain morphisms, where the right-hand side is the element-wise action on the \( (i + j) \)th component on an arbitrary elementary tensor.
     \begin{diagramlabel}[\label{diag:functor_category_borceux}]
@@ -253,14 +251,14 @@ The definition of (right) DG-modules is the following.
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(B, C) \\
-                \C_{\dg}(F(B), G(B)) \otimes \C_{\dg}(G(B), G(C)) \\
-                \C_{\dg}(G(B), G(C)) \otimes \C_{\dg}(F(B), G(B)) \\
-                \C_{\dg}(F(B), G(C)) \\
+                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F A, G A) } \otimes \Cc^{\op}(B, C) \\
+                \C_{\dg}(F B, G B) \otimes \C_{\dg}(G B, G C) \\
+                \C_{\dg}(G B, G C) \otimes \C_{\dg}(F B, G B) \\
+                \C_{\dg}(F B, G C) \\
             };
 
             \draw[math]
-                (m-1-1) edge node {\pi_{B} \otimes G_{B, C}} (m-2-1)
+                (m-1-1) edge node {\pi_B \otimes G_{B, C}} (m-2-1)
 
                 (m-2-1) edge node {s} (m-3-1)
 
@@ -271,9 +269,9 @@ The definition of (right) DG-modules is the following.
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \otimes f  \\
-                \eta_{B} \otimes G(f) \\
-                (-1)^{ij} G(f) \otimes \eta_{B} \\
-                (-1)^{ij} G(f) \circ \eta_{B} \\
+                \eta_{B} \otimes (G f) \\
+                (-1)^{ij} (G f) \otimes \eta_{B} \\
+                (-1)^{ij} (G f) \circ \eta_{B} \\
             };
 
             \path[math]
@@ -294,8 +292,8 @@ The definition of (right) DG-modules is the following.
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) \\
-                \left[ \Cc^{\op}(B, C), \C_{\dg}(F(B), G(C)) \right] \\
+                \prod\limits_{A \in \Cc} \C_{\dg}(F A, G A) \\
+                \left[ \Cc^{\op}(B, C), \C_{\dg}(F B, G C) \right] \\
             };
 
             \draw[math]
@@ -306,7 +304,7 @@ The definition of (right) DG-modules is the following.
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \\
-                \tuple*{ \psi_{B, C, k} \tuple*{ \eta \otimes ? } }_{k \in \Zb}. \\
+                \tuple*{ \psi_k^{B, C} \tuple*{ \eta \otimes ? } }_{k \in \Zb}. \\
             };
 
             \draw[math]
@@ -322,8 +320,8 @@ The definition of (right) DG-modules is the following.
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) \\
-                \prod\limits_{B, C \in \Cc} \left[ \Cc^{\op}(B, C), \C_{\dg}(F(B), G(C)) \right] \\
+                \prod\limits_{A \in \Cc} \C_{\dg}(F A, G A) \\
+                \prod\limits_{B, C \in \Cc} \left[ \Cc^{\op}(B, C), \C_{\dg}(F B, G C) \right] \\
             };
 
             \draw[math]
@@ -334,7 +332,7 @@ The definition of (right) DG-modules is the following.
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
                 \eta \\
-                \tuple*{ \tuple*{ \psi_{B, C, k} \tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{B, C \in \Cc}. \\
+                \tuple*{ \psi_k^{B, C} \tuple*{ \eta \otimes ? } }_{k \in \Zb, B, C \in \Cc}. \\
             };
 
             \draw[math]
@@ -349,9 +347,9 @@ The definition of (right) DG-modules is the following.
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) } \otimes \Cc^{\op}(B, C) \\
-                \C_{\dg}(F(C), G(C)) \otimes \C_{\dg}(F(B), F(C)) \\
-                \C_{\dg}(F(B), G(C)) \\
+                \tuple*{ \prod\limits_{A \in \Cc} \C_{\dg}(F A, G A) } \otimes \Cc^{\op}(B, C) \\
+                \C_{\dg}(F C, G C) \otimes \C_{\dg}(F B, F C) \\
+                \C_{\dg}(F B, G C) \\
             };
 
             \draw[math]
@@ -363,9 +361,9 @@ The definition of (right) DG-modules is the following.
         \mmznext{meaning to context=\height}
         \begin{tikzpicture}
             \diagram{m}{\height}{1cm} {
-                \eta \otimes f_j  \\
-                \eta_{C} \otimes F(f) \\
-                \eta_{C} \circ F(f). \\
+                \eta \otimes f  \\
+                \eta_{C} \otimes (F f) \\
+                \eta_{C} \circ (F f). \\
             };
 
             \draw[math]
@@ -380,8 +378,8 @@ The definition of (right) DG-modules is the following.
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1.5cm}{1cm} {
-                \prod\limits_{A \in \Cc} \C_{\dg}(F(A), G(A)) \\
-                \prod\limits_{B, C \in \Cc} \left[ \Cc^{\op}(B, C), \C_{\dg}(F(B), G(C)) \right]. \\
+                \prod\limits_{A \in \Cc} \C_{\dg}(F A, G A) \\
+                \prod\limits_{B, C \in \Cc} \left[ \Cc^{\op}(B, C), \C_{\dg}(F B, G C) \right]. \\
             };
 
             \path[math] ([xshift=2.5mm]m-1-1.south) edge node {\prod\limits_{B, C \in \Cc} \phi_{B, C}} ([xshift=2.5mm]m-2-1.north);
@@ -402,19 +400,19 @@ Now that we have a notion of what the DG-natural transformations look like, we c
 
     First, notice that \( \dgM(F, G) \) is as a sub chain complex of
     \[
-        \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)),
+        \prod_{A \in \Cc} \C_{\dg}(F A, G A),
     \]
     which is a chain complex where in the \( i \)th component, we have
     \[
-        \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) }_i = \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_i.
+        \tuple*{ \prod_{A \in \Cc} \C_{\dg}(F A, G A) }_i = \prod_{A \in \Cc} \C_{\dg}(F A, G A)_i.
     \]
     This chain complex exists, because \( \Cc \) is assumed to be a small category, and \( \Mod(R) \) is a complete category when \( R \) is commutative, which we assume in the definition.
 
-    The differential of \( \prod_{A \in \Cc} \C_{\dg}(F(A), G(A)) \), denoted \( d \), is in degree \( j \) the morphism
+    The differential of \( \prod_{A \in \Cc} \C_{\dg}(F A, G A) \), denoted \( d \), is in degree \( j \) the morphism
     \begin{align*}
-        d_j: \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_j &\to \prod_{A \in \Cc} \C_{\dg}(F(A), G(A))_{j + 1} \\
-        \eta &\mapsto \tuple*{ d_{\C_{\dg}}\tuple*{ \eta_A } }_{A \in \Cc} \\
-        &= \tuple*{ d_{G(A)} \circ \eta_A - (-1)^j \eta_A \circ d_{F(A)} }_{A \in \Cc}.
+        d_j: \prod_{A \in \Cc} \C_{\dg}(F A, G A)_j &\to \prod_{A \in \Cc} \C_{\dg}(F A, G A)_{j + 1} \\
+        \eta &\mapsto \tuple*{ d_j^{[F A, G A]}\tuple*{ \eta_A } }_{A \in \Cc} \\
+        &= \tuple*{ d_{G A} \circ \eta_A - (-1)^j \eta_A \circ d_{F A} }_{A \in \Cc}.
     \end{align*}
 
     Second, notice that every element \( \eta \in \dgM(F, G)_j \) satisfies the property
@@ -423,21 +421,21 @@ Now that we have a notion of what the DG-natural transformations look like, we c
     \]
     which is equivalent to
     \[
-        \tuple*{ \tuple*{ \psi_{B, C, k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{B, C \in \Cc} = \tuple*{ \tuple*{ \widetilde{\psi}_{B, C, k}\tuple*{ \eta \otimes ? } }_{k \in \Zb} }_{B, C \in \Cc}.
+        \tuple*{ \psi_k^{B, C}\tuple*{ \eta \otimes ? } }_{k \in \Zb, B, C \in \Cc} = \tuple*{ \widetilde{\psi}_k^{B, C}\tuple*{ \eta \otimes ? } }_{k \in \Zb, B, C \in \Cc}.
     \]
     The above equality is equivalent to the statement: For any \( B, C \in \Cc \), \( k \in \Zb \) and \( f \in \Cc^{\op}(B, C)_{k - i} \), the following equality holds
     \[
-        \psi_{B, C, k}\tuple*{ \eta \otimes f } = \widetilde{\psi}_{B, C, k} \tuple*{ \eta \otimes f },
+        \psi_k^{B, C}\tuple*{ \eta \otimes f } = \widetilde{\psi}_k^{B, C} \tuple*{ \eta \otimes f },
     \]
-    which is exactly the following equation
+    which is exactly the following equation,
     \[
-        (-1)^{|f||\eta|}G(f) \circ \eta_{B} = \eta_{C} \circ F(f).
+        (-1)^{|f||\eta|}(G f) \circ \eta_B = \eta_C \circ (F f).
     \]
 \end{remark}
 
 The above remark says that in order to prove some DG-morphism \( \eta \) is in \( \dgM(F, G)_{|\eta|} \), we only have to prove that for any \( B, C \in \Cc \) and \( f \in \Cc^{\op}(B, C)_{|f|} \), the following equality holds
 \[
-        (-1)^{|f||\eta|}G(f) \circ \eta_{B} = \eta_{C} \circ F(f).
+        (-1)^{|f||\eta|}(G f) \circ \eta_B = \eta_C \circ (F f).
 \]
 This will be useful in defining composition and the unit morphism of \( \dgM \).
 
@@ -452,7 +450,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
         \mu = \tuple*{\mu_A}_{A \in \Cc} \in \dgM(G, H)_j.
     \]
 
-    Then define composition uniquely as follows,
+    Then define composition (uniquely) as follows,
     \begin{align*}
         c: \dgM(G, H)_j \otimes \dgM(F, G)_i &\to \dgM(F, H)_{i + j} \\
         \mu \otimes \eta &\mapsto \tuple*{\mu_A \circ \eta_A}_{A \in \Cc}.
@@ -460,12 +458,14 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
 
     Likewise, define the unit morphism as follows:
     
-    Let \( u_{\C_{\dg}, A} \) denote the unit morphism for \( A \in \C_{\dg} \). Then the unit morphism for \( F \in \dgM \) is defined as the following product,
+    Let \( u_A^{\C_{\dg}} \) denote the unit morphism for \( A \in \C_{\dg} \). Then the unit morphism for \( F \in \dgM \) is defined as the following product,
     \[
-        u_F = \prod_{A \in \Cc} u_{\C_{\dg}, F A} : I \to \dgM(F, F) = \prod_{A \in \Cc} \C_{\dg}(F A, F A).
+        u_F^{\dgM} = \prod_{A \in \Cc} u_{F A}^{\C_{\dg}} : I \to \dgM(F, F) \subseteq \prod_{A \in \Cc} \C_{\dg}(F A, F A).
     \]
 
-    In order to verify that composition is well-defined, we have to check if it is a chain morphism, as well as if the codomain is in \( \dgM \).
+    Now we want to verify that composition and the unit morphisms are well-defined and correct.
+
+    We have to verify that composition is well-defined, that composition is a chain morphism, that the codomain of composition is in \( \dgM \), and fourth, that the codomain of the unit morphisms is in \( \dgM \).
 
     First, notice that by \autoref{lem:map_out_of_tensor_unique}, it follows that for every degree \( n \), \( c_n \) is a unique and well-defined morphism.
 
@@ -478,6 +478,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
         \mu = \tuple*{\mu_A}_{A \in \Cc} \in \dgM(G, H)_j.
     \]
     % TODO: Kan ein forenkla med å bruka at komposisjon i C_dg er kjedemorfi? Får ein rar konsekvens, sjå Fun_dg s. 3 i RM. Stemmer beviset?
+    % TODO: Indeks og domene på differentsial?
     We have
     \begin{align*}
         &d_n \circ c_n (\mu \otimes \eta) \\
@@ -494,23 +495,34 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
 
     Let \( f \in \Cc^{\op}(B, C) \), and consider the following equation,
     \begin{align*}
-        (\mu \circ \eta)_{C} \circ F(f) &= \mu_{C} \circ \eta_{C} \circ F(f) \\
-        &= \mu_{C} \circ (-1)^{|f||\eta|} G(f) \circ \eta_{B} \\
-        &= (-1)^{|f||\mu|}(-1)^{|f||\eta|} H(f) \circ \mu_{B} \circ \eta_{B} \\
-        &= (-1)^{|f|(|\mu| + |\eta|)} H(f) \circ (\mu \circ \eta)_{B},
+        (\mu \circ \eta)_C \circ (F f) &= \mu_C \circ \eta_C \circ (F f) \\
+        &= \mu_C \circ (-1)^{|f||\eta|} (G f) \circ \eta_B \\
+        &= (-1)^{|f||\mu|}(-1)^{|f||\eta|} (H f) \circ \mu_B \circ \eta_B \\
+        &= (-1)^{|f|(|\mu| + |\eta|)} (H f) \circ (\mu \circ \eta)_B,
     \end{align*}
     which is exactly the property equivalent with being an element of \( \dgM(F, H)_n \).
 
-    Fourth, we need to verify that the codomain of \( u_F \) is \( \dgM(F, F) \). This is equivalent to checking if for any \( r \in R \), we have
+    Fourth, we need to verify that the codomain of \( u_F \) is \( \dgM(F, F) \):
+    
+    This is equivalent to checking if for any \( r \in R \), we have
     \[
-        \tuple*{ \tuple*{ r \Id_{A_i} }_{i \in \Zb} }_{A \in \Cc} \in \dgM(F, F)_0,
+        \tuple*{ r \Id_{A_i} }_{i \in \Zb, A \in \Cc} \in \dgM(F, F)_0,
     \]
-    and for \( n \neq 0 \),
+    and checking that for \( n \neq 0 \), we have
     \[
         0 \in \dgM(F, F)_n.
     \]
 
-    We can see that for any \( n, \) \( F, G \in \dgM, \) and any \( f \in \Cc^{\op}(A, B)_n, \) the following equality holds
+    First, for any \( f \in \Cc^{\op}(A, B)_n \), consider
+    \begin{align*}
+        (F f) \circ (r \Id_{A_i})_{i \in \Zb} &= r ((F f)_i \circ \Id_{A_i})_{i \in \Zb} \\
+        &= r ((F f)_i)_{i \in \Zb} \\
+        &= r (\Id_{B_{i + n}} \circ (F f)_i)_{i \in \Zb} \\
+        &= (r \Id_{B_i})_{i \in \Zb} \circ (F f),
+    \end{align*}
+    which implies \( \tuple*{ r \Id_{A_i} }_{i \in \Zb, A \in \Cc} \in \dgM(F, F)_0 \).
+
+    Second, we get that for any \( n \in \Zb \), any \( F, G \in \dgM, \) and any \( f \in \Cc^{\op}(A, B)_n, \) the following equality holds
     \[
         (-1)^{|f|0}G(f) \circ 0 = 0 = 0 \circ F(f).
     \]
@@ -518,16 +530,7 @@ This will be useful in defining composition and the unit morphism of \( \dgM \).
     \[
         0 \in \dgM(F, F)_n,
     \]
-    which implied the latter property.
-
-    Finally, for any \( f \in \Cc^{\op}(A, B)_n \), consider
-    \begin{align*}
-        (F f) \circ (r \Id_{A_i})_{i \in \Zb} &= r ((F f)_i \circ \Id_{A_i})_{i \in \Zb} \\
-        &= r ((F f)_i)_{i \in \Zb} \\
-        &= r (\Id_{B_{i + n}} \circ (F f)_i)_{i \in \Zb} \\
-        &= (r \Id_{B_i})_{i \in \Zb} \circ F(f),
-    \end{align*}
-    which implies the first property.
+    which implies the second property, and the codomain of the unit morphisms is therefore in \( \dgM \).
 \end{remark}
 
 Similar to how we could simplify the notation for the differential of \( \C_{\dg} \) in \autoref{rem:c_dg_differential}, we can similarly simplify the differential of \( \dgM \).
@@ -542,19 +545,19 @@ Similar to how we could simplify the notation for the differential of \( \C_{\dg
 
     It follows that for any \( \eta = \tuple*{\eta_A}_{A \in \Cc} \in \dgM(F, G)_i \) we have
     \[
-        d_{\dgM(F, G)}(\eta) = d_G \circ \eta - (-1)^i \eta \circ d_F
+        d_i^{\dgM(F, G)}(\eta) = d_G \circ \eta - (-1)^i \eta \circ d_F
     \]
     as
     \begin{align*}
-        d(\eta) &= \tuple*{ d_{G(A)} \circ \eta_A - (-1)^i \eta_A \circ d_{F(A)} }_{A \in \Cc} \\
-        &= \tuple*{ d_{G(A)} \circ \eta_A }_{A \in \Cc} - (-1)^i \tuple*{ \eta_A \circ d_{F(A)} }_{A \in \Cc} \\
+        d_i^{\dgM(F, G)}(\eta) &= \tuple*{ d_{G A} \circ \eta_A - (-1)^i \eta_A \circ d_{F A} }_{A \in \Cc} \\
+        &= \tuple*{ d_{G A} \circ \eta_A }_{A \in \Cc} - (-1)^i \tuple*{ \eta_A \circ d_{F A} }_{A \in \Cc} \\
         &= \tuple*{d_{G A}}_{A \in \Cc} \circ \tuple*{\eta_A}_{A \in \Cc} - (-1)^i \tuple*{\eta_A}_{A \in \Cc} \circ \tuple*{d_{F A}}_{A \in \Cc} \\
         &= d_G \circ \eta - (-1)^i \eta \circ d_F.
     \end{align*}
 \end{remark}
 
-Note that \( d_F \) is \emph{not} an element of \( \dgM(F, F)_1 \) in general, because for any \( f \in \Cc^{\op}(B, C) \), we have
+Note that \( d_F \) is \emph{not} an element of \( \dgM(F, F)_1 \) in general, because for any \( f \in \Cc^{\op}(B, C)_n \), we have
 \[
-    d_{F C} \circ F(f) - (-1)^{|f|} F(f) \circ d_{F B} = d(F f) = F d(f),
+    d_{F C} \circ (F f) - (-1)^n (F f) \circ d_{F B} = d_n^{[F B, F C]}(F f) = F d_n^{\Cc(B, C)} (f),
 \]
-which, in order for \( d_F \) to be a DG-natural transformation, implies that \( F d(f) = 0 \) for any \( f \), which will only be true if every morphism in \( \Cc \) is a cycle, or if \( F \) maps boundaries to \( 0 \), both of which are not true in general.
+which, in order for \( d_F \) to be a DG-natural transformation, implies that \( F d_n^{\Cc(B, C)} (f) = 0 \) for any \( f \), which will only be true if every DG-morphism in \( \Cc \) is a cycle, or if \( F \) maps all boundaries to \( 0 \), both of which are not true in general.

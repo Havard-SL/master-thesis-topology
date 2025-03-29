@@ -43,18 +43,26 @@ On \( \C(\Ac) \), we can define a simple automorphism of categories called the s
 
 \begin{definition}[Shift functor on \( \C(\Ac) \)]
     \label{def:chain_complex_shift}
-    Let \( \Sigma \) be the following assignment of objects and morphisms in \( \C(\Ac) \).
+    Let \( \Sigma^{\C(\Ac)} \) be the following assignment of objects and morphisms in \( \C(\Ac) \).
 
-    Let \( A = \tuple*{A_i}_{i \in \Zb} \in \C(\Ac) \) be a chain complex, and let \( d_{A, n}: A_n \to A_{n + 1} \) denote the \( n \)th differential of \( A \).
-
-    Then let \( \Sigma A := \tuple*{A_{i + 1}}_{i \in \Zb} \), with \( d_{\Sigma A, n} := -d_{A, n + 1} \).
-
-    In addition, let \( f = \tuple*{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) be a chain morphism.
+    \begin{itemize}
+        \item {
+            For \( A = \tuple*{A_i}_{i \in \Zb} \in \C(\Ac) \) a chain complex, and \( d_n^A: A_n \to A_{n + 1} \) the \( n \)th differential of \( A \), let
+            \[
+                \Sigma_{\C(\Ac)} A := \tuple*{A_{i + 1}}_{i \in \Zb}, \quad \text{with} \quad d_n^{\Sigma A} := -d_{n + 1}^A.
+            \]
+        }
+        \item {
+            For \( f = \tuple*{f_i}_{i \in \Zb} \in \C(\Ac)(A, B) \) a chain morphism, let
+            \[
+                \Sigma_{\C(\Ac)} f := \tuple*{f_{i + 1}}_{i \in \Zb} \in \C(\Ac)(\Sigma A, \Sigma B).
+            \]
+        }
+    \end{itemize}
     
-    Then
-    \[
-        \Sigma f := \tuple*{f_{i + 1}}_{i \in \Zb} \in \C(\Ac)(\Sigma A, \Sigma B).
-    \]
+    This is called the \emph{shift functor on \( \C(\Ac) \)}.
+
+    We will denote it as \( \Sigma \) when it is clear from the context.
 \end{definition}
 
 \( \Sigma \) can be shown to be an additive automorphism on \( \C(\Ac) \), and can be induced to an additive automorphism with the same notation and name on \( \K(\Ac) \).
@@ -68,23 +76,23 @@ Finally, we need to define what the cone of a morphism in \( \K(\Ac) \) is. This
     \begin{center}
         \mmznext{disable}
         \begin{tikzpicture}
-            \diagram{m}{1cm}{1.7cm} {
+            \diagram{m}{1cm}{2cm} {
                 \cdots \&[-1cm] A_0 \oplus B_{-1} \& A_1 \oplus B_0 \& A_2 \oplus B_1 \&[-1cm] \cdots \\
             };
 
             \draw[math]
                 (m-1-1) edge (m-1-2)
                 (m-1-2) edge node {
-                    \begin{psmallmatrix}
-                        -d_{A, 0} & 0 \\
-                        f_0 & d_{B, -1}
-                    \end{psmallmatrix}
+                    \begin{pmatrix}
+                        -d_0^A & 0 \\
+                        f_0 & d_{-1}^B
+                    \end{pmatrix}
                 } (m-1-3)
                 (m-1-3) edge node {
-                    \begin{psmallmatrix}
-                        -d_{A, 1} & 0 \\
-                        f_1 & d_{B, 0}
-                    \end{psmallmatrix}
+                    \begin{pmatrix}
+                        -d_1^A & 0 \\
+                        f_1 & d_0^B
+                    \end{pmatrix}
                 } (m-1-4)
                 (m-1-4) edge (m-1-5);
         \end{tikzpicture}
@@ -92,7 +100,7 @@ Finally, we need to define what the cone of a morphism in \( \K(\Ac) \) is. This
     called the \emph{cone of \( f \)} in \( \C(\Ac) \).
 \end{definition}
 
-It is easy to verify that \( C_f \) is a chain complex, and we can also verify that if we did not have the sign in front of \( d_{A, i + 1} \), or  \( d_{B, i} \), then it would not be a chain complex.
+It is easy to verify that \( C_f \) is a chain complex, and we can also verify that if we did not have the sign in front of \( d_{i + 1}^A \), or  \( d_i^B \), then it would not be a chain complex.
 
 We can think of the cone as having the underlying objects of \( \Sigma A \oplus B \), but with \( f \) ``gluing'' the two components together such that the chain complex cannot be written as a direct sum.
 
@@ -107,25 +115,25 @@ We can think of the cone as having the underlying objects of \( \Sigma A \oplus 
             };
 
             \draw[math]
-                (m-1-1) edge node {\iota} (m-1-2)
-                (m-1-2) edge node {\pi} (m-1-3);
+                (m-1-1) edge[tailed] node {\iota} (m-1-2)
+                (m-1-2) edge[two headed] node {\pi} (m-1-3);
         \end{tikzpicture}
     \end{center}
     where
     \[
-        \iota_i := \iota_{B, i}: B_i \to (\Sigma A)_i \oplus B_i,
+        \iota_i := \iota_i^B: B_i \rightarrowtail (\Sigma A)_i \oplus B_i,
     \]
     and
     \[
-        \pi_i := \pi_{\Sigma A, i}: (\Sigma A)_i \oplus B_i \to (\Sigma A)_i.
+        \pi_i := \pi_i^{\Sigma A}: (\Sigma A)_i \oplus B_i \twoheadrightarrow (\Sigma A)_i.
     \]
 
     These are chain morphisms because
     \[
-        d_i \circ \iota_i =
+        d_i^{C_f} \circ \iota_i =
         \begin{pmatrix}
-            -d_{A, i + 1} & 0 \\
-            f_{i + 1} & d_{B, i}
+            -d_{i + 1}^A & 0 \\
+            f_{i + 1} & d_i^B
         \end{pmatrix}
         \begin{pmatrix}
             0 \\
@@ -134,26 +142,26 @@ We can think of the cone as having the underlying objects of \( \Sigma A \oplus 
         =
         \begin{pmatrix}
             0 \\
-            d_{B, i}
+            d_i^B
         \end{pmatrix}
         =
-        \iota_{C_f, i + 1} \circ d_{B, i}
+        \iota_{i + 1} \circ d_i^B
     \]
     and
     \[
-        \pi_i \circ d_i =
+        \pi_i \circ d_i^{C_f} =
         \begin{pmatrix}
             1 & 0
         \end{pmatrix}
         \begin{pmatrix}
-            -d_{A, i + 1} & 0 \\
-            f_{i + 1} & d_{B, i}
+            -d_{i + 1}^A & 0 \\
+            f_{i + 1} & d_i^B
         \end{pmatrix}
         =
         \begin{pmatrix}
-            -d_{A, i + 1} & 0
+            -d_{i + 1}^A & 0
         \end{pmatrix}
-        = d_{\Sigma A, i} \circ \pi_i.
+        = d_i^{\Sigma A} \circ \pi_i.
     \]
 \end{remark}
 
@@ -173,8 +181,8 @@ The distinguished triangles are the triangles which seem to satisfy just the fir
 
             \draw[math]
                 (m-1-1) edge node {f} (m-1-2)
-                (m-1-2) edge node {\iota} (m-1-3)
-                (m-1-3) edge node {\pi} (m-1-4);
+                (m-1-2) edge[tailed] node {\iota} (m-1-3)
+                (m-1-3) edge[two headed] node {\pi} (m-1-4);
         \end{tikzpicture}
     \end{center}
 \end{definition}

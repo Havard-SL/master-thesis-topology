@@ -444,9 +444,9 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
 			};
 
 			\draw[math]
-				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}}} (m-1-2)
-				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}}} (m-1-3)
-				(m-1-3) edge node {\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}}} (m-1-4);
+				(m-1-1) edge node {\class*{\begin{pmatrix} 1 \\ 1 \end{pmatrix}}} (m-1-2)
+				(m-1-2) edge node {\class*{\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}}} (m-1-3)
+				(m-1-3) edge node {\class*{\begin{pmatrix} 1 & 1 \end{pmatrix}}} (m-1-4);
 		\end{tikzpicture}
 	\end{center}
 
@@ -460,40 +460,40 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
 			};
 
 			\draw[math]
-				(m-1-1) edge node {\class*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}_{i \in \Zb}}} (m-1-2)
-				(m-1-2) edge node {\class*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}_{i \in \Zb}}} (m-1-3)
-				(m-1-3) edge node {\class*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}_{i \in \Zb}}} (m-1-4);
+				(m-1-1) edge node {\class*{\begin{pmatrix} 1 \\ 1 \end{pmatrix}_{i \in \Zb}}} (m-1-2)
+				(m-1-2) edge node {\class*{\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}_{i \in \Zb}}} (m-1-3)
+				(m-1-3) edge node {\class*{\begin{pmatrix} 1 & 1 \end{pmatrix}_{i \in \Zb}}} (m-1-4);
 		\end{tikzpicture}
 	\end{center}
     Due to \( \Phi \) being an additive functor, we get that the above diagram can be considered as \( \Phi \) of the previous diagram. If we are being precise, then we would have to pre- and post-compose the Massey product we get with some natural isomorphisms from \( \Phi (J \oplus J) \) to \( (\Phi J) \oplus (\Phi J) \).
 
     If we fix
     \[
-        g_1 = \begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}_{i \in \Zb}, \quad g_2 = \begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}_{i \in \Zb}, \quad \text{and} \quad g_3 = \begin{psmallmatrix} 1 & 1 \end{psmallmatrix}_{i \in \Zb},
+        g_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}_{i \in \Zb}, \quad g_2 = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}_{i \in \Zb}, \quad \text{and} \quad g_3 = \begin{pmatrix} 1 & 1 \end{pmatrix}_{i \in \Zb},
     \]
     then we get that for any \( i \in \Zb \)
     \[
-        d(s)_i = - \begin{psmallmatrix} 1 & 1 \end{psmallmatrix} \begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix} = \begin{psmallmatrix} 0 & 0 \end{psmallmatrix},
+        d(s)_i = - \begin{pmatrix} 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 0 \end{pmatrix},
     \]
     and
     \[
-        d(t)_i = - \begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix} \begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix} = \begin{psmallmatrix} 0 \\ 0 \end{psmallmatrix}.
+        d(t)_i = - \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}.
     \]
 
-    Let \( t = \begin{psmallmatrix} 0 \\ 0 \end{psmallmatrix}_{i \in \Zb} \), and for any \( h \in Z^{-1}(\Ac(\Phi J, \Phi J)) \), let \( s = \begin{psmallmatrix} h & 0 \end{psmallmatrix}_{i \in \Zb} \). This choice of \( s \) is valid since
+    Let \( t = \begin{pmatrix} 0 \\ 0 \end{pmatrix}_{i \in \Zb} \), and for any \( h \in Z^{-1}(\Ac(\Phi J, \Phi J)) \), let \( s = \begin{pmatrix} h & 0 \end{pmatrix}_{i \in \Zb} \). This choice of \( s \) is valid since
     \begin{align*}
         d(s) &= d( \pi_R \circ h ) \\
         &= c \circ d (\pi_R \otimes h) \\
         &= \pi_R \circ d(h) \\
-        &= \begin{psmallmatrix} 0 & 0 \end{psmallmatrix}.
+        &= \begin{pmatrix} 0 & 0 \end{pmatrix}.
     \end{align*}
     
     Transferring this over to \( H^{\bullet}(\dgM) \) yields the Massey product,
     \begin{align*}
         \massey{
-            \tuple*{\begin{psmallmatrix} 1 & 1 \end{psmallmatrix}_{i \in \Zb}}_*,
-            \tuple*{\begin{psmallmatrix} 1 & 1 \\ 1 & 1 \end{psmallmatrix}_{i \in \Zb}}_*,
-            \tuple*{\begin{psmallmatrix} 1 \\ 1 \end{psmallmatrix}_{i \in \Zb}}_*
+            \tuple*{\begin{pmatrix} 1 & 1 \end{pmatrix}_{i \in \Zb}}_*,
+            \tuple*{\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}_{i \in \Zb}}_*,
+            \tuple*{\begin{pmatrix} 1 \\ 1 \end{pmatrix}_{i \in \Zb}}_*
         }
         &= \set{ [(h)_*] \mid (h)_* \in Z^{-1}(\dgM(H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J)) } \\
         &= H^{-1}(\dgM(H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J)) \\

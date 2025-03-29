@@ -1,3 +1,4 @@
+% WIP: Thomas tilbakemelding
 In this subsection we want to define what an algebraic triangulated category is using the notion of DG-enhancements. We will start by defining \( H^0(\dgM) \), and then using the DG-Yoneda embedding, which we will also define, we can consider any DG-category as a subcategory of the category of DG-modules.
 
 The following definition is very similar to \autoref{def:H_bullet_dg_category}. However unlike the cohomology category, this category is not enriched over \( \C \), it is simply a category in the usual sense.
@@ -35,13 +36,13 @@ The following definition is very similar to \autoref{def:H_bullet_dg_category}. 
 Composition in the above category is well-defined and associative because it is simply \( c_0 \) from \autoref{def:H_bullet_dg_category}. It remains to show that the identity is well-defined.
 
 \begin{remark}
-    In order to show that the identity in the above definition is well-defined, we have to prove that \( [u_{A, 0} (1)] \) is a cocycle, and that \( [u_{A, 0} (1)] \) acts like the identity in \( H^0(\Cc) \).
+    In order to show that the identity in the above definition is well-defined, we have to prove that \( [u_{A, 0} (1)] \) is a cycle, and that \( [u_{A, 0} (1)] \) acts like the identity in \( H^0(\Cc) \).
 
     First, note that since \( u_A \) is a chain morphism, and \( d_I = 0 \), for any \( n \in \Zb \),
     \[
         d_{\Cc(A, A), n} \circ (u_A)_n = (u_A)_n \circ d_{I, n} = 0,
     \]
-    and so \( d_{\Cc(A, A), 0} \circ (u_A)_0 (1) = 0 \), and \( (u_A)_0 (1) \) is a cocycle.
+    and so \( d_{\Cc(A, A), 0} \circ (u_A)_0 (1) = 0 \), and \( (u_A)_0 (1) \) is a cycle.
 
     Second, it follows that for \( [f] \in H^0(\Cc)(A, A) \), we have from the ``unit axiom'' in the definition of an enriched category (\cite[Diagram 6.10]{Borceux_1994}) restricted onto the elementary tensors \( 1 \otimes f \) and \( f \otimes 1 \), that
     \begin{align*}
@@ -643,10 +644,10 @@ Additionally, if every DG-morphism in a matrix is in \( \dgM \), then the matrix
 The following lemma is used to prove that \( H^0(\dgM) \) is additive.
 
 \begin{lemma}
-    \label{lem:dgm_pi_iota_cocycles}
+    \label{lem:dgm_pi_iota_cycles}
     Let \( F, G \in \dgM \).
     
-    Then both \( \pi_F \) and \( \iota_F \) are cocycles.
+    Then both \( \pi_F \) and \( \iota_F \) are cycles.
 \end{lemma}
 \begin{proof}
     First, consider \( \pi_F \),
@@ -654,26 +655,26 @@ The following lemma is used to prove that \( H^0(\dgM) \) is additive.
         d_{\dgM(F \oplus G, F), 0} ( \pi_F ) &= d_F \circ \pi_F - \pi_F \circ d_{F \oplus G} \\
         &= \tuple*{ d_{F A, i} \circ \pi_{F A, i} - \pi_{F A, i + 1} \circ d_{(F A) \oplus (G A), i} }_{i \in \Zb, A \in \Cc} \\
         &= \tuple*{
-            \begin{psmallmatrix}
+            \begin{pmatrix}
                 d_{F A, i} & 0
-            \end{psmallmatrix}
+            \end{pmatrix}
             -
-            \begin{psmallmatrix}
+            \begin{pmatrix}
                 1 & 0
-            \end{psmallmatrix}
-            \begin{psmallmatrix}
+            \end{pmatrix}
+            \begin{pmatrix}
                 d_{F A, i} & 0 \\
                 0 & d_{G A, i}
-            \end{psmallmatrix}
+            \end{pmatrix}
         }_{i \in \Zb, A \in \Cc} \\
         &= \tuple*{
-            \begin{psmallmatrix}
+            \begin{pmatrix}
                 d_{F A, i} & 0
-            \end{psmallmatrix}
+            \end{pmatrix}
             -
-            \begin{psmallmatrix}
+            \begin{pmatrix}
                 d_{F A, i} & 0
-            \end{psmallmatrix}
+            \end{pmatrix}
         }_{i \in \Zb, A \in \Cc} \\
         &= 0.
     \end{align*}
@@ -683,15 +684,15 @@ The following lemma is used to prove that \( H^0(\dgM) \) is additive.
         d_{\dgM(F, F \oplus G), 0} ( \iota_F ) &= d_{F \oplus G} \circ \iota_F - \iota_F \circ d_F \\
         &= \tuple*{ d_{(F A) \oplus (G A), i} \circ \iota_{F A, i} - \iota_{F A, i + 1} \circ d_{F A, i} }_{i \in \Zb, A \in \Cc} \\
         &= \tuple*{
-            \begin{psmallmatrix}
+            \begin{pmatrix}
                 d_{F A, i} \\
                 0
-            \end{psmallmatrix}
+            \end{pmatrix}
             -
-            \begin{psmallmatrix}
+            \begin{pmatrix}
                 d_{F A, i} \\
                 0
-            \end{psmallmatrix}
+            \end{pmatrix}
         }_{i \in \Zb, A \in \Cc} \\
         &= 0. \qedhere
     \end{align*}
@@ -714,7 +715,7 @@ In order for \( H^0(\dgM) \) to have a triangulation, it has to be additive.
         [\pi_F \circ \iota_F] = [\Id_F], \quad [\pi_G \circ \iota_G] = [\Id_G], \quad \text{and} \quad [\iota_F \circ \pi_F + \iota_G \circ \pi_G] = [\Id_{F \oplus G}].
     \]
 
-    By \autoref{lem:dgm_pi_iota_cocycles}, \( \pi_F, \pi_G, \iota_F, \) and \( \iota_F \) are cocycles, and so they are all representatives of morphisms in \( H^0(\dgM) \).
+    By \autoref{lem:dgm_pi_iota_cycles}, \( \pi_F, \pi_G, \iota_F, \) and \( \iota_F \) are cycles, and so they are all representatives of morphisms in \( H^0(\dgM) \).
 
     Remember from \autoref{def:0_th_cohomology_of_dg_cat}, we have that for any \( F \in \dgM \), \( \Id_F := [u_{F, 0} ( 1 )] \).
 
@@ -994,7 +995,7 @@ By using the above remark, we can consider the projection as well as the embeddi
 
     By \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms} we can consider the above DG-morphisms as DG-morphisms to and from \( C_{\eta} \) instead of \( (\Sigma F) \oplus G \), respectively.
 
-    Additionally, \( \iota_G \) and \( \pi_{\Sigma F} \) are cocycles as
+    Additionally, \( \iota_G \) and \( \pi_{\Sigma F} \) are cycles as
     \begin{align*}
         d_{\dgM(G, C_{\eta})}(\iota_G) &= d_{C_{\eta}} \circ \iota_G - \iota_G \circ d_G \\
         &=

@@ -50,12 +50,16 @@ Before defining the stable module category, we prove a lemma that will be used t
 
             \draw[math]
                 (m-1-1) edge node {
-                    \begin{psmallmatrix}
+                    \begin{pmatrix}
                         f_1 \\
                         g_1
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 } (m-1-2)
-                (m-1-2) edge node {(f_2, g_2)} (m-1-3);
+                (m-1-2) edge node {
+                    \begin{pmatrix}
+                        f_2 & g_2
+                    \end{pmatrix}
+                } (m-1-3);
         \end{tikzpicture}
     \end{center}
 
@@ -460,6 +464,7 @@ Finally, we need the following result to show that \( \Omega \) is additive.
     \label{lem:stmod_omega_additive_functor}
     \( \Omega \) is an additive functor.
 \end{lemma}
+% TODO: Ikkje fullstendig bevis. Må visa at \Omega (A \oplus B) er nat iso med \Omega A \oplus \Omega B, og at embedding og projeskjon morfiane er "bevart". Sidan \Omega har invers-funktor, så er den høgre/venstre adjungert, og må difor bevara produkt/koprodukt.
 \begin{proof}
     We must show that \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
     
@@ -735,7 +740,7 @@ Before we can show the triangulation of \( \Mc \), we first need to define the c
 
             \draw[math]
                 (m-1-1) edge node {f} (m-1-2)
-                    edge node[swap] {\kappa_A} (m-2-1);
+                    edge[tailed] node[swap] {\kappa_A} (m-2-1);
         \end{tikzpicture}
     \end{center}
     and denote it by \( C_f \).
@@ -750,7 +755,7 @@ Before we can show the triangulation of \( \Mc \), we first need to define the c
 
             \draw[math]
                 (m-1-1) edge node {f} (m-1-2)
-                    edge node[swap] {\kappa_A} (m-2-1)
+                    edge[tailed] node[swap] {\kappa_A} (m-2-1)
                 (m-1-2) edge node {g} (m-2-2)
 
                 (m-2-1) edge node {\gamma_f} (m-2-2);
@@ -775,12 +780,12 @@ Following the definition of a cone, we can define the standard triangles of \( \
 
             \draw[math]
                 (m-1-1) edge node {f} (m-1-2)
-                    edge[swap] node {\kappa_A} (m-2-1)
+                    edge[tailed] node[swap] {\kappa_A} (m-2-1)
                 (m-1-2) edge node {g} (m-2-2)
                     edge[curve={height=-25pt}] node {0} (m-3-2)
 
                 (m-2-1) edge node {\gamma_f} (m-2-2)
-                    edge node {\rho_A} (m-3-2)
+                    edge[two headed] node {\rho_A} (m-3-2)
                 (m-2-2) edge[dashed] node {h} (m-3-2);
         \end{tikzpicture}
     \end{center}
@@ -834,8 +839,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     
                 \draw[math]
                     (m-1-1) edge node {f} (m-1-2)
-                        edge node[swap] {\kappa} (m-2-1)
-                    (m-1-2) edge node {g} (m-2-2)
+                        edge[tailed] node[swap] {\kappa} (m-2-1)
+                    (m-1-2) edge[tailed] node {g} (m-2-2)
     
                     (m-2-1) edge node {\gamma} (m-2-2);
             \end{tikzpicture}
@@ -852,8 +857,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
     
                 \draw[math]
                     (m-1-1) edge node {f} (m-1-2)
-                        edge node[swap] {\kappa'} (m-2-1)
-                    (m-1-2) edge node {g'} (m-2-2)
+                        edge[tailed] node[swap] {\kappa'} (m-2-1)
+                    (m-1-2) edge[tailed] node {g'} (m-2-2)
     
                     (m-2-1) edge node {\gamma'} (m-2-2);
             \end{tikzpicture}
@@ -863,7 +868,7 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
 
     Then there exists an isomorphism \( [\alpha]: C \to C' \) in \( \Mc \).
     
-    In addition, given a morphism \( i: I \to I' \), such that \( i \circ \kappa = \kappa' \), \( \alpha \) has the following properties:
+    In addition, given a morphism \( i: I \to I' \), such that \( i \circ \kappa = \kappa' \), then \( \alpha \) has the following properties:
     \begin{itemize}
         \item \( \alpha \circ g = g' \), and
         \item \( \alpha \circ \gamma = \gamma' \circ i \).
@@ -880,10 +885,10 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 };
 
                 \draw[math]
-                    (m-1-2) edge node[swap] {\kappa} (m-2-1)
-                        edge node {\kappa'} (m-2-3)
+                    (m-1-2) edge[tailed] node[swap] {\kappa} (m-2-1)
+                        edge[tailed] node {\kappa'} (m-2-3)
 
-                    (m-2-1) edge node {i} (m-2-3);
+                    (m-2-1) edge node[swap] {i} (m-2-3);
             \end{tikzpicture}
         \end{aligned}
         \hspace{0.5cm}
@@ -897,8 +902,8 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
                 };
 
                 \draw[math]
-                    (m-1-2) edge node[swap] {\kappa} (m-2-1)
-                        edge node {\kappa'} (m-2-3)
+                    (m-1-2) edge[tailed] node[swap] {\kappa} (m-2-1)
+                        edge[tailed] node {\kappa'} (m-2-3)
 
                     (m-2-3) edge node {i'} (m-2-1);
             \end{tikzpicture}
@@ -918,12 +923,12 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
 
             \draw[math]
                 (m-1-1) edge node {f} (m-1-2)
-                    edge[curve={height=50pt}] node {\kappa} (m-4-1)
-                    edge[curve={height=25pt}] node {\kappa'} (m-3-1)
-                    edge node {\kappa} (m-2-1)
-                (m-1-2) edge node {g} (m-2-2)
-                    edge[curve={height=-25pt}] node {g'} (m-3-3)
-                    edge[curve={height=-50pt}] node {g} (m-4-4)
+                    edge[curve={height=50pt}, tailed] node {\kappa} (m-4-1)
+                    edge[curve={height=25pt}, tailed] node {\kappa'} (m-3-1)
+                    edge[tailed] node {\kappa} (m-2-1)
+                (m-1-2) edge[tailed] node {g} (m-2-2)
+                    edge[curve={height=-25pt}, tailed] node {g'} (m-3-3)
+                    edge[curve={height=-50pt}, tailed] node {g} (m-4-4)
 
                 (m-2-1) edge node {\gamma} (m-2-2)
                     edge node {i} (m-3-1)
@@ -946,13 +951,13 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
             };
 
             \draw[math]
-                (m-1-1) edge node {
+                (m-1-1) edge[tailed] node {
                     \begin{pmatrix}
                         f \\
                         \kappa
                     \end{pmatrix}
                 } (m-1-2)
-                (m-1-2) edge node {
+                (m-1-2) edge[two headed] node {
                     \begin{pmatrix}
                         g & \gamma
                     \end{pmatrix}
@@ -968,26 +973,26 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
             };
 
             \draw[math]
-                (m-1-1) edge node {
-                    \begin{psmallmatrix}
+                (m-1-1) edge[tailed] node {
+                    \begin{pmatrix}
                         f \\
                         \kappa
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 } (m-1-2)
-                (m-1-2) edge node {
-                    \begin{psmallmatrix}
+                (m-1-2) edge[two headed] node {
+                    \begin{pmatrix}
                         g & \gamma
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 } (m-1-3)
                 (m-1-2) edge node[swap] {
-                    \begin{psmallmatrix}
+                    \begin{pmatrix}
                         0 & i' \circ i - \Id_I
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 } (m-2-2)
                 (m-1-3) edge[dashed] node[swap] {\delta} (m-2-2)
                     edge node {\beta \circ \alpha - \Id_C} (m-2-3)
 
-                (m-2-2) edge node {\gamma} (m-2-3);
+                (m-2-2) edge node[swap] {\gamma} (m-2-3);
         \end{tikzpicture}
     \end{diagramlabel}
 
@@ -996,7 +1001,6 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
         \begin{pmatrix}
             0 & i' \circ i - \Id_I
         \end{pmatrix}
-        \circ
         \begin{pmatrix}
             f \\
             \kappa
@@ -1004,9 +1008,9 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
         = 0,
     \]
     then by the cokernel property of \( C \) there exists a morphism \( \delta \) such that the top triangle in \autoref{diag:C-iso} commutes. However, since \( 
-        \begin{psmallmatrix}
+        \begin{pmatrix}
             g & \gamma
-        \end{psmallmatrix}
+        \end{pmatrix}
     \) is an epimorphism by definition, it follows that the bottom triangle also commutes, which implies \( [\beta \circ \alpha] = [\Id_C] \).
 
     We can prove that \( [\alpha \circ \beta] = [\Id_{C'}] \) in a similar way.
@@ -1020,7 +1024,9 @@ The details of the proof will not be important for the rest of the thesis, but i
     \label{example:stable_module_category_triangulated}
     The tuple \( \tuple*{\Mc, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
-\begin{proof} % TODO: Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
+% TODO: Kanskje formuler pushout-unikheit eigenskapen på ein kortare måte, kanskje eit lemma?
+% TODO: Legg til referansar til dei ulike diagramma i likningane for å gjere det enklare å finna ut kor likskapane kjem frå.
+\begin{proof}
     We need to prove {\bf (TR1)} -- {\bf (TR4)} from \autoref{def:triangulated_category}.
     \begin{enumerate}[label={(\bfseries TR\arabic*)}]
         \item {
@@ -1051,18 +1057,18 @@ The details of the proof will not be important for the rest of the thesis, but i
                         \begin{tikzpicture}
                             \diagram{m}{1cm}{1cm} {
                                 A \& A \\
-                                I_A \& C_{\Id}. \\
+                                I_A \& C_{\Id_A}. \\
                             };
 
                             \draw[math]
-                                (m-1-1) edge node {\Id} (m-1-2)
-                                    edge node {\kappa_A} (m-2-1)
-                                (m-1-2) edge (m-2-2)
+                                (m-1-1) edge node {\Id_A} (m-1-2)
+                                    edge[tailed] node {\kappa_A} (m-2-1)
+                                (m-1-2) edge[tailed] (m-2-2)
 
-                                (m-2-1) edge node {\gamma_{\Id}} (m-2-2);
+                                (m-2-1) edge node {\gamma_{\Id_A}} (m-2-2);
                         \end{tikzpicture}
                     \end{center}
-                    Since the pushout of an isomorphism is an isomorphism, \( \gamma_{\Id} \) is an isomorphism, which implies \( C_{\Id} \cong 0 \) in \( \Mc \) because all injective modules are projective in \( \Mc \). This yields the trivial triangle.
+                    Since the pushout of an isomorphism is an isomorphism, \( \gamma_{\Id_A} \) is an isomorphism, which implies \( C_{\Id_A} \cong 0 \) in \( \Mc \) because all injective modules are projective in \( \Mc \). This yields the trivial triangle.
                 }
                 \item {
                     \( \Delta \) is closed under isomorphisms of triangles by definition.
@@ -1072,7 +1078,7 @@ The details of the proof will not be important for the rest of the thesis, but i
         \item {
             We need to show \( (\Leftarrow) \) and \( (\Rightarrow) \). By \autoref{lem:triangulated_category-TR2-only_one_rotation}, assuming the upcoming proof of {\bf (TR3)} as well as the previous proof of {\bf (TR1)}, then \( (\Leftarrow) \) is implied by \( (\Rightarrow) \).
             
-            Therefore, it is sufficient to only prove \( (\Rightarrow) \).
+            Therefore, it is sufficient to only prove \( (\Rightarrow) \), as long as we do not assume {\bf (TR2)} in the proof of {\bf (TR3)}.
 
             First note that a left rotated distinguished triangle will be isomorphic to a left rotated standard triangle. Therefore, it suffices to check that every left rotated standard triangle is distinguished.
             
@@ -1126,11 +1132,11 @@ The details of the proof will not be important for the rest of the thesis, but i
                         \draw[math]
                             (m-1-1) edge node {f} (m-1-2)
                                 edge[tailed] node {\kappa_A} (m-2-1)
-                            (m-1-2) edge node{g} (m-2-2)
+                            (m-1-2) edge[tailed] node {g} (m-2-2)
 
                             (m-2-1) edge node {\gamma_f} (m-2-2)
-                                edge node {\rho_A} (m-3-2)
-                            (m-2-2) edge node {h} (m-3-2);
+                                edge[two headed] node {\rho_A} (m-3-2)
+                            (m-2-2) edge[two headed] node {h} (m-3-2);
                     \end{tikzpicture}
                 \end{aligned}
             \]
@@ -1145,25 +1151,25 @@ The details of the proof will not be important for the rest of the thesis, but i
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
                             edge[tailed] node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node{g} (m-2-2)
+                        (m-1-2) edge[tailed] node {g} (m-2-2)
                             edge[tailed] node {\kappa_B} (m-2-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge[curve={height=1cm}] node {i_f} (m-2-3)
                         (m-2-2) edge[dashed] node {\phi} (m-2-3)
 
-                        (m-2-3) edge node{\rho_B} (m-2-4);
+                        (m-2-3) edge[two headed] node {\rho_B} (m-2-4);
                 \end{tikzpicture}
             \end{center}
             where there exists some \( \phi \), given by the pushout universal property.
 
             By the commutativity of the above diagrams, we have
             \[
-                \rho_B \circ \phi \circ g = \rho_B \circ \kappa_B = 0 = \Sigma f \circ h \circ g,
+                \rho_B \circ \phi \circ g = \rho_B \circ \kappa_B = 0 = (\Sigma f) \circ h \circ g,
             \]
             and
             \[
-                \rho_B \circ \phi \circ \gamma_f = \rho_B \circ i_f = \Sigma f \circ \rho_A = \Sigma f \circ h \circ \gamma_f.
+                \rho_B \circ \phi \circ \gamma_f = \rho_B \circ i_f = (\Sigma f) \circ \rho_A = (\Sigma f) \circ h \circ \gamma_f.
             \]
             This implies that the following pushout diagram
             \begin{center}
@@ -1176,22 +1182,22 @@ The details of the proof will not be important for the rest of the thesis, but i
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
                             edge[tailed] node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node{g} (m-2-2)
-                            edge[tailed] node {0} (m-2-3)
+                        (m-1-2) edge[tailed] node {g} (m-2-2)
+                            edge node {0} (m-2-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge[curve={height=1cm}] node {\rho_B \circ i_f} (m-2-3)
                         (m-2-2) edge[dashed] (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            has two different morphisms, \( \rho_B \circ \phi \) and \( \Sigma f \circ h \), that could satisfy the pushout universal property. By uniqueness, they have to be the same morphism, i.e.,
+            has two different morphisms, \( \rho_B \circ \phi \) and \( (\Sigma f) \circ h \), that could satisfy the pushout universal property. By uniqueness, they have to be the same morphism, i.e.,
             \[
-                \rho_B \circ \phi = \Sigma f \circ h.
+                \rho_B \circ \phi = (\Sigma f) \circ h.
             \]
             Finally, consider the following commutative diagram
             \begin{center}
                 \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
+                    \diagram{m}{1cm}{1.5cm} {
                         0 \& B \& C_f \& \Sigma A \& 0 \\
                         0 \& I_B \& I_B \oplus \Sigma A \& \Sigma A \& 0 \\
                         \& \& \Sigma B \\
@@ -1200,35 +1206,35 @@ The details of the proof will not be important for the rest of the thesis, but i
                     \draw[math]
                         (m-1-1) edge (m-1-2)
                             edge[equality] (m-2-1)
-                        (m-1-2) edge node {g} (m-1-3)
-                            edge node {\kappa_B} (m-2-2)
-                        (m-1-3) edge node {h} (m-1-4)
+                        (m-1-2) edge[tailed] node {g} (m-1-3)
+                            edge[tailed] node {\kappa_B} (m-2-2)
+                        (m-1-3) edge[two headed] node {h} (m-1-4)
                             edge node {
-                                \begin{psmallmatrix}
+                                \begin{pmatrix}
                                     \phi \\
                                     h
-                                \end{psmallmatrix}
+                                \end{pmatrix}
                             } (m-2-3)
                         (m-1-4) edge (m-1-5)
                                 edge[equality] (m-2-4)
 
                         (m-2-1) edge (m-2-2)
-                        (m-2-2) edge node {
-                            \begin{psmallmatrix}
+                        (m-2-2) edge[tailed] node {
+                            \begin{pmatrix}
                                 1 \\
                                 0
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         } (m-2-3)
-                            edge node {\rho_B} (m-3-3)
-                        (m-2-3) edge node {
-                            \begin{psmallmatrix}
+                            edge[two headed] node {\rho_B} (m-3-3)
+                        (m-2-3) edge[two headed] node {
+                            \begin{pmatrix}
                                 0 & 1
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         } (m-2-4)
                             edge node {
-                                \begin{psmallmatrix}
+                                \begin{pmatrix}
                                     \rho_B & -\Sigma f
-                                \end{psmallmatrix}
+                                \end{pmatrix}
                             } (m-3-3)
                         (m-2-4) edge (m-2-5);
                 \end{tikzpicture}
@@ -1237,35 +1243,35 @@ The details of the proof will not be important for the rest of the thesis, but i
             
             Since
             \[
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     \rho_B & -\Sigma f
-                \end{psmallmatrix}
-                \begin{psmallmatrix}
+                \end{pmatrix}
+                \begin{pmatrix}
                     \phi \\
                     h
-                \end{psmallmatrix}
+                \end{pmatrix}
                 =
-                \rho_B \circ \phi - \Sigma f \circ h = 0,
+                \rho_B \circ \phi - (\Sigma f) \circ h = 0,
             \]
             the triangle
             \begin{center}
                 \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
+                    \diagram{m}{1cm}{2cm} {
                         B \& C_f \& I_B \oplus \Sigma A \& \Sigma B \\
                     };
 
                     \draw[math]
                         (m-1-1) edge node {[g]} (m-1-2)
                         (m-1-2) edge node {\class*{
-                            \begin{psmallmatrix}
+                            \begin{pmatrix}
                                 \phi \\
                                 h
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         }} (m-1-3)
                         (m-1-3) edge node {\class*{
-                            \begin{psmallmatrix}
+                            \begin{pmatrix}
                                 \rho_B & -\Sigma f
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         }} (m-1-4);
                 \end{tikzpicture}
             \end{center} 
@@ -1274,7 +1280,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             Finally, it remains to check if the triangle is isomorphic to the expected triangle. Consider the following diagram in \( \Mc \)
             \begin{center}
                 \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
+                    \diagram{m}{1cm}{2cm} {
                         B \& C_f \& I_B \oplus \Sigma A \& \Sigma B \\
                         B \& C_f \& \Sigma A \& \Sigma B. \\
                     };
@@ -1283,21 +1289,21 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-1-1) edge node {[g]} (m-1-2)
                             edge[equality] (m-2-1)
                         (m-1-2) edge node {\class*{
-                            \begin{psmallmatrix}
+                            \begin{pmatrix}
                                 \phi \\
                                 h
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         }} (m-1-3)
                             edge[equality] (m-2-2)
                         (m-1-3) edge node {\class*{
-                            \begin{psmallmatrix}
+                            \begin{pmatrix}
                                 \rho_B & -\Sigma f
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         }} (m-1-4)
                             edge node {\class*{
-                                \begin{psmallmatrix}
+                                \begin{pmatrix}
                                     0 & 1
-                                \end{psmallmatrix}
+                                \end{pmatrix}
                             }} (m-2-3)
                         (m-1-4) edge[equality] (m-2-4)
 
@@ -1314,63 +1320,63 @@ The details of the proof will not be important for the rest of the thesis, but i
 
             First, we check the commutativity. Consider the difference
             \[
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     \rho_B & -\Sigma f
-                \end{psmallmatrix}
+                \end{pmatrix}
                 -
                 (-\Sigma f) \circ
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     0 & 1
-                \end{psmallmatrix}
+                \end{pmatrix}
                 =
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     \rho_B & -\Sigma f
-                \end{psmallmatrix}
+                \end{pmatrix}
                 +
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     0 & \Sigma f
-                \end{psmallmatrix}
+                \end{pmatrix}
                 =
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     \rho_B & 0
-                \end{psmallmatrix}.
+                \end{pmatrix}.
             \]
-            We can see that the diagram
+            We can see that the diagram,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         I_B \oplus \Sigma A \& \& \Sigma B \\
-                        \& I_B \\
+                        \& I_B, \\
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {
-                            \begin{psmallmatrix}
+                        (m-1-1) edge[two headed] node {
+                            \begin{pmatrix}
                                 \rho_B & 0
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         } (m-1-3)
-                            edge node[swap] {
-                                \begin{psmallmatrix}
+                            edge[two headed] node[swap] {
+                                \begin{pmatrix}
                                     1 & 0
-                                \end{psmallmatrix}
+                                \end{pmatrix}
                             } (m-2-2)
 
-                        (m-2-2) edge node[swap] {\rho_B} (m-1-3);
+                        (m-2-2) edge[two headed] node[swap] {\rho_B} (m-1-3);
                 \end{tikzpicture}
             \end{center}
             commutes, and since every injective module is also projective,
             \[
                 \class*{
-                    \begin{psmallmatrix}
+                    \begin{pmatrix}
                         \rho_B & -\Sigma f
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 }
                 =
                 \class*{
                     -(\Sigma f) \circ
-                    \begin{psmallmatrix}
+                    \begin{pmatrix}
                         0 & 1
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 }.
             \]
 
@@ -1399,18 +1405,18 @@ The details of the proof will not be important for the rest of the thesis, but i
             It remains to check if
             \[
                 \Id_{I_B \oplus \Sigma A} -
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     0 \\
                     1
-                \end{psmallmatrix}
-                \begin{psmallmatrix}
+                \end{pmatrix}
+                \begin{pmatrix}
                     0 & 1
-                \end{psmallmatrix}
+                \end{pmatrix}
                 =
-                \begin{psmallmatrix}
+                \begin{pmatrix}
                     1 & 0 \\
                     0 & 0
-                \end{psmallmatrix}
+                \end{pmatrix}
             \]
             factors through a projective module.
 
@@ -1424,22 +1430,22 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {
-                            \begin{psmallmatrix}
+                            \begin{pmatrix}
                                 1 & 0 \\
                                 0 & 0
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         } (m-1-3)
-                            edge node[swap] {
-                                \begin{psmallmatrix}
+                            edge[two headed] node[swap] {
+                                \begin{pmatrix}
                                     1 & 0
-                                \end{psmallmatrix}
+                                \end{pmatrix}
                             } (m-2-2)
 
-                        (m-2-2) edge node[swap] {
-                            \begin{psmallmatrix}
+                        (m-2-2) edge[tailed] node[swap] {
+                            \begin{pmatrix}
                                 1 \\
                                 0
-                            \end{psmallmatrix}
+                            \end{pmatrix}
                         } (m-1-3);
                 \end{tikzpicture}
             \end{center}
@@ -1473,72 +1479,81 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{diagramlabel}
             that there exists some \( \phi: C_f \to C_l \) such that the entire diagram, including \( \phi \), commutes.
 
-            Consider the following commutative diagrams in \( \Mod(R) \) from the definition of the two standard triangles above,
+            Consider the following commutative diagram in \( \Mod(R) \) from the definition of the top standard triangle from the diagram above,
             \[
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
                             A \& B \\
                             I_A \& C_f \\
-                            \& \Sigma A, \\
+                            \& \Sigma A. \\
                         };
     
                         \draw[math]
                             (m-1-1) edge node {f} (m-1-2)
                                 edge[tailed] node {\kappa_A} (m-2-1)
-                            (m-1-2) edge node{g} (m-2-2)
+                            (m-1-2) edge[tailed] node {g} (m-2-2)
     
                             (m-2-1) edge node {\gamma_f} (m-2-2)
-                                edge node {\rho_A} (m-3-2)
-                            (m-2-2) edge node {h} (m-3-2);
+                                edge[two headed] node {\rho_A} (m-3-2)
+                            (m-2-2) edge[two headed] node {h} (m-3-2);
                     \end{tikzpicture}
                 \end{aligned}
-                \hspace{0.5cm}
-                \text{ and }
-                \hspace{0.5cm}
+            \]
+
+            Since \( [l] \circ [\alpha] = [\beta] \circ [f] \) in \( \Mc \), we have that \( l \circ \alpha - \beta \circ f \) factors through a projective module, \( Q \). However, since projective modules are injective modules, then by the injective module universal property of \( Q \) applied to the monomorphism \( \kappa_A \), it follows that there is some morphism \( \xi: I_A \to E \) such that
+            \[
+                l \circ \alpha - \beta \circ f = \xi \circ \kappa_A,
+            \]
+            which is equivalent to
+            \[
+                \beta \circ f = l \circ \alpha - \xi \circ \kappa_A.
+            \]
+
+            Consider the following commutative diagrams from the definition of \( \Sigma [\alpha] \) and from the definition of the lower standard triangle in \autoref{eq:stablemod},
+            \[
                 \begin{aligned}
                     \begin{tikzpicture}
                         \diagram{m}{1cm}{1cm} {
-                            D \& E \\
-                            I_{D} \& C_{l} \\
-                            \& \Sigma D. \\
+                            A \& I_A \& \Sigma A \\
+                            D \& I_{D} \& \Sigma D, \\
                         };
-    
+
                         \draw[math]
-                            (m-1-1) edge node {l} (m-1-2)
-                                edge[tailed] node {\kappa_{D}} (m-2-1)
-                            (m-1-2) edge node {m} (m-2-2)
-    
-                            (m-2-1) edge node {\gamma_{l}} (m-2-2)
-                                edge node {\rho_{D}} (m-3-2)
-                            (m-2-2) edge node {n} (m-3-2);
+                            (m-1-1) edge[tailed] node {\kappa_A} (m-1-2)
+                                edge node {\alpha} (m-2-1)
+                            (m-1-2) edge[two headed] node {\rho_A} (m-1-3)
+                                edge node {i_{\alpha}} (m-2-2)
+                            (m-1-3) edge node {\Sigma \alpha} (m-2-3)
+
+                            (m-2-1) edge[tailed] node {\kappa_{D}} (m-2-2)
+                            (m-2-2) edge[two headed] node {\rho_{D}} (m-2-3);
                     \end{tikzpicture}
                 \end{aligned}
+                \quad
+                \text{and}
+                \quad
+                \begin{aligned}
+                    \begin{aligned}
+                        \begin{tikzpicture}
+                            \diagram{m}{1cm}{1cm} {
+                                D \& E \\
+                                I_{D} \& C_{l} \\
+                                \& \Sigma D. \\
+                            };
+        
+                            \draw[math]
+                                (m-1-1) edge node {l} (m-1-2)
+                                    edge[tailed] node {\kappa_{D}} (m-2-1)
+                                (m-1-2) edge[tailed] node {m} (m-2-2)
+        
+                                (m-2-1) edge node {\gamma_{l}} (m-2-2)
+                                    edge[two headed] node {\rho_{D}} (m-3-2)
+                                (m-2-2) edge[two headed] node {n} (m-3-2);
+                        \end{tikzpicture}
+                    \end{aligned}
+                \end{aligned}
             \]
-            Since \( [l] \circ [\alpha] = [\beta] \circ [f] \) in \( \Mc \), we have that \( l \circ \alpha - \beta \circ f \) factors through a projective module. However, since projectives are injectives, then by the universal property of injective objects applied to \( \kappa_A \), it follows that \( l \circ \alpha - \beta \circ f \) factors through \( \kappa_A \) and that there is some morphism \( \xi: I_A \to E \) such that
-            \[
-                l \circ \alpha - \beta \circ f = \xi \circ \kappa_A.
-            \]
-
-            Consider the following diagram by definition of \( \Sigma [\alpha] \)
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        A \& I_A \& \Sigma A \\
-                        D \& I_{D} \& \Sigma D. \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge[tailed] node {\kappa_A} (m-1-2)
-                            edge node {\alpha} (m-2-1)
-                        (m-1-2) edge[two headed] node {\rho_A} (m-1-3)
-                            edge node {i_{\alpha}} (m-2-2)
-                        (m-1-3) edge node {\Sigma \alpha} (m-2-3)
-
-                        (m-2-1) edge[tailed] node {\kappa_{D}} (m-2-2)
-                        (m-2-2) edge[two headed] node {\rho_{D}} (m-2-3);
-                \end{tikzpicture}
-            \end{center}
 
             Since
             \begin{align*}
@@ -1547,19 +1562,19 @@ The details of the proof will not be important for the rest of the thesis, but i
                 &= \gamma_{l} \circ i_{\alpha} \circ \kappa_A - m \circ \xi \circ \kappa_A \\
                 &= (\gamma_{l} \circ i_{\alpha} - m \circ \xi) \circ \kappa_A,
             \end{align*}
-            then by the pushout property of \( C_f \) it follows that there exists some unique \( \phi \) such that the following diagram commutes
+            then by the pushout property of \( C_f \) it follows that there exists some unique \( \phi \) such that the following diagram,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& B \\
                         I_A \& C_f \\
-                        \& \& C_{l}. \\
+                        \& \& C_{l}, \\
                     };
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node {g} (m-2-2)
+                            edge[tailed] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge[tailed] node {g} (m-2-2)
                             edge[curve={height=-25pt}] node {m \circ \beta} (m-3-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
@@ -1567,11 +1582,13 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge[dashed] node {\phi} (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            In particular, \( \phi \circ \gamma_f = \gamma_{l} \circ i_{\alpha} - m \circ \xi \).
+            commutes.
+
+            In particular, note that \( \phi \circ \gamma_f = \gamma_{l} \circ i_{\alpha} - m \circ \xi \).
 
             Finally, we check that this \( \phi \) makes \autoref{eq:stablemod} commute.
 
-            By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check \( [n \circ \phi] = [(\Sigma \alpha) \circ h] \). Consider the following diagram, excluding the dashed arrow,
+            By the commutativity of the pushout diagram, the middle square of \autoref{eq:stablemod} commutes. Then it remains to check \( [n \circ \phi] = [(\Sigma \alpha) \circ h] \). Consider the following diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1582,8 +1599,8 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node {g} (m-2-2)
+                            edge[tailed] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge[tailed] node {g} (m-2-2)
                             edge[curve={height=-25pt}] node {0} (m-3-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
@@ -1592,6 +1609,8 @@ The details of the proof will not be important for the rest of the thesis, but i
                 \end{tikzpicture}
             \end{center}
             The above diagram commutes because \( (\Sigma \alpha) \circ h \circ \gamma_f \circ \kappa_A = (\Sigma \alpha) \circ \rho_A \circ \kappa_A = 0 \).
+
+            We want to show that both \( (\Sigma \alpha) \circ h \) and \( n \circ \phi \) could fit as the dashed line in the above diagram. Then by uniqueness of the pushout, this would imply that they are equal, which is what we wish to prove.
 
             Consider the following equations
             \[
@@ -1605,11 +1624,12 @@ The details of the proof will not be important for the rest of the thesis, but i
                 &= n \circ (\phi \circ \gamma_f + m \circ \xi) \\
                 &= n \circ \phi \circ \gamma_f.
             \end{align*}
-                
-            These imply that there are two choices of dashed line in the above diagram that would make it commute. However, by uniqueness, this implies they are equal and therefore
+
+            These imply that both could fit as the dashed arrow. Therefore,
             \[
-                (\Sigma \alpha) \circ h = n \circ \phi.
+                (\Sigma \alpha) \circ h = n \circ \phi,
             \]
+            and \autoref{eq:stablemod} commutes.
         }
         \item {
             % TODO: Swap m og n?
@@ -1683,7 +1703,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             We need to show that there exist morphisms \( [\phi] \) and \( [\psi] \) that fit into the above commutative diagram, such that
             \begin{diagramlabel}[\label{tri:stmod_tr4}]
                 \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
+                    \diagram{m}{1cm}{1.5cm} {
                         C_f \& C_{n \circ f} \& C_n \& \Sigma C_f \\
                     };
 
@@ -1695,7 +1715,39 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{diagramlabel}
             is a distinguished triangle.
 
-            In order to construct \( [\phi] \) and \( [\psi] \), we will work with the following commutative diagram, excluding the dashed arrows, in \( \Mod(R) \)
+            Consider the following commutative diagrams from the constructions of the three standard triangles mentioned above (\autoref{rem:stmod_cone}),
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        A \& B \& B \& D \& \& A \& D \\
+                        I_A \& C_f \& I_B \& C_n \& \text{and} \& I_A \& C_{n \circ f} \\
+                        \& \Sigma A, \& \& \Sigma B, \& \& \& \Sigma A. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {f} (m-1-2)
+                            edge[tailed] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge[tailed] node {g} (m-2-2)
+                        (m-1-3) edge node {n} (m-1-4)
+                            edge[tailed] node {\kappa_B} (m-2-3)
+                        (m-1-4) edge[tailed] node {m} (m-2-4)
+                        (m-1-6) edge node {n \circ f} (m-1-7)
+                            edge[tailed] node {\kappa_A} (m-2-6)
+                        (m-1-7) edge[tailed] node {j} (m-2-7)
+
+                        (m-2-1) edge node {\gamma_f} (m-2-2)
+                            edge[two headed] node[swap] {\rho_A} (m-3-2)
+                        (m-2-2) edge[two headed] node {h} (m-3-2)
+                        (m-2-3) edge node {\gamma_n} (m-2-4)
+                            edge[two headed] node[swap] {\rho_B} (m-3-4)
+                        (m-2-4) edge[two headed] node {k} (m-3-4)
+                        (m-2-6) edge node {\gamma_{n \circ f}} (m-2-7)
+                            edge[two headed] node[swap] {\rho_A} (m-3-7)
+                        (m-2-7) edge[two headed] node {l} (m-3-7);
+                \end{tikzpicture}
+            \end{center}
+
+            In order to construct \( [\phi] \) and \( [\psi] \), we will work with the following commutative diagram in \( \Mod(R) \), excluding the dashed arrows,
             \begin{diagramlabel}[\label{diag:stmod_tr4}]
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1708,74 +1760,31 @@ The details of the proof will not be important for the rest of the thesis, but i
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
                             edge[equality] (m-2-1)
-                        (m-1-2) edge node {g} (m-1-3)
+                        (m-1-2) edge[tailed] node {g} (m-1-3)
                             edge node {n} (m-2-2)
-                        (m-1-3) edge node {h} (m-1-4)
+                        (m-1-3) edge[two headed] node {h} (m-1-4)
                             edge[dashed] node {\phi} (m-2-3)
                         (m-1-4) edge[equality] (m-2-4)
         
                         (m-2-1) edge node {n \circ f} (m-2-2)
-                        (m-2-2) edge node {j} (m-2-3)
-                            edge node {m} (m-3-2)
-                        (m-2-3) edge node {l} (m-2-4)
+                        (m-2-2) edge[tailed] node {j} (m-2-3)
+                            edge[tailed] node {m} (m-3-2)
+                        (m-2-3) edge[two headed] node {l} (m-2-4)
                             edge[dashed] node {\psi} (m-3-3)
                         (m-2-4) edge node {\Sigma f} (m-3-4)
 
                         (m-3-2) edge[equality] (m-3-3)
-                            edge node[swap] {k} (m-4-2)
-                        (m-3-3) edge node {k} (m-3-4)
+                            edge[two headed] node[swap] {k} (m-4-2)
+                        (m-3-3) edge[two headed] node {k} (m-3-4)
                             edge node {(\Sigma g) \circ k} (m-4-3)
 
                         (m-4-2) edge node {\Sigma g} (m-4-3);
                 \end{tikzpicture}
             \end{diagramlabel}
-            If we can find some \( \phi \) and \( \psi \) along with appropriate \( \Sigma f \) such that the above diagram commutes, then all we would have left to prove is that \autoref{tri:stmod_tr4} is a distinguished triangle.
 
-            Consider the following commutative diagrams from the constructions of the three standard triangles mentioned above (\autoref{rem:stmod_cone}),
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        A \& B \& B \& D \& \& A \& D \\
-                        I_A \& C_f \& I_B \& C_n \& \text{and} \& I_A \& C_{n \circ f} \\
-                        \& \Sigma A, \& \& \Sigma B, \& \& \& \Sigma A, \\
-                    };
+            If we can find some \( \phi \) and \( \psi \) along with appropriate \( \Sigma f \) such that the above diagram commutes, then all we would have left to prove is that \autoref{tri:stmod_tr4} is a distinguished triangle for some \( \Sigma g \).
 
-                    \draw[math]
-                        (m-1-1) edge node {f} (m-1-2)
-                            edge node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node {g} (m-2-2)
-                        (m-1-3) edge node {n} (m-1-4)
-                            edge node {\kappa_B} (m-2-3)
-                        (m-1-4) edge node {m} (m-2-4)
-                        (m-1-6) edge node {n \circ f} (m-1-7)
-                            edge node {\kappa_A} (m-2-6)
-                        (m-1-7) edge node {j} (m-2-7)
-
-                        (m-2-1) edge node {\gamma_f} (m-2-2)
-                            edge node {\rho_A} (m-3-2)
-                        (m-2-2) edge node {h} (m-3-2)
-                        (m-2-3) edge node {\gamma_n} (m-2-4)
-                            edge node {\rho_B} (m-3-4)
-                        (m-2-4) edge node {k} (m-3-4)
-                        (m-2-6) edge node {\gamma_{n \circ f}} (m-2-7)
-                            edge node {\rho_A} (m-3-7)
-                        (m-2-7) edge node {l} (m-3-7);
-                \end{tikzpicture}
-            \end{center}
-            as well as the following short exact sequence from the definition of \( \Sigma C_f \),
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        C_f \& I_{C_f} \& \Sigma C_f. \\
-                    };
-
-                    \draw[math]
-                        (m-1-1) edge[tailed] node {\kappa_{C_f}} (m-1-2)
-                        (m-1-2) edge[two headed] node {\rho_{C_f}} (m-1-3); 
-                \end{tikzpicture}
-            \end{center}
-
-            Similar to what was done in the proof of {\bf (TR3)}, let \( \phi \) be the (dashed) pushout morphism arising from the following commutative diagram excluding the dashed arrow
+            Similar to what was done in the proof of {\bf (TR3)}, we choose \( \phi \) to be the (dashed) pushout morphism completing the following commutative diagram,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1786,8 +1795,8 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node {g} (m-2-2)
+                            edge[tailed] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge[tailed] node {g} (m-2-2)
                             edge[curve={height=-25pt}] node {j \circ n} (m-3-3)
                         
                         (m-2-1) edge node {\gamma_f} (m-2-2)
@@ -1795,7 +1804,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-2-2) edge[dashed] node {\phi} (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            By definition, the square left of \( \phi \) in \autoref{diag:stmod_tr4} commutes. In order to check if the square to the right commutes, consider the following commutative diagram excluding the dashed arrow
+            From this, we can see that the square left of \( \phi \) in \autoref{diag:stmod_tr4} commutes. In order to check if the square to the right commutes, consider the following commutative diagram excluding the dashed arrow,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -1817,7 +1826,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{center}
             Consider the following equations
             \[
-                l \circ \phi \circ g = l \circ j \circ n = n \circ 0 = 0 = h \circ g,
+                l \circ \phi \circ g = l \circ j \circ n = 0 \circ n = 0 = h \circ g,
             \]
             and
             \[
@@ -1830,6 +1839,19 @@ The details of the proof will not be important for the rest of the thesis, but i
             Therefore, the square to the right of \( \phi \) in \autoref{diag:stmod_tr4} also commutes.
 
             In order to construct \( \psi \) we have to first define two morphisms which will be used in its definition.
+
+            Consider the following short exact sequence from the definition of \( \Sigma C_f \),
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        C_f \& I_{C_f} \& \Sigma C_f. \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge[tailed] node {\kappa_{C_f}} (m-1-2)
+                        (m-1-2) edge[two headed] node {\rho_{C_f}} (m-1-3); 
+                \end{tikzpicture}
+            \end{center}
 
             By \autoref{rem:stmod_cone_pushout_properties}, \( g \) is a monomorphism. Since \( \kappa_{C_f} \) is also a monomorphism, it follows that
             \[
@@ -1844,10 +1866,10 @@ The details of the proof will not be important for the rest of the thesis, but i
                     };
 
                     \draw[math]
-                        (m-1-2) edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-                            edge node {\kappa_B} (m-2-3)
+                        (m-1-2) edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                            edge[tailed] node {\kappa_B} (m-2-3)
 
-                        (m-2-1) edge node {i} (m-2-3);
+                        (m-2-1) edge node[swap] {i} (m-2-3);
                 \end{tikzpicture}
             \end{center}
             By the injective property of \( I_{C_f} \), there also exists some \( \tilde{i} \) such that the following diagram commutes,
@@ -1859,8 +1881,8 @@ The details of the proof will not be important for the rest of the thesis, but i
                     };
 
                     \draw[math]
-                        (m-1-2) edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-                            edge node {\kappa_B} (m-2-3)
+                        (m-1-2) edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                            edge[tailed] node {\kappa_B} (m-2-3)
 
                         (m-2-3) edge node {\tilde{i}} (m-2-1);
                 \end{tikzpicture}
@@ -1879,9 +1901,9 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {n \circ f} (m-1-2)
-                            edge node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node {j} (m-2-2)
-                            edge[curve={height=-25pt}] node {m} (m-3-3)
+                            edge[tailed] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge[tailed] node {j} (m-2-2)
+                            edge[curve={height=-25pt}, tailed] node {m} (m-3-3)
 
                         (m-2-1) edge node {\gamma_{n \circ f}} (m-2-2)
                             edge[curve={height=25pt}] node[swap] {\gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f} (m-3-3)
@@ -1912,24 +1934,24 @@ The details of the proof will not be important for the rest of the thesis, but i
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {\kappa_A} (m-1-2)
+                        (m-1-1) edge[tailed] node {\kappa_A} (m-1-2)
                             edge node[swap] {f} (m-4-1)
-                        (m-1-2) edge node {\rho_A} (m-1-3)
+                        (m-1-2) edge[two headed] node {\rho_A} (m-1-3)
                             edge node {\gamma_f} (m-2-2)
                         (m-1-3) edge[dashed] node {\Sigma f} (m-4-3)
 
-                        (m-2-2) edge node {\kappa_{C_f}} (m-3-2)
+                        (m-2-2) edge[tailed] node {\kappa_{C_f}} (m-3-2)
 
                         (m-3-2) edge node {i} (m-4-2)
 
-                        (m-4-1) edge node {\kappa_B} (m-4-2)
-                            edge node {g} (m-2-2)
-                        (m-4-2) edge node {\rho_B} (m-4-3);
+                        (m-4-1) edge[tailed] node {\kappa_B} (m-4-2)
+                            edge[tailed] node {g} (m-2-2)
+                        (m-4-2) edge[two headed] node {\rho_B} (m-4-3);
                 \end{tikzpicture}
             \end{center}
             which commutes because the top left ``trapezoid'' and the bottom left ``triangle'' in the diagram commute. Then since
             \[
-                \rho_B \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A = \rho_B \circ \kappa_B = 0,
+                \rho_B \circ i \circ \kappa_{C_f} \circ \gamma_f \circ \kappa_A = \rho_B \circ \kappa_B \circ f = 0,
             \]
             it follows by the cokernel property of \( \Sigma A \) that there exists some morphism, \( \Sigma f \), which is denoted as such because it fits with \autoref{def:stmod_sigma}.
 
@@ -1944,8 +1966,8 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {n \circ f} (m-1-2)
-                            edge node {\kappa_A} (m-2-1)
-                        (m-1-2) edge node {j} (m-2-2)
+                            edge[tailed] node {\kappa_A} (m-2-1)
+                        (m-1-2) edge[tailed] node {j} (m-2-2)
                             edge[curve={height=-25pt}] node {0} (m-3-3)
 
                         (m-2-1) edge node {\gamma_{n \circ f}} (m-2-2)
@@ -1993,10 +2015,10 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge node {\kappa_A} (m-2-1)
+                            edge[tailed] node {\kappa_A} (m-2-1)
                         (m-1-2) edge node {n} (m-1-3)
-                            edge node {g} (m-2-2)
-                        (m-1-3) edge node {j} (m-2-3)
+                            edge[tailed] node {g} (m-2-2)
+                        (m-1-3) edge[tailed] node {j} (m-2-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
                             edge[curve={height=25pt}] node[swap] {\gamma_{n \circ f}} (m-2-3)
@@ -2005,7 +2027,7 @@ The details of the proof will not be important for the rest of the thesis, but i
             \end{center}
             Since the left and the outer square are pushouts this implies that the right square is also a pushout.
 
-            Consider the following pushout diagram of \( (B, n, \kappa_{C_f} \circ g) \),
+            Consider the following pushout diagram of \( \tuple*{ B, n, \kappa_{C_f} \circ g } \),
             \begin{diagramlabel}[\label{diag:stmod_tr4_C}]
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -2015,8 +2037,8 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-                        (m-1-2) edge node {\delta} (m-2-2)
+                            edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                        (m-1-2) edge[tailed] node {\delta} (m-2-2)
 
                         (m-2-1) edge node {\gamma} (m-2-2);
                 \end{tikzpicture}
@@ -2033,9 +2055,9 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node[swap] {g} (m-2-1)
-                        (m-1-2) edge node {j} (m-2-2)
-                            edge[curve={height=-25pt}] node {\delta} (m-3-3)
+                            edge[tailed] node[swap] {g} (m-2-1)
+                        (m-1-2) edge[tailed] node {j} (m-2-2)
+                            edge[curve={height=-25pt}, tailed] node {\delta} (m-3-3)
 
                         (m-2-1) edge node {\phi} (m-2-2)
                             edge[curve={height=25pt}] node[swap] {\gamma \circ \kappa_{C_f}} (m-3-3)
@@ -2055,15 +2077,15 @@ The details of the proof will not be important for the rest of the thesis, but i
                     
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node[swap] {g} (m-2-1)
-                        (m-1-2) edge node[swap] {j} (m-2-2)
-                            edge[curve={height=-25pt}] node {\delta} (m-3-2)
+                            edge[tailed] node[swap] {g} (m-2-1)
+                        (m-1-2) edge[tailed] node[swap] {j} (m-2-2)
+                            edge[curve={height=-25pt}, tailed] node {\delta} (m-3-2)
 
                         (m-2-1) edge node {\phi} (m-2-2)
-                            edge node[swap] {\kappa_{C_f}} (m-3-1)
+                            edge[tailed] node[swap] {\kappa_{C_f}} (m-3-1)
                         (m-2-2) edge node[swap] {x} (m-3-2)
 
-                        (m-3-1) edge node {\gamma} (m-3-2);
+                        (m-3-1) edge[tailed] node {\gamma} (m-3-2);
                 \end{tikzpicture}
             \end{diagramlabel}
 
@@ -2080,13 +2102,13 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {\phi} (m-1-2)
-                            edge node[swap] {\kappa_{C_f}} (m-2-1)
-                        (m-1-2) edge node[swap] {x} (m-2-2)
+                            edge[tailed] node[swap] {\kappa_{C_f}} (m-2-1)
+                        (m-1-2) edge[tailed] node[swap] {x} (m-2-2)
                             edge[curve={height=-25pt}] node {0} (m-3-2)
 
                         (m-2-1) edge node {\gamma} (m-2-2)
-                            edge node[swap] {\rho_{C_f}} (m-3-2)
-                        (m-2-2) edge node[swap] {p} (m-3-2);
+                            edge[two headed] node[swap] {\rho_{C_f}} (m-3-2)
+                        (m-2-2) edge[two headed] node[swap] {p} (m-3-2);
                 \end{tikzpicture}
             \end{center}
             commutes and yields a standard triangle
@@ -2114,8 +2136,8 @@ The details of the proof will not be important for the rest of the thesis, but i
     
                         \draw[math]
                             (m-1-1) edge node {n} (m-1-2)
-                                edge node[swap] {\kappa_B} (m-2-1)
-                            (m-1-2) edge node {m} (m-2-2)
+                                edge[tailed] node[swap] {\kappa_B} (m-2-1)
+                            (m-1-2) edge[tailed] node {m} (m-2-2)
     
                             (m-2-1) edge node {\gamma_n} (m-2-2);
                     \end{tikzpicture}
@@ -2132,8 +2154,8 @@ The details of the proof will not be important for the rest of the thesis, but i
     
                         \draw[math]
                             (m-1-1) edge node {n} (m-1-2)
-                                edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-                            (m-1-2) edge node {\delta} (m-2-2)
+                                edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                            (m-1-2) edge[tailed] node {\delta} (m-2-2)
     
                             (m-2-1) edge node {\gamma} (m-2-2);
                     \end{tikzpicture}
@@ -2159,7 +2181,7 @@ The details of the proof will not be important for the rest of the thesis, but i
                         (m-1-2) edge node {[x]} (m-1-3)
                             edge[equality] (m-2-2)
                         (m-1-3) edge node {[p]} (m-1-4)
-                            edge node[swap] {[\alpha]} (m-2-3)
+                            edge[tailed, two headed] node[swap] {[\alpha]} (m-2-3)
                         (m-1-4) edge[equality] (m-2-4)
 
                         (m-2-1) edge node {[\phi]} (m-2-2)
@@ -2181,8 +2203,8 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {f} (m-1-2)
-                            edge node[swap] {\kappa_A} (m-2-1)
-                        (m-1-2) edge node {g} (m-2-2)
+                            edge[tailed] node[swap] {\kappa_A} (m-2-1)
+                        (m-1-2) edge[tailed] node {g} (m-2-2)
                             edge[curve={height=-25pt}] node {m \circ n} (m-3-3)
 
                         (m-2-1) edge node {\gamma_f} (m-2-2)
@@ -2194,12 +2216,11 @@ The details of the proof will not be important for the rest of the thesis, but i
 
             Note,
             \begin{align*}
-                \psi \circ \phi \circ g &= \psi \circ j \circ n \\
-                &= m \circ n \\
+                \psi \circ \phi \circ g &= m \circ n \\
                 &= \gamma_n \circ \kappa_B \\
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ g,
             \end{align*}
-            and that
+            and
             \begin{align*}
                 \psi \circ \phi \circ \gamma_f &= \psi \circ \gamma_{n \circ f} \\
                 &= \gamma_n \circ i \circ \kappa_{C_f} \circ \gamma_f,
@@ -2220,9 +2241,9 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node[swap] {g} (m-2-1)
-                        (m-1-2) edge node {j} (m-2-2) 
-                            edge[curve={height=-25pt}] node {m} (m-3-3)
+                            edge[tailed] node[swap] {g} (m-2-1)
+                        (m-1-2) edge[tailed] node {j} (m-2-2) 
+                            edge[curve={height=-25pt}, tailed] node {m} (m-3-3)
 
                         (m-2-1) edge node {\phi} (m-2-2)
                             edge[curve={height=25pt}] node[swap] {\alpha \circ \gamma \circ \kappa_{C_f}} (m-3-3)
@@ -2241,7 +2262,28 @@ The details of the proof will not be important for the rest of the thesis, but i
             
             It remains to show that the rightmost square commutes, which requires some additional tools.
 
-            Let \( E := \coker(\delta)\). Since \autoref{diag:stmod_tr4_C} is a pushout, we have \( E = \coker(\kappa_{C_f} \circ g) \). Let \( c: I_{C_f} \to E \) be the cokernel morphism of \( \kappa_{C_f} \circ g \).
+            Let \( E := \coker(\kappa_{C_f} \circ g) \). Let \( c: I_{C_f} \twoheadrightarrow E \) be the cokernel morphism of \( \kappa_{C_f} \circ g \), and let \( \hat{d}: C \twoheadrightarrow \coker(\delta) \) be a cokernel morphism of \( \delta \). Since \autoref{diag:stmod_tr4_C} is a pushout, there is an isomorphism \( \tilde{d}: \coker(\delta) \to E \), such that \( \tilde{d} \circ \hat{d} = c \circ \gamma \). Let \( d := \tilde{d} \circ \hat{d} \). Then the following diagram,
+            \begin{center}
+                \begin{tikzpicture}
+                    \diagram{m}{1cm}{1cm} {
+                        B \& D \\
+                        I_{C_f} \& C \\
+                        E \& E, \\
+                    };
+
+                    \draw[math]
+                        (m-1-1) edge node {n} (m-1-2)
+                            edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                        (m-1-2) edge[tailed] node {\delta} (m-2-2)
+
+                        (m-2-1) edge node {\gamma} (m-2-2)
+                            edge[two headed] node {c} (m-3-1)
+                        (m-2-2) edge[two headed] node {d} (m-3-2)
+
+                        (m-3-1) edge[equality] (m-3-2);
+                \end{tikzpicture}
+            \end{center}
+            commutes, and \( d \) is another choice of cokernel morphism of \( \delta \).
 
             Let \( e \) and \( e^{-1} \) be the (dashed) morphisms induced by the cokernel properties which fit in the following commutative diagram,
             \begin{center}
@@ -2253,24 +2295,23 @@ The details of the proof will not be important for the rest of the thesis, but i
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {\kappa_B} (m-1-2)
+                        (m-1-1) edge[tailed] node {\kappa_B} (m-1-2)
                             edge[equality] (m-2-1)
-                        (m-1-2) edge node {\rho_B} (m-1-3)
+                        (m-1-2) edge[two headed] node {\rho_B} (m-1-3)
                             edge node {\tilde{i}} (m-2-2)
                         (m-1-3) edge[dashed] node {e^{-1}} (m-2-3)
 
-                        (m-2-1) edge node {\kappa_{C_f} \circ g} (m-2-2)
+                        (m-2-1) edge[tailed] node {\kappa_{C_f} \circ g} (m-2-2)
                             edge[equality] (m-3-1)
-                        (m-2-2) edge node {c} (m-2-3)
+                        (m-2-2) edge[two headed] node {c} (m-2-3)
                             edge node {i} (m-3-2)
                         (m-2-3) edge[dashed] node {e} (m-3-3)
 
-                        (m-3-1) edge node {\kappa_B} (m-3-2)
-                        (m-3-2) edge node {\rho_B} (m-3-3);
+                        (m-3-1) edge[tailed] node {\kappa_B} (m-3-2)
+                        (m-3-2) edge[two headed] node {\rho_B} (m-3-3);
                 \end{tikzpicture}
             \end{center}
             
-            % We can verify that \( [e \circ e^{-1}] = \Sigma [\Id_B] = [\Id_{\Sigma B}] \) by \autoref{lem:stmod_sigma_well-defined_additive_endofunctor}. 
             We have \( [e^{-1} \circ e] = [\Id_E] \) by the following argument:
             
             Consider the following commutative diagram excluding the dashed arrow,
@@ -2282,44 +2323,44 @@ The details of the proof will not be important for the rest of the thesis, but i
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {\kappa_{C_f} \circ g} (m-1-2)
+                        (m-1-1) edge[tailed] node {\kappa_{C_f} \circ g} (m-1-2)
                             edge node[swap] {\Id_B - \Id_B = 0} (m-2-1)
-                        (m-1-2) edge node {\rho_B} (m-1-3)
+                        (m-1-2) edge[two headed] node {\rho_B} (m-1-3)
                             edge node[swap] {\tilde{i} \circ i - \Id_{I_{C_f}}} (m-2-2)
                         (m-1-3) edge[dashed] (m-2-2)
                             edge node {e^{-1} \circ e - \Id_E} (m-2-3)
 
-                        (m-2-1) edge node {\kappa_{C_f} \circ g} (m-2-2)
-                        (m-2-2) edge node {\rho_B} (m-2-3);
+                        (m-2-1) edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-2)
+                        (m-2-2) edge[two headed] node[swap] {\rho_B} (m-2-3);
                 \end{tikzpicture}
             \end{center}
             By the cokernel property of \( E \) there exists some morphism such that the top right triangle including the dashed arrow commutes. Furthermore, since \( \rho_B \) is an epimorphism, the bottom right triangle commutes, which implies \( [e^{-1} \circ e] = [\Id_E] \), since \( I_{C_f} \) is a projective module.
 
-            The above morphisms fit into the following commutative diagram, where \( d \) is the cokernel morphism of \( \delta \),
-            \begin{center}
-                \begin{tikzpicture}
-                    \diagram{m}{1cm}{1cm} {
-                        B \& D \\
-                        I_{C_f} \& C \\
-                        E \& E \\
-                        \& \Sigma B. \\
-                    };
+            % The above morphisms fit into the following commutative diagram,
+            % \begin{center}
+            %     \begin{tikzpicture}
+            %         \diagram{m}{1cm}{1cm} {
+            %             B \& D \\
+            %             I_{C_f} \& C \\
+            %             E \& E \\
+            %             \& \Sigma B. \\
+            %         };
 
-                    \draw[math]
-                        (m-1-1) edge node {n} (m-1-2)
-                            edge node {\kappa_{C_f} \circ g} (m-2-1)
-                        (m-1-2) edge node {\delta} (m-2-2)
+            %         \draw[math]
+            %             (m-1-1) edge node {n} (m-1-2)
+            %                 edge[tailed] node {\kappa_{C_f} \circ g} (m-2-1)
+            %             (m-1-2) edge[tailed] node {\delta} (m-2-2)
                         
-                        (m-2-1) edge node {\gamma} (m-2-2)
-                            edge node {c} (m-3-1)
-                        (m-2-2) edge node {d} (m-3-2)
+            %             (m-2-1) edge node {\gamma} (m-2-2)
+            %                 edge[two headed] node {c} (m-3-1)
+            %             (m-2-2) edge[two headed] node {d} (m-3-2)
 
-                        (m-3-1) edge[equality] (m-3-2)
-                        (m-3-2) edge node {e} (m-4-2);
-                \end{tikzpicture}
-            \end{center}
+            %             (m-3-1) edge[equality] (m-3-2)
+            %             (m-3-2) edge node {e} (m-4-2);
+            %     \end{tikzpicture}
+            % \end{center}
             
-            With the above morphisms in mind, let \( \mu \) be the (dashed) morphism induced by the cokernel property in the following commutative diagram, 
+            Consider the following commutative diagram excluding the dashed arrows,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -2329,24 +2370,24 @@ The details of the proof will not be important for the rest of the thesis, but i
                     };
 
                     \draw[math]
-                        (m-1-1) edge node {\kappa_B} (m-1-2)
+                        (m-1-1) edge[tailed] node {\kappa_B} (m-1-2)
                             edge[equality] (m-2-1)
-                        (m-1-2) edge node {\rho_B} (m-1-3)
+                        (m-1-2) edge[two headed] node {\rho_B} (m-1-3)
                             edge node {\tilde{i}} (m-2-2)
                         (m-1-3) edge node[swap] {e^{-1}} (m-2-3)
                             edge[dashed, curve={height=-25pt}] node {\Sigma g} (m-3-3)
 
-                        (m-2-1) edge node {\kappa_{C_f} \circ g} (m-2-2)
-                            edge node {g} (m-3-1)
-                        (m-2-2) edge node {c} (m-2-3)
+                        (m-2-1) edge[tailed] node {\kappa_{C_f} \circ g} (m-2-2)
+                            edge[tailed] node {g} (m-3-1)
+                        (m-2-2) edge[two headed] node {c} (m-2-3)
                             edge[equality] (m-3-2)
                         (m-2-3) edge[dashed] node[swap] {\mu} (m-3-3)
 
-                        (m-3-1) edge node {\kappa_{C_f}} (m-3-2)
-                        (m-3-2) edge node {\rho_{C_f}} (m-3-3);
+                        (m-3-1) edge[tailed] node {\kappa_{C_f}} (m-3-2)
+                        (m-3-2) edge[two headed] node {\rho_{C_f}} (m-3-3);
                 \end{tikzpicture}
             \end{center}
-            and let \( \Sigma g := \mu \circ e^{-1} \).
+            and let \( \mu \) be the morphism induced by the cokernel property of \( E \), and let \( \Sigma g := \mu \circ e^{-1} \).
 
             Before proving \( [(\Sigma g) \circ k \circ \alpha] = [p] \), we first have to prove some relations between the new morphisms and the old ones.
 
@@ -2365,8 +2406,8 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-                        (m-1-2) edge node {\delta} (m-2-2)
+                            edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                        (m-1-2) edge[tailed] node {\delta} (m-2-2)
                             edge[curve={height=-25pt}] node {0} (m-3-3)
 
                         (m-2-1) edge node {\gamma} (m-2-2)
@@ -2377,7 +2418,7 @@ The details of the proof will not be important for the rest of the thesis, but i
 
             Both \( e \circ d \) and \( k \circ \alpha \) could fit as the dashed arrow, as
             \[
-                k \circ \alpha \circ \delta = k \circ m = 0 = 0 \circ \delta = e \circ d \circ \delta,
+                k \circ \alpha \circ \delta = k \circ m = 0 = e \circ 0 = e \circ d \circ \delta,
             \]
             and
             \[
@@ -2396,12 +2437,12 @@ The details of the proof will not be important for the rest of the thesis, but i
 
                     \draw[math]
                         (m-1-1) edge node {n} (m-1-2)
-                            edge node[swap] {\kappa_{C_f} \circ g} (m-2-1)
-                        (m-1-2) edge node {\delta} (m-2-2)
+                            edge[tailed] node[swap] {\kappa_{C_f} \circ g} (m-2-1)
+                        (m-1-2) edge[tailed] node {\delta} (m-2-2)
                             edge[curve={height=-25pt}] node {0} (m-3-3)
 
                         (m-2-1) edge node {\gamma} (m-2-2)
-                            edge[curve={height=25pt}] node {\rho_{C_f}} (m-3-3)
+                            edge[curve={height=25pt}, two headed] node {\rho_{C_f}} (m-3-3)
                         (m-2-2) edge[dashed] (m-3-3);
                 \end{tikzpicture}
             \end{center}
