@@ -62,8 +62,6 @@ A triangulated category is closely linked to some objects and morphisms making `
     Furthermore, if \( a, b, \) and \( c \) are isomorphisms, then \( (a, b, c) \) is called an \emph{isomorphism of triangles} and the two triangles are said to be \emph{isomorphic}.
 \end{definition}
 
-% WIP: Thomas tilbakemelding.
-
 We will use the following definition of a triangulated category.
 
 \begin{definition}[Triangulated category]
@@ -146,12 +144,12 @@ We will use the following definition of a triangulated category.
             Other names for this axiom include the \emph{right rotation axiom} for the \( (\Leftarrow) \) part of the axiom, and the \emph{left rotation axiom} for the \( (\Rightarrow) \) part of the axiom.
         }
         \item {
-            Let the solid part of the following diagram
+            Let the solid part of the following diagram,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
                         A \& B \& C \& \Sigma A \\
-                        A' \& B' \& C' \& \Sigma A'. \\
+                        A' \& B' \& C' \& \Sigma A', \\
                     };
         
                     \draw[math]
@@ -173,7 +171,7 @@ We will use the following definition of a triangulated category.
             Then there exists a morphism \( c: C \to C' \) such that \( (a, b, c) \) becomes a morphism of triangles.
         }
         \item {
-            Let the solid part of the following diagram commute,
+            Let the solid part of the following diagram,
             \begin{center}
                 \begin{tikzpicture}
                     \diagram{m}{1cm}{1cm} {
@@ -202,12 +200,12 @@ We will use the following definition of a triangulated category.
                         (m-3-2) edge[equality] (m-3-3)
                             edge node[swap] {k} (m-4-2)
                         (m-3-3) edge node {k} (m-3-4)
-                            edge node {\Sigma(g) \circ k} (m-4-3)
+                            edge node {(\Sigma g) \circ k} (m-4-3)
 
                         (m-4-2) edge node {\Sigma g} (m-4-3);
                 \end{tikzpicture}
             \end{center}
-            and let \( \tuple*{f, g, h} \), \( \tuple*{n, m, k} \), and \( \tuple*{n \circ f, j, l} \) be three triangles in \( \Delta \).
+            commute, and let \( \tuple*{f, g, h} \), \( \tuple*{n, m, k} \), and \( \tuple*{n \circ f, j, l} \) be three triangles in \( \Delta \).
 
             Then there exist some morphisms, \( \phi \) and \( \psi \), such that \( \tuple*{\phi, \psi, (\Sigma g) \circ k} \) is a triangle in \( \Delta \) and the entire diagram, including \( \phi \) and \( \psi \), commute.
         }
@@ -220,7 +218,7 @@ A tuple \( \tuple*{\Tc, \Sigma, \Delta} \) satisfying {\bf (TR1)} -- {\bf (TR3)}
 
 Although the definition is axiomatic and may seem arbitrary, there are surprisingly many categories that admit the structure of a triangulated category.
 
-There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what we call {\bf (TR4)}, he instead uses another axiom, closer to Verdier's original definition, which upon close inspection is equivalent (assuming {\bf (TR1)}) to our {\bf (TR4)}.
+There are multiple different, but equivalent, definitions of a triangulated category with different axioms. An example of this is \cite[Definition 2.1]{May_2001}, where instead of what we call {\bf (TR4)}, May instead uses another axiom, closer to Verdier's original definition, which upon close inspection is equivalent (assuming {\bf (TR1)}) to our {\bf (TR4)}.
 
 Some axioms of a triangulated category are superfluous in the sense that they are implied by the other axioms. An example is that the axiom {\bf (TR3)} can be skipped if we still assume {\bf (TR1), (TR2)} and {\bf (TR4)}, as was also shown by \cite[Lemma 2.2]{May_2001}.
 

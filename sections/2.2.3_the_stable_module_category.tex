@@ -137,7 +137,7 @@ In order to admit a triangulation, we need to prove that the stable module categ
     \( \Mc \) is an additive category.
 \end{lemma}
 \begin{proof}
-    There are two parts to this proof. First, we show that \( \Mc \) is pre-additive and second, we show that \( \Mc \) has finite products which in addition to being pre-additive would imply that \( \Mc \) is additive by \cite[p.\ 251]{Mac_Lane_1995}.
+    There are two parts to this proof. First, we show that \( \Mc \) is pre-additive and second, we show that \( \Mc \) has finite products. By \cite[p.\ 251]{Mac_Lane_1995}, this implies that \( \Mc \) is additive.
 
     To show that \( \Mc \) is pre-additive there are two properties that need to be shown
     \begin{enumerate}
@@ -149,7 +149,7 @@ In order to admit a triangulation, we need to prove that the stable module categ
         \item {
             We show that composition is bilinear.
 
-            Consider \( [g], [g'] \in \Mc(B, C) \) and \( [f], [f'] \in \Mc(A, B) \). Consider the following equation
+            Let \( [g], [g'] \in \Mc(B, C) \) and \( [f], [f'] \in \Mc(A, B) \). Consider the following equation,
             \begin{align*}
                 ([g] + [g']) \circ ([f] + [f']) &= [g + g'] \circ [f + f'] \\
                 &= \class*{(g + g') \circ (f + f')} \\
@@ -159,8 +159,9 @@ In order to admit a triangulation, we need to prove that the stable module categ
             which is precisely bilinearity.
         }
     \end{enumerate}
+    Thus, \( \Mc \) is pre-additive.
 
-    The claim is that the usual biproduct in \( \Mod(R) \) induces the product in \( \Mc \).
+    Now we want to prove that the usual biproduct in \( \Mod(R) \) induces the product in \( \Mc \).
     
     Consider the commutative diagram for the universal property of \( A \oplus B \) as a product in \( \Mod(R) \). Taking residue classes of the morphisms yields the following commutative diagram in \( \Mc \),
     \begin{center}
@@ -214,7 +215,7 @@ In order to admit a triangulation, we need to prove that the stable module categ
     which implies that \( [f] = [g] \), and that \( A \oplus B \) is a product in \( \Mc \), and by the statement at the start, also a biproduct.
 \end{proof}
 
-The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is the inverse to the ``syzygy functor.'' We start by defining what the syzygy functor is, and afterwards define the shift functor.
+The next step in creating a triangulation for \( \Mc \) is to define the shift functor. In the stable module category, the shift functor is the inverse to the ``syzygy functor.''
 
 The syzygy functor as well as the shift functor exists in the category of modules over a commutative ring with identity (e.g., a Frobenius ring) because it has \emph{enough projectives} and \emph{enough injectives}. Having enough projectives means that for any module \( A \), there exists some projective module \( P_A \), as well as an epimorphism \( \pi_A \) from \( P_A \) to \( A \). The choice of \( P_A \) and consequently \( \pi_A \) is not necessarily unique up to isomorphism, and two different choices of \( P_A \) could be non-isomorphic. Similarly, having enough injectives means that for any module \( A \) there exists some injective module \( I_A \) along with a monomorphism \( \iota_A \) from \( A \) to \( I_A \). Equal to the projective case, \( I_A \) is not necessarily unique up to isomorphism and \( \iota_A \) is not necessarily unique.
 
@@ -253,7 +254,7 @@ The definition of the syzygy functor is closely tied to a choice of \( P_A \) an
                         (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
                 \end{tikzpicture}
             \end{center}
-            Let \( \Omega f: \Omega A \to \Omega B \) be any morphism that makes the above diagram, for some \( p_f: P_A \to P_B \), commute.
+            Let \( \Omega f: \Omega A \to \Omega B \) be any morphism that makes the above diagram commute for some \( p_f: P_A \to P_B \).
 
             Then define \( \Omega [f] := \class*{\Omega f} \).
         }
@@ -278,7 +279,7 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
     \]
     we have from the universal kernel property that there exists a morphism, \( \Omega f \), dependent on the choice of \( p_f \), such that the left square in the definition commutes. This is therefore a valid choice of \( \Omega f \).
 
-    To prove the second part, let \( p_f \) and \( \widetilde{p_f} \) be two different projective morphisms that yield morphisms \( \Omega f \) and \( \widetilde{\Omega f} \), respectively. Then we have the following commutative diagram excluding the dashed arrow,
+    Second, let \( p_f \) and \( \widetilde{p_f} \) be two different projective morphisms that yield morphisms \( \Omega f \) and \( \widetilde{\Omega f} \), respectively. Then we have the following commutative diagram excluding the dashed arrow,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
@@ -309,7 +310,7 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
     \]
     which implies that \( \Omega [f] \) is independent of the choice of \( p_f \).
 
-    Second, we need to show that if \( [f] = [g] \), then \( \Omega [f] = \Omega [g] \). Consider the following commutative diagram excluding the dashed arrow,
+    Third, we need to show that if \( [f] = [g] \), then \( \Omega [f] = \Omega [g] \). Consider the following commutative diagram excluding the dashed arrow,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{3cm} {
@@ -342,12 +343,12 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
     \[
         p_{f - g} \circ \iota_A = \theta \circ (f-g)_1 \circ \pi_A \circ \iota_A = \theta \circ (f-g)_1 \circ 0 = 0,
     \]
-    the following diagram commutes,
+    the following diagram,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
                 \Omega A \& P_A \& A \\
-                \Omega B \& P_B \& B. \\
+                \Omega B \& P_B \& B, \\
             };
 
             \draw[math]
@@ -361,6 +362,8 @@ The goal is to show that \( \Omega: \Mc \to \Mc \) is a well-defined endofunctor
                 (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
         \end{tikzpicture}
     \end{center}
+    commutes.
+
     However, by the second part of this proof, this implies that \( [0] = [\Omega f - \Omega g] \), and therefore \( \Omega [f] = \Omega [g] \).
 \end{proof}
 
@@ -405,8 +408,8 @@ Now that \( \Omega \) is a well-defined assignment of objects and morphisms, it 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega A} \& {P_A} \& A \\
-                {\Omega C} \& {P_C} \& C. \\
+                \Omega A \& P_A \& A \\
+                \Omega C \& P_C \& C. \\
             };
 
             \draw[math]
@@ -427,26 +430,28 @@ Now that \( \Omega \) is a well-defined assignment of objects and morphisms, it 
 
     Second, we need to show that \( \Omega [\Id_A] = [\Id_{\Omega A}] \) in \( \Mc \).
 
-    By a similar argument to the one above, we can see that every square and triangle in the following diagram commutes
+    We can see that every square and triangle in the following diagram,
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
-                {\Omega A} \& {P_A} \& A \\
-                {\Omega A} \& {P_A} \& A. \\
+                \Omega A \& P_A \& A \\
+                \Omega A \& P_A \& A, \\
             };
 
             \draw[math]
-                (m-1-1) edge[tailed] (m-1-2)
+                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
                     edge[swap] node {\Id_{\Omega A}} (m-2-1)
-                (m-1-2) edge[two headed] (m-1-3)
+                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
                     edge node {\Id_{P_A}} (m-2-2)
                 (m-1-3) edge node {\Id_A} (m-2-3)
 
-                (m-2-1) edge[tailed] (m-2-2)
-                (m-2-2) edge[two headed] (m-2-3);
+                (m-2-1) edge[tailed] node {\iota_A} (m-2-2)
+                (m-2-2) edge[two headed] node {\pi_A} (m-2-3);
         \end{tikzpicture}
     \end{center}
-    Therefore \( \Omega \class*{\Id_A} = \class*{\Id_{\Omega A}} \).
+    commutes.
+
+    Therefore, since \( \Omega \) is a well-defined assignment of morphisms, \( \Omega \class*{\Id_A} = \class*{\Id_{\Omega A}} \).
 \end{proof}
 
 Finally, we need the following result to show that \( \Omega \) is additive.
@@ -458,43 +463,49 @@ Finally, we need the following result to show that \( \Omega \) is additive.
 \begin{proof}
     We must show that \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
     
-    There are two possible values of \( \Omega (f + g) \), namely the ones from either of the two commutative diagrams below,
-    \begin{center}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{2cm} {
-                {\Omega A} \& {P_A} \& A \\
-                {\Omega B} \& {P_B} \& B, \\
-            };
+    Since the diagrams
+    \[
+        \begin{aligned}
+            \begin{tikzpicture}
+                \diagram{m}{1cm}{2cm} {
+                    {\Omega A} \& {P_A} \& A \\
+                    {\Omega B} \& {P_B} \& B \\
+                };
 
-            \draw[math]
-                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
-                    edge node {\Omega (f + g)} (m-2-1)
-                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
-                    edge node {p_{f + g}} (m-2-2)
-                (m-1-3) edge node[swap] {f + g} (m-2-3)
+                \draw[math]
+                    (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
+                        edge node {\Omega (f + g)} (m-2-1)
+                    (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
+                        edge node {p_{f + g}} (m-2-2)
+                    (m-1-3) edge node[swap] {f + g} (m-2-3)
 
-                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
-        \end{tikzpicture}
-        \begin{tikzpicture}
-            \diagram{m}{1cm}{2cm} {
-                {\Omega A} \& {P_A} \& A \\
-                {\Omega B} \& {P_B} \& B. \\
-            };
+                    (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                    (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
+            \end{tikzpicture}
+        \end{aligned}
+        \quad
+        \text{and}
+        \quad
+        \begin{aligned}
+            \begin{tikzpicture}
+                \diagram{m}{1cm}{2cm} {
+                    {\Omega A} \& {P_A} \& A \\
+                    {\Omega B} \& {P_B} \& B \\
+                };
 
-            \draw[math]
-                (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
-                    edge node {\Omega f + \Omega g} (m-2-1)
-                (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
-                    edge node {p_f + p_g} (m-2-2)
-                (m-1-3) edge node[swap] {f + g} (m-2-3)
+                \draw[math]
+                    (m-1-1) edge[tailed] node {\iota_A} (m-1-2)
+                        edge node {\Omega f + \Omega g} (m-2-1)
+                    (m-1-2) edge[two headed] node {\pi_A} (m-1-3)
+                        edge node {p_f + p_g} (m-2-2)
+                    (m-1-3) edge node[swap] {f + g} (m-2-3)
 
-                (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
-                (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
-        \end{tikzpicture}
-    \end{center}
-
-    Since \( \Omega [f + g] \) is well-defined, this implies \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
+                    (m-2-1) edge[tailed] node {\iota_B} (m-2-2)
+                    (m-2-2) edge[two headed] node {\pi_B} (m-2-3);
+            \end{tikzpicture}
+        \end{aligned}
+    \]
+    both commute, and since \( \Omega \) is a well-defined assignment of morphisms, this implies \( \Omega [f + g] = \Omega [f] + \Omega [g] \).
 \end{proof}
 
 We can define another functor, the cosyzygy functor \( \Sigma \), which will turn out to be the inverse of the syzygy functor \( \Omega \) and the shift functor in the triangulation of \( \Mc \).
@@ -533,7 +544,7 @@ We can define another functor, the cosyzygy functor \( \Sigma \), which will tur
                 \end{tikzpicture}
             \end{center}
 
-            Let \( \Sigma f: \Sigma A \to \Sigma B \) be any morphism that makes the above diagram, for some \( i_f: I_A \to I_B \), commute.
+            Let \( \Sigma f: \Sigma A \to \Sigma B \) be any morphism that makes the above diagram commute for some \( i_f: I_A \to I_B \).
 
             Then define \( \Sigma [f] := \class*{\Sigma f} \).
         }
@@ -559,13 +570,13 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
 \begin{proof}
     We will only show that \( \Id_{\Mc} \) is naturally isomorphic to \( \Sigma \Omega \). The omitted part that \( \Id_{\Mc} \) is naturally isomorphic to \( \Omega \Sigma \) is very similar, and uses many dual properties.
 
-    First, we show that for any \( A \in \Mc \), there exists an isomorphism \( A \to \Sigma \Omega A \). Consider the following diagram excluding the dashed arrows,
+    First, we show that for any \( A \in \Mc \), there exists an isomorphism \( A \to \Sigma \Omega A \). Consider the following diagram excluding the dashed arrows, where the rows come from the definitions of \( \Omega A \) and \( \Sigma \Omega A \),
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{2cm} {
                 \Omega A \& P_A \& A \\
                 \Omega A \& I_{\Omega A} \& \Sigma \Omega A \\
-                \Omega A \& P_A \& A, \\
+                \Omega A \& P_A \& A. \\
             };
 
             \draw[math]
@@ -585,11 +596,11 @@ Now we can finally show that \( \Sigma = \Omega^{-1} \).
                 (m-3-2) edge[two headed] node {\pi_A} (m-3-3);
         \end{tikzpicture}
     \end{center}
-    then there exists \( i_{\phi_1} \) from the injective property of \( I_{\Omega A} \), induced by \( \iota_A \). In addition, since \( \Mod(R) \) is an abelian category, \( A \) is a cokernel of \( \iota_A \), and by
+    There exists some \( i_{\phi_1}: P_A \to I_{\Omega A} \) from the injective property of \( I_{\Omega A} \), induced by \( \iota_A \), which would make the top left square commute. In addition, since \( \Mod(R) \) is an abelian category, \( A \) is a cokernel of \( \iota_A \), and by
     \[
         \rho_{\Omega A} \circ i_{\phi_1} \circ \iota_A = \rho_{\Omega A} \circ \kappa_{\Omega A} = 0,
     \]
-    we get from the cokernel property that there is a uniquely induced morphism \( \phi_1: A \to \Sigma\Omega A \). Then by doing the same for the lower rectangle of the diagram, using the fact that every projective module is also injective, we get the morphisms \( i_{\phi_2} \) and \( \phi_2 \) by similar arguments. This makes the above diagram including the dashed arrows commute.
+    we get from the cokernel property that there is a uniquely induced morphism \( \phi_1: A \to \Sigma\Omega A \), which makes the top right square commute. Then by doing the same for the lower rectangle of the diagram, using the fact that every projective module is also injective, we get the morphisms \( i_{\phi_2} \) and \( \phi_2 \) by similar arguments. This makes the entire diagram, including the dashed arrows, commute.
 
     To show that \( \phi_1 \) and \( \phi_2 \) are isomorphisms, consider the following commutative diagram excluding the dashed arrow,
     \begin{center}
@@ -804,7 +815,7 @@ There are some important details from the definition of standard triangles that 
     \label{rem:stmod_cone_pushout_properties}
     Consider the objects and morphisms in the above remark.
 
-    Since \( \Mod(R) \) is an abelian category, then by known facts about pushouts, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism as \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise, it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
+    Since \( \Mod(R) \) is an abelian category, it follows that since \( \kappa_A \) is a monomorphism, then \( g \) is also a monomorphism as \( \ker(g) = \ker(\kappa_A) = 0 \). Likewise, it follows that \( \coker(g) \cong \coker(\kappa_A) \cong \Sigma A \), and therefore \( h \) is a cokernel morphism of \( g \).
 \end{remark}
 
 Since morphisms in \( \Mc \) are residue classes and can therefore have multiple representatives, there are multiple cones for each morphism. Each cone yields a different standard triangle, and there are therefore multiple standard triangles for each morphism. This turns out to not be a problem since it does not conflict with the definition of a triangulated category. In particular, the use of the word ``standard triangle'' and ``cone'' above, still aligns with the definitions given in the definition of a triangulated category.
@@ -936,15 +947,15 @@ The following lemma is needed to prove {\bf (TR4)}, however, it also hints to th
 
             \draw[math]
                 (m-1-1) edge node {
-                    \begin{psmallmatrix}
+                    \begin{pmatrix}
                         f \\
                         \kappa
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 } (m-1-2)
                 (m-1-2) edge node {
-                    \begin{psmallmatrix}
+                    \begin{pmatrix}
                         g & \gamma
-                    \end{psmallmatrix}
+                    \end{pmatrix}
                 } (m-1-3);
         \end{tikzpicture}
     \end{center}

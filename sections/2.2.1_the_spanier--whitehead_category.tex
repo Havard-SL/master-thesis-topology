@@ -18,10 +18,9 @@ First, some notation.
 
 We can now define the Spanier--Whitehead category. The triangulation will be described afterwards.
 
-The Spanier--Whitehead category is motivated by the Freudenthal suspension theorem and historically led to the definition of the stable homotopy category. The reason the Freudenthal suspension theorem is so central to the Spanier--Whitehead is the following corollary, whose proof can be found in \cite[Remark 5.2]{Daria_Bachelor}.
+The Spanier--Whitehead category is motivated by the Freudenthal suspension theorem and historically led to the definition of the stable homotopy category. The reason the Freudenthal suspension theorem is so central to the Spanier--Whitehead category is the following corollary, whose proof can be found in \cite[Remark 5.2]{Daria_Bachelor}.
 
 \begin{corollary}
-    \label{cor:sw_freudenthal_suspension}
     Let \( X \) and \( Y \) be based and finite CW-complexes, and let \( n, m \in \Nb \).
     
     Then the colimit
@@ -31,7 +30,7 @@ The Spanier--Whitehead category is motivated by the Freudenthal suspension theor
     is attained for a finite \( q \in \Nb \).
 \end{corollary}
 
-The above corollary is crucial to understanding why the Spanier--Whitehead category is defined as it is. The following definition is based on \cite[Definition 2]{Schwede_2010}.
+The above corollary of the Freudenthal suspension theorem is crucial to understanding why the Spanier--Whitehead category is defined as it is. The following definition is based on \cite[Definition 2]{Schwede_2010}.
 
 \begin{definition}[Spanier--Whitehead category]
     \label{def:sw-cat}
@@ -56,7 +55,9 @@ The above corollary is crucial to understanding why the Spanier--Whitehead categ
     Then \( SW \) is called the \emph{Spanier--Whitehead category}.
 \end{definition}
 
-The reason for limiting the \( q \) in the colimit in part 2, is to make sure that the colimit is well-defined and taken over abelian groups. This is because \( \class*{\Sigma^n X, Y} \) is only an abelian group if \( n \geq 2 \). Composition is well-defined by functoriality of the reduced suspension functor.
+The reason for limiting the \( q \) in the colimit in part 2, is to make sure that the colimit is well-defined and taken over abelian groups. This is because \( \class*{\Sigma^n X, Y} \) is only an abelian group if \( n \geq 2 \). 
+
+Composition is well-defined by functoriality of the reduced suspension functor.
 
 It can be shown that the Spanier--Whitehead category is an additive category \cite[Proposition 5.7]{Daria_Bachelor}.
 
@@ -112,19 +113,19 @@ Before defining the distinguished triangles, we first define what a ``mapping co
     with the relation \( (x, 1) = (x', 1) \) for all \( x, x' \in X \) as well as \( (x_0, t) \sim (x_0, 0) \) for all \( t \in I \).
 \end{definition}
 
+For a continuous based map \( f: X \to Y \), let \( \iota_f: Y \rightarrowtail C_f \) be the inclusion of \( Y \) into \( C_f \). In addition, let \( \pi_f: C_f \twoheadrightarrow \Sigma X \) map the subspace \( Y \) of \( C_f \) to \( x_0 \), and any point \( (x, t) \) in the \( X \times I \) subspace is mapped to \( (x, t) \in \Sigma X \).
+
 The following definition of the distinguished triangles in \( SW \) omits a lot of details as it is not necessary for our purposes. More details can be found in \cite[Definition 4.7 and 5.8]{Daria_Bachelor}.
 
 \begin{definition}[Distinguished triangles in \( SW \)]
     \label{def:sw-dist_triangles}
     Let \( \Delta \) be the collection of triangles in \( SW \) satisfying the following property.
-
-    For a continuous based map \( f: X \to Y \), let \( \iota_f: Y \rightarrowtail C_f \) be the inclusion of \( Y \) into \( C_f \). In addition, let \( \pi_f: C_f \twoheadrightarrow \Sigma X \) map the subspace \( Y \) of \( C_f \) to \( x_0 \), and any point \( (x, t) \) in the \( X \times I \) subspace is mapped to \( (x, t) \in \Sigma X \).
     
-    Then, a triangle
+    A triangle
     \[
         (X, n) \to (Y, m) \to (Z, l) \to \Sigma (X, n)
     \]
-    is in \( \Delta \) if and only if there is some even number \( k \), such that the following triangle in the homotopy category of based CW-complexes
+    is in \( \Delta \) if and only if there is some continuous based map \( f: A \to B \) between two based CW-complexes, and an even number \( k \), such that the following triangle in the homotopy category of based CW-complexes
     \[
         \Sigma^{n + k} X \to \Sigma^{m + k} Y \to \Sigma^{l + k} Z \to \Sigma^{n + k + 1} X
     \]
@@ -132,13 +133,13 @@ The following definition of the distinguished triangles in \( SW \) omits a lot 
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
-                A \& B \& C_f \& \Sigma A, \\
+                A \& B \& C_f \& \Sigma A. \\
             };
 
             \draw[math]
-                (m-1-1) edge node {f} (m-1-2)
-                (m-1-2) edge node {\iota_f} (m-1-3)
-                (m-1-3) edge node {\pi_f} (m-1-4);
+                (m-1-1) edge node {[f]} (m-1-2)
+                (m-1-2) edge node {[\iota_f]} (m-1-3)
+                (m-1-3) edge node {[\pi_f]} (m-1-4);
         \end{tikzpicture}
     \end{center}
 \end{definition}
@@ -152,7 +153,6 @@ Finally, we can define \( SW \) as a triangulated category.
 
     Then \( \tuple*{SW, \Sigma, \Delta} \) is a triangulated category.
 \end{example}
-
-For a proof of the Spanier--Whitehead category being triangulated, see \cite[Theorem 5.9]{Daria_Bachelor}.
+For a proof of this, see \cite[Theorem 5.9]{Daria_Bachelor}.
 
 From this example of a triangulated category we can see where a lot of the notation in the definition of a triangulated category comes from. It is no coincidence that it is common to use the same symbol for both reduced suspension and for the shift functor (\( \Sigma \)), and the same symbol for the mapping cone as well as the cone in a triangulated category (\( C_f \)).
