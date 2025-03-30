@@ -1,4 +1,3 @@
-% WIP: Thomas tilbakemelding
 In this subsection we want to define what an algebraic triangulated category is using the notion of DG-enhancements. We will start by defining \( H^0(\dgM) \), and then using the DG-Yoneda embedding, which we will also define, we can consider any DG-category as a subcategory of the category of DG-modules.
 
 The following definition is very similar to \autoref{def:H_bullet_dg_category}. However unlike the cohomology category, this category is not enriched over \( \C \), it is simply a category in the usual sense.
@@ -25,9 +24,9 @@ The following definition is very similar to \autoref{def:H_bullet_dg_category}. 
             \end{align*}
         }
         \item {
-            For \( A \in \Cc \), and \( u_A \) the unit morphism for \( A \) in \( \Cc \), let the identity morphism in \( H^0(\Cc)(A, A) \) be defined as
+            For \( A \in \Cc \), and \( u_A^{\Cc} \) the unit morphism for \( A \) in \( \Cc \), let the identity morphism in \( H^0(\Cc)(A, A) \) be defined as
             \[
-                \Id_A := [u_{A, 0} (1)].
+                \Id_A := [u_{A, 0}^{\Cc} (1)].
             \]
         }
     \end{enumerate}
@@ -38,21 +37,21 @@ Composition in the above category is well-defined and associative because it is 
 \begin{remark}
     In order to show that the identity in the above definition is well-defined, we have to prove that \( [u_{A, 0} (1)] \) is a cycle, and that \( [u_{A, 0} (1)] \) acts like the identity in \( H^0(\Cc) \).
 
-    First, note that since \( u_A \) is a chain morphism, and \( d_I = 0 \), for any \( n \in \Zb \),
+    First, note that since \( u_A^{\Cc} \) is a chain morphism, and \( d_I = 0 \), for any \( n \in \Zb \),
     \[
-        d_{\Cc(A, A), n} \circ (u_A)_n = (u_A)_n \circ d_{I, n} = 0,
+        d_n^{\Cc(A, A)} \circ u_{A, n}^{\Cc} = u_{A, n}^{\Cc} \circ d_n^I = 0,
     \]
-    and so \( d_{\Cc(A, A), 0} \circ (u_A)_0 (1) = 0 \), and \( (u_A)_0 (1) \) is a cycle.
+    and so \( d_0^{\Cc(A, A)} \circ u_{A, 0}^{\Cc} (1) = 0 \), and \( u_{A, 0}^{\Cc} (1) \) is a cycle.
 
     Second, it follows that for \( [f] \in H^0(\Cc)(A, A) \), we have from the ``unit axiom'' in the definition of an enriched category (\cite[Diagram 6.10]{Borceux_1994}) restricted onto the elementary tensors \( 1 \otimes f \) and \( f \otimes 1 \), that
     \begin{align*}
-        \Id_A \circ [f] &= \class*{ c_{\Cc}((u_A)_0 (1) \otimes f) } \\
+        \Id_A \circ [f] &= \class*{ c_{\Cc}(u_{A, 0}^{\Cc} (1) \otimes f) } \\
         &= [f] \\
-        &= \class*{ f \otimes c_{\Cc}((u_A)_0 (1)) } \\
+        &= \class*{ f \otimes c_{\Cc}(u_{A, 0}^{\Cc} (1)) } \\
         &= [f] \circ \Id_A.
     \end{align*}
 
-    This implies that \( (u_A)_0 (1) \) is the unique identity in \( H^0(\Cc)(A, A) \).
+    This implies that \( u_{A, 0}^{\Cc} (1) \) is the unique identity in \( H^0(\Cc)(A, A) \).
 \end{remark}
 
 \autoref{def:0_th_cohomology_of_dg_cat} connects the theory of DG-categories to the chain homotopy category.
@@ -90,9 +89,9 @@ The following is a definition for a shift functor on \( \C_{\dg} \), which will 
         \item {
             Let \( A, B \in \C_{\dg} \) and \( n \in \Zb \).
 
-            Then define \( \Sigma_{\C_{\dg}, n} \) as follows
+            Then define \( \Sigma_n^{\C_{\dg}} \) as follows
             \begin{align*}
-                \Sigma_{\C_{\dg}, n}: \C_{\dg}(A, B)_n &\to \C_{\dg}(\Sigma A, \Sigma B)_n \\
+                \Sigma_n^{\C_{\dg}}: \C_{\dg}(A, B)_n &\to \C_{\dg}(\Sigma A, \Sigma B)_n \\
                 f &\mapsto (-1)^n f.
             \end{align*}
         }
@@ -100,7 +99,7 @@ The following is a definition for a shift functor on \( \C_{\dg} \), which will 
     Then \( \Sigma_{\C_{\dg}} \) is called the \emph{shift functor of \( \C_{\dg} \)}. When the context is uncertain, we will denote it as \( \Sigma_{\C_{\dg}} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
-By \autoref{not:prod_coprod_no_order}, the morphism \( \Sigma_{\C_{\dg}, n} \) makes sense, because
+By \autoref{not:prod_coprod_no_order}, the chain morphism \( \Sigma_n^{\C_{\dg}} \) makes sense, because
 \[
     \C_{\dg}(\Sigma A, \Sigma B)_n  = \prod_{i \in \Zb} \Mod(R)(A_{i + 1}, B_{i + 1 + n}) = \prod_{i \in \Zb} \Mod(R)(A_i, B_{i + n}) = \C_{\dg}(A, B)_n,
 \]
@@ -121,7 +120,7 @@ Note that even though the above statement is true, \( \C_{\dg}(A, B) \neq \C_{\d
 
     The first equation holds as \( d_A \in \C_{\dg}(A, A)_1 \), and so \( \Sigma d_A = - d_A \). In addition,
     \[
-        d_{\Sigma A} = (d_{\Sigma A, n})_{n \in \Zb} = (- d_{A, n + 1})_{n \in \Zb} = - (d_{A, n})_{n \in \Zb} = - d_A.
+        d_{\Sigma A} = (d_n^{\Sigma A})_{n \in \Zb} = (- d_{n + 1}^A)_{n \in \Zb} = - (d_n^A)_{n \in \Zb} = - d_A.
     \]
 
     The second equation holds for \( f \in [A, B]_n \), as
@@ -148,9 +147,9 @@ The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following rem
 
             Consider the following equation
             \begin{align*}
-                \Sigma_{n + 1} \circ d_{[A, B], n} &= (-1)^{n + 1} d_{[A, B], n} \\
-                &= (-1)^n d_{[\Sigma A, \Sigma B], n} \\
-                &= d_{[\Sigma A, \Sigma B], n} \circ \Sigma_n.
+                \Sigma_{n + 1} \circ d_n^{[A, B]} &= (-1)^{n + 1} d_n^{[A, B]} \\
+                &= (-1)^n d_n^{[\Sigma A, \Sigma B]} \\
+                &= d_n^{[\Sigma A, \Sigma B]} \circ \Sigma_n.
             \end{align*}
         }
         \item {
@@ -174,20 +173,20 @@ The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following rem
 
             Let \( n \in \Zb \), it is sufficient to show that
             \[
-                \Sigma_{A, C, n} \circ c_n = c_n \circ (\Sigma_{B, C} \otimes \Sigma_{A, C})_n.
+                \Sigma_n^{A, C} \circ c_n = c_n \circ (\Sigma_{B, C} \otimes \Sigma_{A, C})_n.
             \]
 
-            Let \( i + j = n \), with \( f \in \C_{\dg}(A, B), \) and \( g \in \C_{\dg}(B, C) \). We have
+            Let \( i + j = n \), with \( f \in \C_{\dg}(A, B)_i, \) and \( g \in \C_{\dg}(B, C)_j \). We have
             \begin{align*}
-                \Sigma_{A, C, n} \circ c_n (g \otimes f) &= (-1)^n c_n (g \otimes f) \\
+                \Sigma_n^{A, C} \circ c_n (g \otimes f) &= (-1)^n c_n (g \otimes f) \\
                 &= (-1)^i (-1)^j c_n (g \otimes f) \\
                 &= c_n\tuple*{((-1)^j g) \otimes ((-1)^i f)} \\
-                &= c_n\tuple*{(\Sigma g) \otimes (\Sigma f)} \\
-                &= c_n \circ (\Sigma \otimes \Sigma) (g \circ f).
+                &= c_n\tuple*{(\Sigma_j^{B, C} g) \otimes (\Sigma_i^{A, B} f)} \\
+                &= c_n \circ (\Sigma_{B, C} \otimes \Sigma_{A, B})_n (g \otimes f).
             \end{align*}
             By the uniqueness of \autoref{lem:map_out_of_tensor_unique} we get that
             \[
-                \Sigma_{A, C, n} \circ c_n = c_n \circ (\Sigma \otimes \Sigma).
+                \Sigma_n^{A, C} \circ c_n = c_n \circ (\Sigma_{B, C} \otimes \Sigma_{A, B})_n.
             \]
         }
         \item {
@@ -202,16 +201,16 @@ The reason \( \Sigma_{\C_{\dg}} \) is a DG-functor is given by the following rem
                     \draw[math]
                         (m-1-1) edge node {u_A} (m-1-2)
                             edge node[swap] {u_{\Sigma A}} (m-2-2)
-                        (m-1-2) edge node {\Sigma} (m-2-2);
+                        (m-1-2) edge node {\Sigma_{A, A}} (m-2-2);
                 \end{tikzpicture}
             \end{center}
             commutes.
 
-            For \( n \neq 0 \), the diagram commutes, since \( u_{A, n} = 0 \) for any \( A \).
+            For \( n \neq 0 \), the diagram commutes, since \( u_n^A = 0 \) for any \( A \).
 
             For \( n = 0 \), and any \( r \in R \), we have the following equation
             \[
-                \Sigma \circ u_A (r) = \Sigma (r \Id_{A_i})_{i \in \Zb} = (r \Id_{A_i})_{i \in \Zb} = u_{\Sigma A} (r),
+                \Sigma \circ u_0^A (r) = \Sigma (r \Id_{A_i})_{i \in \Zb} = (r \Id_{A_i})_{i \in \Zb} = u_0^{\Sigma A} (r),
             \]
             which implies that the diagram commutes.
         }
@@ -233,9 +232,9 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
         \item {
             Let \( F, G \in \dgM \), and \( n \in \Zb \).
             
-            Then define \( \Sigma_{\dgM, F, G n} \) as follows
+            Then define \( \Sigma_{F, G, n}^{\dgM} \) as follows
             \begin{align*}
-                \Sigma_{\dgM, F, G, n}: \dgM(F, G)_n &\to \dgM(\Sigma F, \Sigma G)_n \\
+                \Sigma_{F, G, n}^{\dgM}: \dgM(F, G)_n &\to \dgM(\Sigma F, \Sigma G)_n \\
                 \eta &\mapsto (-1)^n \eta.
             \end{align*}
         }
@@ -243,6 +242,7 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
     Then \( \Sigma_{\dgM} \) is called the \emph{shift functor of \( \dgM \)}. When the context is uncertain, we will denote it as \( \Sigma_{\dgM} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
+% TODO: Legg til at Sigma kan verta definert på prod_A C_dg
 Since
 \[
     \dgM(\Sigma F, \Sigma G)_n \subseteq \prod_{A \in \Cc} \C_{\dg}(\Sigma F A, \Sigma G A)_n = \prod_{A \in \Cc} \C_{\dg}(F A, G A)_n,
@@ -255,13 +255,13 @@ and for any \( f \in \Cc^{\op}(B, C) \),
     &\Updownarrow \\
     (-1)^{|f||\eta|}(G f) \circ \eta_{B} &= \eta_{C} \circ (F f), \\
 \end{align*}
-this implies \( \eta \in \dgM(\Sigma F, \Sigma G)_n \), and thus \( \Sigma_{\dgM, n} \) is a well-defined morphism.
+this implies \( \eta \in \dgM(\Sigma F, \Sigma G)_n \), and thus \( \Sigma_{F, G, n}^{\dgM} \) is a well-defined morphism.
 
-We can also consider
+We can also consider \( \Sigma_{F, G, n}^{\dgM} \) as follows,
 \[
-    \Sigma_{\dgM, F, G, n} = \prod_{A \in \Cc} \Sigma_{\C_{\dg}, F A, G A, n},
+    \Sigma_{F, G, n}^{\dgM} = \prod_{A \in \Cc} \Sigma_{F A, G A, n}^{\C_{\dg}}.
 \] 
-as a morphism from \( \prod_{A \in \Cc} \C_{\dg}(F A, G A)_n \) to \( \prod_{A \in \Cc} \C_{\dg}(\Sigma F A, \Sigma G A)_n \).
+This is a morphism from \( \prod_{A \in \Cc} \C_{\dg}(F A, G A)_n \) to \( \prod_{A \in \Cc} \C_{\dg}(\Sigma F A, \Sigma G A)_n \).
 
 Before we prove that \( \Sigma_{\dgM} \) is a DG-functor, we have the following remark, which mirrors \autoref{rem:c_dg_sigma_d_equal_minus_d}.
 
@@ -292,9 +292,9 @@ By the following remark, \( \Sigma_{\dgM} \) is a well-defined DG-functor.
 
     First, consider the following equation for some \( n \in \Zb \),
     \begin{align*}
-        d_{\dgM(\Sigma F, \Sigma G), n} \circ \Sigma_{F, G, n} &= (-1)^n d_{\dgM(\Sigma F, \Sigma G), n} \\
-        &= (-1)^{n + 1} d_{\dgM(F, G), n} \\
-        &= \Sigma_{F, G, n + 1} \circ d_{\dgM(F, G), n}.
+        d_n^{\dgM(\Sigma F, \Sigma G)} \circ \Sigma_n^{F, G} &= (-1)^n d_n^{\dgM(\Sigma F, \Sigma G)} \\
+        &= (-1)^{n + 1} d_n^{\dgM(F, G)} \\
+        &= \Sigma_{n + 1}^{F, G} \circ d_n^{\dgM(F, G)}.
     \end{align*}
     This implies that \( \Sigma_{F, G}: \dgM(F, G) \to \dgM(\Sigma F, \Sigma G) \) is a chain morphism.
 
@@ -316,15 +316,15 @@ By the following remark, \( \Sigma_{\dgM} \) is a well-defined DG-functor.
     \end{center}
     to commute.
     
-    For any \( i, j \in \Zb \) with \( i + j = n \), \( \eta \in \dgM(F, G) \), and \( \mu \in \dgM(G, H) \), we have
+    For any \( i, j \in \Zb \) with \( i + j = n \), \( \eta \in \dgM(F, G)_i \), and \( \mu \in \dgM(G, H)_j \), we have
     \begin{align*}
-        \Sigma_{F, H, n} \circ c_n (\mu \otimes \eta) &= (-1)^n c_n (\mu \otimes \eta) \\
+        \Sigma_n^{F, H} \circ c_n (\mu \otimes \eta) &= (-1)^n c_n (\mu \otimes \eta) \\
         &= (-1)^i (-1)^j c_n (\mu \otimes \eta) \\
         &= c_n ((((-1))^j \mu) \otimes ((-1)^i \eta)) \\
-        &= c_n ((\Sigma \mu) \otimes (\Sigma \eta)) \\
-        &= c_n \circ (\Sigma \otimes \Sigma) (\mu \otimes \eta).
+        &= c_n ((\Sigma_j^{G, H} \mu) \otimes (\Sigma_i^{F, G} \eta)) \\
+        &= c_n \circ (\Sigma_{G, H} \otimes \Sigma_{F, G})_n (\mu \otimes \eta).
     \end{align*}
-    By uniqueness of \autoref{lem:map_out_of_tensor_unique}, this implies \( \Sigma_{F, H, n} \circ c_n = c_n \circ (\Sigma \otimes \Sigma) \), which implies that the diagram commutes.
+    By uniqueness of \autoref{lem:map_out_of_tensor_unique}, this implies \( \Sigma_n^{F, H} \circ c_n = c_n \circ (\Sigma_{G, H} \otimes \Sigma_{F, G})_n \), which implies that the diagram commutes.
 
     Third, we want the following diagram for any \( F \in \dgM \),
     \begin{center}
@@ -337,19 +337,19 @@ By the following remark, \( \Sigma_{\dgM} \) is a well-defined DG-functor.
             \draw[math]
                 (m-1-1) edge node {u_F} (m-1-2)
                     edge node[swap] {u_{\Sigma F}} (m-2-2)
-                (m-1-2) edge node {\Sigma} (m-2-2);
+                (m-1-2) edge node {\Sigma_{F, F}} (m-2-2);
         \end{tikzpicture}
     \end{center}
     to commute.
 
     For \( n \neq 0 \), the diagram commutes, since 
     \[
-        u_{F, n} = \prod_{A \in \Cc} u_{F A, n} = 0.
+        u_n^F = \prod_{A \in \Cc} u_n^{F A} = 0.
     \]
 
     For \( n = 0 \), and any \( r \in R \), we have
     \[
-        \Sigma \circ u_F (r) = \Sigma ((r \Id_{A_i})_{i \in \Zb})_{A \in \Cc} = ((r \Id_{A_i})_{i \in \Zb})_{A \in \Cc} = u_{\Sigma F} (r),
+        \Sigma \circ u_0^F (r) = \Sigma (r \Id_{A_i})_{i \in \Zb, A \in \Cc} = (r \Id_{A_i})_{i \in \Zb, A \in \Cc} = u_0^{\Sigma F} (r),
     \]
     which implies that the diagram commutes.
 \end{remark}
@@ -363,18 +363,18 @@ In order to get the shift functor on \( H^0(\dgM) \), we have to take the \( 0 \
     Then define the functor \( H^0(F) \) as follows:
     \begin{align*}
         H^0(F): H^0(\Ac) &\to H^0(\Bc) \\
-        A &\mapsto F(A)
+        A &\mapsto F A
     \end{align*}
     where for any \( f \in H^0(\Ac)(A, B) \)
     \begin{align*}
-        H^0(F)_{A, B}: H^0(\Ac)(A, B) &\to H^0(\Bc)(F(A), F(B)) \\
-        [f] &\mapsto [F(f)].
+        H^0(F)_{A, B}: H^0(\Ac)(A, B) &\to H^0(\Bc)(F A, F B) \\
+        [f] &\mapsto [F_0^{A, B} f].
     \end{align*}
 
     This is called the \emph{\( H^0 \)-induced functor of \( F \)}.
 \end{definition}
 
-The above definition is well-defined because by definition \( F_{A, B}: \Ac(A, B) \to \Bc(F A, F B) \) is a chain morphism, and therefore maps cycles to cycles and boundaries to boundaries. Furthermore, functoriality is obvious.
+The above definition is well-defined because by definition \( F_{A, B}: \Ac(A, B) \to \Bc(F A, F B) \) is a chain morphism, and therefore maps cycles to cycles and boundaries to boundaries. Furthermore, functoriality is straight forward to prove.
 
 This leads us to the definition of the shift functor on \( H^0(\dgM) \).
 
@@ -391,7 +391,7 @@ This leads us to the definition of the shift functor on \( H^0(\dgM) \).
 
 The overloading of the notation \( \Sigma \) makes the notation much more concise, and in certain situations and makes equations much more clean while still being correct.
 
-A helpful consequence of the definition of all the \( \Sigma \)'s is that they are all obvious automorphisms.
+A helpful consequence of the definition of all the \( \Sigma \)'s is that they are all clearly automorphisms.
 \begin{remark}
     \label{rem:dgm_sigma_automorphism}
     The DG-endofunctors \( \Sigma_{\C_{\dg}} \), and \( \Sigma_{\dgM} \), as well as the endofunctor \( \Sigma_{H^0(\dgM)} \) are all automorphisms.
@@ -444,7 +444,7 @@ The above notation fits nicely with the following projection and embedding DG-mo
     \]
 \end{definition}
 
-Since \( \C_{\dg} \) is not a ``normal'' category, but a DG-category it does not have an identity morphism in the usual sense. Luckily, it turns out that if we consider composition of DG-morphisms, then the matrices, the projection, and the inclusion DG-morphisms act exactly as expected, where the identity morphism is swapped for \( u_{A, 0}(1) \).
+Since \( \C_{\dg} \) is not a ``normal'' category, but a DG-category it does not have an identity morphism in the usual sense. Luckily, it turns out that if we consider composition of DG-morphisms, then the matrices, the projection, and the inclusion DG-morphisms act exactly as expected, where the identity morphism is swapped for \( u_0^A(1) \).
 
 It will become apparent later on that the biproduct in \( H^0(\dgM) \) is inherited from the following construction in \( \dgM \).
 
@@ -461,7 +461,7 @@ It will become apparent later on that the biproduct in \( H^0(\dgM) \) is inheri
         \item {
             For \( A, B \in \Cc \), and \( n \in \Zb \), let
             \begin{align*}
-                (F \oplus G)_{A, B, n}: \Cc^{\op}(A, B)_n &\to \C_{\dg}((F A) \oplus (G A), (F B) \oplus (G B))_n \\
+                (F \oplus G)_n^{A, B}: \Cc^{\op}(A, B)_n &\to \C_{\dg}((F A) \oplus (G A), (F B) \oplus (G B))_n \\
                 f &\mapsto (F f) \oplus (G f).
             \end{align*}
         }
@@ -476,17 +476,16 @@ It is not obvious why the previous definition is a DG-functor. The following rem
         \item {
             For \( n \in \Zb \), and \( f \in \Cc^{\op}(A, B)_n \), we have
             \begin{align*}
-                &d_n \circ (F \oplus G)_{A, B, n} (f) \\
+                &d_n \circ (F \oplus G)_n^{A, B} (f) \\
                 &= d_n ((F f)_i \oplus (G f)_i)_{i \in \Zb} \\
                 &= d_{(F B) \oplus (G B)} \circ ((F f)_i \oplus (G f)_i)_{i \in \Zb} - (-1)^n ((F f)_i \oplus (G f)_i)_{i \in \Zb} \circ d_{(F A) \oplus (G A)} \\
-                &= \tuple*{d_{(F B) \oplus (G B), i + n} \circ ((F f)_i \oplus (G f)_i) - (-1)^n ((F f)_{i + 1} \oplus (G f)_{i + 1}) \circ d_{(F A) \oplus (G A)}}_{i \in \Zb} \\
-                &= \big( (d_{F B, i + n} \circ (F f)_i) \oplus (d_{G B, i + n} \circ (G f)_i) \\
-                &\hspace{0.4cm} - (-1)^n ( ( (F f)_{i + 1} \circ d_{F A, i} ) \oplus ( (G f)_{i + 1} \circ d_{G A, i} ) ) \big)_{i \in \Zb} \\
-                &= \big( \tuple*{d_{F B, i + n} \circ (F f)_i - (-1)^n (F f)_{i + 1} \circ d_{F A, i}} \\
-                &\hspace{0.4cm} \oplus \tuple*{d_{G B, i + n} \circ (G f)_i - (-1)^n (G f)_{i + 1} \circ d_{G A, i}} \big)_{i \in \Zb} \\
-                &= \tuple*{ \tuple*{d_{[F A, F B], n} (F f)}_i \oplus \tuple*{ d_{[G A, G B], n} (G f)}_i }_{i \in \Zb} \\
+                &= \tuple*{d_{i + n}^{(F B) \oplus (G B)} \circ ((F f)_i \oplus (G f)_i) - (-1)^n ((F f)_{i + 1} \oplus (G f)_{i + 1}) \circ d_i^{(F A) \oplus (G A)}}_{i \in \Zb} \\
+                &= \tuple*{ (d_{i + n}^{F B} \circ (F f)_i) \oplus (d_{i + n}^{G B} \circ (G f)_i) - (-1)^n ( ( (F f)_{i + 1} \circ d_i^{F A} ) \oplus ( (G f)_{i + 1} \circ d_i^{G A} ) ) }_{i \in \Zb} \\
+                &= \tuple*{ \tuple*{d_{i + n}^{F B} \circ (F f)_i - (-1)^n (F f)_{i + 1} \circ d_i^{F A}} \oplus \tuple*{d_{i + n}^{G B} \circ (G f)_i - (-1)^n (G f)_{i + 1} \circ d_i^{G A}} }_{i \in \Zb} \\
+                &= \tuple*{ \tuple*{d_n^{[F A, F B]} (F f)}_i \oplus \tuple*{ d_n^{[G A, G B]} (G f)}_i }_{i \in \Zb} \\
                 &= \tuple*{ \tuple*{F d_n (f)}_i \oplus \tuple*{ G d_n (f)}_i }_{i \in \Zb} \\
-                &= (F \oplus G)_{A, B, n + 1} (d_n (f)) = (F \oplus G)_{A, B, n + 1} \circ d_n (f).
+                &= (F \oplus G)_{n + 1}^{A, B} (d_n (f)) \\
+                &= (F \oplus G)_{n + 1}^{A, B} \circ d_n (f).
             \end{align*}
             This implies \( (F \oplus G)_{A, B} \) is a chain morphism.
         }
@@ -516,8 +515,8 @@ It is not obvious why the previous definition is a DG-functor. The following rem
                 &= ( ((F g)_{k + i} \circ (F f)_k) \oplus ( (G g)_{k + i} \circ (G f)_k ) )_{k \in \Zb} \\
                 &= ( ((F g) \circ (F f))_k \oplus ( (G g) \circ (G f) )_k )_{k \in \Zb} \\
                 &= ( (F (g \circ f) )_k \oplus ( G (g \circ f) )_k )_{k \in \Zb} \\
-                &= (F \oplus G)_{A, C, n} ( g \circ f ) \\
-                &= (F \oplus G)_{A, C, n} \circ c_n (g \otimes f),
+                &= (F \oplus G)_n^{A, C} ( g \circ f ) \\
+                &= (F \oplus G)_n^{A, C} \circ c_n (g \otimes f),
             \end{align*}
             we have, along with uniqueness from \autoref{lem:map_out_of_tensor_unique}, that the diagram commutes.
         }
@@ -532,21 +531,21 @@ It is not obvious why the previous definition is a DG-functor. The following rem
 
                     \draw[math]
                         (m-1-1) edge node {u_A} (m-1-2)
-                            edge node {u_{(F \oplus G) A}} (m-2-2)
+                            edge node[swap] {u_{(F \oplus G) A}} (m-2-2)
                         (m-1-2) edge node {(F \oplus G)_{A, A}} (m-2-2);
                 \end{tikzpicture}
             \end{center}
 
-            For \( n \neq 0 \), \( u_{A, n} = 0 \) for all \( A \), and so the diagram commutes.
+            For \( n \neq 0 \), \( u_n^A = 0 \) for all \( A \), and so the diagram commutes.
 
             For \( n = 0 \), and \( r \in R \), we have
             \begin{align*}
-                (F \oplus G) \circ u_{A, 0} (r) &= \tuple*{ (F \circ u_{A, 0} (r))_i \oplus (G \circ u_{A, 0} (r))_i }_{i \in \Zb} \\
-                &= ((u_{F A, 0} (r))_i \oplus (u_{G A, 0} (r))_i)_{i \in \Zb} \\
+                (F \oplus G) \circ u_0^A (r) &= \tuple*{ (F \circ u_0^A (r))_i \oplus (G \circ u_0^A (r))_i }_{i \in \Zb} \\
+                &= ((u_0^{F A} (r))_i \oplus (u_0^{G A} (r))_i)_{i \in \Zb} \\
                 &= ((r \Id_{(F A)_i})_i \oplus (r \Id_{(G A)_i})_i)_{i \in \Zb} \\
                 &= (r \Id_{(F A)_i \oplus (G A)_i})_{i \in \Zb} \\
                 &= (r \Id_{((F \oplus G ) A)_i })_{i \in \Zb} \\
-                &= u_{(F \oplus G ) A, 0} (r).
+                &= u_0^{(F \oplus G ) A} (r).
             \end{align*}
             This implies the diagram commutes.
         }
@@ -559,7 +558,7 @@ Similarly to how there is a projection and embedding DG-morphism in \( \C_{\dg} 
     \label{rem:dgm_pi_iota}
     For \( A, B \in \Mod(R) \), let \( \pi_A: A \oplus B \to A \) be the projection morphism. Then define
     \[
-        \pi_F := \tuple*{ \tuple*{ \pi_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}((F A) \oplus (G A), F A)_0.
+        \pi_F := \tuple*{ \pi_{(F A)_i} }_{i \in \Zb, A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}((F A) \oplus (G A), F A)_0.
     \]
 
     For any \( f \in \Cc^{\op}(A, B)_n, \) we have
@@ -574,7 +573,7 @@ Similarly to how there is a projection and embedding DG-morphism in \( \C_{\dg} 
 
     For \( A, B \in \Mod(R) \), let \( \iota_A: A \to A \oplus B \) be the embedding morphism. Then define
     \[
-        \iota_F := \tuple*{ \tuple*{ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}(F A, (F A) \oplus (G A) )_0.
+        \iota_F := \tuple*{ \iota_{(F A)_i} }_{i \in \Zb, A \in \Cc} \in \prod_{A \in \Cc} \C_{\dg}(F A, (F A) \oplus (G A) )_0.
     \]
 
     For any \( f \in \Cc^{\op}(A, B)_n, \) we have
@@ -590,17 +589,17 @@ Similarly to how there is a projection and embedding DG-morphism in \( \C_{\dg} 
     In particular, \( \pi_F \) and \( \iota_F \) also has the following two properties,
     \begin{align*}
         \pi_F \circ \iota_F &= \tuple*{ \tuple*{ \pi_{(F A)_i} }_{i \in \Zb} \circ \tuple*{ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple*{ \tuple*{ \pi_{(F A)_i} \circ \iota_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple*{ \tuple*{ \Id_{(F A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= u_{F, 0}(1),
+        &= \tuple*{ \pi_{(F A)_i} \circ \iota_{(F A)_i} }_{i \in \Zb, A \in \Cc} \\
+        &= \tuple*{ \Id_{(F A)_i} }_{i \in \Zb, A \in \Cc} \\
+        &= u_0^F(1),
     \end{align*}
     and
     \begin{align*}
-        \iota_F \circ \pi_F + \iota_G \circ \pi_G &= \tuple*{ \tuple*{\iota_{(F A)_i} \circ \pi_{(F A)_i} + \iota_{(G A)_i} \circ \pi_{(G A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple*{ \tuple*{ \Id_{(F A)_i \oplus (G A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple*{ \tuple*{ \Id_{((F \oplus G) A)_i} }_{i \in \Zb} }_{A \in \Cc} \\
-        &= \tuple*{ (u_{(F \oplus G) A})_0 (1)}_{A \in \Cc} \\
-        &= u_{F \oplus G, 0} (1).
+        \iota_F \circ \pi_F + \iota_G \circ \pi_G &= \tuple*{\iota_{(F A)_i} \circ \pi_{(F A)_i} + \iota_{(G A)_i} \circ \pi_{(G A)_i} }_{i \in \Zb, A \in \Cc} \\
+        &= \tuple*{ \Id_{(F A)_i \oplus (G A)_i} }_{i \in \Zb, A \in \Cc} \\
+        &= \tuple*{ \Id_{((F \oplus G) A)_i} }_{i \in \Zb, A \in \Cc} \\
+        &= \tuple*{ u_0^{(F \oplus G) A} (1)}_{A \in \Cc} \\
+        &= u_0^{F \oplus G} (1).
     \end{align*}
 \end{remark}
 
@@ -637,7 +636,7 @@ Similarly to what was done for \( \C_{\dg} \), we also use the notation of matri
     Similarly to above, if \( \alpha = 0 = \beta \), we write the above morphism as \( \eta \oplus \mu \).
 \end{notation}
 
-Similar to what we observed with \( \C_{\dg} \), we also get that the above notation, along with \( \pi_F \) and \( \iota_F \), when considering composition of DG-morphisms, have all the expected properties of usual composition of matrices, with \( u_{F, 0}(1) \) as the ``identity.'' Two examples of this are the final two properties mentioned in \autoref{rem:dgm_pi_iota}.
+Similar to what we observed with \( \C_{\dg} \), we also get that the above notation, along with \( \pi_F \) and \( \iota_F \), when considering composition of DG-morphisms, have all the expected properties of usual composition of matrices, with \( u_0^F(1) \) as the ``identity.'' Two examples of this are the final two properties mentioned in \autoref{rem:dgm_pi_iota}.
 
 Additionally, if every DG-morphism in a matrix is in \( \dgM \), then the matrix is also in \( \dgM \) since the matrix can be described as a sum of morphisms in \( \dgM \).
 
@@ -652,28 +651,28 @@ The following lemma is used to prove that \( H^0(\dgM) \) is additive.
 \begin{proof}
     First, consider \( \pi_F \),
     \begin{align*}
-        d_{\dgM(F \oplus G, F), 0} ( \pi_F ) &= d_F \circ \pi_F - \pi_F \circ d_{F \oplus G} \\
-        &= \tuple*{ d_{F A, i} \circ \pi_{F A, i} - \pi_{F A, i + 1} \circ d_{(F A) \oplus (G A), i} }_{i \in \Zb, A \in \Cc} \\
+        d_0^{\dgM(F \oplus G, F)} ( \pi_F ) &= d_F \circ \pi_F - \pi_F \circ d_{F \oplus G} \\
+        &= \tuple*{ d_i^{F A} \circ \pi_i^{F A} - \pi_{i + 1}^{F A} \circ d_i^{(F A) \oplus (G A)} }_{i \in \Zb, A \in \Cc} \\
         &= \tuple*{
             \begin{pmatrix}
-                d_{F A, i} & 0
+                d_i^{F A} & 0
             \end{pmatrix}
             -
             \begin{pmatrix}
                 1 & 0
             \end{pmatrix}
             \begin{pmatrix}
-                d_{F A, i} & 0 \\
-                0 & d_{G A, i}
+                d_i^{F A} & 0 \\
+                0 & d_i^{G A}
             \end{pmatrix}
         }_{i \in \Zb, A \in \Cc} \\
         &= \tuple*{
             \begin{pmatrix}
-                d_{F A, i} & 0
+                d_i^{F A} & 0
             \end{pmatrix}
             -
             \begin{pmatrix}
-                d_{F A, i} & 0
+                d_i^{F A} & 0
             \end{pmatrix}
         }_{i \in \Zb, A \in \Cc} \\
         &= 0.
@@ -681,16 +680,16 @@ The following lemma is used to prove that \( H^0(\dgM) \) is additive.
 
     Second, consider \( \iota_F \),
     \begin{align*}
-        d_{\dgM(F, F \oplus G), 0} ( \iota_F ) &= d_{F \oplus G} \circ \iota_F - \iota_F \circ d_F \\
-        &= \tuple*{ d_{(F A) \oplus (G A), i} \circ \iota_{F A, i} - \iota_{F A, i + 1} \circ d_{F A, i} }_{i \in \Zb, A \in \Cc} \\
+        d_0^{\dgM(F, F \oplus G)} ( \iota_F ) &= d_{F \oplus G} \circ \iota_F - \iota_F \circ d_F \\
+        &= \tuple*{ d_i^{(F A) \oplus (G A)} \circ \iota_i^{F A} - \iota_{i + 1}^{F A} \circ d_i^{F A} }_{i \in \Zb, A \in \Cc} \\
         &= \tuple*{
             \begin{pmatrix}
-                d_{F A, i} \\
+                d_i^{F A} \\
                 0
             \end{pmatrix}
             -
             \begin{pmatrix}
-                d_{F A, i} \\
+                d_i^{F A} \\
                 0
             \end{pmatrix}
         }_{i \in \Zb, A \in \Cc} \\
@@ -717,15 +716,15 @@ In order for \( H^0(\dgM) \) to have a triangulation, it has to be additive.
 
     By \autoref{lem:dgm_pi_iota_cycles}, \( \pi_F, \pi_G, \iota_F, \) and \( \iota_F \) are cycles, and so they are all representatives of morphisms in \( H^0(\dgM) \).
 
-    Remember from \autoref{def:0_th_cohomology_of_dg_cat}, we have that for any \( F \in \dgM \), \( \Id_F := [u_{F, 0} ( 1 )] \).
+    Remember from \autoref{def:0_th_cohomology_of_dg_cat}, we have that for any \( F \in \dgM \), \( \Id_F := [u_0^F ( 1 )] \).
 
     By the final two properties in \autoref{rem:dgm_pi_iota}, we have that
     \[
-        [\pi_F \circ \iota_F] = [u_{F, 0} (1)] = \Id_F,
+        [\pi_F \circ \iota_F] = [u_0^F (1)] = \Id_F,
     \]
     and similarly for \( \Id_G \), as well as
     \[
-        [\iota_F \circ \pi_F + \iota_G \circ \pi_G] = [u_{F \oplus G, 0} (1)] = \Id_{F \oplus G}.
+        [\iota_F \circ \pi_F + \iota_G \circ \pi_G] = [u_0^{F \oplus G} (1)] = \Id_{F \oplus G}.
     \]
 
     Therefore, \( H^0(\dgM) \) is additive.
@@ -761,16 +760,16 @@ With the above notation in mind, we get an equality that is essential in creatin
             \draw[math]
                 (m-1-1) edge[equality] (m-2-1)
                 (m-1-2) edge (m-1-3)
-                (m-1-3) edge node {d_{-1}} (m-1-4)
+                (m-1-3) edge node {d_{-1}^{\class*{\Sigma^{-n} A, B}}} (m-1-4)
                     edge[equality] (m-2-3)
-                (m-1-4) edge node {d_0} (m-1-5)
+                (m-1-4) edge node {d_0^{\class*{\Sigma^{-n} A, B}}} (m-1-5)
                     edge[equality] (m-2-4)
                 (m-1-5) edge (m-1-6)
                     edge[equality] (m-2-5)
 
                 (m-2-2) edge (m-2-3)
-                (m-2-3) edge node {d_{n-1}} (m-2-4)
-                (m-2-4) edge node {d_n} (m-2-5)
+                (m-2-3) edge node {d_{n-1}^{\class*{A, B}}} (m-2-4)
+                (m-2-4) edge node {d_n^{\class*{A, B}}} (m-2-5)
                 (m-2-5) edge (m-2-6);
         \end{tikzpicture}
     \end{center}
@@ -778,7 +777,7 @@ With the above notation in mind, we get an equality that is essential in creatin
 \begin{proof}
     For any \( i \in \Zb \), there are two parts that need to be proved.
 
-    First, we need to show that \( \class*{\Sigma^{-n} A, B}_i = \class*{A, B}_{n + i} \), and second, need to show that \( d_{\class*{\Sigma^{-n} A, B}, i} = d_{\class*{A, B}, n + i} \).
+    First, we need to show that \( \class*{\Sigma^{-n} A, B}_i = \class*{A, B}_{n + i} \), and second, need to show that \( d_i^{\class*{\Sigma^{-n} A, B}} = d_{n + i}^{\class*{A, B}} \).
 
     We start with the first part.
 
@@ -790,13 +789,13 @@ With the above notation in mind, we get an equality that is essential in creatin
         &= [A, B]_{i + n}
     \end{align*}
 
-    Foror the second part, let \( \tuple*{f_j}_{j \in \Zb} \in [A, B]_{n + i} \), and consider \( f_j: A_j \to B_{j + n + i} \). Thus
+    For the second part, let \( \tuple*{f_j}_{j \in \Zb} \in [A, B]_{n + i} \), with \( f_j: A_j \to B_{j + n + i} \). Thus,
     \begin{align*}
-        d_{\class*{\Sigma^{-n} A, B}, i}\tuple*{f_j}_{j \in \Zb} &= \tuple*{d_{B, n + i + j} \circ f_j - (-1)^i f_{j + 1} \circ d_{\Sigma^{-n} A, j + n}}_{j \in \Zb} \\
-        &= \tuple*{d_{B, n + i + j} \circ f_j - (-1)^{n + i} f_{j + 1} \circ d_{A, j}}_{j \in \Zb} \\
-        &= d_{\class*{A, B}, n + i}(f_j)_{j \in \Zb}.
+        d_i^{\class*{\Sigma^{-n} A, B}}\tuple*{f_j}_{j \in \Zb} &= \tuple*{d_{n + i + j}^B \circ f_j - (-1)^i f_{j + 1} \circ d_{j + n}^{\Sigma^{-n} A}}_{j \in \Zb} \\
+        &= \tuple*{d_{n + i + j}^B \circ f_j - (-1)^{n + i} f_{j + 1} \circ d_j^A}_{j \in \Zb} \\
+        &= d_{n + i}^{\class*{A, B}}(f_j)_{j \in \Zb}.
     \end{align*}
-    and hence \( \class*{\Sigma^{-n} A, B} \) is canonically isomorphic to \( \class*{A, B}_{\bullet+n} \) with an ``identity'' morphism.
+    Therefore, \( \class*{\Sigma^{-n} A, B} \) is canonically isomorphic to \( \class*{A, B}_{\bullet+n} \) with an ``identity'' morphism.
 \end{proof}
 
 The above lemma gives the following result, which is what we will use in the definition of Massey products on \( H^0(\dgM) \).
@@ -852,7 +851,7 @@ The fact that a DG-morphism in \( \C_{\dg} \) and \( \dgM \) can be considered a
     The same arguments are also true for \( \C_{\dg} \), as well as composition of DG-morphisms in \( \prod_{A \in \Cc} \C_{\dg}(F A, G B) \) for any DG-module \( F \) and \( G \).
 \end{remark}
 
-The idea that composition of DG-morphisms in ``equal'' modules is independent of where we do the composing has been implicitly used in multiple equations already, and is a major reason why the equations we are working with can be written as nicely as they do. If we did not have the above remark, the convention in \autoref{not:suppress_canonical_isomorphisms} would have been very confusing, but now it makes equations cleaner.
+The idea that composition of DG-morphisms in ``equal'' modules is independent of where we do the composing has been implicitly used in multiple equations already, and is a major reason why the equations we are working with can be written as nicely as they do. If composition did not behave this nicely, the convention in \autoref{not:suppress_canonical_isomorphisms} would have been very confusing, but now it makes equations cleaner.
 
 The following is the definition for a cone in \( \dgM \).
 
@@ -879,8 +878,9 @@ The following is the definition for a cone in \( \dgM \).
         }
         \item {
             For any \( f \in \Cc^{\op}(A, B)_n \), let
+            % TODO: Rar C_eta
             \begin{align*}
-                C_{\eta, A, B, n}: \Cc^{\op}(A, B)_n &\to \C_{\dg}(C_{\eta} A, C_{\eta} B)_n \\
+                {C_{\eta}}_n^{A, B}: \Cc^{\op}(A, B)_n &\to \C_{\dg}(C_{\eta} A, C_{\eta} B)_n \\
                 f &\mapsto ((\Sigma F) \oplus G) f = 
                 \begin{pmatrix}
                     \Sigma F f & 0 \\
@@ -907,9 +907,9 @@ The definition of \( c_{\eta} \) has the following property that makes it easier
     \label{rem:dgm_c_eta_similar_to_sigma_f_plus_g}
     Since the only property that differentiates \( ((\Sigma F) \oplus G) \) and \( C_{\eta} \), is the differentials of the chain complexes
     \[
-        ((\Sigma F) \oplus G) A \: \text{ and } \: C_{\eta} A,
+        ((\Sigma F) \oplus G) A \quad \text{ and } \quad C_{\eta} A,
     \]
-    every result that does not rely on the differentials hold for both \( ((\Sigma F) \oplus G)\) and \( (C_{\eta}) \).
+    every result that does not rely on the differentials hold for both \( (\Sigma F) \oplus G \) and \( C_{\eta} \).
 \end{remark}
 
 We have that \( C_{\eta} \) is a well-defined DG-functor by the following remark.
@@ -919,16 +919,16 @@ We have that \( C_{\eta} \) is a well-defined DG-functor by the following remark
         \item {
             For any \( A, B \in \Cc \), we want to show that
             \[
-                C_{\eta, A, B}: \Cc^{\op}(A, B) \to \C_{\dg}(C_{\eta} A, C_{\eta} B)
+                {C_{\eta}}_{A, B}: \Cc^{\op}(A, B) \to \C_{\dg}(C_{\eta} A, C_{\eta} B)
             \]
-            is a chain morphism, i.e., we want to show that
+            is a chain morphism, i.e., we want to show that for any \( f \in \Cc^{\op}(A, B)_n \),
             \[
-                d_{\C_{\dg}(C_{\eta} A, C_{\eta} B)}(C_{\eta} f) = C_{\eta} d_{\Cc^{\op}(A, B)}(f).
+                d_n^{[C_{\eta} A, C_{\eta} B]} (C_{\eta} f) = C_{\eta} d_n^{\Cc^{\op}(A, B)}(f).
             \]
 
             We have
             \begin{align*}
-                &d_{\C_{\dg}(C_{\eta} A, C_{\eta} B)}(C_{\eta} f) \\
+                &d_n^{[C_{\eta} A, C_{\eta} B]} (C_{\eta} f) \\
                 &= d_{C_{\eta} B} \circ
                 \begin{pmatrix}
                     \Sigma F f & 0 \\
@@ -944,8 +944,7 @@ We have that \( C_{\eta} \) is a well-defined DG-functor by the following remark
                 \begin{pmatrix}
                     -(-1)^n d_{F B} \circ F f & 0 \\
                     (-1)^n \eta_B \circ F f & d_{G B} \circ G f
-                \end{pmatrix} \\
-                &\hspace{0.4cm} - (-1)^n
+                \end{pmatrix} - (-1)^n
                 \begin{pmatrix}
                     -(-1)^n (F f) \circ d_{F A} & 0 \\
                     (G f) \circ \eta_A & (G f) \circ d_{G A}
@@ -957,20 +956,20 @@ We have that \( C_{\eta} \) is a well-defined DG-functor by the following remark
                 \end{pmatrix} \\
                 &=
                 \begin{pmatrix}
-                    \Sigma d_{\C_{\dg}(F A, F B)}(F f) & 0 \\
-                    (-1)^{n + 1} 0 & d_{\C_{\dg}(G A, G B)}(G f)
+                    \Sigma d_n^{[F A, F B]}(F f) & 0 \\
+                    (-1)^{n + 1} 0 & d_n^{[G A, G B]}(G f)
                 \end{pmatrix} \\
                 &=
                 \begin{pmatrix}
-                    \Sigma F d_{\Cc^{\op}(A, B)}(f) & 0 \\
-                    0 & G d_{\Cc^{\op}(A, B)}(f)
+                    \Sigma F d_n^{\Cc^{\op}(A, B)}(f) & 0 \\
+                    0 & G d_n^{\Cc^{\op}(A, B)}(f)
                 \end{pmatrix} \\
-                &= \C_{\eta} d_{\Cc^{\op}(A, B)}(f).
+                &= \C_{\eta} d_n^{\Cc^{\op}(A, B)}(f).
             \end{align*}
         }
         \item {
             Since the degree-wise composition does not rely upon the differentials in any way, by \autoref{rem:dgm_c_eta_similar_to_sigma_f_plus_g},
-            the composition axiom diagram commutes degree-wise. The diagram commutes as chain morphisms as \( C_{\eta, A, B} \) is a chain morphism.
+            the composition axiom diagram commutes degree-wise. The diagram commutes as chain morphisms as \( {C_{\eta}}_{A, B} \) is a chain morphism.
         }
         \item {
             By the same argument as above, we get that the unit axiom is true for \( C_{\eta} \) by the same arguments as for \( (\Sigma F) \oplus G \).
@@ -991,13 +990,13 @@ By using the above remark, we can consider the projection as well as the embeddi
 
 \begin{remark}
     \label{rem:dgm_differentials_of_inclusions_and_projections_of_cone}
-    Let \( \iota_G \in \dgM(G, (\Sigma F) \oplus G) \) and \( \pi_{\Sigma F} \in \dgM((\Sigma F) \oplus G, \Sigma F) \) be as in \autoref{rem:dgm_pi_iota}.
+    Let \( \iota_G \in \dgM(G, (\Sigma F) \oplus G)_0 \) and \( \pi_{\Sigma F} \in \dgM((\Sigma F) \oplus G, \Sigma F)_0 \) be as in \autoref{rem:dgm_pi_iota}.
 
     By \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms} we can consider the above DG-morphisms as DG-morphisms to and from \( C_{\eta} \) instead of \( (\Sigma F) \oplus G \), respectively.
 
     Additionally, \( \iota_G \) and \( \pi_{\Sigma F} \) are cycles as
     \begin{align*}
-        d_{\dgM(G, C_{\eta})}(\iota_G) &= d_{C_{\eta}} \circ \iota_G - \iota_G \circ d_G \\
+        d_0^{\dgM(G, C_{\eta})}(\iota_G) &= d_{C_{\eta}} \circ \iota_G - \iota_G \circ d_G \\
         &=
         \begin{pmatrix}
             -d_F & 0 \\
@@ -1027,7 +1026,7 @@ By using the above remark, we can consider the projection as well as the embeddi
     \end{align*}
     and
     \begin{align*}
-        d_{\dgM(C_{\eta}, \Sigma F)}(\pi_{\Sigma F}) &= d_{\Sigma F} \circ \pi_{\Sigma F} - \pi_{\Sigma F} \circ d_{C_{\eta}} \\
+        d_0^{\dgM(C_{\eta}, \Sigma F)}(\pi_{\Sigma F}) &= d_{\Sigma F} \circ \pi_{\Sigma F} - \pi_{\Sigma F} \circ d_{C_{\eta}} \\
         &= -d_F \circ
         \begin{pmatrix}
             1 & 0
@@ -1051,9 +1050,9 @@ By using the above remark, we can consider the projection as well as the embeddi
         = 0.
     \end{align*}
 
-    The differentials of \( \iota_{\Sigma F} \in \dgM(\Sigma F, C_{\eta}) \) and \( \pi_G \in \dgM(C_{\eta}, G) \) are
+    The differentials of \( \iota_{\Sigma F} \in \dgM(\Sigma F, C_{\eta})_0 \) and \( \pi_G \in \dgM(C_{\eta}, G)_0 \) are
     \begin{align*}
-        d_{\dgM(\Sigma F, C_{\eta})}(\iota_{\Sigma F}) &= d_{C_{\eta}} \circ \iota_{\Sigma F} - \iota_{\Sigma F} \circ d_{\Sigma F} \\
+        d_0^{\dgM(\Sigma F, C_{\eta})}(\iota_{\Sigma F}) &= d_{C_{\eta}} \circ \iota_{\Sigma F} - \iota_{\Sigma F} \circ d_{\Sigma F} \\
         &=
         \begin{pmatrix}
             -d_F & 0 \\
@@ -1088,7 +1087,7 @@ By using the above remark, we can consider the projection as well as the embeddi
     \end{align*}
     and
     \begin{align*}
-        d_{\dgM(C_{\eta}, G)}(\pi_G) &= d_G \circ \pi_G - \pi_G \circ d_{C_{\eta}} \\
+        d_0^{\dgM(C_{\eta}, G)}(\pi_G) &= d_G \circ \pi_G - \pi_G \circ d_{C_{\eta}} \\
         &= d_G \circ
         \begin{pmatrix}
             0 & 1
@@ -1150,11 +1149,22 @@ The next step is to define what an algebraic triangulated category is by relatin
     \label{def:DG_Yoneda_embedding}
     Let \( \Cc \) be a small DG-category.
     
-    Then let \( \mathbf{h} \) be the DG-functor defined as follows
-    \begin{align*}
-        \mathbf{h}: \Cc &\to \dgM \\
-        A &\mapsto \Cc(-, A).
-    \end{align*}
+    Then let \( \mathbf{h}: \Cc \to \dgM \) be the DG-functor defined as follows:
+    \begin{itemize}
+        \item {
+            For \( A \in \Cc \), let
+            \[
+                \mathbf{h} A := \Cc(?, A).
+            \]
+        }
+        \item {
+            For \( f \in \Cc(A, B)_n \), let
+            \[
+                \mathbf{h}_n^{A, B} (f) := (f)_*,
+            \]
+            where \( (f)_* \) is post composition with \( f \) as a DG-morphism.
+        }
+    \end{itemize}
 
     This DG-functor is called the \emph{DG-Yoneda embedding of \( \Cc \)}.
 \end{definition}
@@ -1170,7 +1180,7 @@ For a proof of why the DG-Yoneda embedding is a well-defined DG-functor, see \ci
     \[
         \mathbf{h}_{A, B}: \Cc(A, B) \to \dgM(\Cc(-, A), \Cc(-, B))
     \]
-    is an isomorphism, and since \( \mathbf{h} \) is a DG-functor, we have that we can consider any DG-category as a sort of full DG-subcategory (which is defined as expected) of the DG-category of DG-modules.
+    is an isomorphism, and since \( \mathbf{h} \) is a DG-functor, we have that we can consider any DG-category as a sort of full ``DG-subcategory'' (which is defined as expected) of the DG-category of DG-modules.
 \end{remark}
 
 The following theorem shows that taking \( H^0(\mathbf{h}) \) yields a fully faithful functor from \( H^0(\Cc) \) to \( H^0(\dgM) \).
@@ -1185,7 +1195,7 @@ The following theorem shows that taking \( H^0(\mathbf{h}) \) yields a fully fai
     is fully faithful.
 \end{lemma}
 \begin{proof}
-    By \autoref{rem:dg_yoneda_embedding_fully_faithful}, we have that for any \( A, B \in \Cc \), \( \mathbf{h}_{A, B, 0} \) is an isomorphism, which implies \( H^0(\mathbf{h})_{A, B} \) is an isomorphism.
+    By \autoref{rem:dg_yoneda_embedding_fully_faithful}, we have that for any \( A, B \in \Cc \), \( \mathbf{h}_{A, B} \) is a chain isomorphism, which implies \( H^0(\mathbf{h})_{A, B} \) is an isomorphism.
 \end{proof}
 
 We are now ready to define what a ``pre-triangulated DG-category'' is, which is the final important piece in this definition of algebraic triangulated categories. It must not be confused with a pre-triangulated (non-DG) category which is a category that satisfies the triangulated axioms {\bf (TR1)}, {\bf (TR2)}, and {\bf (TR3)}, but not {\bf (TR4)}.
@@ -1195,7 +1205,7 @@ We are now ready to define what a ``pre-triangulated DG-category'' is, which is 
 
     Then \( \Cc \) is called a \emph{pre-triangulated DG-category} if \( H^0(\Cc) \) is triangulated, and \( H^0(\mathbf{h}): H^0(\Cc) \to H^0(\dgM) \) is a triangulated functor, such that the image of \( H^0(\mathbf{h}) \) is a triangulated subcategory of \( H^0(\dgM) \).
 \end{definition}
-In particular, if \( \Cc \) is a pre-triangulated DG-category, then due to \( H^0(\mathbf{h}) \) being fully faithful and mapping objects injectively, it is a triangulated autoequivalence onto its image, which is a full triangulated subcategory of \( H^0(\dgM) \).
+In particular, if \( \Cc \) is a pre-triangulated DG-category, then due to \( H^0(\mathbf{h}) \) being fully faithful and mapping objects injectively, it is a triangulated \emph{automorphism} onto its image, which is a full triangulated subcategory of \( H^0(\dgM) \).
 
 The above definition is equivalent to \cite[Definition 3.1.1]{Jasso-Muro_2023}.
 
@@ -1207,4 +1217,4 @@ Finally, we can define what an algebraic triangulated category is.
     Then \( \Tc \) is called an \emph{algebraic triangulated category} if there exists a pre-triangulated DG-category, \( \Cc \), called a \emph{DG-enhancement of \( \Tc \)}, such that \( H^0(\Cc) \) is triangulated equivalent to \( \Tc \).
 \end{definition}
 
-There are many equivalent, or slightly different definitions of algebraic triangulated categories. The reason we use the above definition is that it closely relates the algebraic triangulated category to the category of DG-modules. This in turn allows us to use properties of DG-modules in order to make it possible for Toda brackets to equal Massey products.
+There are many equivalent, or slightly different definitions of algebraic triangulated categories. The reason we use the above definition is that it closely relates the algebraic triangulated category to the category of DG-modules. This in turn allows us to use the properties of DG-modules in order to make it possible for Toda brackets to equal Massey products.

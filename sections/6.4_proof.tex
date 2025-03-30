@@ -27,17 +27,13 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
 
     Start by showing \( \supseteq \).
 
-    Let \( f \in \massey{f_3, f_2, f_1} \). Then by definition of Massey product there exists
+    Let \( f \in \massey{f_3, f_2, f_1} \). Then by the definition of Massey product there exists
     \[
         g_i \in \dgM(X_i, X_{i + 1})_0
     \]
     with \( [g_i] = f_i \) for \( i = 1, 2, 3 \), as well as
     \[
-        s \in \dgM(X_2, X_4)_{-1}
-    \]
-    and
-    \[
-        t \in \dgM(X_1, X_3)_{-1}
+        s \in \dgM(X_2, X_4)_{-1} \quad \text{and} \quad t \in \dgM(X_1, X_3)_{-1},
     \]
     with \( d(s) = - g_3 \circ g_2 \) and \( d(t) = - g_2 \circ g_1 \) such that
     \[
@@ -193,9 +189,21 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
     \end{align*}
 
     Hence,
-    \[
-        \class*{\beta \circ (\Sigma \alpha)} = \class*{\beta \circ \alpha} = f
-    \]
+    \begin{align*}
+        \class*{\beta \circ (\Sigma \alpha)} &= \class*{\beta \circ \alpha} \\
+        &=
+        \class*{
+            \begin{pmatrix}
+                - s & g_3
+            \end{pmatrix}
+            \begin{pmatrix}
+                - g_1 \\
+                - t
+            \end{pmatrix}
+        } \\
+        &= \class*{ s \circ g_1 - g_3 \circ t } \\
+        &= f
+    \end{align*}
     is in \( \toda{f_3, f_2, f_1} \).
 
     Then we want to show \( \subseteq \):
@@ -215,7 +223,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
 
     Recall the equations from \autoref{rem:dgm_differentials_of_inclusions_and_projections_of_cone}.
 
-    First, \( d(s) = -g_3 \circ g_2 \):
+    First, \( d(s) = -g_3 \circ g_2 \) follows from
     \begin{align*}
         d_{\dgM(X_2, X_4)}(s) &= d_{\dgM(X_2, X_4)}(- \beta \circ \iota_{\Sigma X_2}) \\
         &= - d_{\dgM(C_{f_2}, X_4)}(\beta) \circ \iota_{\Sigma X_2} - \beta \circ d_{\dgM(X_2, C_{f_2})}(\iota_{\Sigma X_2}) \\
@@ -224,7 +232,7 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
         &= - \beta \circ \iota_{X_3} \circ f_2 \\
         &= - g_3 \circ g_2.
     \end{align*}
-    Second, \( d(t) = - g_2 \circ g_1 \):
+    Second, \( d(t) = - g_2 \circ g_1 \) follows from
     \begin{align*}
          d_{\dgM(X_1, X_3)}(t) &= d_{\dgM(X_1, X_3)}(- \pi_{X_3} \circ \alpha) \\
          &= -d_{\dgM(\Sigma^{-1} C_{f_2}, X_3)}(\pi_{X_3}) \circ \alpha \\
@@ -232,14 +240,15 @@ We start by proving that Toda brackets and Massey products coincide in \( H^0(\d
          &= - f_2 \circ (- \Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha \\
          &= - g_2 \circ g_1.
     \end{align*}
-    Third, \( f = \class*{s \circ g_1 - g_3 \circ t} \):
+    Third, \( f = \class*{s \circ g_1 - g_3 \circ t} \) follows from
     \begin{align*}
         s \circ g_1 - g_3 \circ t &= - \beta \circ \iota_{\Sigma X_2} \circ (-\Sigma^{-1} \pi_{\Sigma X_2}) \circ \alpha - \beta \circ \iota_{X_3} \circ (- \pi_{X_3}) \circ \alpha \\
         &= \beta \circ \tuple*{\iota_{\Sigma X_2} \circ \pi_{\Sigma X_2} + \iota_{X_3} \circ \pi_{X_3}} \circ \alpha \\
         \intertext{by \autoref{rem:dgm_different_dg_morphisms_same_space_give_degree-wise_same_morphisms},}
         &= \beta \circ \Id_{C_{f_2}} \circ \alpha \\
         &= \beta \circ \alpha \\
-        &= \beta \circ (\Sigma \alpha) = f,
+        &= \beta \circ (\Sigma \alpha) \\
+        &= f,
     \end{align*}
     which implies \( f \in \massey{f_3, f_2, f_1} \).
 \end{proof}

@@ -2,7 +2,7 @@ In this section, let \( R := \Fb_2 C_2 \), and let \( \Mc := \Stmod(R) \).
 
 We want to calculate the same examples and results as in \autoref{subsec:toda_brackets_examples}, but with Massey products instead.
 
-First, we have to define the pre-triangulated category, which will turn out to be the DG-enhancement of \( \Mc \).
+First, we have to define a pre-triangulated category, which will turn out to be the DG-enhancement of \( \Mc \).
 
 \begin{definition}
     Define \( \Ac \) as the full DG-subcategory of \( \C_{\dg} \) where the objects are exact chain complexes consisting only of the modules \( R^i \) for \( i \in \Nb \).
@@ -31,14 +31,14 @@ The following remark yields a functor which will be the triangulated equivalence
 
     Let \( \Phi(A) \) be the induced, exact chain complex from applying the isomorphisms mentioned above in each degree. Therefore, \( \Phi(A) \in \Ac \), and also \( \Phi(A) \in H^0(\Ac) \).
 
-    Furthermore, for \( [f] \in \Mc(A, B) \), let \( \tilde{f}: E_A \to E_B \) be as expected. Then by using the isomorphisms mentioned above, this induces a chain morphism \( \hat{f}: \Phi(A) \to \Phi(B) \), which we can take the residue class of with respect to null homotopic chain morphisms, which we will denote \( \Phi[f] \).
+    Furthermore, for \( [f] \in \Mc(A, B) \), let \( \tilde{f}: E_A \to E_B \) be the chain morphism arising from the induced morphism between the injective and the projective resolutions. Then by using the isomorphisms mentioned above, this induces a chain morphism \( \hat{f}: \Phi(A) \to \Phi(B) \), which we can take the residue class of with respect to null homotopic chain morphisms, which we will denote \( \Phi[f] \).
 
     By \autoref{rem:c_dg_h_0_is_chain_homotopy_cat}, \( \Phi[f] \in H^0(\C_{\dg}) \), and since \( \Ac \) is a full DG-subcategory, \( \Phi[f] \in H^0(\Ac) \).
 
-    By \cite[Section 7.5]{Krause_2007}, \( \Phi \) is a well-defined, triangulated equivalence from \( \Mc \) to \( H^0(\Ac) \).
+    By \cite[Section 7.5]{Krause_2007}, \( \Phi \) is a well-defined, triangulated equivalence from \( \Mc \) to \( H^0(\Ac) \) with inverse \( \Phi^{-1} := Z^0 \).
 \end{remark}
 
-Remember the details mentioned in \autoref{rem:toda_bracket_examples_properties}. The following remark calculates a choice of \( \Phi J \), since we are going to be using \( J \) in multiple examples.
+Remember the details mentioned in \autoref{rem:toda_bracket_examples_properties}. The following remark calculates a choice of \( \Phi J \).
 
 \begin{remark}
     Let \( J \), \( \kappa_J \) and \( \rho_J \) be as in \autoref{rem:toda_bracket_examples_properties}.
@@ -113,11 +113,11 @@ The following example mirrors \autoref{ex:toda_bracket_1}, and if everything we 
 		\end{tikzpicture}
 	\end{center}
 	
-	The goal is to calculate the Massey product \( \toda{[\Id_J], [0], [\Id_J]} \).
+	We want to calculate the Massey product \( \massey{[\Id_J], [0], [\Id_J]} \).
 
     By functoriality, we have \( \Phi [\Id] = [\Id] \), and \( \Phi [0] = [0] \).
 
-    Since \( \mathbf{h}: \Ac \to \dgM \) is a fully faithful DG-functor and it sends a morphisms to post-composition by that morphisms, we can in practice continue to calculate in \( H^{\bullet}(\Ac) \), until we need to reduce the degree using \autoref{cor:H^i_dgmod_cong_H^0_with_shift}, since then we need to consider the Massey product as a subset of
+    Since \( \mathbf{h}: \Ac \to \dgM \) is a fully faithful DG-functor, and it sends a DG-morphism to post-composition by that DG-morphism, we can in practice continue to calculate in \( H^{\bullet}(\Ac) \), until we need to reduce the degree using \autoref{cor:H^i_dgmod_cong_H^0_with_shift}, since then we need to consider the Massey product as a subset of
     \[
         H^{-1}(\dgM(\Ac(?, \Phi J), \Ac(?, \Phi J))).
     \]
@@ -161,7 +161,7 @@ The following example mirrors \autoref{ex:toda_bracket_1}, and if everything we 
         \set*{ \class*{ h } \mid h \in Z^{-1}(\Ac(\Phi J, \Phi J)) } = H^{-1}(\Ac(\Phi J, \Phi J)).
     \]
 
-    By ``translating'' the above calulations into \( H^{\bullet}(\dgM) \) by applying \( \mathbf{h}_{\Phi J, \Phi J, -1} \) on the underlying DG-morphisms in \( \Ac(\Phi J, \Phi J)_{-1} \), we get
+    By ``translating'' the above calculations into \( H^{\bullet}(\dgM) \) by applying \( \mathbf{h}_{-1}^{\Phi J, \Phi J} \) on the underlying DG-morphisms in \( \Ac(\Phi J, \Phi J)_{-1} \), we get
     \[
         \set*{ [(h)_*] \mid h \in Z^{-1}(\Ac(\Phi J, \Phi J)) } = H^{-1}(\dgM(\Ac(?, \Phi J), \Ac(?, \Phi J))).
     \]
@@ -171,16 +171,16 @@ The following example mirrors \autoref{ex:toda_bracket_1}, and if everything we 
         H^{-1}(\dgM(\Ac(?, \Phi J), \Ac(?, \Phi J))) = H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)).
     \]
 
-    Before we apply \( \Phi^{-1} H^0(\mathbf{h}) \), we need to pre-compose this with the natural isomorphism \( \eta: H^0(\mathbf{h}) \Phi \Sigma_{\Tc} \to \Sigma_{H^0(\dgM)} H^0(\mathbf{h}) \Phi \). In our case, computing \( \eta \) is not neccesary because \( \eta \) is an isomorphism, so
+    Before we apply \( \Phi^{-1} H^0(\mathbf{h}) \), we need to pre-compose this with the natural isomorphism \( \eta: H^0(\mathbf{h}) \Phi \Sigma_{\Tc} \to \Sigma_{H^0(\dgM)} H^0(\mathbf{h}) \Phi \). In our case, computing \( \eta \) is not necessary since pre-composing with an isomorphism is an isomorphism, i.e.,
     \[
-        (\eta_J)^* H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)) = H^0(\dgM)(\Ac(?, \Phi \Sigma J), \Ac(?, \Phi J)).
+        H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)) \circ \eta_J = H^0(\dgM)(\Ac(?, \Phi \Sigma J), \Ac(?, \Phi J)).
     \]
 
     Applying \( \Phi^{-1} H^0(\mathbf{h})^{-1} \) yields the subset
     \[
         \Tc(Z^0 \Phi \Sigma J, Z^0 \Phi J),
     \]
-    which if we pre and post compose with the natural isomorphisms \( \phi \), yields the subset
+    which after pre- and post-composing with the natural isomorphisms \( \phi \), yields the subset
     \[
         \Tc(\Sigma J, J) = \Tc(J, J),
     \]
@@ -192,13 +192,15 @@ In the above example we did not need to define or use any of the natural isomorp
     H^0(\dgM)(\Sigma \Ac(?, \Phi J), \Ac(?, \Phi J)).
 \]
 
-We also managed to use the properties of Massey products to calculate without using any special properties of \( J \) or \( \Phi J \). Therefore, we can use much of the same argumentation when we are trying to prove \autoref{ex:toda_bracket_3} later on.
+We also managed to calculate the Massey product without using any special properties of \( J \) or \( \Phi J \). Therefore, we can use many of the same arguments when we are trying to prove \autoref{ex:toda_bracket_3} later on.
 
 Even with our shortcuts, we can see that calculating the Massey product in this example, at least in the way we are doing here, seems more difficult than calculating the Toda bracket.
 
-The above example illustrates a few tricks we could use when calculating Massey products moving forward. First, notice that in the definition of the Massey product, we have \( \class*{ s \circ g_1 - g_3 \circ t} \) can be simplified to \( \class*{s \circ f_1 - f_3 \circ t} \), because different choices of representatives all yield the same result in this outer sum. Second, it was also clear that calculating the Massey product does not utilize any special properties of \( \dgM \), other than \autoref{cor:H^i_dgmod_cong_H^0_with_shift}. We could do the majority of the calculations in \( H^{\bullet}(\Ac) \), which is easier to work with than \( \dgM \). Assuming \( \Tc \) is any algebraic triangulated category with a DG-enhancement \( \Ac \), if we have already calculated \( \phi, \eta \) and \( \Phi \) beforehand, then the difficulty of calculating the Massey product is only dependant on how difficult it is to work with \( \Ac \), which could potentially be easier than calculating the Toda bracket in \( \Tc \).
+The above example illustrates a few tricks we could use when calculating Massey products moving forward. First, notice that in the definition of the Massey product, we have the residue class \( \class*{ s \circ g_1 - g_3 \circ t} \). This can be simplified to \( \class*{s \circ f_1 - f_3 \circ t} \), because different choices of representatives of \( f_1 \) and \( f_3 \) all yield the same result in this outer sum.
 
-For the sake of completeness, we will roughly calculate \( \eta \) and \( \phi \) for \( \Mc \).
+Second, it was also clear that calculating the Massey product does not utilize any special properties of \( \dgM \), other than \autoref{cor:H^i_dgmod_cong_H^0_with_shift}. We could do the majority of the calculations in \( H^{\bullet}(\Ac) \), which is easier to work with than \( \dgM \). Assuming \( \Tc \) is any algebraic triangulated category with a DG-enhancement \( \Ac \), if we have already calculated \( \phi, \eta, \Phi \) and \( \Phi^{-1} \) beforehand, then the difficulty of calculating the Massey product is only dependent on how difficult it is to work with \( \Ac \), which could potentially be easier than calculating the Toda bracket in \( \Tc \).
+
+For the sake of completeness, we will sketch a calculation for \( \eta \) and \( \phi \) for \( \Mc \).
 
 \begin{remark}
     Let \( \dgM \) denote \( \dgMod_{\dg}(\Ac^{\op}, \C_{\dg}) \).
@@ -213,13 +215,13 @@ For the sake of completeness, we will roughly calculate \( \eta \) and \( \phi \
     \]
     from the fact that \( \Phi \) is a triangulated functor.
 
-    \( \tilde{\eta} \) can be chosen to be a canonical isomorphism that is essentially the identity, since \( [A, \Sigma B] \cong \Sigma [A, B] \) with the identity morphism in each degree. Therefore, there is an isomorphism \( \C_{\dg}(?, \Sigma A) \cong \Sigma \C_{\dg}(?, A) \), which induces a natural ismorphism from \( H^0(\mathbf{h}) \Sigma \) to \( \Sigma H^0(\mathbf{h}) \).
+    \( \tilde{\eta} \) can be chosen to be a canonical isomorphism that is essentially the identity, since \( [A, \Sigma B] \cong \Sigma [A, B] \) with the identity morphism in each degree. Therefore, there is an isomorphism \( \C_{\dg}(?, \Sigma A) \cong \Sigma \C_{\dg}(?, A) \), which induces a natural isomorphism from \( H^0(\mathbf{h}) \Sigma \) to \( \Sigma H^0(\mathbf{h}) \).
 
     \( \hat{\eta} \) is the following natural isomorphism:
 
-    Notice that in the definition of \( \Phi \), we choose a projective and injective resolution for each \( A \). If we consider the first morphism and modules in the injective and projective resolutions, we have essentially chosen some injective and projective object for each \( A \) as well as a monomorphism and epimorphism into and from the modules respectively. If we then choose some objects as the kernels of the monomorphisms, and some objects as the cokernels of the epimorphisms, we have defined some \( \Omega' \) and \( \Sigma' \), but with a different \( P \) and \( I \), respectively (see \autoref{def:stmod_omega} and \autoref{def:stmod_sigma}). Label the morphisms and modules in \( P \) and \( I \) as we did for \( \Sigma \) and \( \Omega \) in \autoref{subsubsection:stable_module_cat} (this is fine since we will not reference the morphisms and modules from the definition of \( \Sigma \) ).
+    Notice that in the definition of \( \Phi \), we choose a projective and injective resolution for each \( A \). If we consider the first morphism and modules in the injective and projective resolutions, we have essentially chosen some injective and projective object for each \( A \) as well as a monomorphism and epimorphism into and from the modules respectively. If we then select some objects as the kernels of the monomorphisms, and some objects as the cokernels of the epimorphisms, we have defined some \( \Omega' \) and \( \Sigma' \), but with a different \( P \) and \( I \), respectively (see \autoref{def:stmod_omega} and \autoref{def:stmod_sigma}). Label the morphisms and modules in \( P \) and \( I \) as we did for \( \Sigma \) and \( \Omega \) in \autoref{subsubsection:stable_module_cat} (this is fine since we will not reference the morphisms and modules from the definition of \( \Sigma \)).
 
-    Notice that \( \Phi^{-1} \Phi \) takes some object \( A \) to \( \ker(\rho_A) = \im(i_A) \). This is naturally isomorphic to \( \Id_{\Mc} \) because it is naturally isomorphic to \( \Id_{\Mod(R)} \) in \( \Mod(R) \). Denote this natural isomorphism by \( \phi \). Since \( H^0(\mathbf{h}) \) is an autoequivalence onto \( \im(H^0(\mathbf{h})) \), we get that \( \phi \) is the desired natural isomorphism
+    Notice that \( \Phi^{-1} \Phi \) takes some object \( A \) to \( \ker(\rho_A) = \im(i_A) \). This is naturally isomorphic to \( \Id_{\Mc} \) because it is naturally isomorphic to \( \Id_{\mod(R)} \) in \( \mod(R) \). Denote this natural isomorphism by \( \phi \). Since \( H^0(\mathbf{h}) \) is an automorphism onto \( \im(H^0(\mathbf{h})) \), we get that \( \phi \) is the desired natural isomorphism
     \[
         \phi: \Phi^{-1} H^0(\mathbf{h})^{-1} H^0(\mathbf{h}) \Phi = \Phi^{-1} \Phi \to \Id_{\Mc}.
     \]
@@ -239,7 +241,7 @@ For the sake of completeness, we will roughly calculate \( \eta \) and \( \phi \
     \]
     is a natural isomorphism, and we get since \( \Sigma_{\C_{\dg}} \Sigma^{-1}_{\C_{\dg}} = \Id_{\C_{\dg}} \) that
     \[
-        \hat{\eta} := \set{(\Sigma \Phi \mu_A) \circ (\Sigma \phi^{-1}_{\Sigma^{-1} \Phi \Sigma A})}_{A \in \Mc}: \Phi \Sigma \to \Sigma \Phi,
+        \hat{\eta} := \set{(\Sigma \Phi \mu_A) \circ (\Sigma \phi^{-1}_{\Sigma^{-1} \Phi \Sigma A})}_{A \in \Mc}: \Sigma \Sigma^{-1} \Phi \Sigma = \Phi \Sigma \to \Sigma \Phi,
     \]
     is the desired natural isomorphism.
 
@@ -250,7 +252,7 @@ For the sake of completeness, we will roughly calculate \( \eta \) and \( \phi \
     as the desired \( \eta \).
 \end{remark}
 
-The above remark shows us that calculating natural isomorphisms, even in a rough manner as was done above, can be difficult. However, when calculating Massey products, this only has to be done once for the particular algebraic triangulated category we are working with.
+The above remark shows us that calculating natural isomorphisms, even as a sketch, can be difficult. However, when calculating Massey products, this only has to be done once for the particular algebraic triangulated category we are working with.
 
 The following example had empty Toda bracket in \autoref{ex:toda_bracket_2}, now we will calculate the Massey product and see if we get the same result.
 
@@ -291,7 +293,7 @@ The following example had empty Toda bracket in \autoref{ex:toda_bracket_2}, now
     \]
     but \( d(s) \) is by definition a boundary, and so \( [d(s)] = [0] \).
 
-    Therefore there exists no \( s, \) or \( t \) for any element in the Massey product of the above diagram, and it is therefore empty. This implies that the Massey product in \( \Mc \) is also empty.
+    Therefore, there exists no \( s, \) or \( t \) for any element in the Massey product of the above diagram in \( \dgM \), and it is therefore empty. This implies that the Massey product in \( \Mc \) is also empty.
 \end{example}
 
 Similar to what we did for \autoref{prop:toda_pairwise_non_vanishing_is_empty}, we will try to prove the same result for Massey products without using Toda brackets.
@@ -352,9 +354,9 @@ Similar to what we did for \autoref{prop:toda_pairwise_non_vanishing_is_empty}, 
             \[
                 [d(t)] = - [g_2 \circ g_1] = - [(F f_2) \circ (F f_1)] = - [F (f_2 \circ f_1)] \neq [0]
             \]
-            since \( F \) is an equivalence, and therefore sends non-zero morphisms to non-zero morphisms.
+            since \( F \) is an isomorphism, and therefore sends non-zero morphisms to non-zero morphisms.
 
-            However, since \( [d(t)] = [0] \), since \( d(t) \) is a boundary, this is a contradiction, and so there exists no \( t \) in the definition of the Massey product, and it has to be empty.
+            However, \( [d(t)] = [0] \) since \( d(t) \) is a boundary, so we get a contradiction, and there exists no \( t \) in the definition of the Massey product. Thus, the Massey product is empty.
         }
         \item {
             If \( f_3 \circ f_2 \neq 0 \), then we get that
@@ -367,7 +369,7 @@ Similar to what we did for \autoref{prop:toda_pairwise_non_vanishing_is_empty}, 
     Since both cases imply that the Massey product is empty, then the Massey product must be empty.
 \end{proof}
 
-The following example is a generalization of \autoref{ex:massey_product_1}, similar to what we did in \autoref{ex:toda_bracket_3}, but only for Massey products.
+The following example is a generalization of \autoref{ex:massey_product_1}, similar to what we did in \autoref{ex:toda_bracket_3}, but for Massey products.
 
 \begin{example}
     We want to compute \( \massey{f, 0, \Id} \) for any algebraic triangulated category \( \Tc \) and for any \( f \in \Tc(X_3, X_4) \).
@@ -428,7 +430,7 @@ The following example is a generalization of \autoref{ex:massey_product_1}, simi
         &= H^{-1}(\dgM(F X_1, F X_4)) \cong H^0(\dgM)(\Sigma F X_1, X_4).
     \end{align*}
 
-    Since pre and post composition with isomorphisms are isomorphisms on the Hom-modules, we get that applying the natural isomorphisms as well as \( F^{-1} \) from the definition of Massey products on algebraic triangulated categories yields the entire group \( \Tc(\Sigma X_1, X_4) \).
+    Since pre- and post-composition with isomorphisms are isomorphisms on the Hom-modules, we get that applying the natural isomorphisms as well as \( F^{-1} \) from the definition of Massey products on algebraic triangulated categories yields the entire group \( \Tc(\Sigma X_1, X_4) \).
 \end{example}
 
 Finally, we will calculate the Massey product of the same diagram as in \autoref{ex:toda_bracket_4}.
@@ -439,7 +441,7 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
     Consider the following diagram in \( \Mc \),
     \begin{center}
 		\begin{tikzpicture}
-			\diagram{m}{1cm}{1cm} {
+			\diagram{m}{1cm}{2cm} {
 				J \& {J \oplus J} \& {J \oplus J} \& J. \\
 			};
 
@@ -455,7 +457,7 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
     We will utilize the trick we noticed in \autoref{ex:massey_product_1}, namely that much of the Massey product calculation can be done in \( H^{\bullet}(\Ac) \). Consider therefore the following diagram in \( H^{\bullet}(\Ac) \),
     \begin{center}
 		\begin{tikzpicture}
-			\diagram{m}{1cm}{1cm} {
+			\diagram{m}{1cm}{2cm} {
 				\Phi J \& (\Phi J) \oplus (\Phi J) \& (\Phi J) \oplus (\Phi J) \& \Phi J. \\
 			};
 
@@ -480,7 +482,7 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
         d(t)_i = - \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}.
     \]
 
-    Let \( t = \begin{pmatrix} 0 \\ 0 \end{pmatrix}_{i \in \Zb} \), and for any \( h \in Z^{-1}(\Ac(\Phi J, \Phi J)) \), let \( s = \begin{pmatrix} h & 0 \end{pmatrix}_{i \in \Zb} \). This choice of \( s \) is valid since
+    Let \( t = \begin{psmallmatrix} 0 \\ 0 \end{psmallmatrix}_{i \in \Zb} \), and for any \( h \in Z^{-1}(\Ac(\Phi J, \Phi J)) \), let \( s = \begin{psmallmatrix} h & 0 \end{psmallmatrix}_{i \in \Zb} \). This choice of \( s \) is valid since
     \begin{align*}
         d(s) &= d( \pi_R \circ h ) \\
         &= c \circ d (\pi_R \otimes h) \\
@@ -490,11 +492,11 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
     
     Transferring this over to \( H^{\bullet}(\dgM) \) yields the Massey product,
     \begin{align*}
-        \massey{
+        &\massey{
             \tuple*{\begin{pmatrix} 1 & 1 \end{pmatrix}_{i \in \Zb}}_*,
             \tuple*{\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}_{i \in \Zb}}_*,
             \tuple*{\begin{pmatrix} 1 \\ 1 \end{pmatrix}_{i \in \Zb}}_*
-        }
+        } \\
         &= \set{ [(h)_*] \mid (h)_* \in Z^{-1}(\dgM(H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J)) } \\
         &= H^{-1}(\dgM(H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J)) \\
         &\cong H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi J, H^0(\mathbf{h}) \Phi J).
@@ -503,11 +505,11 @@ Finally, we will calculate the Massey product of the same diagram as in \autoref
     Then, similarly to what we did previously, we can apply \( \Phi^{-1} H^0(\mathbf{h})^{-1} \) as well as the appropriate natural transformation to end up with the set \( \Tc(\Sigma J, J) = \Tc(J, J) \).
 \end{example}
 
-The above example was arguably easier to calculate than only using Toda brackets, since we did not have to calculate the standard triangle. Even so, the calculations are more complicated and is dependant on multiple natural transformations. In the end, calculating the indeterminacy of the Toda bracket is the easiest approach for every example in this thesis.
+The above example was arguably easier to calculate than only using Toda brackets, since we did not have to calculate the standard triangle. Even so, the calculations are more complicated and is dependent on multiple natural transformations. In the end, calculating the indeterminacy of the Toda bracket is the easiest approach for every example in this thesis.
 
-Another thing to note is that in every example, we did not use all of the properties of \( \Mc \) and by extension \( \Ac \) in our calculations. In the final example, the only special property that we used was the fact that \( 2 = 0 \) in \( R \). This is a good sign, as that implies there are more properties that could potentially be used in more complicated calculations, like the structure of \( \Phi A \), or the fact that there are only two indecomposable modules in \( \mod(R) \) up to isomorphism.
+Another thing to note is that in every example, we did not use all the properties of \( \Mc \) and by extension \( \Ac \) in our calculations. In the final example, the only special property that we used was the fact that \( 2 = 0 \) in \( R \). This is a good sign, as that implies there are more properties that could potentially be used in more complicated calculations, like the structure of \( \Phi A \), or the fact that there are only two indecomposable modules in \( \mod(R) \) up to isomorphism.
 
-Something that the above examples illustrate well is that calculating Massey products is similar to calculating the indeterminancy for normal Toda brackets. If we consider
+Something that the above examples illustrate well is that calculating Massey products is similar to calculating the indeterminacy for normal Toda brackets. If we consider
 \[
     H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_3) \quad \text{as} \quad \Tc(\Sigma X_1, X_3),
 \]
@@ -515,11 +517,11 @@ and
 \[
     H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_2, H^0(\mathbf{h}) \Phi X_4) \quad \text{as} \quad \Tc(\Sigma X_2, X_4),
 \]
-then the formula for the indeterminancy,
+then the formula for the indeterminacy,
 \[
     f_3 \circ \Tc(\Sigma X_1, X_3)  + \Tc(\Sigma X_2, X_4) \circ (\Sigma f_1) \subseteq \Tc(\Sigma X_1, X_4),
 \]
-becomes very similar to the formula for calculating the Massey product,
+``looks'' very similar to the formula for calculating the Massey product,
 \[
     \set*{
         \class*{
@@ -532,4 +534,4 @@ becomes very similar to the formula for calculating the Massey product,
 \]
 since \( s \in H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_2, H^0(\mathbf{h}) \Phi X_4) \) and \( t \in H^0(\dgM)(\Sigma H^0(\mathbf{h}) \Phi X_1, H^0(\mathbf{h}) \Phi X_3) \).
 
-They are not identical, since for Massey products, \( d(s) \) and \( d(t) \) are related in a way that the indeterminancy does not capture.
+However, they are not identical, since for Massey products, \( d(s) \) and \( d(t) \) are related in a way that the indeterminacy does not capture.

@@ -64,3 +64,6 @@ DG-endofunctors
 bicomplete
 Borromean
 cochains
+injectively
+cokernels
+Hom-modules
