@@ -242,7 +242,8 @@ We can extend \( \Sigma_{\C_{\dg}} \) onto \( \dgM \) in the following way.
     Then \( \Sigma_{\dgM} \) is called the \emph{shift functor of \( \dgM \)}. When the context is uncertain, we will denote it as \( \Sigma_{\dgM} \), and when the context is certain we will use \( \Sigma \).
 \end{definition}
 
-% TODO: Legg til at Sigma kan verta definert på prod_A C_dg
+It is clear that \( \Sigma_{F, G, n}^{\dgM} \) is defined on \( \prod_{A \in \Cc} \C_{\dg}(F A, G A)_n \). In order for the definition to make sense, we have to prove that when restricted to \( \dgM \), it becomes an endofunctor.
+
 Since
 \[
     \dgM(\Sigma F, \Sigma G)_n \subseteq \prod_{A \in \Cc} \C_{\dg}(\Sigma F A, \Sigma G A)_n = \prod_{A \in \Cc} \C_{\dg}(F A, G A)_n,
@@ -255,13 +256,12 @@ and for any \( f \in \Cc^{\op}(B, C) \),
     &\Updownarrow \\
     (-1)^{|f||\eta|}(G f) \circ \eta_{B} &= \eta_{C} \circ (F f), \\
 \end{align*}
-this implies \( \eta \in \dgM(\Sigma F, \Sigma G)_n \), and thus \( \Sigma_{F, G, n}^{\dgM} \) is a well-defined morphism.
+this implies \( \eta \in \dgM(\Sigma F, \Sigma G)_n \), and thus \( \Sigma_{F, G, n}^{\dgM} \) has codomain in \( \dgM \).
 
-We can also consider \( \Sigma_{F, G, n}^{\dgM} \) as follows,
+We could also have defined \( \Sigma_{F, G, n}^{\dgM} \) as follows,
 \[
     \Sigma_{F, G, n}^{\dgM} = \prod_{A \in \Cc} \Sigma_{F A, G A, n}^{\C_{\dg}}.
 \] 
-This is a morphism from \( \prod_{A \in \Cc} \C_{\dg}(F A, G A)_n \) to \( \prod_{A \in \Cc} \C_{\dg}(\Sigma F A, \Sigma G A)_n \).
 
 Before we prove that \( \Sigma_{\dgM} \) is a DG-functor, we have the following remark, which mirrors \autoref{rem:c_dg_sigma_d_equal_minus_d}.
 
@@ -468,10 +468,10 @@ It will become apparent later on that the biproduct in \( H^0(\dgM) \) is inheri
     \end{itemize}
 \end{definition}
 
-It is not obvious why the previous definition is a DG-functor. The following remark proves that \( F \oplus G \) is a DG-functor.
+It is not obvious why the previous definition is a DG-module. The following remark proves that \( F \oplus G \) is a DG-module.
 
 \begin{remark}
-    \( F \oplus G \) is a DG-functor, as:
+    \( F \oplus G \) is a DG-module, as:
     \begin{itemize}
         \item {
             For \( n \in \Zb \), and \( f \in \Cc^{\op}(A, B)_n \), we have
@@ -878,7 +878,6 @@ The following is the definition for a cone in \( \dgM \).
         }
         \item {
             For any \( f \in \Cc^{\op}(A, B)_n \), let
-            % TODO: Rar C_eta
             \begin{align*}
                 {C_{\eta}}_n^{A, B}: \Cc^{\op}(A, B)_n &\to \C_{\dg}(C_{\eta} A, C_{\eta} B)_n \\
                 f &\mapsto ((\Sigma F) \oplus G) f = 
@@ -912,9 +911,9 @@ The definition of \( c_{\eta} \) has the following property that makes it easier
     every result that does not rely on the differentials hold for both \( (\Sigma F) \oplus G \) and \( C_{\eta} \).
 \end{remark}
 
-We have that \( C_{\eta} \) is a well-defined DG-functor by the following remark.
+We have that \( C_{\eta} \) is a well-defined DG-module by the following remark.
 \begin{remark}
-    In order to check if \( C_{\eta} \) in \autoref{def:dgm_cone} is a DG-functor, we have to check the three properties:
+    In order to check if \( C_{\eta} \) in \autoref{def:dgm_cone} is a DG-module, we have to check the three properties:
     \begin{itemize}
         \item {
             For any \( A, B \in \Cc \), we want to show that

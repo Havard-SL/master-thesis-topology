@@ -1,6 +1,28 @@
-\subsection{Motivation}
-\label{subsection:1.1-Motivation}
-\input{sections/1.1_motivation.tex}
+Triangulated categories were discovered independently by Dieter Puppe and Jean-Louis Verdier in 1962 and 1963, respectively. Verdier introduced his axioms in his doctoral thesis, which was supervised by Alexander Grothendieck. This lead to the attribution for the discovery of triangulated categories sometimes being split three ways between Puppe, Verdier, and Grothendieck. Puppe discovered triangulated categories while looking at the stable homotopy category, while Verdier and Grothendieck were motivated from a more algebraic viewpoint via the derived category of an abelian category.
+
+As their discovery would imply, triangulated categories are useful in both algebra and topology. Typical algebraic examples of triangulated categories are: the derived categories of abelian category as mentioned above, the stable module category, as well as the homotopy category of chain complexes. On the other hand, typical topological examples of triangulated categories are: the stable homotopy category, and the Spanier--Whitehead category. In \autoref{section:tri_cats} we will define triangulated categories, as well as give three examples. We will touch a little upon the Spanier--Whitehead category (\autoref{subsubsection:spanier_whitehead_cat}) and the chain homotopy category (\autoref{subsubsection:chain_homotopy_cat}), but will mainly focus on the stable module category (\autoref{subsubsection:stable_module_cat}) for use in examples throughout the thesis. For this reason, we have proven that it is a triangulated category (\autoref{example:stable_module_category_triangulated}).
+
+Toda brackets were initially introduced by Hiroshi Toda in 1962 to calculate homotopy groups of spheres. The definition of Toda brackets in any triangulated category is based on the work of Shipley in 2002 \cite[Definition A.2]{Shipley_2002}. She bases her definition on ideas from Cohen in 1968 \cite[p.\ 308]{Cohen_1968}. Shipley's definition was further refined by Sagave in 2008 \cite[Remark 4.5]{Sagave_2008}. The definitions in this thesis are a more elegant formulation of Sagave's definitions by Christensen and Frankland in 2017 \cite[Definition 3.1]{Christensen-Frankland_2017}. The definitions and some examples of calculations will be discussed in \autoref{section:toda_brackets}.
+
+Toda brackets are useful, but can be hard to compute. Therefore, any additional tools to compute Toda brackets could help a lot in certain cases. One such tool is the ``indeterminacy,'' and another tool is ``Massey products.''
+
+Massey products were introduced by William Schumacher Massey in 1958, and is a useful tool in many calculations in cohomology. Massey products can be defined on a DG-category (\autoref{def:massey_product_dg_cat}) and further generalized to be defined in any algebraic triangulated category (\autoref{def:massey_product_alg_tri_cat}).
+
+Our main result, \autoref{theorem:massey_equals_toda}, proves that Toda brackets and Massey products are equal, i.e.,
+\[
+    \toda{f_3, f_2, f_1} = \massey{f_3, f_2, f_1},
+\]
+in algebraic triangulated categories.
+
+In order to understand this proof, we will define a lot of the necessary prerequisites, including DG-categories, DG-modules and algebraic triangulated categories. We will not be defining everything in the most general form, but rather narrow down the definitions to the case we are interested in.
+
+We will also calculate some examples of Toda brackets and Massey products in the stable module category to test if they coincide as expected.
+
+Finally, we will end the thesis with a potential application of this equality between Massey products and Toda brackets.
+
+By NTNU regulations, it is mandatory to include the following statement.
+\subsection{Sustainability statement}
+\input{sections/1.1_sustainability_statement.tex}
 
 \subsection{Notation}
 \input{sections/1.2_notation.tex}

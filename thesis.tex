@@ -118,9 +118,6 @@
     \end{tabular}
 }
 
-% TODO: Fiks notasjon (direkte sum for c_dg og dgm i bevis, dobbel indeks), standariser ovveriding av notasjon, begrens tilde bruk i def. Minimer parantesbruk!
-% TODO: Standariser: cycle/cocycle, subscript.
-
 \begin{document}
 
 \maketitle
@@ -131,6 +128,11 @@
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 \input{sections/0.1_acknowledgements.tex}
+\newpage
+
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+\input{sections/0.2_abstract.tex}
 
 \vspace*{\fill}
 \begin{center}
@@ -138,35 +140,37 @@
 \end{center}
 \newpage
 
-\section*{Abstract}
-\addcontentsline{toc}{section}{Abstract}
-\input{sections/0.2_abstract.tex}
-
 \section{Introduction}
 \input{sections/1_introduction.tex}
+\newpage
 
 \section{Triangulated categories}
 \label{section:tri_cats}
 \input{sections/2_triangulated_categories.tex}
+\newpage
 
 \section{Toda brackets}
 \label{section:toda_brackets}
 \input{sections/3_toda_brackets.tex}
+\newpage
 
 \section{Massey products on DG-categories}
 \label{section:massey_prods_on_dg_cats}
 \input{sections/4_massey_products_on_dg_categories.tex}
+\newpage
 
 \section{Algebraic triangulated categories}
 \label{section:alg_tri_cats}
 \input{sections/5_algebraic_triangulated_categories.tex}
+\newpage
 
 \section{Toda brackets equal Massey products}
 \label{section:toda_eq_massey}
 \input{sections/6_toda_brackets_equal_massey_products.tex}
+\newpage
 
-\addcontentsline{toc}{section}{References}
 \bibliography{thesis}{}
 \bibliographystyle{plain}
+\addcontentsline{toc}{section}{References}
 
 \end{document}
