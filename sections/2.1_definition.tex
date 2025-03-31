@@ -1,10 +1,10 @@
-A triangulated category is closely linked to some objects and morphisms making ``triangles'' and showing that there exists a class of triangles that satisfy certain properties. We start by defining what a triangle in an additive category is, as well as what a morphism between triangles is.
+A triangulated category is closely linked to some objects and morphisms making ``triangles'' and a class of triangles that satisfy certain properties. We start by defining what a triangle in an additive category is, as well as what morphisms between triangles are.
 
 \begin{definition}[Triangles]
     \label{def:triangles}
     Let \( \Tc \) be an additive category, and \( \Sigma: \Tc \to \Tc \) be an additive auto-equivalence.
 
-    A \emph{triangle in \( \Tc \)}, is a diagram in \( \Tc \) on the form
+    A \emph{triangle in \( \Tc \)}, is a diagram in \( \Tc \) of the form
     \begin{center}
         \begin{tikzpicture}
             \diagram{m}{1cm}{1cm} {
@@ -139,7 +139,7 @@ We will use the following definition of a triangulated category.
                         (m-1-3) edge node {-\Sigma f} (m-1-4);
                 \end{tikzpicture}
             \end{diagramlabel}
-            is in \( \Delta \). The triangle \autoref{eq:tri_cat_def_left_rotation} is called the \emph{left rotation} of \autoref{eq:tri_cat_def_right_rotation}, and \autoref{eq:tri_cat_def_right_rotation} is called the \emph{right rotation} of \autoref{eq:tri_cat_def_left_rotation}.
+            is in \( \Delta \). The triangle in \autoref{eq:tri_cat_def_left_rotation} is called the \emph{left rotation} of \autoref{eq:tri_cat_def_right_rotation}, and \autoref{eq:tri_cat_def_right_rotation} is called the \emph{right rotation} of \autoref{eq:tri_cat_def_left_rotation}.
             
             Other names for this axiom include the \emph{right rotation axiom} for the \( (\Leftarrow) \) part of the axiom, and the \emph{left rotation axiom} for the \( (\Rightarrow) \) part of the axiom.
         }
